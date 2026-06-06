@@ -81,6 +81,46 @@ Synced on 2026-06-06:
 - `MYB-2` scope confirmation recorded in Linear: no full Three.js scene, route,
   ride input, final HUD, Playwright, persistence, BLE/FTMS, or Meshy work.
 
+Synced on 2026-06-06:
+
+- `MYB-3`: moved to Linear status `In Progress` after BMAD created the dev story
+  `_bmad-output/implementation-artifacts/1-2-source-mock-vitesse-lissee-progression-et-stats.md`
+  and updated `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `next_action: implement-MYB-3`.
+
+Synced on 2026-06-06:
+
+- `MYB-3`: moved from Linear status `In Progress` to `In Review` after local
+  BMAD status moved to review in
+  `_bmad-output/implementation-artifacts/1-2-source-mock-vitesse-lissee-progression-et-stats.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`.
+- `MYB-3` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 26 tests across 8 files
+  - `npm run build`
+- `MYB-3` implementation summary recorded in Linear: pure `src/ride/*` API for
+  mock input, effort clamp, speed mapping, smoothing, numeric progress, ride
+  stats, frame snapshots, and deterministic unit tests.
+- `MYB-3` scope confirmation recorded in Linear: no route/camera/biome,
+  Three.js/render, HUD/slider UI, Playwright, persistence, BLE/Web
+  Bluetooth/FTMS, Meshy, or asset-pipeline work.
+
+Synced on 2026-06-06:
+
+- `MYB-3`: moved from Linear status `In Review` to `Done` after local
+  `gds-code-review` returned `approved` with no findings.
+- Final `MYB-3` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 26 tests across 8 files
+  - `npm run build`
+- `MYB-3` review notes recorded in Linear: clamp `effort01`, speed mapping,
+  smoothing without overshoot, numeric progress, stats and frame snapshots all
+  conform to the story scope.
+- `MYB-3` local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/1-2-source-mock-vitesse-lissee-progression-et-stats.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; next local
+  action is `commit-MYB-3`.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

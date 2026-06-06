@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T14:37:30+02:00
+# last_updated: 2026-06-06T15:46:03+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create new stories; use the existing MYB-1 through MYB-6 mapping.
-# - Next action: create the dev story for MYB-2.
+# - Next action: commit MYB-3 and Linear workflow updates.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T14:37:30+02:00"
+last_updated: "2026-06-06T15:46:03+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,10 +47,9 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "review-MYB-2"
-  first_story_to_start: "MYB-2"
+  next_action: "commit-MYB-3"
+  first_story_to_start: "MYB-4"
   backlog_order:
-    - "MYB-3"
     - "MYB-4"
     - "MYB-5"
     - "MYB-6"
@@ -72,7 +71,8 @@ development_status:
   1-1-app-shell-mvp-et-etats-de-session: done
 
   # MYB-3 - Story 1.2 - Source mock, vitesse lissee, progression et stats
-  1-2-source-mock-vitesse-lissee-progression-et-stats: backlog
+  # Revue de code locale passee pour MYB-3.
+  1-2-source-mock-vitesse-lissee-progression-et-stats: done
 
   # MYB-4 - Story 1.3 - Route prefabriquee, biomes et camera sur rail
   # Caveat deja synchronise: route absente/invalide -> placeholder deterministic ou erreur typee.
