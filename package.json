@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "capture:ride-video": "node scripts/capture-ride-video.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "build": "tsc --noEmit && vite build"
@@ -15,6 +16,7 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/three": "^0.184.0",

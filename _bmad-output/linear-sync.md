@@ -670,6 +670,33 @@ Synced on 2026-06-06:
   - Review comment ID: `9e689dc6-b7a2-440a-af2c-8c46076d9da3`
   - Mini-retro comment ID: `81153a45-43eb-456f-acf5-4670e4d29d10`
 
+## Visual Audit Video Synced
+
+Synced on 2026-06-06:
+
+- Trigger: user observed the current scene is still graphically poor and asked
+  for a 30-second video capture before deciding the next visual step.
+- Capture tooling added locally:
+  - `@playwright/test` dev dependency
+  - `npm run capture:ride-video`
+  - `scripts/capture-ride-video.mjs`
+  - `_bmad-output/video-captures/` ignored by git for heavy video/frame output
+- Capture evidence:
+  - run directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-06T20-16-57-308Z/`
+  - video: `ride-visual-audit-30s.mp4`
+  - duration: 32.36 s
+  - viewport: 1440 x 900
+  - HTTP: 200 OK
+  - frames extracted: 6
+  - page errors: none
+  - console: one isolated 404, likely favicon/asset absent
+- Analysis artifact:
+  `_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md`
+- Decision state:
+  `sprint-status.yaml` now points to `next_action: choose-visual-upgrade-scope`.
+- Linear project note:
+  `692e452b-b078-4511-b68f-64b852c968ce`
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

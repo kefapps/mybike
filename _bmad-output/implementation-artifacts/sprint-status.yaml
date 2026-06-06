@@ -29,7 +29,7 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-7 is the single approved polish story.
-# - Next action: commit the approved bounded polish story.
+# - Next action: choose a bounded visual upgrade scope from the video audit.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-7"
-  first_story_to_start: "MYB-7"
+  next_action: "choose-visual-upgrade-scope"
+  first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -58,6 +58,7 @@ sprint:
   post_mvp_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md"
   post_mvp_polish_story: "_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md"
   post_mvp_polish_mini_retro: "_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md"
+  post_mvp_visual_audit_video: "_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
