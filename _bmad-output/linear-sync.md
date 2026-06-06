@@ -23,6 +23,7 @@ Last sync: 2026-06-06
 - Polish UX mini-retro: `_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md`
 - Visual audit video: `_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md`
 - Visual Upgrade Scenic Pass proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md`
+- Visual Upgrade Scenic Pass dev story: `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
 
 ## Linear Documents
 
@@ -41,6 +42,7 @@ Last sync: 2026-06-06
 | Story 1.4 | `MYB-5` | Scene Three.js MVP et rendu de la balade | https://linear.app/kefjbo/issue/MYB-5/story-14-scene-threejs-mvp-et-rendu-de-la-balade |
 | Story 1.5 | `MYB-6` | HUD, controles mock, resume et happy path | https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path |
 | Post-MVP polish | `MYB-7` | Polish UX / sensation de ride mock | https://linear.app/kefjbo/issue/MYB-7/polish-ux-sensation-de-ride-mock |
+| Post-MVP visual | `MYB-8` | Visual Upgrade Scenic Pass | https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass |
 
 ## Dependency Mapping
 
@@ -50,6 +52,8 @@ Last sync: 2026-06-06
 - `MYB-6` is blocked by `MYB-2`, `MYB-3`, and `MYB-5`.
 - `MYB-7` follows the completed MVP loop `MYB-6`; it is a single post-MVP
   polish story, not a new epic or backlog.
+- `MYB-8` follows completed `MYB-7`; it is a single post-MVP visual story, not a
+  new epic or backlog.
 
 ## Readiness Caveats Synced
 
@@ -727,6 +731,50 @@ Synced on 2026-06-06:
 - Linear issue creation:
   not performed during this cadrage; `MYB-8` remains the proposed single story
   to create next.
+
+## MYB-8 Visual Upgrade Scenic Pass Created
+
+Synced on 2026-06-06:
+
+- Created the single approved post-MVP visual issue:
+  - Linear issue: `MYB-8`
+  - Title: `Visual Upgrade Scenic Pass`
+  - URL: https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass
+  - Status: `In Progress`
+  - Team: `MYB`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Sync comment ID: `62621990-4b82-4366-a1da-f0e7a1ea19ed`
+- Local BMAD story created:
+  `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`.
+- Justification: the prior step was only a project decision note; this creates
+  exactly one implementable visual ticket from the approved Visual Upgrade
+  Scenic Pass cadrage, without a new epic or backlog.
+- Included levers, maximum 4:
+  1. enriched route shoulders, surface/texture, marking or visual variation;
+  2. procedural lateral decor with simple trees, rocks, grass, poles or signs;
+  3. scenic depth through horizon, fog, near/mid/far planes and terrain
+     variation;
+  4. optional targeted Meshy usage for 2-4 reusable low-poly instanced assets.
+- Scope guardrails synced to Linear:
+  - no BLE/FTMS/Web Bluetooth;
+  - no deployment;
+  - no multiple routes, route selector, editor or GPX import;
+  - no HUD redesign;
+  - no advanced bundle/perf work unless blocking;
+  - no massive Meshy pass or AI asset library;
+  - no heavy asset pipeline or mandatory glTF pipeline;
+  - no deep `src/ride` modification;
+  - no new Linear backlog.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: implement-MYB-8`
+  - `first_story_to_start: MYB-8`
+  - `myb-8-visual-upgrade-scenic-pass: ready-for-dev`
+  - `post_mvp_visual_upgrade_story_created: true`
+- Validation note:
+  `npm run typecheck`, `npm run test` and `npm run build` were not run because
+  only BMAD/Linear tracking artifacts changed, with no application code
+  modification.
 
 ## Sync Policy
 

@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T22:01:00+02:00
+# last_updated: 2026-06-06T22:42:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -28,12 +28,12 @@
 #
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
-# - Do not create a new backlog; MYB-8 is the single proposed visual story.
-# - Next action: create the bounded Visual Upgrade Scenic Pass story.
+# - Do not create a new backlog; MYB-8 is the single approved visual story.
+# - Next action: implement the bounded Visual Upgrade Scenic Pass story.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T22:35:00+02:00"
+last_updated: "2026-06-06T22:42:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "create-visual-upgrade-story"
-  first_story_to_start: "MYB-8-proposed"
+  next_action: "implement-MYB-8"
+  first_story_to_start: "MYB-8"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -62,12 +62,15 @@ sprint:
   post_mvp_visual_upgrade_direction: "Visual Upgrade Scenic Pass"
   post_mvp_visual_upgrade_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md"
   post_mvp_visual_upgrade_story_candidate: "MYB-8"
-  post_mvp_visual_upgrade_story_created: false
+  post_mvp_visual_upgrade_story: "_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md"
+  post_mvp_visual_upgrade_story_created: true
+  post_mvp_visual_upgrade_linear_url: "https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
     - "MYB-6"
     - "MYB-7"
+    - "MYB-8"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -77,6 +80,7 @@ linear_mapping:
   1-4-scene-three-js-mvp-et-rendu-de-la-balade: "MYB-5"
   1-5-hud-controles-mock-resume-et-happy-path: "MYB-6"
   myb-7-polish-ux-sensation-de-ride-mock: "MYB-7"
+  myb-8-visual-upgrade-scenic-pass: "MYB-8"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -110,3 +114,7 @@ development_status:
   # Story unique approuvee depuis le mini-scope polish; pas de nouveau backlog.
   # Revue de code locale passee pour MYB-7.
   myb-7-polish-ux-sensation-de-ride-mock: done
+
+  # MYB-8 - Story post-MVP - Visual Upgrade Scenic Pass
+  # Story unique approuvee depuis le cadrage Visual Upgrade Scenic Pass; pas de nouveau backlog.
+  myb-8-visual-upgrade-scenic-pass: ready-for-dev
