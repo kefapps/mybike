@@ -13,7 +13,7 @@ export const mockRouteDefinition: RouteDefinition = {
     { distanceMeters: 1000, position: { x: 0, y: 1, z: 1000 } }
   ],
   biomes: [
-    { id: "coast", fromProgress01: 0, toProgress01: 0.45 },
-    { id: "forest", fromProgress01: 0.45, toProgress01: 1 }
+    { id: "coast", fromProgress01: 0, toProgress01: 0.01 },
+    { id: "forest", fromProgress01: 0.01, toProgress01: 1 }
   ]
 };

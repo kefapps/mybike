@@ -29,7 +29,9 @@ const SNAPSHOT: RenderFrameSnapshot = {
     },
     completed: false
   },
-  route: {} as RenderFrameSnapshot["route"]
+  route: {
+    biomeId: "forest"
+  } as RenderFrameSnapshot["route"]
 };
 
 function renderHud(snapshot?: RenderFrameSnapshot) {
@@ -70,10 +72,11 @@ describe("RideHud", () => {
     expect(rendered.container.textContent).toContain("0 m");
     expect(rendered.container.textContent).toContain("0 min 00 s");
     expect(rendered.container.textContent).toContain("mock");
+    expect(rendered.container.textContent).toContain("coast");
     expect(rendered.container.textContent).toContain("running");
   });
 
-  it("renders speed, distance, time, source and phase from a snapshot", () => {
+  it("renders speed, distance, time, source, biome and phase from a snapshot", () => {
     const rendered = renderHud(SNAPSHOT);
     root = rendered.root;
 
@@ -81,6 +84,7 @@ describe("RideHud", () => {
     expect(rendered.container.textContent).toContain("1,2 km");
     expect(rendered.container.textContent).toContain("1 min 05 s");
     expect(rendered.container.textContent).toContain("mock");
+    expect(rendered.container.textContent).toContain("forest");
     expect(rendered.container.textContent).toContain("running");
   });
 });

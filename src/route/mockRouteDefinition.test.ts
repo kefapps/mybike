@@ -38,10 +38,10 @@ describe("mockRouteDefinition", () => {
     ]);
     expect(mockRouteDefinition.biomes[0]).toMatchObject({
       fromProgress01: 0,
-      toProgress01: 0.45
+      toProgress01: 0.01
     });
     expect(mockRouteDefinition.biomes[1]).toMatchObject({
-      fromProgress01: 0.45,
+      fromProgress01: 0.01,
       toProgress01: 1
     });
   });

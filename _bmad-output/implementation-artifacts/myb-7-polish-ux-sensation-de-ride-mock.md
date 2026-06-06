@@ -3,20 +3,20 @@ story_id: "post-mvp-polish-1"
 story_key: "myb-7-polish-ux-sensation-de-ride-mock"
 linear_id: "MYB-7"
 title: "Polish UX / sensation de ride mock"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-06"
 scope: "post-MVP polish UX / sensation de ride mock"
 source_mini_scope: "_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md"
 source_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md"
 source_playtest_results: "_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md"
-baseline_commit: "2eb5e28"
+baseline_commit: "b45b578"
 depends_on:
   - "MYB-6"
 ---
 
 # Story MYB-7: Polish UX / sensation de ride mock
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -91,43 +91,53 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Verifier les contrats existants avant modification. (AC: 5, 8, 9)
-  - [ ] Lire `src/App.tsx` et `src/app/screens/RideScreen.tsx`.
-  - [ ] Lire `src/ui/RideHud.tsx`, `src/ui/MockRideControls.tsx` et
+- [x] Verifier les contrats existants avant modification. (AC: 5, 8, 9)
+  - [x] Lire `src/App.tsx` et `src/app/screens/RideScreen.tsx`.
+  - [x] Lire `src/ui/RideHud.tsx`, `src/ui/MockRideControls.tsx` et
     `src/styles.css`.
-  - [ ] Lire `src/render/ThreeCanvasHost.tsx` pour confirmer la source unique de
+  - [x] Lire `src/render/ThreeCanvasHost.tsx` pour confirmer la source unique de
     snapshot.
-  - [ ] Lire `src/ride/speed.ts`, `src/route/mockRouteDefinition.ts` et
+  - [x] Lire `src/ride/speed.ts`, `src/route/mockRouteDefinition.ts` et
     `src/route/selectBiomeAtProgress.ts`.
 
-- [ ] Compacter le HUD mobile. (AC: 1, 2, 3)
-  - [ ] Adapter d'abord `src/styles.css` et/ou le rendu `RideHud` sans gros
+- [x] Compacter le HUD mobile. (AC: 1, 2, 3)
+  - [x] Adapter d'abord `src/styles.css` et/ou le rendu `RideHud` sans gros
     redesign.
-  - [ ] Garder les donnees essentielles, mais autoriser une presentation mobile
+  - [x] Garder les donnees essentielles, mais autoriser une presentation mobile
     plus dense ou une hierarchie plus forte.
-  - [ ] Eviter tout texte qui recouvre incoheremment la route sur petit ecran.
-  - [ ] Mettre a jour les tests `RideHud` si la structure du texte change.
+  - [x] Eviter tout texte qui recouvre incoheremment la route sur petit ecran.
+  - [x] Mettre a jour les tests `RideHud` si la structure du texte change.
 
-- [ ] Clarifier la reponse du slider. (AC: 4, 5, 6)
-  - [ ] Preferer une solution UX legere: libelle plus parlant, valeur d'effort
+- [x] Clarifier la reponse du slider. (AC: 4, 5, 6)
+  - [x] Preferer une solution UX legere: libelle plus parlant, valeur d'effort
     mieux nommee, ou indication de vitesse cible si disponible.
-  - [ ] Si le smoothing est ajuste, changer seulement les constantes necessaires
+  - [x] Si le smoothing est ajuste, changer seulement les constantes necessaires
     dans `src/ride/speed.ts` ou la config d'appel, puis mettre a jour les tests.
-  - [ ] Ne pas calculer vitesse/progression dans React pour expliquer le slider.
+  - [x] Ne pas calculer vitesse/progression dans React pour expliquer le slider.
 
-- [ ] Rendre le biome observable en playtest court. (AC: 7, 8, 9)
-  - [ ] Preferer une petite adaptation de `mockRouteDefinition.biomes` ou de la
+- [x] Rendre le biome observable en playtest court. (AC: 7, 8, 9)
+  - [x] Preferer une petite adaptation de `mockRouteDefinition.biomes` ou de la
     longueur/seuil de route existant.
-  - [ ] Ne pas ajouter de route multiple ni de systeme de selection.
-  - [ ] Mettre a jour les tests `mockRouteDefinition` et
+  - [x] Ne pas ajouter de route multiple ni de systeme de selection.
+  - [x] Mettre a jour les tests `mockRouteDefinition` et
     `selectBiomeAtProgress` si les seuils changent.
 
-- [ ] Valider le parcours mock. (AC: 1-10)
-  - [ ] Lancer les tests proportionnes aux fichiers touches.
-  - [ ] Si seuls docs/tracking changent, ne pas lancer npm; si code change,
+- [x] Valider le parcours mock. (AC: 1-10)
+  - [x] Lancer les tests proportionnes aux fichiers touches.
+  - [x] Si seuls docs/tracking changent, ne pas lancer npm; si code change,
     lancer au minimum `npm run typecheck` et `npm run test`.
-  - [ ] Faire une validation visuelle courte desktop/mobile si possible:
+  - [x] Faire une validation visuelle courte desktop/mobile si possible:
     route visible, slider comprehensible, biome observe, resume coherent.
+
+### Review Findings
+
+- [x] [Review][Patch] Eviter le calcul d'allure cible dans React — fixe en
+  passant `latestSnapshot.ride.targetSpeedMps` a `MockRideControls`.
+- [x] [Review][Patch] Eviter les annonces continues de vitesse — fixe en
+  retirant `aria-live` du feedback slider.
+- [x] [Review][Patch] Preserver la lisibilite mobile du HUD compact — fixe en
+  remontant les tailles de texte mobiles tout en gardant le HUD autour de 20%
+  du viewport ride.
 
 ## Dev Notes
 
@@ -196,16 +206,55 @@ polish l'exige vraiment, et garder chaque changement testable.
 
 ### Agent Model Used
 
-TBD
+GPT-5 Codex
 
 ### Debug Log References
 
-TBD
+- `npm run typecheck` — passed.
+- `npm run test` — passed, 19 files / 62 tests.
+- `npm run build` — passed; Vite chunk-size warning retained for the Three.js
+  MVP bundle.
+- Vite local server `http://127.0.0.1:5174/` — HTTP 200.
+- Chrome/CDP desktop ride — WebGL true, canvas non blank, HUD readable,
+  slider feedback visible, `Ambiance forest` visible.
+- Chrome/CDP mobile-sized ride — WebGL true, screenshot non blank
+  (`colors=3816`), HUD ratio about 23% of ride viewport, pause/resume/finish
+  summary validated.
+- Console desktop/mobile validation — no warnings or errors observed.
+- Review rerun after fixes — `npm run typecheck`, `npm run test` (19 files /
+  62 tests), and `npm run build` passed; Vite chunk-size warning retained for
+  the Three.js MVP bundle.
+- Review Chrome/CDP desktop + mobile — WebGL true, slider target/displayed speed
+  fed from the ride snapshot, `Ambiance forest` observable in about 4 seconds,
+  pause/resume/finish/summary OK, mobile HUD ratio about 20%, no warning/error.
 
 ### Completion Notes
 
-TBD
+- HUD mobile compacted with denser mobile CSS while preserving speed, distance,
+  time, source and phase. Added `Ambiance` as a lightweight snapshot readout so
+  the biome transition is directly observable during a short playtest.
+- Slider now displays target speed versus currently displayed speed, making the
+  smoothing response understandable without adding a second simulation loop.
+- Biome transition threshold moved from 45% to 1% of the existing mock route;
+  route selection still lives in `src/route`, and `SceneController` remains a
+  renderer of snapshots.
+- No BLE/FTMS, deployment, new route, new settings system, large redesign or new
+  Linear issue was introduced.
+- Code review fixes kept inside MYB-7 scope:
+  - removed continuous `aria-live` feedback from the changing speed readout;
+  - raised mobile HUD text sizes while keeping the HUD compact;
+  - moved slider target speed display to `latestSnapshot.ride.targetSpeedMps`
+    instead of calculating a parallel target in React.
 
 ### File List
 
-TBD
+- `src/app/screens/RideScreen.tsx`
+- `src/ui/RideHud.tsx`
+- `src/ui/RideHud.test.tsx`
+- `src/ui/MockRideControls.tsx`
+- `src/ui/MockRideControls.test.tsx`
+- `src/styles.css`
+- `src/route/mockRouteDefinition.ts`
+- `src/route/mockRouteDefinition.test.ts`
+- `src/route/selectBiomeAtProgress.test.ts`
+- `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`

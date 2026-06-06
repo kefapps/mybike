@@ -48,7 +48,12 @@ export function RideScreen({
         <RideHud phase={phase} snapshot={latestSnapshot} />
       </div>
 
-      <MockRideControls effort01={effort01} onEffortChange={setEffort01} />
+      <MockRideControls
+        effort01={effort01}
+        currentSpeedMps={latestSnapshot?.ride.speedMps}
+        targetSpeedMps={latestSnapshot?.ride.targetSpeedMps}
+        onEffortChange={setEffort01}
+      />
 
       <div className="action-row">
         {isPaused ? (

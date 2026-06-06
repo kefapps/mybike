@@ -148,12 +148,16 @@ h1 {
 
 .ride-hud__metrics {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.65rem;
   margin: 0;
 }
 
 .ride-hud__metrics div {
+  min-width: 0;
+}
+
+.ride-hud__metric {
   min-width: 0;
 }
 
@@ -195,6 +199,14 @@ h1 {
 .mock-controls output {
   color: #19352c;
   font-weight: 800;
+}
+
+.mock-controls__feedback {
+  margin: -0.15rem 0 0;
+  color: #35605a;
+  font-size: 0.9rem;
+  font-weight: 750;
+  line-height: 1.35;
 }
 
 .mock-controls input[type="range"] {
@@ -266,11 +278,30 @@ h1 {
   .ride-hud {
     inset: 0.5rem 0.5rem auto;
     width: auto;
-    padding: 0.65rem;
+    padding: 0.45rem 0.5rem;
   }
 
   .ride-hud__metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem 0.45rem;
+  }
+
+  .ride-hud__metric--meta {
+    grid-column: span 1;
+  }
+
+  .ride-hud__metrics dt {
+    margin-bottom: 0.15rem;
+    font-size: 0.68rem;
+  }
+
+  .ride-hud__metrics dd {
+    font-size: 0.82rem;
+  }
+
+  .ride-hud__metric--meta dt,
+  .ride-hud__metric--meta dd {
+    font-size: 0.72rem;
   }
 
   .mock-controls__header {

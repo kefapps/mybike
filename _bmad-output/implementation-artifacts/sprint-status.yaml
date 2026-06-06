@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T21:17:00+02:00
+# last_updated: 2026-06-06T22:01:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-7 is the single approved polish story.
-# - Next action: implement the bounded polish story.
+# - Next action: commit the approved bounded polish story.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T21:17:00+02:00"
+last_updated: "2026-06-06T22:01:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-polish-story"
+  next_action: "commit-MYB-7"
   first_story_to_start: "MYB-7"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -57,6 +57,7 @@ sprint:
   post_mvp_polish_mini_scope: "_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md"
   post_mvp_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md"
   post_mvp_polish_story: "_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md"
+  post_mvp_polish_mini_retro: "_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -102,4 +103,5 @@ development_status:
 
   # MYB-7 - Story post-MVP - Polish UX / sensation de ride mock
   # Story unique approuvee depuis le mini-scope polish; pas de nouveau backlog.
-  myb-7-polish-ux-sensation-de-ride-mock: ready-for-dev
+  # Revue de code locale passee pour MYB-7.
+  myb-7-polish-ux-sensation-de-ride-mock: done

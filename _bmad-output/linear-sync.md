@@ -20,6 +20,7 @@ Last sync: 2026-06-06
 - Polish UX mini-scope: `_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
 - Polish UX change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
 - Polish UX dev story: `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`
+- Polish UX mini-retro: `_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md`
 
 ## Linear Documents
 
@@ -562,6 +563,41 @@ Synced on 2026-06-06:
 
 Synced on 2026-06-06:
 
+- Implemented the bounded MYB-7 polish story and moved it to review:
+  - Linear issue: `MYB-7`
+  - Status confirmed: `In Review`
+  - Issue updated at: `2026-06-06T19:29:45.024Z`
+  - Sync comment ID updated: `9fb59c1d-4507-409e-bf37-40557104882a`
+  - Sync comment updated at: `2026-06-06T19:29:28.662Z`
+  - Scope confirmation: exactly the 3 approved adjustments were implemented.
+  - No new Linear issue, project, epic, route, BLE/FTMS work, deployment,
+    settings system, Meshy/AI asset work or broad backlog was added.
+- Implementation summary:
+  1. compacted mobile HUD via denser mobile CSS and HUD metric classes;
+  2. added slider feedback showing target speed versus displayed speed;
+  3. made biome change observable in a short ride by moving the existing mock
+     route transition to 1% progress and exposing current `Ambiance` from the
+     route snapshot in the HUD.
+- Validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 19 files / 62 tests;
+  - `npm run build`: passed, with the existing Vite chunk-size warning for the
+    Three.js bundle;
+  - Vite HTTP 200 at `http://127.0.0.1:5174/`;
+  - Chrome/CDP desktop: WebGL true, canvas non blank, slider feedback visible,
+    `Ambiance forest` visible;
+  - Chrome/CDP mobile-sized: screenshot non blank (`colors=3816`), HUD about
+    23% of ride viewport, pause/resume/finish summary validated;
+  - console validation: no warnings or errors observed.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: review-MYB-7`
+  - `myb-7-polish-ux-sensation-de-ride-mock: review`
+- Local BMAD story updated:
+  `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`.
+
+Synced on 2026-06-06:
+
 - `gds-correct-course` decision recorded locally:
   `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`.
 - Decision: keep the 3 self-playtest adjustments together, but implement them
@@ -590,6 +626,49 @@ Synced on 2026-06-06:
   - `post_mvp_change_proposal: _bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
   - `post_mvp_polish_mini_scope: _bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
   - `first_story_to_start: none`
+
+Synced on 2026-06-06:
+
+- `MYB-7`: code review approved and Linear moved from `In Review` to `Done`.
+- Review verdict: `approved`.
+- Review fixes applied before approval:
+  - removed continuous `aria-live` feedback from the changing slider speed
+    readout;
+  - raised mobile HUD text sizes while preserving the compact HUD footprint;
+  - changed slider target-speed feedback to consume
+    `latestSnapshot.ride.targetSpeedMps` instead of calculating a parallel
+    target in React.
+- Final validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 19 files / 62 tests;
+  - `npm run build`: passed, with the expected Vite chunk-size warning for the
+    Three.js bundle;
+  - Vite local server `http://127.0.0.1:5174/` served the app during review;
+  - Chrome/CDP desktop and mobile validation: WebGL active, slider set to 90%,
+    target/displayed speed visible from the ride snapshot, `Ambiance forest`
+    observable in about 4 seconds, pause/resume/finish/summary OK, no
+    warning/error;
+  - mobile HUD ratio about 20% of the ride viewport after readability fix.
+- Final scope confirmation:
+  - exactly the 3 approved polish adjustments were delivered;
+  - no new ride loop, route selection, settings system, BLE/FTMS/Web Bluetooth,
+    deployment, Meshy/AI assets, performance/bundle work, or Linear backlog was
+    added;
+  - the 1% biome transition remains a small mock-route data tweak in
+    `src/route`, with `SceneController` only rendering snapshots.
+- Local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: commit-MYB-7`.
+- Mini-retro polish saved locally:
+  `_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md`.
+- Linear sync evidence:
+  - Linear issue: `MYB-7`
+  - Status: `Done`
+  - Completed at: `2026-06-06T19:57:57.779Z`
+  - Issue updated at: `2026-06-06T19:58:19.486Z`
+  - Review comment ID: `9e689dc6-b7a2-440a-af2c-8c46076d9da3`
+  - Mini-retro comment ID: `81153a45-43eb-456f-acf5-4670e4d29d10`
 
 ## Sync Policy
 

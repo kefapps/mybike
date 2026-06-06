@@ -5,8 +5,8 @@ import { selectBiomeAtProgress } from "./selectBiomeAtProgress";
 describe("selectBiomeAtProgress", () => {
   it("selects deterministic biomes at bounds and transition", () => {
     expect(selectBiomeAtProgress(mockRouteDefinition, 0)).toBe("coast");
-    expect(selectBiomeAtProgress(mockRouteDefinition, 0.44)).toBe("coast");
-    expect(selectBiomeAtProgress(mockRouteDefinition, 0.45)).toBe("forest");
+    expect(selectBiomeAtProgress(mockRouteDefinition, 0.009)).toBe("coast");
+    expect(selectBiomeAtProgress(mockRouteDefinition, 0.01)).toBe("forest");
     expect(selectBiomeAtProgress(mockRouteDefinition, 1)).toBe("forest");
   });
 
