@@ -21,6 +21,8 @@ Last sync: 2026-06-06
 - Polish UX change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
 - Polish UX dev story: `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`
 - Polish UX mini-retro: `_bmad-output/implementation-artifacts/myb-7-polish-mini-retro-2026-06-06.md`
+- Visual audit video: `_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md`
+- Visual Upgrade Scenic Pass proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md`
 
 ## Linear Documents
 
@@ -696,6 +698,35 @@ Synced on 2026-06-06:
   `sprint-status.yaml` now points to `next_action: choose-visual-upgrade-scope`.
 - Linear project note:
   `692e452b-b078-4511-b68f-64b852c968ce`
+
+## Visual Upgrade Scenic Pass Decision Synced
+
+Synced on 2026-06-06:
+
+- Decision: select one next visual direction, `Visual Upgrade Scenic Pass`.
+- Rationale: the video audit shows a composition problem first: flat route,
+  sparse lateral landmarks, and weak depth. Meshy alone would not fix the scene
+  if assets are added without route enrichment, procedural density and horizon
+  treatment.
+- Proposed single story: `MYB-8 - Visual Upgrade Scenic Pass`.
+- Scope bounded to 3-4 visible improvements maximum:
+  - enriched route shoulders, simple texture, marking or surface variation;
+  - procedural lateral decor with trees, rocks, grass, poles or signs;
+  - scenic depth through horizon, light fog, near/mid/far planes and terrain
+    variation;
+  - optional targeted Meshy usage for 2-4 reusable low-poly instanced assets.
+- Explicit non-goals: no heavy asset pipeline, no massive Meshy pass, no
+  multiple routes, no deployment, no BLE/FTMS, no HUD redesign, no advanced
+  bundle optimization unless blocking.
+- Local proposal:
+  `_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md`
+- Sprint status:
+  `next_action: create-visual-upgrade-story`
+- Linear project note:
+  `4abe81f2-6e55-4c8d-9a0d-c9c92441b805`
+- Linear issue creation:
+  not performed during this cadrage; `MYB-8` remains the proposed single story
+  to create next.
 
 ## Sync Policy
 
