@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T21:12:00+02:00
+# last_updated: 2026-06-06T21:17:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -28,12 +28,12 @@
 #
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
-# - Do not create new stories; use the existing MYB-1 through MYB-6 mapping.
-# - Next action: create one bounded polish story from the selected mini-scope.
+# - Do not create a new backlog; MYB-7 is the single approved polish story.
+# - Next action: implement the bounded polish story.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T21:12:00+02:00"
+last_updated: "2026-06-06T21:17:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "create-polish-story"
-  first_story_to_start: "none"
+  next_action: "implement-polish-story"
+  first_story_to_start: "MYB-7"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -56,10 +56,12 @@ sprint:
   post_mvp_playtest_results: "_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md"
   post_mvp_polish_mini_scope: "_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md"
   post_mvp_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md"
+  post_mvp_polish_story: "_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
     - "MYB-6"
+    - "MYB-7"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -68,6 +70,7 @@ linear_mapping:
   1-3-route-prefabriquee-biomes-et-camera-sur-rail: "MYB-4"
   1-4-scene-three-js-mvp-et-rendu-de-la-balade: "MYB-5"
   1-5-hud-controles-mock-resume-et-happy-path: "MYB-6"
+  myb-7-polish-ux-sensation-de-ride-mock: "MYB-7"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -96,3 +99,7 @@ development_status:
   1-5-hud-controles-mock-resume-et-happy-path: done
 
   epic-1-retrospective: done
+
+  # MYB-7 - Story post-MVP - Polish UX / sensation de ride mock
+  # Story unique approuvee depuis le mini-scope polish; pas de nouveau backlog.
+  myb-7-polish-ux-sensation-de-ride-mock: ready-for-dev

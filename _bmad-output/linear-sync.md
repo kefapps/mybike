@@ -19,6 +19,7 @@ Last sync: 2026-06-06
 - Polish UX playtest results: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`
 - Polish UX mini-scope: `_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
 - Polish UX change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
+- Polish UX dev story: `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`
 
 ## Linear Documents
 
@@ -36,6 +37,7 @@ Last sync: 2026-06-06
 | Story 1.3 | `MYB-4` | Route prefabriquee, biomes et camera sur rail | https://linear.app/kefjbo/issue/MYB-4/story-13-route-prefabriquee-biomes-et-camera-sur-rail |
 | Story 1.4 | `MYB-5` | Scene Three.js MVP et rendu de la balade | https://linear.app/kefjbo/issue/MYB-5/story-14-scene-threejs-mvp-et-rendu-de-la-balade |
 | Story 1.5 | `MYB-6` | HUD, controles mock, resume et happy path | https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path |
+| Post-MVP polish | `MYB-7` | Polish UX / sensation de ride mock | https://linear.app/kefjbo/issue/MYB-7/polish-ux-sensation-de-ride-mock |
 
 ## Dependency Mapping
 
@@ -43,6 +45,8 @@ Last sync: 2026-06-06
 - `MYB-4` is blocked by `MYB-3`.
 - `MYB-5` is blocked by `MYB-2`, `MYB-3`, and `MYB-4`.
 - `MYB-6` is blocked by `MYB-2`, `MYB-3`, and `MYB-5`.
+- `MYB-7` follows the completed MVP loop `MYB-6`; it is a single post-MVP
+  polish story, not a new epic or backlog.
 
 ## Readiness Caveats Synced
 
@@ -521,6 +525,40 @@ Synced on 2026-06-06:
   - `next_action: prepare-polish-story-or-micro-epic`
   - `post_mvp_polish_mini_scope: _bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
   - `first_story_to_start: none`
+
+Synced on 2026-06-06:
+
+- Created the single approved post-MVP polish issue:
+  - Linear issue: `MYB-7`
+  - Title: `Polish UX / sensation de ride mock`
+  - URL: https://linear.app/kefjbo/issue/MYB-7/polish-ux-sensation-de-ride-mock
+  - Status: `In Progress`
+  - Team: `MYB`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Sync comment ID: `9fb59c1d-4507-409e-bf37-40557104882a`
+- Local BMAD story created:
+  `_bmad-output/implementation-artifacts/myb-7-polish-ux-sensation-de-ride-mock.md`.
+- Justification: the prior step was only a decision note; this creates exactly
+  one implementable polish ticket from the approved mini-scope, without a new
+  epic or backlog.
+- Included adjustments, exactly 3:
+  1. compact mobile HUD to free the scene;
+  2. make slider response easier to understand;
+  3. make biome change observable during a short playtest.
+- Scope guardrails synced to Linear:
+  - no BLE/FTMS/Web Bluetooth;
+  - no deployment;
+  - no advanced bundle/perf work;
+  - no AI/Meshy assets;
+  - no multiple routes;
+  - no new settings system;
+  - no large HUD redesign;
+  - no new Linear backlog.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: implement-polish-story`
+  - `first_story_to_start: MYB-7`
+  - `myb-7-polish-ux-sensation-de-ride-mock: ready-for-dev`
 
 Synced on 2026-06-06:
 
