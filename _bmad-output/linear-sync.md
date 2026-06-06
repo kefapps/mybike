@@ -313,6 +313,75 @@ Synced on 2026-06-06:
   `npm run test`, and `npm run build` were not run because only BMAD/sync
   artifacts changed, with no application code modification.
 
+Synced on 2026-06-06:
+
+- `MYB-6`: moved from Linear status `In Progress` to `In Review` after local
+  implementation of
+  `_bmad-output/implementation-artifacts/1-5-hud-controles-mock-resume-et-happy-path.md`
+  and sprint update
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`.
+- `MYB-6` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path
+  - Status returned by Linear: `In Review`
+  - Comment ID: `5954669c-1520-418d-9762-b53a2e8ac252`
+- `MYB-6` local BMAD status recorded as `review`; sprint
+  `next_action: review-MYB-6`.
+- `MYB-6` implementation summary recorded in Linear: minimal ride HUD, mandatory
+  effort slider `0..1`, shared `ThreeCanvasHost` snapshot stream through
+  `onFrame(snapshot)`, real final summary from `RideStats`, and happy path
+  start -> ride visible -> slider -> pause -> resume -> finish -> summary.
+- `MYB-6` scope confirmation recorded in Linear: no BLE/Web Bluetooth/FTMS,
+  backend/persistence, Meshy/AI assets, route selection, settings system, sports
+  HUD, broad MYB-2..MYB-5 refactor, or changes to `src/ride/*`, `src/route/*`
+  or `src/render/SceneController.ts`.
+- `MYB-6` validation evidence recorded in Linear:
+  - RED tests confirmed before implementation with expected MYB-6 failures
+  - `npm run test`: 60 tests / 19 files
+  - `npm run typecheck`
+  - `npm run build` with expected Vite warning for Three.js chunk >500 kB
+  - Vite HTTP 200 on `http://127.0.0.1:5174/` (`5173` was occupied)
+  - Chrome headless/CDP desktop happy path with slider 55% -> 90%, pause/resume,
+    real summary and canvas crop nonblank (`mean=0.595`, `stddev=0.117921`)
+  - Chrome headless/CDP mobile 390x844 DPR 2 happy path with canvas crop
+    nonblank (`mean=0.624303`, `stddev=0.097109`)
+  - `test:e2e` not run because Playwright is not configured; coverage supplied
+    by React integration tests and real Chrome CDP validation.
+
+Synced on 2026-06-06:
+
+- `MYB-6`: code review approved and Linear moved from `In Review` to `Done`.
+- `MYB-6` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path
+  - Status returned by Linear: `Done`
+  - Review comment ID: `6f582ac7-59c8-4972-a097-0743817c45f2`
+- `MYB-6` local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/1-5-hud-controles-mock-resume-et-happy-path.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: commit-MYB-6`.
+- `MYB-6` review findings recorded in Linear:
+  - fixed `ThreeCanvasHost` so caller-provided mock `createInputSource` values
+    are not overwritten by default controlled effort unless `effort01` is
+    explicitly supplied;
+  - fixed pause timing so HUD and final summary exclude paused duration;
+  - deferred a non-blocking pre-existing MYB-5 hardening gap where
+    `WebGLRenderer` construction can fail after initial preflight; the MYB-2
+    WebGL-unavailable fallback remains preserved and tested.
+- `MYB-6` final validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test`: 61 tests / 19 files
+  - `npm run build` with expected Vite warning for Three.js chunk >500 kB
+  - Vite HTTP 200 on `http://127.0.0.1:5174/`
+  - Chrome headless/CDP desktop happy path with slider to 90%, pause/resume,
+    real summary and canvas crop nonblank (`mean=0.594989`,
+    `stddev=0.117837`)
+  - Chrome headless/CDP mobile 390x844 DPR 2 happy path with slider to 90%,
+    pause/resume, real summary and canvas crop nonblank (`mean=0.624251`,
+    `stddev=0.0969858`)
+- `MYB-6` final scope confirmation recorded in Linear: no BLE/Web
+  Bluetooth/FTMS, backend/persistence, Meshy/AI assets, route selection,
+  settings system, sports HUD, large refactor, or changes to `src/ride/*`,
+  `src/route/*`, or `src/render/SceneController.ts`.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

@@ -3,6 +3,7 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { createMockRideInputSource } from "../ride";
 import { ThreeCanvasHost } from "./ThreeCanvasHost";
 import type { RenderFrameSnapshot, SceneController } from "./sceneTypes";
 
@@ -41,16 +42,25 @@ function renderHost(props?: Partial<Parameters<typeof ThreeCanvasHost>[0]>) {
     return frameCallbacks.length;
   };
   const cancelFrame = vi.fn();
+  let currentProps = props ?? {};
 
-  function render(phase: "running" | "paused") {
+  function render(
+    phase: "running" | "paused",
+    nextProps?: Partial<Parameters<typeof ThreeCanvasHost>[0]>
+  ) {
+    currentProps = {
+      ...currentProps,
+      ...nextProps
+    };
+
     root.render(
       <ThreeCanvasHost
-        phase={phase}
         controllerFactory={controllerFactory}
         now={getNow}
         scheduleFrame={scheduleFrame}
         cancelFrame={cancelFrame}
-        {...props}
+        {...currentProps}
+        phase={phase}
       />
     );
   }
@@ -74,9 +84,12 @@ function renderHost(props?: Partial<Parameters<typeof ThreeCanvasHost>[0]>) {
         callback(nowMs);
       });
     },
-    rerender(phase: "running" | "paused") {
+    rerender(
+      phase: "running" | "paused",
+      nextProps?: Partial<Parameters<typeof ThreeCanvasHost>[0]>
+    ) {
       act(() => {
-        render(phase);
+        render(phase, nextProps);
       });
     }
   };
@@ -131,18 +144,64 @@ describe("ThreeCanvasHost", () => {
     const rendered = renderHost();
     root = rendered.root;
 
-    rendered.tick(1000);
+    rendered.tick(100);
     expect(fakeController.updates.length).toBeGreaterThan(1);
     const lastRunningProgress =
       fakeController.updates[fakeController.updates.length - 1].ride.progress
         .progress01;
+    const lastRunningElapsedMs =
+      fakeController.updates[fakeController.updates.length - 1].ride.elapsedMs;
 
     rendered.rerender("paused");
-    rendered.tick(200);
+    rendered.tick(5000);
 
     expect(
       fakeController.updates[fakeController.updates.length - 1].ride.progress
         .progress01
     ).toBe(lastRunningProgress);
+    expect(
+      fakeController.updates[fakeController.updates.length - 1].ride.elapsedMs
+    ).toBe(lastRunningElapsedMs);
+
+    rendered.rerender("running");
+    rendered.tick(100);
+
+    expect(
+      fakeController.updates[fakeController.updates.length - 1].ride.elapsedMs
+    ).toBe(lastRunningElapsedMs + 100);
+  });
+
+  it("shares composed snapshots and applies controlled mock effort", () => {
+    const frames: RenderFrameSnapshot[] = [];
+    const rendered = renderHost({
+      effort01: 0.2,
+      onFrame: (snapshot) => frames.push(snapshot)
+    });
+    root = rendered.root;
+
+    expect(frames).toHaveLength(1);
+    expect(frames[0].ride.input.effort01).toBe(0.2);
+    expect(fakeController.updates[0]).toBe(frames[0]);
+
+    rendered.rerender("running", { effort01: 0.9 });
+    rendered.tick(1000);
+
+    expect(frames[frames.length - 1].ride.input.effort01).toBe(0.9);
+    expect(frames[frames.length - 1].route.biomeId).toBe("coast");
+  });
+
+  it("preserves a caller-provided mock input source when effort is not controlled", () => {
+    const frames: RenderFrameSnapshot[] = [];
+    const rendered = renderHost({
+      createInputSource: () => createMockRideInputSource(0.2),
+      onFrame: (snapshot) => frames.push(snapshot)
+    });
+    root = rendered.root;
+
+    expect(frames[0].ride.input.effort01).toBe(0.2);
+
+    rendered.tick(100);
+
+    expect(frames[frames.length - 1].ride.input.effort01).toBe(0.2);
   });
 });

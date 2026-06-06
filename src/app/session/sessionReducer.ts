@@ -48,6 +48,7 @@ export function sessionReducer(
         ...state,
         phase: "finished",
         finishedAt: action.now,
+        summary: action.summary,
         errorMessage: undefined
       };
 

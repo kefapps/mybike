@@ -31,6 +31,19 @@ function clickButton(label: string) {
   });
 }
 
+function changeSlider(value: string) {
+  const slider = document.querySelector<HTMLInputElement>("input[type='range']");
+
+  if (!slider) {
+    throw new Error("Slider not found");
+  }
+
+  act(() => {
+    slider.value = value;
+    slider.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+}
+
 describe("App", () => {
   let root: Root | undefined;
 
@@ -62,6 +75,14 @@ describe("App", () => {
     clickButton("Lancer");
     expect(rendered.container.textContent).toContain("En selle");
     expect(rendered.container.textContent).toContain("running");
+    expect(rendered.container.textContent).toContain("Effort mock");
+    expect(rendered.container.textContent).toContain("55 %");
+    expect(rendered.container.textContent).toContain("Vitesse");
+    expect(rendered.container.textContent).toContain("Distance");
+    expect(rendered.container.textContent).toContain("Temps");
+
+    changeSlider("0.9");
+    expect(rendered.container.textContent).toContain("90 %");
 
     clickButton("Pause");
     expect(rendered.container.textContent).toContain("paused");
@@ -71,7 +92,8 @@ describe("App", () => {
 
     clickButton("Terminer");
     expect(rendered.container.textContent).toContain("Resume de balade");
-    expect(rendered.container.textContent).toContain("Placeholder MYB-3");
+    expect(rendered.container.textContent).not.toContain("Placeholder MYB-3");
+    expect(rendered.container.textContent).toContain("Vitesse moyenne");
   });
 
   it("renders the WebGL fallback when a context cannot be created", () => {

@@ -9,6 +9,7 @@ import {
   sessionReducer
 } from "./app/session/sessionReducer";
 import { isWebGlAvailable } from "./app/webgl/webglSupport";
+import type { RideStats } from "./ride";
 
 export function App() {
   const [session, dispatch] = useReducer(
@@ -29,6 +30,10 @@ export function App() {
     dispatch({ type: "start", now: Date.now() });
   };
 
+  const finishRide = (summary: RideStats) => {
+    dispatch({ type: "finish", now: Date.now(), summary });
+  };
+
   return (
     <main className="app-shell">
       {session.phase === "idle" ? <StartScreen onStart={startRide} /> : null}
@@ -38,12 +43,15 @@ export function App() {
           phase={session.phase}
           onPause={() => dispatch({ type: "pause" })}
           onResume={() => dispatch({ type: "resume" })}
-          onFinish={() => dispatch({ type: "finish", now: Date.now() })}
+          onFinish={finishRide}
         />
       ) : null}
 
       {session.phase === "finished" ? (
-        <SummaryScreen onReset={() => dispatch({ type: "reset" })} />
+        <SummaryScreen
+          summary={session.summary}
+          onReset={() => dispatch({ type: "reset" })}
+        />
       ) : null}
 
       {session.phase === "error" ? (

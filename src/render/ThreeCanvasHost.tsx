@@ -5,6 +5,7 @@ import {
   createInitialRideFrameState,
   createMockRideInputSource,
   type RideFrameState,
+  type MockRideInputSource,
   type RideInputSource
 } from "../ride";
 import {
@@ -26,6 +27,8 @@ export type ThreeCanvasHostProps = {
   route?: RouteDefinition;
   controllerFactory?: SceneControllerFactory;
   createInputSource?: () => RideInputSource;
+  effort01?: number;
+  onFrame?: (snapshot: RenderFrameSnapshot) => void;
   now?: () => number;
   scheduleFrame?: (callback: FrameRequestCallback) => number;
   cancelFrame?: (handle: number) => void;
@@ -41,16 +44,33 @@ export function ThreeCanvasHost({
   route = mockRouteDefinition,
   controllerFactory,
   createInputSource,
+  effort01,
+  onFrame,
   now = defaultNow,
   scheduleFrame = defaultScheduleFrame,
   cancelFrame = defaultCancelFrame
 }: ThreeCanvasHostProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const phaseRef = useRef<RideRenderPhase>(phase);
+  const effortRef = useRef(effort01 ?? MOCK_EFFORT_FOR_VISIBLE_MOTION);
+  const shouldSyncEffortRef = useRef(
+    createInputSource === undefined || effort01 !== undefined
+  );
+  const onFrameRef = useRef(onFrame);
 
   useEffect(() => {
     phaseRef.current = phase;
   }, [phase]);
+
+  useEffect(() => {
+    effortRef.current = effort01 ?? MOCK_EFFORT_FOR_VISIBLE_MOTION;
+    shouldSyncEffortRef.current =
+      createInputSource === undefined || effort01 !== undefined;
+  }, [createInputSource, effort01]);
+
+  useEffect(() => {
+    onFrameRef.current = onFrame;
+  }, [onFrame]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -65,11 +85,12 @@ export function ThreeCanvasHost({
         : controllerFactory();
     const inputSource =
       createInputSource === undefined
-        ? createMockRideInputSource(MOCK_EFFORT_FOR_VISIBLE_MOTION)
+        ? createMockRideInputSource(effortRef.current)
         : createInputSource();
     const startedAtMs = now();
     let rideState: RideFrameState = createInitialRideFrameState(startedAtMs);
     let lastFrameAtMs = startedAtMs;
+    let activeRideNowMs = startedAtMs;
     let frameHandle: number | undefined;
     let disposed = false;
 
@@ -81,6 +102,10 @@ export function ThreeCanvasHost({
     };
 
     const emitFrame = (frameNowMs: number, dtSeconds: number) => {
+      if (shouldSyncEffortRef.current) {
+        syncInputSourceEffort(inputSource, effortRef.current);
+      }
+
       const result = advanceRideFrame(
         inputSource,
         rideState,
@@ -95,6 +120,7 @@ export function ThreeCanvasHost({
       };
 
       controller.update(snapshot);
+      onFrameRef.current?.(snapshot);
     };
 
     const scheduleNextFrame = () => {
@@ -110,7 +136,8 @@ export function ThreeCanvasHost({
             MAX_DT_SECONDS,
             Math.max(0, (safeFrameNowMs - lastFrameAtMs) / 1000)
           );
-          emitFrame(safeFrameNowMs, dtSeconds);
+          activeRideNowMs += dtSeconds * 1000;
+          emitFrame(activeRideNowMs, dtSeconds);
         }
 
         lastFrameAtMs = safeFrameNowMs;
@@ -172,4 +199,23 @@ function defaultScheduleFrame(callback: FrameRequestCallback): number {
 
 function defaultCancelFrame(handle: number): void {
   cancelAnimationFrame(handle);
+}
+
+function syncInputSourceEffort(
+  inputSource: RideInputSource,
+  effort01: number
+): void {
+  if (isMutableMockInputSource(inputSource)) {
+    inputSource.setEffort01(effort01);
+  }
+}
+
+function isMutableMockInputSource(
+  inputSource: RideInputSource
+): inputSource is MockRideInputSource {
+  return (
+    inputSource.kind === "mock" &&
+    typeof (inputSource as Partial<MockRideInputSource>).setEffort01 ===
+      "function"
+  );
 }

@@ -1,14 +1,19 @@
-const PLACEHOLDER_SUMMARY = {
-  duration: "Placeholder MYB-3: 00 min 00 s",
-  distance: "Placeholder MYB-3: 0,0 km",
-  averageSpeed: "Placeholder MYB-3: 0,0 km/h"
-};
+import type { RideStats } from "../../ride";
+import {
+  formatDistance,
+  formatDuration,
+  formatSpeed,
+  getRideStatsOrEmpty
+} from "../../ui/rideStatsFormat";
 
 type SummaryScreenProps = {
+  summary?: RideStats;
   onReset: () => void;
 };
 
-export function SummaryScreen({ onReset }: SummaryScreenProps) {
+export function SummaryScreen({ summary, onReset }: SummaryScreenProps) {
+  const stats = getRideStatsOrEmpty(summary);
+
   return (
     <section className="screen summary-screen" aria-labelledby="summary-title">
       <div className="screen-copy">
@@ -19,15 +24,15 @@ export function SummaryScreen({ onReset }: SummaryScreenProps) {
       <dl className="summary-grid">
         <div>
           <dt>Duree</dt>
-          <dd>{PLACEHOLDER_SUMMARY.duration}</dd>
+          <dd>{formatDuration(stats.elapsedMs)}</dd>
         </div>
         <div>
           <dt>Distance</dt>
-          <dd>{PLACEHOLDER_SUMMARY.distance}</dd>
+          <dd>{formatDistance(stats.distanceMeters)}</dd>
         </div>
         <div>
           <dt>Vitesse moyenne</dt>
-          <dd>{PLACEHOLDER_SUMMARY.averageSpeed}</dd>
+          <dd>{formatSpeed(stats.averageSpeedMps)}</dd>
         </div>
       </dl>
 

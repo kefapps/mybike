@@ -1,12 +1,20 @@
+import { useCallback, useState } from "react";
+
+import { MockRideControls } from "../../ui/MockRideControls";
+import { RideHud } from "../../ui/RideHud";
+import { EMPTY_RIDE_STATS } from "../../ui/rideStatsFormat";
 import type { RidePhase } from "../session/sessionTypes";
-import { ThreeCanvasHost } from "../../render";
+import { ThreeCanvasHost, type RenderFrameSnapshot } from "../../render";
+import type { RideStats } from "../../ride";
 
 type RideScreenProps = {
   phase: Extract<RidePhase, "running" | "paused">;
   onPause: () => void;
   onResume: () => void;
-  onFinish: () => void;
+  onFinish: (summary: RideStats) => void;
 };
+
+const DEFAULT_MOCK_EFFORT01 = 0.55;
 
 export function RideScreen({
   phase,
@@ -15,6 +23,11 @@ export function RideScreen({
   onFinish
 }: RideScreenProps) {
   const isPaused = phase === "paused";
+  const [effort01, setEffort01] = useState(DEFAULT_MOCK_EFFORT01);
+  const [latestSnapshot, setLatestSnapshot] = useState<RenderFrameSnapshot>();
+  const finishWithLatestSummary = useCallback(() => {
+    onFinish(latestSnapshot?.ride.stats ?? EMPTY_RIDE_STATS);
+  }, [latestSnapshot, onFinish]);
 
   return (
     <section className="screen ride-screen" aria-labelledby="ride-title">
@@ -27,8 +40,15 @@ export function RideScreen({
       </header>
 
       <div className="ride-viewport" aria-label="Zone ride MVP">
-        <ThreeCanvasHost phase={phase} />
+        <ThreeCanvasHost
+          phase={phase}
+          effort01={effort01}
+          onFrame={setLatestSnapshot}
+        />
+        <RideHud phase={phase} snapshot={latestSnapshot} />
       </div>
+
+      <MockRideControls effort01={effort01} onEffortChange={setEffort01} />
 
       <div className="action-row">
         {isPaused ? (
@@ -40,7 +60,11 @@ export function RideScreen({
             Pause
           </button>
         )}
-        <button className="primary-action" type="button" onClick={onFinish}>
+        <button
+          className="primary-action"
+          type="button"
+          onClick={finishWithLatestSummary}
+        >
           Terminer
         </button>
       </div>

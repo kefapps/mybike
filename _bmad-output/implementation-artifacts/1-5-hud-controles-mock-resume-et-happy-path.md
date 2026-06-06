@@ -4,7 +4,7 @@ story_key: "1-5-hud-controles-mock-resume-et-happy-path"
 linear_id: "MYB-6"
 epic_linear_id: "MYB-1"
 title: "HUD, controles mock, resume et happy path"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-06"
 scope: "vertical slice mock - final playable loop HUD, controls, summary and happy path"
 source_epic: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
@@ -19,7 +19,7 @@ transitive_context:
 
 # Story 1.5: HUD, controles mock, resume et happy path
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -83,67 +83,67 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Verifier les contrats existants avant modification. (AC: 4, 5, 12, 13)
-  - [ ] Lire `src/App.tsx`, `src/app/session/sessionReducer.ts`, `src/app/session/sessionTypes.ts`.
-  - [ ] Lire `src/app/screens/RideScreen.tsx` et `SummaryScreen.tsx`.
-  - [ ] Lire `src/render/ThreeCanvasHost.tsx` et `src/render/sceneTypes.ts`.
-  - [ ] Lire `src/ride/advanceRideFrame.ts`, `mockRideInputSource.ts`, `rideTypes.ts`.
-  - [ ] Confirmer que `src/ride/*` et `src/route/*` restent purs et ne doivent pas importer React/Three.js.
+- [x] Verifier les contrats existants avant modification. (AC: 4, 5, 12, 13)
+  - [x] Lire `src/App.tsx`, `src/app/session/sessionReducer.ts`, `src/app/session/sessionTypes.ts`.
+  - [x] Lire `src/app/screens/RideScreen.tsx` et `SummaryScreen.tsx`.
+  - [x] Lire `src/render/ThreeCanvasHost.tsx` et `src/render/sceneTypes.ts`.
+  - [x] Lire `src/ride/advanceRideFrame.ts`, `mockRideInputSource.ts`, `rideTypes.ts`.
+  - [x] Confirmer que `src/ride/*` et `src/route/*` restent purs et ne doivent pas importer React/Three.js.
 
-- [ ] Definir une seule source de verite pour la ride active. (AC: 2, 4, 5, 6, 7)
-  - [ ] Adapter minimalement l'integration pour que le meme snapshot compose `{ ride, route }` alimente `SceneController.update`, `RideHud` et le futur resume.
-  - [ ] Option recommandee a faible blast radius: etendre `ThreeCanvasHost` avec props controlees `effort01` et `onFrame(snapshot)` ou extraire un petit hook d'integration ride dans `src/app/*`.
-  - [ ] Interdire une deuxieme boucle `advanceRideFrame` uniquement pour le HUD.
-  - [ ] Pendant `paused`, ne pas avancer la simulation et ne pas emettre de nouveau snapshot progressant.
-  - [ ] Garder le clamp et les formules de vitesse dans `src/ride`, pas dans React.
+- [x] Definir une seule source de verite pour la ride active. (AC: 2, 4, 5, 6, 7)
+  - [x] Adapter minimalement l'integration pour que le meme snapshot compose `{ ride, route }` alimente `SceneController.update`, `RideHud` et le futur resume.
+  - [x] Option recommandee a faible blast radius: etendre `ThreeCanvasHost` avec props controlees `effort01` et `onFrame(snapshot)` ou extraire un petit hook d'integration ride dans `src/app/*`.
+  - [x] Interdire une deuxieme boucle `advanceRideFrame` uniquement pour le HUD.
+  - [x] Pendant `paused`, ne pas avancer la simulation et ne pas emettre de nouveau snapshot progressant.
+  - [x] Garder le clamp et les formules de vitesse dans `src/ride`, pas dans React.
 
-- [ ] Ajouter le controle mock obligatoire. (AC: 1, 2, 11)
-  - [ ] Creer `MockRideControls` ou equivalent avec un `input type="range"` de `0` a `1` (`step` fin, par exemple `0.01`).
-  - [ ] Afficher une valeur lisible de l'effort mock sans transformer le HUD en cockpit avance.
-  - [ ] Brancher le slider sur la source mock consommee par la boucle ride.
-  - [ ] Garder clavier/raccourcis comme optionnels; si ajoutes, ils doivent synchroniser le slider.
-  - [ ] Tester les bornes `0` et `1` et une valeur intermediaire.
+- [x] Ajouter le controle mock obligatoire. (AC: 1, 2, 11)
+  - [x] Creer `MockRideControls` ou equivalent avec un `input type="range"` de `0` a `1` (`step` fin, par exemple `0.01`).
+  - [x] Afficher une valeur lisible de l'effort mock sans transformer le HUD en cockpit avance.
+  - [x] Brancher le slider sur la source mock consommee par la boucle ride.
+  - [x] Garder clavier/raccourcis comme optionnels; si ajoutes, ils doivent synchroniser le slider.
+  - [x] Tester les bornes `0` et `1` et une valeur intermediaire.
 
-- [ ] Ajouter le HUD minimal. (AC: 3, 4, 6, 15)
-  - [ ] Creer `RideHud` ou equivalent sans dependance a Three.js.
-  - [ ] Afficher vitesse en km/h ou m/s de facon stable et lisible.
-  - [ ] Afficher distance en metres/km, temps ecoule, source `mock`, phase `running/paused`.
-  - [ ] Gérer l'etat initial avant premier snapshot avec valeurs zero/coherentes.
-  - [ ] Eviter de superposer le HUD de facon a masquer la route ou rendre le mobile illisible.
+- [x] Ajouter le HUD minimal. (AC: 3, 4, 6, 15)
+  - [x] Creer `RideHud` ou equivalent sans dependance a Three.js.
+  - [x] Afficher vitesse en km/h ou m/s de facon stable et lisible.
+  - [x] Afficher distance en metres/km, temps ecoule, source `mock`, phase `running/paused`.
+  - [x] Gérer l'etat initial avant premier snapshot avec valeurs zero/coherentes.
+  - [x] Eviter de superposer le HUD de facon a masquer la route ou rendre le mobile illisible.
 
-- [ ] Stabiliser pause/reprise/finish avec resume. (AC: 6, 7, 8, 9, 10)
-  - [ ] Faire en sorte que `onFinish` transmette le dernier `RideStats`/resume connu a `App` ou au reducer.
-  - [ ] Etendre `SessionState` de facon minimale pour stocker un resume final en memoire.
-  - [ ] Remplacer les placeholders de `SummaryScreen` par des props derivees du resume final.
-  - [ ] Formater duree, distance et vitesse moyenne avec helpers testables.
-  - [ ] Conserver `Retour au depart` qui reset la session.
+- [x] Stabiliser pause/reprise/finish avec resume. (AC: 6, 7, 8, 9, 10)
+  - [x] Faire en sorte que `onFinish` transmette le dernier `RideStats`/resume connu a `App` ou au reducer.
+  - [x] Etendre `SessionState` de facon minimale pour stocker un resume final en memoire.
+  - [x] Remplacer les placeholders de `SummaryScreen` par des props derivees du resume final.
+  - [x] Formater duree, distance et vitesse moyenne avec helpers testables.
+  - [x] Conserver `Retour au depart` qui reset la session.
 
-- [ ] Integrer l'UI dans `RideScreen` sans gros refactor. (AC: 1, 3, 5, 11, 12)
-  - [ ] Conserver le canvas `ThreeCanvasHost` dans `.ride-viewport`.
-  - [ ] Ajouter controls/HUD autour du canvas ou en overlay discret, selon lisibilite desktop/mobile.
-  - [ ] Conserver les actions existantes Pause/Reprendre/Terminer, ou les deplacer dans un `PauseOverlay` minimal sans changer la machine d'etat inutilement.
-  - [ ] Adapter CSS pour mobile/desktop, sans cartes imbriquees ni texte qui recouvre incoheremment le rendu.
+- [x] Integrer l'UI dans `RideScreen` sans gros refactor. (AC: 1, 3, 5, 11, 12)
+  - [x] Conserver le canvas `ThreeCanvasHost` dans `.ride-viewport`.
+  - [x] Ajouter controls/HUD autour du canvas ou en overlay discret, selon lisibilite desktop/mobile.
+  - [x] Conserver les actions existantes Pause/Reprendre/Terminer, ou les deplacer dans un `PauseOverlay` minimal sans changer la machine d'etat inutilement.
+  - [x] Adapter CSS pour mobile/desktop, sans cartes imbriquees ni texte qui recouvre incoheremment le rendu.
 
-- [ ] Ajouter tests unitaires et React. (AC: 1-10, 13, 15)
-  - [ ] Tester les helpers de formatage summary/HUD: duree, distance, vitesse moyenne.
-  - [ ] Tester `MockRideControls`: change slider -> callback effort borne.
-  - [ ] Tester `RideHud`: affiche source `mock`, phase, vitesse, distance, temps depuis un snapshot.
-  - [ ] Tester `SummaryScreen`: affiche les vraies stats, plus de placeholder.
-  - [ ] Tester le flow React start -> ride -> pause -> resume -> finish -> summary avec fake timers/scheduler si necessaire.
-  - [ ] Tester que WebGL indisponible garde le fallback existant.
+- [x] Ajouter tests unitaires et React. (AC: 1-10, 13, 15)
+  - [x] Tester les helpers de formatage summary/HUD: duree, distance, vitesse moyenne.
+  - [x] Tester `MockRideControls`: change slider -> callback effort borne.
+  - [x] Tester `RideHud`: affiche source `mock`, phase, vitesse, distance, temps depuis un snapshot.
+  - [x] Tester `SummaryScreen`: affiche les vraies stats, plus de placeholder.
+  - [x] Tester le flow React start -> ride -> pause -> resume -> finish -> summary avec fake timers/scheduler si necessaire.
+  - [x] Tester que WebGL indisponible garde le fallback existant.
 
-- [ ] Ajouter un happy path raisonnable. (AC: 14)
-  - [ ] Si Playwright peut etre ajoute sans setup lourd, ajouter `test:e2e`, `playwright.config.*` et un seul test happy path mock.
-  - [ ] Le happy path Playwright doit utiliser le slider comme controle principal, pas uniquement le clavier.
-  - [ ] Si Playwright est juge disproportionne dans l'implementation, creer au minimum un test React d'integration couvrant le meme parcours et documenter le report dans le Dev Agent Record.
-  - [ ] Ne pas creer une suite multi-browser exhaustive.
+- [x] Ajouter un happy path raisonnable. (AC: 14)
+  - [x] Si Playwright peut etre ajoute sans setup lourd, ajouter `test:e2e`, `playwright.config.*` et un seul test happy path mock.
+  - [x] Le happy path Playwright doit utiliser le slider comme controle principal, pas uniquement le clavier.
+  - [x] Si Playwright est juge disproportionne dans l'implementation, creer au minimum un test React d'integration couvrant le meme parcours et documenter le report dans le Dev Agent Record.
+  - [x] Ne pas creer une suite multi-browser exhaustive.
 
-- [ ] Valider. (AC: 1-15)
-  - [ ] `npm run typecheck`
-  - [ ] `npm run test`
-  - [ ] `npm run build`
-  - [ ] Si `test:e2e` est configure dans cette story: `npm run test:e2e`
-  - [ ] Validation manuelle: lancer ride, bouger slider, constater HUD/progression, pause stable, resume coherent.
+- [x] Valider. (AC: 1-15)
+  - [x] `npm run typecheck`
+  - [x] `npm run test`
+  - [x] `npm run build`
+  - [x] Si `test:e2e` est configure dans cette story: `npm run test:e2e`
+  - [x] Validation manuelle: lancer ride, bouger slider, constater HUD/progression, pause stable, resume coherent.
 
 ## Dev Notes
 
@@ -283,10 +283,73 @@ Codex GPT-5
 
 ### Debug Log References
 
+- 2026-06-06 - RED: `npm run test` a echoue comme attendu avant implementation sur les nouveaux tests MYB-6 (`MockRideControls`, `RideHud`, `rideStatsFormat`, `SummaryScreen`, App flow, `ThreeCanvasHost onFrame/effort01`).
+- 2026-06-06 - GREEN: `npm run test` passe avec 60 tests / 19 fichiers.
+- 2026-06-06 - `npm run typecheck` passe.
+- 2026-06-06 - `npm run build` passe; warning Vite chunk Three.js >500 kB conserve comme attendu pour MYB-5/MYB-6.
+- 2026-06-06 - Vite dev server HTTP 200 sur `http://127.0.0.1:5174/` (`5173` etait deja occupe).
+- 2026-06-06 - Validation Chrome headless/CDP desktop: start -> slider 90 % -> pause -> resume -> finish -> summary; HUD visible, summary sans placeholder, canvas crop ImageMagick non blank (`mean=0.595`, `stddev=0.117921`).
+- 2026-06-06 - Validation Chrome headless/CDP mobile 390x844 DPR 2: start -> slider 90 % -> pause -> resume -> finish -> summary; HUD visible, summary sans placeholder, canvas crop ImageMagick non blank (`mean=0.624303`, `stddev=0.097109`).
+- 2026-06-06 - `test:e2e` non lance car non configure; Playwright non ajoute pour eviter une dependance/setup lourd, couvert par test React d'integration et validation CDP reelle.
+- 2026-06-06 - Review patch: `ThreeCanvasHost` preserve les `createInputSource` mock custom quand `effort01` n'est pas explicitement controle.
+- 2026-06-06 - Review patch: l'horloge ride active n'avance plus pendant `paused`, donc HUD et summary n'incluent pas la duree de pause.
+- 2026-06-06 - Validation post-review: `npm run typecheck`, `npm run test` avec 61 tests / 19 fichiers, `npm run build` OK avec warning Vite Three.js >500 kB attendu.
+- 2026-06-06 - Validation browser post-review Chrome headless/CDP desktop et mobile: effort 90 %, summary reel, canvas crop non blank (`desktop mean=0.594989 stddev=0.117837`, `mobile mean=0.624251 stddev=0.0969858`).
+
 ### Completion Notes List
+
+- Partage de snapshot unique ajoute via `ThreeCanvasHost` props `effort01` et `onFrame(snapshot)`: le meme `RenderFrameSnapshot` alimente `SceneController.update`, le HUD et le summary final.
+- Slider mock obligatoire ajoute avec `input type="range"` `0..1` step `0.01`; il pilote la `MockRideInputSource` existante sans recalculer la logique ride dans React.
+- HUD minimal ajoute sans dependance Three.js: vitesse, distance, temps, source `mock`, phase `running/paused`, avec valeurs zero coherentes avant premier snapshot.
+- Summary final remplace les placeholders MYB-3 par les `RideStats` conserves dans l'etat de session; finish depuis `running` ou `paused` reste robuste avec resume zero si necessaire.
+- Pause/reprise conserve la session et le dernier HUD; aucun changement dans `src/ride/*`, `src/route/*` ou `SceneController.ts`.
+- Review MYB-6 approuvee apres patchs: effort custom non controle preserve et temps de pause exclu de l'horloge ride active.
+- Point note non bloquant: un echec interne `WebGLRenderer` apres le preflight reste un comportement preexistant de MYB-5; le fallback existant WebGL indisponible de MYB-2 reste preserve et teste.
 
 ### File List
 
+- `_bmad-output/implementation-artifacts/1-5-hud-controles-mock-resume-et-happy-path.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `src/App.test.tsx`
+- `src/App.tsx`
+- `src/app/screens/RideScreen.tsx`
+- `src/app/screens/SummaryScreen.test.tsx`
+- `src/app/screens/SummaryScreen.tsx`
+- `src/app/session/sessionReducer.ts`
+- `src/app/session/sessionTypes.ts`
+- `src/render/ThreeCanvasHost.test.tsx`
+- `src/render/ThreeCanvasHost.tsx`
+- `src/styles.css`
+- `src/ui/MockRideControls.test.tsx`
+- `src/ui/MockRideControls.tsx`
+- `src/ui/RideHud.test.tsx`
+- `src/ui/RideHud.tsx`
+- `src/ui/rideStatsFormat.test.ts`
+- `src/ui/rideStatsFormat.ts`
+
 ### Change Log
 
+- 2026-06-06 - Review MYB-6 approuvee: corrections source custom/horloge pause, validations 61 tests, Linear Done, next_action commit-MYB-6.
+- 2026-06-06 - Story MYB-6 implementee: HUD minimal, slider mock pilote la source active, summary final reel, tests React/unitaires, validation CDP desktop/mobile.
 - 2026-06-06 - Story MYB-6 creee: HUD minimal, slider mock obligatoire, summary reel, happy path final, garde-fous pour partager les snapshots sans dupliquer ride/route/render.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved - MYB-6 conforme apres corrections.
+
+### Findings
+
+- [x] [Review][Patch] `ThreeCanvasHost` ecrasait les sources mock custom fournies via `createInputSource` quand `effort01` n'etait pas explicitement fourni. Corrige en ne synchronisant l'effort que pour la source interne ou quand `effort01` est explicitement controle.
+- [x] [Review][Patch] La duree de pause pouvait etre incluse dans `RideFrameSnapshot.elapsedMs` apres reprise. Corrige avec une horloge ride active qui n'avance que pendant `running`.
+- [x] [Review][Defer] Echec `WebGLRenderer` apres preflight: comportement preexistant MYB-5, non introduit par MYB-6. Le fallback WebGL indisponible de MYB-2 reste preserve et teste; durcissement post-preflight a traiter hors scope si necessaire.
+
+### Review Validation
+
+- `npm run typecheck` OK.
+- `npm run test` OK, 61 tests / 19 fichiers.
+- `npm run build` OK, avec warning Vite chunk Three.js >500 kB attendu.
+- Vite HTTP 200 sur `http://127.0.0.1:5174/`.
+- Chrome headless/CDP desktop et mobile OK: effort modifie a 90 %, pause/reprise, summary reel, canvas crop non blank.
