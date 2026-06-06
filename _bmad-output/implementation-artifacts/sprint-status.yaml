@@ -29,7 +29,7 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-8 is the single approved visual story.
-# - Next action: commit the approved Visual Upgrade Scenic Pass story.
+# - Next action: choose the next visual direction from the comparative capture.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-8"
-  first_story_to_start: "MYB-8"
+  next_action: "choose-next-visual-direction"
+  first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -65,6 +65,7 @@ sprint:
   post_mvp_visual_upgrade_story: "_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md"
   post_mvp_visual_upgrade_story_created: true
   post_mvp_visual_upgrade_linear_url: "https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass"
+  post_mvp_visual_upgrade_comparison: "_bmad-output/implementation-artifacts/visual-upgrade-comparison-2026-06-06.md"
   backlog_order:
     - "MYB-4"
     - "MYB-5"

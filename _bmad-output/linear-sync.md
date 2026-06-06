@@ -874,6 +874,34 @@ Synced on 2026-06-06:
   - page errors: none;
   - console: one isolated 404, consistent with the prior visual audit.
 
+## Visual Upgrade Comparison Synced
+
+Synced on 2026-06-06:
+
+- Trigger: user asked for a comparative 30-second capture after `MYB-8` was
+  committed.
+- Baseline capture:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T20-16-57-308Z/`
+- Post-MYB-8 capture:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-15-32-492Z/`
+- Post-MYB-8 evidence:
+  - duration: 31.96 s
+  - viewport: 1440 x 900
+  - MP4 size: 964845 bytes
+  - video bitrate: 238957 bps
+  - HTTP: 200 OK
+  - page errors: none
+  - console: one isolated 404, consistent with prior captures
+- Comparison artifact:
+  `_bmad-output/implementation-artifacts/visual-upgrade-comparison-2026-06-06.md`
+- Recommendation:
+  choose a bounded next visual direction, with Scenic Mood Pass procedural
+  recommended before any broad Meshy pipeline.
+- Local next action:
+  `choose-next-visual-direction`.
+- Linear project note:
+  `1b478b42-90d8-43f5-b9ed-1b6afd11ac2a`
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
