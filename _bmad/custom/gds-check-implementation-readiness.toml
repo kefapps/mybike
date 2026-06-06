@@ -3,8 +3,10 @@
 on_complete = """
 After the readiness report is finalized, compare findings with
 _bmad-output/linear-sync.md. If readiness creates or changes blockers, risks, or
-next actions, propose a Linear sync for team MYB / project
-"Echappee 3D - Vertical Slice Mock".
-Do not create or update Linear records without explicit user confirmation.
-If the user approves, update Linear and then update _bmad-output/linear-sync.md.
+next actions, automatically sync non-destructive updates to existing Linear
+records in team MYB / project "Echappee 3D - Vertical Slice Mock".
+Then update _bmad-output/linear-sync.md with returned IDs, URLs, and status.
+Ask for explicit confirmation before creating new projects/epics/stories,
+archiving/deleting/renaming canonical trackers, changing ownership, or expanding
+beyond the current one MVP epic and five vertical-slice stories.
 """

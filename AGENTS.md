@@ -33,11 +33,19 @@ stories, readiness, or sprint status:
 
 1. Summarize the local artifact changes.
 2. Compare them with `_bmad-output/linear-sync.md`.
-3. Ask before creating or updating Linear records.
-4. If approved, update Linear and then update `_bmad-output/linear-sync.md`.
+3. Automatically sync non-destructive Linear updates inside the existing
+   `MYB` team and `Echappee 3D - Vertical Slice Mock` project.
+4. Update `_bmad-output/linear-sync.md` with returned Linear IDs, URLs, status
+   changes, and validation evidence.
 
-Do not silently create broad new Linear backlog. The current target is one MVP
-epic and five vertical-slice stories.
+Non-destructive Linear sync includes updating existing issue status, existing
+issue descriptions, existing project documents, implementation notes, validation
+evidence, review verdicts, and BMAD/local artifact references.
+
+Ask for confirmation before destructive or scope-changing Linear operations:
+creating new projects, initiatives, epics, or broad backlog; deleting/archiving;
+renaming canonical trackers; changing team/project ownership; or expanding beyond
+the current one MVP epic and five vertical-slice stories.
 
 ## Linear Tracking
 
@@ -64,6 +72,8 @@ Prefer Linear issue IDs in branch names, summaries, and implementation notes.
 - React owns UI and screen state; Three.js owns rendering from snapshots.
 - Do not add heavy dependencies or external services without a clear issue.
 - Run relevant validation commands when they exist; otherwise explain why not.
+- For existing `MYB` project records, keep Linear synced automatically after
+  BMAD implementation/review/status changes and update `_bmad-output/linear-sync.md`.
 - Never commit API keys, Linear tokens, Meshy tokens, or other secrets.
 
 ## Expected Validation

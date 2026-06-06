@@ -124,8 +124,15 @@ Synced on 2026-06-06:
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
-execution tracker. After BMAD changes planning artifacts, compare this mapping
-before creating or updating Linear records.
+execution tracker. After BMAD changes planning or implementation artifacts,
+compare this mapping and automatically sync non-destructive updates to existing
+Linear records in team `MYB` / project `Echappee 3D - Vertical Slice Mock`.
 
-Do not auto-sync broad changes. Ask for confirmation before creating,
-renaming, deleting, or materially changing Linear projects, issues, or docs.
+Non-destructive sync includes existing issue status changes, existing issue
+descriptions, existing project documents, implementation notes, validation
+evidence, review verdicts, and BMAD/local artifact references.
+
+Ask for confirmation before destructive or scope-changing Linear operations:
+creating new projects, initiatives, epics, or broad backlog; archiving/deleting;
+renaming canonical trackers; changing team/project ownership; or expanding beyond
+the current one MVP epic and five vertical-slice stories.
