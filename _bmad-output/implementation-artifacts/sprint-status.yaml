@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T23:22:40+02:00
+# last_updated: 2026-06-06T23:29:23+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-8 is done and the next visual step must remain one story.
-# - Next action: create the next visual story from the Scenic Mood Pass procedural decision.
+# - Next action: implement MYB-9, the single Scenic Mood Pass procedural story.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T23:22:40+02:00"
+last_updated: "2026-06-06T23:29:23+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "create-next-visual-story"
-  first_story_to_start: "none"
+  next_action: "implement-MYB-9"
+  first_story_to_start: "MYB-9"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -69,12 +69,16 @@ sprint:
   post_mvp_next_visual_direction: "Scenic Mood Pass procedural"
   post_mvp_next_visual_direction_proposal: "_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md"
   post_mvp_next_visual_meshy_decision: "Pas utile maintenant; eventuellement plus tard pour 1 a 2 landmarks precis avec confirmation du cout avant tout appel."
+  post_mvp_next_visual_story: "_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md"
+  post_mvp_next_visual_story_created: true
+  post_mvp_next_visual_linear_url: "https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
     - "MYB-6"
     - "MYB-7"
     - "MYB-8"
+    - "MYB-9"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -85,6 +89,7 @@ linear_mapping:
   1-5-hud-controles-mock-resume-et-happy-path: "MYB-6"
   myb-7-polish-ux-sensation-de-ride-mock: "MYB-7"
   myb-8-visual-upgrade-scenic-pass: "MYB-8"
+  myb-9-scenic-mood-pass-procedural: "MYB-9"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -123,3 +128,7 @@ development_status:
   # Story unique approuvee depuis le cadrage Visual Upgrade Scenic Pass; pas de nouveau backlog.
   # Revue de code locale passee pour MYB-8.
   myb-8-visual-upgrade-scenic-pass: done
+
+  # MYB-9 - Story post-MVP - Scenic Mood Pass procedural
+  # Story unique approuvee depuis la decision Scenic Mood Pass procedural; pas de nouveau backlog.
+  myb-9-scenic-mood-pass-procedural: ready-for-dev

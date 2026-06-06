@@ -25,6 +25,7 @@ Last sync: 2026-06-06
 - Visual Upgrade Scenic Pass proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md`
 - Visual Upgrade Scenic Pass dev story: `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
 - Scenic Mood Pass procedural proposal: `_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md`
+- Scenic Mood Pass procedural dev story: `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`
 
 ## Linear Documents
 
@@ -44,6 +45,7 @@ Last sync: 2026-06-06
 | Story 1.5 | `MYB-6` | HUD, controles mock, resume et happy path | https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path |
 | Post-MVP polish | `MYB-7` | Polish UX / sensation de ride mock | https://linear.app/kefjbo/issue/MYB-7/polish-ux-sensation-de-ride-mock |
 | Post-MVP visual | `MYB-8` | Visual Upgrade Scenic Pass | https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass |
+| Post-MVP scenic mood | `MYB-9` | Scenic Mood Pass procedural | https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural |
 
 ## Dependency Mapping
 
@@ -55,6 +57,8 @@ Last sync: 2026-06-06
   polish story, not a new epic or backlog.
 - `MYB-8` follows completed `MYB-7`; it is a single post-MVP visual story, not a
   new epic or backlog.
+- `MYB-9` follows completed `MYB-8`; it is a single post-MVP scenic mood story,
+  not a new epic or backlog.
 
 ## Readiness Caveats Synced
 
@@ -938,6 +942,48 @@ Synced on 2026-06-06:
   `86773f9c-b1c8-42b8-9076-1977ea90343f`
 - Linear issue creation:
   not performed during this decision step; no new backlog was created.
+
+## MYB-9 Scenic Mood Pass Procedural Created
+
+Synced on 2026-06-06:
+
+- Created the single approved next visual issue:
+  - Linear issue: `MYB-9`
+  - Title: `Scenic Mood Pass procedural`
+  - URL: https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural
+  - Status: `In Progress`
+  - Team: `MYB`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Sync comment ID: `ac15e239-8052-47ee-8916-d2ee2bad5ca8`
+- Local BMAD story created:
+  `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`.
+- Justification: the prior step was only a project decision note; this creates
+  exactly one implementable visual story from the approved Scenic Mood Pass
+  procedural decision, without a new epic or backlog.
+- Included levers:
+  1. landmark or strong motif per existing biome;
+  2. relief, bermes and terrain silhouettes around the route;
+  3. biome-specific light, fog, sky and identifiable mood;
+  4. procedural Three.js and mock-first implementation.
+- Scope guardrails synced to Linear:
+  - no Meshy call in this story unless a precise procedural impossibility is
+    demonstrated first, with credit-cost confirmation before any tool call;
+  - no heavy asset pipeline, mandatory glTF workflow, asset manager or external
+    service;
+  - no multiple routes, route selector, editor or GPX import;
+  - no HUD redesign, new gameplay mode or advanced bundle optimization;
+  - no `src/ride/*` changes unless strongly justified, pure and tested;
+  - no new Linear backlog.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: implement-MYB-9`
+  - `first_story_to_start: MYB-9`
+  - `myb-9-scenic-mood-pass-procedural: ready-for-dev`
+  - `post_mvp_next_visual_story_created: true`
+- Validation note:
+  `npm run typecheck`, `npm run test` and `npm run build` were not run because
+  only BMAD/Linear tracking artifacts changed, with no application code
+  modification.
 
 ## Sync Policy
 
