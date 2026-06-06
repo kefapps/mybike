@@ -15,6 +15,7 @@ Last sync: 2026-06-06
 - Architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md`
 - Epic and stories: `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`
 - Epic 1 retrospective: `_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md`
+- Polish UX playtest plan: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`
 
 ## Linear Documents
 
@@ -441,6 +442,30 @@ Synced on 2026-06-06:
   playtest for desktop/mobile, evaluate camera/route/slider/HUD/summary, identify
   3 to 5 maximum adjustments, include only minimal WebGL hardening if playtest
   makes it blocking, then decide whether to create a small story or micro-epic.
+
+Synced on 2026-06-06:
+
+- Short polish UX / ride-feel playtest plan created locally:
+  `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`.
+- Plan scope recorded in Linear:
+  - duration: 10 to 15 minutes;
+  - platforms: desktop then mobile;
+  - observed zones only: camera comfort, route/biome readability, slider feel,
+    HUD readability, summary coherence and mobile readability;
+  - scoring: note 1 to 3 plus short observations;
+  - selection rule: keep 3 to 5 maximum adjustments, with no broad backlog;
+  - `WebGLRenderer` hardening included only if a real launch or ride failure is
+    observed.
+- Project playtest note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `831b0046-366d-4bb8-ad8c-f28b66d2af7c`
+  - No new Linear issues were created.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: run-polish-playtest`
+  - `post_mvp_playtest_plan: _bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`
+  - `first_story_to_start: none`
 
 ## Sync Policy
 
