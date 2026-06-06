@@ -14,6 +14,7 @@ Last sync: 2026-06-06
 - GDD: `_bmad-output/planning-artifacts/echappee-3d-gdd-court.md`
 - Architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md`
 - Epic and stories: `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`
+- Epic 1 retrospective: `_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md`
 
 ## Linear Documents
 
@@ -381,6 +382,38 @@ Synced on 2026-06-06:
   Bluetooth/FTMS, backend/persistence, Meshy/AI assets, route selection,
   settings system, sports HUD, large refactor, or changes to `src/ride/*`,
   `src/route/*`, or `src/render/SceneController.ts`.
+
+Synced on 2026-06-06:
+
+- `MYB-1`: moved from Linear status `Backlog` to `Done` after all MVP stories
+  `MYB-2` through `MYB-6` were Done, reviewed, committed and synced.
+- `MYB-1` closure sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-1/epic-1-boucle-de-ride-mock-jouable
+  - Status returned by Linear: `Done`
+  - Closure comment ID: `be183c0b-bcd8-4a7d-b6db-4ffb46009bc2`
+- Project closure note recorded on existing Linear project:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `213e56b1-87ab-4d65-9d14-eef709177d5d`
+  - No new Linear issues were created.
+- Local BMAD status recorded as `done` for `epic-1` and
+  `epic-1-retrospective` in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: choose-post-MVP-option`.
+- Retrospective artifact recorded locally:
+  `_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md`.
+- Final validation evidence summarized in Linear:
+  - `npm run typecheck`
+  - `npm run test`: 61 tests / 19 files
+  - `npm run build` with expected Vite warning for Three.js chunk >500 kB
+  - Vite HTTP 200 on `http://127.0.0.1:5174/`
+  - Chrome headless/CDP desktop and mobile happy paths with slider, pause/resume,
+    real summary and nonblank canvas crops
+  - `test:e2e` not run because Playwright is not configured; coverage supplied
+    by React/Vitest tests and Chrome CDP validation.
+- Post-MVP options recorded without creating a broad backlog:
+  hardening, mock UX playtest, visual/content polish, telemetry preparation, and
+  performance/assets strategy.
 
 ## Sync Policy
 
