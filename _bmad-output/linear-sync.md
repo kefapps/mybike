@@ -415,6 +415,33 @@ Synced on 2026-06-06:
   hardening, mock UX playtest, visual/content polish, telemetry preparation, and
   performance/assets strategy.
 
+Synced on 2026-06-06:
+
+- Post-MVP direction decision recorded on the existing Linear project.
+- Chosen direction: `polish UX / sensation de ride`.
+- Decision rationale recorded in Linear:
+  - validates the core playable mock loop before public deployment;
+  - keeps work close to the shipped vertical slice without new hardware,
+    backend, deployment or asset-pipeline dependencies;
+  - reduces risk before BLE/FTMS by first qualifying camera comfort, route
+    readability, slider feel, HUD readability and summary clarity;
+  - treats the Three.js bundle warning and WebGL hardening as watch items rather
+    than the primary next direction.
+- Project decision note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `11c5ea30-e877-43f2-8510-8700aded99fd`
+  - No new Linear issues were created.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: define-polish-ux-ride-feel-mini-scope`
+  - `post_mvp_direction: polish UX / sensation de ride`
+  - `first_story_to_start: none`
+- Proposed next mini-scope, without broad backlog creation: define a short mock
+  playtest for desktop/mobile, evaluate camera/route/slider/HUD/summary, identify
+  3 to 5 maximum adjustments, include only minimal WebGL hardening if playtest
+  makes it blocking, then decide whether to create a small story or micro-epic.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
