@@ -1,0 +1,10 @@
+[workflow]
+
+on_complete = """
+After the readiness report is finalized, compare findings with
+_bmad-output/linear-sync.md. If readiness creates or changes blockers, risks, or
+next actions, propose a Linear sync for team MYB / project
+"Echappee 3D - Vertical Slice Mock".
+Do not create or update Linear records without explicit user confirmation.
+If the user approves, update Linear and then update _bmad-output/linear-sync.md.
+"""

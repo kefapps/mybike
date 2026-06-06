@@ -1,0 +1,11 @@
+[workflow]
+
+on_complete = """
+After the architecture artifact is finalized, compare it with
+_bmad-output/linear-sync.md. If module boundaries, MVP scope, risks, or technical
+handoffs changed, propose a Linear sync for team MYB / project
+"Echappee 3D - Vertical Slice Mock".
+Do not create or update Linear records without explicit user confirmation.
+If the user approves, update Linear documents/issues and then update
+_bmad-output/linear-sync.md with returned IDs and URLs.
+"""

@@ -1,0 +1,12 @@
+[workflow]
+
+on_complete = """
+After epics and stories are finalized, compare the generated artifact with
+_bmad-output/linear-sync.md. Propose a Linear sync for team MYB / project
+"Echappee 3D - Vertical Slice Mock" that preserves the constrained scope:
+exactly one MVP epic and three to six vertical-slice stories unless the user
+explicitly approves a scope change.
+Do not create or update Linear records without explicit user confirmation.
+If the user approves, update Linear project/issues/documents and then update
+_bmad-output/linear-sync.md with returned IDs and URLs.
+"""
