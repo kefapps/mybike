@@ -144,6 +144,55 @@ Synced on 2026-06-06:
   HUD, slider, Playwright, BLE/Web Bluetooth/FTMS, persistence, backend, Meshy,
   or asset pipeline.
 
+Synced on 2026-06-06:
+
+- `MYB-4`: moved from Linear status `In Progress` to `In Review` after local
+  BMAD status moved to review in
+  `_bmad-output/implementation-artifacts/1-3-route-prefabriquee-biomes-et-camera-sur-rail.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `next_action: review-MYB-4`.
+- `MYB-4` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-4/story-13-route-prefabriquee-biomes-et-camera-sur-rail
+  - Status returned by Linear: `In Review`
+  - Comment ID: `400269eb-fc2f-4461-9186-524532b04f09`
+- `MYB-4` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 40 tests across 13 files
+  - `npm run build`
+- `MYB-4` implementation summary recorded in Linear: pure `src/route/*` API for
+  mock route definition, deterministic sampling, biome selection, camera on rail,
+  typed route resolution and placeholder fallback for absent/invalid routes.
+- `MYB-4` scope confirmation recorded in Linear: no full Three.js scene, final
+  rendering, mesh, lighting, fog, assets, HUD, slider, mock controls, Playwright,
+  BLE/Web Bluetooth/FTMS, persistence, backend, Meshy, or asset pipeline.
+
+Synced on 2026-06-06:
+
+- `MYB-4`: moved from Linear status `In Review` to `Done` after local
+  `gds-code-review` returned `approved` following review patches.
+- `MYB-4` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-4/story-13-route-prefabriquee-biomes-et-camera-sur-rail
+  - Status returned by Linear: `Done`
+  - Comment ID: `2dc652d4-5636-4b91-a76a-49b8a9d6cae3`
+- Final `MYB-4` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 43 tests across 13 files
+  - `npm run build`
+- `MYB-4` review fixes recorded in Linear:
+  - malformed `points` / `biomes` entries now resolve to `placeholder-route`
+    instead of throwing;
+  - invalid biome entries are rejected during validation instead of being
+    selectable later;
+  - `null` camera config now uses deterministic defaults.
+- `MYB-4` local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/1-3-route-prefabriquee-biomes-et-camera-sur-rail.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; next local
+  action is `commit-MYB-4`.
+- `MYB-4` final scope confirmation recorded in Linear: pure `src/route/*`, no
+  `src/ride/*` changes, no React/Three.js/render/UI/e2e imports, no full scene,
+  HUD, slider, Playwright, persistence, BLE/Web Bluetooth/FTMS, backend, Meshy,
+  or asset pipeline.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

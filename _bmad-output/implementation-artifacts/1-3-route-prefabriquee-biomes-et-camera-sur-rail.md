@@ -4,7 +4,7 @@ story_key: "1-3-route-prefabriquee-biomes-et-camera-sur-rail"
 linear_id: "MYB-4"
 epic_linear_id: "MYB-1"
 title: "Route prefabriquee, biomes et camera sur rail"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-06"
 scope: "vertical slice mock - pure route, biome and camera logic only"
 source_epic: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
@@ -14,7 +14,7 @@ depends_on: "MYB-3"
 
 # Story 1.3: Route prefabriquee, biomes et camera sur rail
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -74,56 +74,61 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Analyser le contrat `src/ride` existant. (AC: 8, 10)
-  - [ ] Verifier `RideProgress`, `RideFrameSnapshot`, `advanceRideFrame` et les exports `src/ride/index.ts`.
-  - [ ] Confirmer que la route consomme `progress.progress01` et `progress.distanceMeters` sans modifier le mapping vitesse, le smoothing ou les stats.
-  - [ ] Garder le champ actuel `RideInputSample.nowMs`; ne pas inventer un contrat `timestampMs` divergent.
-- [ ] Definir les types route purs. (AC: 1, 4, 5, 9, 10)
-  - [ ] Creer `src/route/routeTypes.ts` ou equivalent.
-  - [ ] Definir `Vec3`, `RoutePoint`, `BiomeSegment`, `RouteDefinition`, `RouteSample`, `CameraRailConfig`, `CameraRigSnapshot`.
-  - [ ] Definir un type de resolution/fallback si utile, par exemple route prete, placeholder deterministe ou erreur typee.
-  - [ ] Ne pas importer `THREE.Vector3`; garder des objets numeriques simples `{ x, y, z }`.
-- [ ] Creer la route MVP prefabriquee. (AC: 1, 7)
-  - [ ] Creer `mockRouteDefinition` dans `src/route/mockRouteDefinition.ts` ou equivalent.
-  - [ ] Utiliser une longueur courte et coherent avec une demo de 1 a 3 minutes.
-  - [ ] Fournir assez de points pour un rail lisible, doux et stable.
-  - [ ] Ajouter au moins deux biomes simples, par exemple `coast` puis `forest`, avec segments couvrant `[0, 1]`.
-- [ ] Implementer la validation/fallback route. (AC: 3, 9)
-  - [ ] Detecter route absente, longueur invalide, points insuffisants, coordonnees non finies ou biomes incoherents.
-  - [ ] Choisir explicitement un comportement: placeholder deterministe ou erreur typee exploitable par l'app.
-  - [ ] Verrouiller par test que ce comportement ne crashe pas et ne retourne pas de nombres invalides.
-- [ ] Implementer le sampling route. (AC: 2, 3, 4)
-  - [ ] Ajouter `sampleRouteAt(route, progress01)` ou equivalent.
-  - [ ] Clamper la progression dans `[0, 1]`.
-  - [ ] Interpoler une position et une direction/look-ahead suffisante pour la camera.
-  - [ ] Tester debut, milieu, fin, valeurs hors bornes et valeurs non finies.
-- [ ] Implementer la camera sur rail. (AC: 5, 6)
-  - [ ] Ajouter `cameraOnRail(route, progress, config)` ou equivalent, consommant le `RideProgress` MYB-3 quand c'est pertinent.
-  - [ ] Appliquer hauteur, look-ahead et FOV sans mouvement brutal sur la route exemple.
-  - [ ] Borner les configs invalides pour garder position, look-at et FOV finis.
-  - [ ] Tester position/look-at deterministes, valeurs finies et look-ahead borne en fin de route.
-- [ ] Implementer la selection de biome. (AC: 7)
-  - [ ] Ajouter `selectBiomeAtProgress(route, progress01)`.
-  - [ ] Gerer les seuils, les bornes `0` / `1` et les segments invalides sans crash.
-  - [ ] Tester qu'au moins une transition intervient sur la route MVP.
-- [ ] Ajouter un composeur route pur optionnel. (AC: 8)
-  - [ ] Si utile, creer `createRouteFrameSnapshot(rideSnapshotOrProgress, route, cameraConfig)` ou nom equivalent.
-  - [ ] Retourner sample route, camera et biome actif sans modifier `advanceRideFrame`.
-  - [ ] Garder ce composeur hors React et hors Three.js.
-- [ ] Exporter l'API route. (AC: 10, 11)
-  - [ ] Creer `src/route/index.ts`.
-  - [ ] Exporter types, `mockRouteDefinition`, sampling, camera et biome.
-  - [ ] Ne pas creer `src/render/*`, `src/ui/*` ou `tests/e2e/*`.
-- [ ] Ajouter les tests unitaires prioritaires. (AC: 1-11)
-  - [ ] Tests `mockRouteDefinition`: longueur, points, biomes, valeurs finies.
-  - [ ] Tests `sampleRouteAt`: debut, milieu, fin, clamp et invalides.
-  - [ ] Tests `cameraOnRail`: position/look-at deterministes, FOV fini, look-ahead borne.
-  - [ ] Tests `selectBiomeAtProgress`: seuils, bornes et transition.
-  - [ ] Tests fallback route absente/invalide: placeholder deterministe ou erreur typee, sans crash ni valeurs invalides.
-- [ ] Verifier localement la story. (AC: 1-11)
-  - [ ] `npm run typecheck`
-  - [ ] `npm run test`
-  - [ ] `npm run build`
+- [x] Analyser le contrat `src/ride` existant. (AC: 8, 10)
+  - [x] Verifier `RideProgress`, `RideFrameSnapshot`, `advanceRideFrame` et les exports `src/ride/index.ts`.
+  - [x] Confirmer que la route consomme `progress.progress01` et `progress.distanceMeters` sans modifier le mapping vitesse, le smoothing ou les stats.
+  - [x] Garder le champ actuel `RideInputSample.nowMs`; ne pas inventer un contrat `timestampMs` divergent.
+- [x] Definir les types route purs. (AC: 1, 4, 5, 9, 10)
+  - [x] Creer `src/route/routeTypes.ts` ou equivalent.
+  - [x] Definir `Vec3`, `RoutePoint`, `BiomeSegment`, `RouteDefinition`, `RouteSample`, `CameraRailConfig`, `CameraRigSnapshot`.
+  - [x] Definir un type de resolution/fallback si utile, par exemple route prete, placeholder deterministe ou erreur typee.
+  - [x] Ne pas importer `THREE.Vector3`; garder des objets numeriques simples `{ x, y, z }`.
+- [x] Creer la route MVP prefabriquee. (AC: 1, 7)
+  - [x] Creer `mockRouteDefinition` dans `src/route/mockRouteDefinition.ts` ou equivalent.
+  - [x] Utiliser une longueur courte et coherent avec une demo de 1 a 3 minutes.
+  - [x] Fournir assez de points pour un rail lisible, doux et stable.
+  - [x] Ajouter au moins deux biomes simples, par exemple `coast` puis `forest`, avec segments couvrant `[0, 1]`.
+- [x] Implementer la validation/fallback route. (AC: 3, 9)
+  - [x] Detecter route absente, longueur invalide, points insuffisants, coordonnees non finies ou biomes incoherents.
+  - [x] Choisir explicitement un comportement: placeholder deterministe ou erreur typee exploitable par l'app.
+  - [x] Verrouiller par test que ce comportement ne crashe pas et ne retourne pas de nombres invalides.
+- [x] Implementer le sampling route. (AC: 2, 3, 4)
+  - [x] Ajouter `sampleRouteAt(route, progress01)` ou equivalent.
+  - [x] Clamper la progression dans `[0, 1]`.
+  - [x] Interpoler une position et une direction/look-ahead suffisante pour la camera.
+  - [x] Tester debut, milieu, fin, valeurs hors bornes et valeurs non finies.
+- [x] Implementer la camera sur rail. (AC: 5, 6)
+  - [x] Ajouter `cameraOnRail(route, progress, config)` ou equivalent, consommant le `RideProgress` MYB-3 quand c'est pertinent.
+  - [x] Appliquer hauteur, look-ahead et FOV sans mouvement brutal sur la route exemple.
+  - [x] Borner les configs invalides pour garder position, look-at et FOV finis.
+  - [x] Tester position/look-at deterministes, valeurs finies et look-ahead borne en fin de route.
+- [x] Implementer la selection de biome. (AC: 7)
+  - [x] Ajouter `selectBiomeAtProgress(route, progress01)`.
+  - [x] Gerer les seuils, les bornes `0` / `1` et les segments invalides sans crash.
+  - [x] Tester qu'au moins une transition intervient sur la route MVP.
+- [x] Ajouter un composeur route pur optionnel. (AC: 8)
+  - [x] Si utile, creer `createRouteFrameSnapshot(rideSnapshotOrProgress, route, cameraConfig)` ou nom equivalent.
+  - [x] Retourner sample route, camera et biome actif sans modifier `advanceRideFrame`.
+  - [x] Garder ce composeur hors React et hors Three.js.
+- [x] Exporter l'API route. (AC: 10, 11)
+  - [x] Creer `src/route/index.ts`.
+  - [x] Exporter types, `mockRouteDefinition`, sampling, camera et biome.
+  - [x] Ne pas creer `src/render/*`, `src/ui/*` ou `tests/e2e/*`.
+- [x] Ajouter les tests unitaires prioritaires. (AC: 1-11)
+  - [x] Tests `mockRouteDefinition`: longueur, points, biomes, valeurs finies.
+  - [x] Tests `sampleRouteAt`: debut, milieu, fin, clamp et invalides.
+  - [x] Tests `cameraOnRail`: position/look-at deterministes, FOV fini, look-ahead borne.
+  - [x] Tests `selectBiomeAtProgress`: seuils, bornes et transition.
+  - [x] Tests fallback route absente/invalide: placeholder deterministe ou erreur typee, sans crash ni valeurs invalides.
+- [x] Verifier localement la story. (AC: 1-11)
+  - [x] `npm run typecheck`
+  - [x] `npm run test`
+  - [x] `npm run build`
+
+### Review Findings
+
+- [x] [Review][Patch] Rejeter les `points` / `biomes` malformes sans throw et sans selectionner un biome invalide — corrige dans `src/route/routeValidation.ts`, `src/route/routeMath.ts` et `src/route/routeFallback.test.ts`.
+- [x] [Review][Patch] Normaliser une config camera `null` vers les defaults deterministes — corrige dans `src/route/cameraOnRail.ts`, `src/route/createRouteFrameSnapshot.ts` et `src/route/cameraOnRail.test.ts`.
 
 ## Dev Notes
 
@@ -254,10 +259,46 @@ Codex GPT-5
 
 ### Debug Log References
 
+- 2026-06-06 - RED: `npm run test -- src/route` a echoue comme attendu sur modules `src/route` absents.
+- 2026-06-06 - GREEN: `npm run test -- src/route` passe, 5 fichiers de tests, 14 tests.
+- 2026-06-06 - Validation: `npm run typecheck` passe.
+- 2026-06-06 - Validation: `npm run test` passe, 13 fichiers de tests, 40 tests.
+- 2026-06-06 - Validation: `npm run build` passe.
+- 2026-06-06 - Review fix: durcissement route invalide malformee (`points`/`biomes`) et config camera `null`; `npm run test -- src/route` passe, 5 fichiers de tests, 17 tests.
+- 2026-06-06 - Review validation finale: `npm run typecheck` passe.
+- 2026-06-06 - Review validation finale: `npm run test` passe, 13 fichiers de tests, 43 tests.
+- 2026-06-06 - Review validation finale: `npm run build` passe.
+
 ### Completion Notes List
 
+- Ajout de l'API pure `src/route` pour route prefabriquee, validation/fallback, sampling, camera sur rail, selection biome et composeur de snapshot route.
+- Le fallback choisi est un placeholder deterministe `placeholder-route`, retourne via `RouteResolution` avec raison typee, sans crash ni nombres invalides.
+- `createRouteFrameSnapshot` consomme `RideProgress` ou `RideFrameSnapshot` MYB-3 sans recalculer vitesse, smoothing, stats ou etats de session.
+- Aucun import React, Three.js, `src/render`, `src/ui` ou Playwright n'a ete ajoute dans `src/route`.
+- Revue locale `gds-code-review` approuvee apres correction des edge cases route malformee et config camera `null`.
+
 ### File List
+
+- `_bmad-output/implementation-artifacts/1-3-route-prefabriquee-biomes-et-camera-sur-rail.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `src/route/cameraOnRail.test.ts`
+- `src/route/cameraOnRail.ts`
+- `src/route/createRouteFrameSnapshot.ts`
+- `src/route/index.ts`
+- `src/route/mockRouteDefinition.test.ts`
+- `src/route/mockRouteDefinition.ts`
+- `src/route/routeFallback.test.ts`
+- `src/route/routeMath.ts`
+- `src/route/routeTypes.ts`
+- `src/route/routeValidation.ts`
+- `src/route/sampleRouteAt.test.ts`
+- `src/route/sampleRouteAt.ts`
+- `src/route/selectBiomeAtProgress.test.ts`
+- `src/route/selectBiomeAtProgress.ts`
 
 ### Change Log
 
 - 2026-06-06 - Story MYB-4 creee: route prefabriquee, biomes et camera sur rail, avec scope strict hors Three.js, hors HUD/slider et hors Playwright.
+- 2026-06-06 - Story MYB-4 implementee: API route pure, route MVP, biomes, sampling, camera sur rail, fallback placeholder et tests unitaires.
+- 2026-06-06 - Story MYB-4 revue et approuvee: status done, validations finales typecheck/test/build vertes.
