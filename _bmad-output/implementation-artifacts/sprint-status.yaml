@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T23:08:36+02:00
+# last_updated: 2026-06-06T23:22:40+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -28,12 +28,12 @@
 #
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
-# - Do not create a new backlog; MYB-8 is the single approved visual story.
-# - Next action: choose the next visual direction from the comparative capture.
+# - Do not create a new backlog; MYB-8 is done and the next visual step must remain one story.
+# - Next action: create the next visual story from the Scenic Mood Pass procedural decision.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T23:08:36+02:00"
+last_updated: "2026-06-06T23:22:40+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "choose-next-visual-direction"
+  next_action: "create-next-visual-story"
   first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -66,6 +66,9 @@ sprint:
   post_mvp_visual_upgrade_story_created: true
   post_mvp_visual_upgrade_linear_url: "https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass"
   post_mvp_visual_upgrade_comparison: "_bmad-output/implementation-artifacts/visual-upgrade-comparison-2026-06-06.md"
+  post_mvp_next_visual_direction: "Scenic Mood Pass procedural"
+  post_mvp_next_visual_direction_proposal: "_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md"
+  post_mvp_next_visual_meshy_decision: "Pas utile maintenant; eventuellement plus tard pour 1 a 2 landmarks precis avec confirmation du cout avant tout appel."
   backlog_order:
     - "MYB-4"
     - "MYB-5"

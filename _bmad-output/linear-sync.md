@@ -24,6 +24,7 @@ Last sync: 2026-06-06
 - Visual audit video: `_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md`
 - Visual Upgrade Scenic Pass proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md`
 - Visual Upgrade Scenic Pass dev story: `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
+- Scenic Mood Pass procedural proposal: `_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md`
 
 ## Linear Documents
 
@@ -901,6 +902,42 @@ Synced on 2026-06-06:
   `choose-next-visual-direction`.
 - Linear project note:
   `1b478b42-90d8-43f5-b9ed-1b6afd11ac2a`
+
+## Next Visual Direction Decision Synced
+
+Synced on 2026-06-06:
+
+- Decision: select one next visual direction, `Scenic Mood Pass procedural`.
+- Rationale: the post-MYB-8 comparison shows clear progress in route
+  readability, lateral references, parallax and depth, but the remaining gap is
+  place identity: memorable biome motifs, terrain relief, silhouettes, light,
+  fog, sky and an identifiable mood.
+- Options compared:
+  1. `Scenic Mood Pass procedural` selected because it directly addresses the
+     remaining visual gap while staying mock-first and bounded.
+  2. `Meshy cible pour landmarks` deferred because Meshy is only useful later
+     for 1-2 precise, reusable and instanciable landmarks; any Meshy call still
+     requires explicit cost confirmation before execution.
+  3. `Camera/speed feel pass` deferred because MYB-7 already improved ride feel
+     and MYB-8 added parallax; the current evidence points first to scenic
+     identity rather than camera/speed tuning.
+- Bounded mini-scope for the next story:
+  - landmark or strong motif per biome;
+  - bermes, lateral relief and terrain silhouettes;
+  - light, fog, sky and mood variation by biome;
+  - procedural implementation, no heavy asset pipeline and no broad backlog.
+- Meshy decision:
+  - not useful now;
+  - potentially useful later for 1-2 precise landmarks only;
+  - requires explicit credit-cost confirmation before any Meshy tool call.
+- Local proposal:
+  `_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md`
+- Sprint status:
+  `next_action: create-next-visual-story`
+- Linear project note:
+  `86773f9c-b1c8-42b8-9076-1977ea90343f`
+- Linear issue creation:
+  not performed during this decision step; no new backlog was created.
 
 ## Sync Policy
 
