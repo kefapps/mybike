@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T18:13:47+02:00
+# last_updated: 2026-06-06T18:27:03+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create new stories; use the existing MYB-1 through MYB-6 mapping.
-# - Next action: commit MYB-5, then prepare MYB-6.
+# - Next action: implement MYB-6.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T18:13:47+02:00"
+last_updated: "2026-06-06T18:27:03+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-5"
+  next_action: "implement-MYB-6"
   first_story_to_start: "MYB-6"
   backlog_order:
     - "MYB-4"
@@ -86,6 +86,6 @@ development_status:
 
   # MYB-6 - Story 1.5 - HUD, controles mock, resume et happy path
   # Caveat deja synchronise: slider mock obligatoire, clavier optionnel.
-  1-5-hud-controles-mock-resume-et-happy-path: backlog
+  1-5-hud-controles-mock-resume-et-happy-path: ready-for-dev
 
   epic-1-retrospective: optional

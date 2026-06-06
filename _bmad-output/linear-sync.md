@@ -287,6 +287,32 @@ Synced on 2026-06-06:
   persistence/backend, BLE/Web Bluetooth/FTMS, Meshy, AI assets, loaders or
   heavy asset pipeline.
 
+Synced on 2026-06-06:
+
+- `MYB-6`: moved from Linear status `Backlog` to `In Progress` after BMAD
+  created the dev story
+  `_bmad-output/implementation-artifacts/1-5-hud-controles-mock-resume-et-happy-path.md`
+  and updated `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `1-5-hud-controles-mock-resume-et-happy-path: ready-for-dev` and
+  `next_action: implement-MYB-6`.
+- `MYB-6` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-6/story-15-hud-controles-mock-resume-et-happy-path
+  - Status returned by Linear: `In Progress`
+  - Comment ID: `9bc46f2d-d52e-4b79-96ce-5e34b32c732e`
+- `MYB-6` scope confirmation recorded in Linear: HUD minimal, mandatory mock
+  slider, optional keyboard only, final summary from existing ride stats, and a
+  reasonable mock happy path from start through summary.
+- `MYB-6` architecture confirmation recorded in Linear: one snapshot stream must
+  feed render, HUD and summary; HUD consumes MYB-3 snapshots/stats without
+  recalculating speed, smoothing, progress or stats; Three.js remains under
+  `src/render/*`.
+- `MYB-6` exclusions recorded in Linear: no BLE/Web Bluetooth/FTMS,
+  backend/persistence, Meshy/AI assets, multiple routes, broad settings system,
+  or deep refactor of MYB-2 through MYB-5.
+- `MYB-6` validation note recorded in Linear: `npm run typecheck`,
+  `npm run test`, and `npm run build` were not run because only BMAD/sync
+  artifacts changed, with no application code modification.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
