@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T15:46:03+02:00
+# last_updated: 2026-06-06T15:57:39+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create new stories; use the existing MYB-1 through MYB-6 mapping.
-# - Next action: commit MYB-3 and Linear workflow updates.
+# - Next action: implement MYB-4.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T15:46:03+02:00"
+last_updated: "2026-06-06T15:57:39+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-3"
+  next_action: "implement-MYB-4"
   first_story_to_start: "MYB-4"
   backlog_order:
     - "MYB-4"
@@ -76,7 +76,7 @@ development_status:
 
   # MYB-4 - Story 1.3 - Route prefabriquee, biomes et camera sur rail
   # Caveat deja synchronise: route absente/invalide -> placeholder deterministic ou erreur typee.
-  1-3-route-prefabriquee-biomes-et-camera-sur-rail: backlog
+  1-3-route-prefabriquee-biomes-et-camera-sur-rail: ready-for-dev
 
   # MYB-5 - Story 1.4 - Scene Three.js MVP et rendu de la balade
   # Caveat deja synchronise: validation performance manuelle pragmatique, sans tooling avance.

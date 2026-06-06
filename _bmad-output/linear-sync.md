@@ -121,6 +121,29 @@ Synced on 2026-06-06:
   and `_bmad-output/implementation-artifacts/sprint-status.yaml`; next local
   action is `commit-MYB-3`.
 
+Synced on 2026-06-06:
+
+- `MYB-4`: moved from Linear status `Backlog` to `In Progress` after BMAD
+  created the dev story
+  `_bmad-output/implementation-artifacts/1-3-route-prefabriquee-biomes-et-camera-sur-rail.md`
+  and updated `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `1-3-route-prefabriquee-biomes-et-camera-sur-rail: ready-for-dev` and
+  `next_action: implement-MYB-4`.
+- `MYB-4` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-4/story-13-route-prefabriquee-biomes-et-camera-sur-rail
+  - Status returned by Linear: `In Progress`
+  - Comment ID: `7c68c142-aea9-4226-bdf5-26809b9192f2`
+- `MYB-4` scope confirmation recorded in Linear: route prefabriquee minimale,
+  route sampling, biomes, camera sur rail; consumes MYB-3 progression/snapshot
+  without changing speed, smoothing, stats, or session logic except small
+  type/export adaptations if needed.
+- `MYB-4` caveat confirmation recorded in Linear: route absent/invalid must
+  return a deterministic placeholder or typed error, with no crash and no
+  invalid numeric values.
+- `MYB-4` exclusions recorded in Linear: no full Three.js scene, final rendering,
+  HUD, slider, Playwright, BLE/Web Bluetooth/FTMS, persistence, backend, Meshy,
+  or asset pipeline.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
