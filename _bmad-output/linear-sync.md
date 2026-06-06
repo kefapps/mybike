@@ -16,6 +16,7 @@ Last sync: 2026-06-06
 - Epic and stories: `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`
 - Epic 1 retrospective: `_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md`
 - Polish UX playtest plan: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`
+- Polish UX playtest results: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`
 
 ## Linear Documents
 
@@ -465,6 +466,33 @@ Synced on 2026-06-06:
   `_bmad-output/implementation-artifacts/sprint-status.yaml`:
   - `next_action: run-polish-playtest`
   - `post_mvp_playtest_plan: _bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`
+  - `first_story_to_start: none`
+
+Synced on 2026-06-06:
+
+- Self-playtest results recorded locally:
+  `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`.
+- Validation evidence recorded in Linear:
+  - HTTP 200 on `http://127.0.0.1:5174/`;
+  - desktop and mobile happy path through start, ride, slider low/mid/high,
+    pause, resume, finish and summary;
+  - screenshots captured via Chrome headless/CDP and checked with ImageMagick as
+    nonblank;
+  - slider response observed, pause/resume coherent, summary coherent;
+  - no `WebGLRenderer` failure observed, so hardening was not selected.
+- Proposed polish adjustments, capped to 3 for now:
+  1. compact mobile HUD to free the scene;
+  2. make slider response easier to understand;
+  3. make biome change observable during a short playtest.
+- Project self-playtest summary note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `63d987b7-469f-4775-9ad1-a4d9cf9a0672`
+  - No new Linear issues were created.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: choose-polish-adjustments`
+  - `post_mvp_playtest_results: _bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`
   - `first_story_to_start: none`
 
 ## Sync Policy
