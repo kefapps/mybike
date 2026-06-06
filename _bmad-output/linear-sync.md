@@ -776,6 +776,104 @@ Synced on 2026-06-06:
   only BMAD/Linear tracking artifacts changed, with no application code
   modification.
 
+## MYB-8 Visual Upgrade Scenic Pass Implemented
+
+Synced on 2026-06-06:
+
+- `MYB-8`: implemented locally and moved from Linear status `In Progress` to
+  `In Review`.
+- Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass
+  - Status returned by Linear: `In Review`
+  - Issue updated at: `2026-06-06T21:01:57.225Z`
+  - Sync comment ID updated: `62621990-4b82-4366-a1da-f0e7a1ea19ed`
+  - Sync comment updated at: `2026-06-06T21:01:59.439Z`
+- Local BMAD status recorded as `review` in
+  `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: review-MYB-8`.
+- Implementation summary:
+  1. enriched route rendering in `src/render/createRouteMesh.ts` with a scenic
+     route group, shoulders, edge bands, center markings and procedural surface
+     variation;
+  2. denser procedural lateral scenery in `src/render/createBiomeVisuals.ts`
+     with coast posts, grass tufts, rocks, trees, signs, far trees and distant
+     hills;
+  3. improved scenic depth in `src/render/SceneController.ts` and
+     `src/render/renderHelpers.ts` with wider subtle terrain variation, deeper
+     fog and biome-specific horizon color.
+- Scope confirmation:
+  - no Meshy call, no credit cost and no generated asset dependency;
+  - no glTF pipeline, asset manager, route selector, multiple routes, backend,
+    BLE/FTMS/Web Bluetooth, deployment or new Linear backlog;
+  - `src/ride/*` unchanged; rendering still consumes existing snapshots for
+    biome, camera, speed, progress and stats.
+- Validation evidence:
+  - RED render tests confirmed before implementation with 4 expected failures;
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 21 files / 66 tests;
+  - `npm run build`: passed, with the expected Vite chunk-size warning for the
+    Three.js bundle;
+  - Vite HTTP 200 on `http://127.0.0.1:5174/`;
+  - `npm run capture:ride-video`:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T20-56-54-899Z/`;
+  - video proof: `ride-visual-audit-30s.mp4`;
+  - contact sheet proof: `ride-visual-audit-contact-sheet.jpg`;
+  - canvas/frame evidence: final frame `1440x900 mean=53108.4 stddev=15010`,
+    contact sheet `1920x200 mean=53521.8 stddev=14116.9`;
+  - visual review: route richer, lateral elements visible, horizon/depth
+    improved, movement/parallax better; page errors none;
+  - console: one isolated 404 consistent with the prior audit;
+  - mobile validation: HTTP 200, start -> slider -> pause -> resume -> finish ->
+    summary OK, screenshot `780x1688 mean=58086.7 stddev=12184.5`; WebGL
+    warnings limited to screenshot `ReadPixels`.
+
+## MYB-8 Visual Upgrade Scenic Pass Reviewed
+
+Synced on 2026-06-06:
+
+- `MYB-8`: code review approved and Linear moved from `In Review` to `Done`.
+- Review verdict: `approved`.
+- Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-06T21:09:08.709Z`
+  - Issue updated at: `2026-06-06T21:09:08.718Z`
+  - Review comment ID: `37e5f7ec-85cc-4ded-9b82-97a4b0d292c5`
+- Local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: commit-MYB-8`.
+- Review findings:
+  - clean review, no patch required;
+  - route enrichment, lateral procedural decor, scenic depth and motion/parallax
+    improvements satisfy MYB-8;
+  - `src/ride/*` unchanged and `SceneController` still renders existing
+    snapshots instead of choosing progress, speed or stats;
+  - no Meshy, asset pipeline, glTF workflow, route selector, multiple routes,
+    BLE/FTMS/Web Bluetooth, deployment, HUD redesign or new Linear backlog.
+- Render/performance review:
+  - added geometries/materials are tracked via `RouteMeshResult` and
+    `BiomeVisuals`;
+  - `ThreeSceneController.disposeTrackedResources()` disposes route, ground,
+    horizon and biome resources;
+  - procedural density is reasonable for the vertical slice: simple low-poly
+    meshes, shared geometries/materials and no external asset pipeline.
+- Review validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 21 files / 66 tests;
+  - `npm run build`: passed, with the expected Vite chunk-size warning for the
+    Three.js bundle;
+  - Vite HTTP 200 on `http://127.0.0.1:5174/`;
+  - `npm run capture:ride-video`:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-06-51-582Z/`;
+  - video proof: `ride-visual-audit-30s.mp4`;
+  - contact sheet proof: `ride-visual-audit-contact-sheet.jpg`;
+  - nonblank proof: final frame `1440x900 mean=53106.4 stddev=15014.9`,
+    contact sheet `1920x200 mean=53599.1 stddev=13965.9`;
+  - page errors: none;
+  - console: one isolated 404, consistent with the prior visual audit.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

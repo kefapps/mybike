@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T22:42:00+02:00
+# last_updated: 2026-06-06T23:08:36+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-8 is the single approved visual story.
-# - Next action: implement the bounded Visual Upgrade Scenic Pass story.
+# - Next action: commit the approved Visual Upgrade Scenic Pass story.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T22:42:00+02:00"
+last_updated: "2026-06-06T23:08:36+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-8"
+  next_action: "commit-MYB-8"
   first_story_to_start: "MYB-8"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -117,4 +117,5 @@ development_status:
 
   # MYB-8 - Story post-MVP - Visual Upgrade Scenic Pass
   # Story unique approuvee depuis le cadrage Visual Upgrade Scenic Pass; pas de nouveau backlog.
-  myb-8-visual-upgrade-scenic-pass: ready-for-dev
+  # Revue de code locale passee pour MYB-8.
+  myb-8-visual-upgrade-scenic-pass: done

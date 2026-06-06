@@ -22,11 +22,13 @@ describe("render helpers", () => {
   it("selects readable palettes for coast, forest, placeholder, and unknown biomes", () => {
     expect(getBiomePalette("coast", false)).toMatchObject({
       sky: 0xb7d9ec,
-      ground: 0x8cc7a5
+      ground: 0x8cc7a5,
+      horizon: 0x8fc4d7
     });
     expect(getBiomePalette("forest", false)).toMatchObject({
       sky: 0xa9c7b0,
-      ground: 0x2f6f45
+      ground: 0x2f6f45,
+      horizon: 0x5d8068
     });
     expect(getBiomePalette("coast", true)).toMatchObject({
       route: 0x607080

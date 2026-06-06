@@ -8,6 +8,7 @@ export type BiomePalette = {
   route: number;
   fog: number;
   accent: number;
+  horizon: number;
 };
 
 const BIOME_PALETTES: Record<string, BiomePalette> = {
@@ -16,21 +17,24 @@ const BIOME_PALETTES: Record<string, BiomePalette> = {
     ground: 0x8cc7a5,
     route: 0xf2d58b,
     fog: 0xd4eef5,
-    accent: 0x4f9fcf
+    accent: 0x4f9fcf,
+    horizon: 0x8fc4d7
   },
   forest: {
     sky: 0xa9c7b0,
     ground: 0x2f6f45,
     route: 0x9a7b4f,
     fog: 0x6d8a74,
-    accent: 0x174d2e
+    accent: 0x174d2e,
+    horizon: 0x5d8068
   },
   placeholder: {
     sky: 0xcbd4d8,
     ground: 0x8b9691,
     route: 0x607080,
     fog: 0xd9dddf,
-    accent: 0x4d5a62
+    accent: 0x4d5a62,
+    horizon: 0xaab4b8
   }
 };
 

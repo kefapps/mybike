@@ -55,7 +55,7 @@ export class ThreeSceneController implements SceneControllerApi {
       this.sunLight,
       this.ground,
       this.horizon,
-      this.routeMesh.mesh,
+      this.routeMesh.group,
       this.biomeVisuals.group
     );
   }
@@ -107,10 +107,10 @@ export class ThreeSceneController implements SceneControllerApi {
     );
 
     this.scene.background = new THREE.Color(palette.sky);
-    this.scene.fog = new THREE.Fog(palette.fog, 35, 260);
+    this.scene.fog = new THREE.Fog(palette.fog, 22, 380);
     this.routeMesh.material.color.setHex(palette.route);
     this.ground.material.color.setHex(palette.ground);
-    this.horizon.material.color.setHex(palette.sky);
+    this.horizon.material.color.setHex(palette.horizon);
     this.biomeVisuals.coastMaterial.color.setHex(
       snapshot.route.usedFallback ? palette.accent : 0x4f9fcf
     );
@@ -145,7 +145,20 @@ export class ThreeSceneController implements SceneControllerApi {
     THREE.PlaneGeometry,
     THREE.MeshStandardMaterial
   > {
-    const geometry = new THREE.PlaneGeometry(260, 1300);
+    const geometry = new THREE.PlaneGeometry(360, 1400, 10, 34);
+    const positions = geometry.attributes.position;
+
+    for (let index = 0; index < positions.count; index += 1) {
+      const x = positions.getX(index);
+      const y = positions.getY(index);
+      const awayFromRoad = Math.max(0, Math.abs(x) - 18);
+      const wave =
+        Math.sin(y * 0.018) * 0.42 + Math.cos((x + y) * 0.012) * 0.28;
+
+      positions.setZ(index, awayFromRoad > 0 ? wave * (awayFromRoad / 180) : 0);
+    }
+
+    geometry.computeVertexNormals();
     const material = new THREE.MeshStandardMaterial({
       color: 0x8cc7a5,
       roughness: 0.94,
@@ -163,23 +176,29 @@ export class ThreeSceneController implements SceneControllerApi {
     THREE.PlaneGeometry,
     THREE.MeshBasicMaterial
   > {
-    const geometry = new THREE.PlaneGeometry(500, 20);
+    const geometry = new THREE.PlaneGeometry(760, 70);
     const material = new THREE.MeshBasicMaterial({
       color: 0xb7d9ec,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.35
+      opacity: 0.48
     });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.name = "mvp-horizon";
-    mesh.position.set(0, 12, 1050);
+    mesh.position.set(0, 26, 1060);
 
     return mesh;
   }
 
   private disposeTrackedResources(): void {
-    this.routeMesh.geometry.dispose();
-    this.routeMesh.material.dispose();
+    for (const geometry of this.routeMesh.geometries) {
+      geometry.dispose();
+    }
+
+    for (const material of this.routeMesh.materials) {
+      material.dispose();
+    }
+
     this.ground.geometry.dispose();
     this.ground.material.dispose();
     this.horizon.geometry.dispose();

@@ -4,8 +4,9 @@ story_key: "myb-8-visual-upgrade-scenic-pass"
 linear_id: "MYB-8"
 linear_url: "https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass"
 title: "Visual Upgrade Scenic Pass"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-06"
+baseline_commit: "48b647e0613b2d7362ec4f65d808ccdc911a1c6c"
 scope: "post-MVP visual scenic pass"
 source_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-visual-upgrade-scenic-pass-2026-06-06.md"
 source_visual_audit: "_bmad-output/implementation-artifacts/visual-audit-video-ride-2026-06-06.md"
@@ -16,7 +17,7 @@ depends_on:
 
 # Story MYB-8: Visual Upgrade Scenic Pass
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -105,53 +106,60 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Verifier les contrats existants avant modification. (AC: 4, 6, 7)
-  - [ ] Lire `src/render/SceneController.ts`.
-  - [ ] Lire `src/render/createRouteMesh.ts`.
-  - [ ] Lire `src/render/createBiomeVisuals.ts`.
-  - [ ] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
-  - [ ] Lire `src/route/mockRouteDefinition.ts` et
+- [x] Verifier les contrats existants avant modification. (AC: 4, 6, 7)
+  - [x] Lire `src/render/SceneController.ts`.
+  - [x] Lire `src/render/createRouteMesh.ts`.
+  - [x] Lire `src/render/createBiomeVisuals.ts`.
+  - [x] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
+  - [x] Lire `src/route/mockRouteDefinition.ts` et
     `src/route/createRouteFrameSnapshot.ts`.
-  - [ ] Lire `src/ride/rideTypes.ts` uniquement pour verifier les snapshots;
+  - [x] Lire `src/ride/rideTypes.ts` uniquement pour verifier les snapshots;
     ne pas concevoir la story depuis `src/ride`.
 
-- [ ] Enrichir la route sans changer la boucle ride. (AC: 1, 4, 6)
-  - [ ] Ajouter une solution simple de bas-cotes, bandes laterales, marquage ou
+- [x] Enrichir la route sans changer la boucle ride. (AC: 1, 4, 6)
+  - [x] Ajouter une solution simple de bas-cotes, bandes laterales, marquage ou
     variation de surface dans le rendu.
-  - [ ] Garder `createRouteMesh` ou un helper voisin responsable de la geometrie
+  - [x] Garder `createRouteMesh` ou un helper voisin responsable de la geometrie
     visuelle, sans deplacer la progression dans le rendu.
-  - [ ] Eviter tout systeme de route multiple ou generation procedurale lourde.
+  - [x] Eviter tout systeme de route multiple ou generation procedurale lourde.
 
-- [ ] Ajouter du decor lateral procedural. (AC: 2, 4, 5, 8)
-  - [ ] Ajouter quelques familles simples et lisibles: arbres, rochers, herbes,
+- [x] Ajouter du decor lateral procedural. (AC: 2, 4, 5, 8)
+  - [x] Ajouter quelques familles simples et lisibles: arbres, rochers, herbes,
     poteaux ou panneaux.
-  - [ ] Preferer l'instanciation/reutilisation de geometries et materiaux.
-  - [ ] Varier positions, tailles et plans proches/moyens sans charger d'assets
+  - [x] Preferer l'instanciation/reutilisation de geometries et materiaux.
+  - [x] Varier positions, tailles et plans proches/moyens sans charger d'assets
     externes obligatoires.
-  - [ ] Disposer toutes les geometries/materiaux ajoutes.
+  - [x] Disposer toutes les geometries/materiaux ajoutes.
 
-- [ ] Renforcer la profondeur scenic. (AC: 3, 10)
-  - [ ] Ajuster horizon, fog, ground/terrain ou plans lointains pour reduire
+- [x] Renforcer la profondeur scenic. (AC: 3, 10)
+  - [x] Ajuster horizon, fog, ground/terrain ou plans lointains pour reduire
     l'effet d'aplats.
-  - [ ] Garder une scene confortable en premiere personne: pas de camera libre,
+  - [x] Garder une scene confortable en premiere personne: pas de camera libre,
     pas de mouvement brutal.
-  - [ ] Ne modifier camera/FOV que si necessaire et avec validation visuelle.
+  - [x] Ne modifier camera/FOV que si necessaire et avec validation visuelle.
 
-- [ ] Garder Meshy optionnel. (AC: 5)
-  - [ ] Si Meshy est utile, limiter a 2-4 assets low-poly maximum.
-  - [ ] Garder un fallback procedural equivalent et une integration simple.
-  - [ ] Ne pas creer de pipeline glTF complet, d'asset manager ou de workflow
+- [x] Garder Meshy optionnel. (AC: 5)
+  - [x] Si Meshy est utile, limiter a 2-4 assets low-poly maximum.
+  - [x] Garder un fallback procedural equivalent et une integration simple.
+  - [x] Ne pas creer de pipeline glTF complet, d'asset manager ou de workflow
     generation obligatoire.
-  - [ ] Avant tout appel Meshy payant, confirmer le cout en credits, l'usage
+  - [x] Avant tout appel Meshy payant, confirmer le cout en credits, l'usage
     cible et le format attendu; sinon rester sur les placeholders proceduraux.
 
-- [ ] Valider le happy path et la scene. (AC: 6, 9, 10)
-  - [ ] Lancer `npm run typecheck`.
-  - [ ] Lancer `npm run test`.
-  - [ ] Lancer `npm run build`.
-  - [ ] Faire une validation visuelle courte desktop, et mobile si possible:
+- [x] Valider le happy path et la scene. (AC: 6, 9, 10)
+  - [x] Lancer `npm run typecheck`.
+  - [x] Lancer `npm run test`.
+  - [x] Lancer `npm run build`.
+  - [x] Faire une validation visuelle courte desktop, et mobile si possible:
     route enrichie, reperes lateraux, horizon/profondeur, pause/reprise/finish
     toujours OK.
+
+### Review Findings
+
+- [x] [Review][Approved] Clean review — aucun patch requis; les 4 leviers
+  MYB-8 sont visibles, le scope reste borne, `src/ride/*` est intact, Meshy n'a
+  pas ete utilise et les ressources Three.js ajoutees sont trackees pour
+  disposal.
 
 ## Dev Notes
 
@@ -224,16 +232,69 @@ Cette liste est indicative. Eviter `src/ride/*` sauf besoin strictement justifie
 
 ### Agent Model Used
 
-TBD
+GPT-5 Codex
 
 ### Debug Log References
 
-TBD
+- `npm run test -- src/render/createRouteMesh.test.ts src/render/createBiomeVisuals.test.ts`: RED confirme avant implementation, 4 echecs attendus.
+- `npm run test -- src/render/createRouteMesh.test.ts src/render/createBiomeVisuals.test.ts src/render/renderHelpers.test.ts`: GREEN, 8 tests render.
+- `npm run typecheck`: passe.
+- `npm run test`: passe, 21 fichiers / 66 tests.
+- `npm run build`: passe avec l'avertissement Vite connu sur le chunk Three.js > 500 kB.
+- Vite local: HTTP 200 sur `http://127.0.0.1:5174/`.
+- Capture video: `_bmad-output/video-captures/ride-visual-audit-2026-06-06T20-56-54-899Z/ride-visual-audit-30s.mp4`.
+- Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-06T20-56-54-899Z/ride-visual-audit-contact-sheet.jpg`.
+- Review `npm run typecheck`: passe.
+- Review `npm run test`: passe, 21 fichiers / 66 tests.
+- Review `npm run build`: passe avec l'avertissement Vite connu sur le chunk
+  Three.js > 500 kB.
+- Review HTTP 200 sur `http://127.0.0.1:5174/`.
+- Review capture video:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-06-51-582Z/ride-visual-audit-30s.mp4`.
+- Review contact sheet:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-06-51-582Z/ride-visual-audit-contact-sheet.jpg`.
+- Review non-blank evidence: final frame `1440x900 mean=53106.4 stddev=15014.9`,
+  contact sheet `1920x200 mean=53599.1 stddev=13965.9`.
 
 ### Completion Notes
 
-TBD
+- Route enrichie dans `createRouteMesh`: groupe scenic avec surface, bas-cotes,
+  bandes laterales, marquage central et variations de surface procedurales.
+- Decor lateral procedural densifie dans `createBiomeVisuals`: poteaux coast,
+  herbes, rochers, arbres proches/moyens, panneaux, arbres et collines lointains,
+  avec geometries/materiaux partages et trackes pour disposal.
+- Profondeur scenic renforcee dans `SceneController`: route group complete,
+  terrain plus large avec variation douce, fog plus profonde et horizon plus
+  present via palette dediee.
+- Meshy non utilise: aucun cout, aucun asset externe, aucun pipeline glTF ou
+  asset manager ajoute.
+- `src/ride/*` non modifie; la progression, la vitesse et les stats restent
+  consommees depuis les snapshots existants.
+- Validation visuelle desktop: canvas non vide, route plus riche, elements
+  lateraux visibles, horizon/profondeur ameliores, mouvement plus perceptible,
+  aucune page error; un 404 isole reste observe comme sur l'audit precedent.
+- Validation mobile: HTTP 200, start -> slider -> pause -> resume -> finish ->
+  summary OK, screenshot non blank; warnings WebGL limites au screenshot
+  `ReadPixels`.
+- Code review approved: les 4 leviers sont presents, la densite procedural reste
+  raisonnable, aucune fuite evidente de geometrie/materiau n'a ete relevee et
+  aucune correction code n'a ete necessaire.
 
 ### File List
 
-TBD
+- `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `src/render/SceneController.ts`
+- `src/render/createBiomeVisuals.ts`
+- `src/render/createBiomeVisuals.test.ts`
+- `src/render/createRouteMesh.ts`
+- `src/render/createRouteMesh.test.ts`
+- `src/render/renderHelpers.ts`
+- `src/render/renderHelpers.test.ts`
+
+### Change Log
+
+- 2026-06-06: Implementation MYB-8 terminee et mise en review avec route
+  enrichie, decor lateral procedural, profondeur scenic et validations completes.
+- 2026-06-06: Code review MYB-8 approuvee; story passee a done.
