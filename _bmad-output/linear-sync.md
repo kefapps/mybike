@@ -17,6 +17,8 @@ Last sync: 2026-06-06
 - Epic 1 retrospective: `_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md`
 - Polish UX playtest plan: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md`
 - Polish UX playtest results: `_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`
+- Polish UX mini-scope: `_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
+- Polish UX change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
 
 ## Linear Documents
 
@@ -493,6 +495,62 @@ Synced on 2026-06-06:
   `_bmad-output/implementation-artifacts/sprint-status.yaml`:
   - `next_action: choose-polish-adjustments`
   - `post_mvp_playtest_results: _bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md`
+  - `first_story_to_start: none`
+
+Synced on 2026-06-06:
+
+- Mini-scope polish selected locally:
+  `_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`.
+- Selected adjustments, capped to 3:
+  1. compact mobile HUD to free the scene;
+  2. make slider response easier to understand;
+  3. make biome change observable during a short playtest.
+- Scope guardrails:
+  - no BLE/FTMS;
+  - no Meshy or heavy asset pipeline;
+  - no full new route;
+  - no UI redesign;
+  - no `WebGLRenderer` hardening without observed failure;
+  - no new Linear issue created at this selection step.
+- Project self-playtest note updated with the selected mini-scope:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `63d987b7-469f-4775-9ad1-a4d9cf9a0672`
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: prepare-polish-story-or-micro-epic`
+  - `post_mvp_polish_mini_scope: _bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
+  - `first_story_to_start: none`
+
+Synced on 2026-06-06:
+
+- `gds-correct-course` decision recorded locally:
+  `_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`.
+- Decision: keep the 3 self-playtest adjustments together, but implement them
+  as one small polish story, not a broad backlog:
+  1. compact mobile HUD to free the scene;
+  2. make slider response easier to understand;
+  3. make biome change observable during a short playtest.
+- Story creation prompt prepared in:
+  `_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`.
+- Out of scope remains:
+  - BLE/FTMS/Web Bluetooth;
+  - Meshy or heavy asset pipeline;
+  - full new route;
+  - global UI redesign;
+  - new gameplay mode;
+  - `WebGLRenderer` hardening without observed failure;
+  - broad backlog or multiple Linear issues.
+- Project decision note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `bac58598-d82c-4d90-8eb3-e1b184e5bebe`
+  - No new Linear issue was created.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: create-polish-story`
+  - `post_mvp_change_proposal: _bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md`
+  - `post_mvp_polish_mini_scope: _bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md`
   - `first_story_to_start: none`
 
 ## Sync Policy

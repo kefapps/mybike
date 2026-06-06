@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T21:02:21+02:00
+# last_updated: 2026-06-06T21:12:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create new stories; use the existing MYB-1 through MYB-6 mapping.
-# - Next action: choose 3 to 5 polish adjustments maximum before creating new issues.
+# - Next action: create one bounded polish story from the selected mini-scope.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T21:02:21+02:00"
+last_updated: "2026-06-06T21:12:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,13 +47,15 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "choose-polish-adjustments"
+  next_action: "create-polish-story"
   first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
   post_mvp_playtest_plan: "_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-2026-06-06.md"
   post_mvp_playtest_results: "_bmad-output/implementation-artifacts/playtest-polish-ux-ride-feel-results-2026-06-06.md"
+  post_mvp_polish_mini_scope: "_bmad-output/implementation-artifacts/polish-ux-ride-feel-mini-scope-2026-06-06.md"
+  post_mvp_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-polish-ux-ride-feel-2026-06-06.md"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
