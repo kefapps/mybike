@@ -193,6 +193,100 @@ Synced on 2026-06-06:
   HUD, slider, Playwright, persistence, BLE/Web Bluetooth/FTMS, backend, Meshy,
   or asset pipeline.
 
+Synced on 2026-06-06:
+
+- `MYB-5`: moved from Linear status `Backlog` to `In Progress` after BMAD
+  created the dev story
+  `_bmad-output/implementation-artifacts/1-4-scene-three-js-mvp-et-rendu-de-la-balade.md`
+  and updated `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `1-4-scene-three-js-mvp-et-rendu-de-la-balade: ready-for-dev` and
+  `next_action: implement-MYB-5`.
+- `MYB-5` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-5/story-14-scene-threejs-mvp-et-rendu-de-la-balade
+  - Status returned by Linear: `In Progress`
+  - Comment ID: `936248b4-5793-4fb0-b227-f18fe508e8f7`
+- `MYB-5` scope confirmation recorded in Linear: Three.js MVP scene,
+  `ThreeCanvasHost`, minimal `SceneController`, readable ride rendering from
+  MYB-3/MYB-4 snapshots, simple ground/route/horizon/biome placeholders, and
+  camera fed by the route snapshot.
+- `MYB-5` architecture confirmation recorded in Linear: rendering consumes
+  `src/ride` and `src/route` outputs without recalculating ride or route logic;
+  `src/ride/*` and `src/route/*` remain pure/testable and without React or
+  Three.js dependencies.
+- `MYB-5` performance caveat recorded in Linear: pragmatic manual validation
+  only, with no profiler or advanced performance tooling scope.
+- `MYB-5` exclusions recorded in Linear: no final HUD, mock slider or ride UI
+  controls, Playwright happy path, persistence/backend, BLE/Web Bluetooth/FTMS,
+  AI/Meshy assets or heavy asset pipeline, and no MYB-6 anticipation beyond
+  necessary integration points.
+- `MYB-5` validation note recorded in Linear: `npm run typecheck`,
+  `npm run test`, and `npm run build` were not run because only BMAD artifacts
+  changed, with no application code modification.
+
+Synced on 2026-06-06:
+
+- `MYB-5`: moved from Linear status `In Progress` to `In Review` after local
+  BMAD status moved to review in
+  `_bmad-output/implementation-artifacts/1-4-scene-three-js-mvp-et-rendu-de-la-balade.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml` with
+  `next_action: review-MYB-5`.
+- `MYB-5` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-5/story-14-scene-threejs-mvp-et-rendu-de-la-balade
+  - Status returned by Linear: `In Review`
+  - Comment ID: `408f48a8-e41e-4e2e-90cb-e6d86df5d268`
+- `MYB-5` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 48 tests across 15 files
+  - `npm run build`
+  - HTTP check on `http://127.0.0.1:5174/` returned 200
+  - Chrome headless/CDP visual validation captured non-blank desktop and mobile
+    canvas views after launching the mock ride.
+- `MYB-5` implementation summary recorded in Linear: direct Three.js render
+  module under `src/render/*`, `ThreeCanvasHost`, `createSceneController`,
+  route ribbon, ground/sky placeholders, biome markers, fallback palette, and
+  camera fed by `createRouteFrameSnapshot`.
+- `MYB-5` performance caveat recorded in Linear: pragmatic qualitative
+  validation only, with no profiler, stats.js, WebGL inspector, draw-call budget,
+  or advanced performance tooling.
+- `MYB-5` scope confirmation recorded in Linear: no HUD final, mock slider,
+  ride UI controls, Playwright happy path, persistence/backend, BLE/Web
+  Bluetooth/FTMS, Meshy, AI assets, loaders or heavy asset pipeline; no changes
+  to `src/ride/*` or `src/route/*`.
+
+Synced on 2026-06-06:
+
+- `MYB-5`: moved from Linear status `In Review` to `Done` after local
+  `gds-code-review` returned `approved` following review patches.
+- `MYB-5` Linear sync evidence:
+  - URL: https://linear.app/kefjbo/issue/MYB-5/story-14-scene-threejs-mvp-et-rendu-de-la-balade
+  - Status returned by Linear: `Done`
+  - Comment ID: `4c53834e-7351-4da7-a9d3-4396141ca592`
+- Final `MYB-5` validation evidence recorded in Linear:
+  - `npm run typecheck`
+  - `npm run test` with 49 tests across 15 files
+  - `npm run build` with the expected Vite warning for a Three.js chunk larger
+    than 500 kB
+  - HTTP check on `http://127.0.0.1:5174/` returned 200
+  - Chrome headless/CDP desktop and mobile screenshots showed a framed,
+    non-blank canvas with route, ground, sky and biome markers visible
+  - ImageMagick crop checks counted 228 desktop canvas colors and 925 mobile
+    canvas colors
+- `MYB-5` review fixes recorded in Linear:
+  - malformed routes reaching render now resolve to `placeholder-route` before
+    route mesh point creation;
+  - the canvas viewport now has a stable responsive height on desktop/mobile,
+    and action buttons no longer stretch after the viewport is stabilized.
+- `MYB-5` local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/1-4-scene-three-js-mvp-et-rendu-de-la-balade.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; next local
+  action is `commit-MYB-5`.
+- `MYB-5` final scope confirmation recorded in Linear: Three.js remains limited
+  to `src/render/*`, render consumes MYB-3/MYB-4 snapshots without recalculating
+  ride/route logic, `src/ride/*` and `src/route/*` were not changed, and there
+  is no HUD final, mock slider, ride controls UI, Playwright happy path,
+  persistence/backend, BLE/Web Bluetooth/FTMS, Meshy, AI assets, loaders or
+  heavy asset pipeline.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

@@ -1,4 +1,5 @@
 import type { RidePhase } from "../session/sessionTypes";
+import { ThreeCanvasHost } from "../../render";
 
 type RideScreenProps = {
   phase: Extract<RidePhase, "running" | "paused">;
@@ -26,11 +27,7 @@ export function RideScreen({
       </header>
 
       <div className="ride-viewport" aria-label="Zone ride MVP">
-        <div className="ride-status-mark" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </div>
+        <ThreeCanvasHost phase={phase} />
       </div>
 
       <div className="action-row">
