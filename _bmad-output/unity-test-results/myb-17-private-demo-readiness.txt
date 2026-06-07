@@ -1,0 +1,63 @@
+MYB-17 Unity private demo readiness validation
+Generated UTC: 2026-06-07T19:37:57.1434870Z
+Unity version: 6000.4.10f1
+Project root: /Users/jbodin/personnel/apps/mybike/unity/Echappee3D
+Repository root: /Users/jbodin/personnel/apps/mybike
+Active scene: Assets/Scenes/RideMock.unity
+Editor idle: True
+Editor playing: False
+Editor compiling: False
+Editor updating: False
+Console health: verified by final Unity MCP console read after this menu execution; expected final result is 0 errors / 0 warnings.
+
+Core RideMock readiness
+pass RideSessionController=present, RouteRenderer=present, CameraController=present, FogController=present, SceneLife=present, MockRideInput=present, HUD=present, Controls=present, MainCamera=present
+
+Route visible/stable
+pass lineEnabled=True, linePoints=7, lineWidth=4.00, material=present, finiteSamples=21/21, elevatedSamples=19/21, maxAbsElevation=15.00m, maxAbsGrade=0.060, hasClimb=True, hasDescent=True
+
+Camera samples bounded
+pass finiteSamples=21/21, minRouteClearance=1.60m, maxSampleStep=52.66m, minForwardDot=0.957, configHeight=1.60m, lookAhead=12.00m
+
+Fog/depth
+pass enabled=True, mode=Linear, start=45.00m, end=220.00m
+
+HUD/controls/session loop
+pass sequence=Idle -> Running -> Paused -> Running -> Finished, pauseFrozen=True, resumeAdvanced=True, summary=True, summaryDistance=7.50m
+
+SceneLife MYB-16 visibility
+Birds: 5/5
+Humans: 3/3
+Total life elements: 8/12
+Projected visibility in camera cone: 4/8
+Birds in camera cone: 2/5
+Humans in camera cone: 2/3
+Finite visibility samples: 8/8
+MYB-16 threshold: projectedVisible>=3, birdsInCone>=1, humansInCone>=1
+MYB-16 preserved: True
+bird:Bird_01 progress=0.290 distance=12.12m yaw=-49.9deg pitch=29.5deg inCone=True
+bird:Bird_02 progress=0.320 distance=12.00m yaw=47.6deg pitch=24.4deg inCone=True
+bird:Bird_03 progress=0.430 distance=24.93m yaw=63.6deg pitch=21.6deg inCone=False
+bird:Bird_04 progress=0.620 distance=51.87m yaw=-77.7deg pitch=11.8deg inCone=False
+bird:Bird_05 progress=0.790 distance=38.11m yaw=98.4deg pitch=14.5deg inCone=False
+human:HumanSilhouette_01 progress=0.300 distance=8.37m yaw=-42.2deg pitch=-5.2deg inCone=True
+human:HumanSilhouette_02 progress=0.324 distance=8.05m yaw=35.0deg pitch=-1.8deg inCone=True
+human:HumanSilhouette_03 progress=0.760 distance=33.76m yaw=97.5deg pitch=-1.7deg inCone=False
+
+Build Settings / local build
+Build Settings scenes: 0
+RideMock enabled in Build Settings: False
+Local macOS build attempted: false
+Build decision: deferred for MYB-17 because the Editor-based private demo is sufficient, deterministic, and avoids generated build artifacts in git.
+
+Private demo verdict
+ready-for-private-local-demo
+
+Private demo launch checklist
+1. Open Unity project: /Users/jbodin/personnel/apps/mybike/unity/Echappee3D
+2. Open scene: Assets/Scenes/RideMock.unity
+3. Run menu: Echappee/MYB-17/Validate Private Demo
+4. Confirm this report says ready-for-private-local-demo and Unity console is 0 errors / 0 warnings.
+5. Press Play in the Unity Editor.
+6. Use MockEffortSlider, then show Start -> ride -> Pause -> Resume -> Finish.
+7. Confirm the Summary/end state appears and route, fog, camera and SceneLife remain readable.

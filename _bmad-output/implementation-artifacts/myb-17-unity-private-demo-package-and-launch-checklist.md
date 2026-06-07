@@ -4,9 +4,11 @@
 
 - Linear issue: `MYB-17`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Linear sync comment: `0f2b2dd3-1af3-4eff-8d05-bc49887956aa`
+- Linear implementation comment: `410ce39e-3374-4f74-bd5d-2de95548c8f1`
+- Linear review comment: `cb8895ea-25bf-4ae0-87ae-3bbd9669c1fc`
 - Created: `2026-06-07`
 - Baseline commit: `4de2bc8d50ccf0583920cf129f72ee5ba3a51a11`
 - Depends on: `MYB-16`
@@ -60,31 +62,31 @@ The expected answer after implementation is a factual report with a clear privat
 
 ## Implementation Tasks
 
-- [ ] Preflight the local state:
+- [x] Preflight the local state:
   - confirm clean or understood worktree before edits;
   - confirm Unity project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
   - confirm active scene `Assets/Scenes/RideMock.unity`;
   - confirm Editor idle, not compiling, not in Play Mode.
-- [ ] Inspect existing validation harnesses:
+- [x] Inspect existing validation harnesses:
   - `DemoReadinessValidator.cs` for MYB-15/MYB-16 report helpers;
   - `RideMockValidator.cs` for route/camera/fog/HUD/control/session coverage;
   - `SceneLifeVisibility.cs` for MYB-16 visibility metrics;
   - existing reports under `_bmad-output/unity-test-results/`.
-- [ ] Add or extend private demo validation:
+- [x] Add or extend private demo validation:
   - add menu `Echappee/MYB-17/Validate Private Demo`;
   - reuse MYB-15/MYB-16 checks instead of duplicating fragile logic;
   - write `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`;
   - include private-demo verdict and launch checklist.
-- [ ] Keep demo packaging bounded:
+- [x] Keep demo packaging bounded:
   - validate Build Settings if cheap and deterministic;
   - optionally run a local macOS build only if stable and not noisy;
   - do not commit generated builds, videos or large artifacts;
   - document any deferred build step factually.
-- [ ] Preserve previous behavior:
+- [x] Preserve previous behavior:
   - do not change route, camera, fog, HUD, controls, mock loop or SceneLife placement/visuals;
   - do not remove MYB-15 or MYB-16 menu items;
   - keep the React/Three prototype untouched.
-- [ ] Final validation:
+- [x] Final validation:
   - run MYB-17 menu through Unity MCP if available, otherwise batchmode fallback;
   - read the generated report and confirm private-demo verdict;
   - confirm Unity console 0 error / 0 warning after validation;
@@ -142,7 +144,7 @@ The expected answer after implementation is a factual report with a clear privat
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Notes
 
@@ -150,13 +152,54 @@ The expected answer after implementation is a factual report with a clear privat
 - Keep implementation focused on validating and documenting the current demo state.
 - Prefer reusing `DemoReadinessValidator` and `RideMockValidator` rather than adding another parallel validation system.
 - Treat local build packaging as opportunistic, not mandatory.
+- Added `PrivateDemoValidator` as a separate editor validator so MYB-15/MYB-16 menus remain intact and the scene/rendering stays unchanged.
+- Unity MCP validation generated `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt` with verdict `ready-for-private-local-demo`.
+- Build Settings are recorded as informational (`scenes=0`, RideMock not enabled) and local macOS build is deferred to avoid generated build artifacts in this private Editor demo story.
+- Local hygiene passed: `git diff --check`, high-confidence secret scan over diff plus untracked files, no `src/ride/*`, `src/render/*`, `src/app/*` changes, no video capture staged, and no npm validation because no web source changed.
+- Linear implementation comment: `410ce39e-3374-4f74-bd5d-2de95548c8f1`.
+- Linear review comment: `cb8895ea-25bf-4ae0-87ae-3bbd9669c1fc`.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`
+- `unity/Echappee3D/Assets/Echappee/Editor/PrivateDemoValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/PrivateDemoValidator.cs.meta`
 
 ### Change Log
 
 - 2026-06-07: Created MYB-17 story and tracking for Unity private demo package and launch checklist.
+- 2026-06-07: Implemented MYB-17 private demo validator menu, generated readiness report/checklist, and moved story to review.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved on 2026-06-07 after one scoped tracking fix.
+
+### Findings
+
+- [x] [Review][Patch] `linear-sync.md` accidentally removed an existing MYB-13 tracking hygiene note while adding the MYB-17 ready-for-review block. Fixed by restoring the MYB-13 note and keeping the MYB-17 review block in the MYB-17 chronology section.
+
+### Review Evidence
+
+- Unity MCP validation rerun after review fix:
+  - project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - active scene `Assets/Scenes/RideMock.unity`;
+  - Editor idle, not playing, not compiling, not updating;
+  - MYB-15 and MYB-16 validation menus still exist;
+  - MYB-17 menu `Echappee/MYB-17/Validate Private Demo` exists and executed;
+  - hierarchy includes `Main Camera`, `Route`, `Fog`, `SceneLife`, `Canvas`, `EventSystem` and `RideSession`;
+  - Unity console returned 0 errors / 0 warnings.
+- Final report updated:
+  `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`.
+- Final report verdict:
+  `ready-for-private-local-demo`.
+- Final safety checks passed:
+  - `git diff --check`;
+  - high-confidence secret scan over diff and untracked files;
+  - no `src/ride/*`, `src/render/*`, `src/app/*` changes;
+  - no video capture staged;
+  - npm validation intentionally skipped because no web source changed.

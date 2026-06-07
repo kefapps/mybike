@@ -2677,3 +2677,121 @@ Synced on 2026-06-07:
   - Story/tracking only; no Unity implementation performed in this pass.
   - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
     run because no web source changed.
+
+## MYB-17 Unity Private Demo Package Ready For Review
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-17`
+  - URL: https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist
+  - Status: `In Review`
+  - Implementation comment ID: `410ce39e-3374-4f74-bd5d-2de95548c8f1`
+- Local story updated:
+  - `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
+  - Status: `review`
+  - Story/tracking commit: `01759a6a60c1ce9a64235433a6e340a709057266`
+- Implementation summary:
+  - Added Unity editor menu `Echappee/MYB-17/Validate Private Demo`.
+  - Added `PrivateDemoValidator` as a separate editor validator so MYB-15 and
+    MYB-16 validation menus remain usable.
+  - Generated `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`.
+  - Report includes project root, active scene, Unity version, generated
+    timestamp, Editor idle state, console health expectation, route/camera/fog,
+    HUD/controls/mock loop, SceneLife MYB-16 visibility, Build Settings note,
+    readiness verdict and launch checklist.
+- Unity MCP validation evidence:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor state: idle, not playing, not compiling, not updating.
+  - Menu exists and executed: `Echappee/MYB-17/Validate Private Demo`.
+  - Hierarchy includes Main Camera, Route, Fog, SceneLife, Canvas, EventSystem
+    and RideSession.
+  - Console after validation: 0 errors / 0 warnings.
+- Report highlights:
+  - Verdict: `ready-for-private-local-demo`.
+  - Route: `finiteSamples=21/21`, `elevatedSamples=19/21`,
+    `maxAbsElevation=15.00m`, `maxAbsGrade=0.060`.
+  - Camera: `finiteSamples=21/21`, `minRouteClearance=1.60m`,
+    `minForwardDot=0.957`.
+  - Fog: linear, start `45.00m`, end `220.00m`.
+  - Mock loop: `Idle -> Running -> Paused -> Running -> Finished`, pause
+    frozen, resume advances, summary present.
+  - SceneLife MYB-16 preserved: `projectedVisible=4/8`, `birdsInCone=2`,
+    `humansInCone=2`, `finiteSamples=8/8`.
+  - Build Settings: `scenes=0`, RideMock not enabled; local macOS build deferred
+    because the Editor-based private demo is sufficient and avoids generated
+    build artifacts in git.
+- Scope confirmations:
+  - Unity-only implementation under `unity/Echappee3D/`, plus BMAD/tracking and
+    report artifacts.
+  - No `src/ride/*`, `src/render/*`, or `src/app/*` changes.
+  - No new gameplay, visual polish, vehicle/traffic/AI, Meshy, external asset,
+    Unity AI generation, BLE/FTMS, backend, public deployment, generated build,
+    video capture or broad backlog work.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not run
+    because no web source changed.
+- Local validation:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed over diff and untracked files.
+  - No `src/ride/*`, `src/render/*`, or `src/app/*` changes.
+  - No video capture staged.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-17-unity-private-demo-package-and-launch-checklist: review`
+  - `next_action: code-review-MYB-17`
+
+## MYB-17 Unity Private Demo Package Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue completed:
+  - Issue: `MYB-17`
+  - URL: https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist
+  - Status: `Done`
+  - Review comment ID: `cb8895ea-25bf-4ae0-87ae-3bbd9669c1fc`
+- Review verdict:
+  - Approved after one scoped tracking fix.
+  - No Unity code correction was required.
+- Review correction:
+  - Restored an existing MYB-13 tracking hygiene note in `linear-sync.md` that
+    had been accidentally removed while adding the MYB-17 ready-for-review
+    section.
+- Unity MCP review proof:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling and not updating.
+  - Menus still present: `Echappee/MYB-15/Validate Demo Readiness`,
+    `Echappee/MYB-16/Validate Scene Life Readability` and
+    `Echappee/MYB-17/Validate Private Demo`.
+  - MYB-17 menu executed through MCP.
+  - Hierarchy includes Main Camera, Route, Fog, SceneLife, Canvas, EventSystem
+    and RideSession.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Final report:
+  - `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`.
+  - Verdict: `ready-for-private-local-demo`.
+  - Route: `finiteSamples=21/21`, `elevatedSamples=19/21`,
+    `maxAbsElevation=15.00m`, `maxAbsGrade=0.060`.
+  - Camera: `finiteSamples=21/21`, `minRouteClearance=1.60m`,
+    `minForwardDot=0.957`.
+  - Fog: linear, start `45.00m`, end `220.00m`.
+  - Mock loop: `Idle -> Running -> Paused -> Running -> Finished`, pause
+    frozen, resume advances, summary present.
+  - SceneLife MYB-16 preserved: `projectedVisible=4/8`, `birdsInCone=2`,
+    `humansInCone=2`, `finiteSamples=8/8`.
+  - Build Settings/local build documented as deferred; no generated build
+    artifact committed.
+- Final validation:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed over diff and untracked files.
+  - No `src/ride/*`, `src/render/*`, or `src/app/*` changes.
+  - No video capture staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-17-unity-private-demo-package-and-launch-checklist: done`.
+  - `next_action: commit-MYB-17`
