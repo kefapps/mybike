@@ -18,11 +18,15 @@ La scene contient:
   - materiau opaque simple sous `Assets/Materials/`
 - `Fog`
   - `DepthFogController`
+- `SceneLife`
+  - `LightweightSceneLife`
+  - `Birds`: oiseaux stylises simples en hauteur
+  - `RoadsideHumans`: silhouettes humaines statiques hors route
 - `Canvas`
   - slider effort 0..1 branche sur `MockRideInput`
   - textes vitesse, distance, temps, source `mock`, phase branches sur
     `HudController`
 
 Le rendu vise seulement une route stable visible, une camera rail simple qui suit
-les montees/descentes, un HUD minimal et le brouillard/profondeur preserve du
-playtest.
+les montees/descentes, une vie legere placeholder, un HUD minimal et le
+brouillard/profondeur preserve du playtest.

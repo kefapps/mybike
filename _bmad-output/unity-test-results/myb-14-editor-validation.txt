@@ -1,0 +1,4 @@
+MYB-14 Unity editor validation passed.
+Unity: 6000.4.10f1
+Checks: version, ride math, route math, elevated route, bounded grade, finite route samples, stable camera samples, route renderer visibility, lightweight scene life, birds, roadside human silhouettes, off-route placement, Meshy FBX comparison assets, no vehicle scope, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and bounded fog.
+Asset decision: Unity primitive/procedural scene life retained for RideMock; Meshy previews kept as comparison references only.

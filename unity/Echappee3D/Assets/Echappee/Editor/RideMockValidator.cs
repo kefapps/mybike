@@ -21,8 +21,10 @@ namespace MyBike.Echappee3D.EditorTools
         private const float MaxElevationMeters = 20f;
         private const float ExpectedFogStartDistance = 45f;
         private const float ExpectedFogEndDistance = 220f;
+        private const string MeshyBirdPreviewPath = "Generated/Meshy/MYB14/meshy_bird_preview.fbx";
+        private const string MeshyHumanPreviewPath = "Generated/Meshy/MYB14/meshy_human_silhouette_preview.fbx";
 
-        [MenuItem("Echappee/MYB-13/Validate RideMock Scene")]
+        [MenuItem("Echappee/MYB-14/Validate RideMock Scene")]
         public static void Validate()
         {
             Require(
@@ -33,7 +35,14 @@ namespace MyBike.Echappee3D.EditorTools
             ValidateRouteMath();
             ValidateRideSessionLoop();
             ValidateScene();
+            ValidateMeshyComparisonAssets();
             WriteReport();
+        }
+
+        [MenuItem("Echappee/MYB-13/Validate RideMock Scene")]
+        public static void ValidateMyb13()
+        {
+            Validate();
         }
 
         [MenuItem("Echappee/MYB-12/Validate RideMock Scene")]
@@ -141,6 +150,7 @@ namespace MyBike.Echappee3D.EditorTools
             var routeRenderer = Find<RouteRendererPlaceholder>();
             var cameraController = Find<RideCameraController>();
             var fogController = Find<DepthFogController>();
+            var sceneLife = Find<LightweightSceneLife>();
             var mockInput = Find<MockRideInput>();
             var hud = Find<HudController>();
             var controls = Find<RideControlPanel>();
@@ -149,14 +159,17 @@ namespace MyBike.Echappee3D.EditorTools
             Require(routeRenderer != null, "RouteRendererPlaceholder is missing.");
             Require(cameraController != null, "RideCameraController is missing.");
             Require(fogController != null, "DepthFogController is missing.");
+            Require(sceneLife != null, "LightweightSceneLife is missing.");
             Require(mockInput != null, "MockRideInput is missing.");
             Require(hud != null, "HudController is missing.");
             Require(controls != null, "RideControlPanel is missing.");
             Require(Camera.main != null, "Main camera is missing.");
 
             Require(GameObject.Find("Route") != null, "Route root is missing.");
+            Require(GameObject.Find(LightweightSceneLife.RootName) != null, "SceneLife root is missing.");
             routeRenderer.EnsureVisible(RouteMath.CreateDefaultMockRoute());
             ValidateRouteRenderer(routeRenderer);
+            ValidateSceneLife(sceneLife, RouteMath.CreateDefaultMockRoute());
             var effortSlider = RequireComponent<Slider>("MockEffortSlider", "Mock effort slider is missing.");
             var startButton = RequireComponent<Button>("StartButton", "Start button is missing.");
             var pauseButton = RequireComponent<Button>("PauseButton", "Pause button is missing.");
@@ -184,6 +197,7 @@ namespace MyBike.Echappee3D.EditorTools
             RequireReference(hud, "progressText", progressText, "Progress HUD reference is not wired.");
             RequireReference(hud, "phaseText", phaseText, "State HUD reference is not wired.");
             RequireReference(hud, "summaryText", summaryText, "Summary HUD reference is not wired.");
+            ValidateNoVehicleScope();
         }
 
         private static void ValidateRouteElevation(RouteDefinition route)
@@ -290,6 +304,73 @@ namespace MyBike.Echappee3D.EditorTools
             Require(hasElevation, "Route LineRenderer should show elevated route points.");
         }
 
+        private static void ValidateSceneLife(LightweightSceneLife sceneLife, RouteDefinition route)
+        {
+            Require(sceneLife.BirdsRoot != null, "Birds root is missing.");
+            Require(sceneLife.HumansRoot != null, "RoadsideHumans root is missing.");
+            Require(sceneLife.BirdCount >= LightweightSceneLife.RequiredBirdCount, "SceneLife should include enough birds.");
+            Require(sceneLife.HumanCount >= LightweightSceneLife.RequiredHumanCount, "SceneLife should include enough human silhouettes.");
+            Require(
+                sceneLife.TotalLifeElementCount <= LightweightSceneLife.MaxLifeElementCount,
+                "SceneLife density should stay bounded for the vertical slice.");
+
+            for (var i = 0; i < sceneLife.BirdsRoot.childCount; i += 1)
+            {
+                var bird = sceneLife.BirdsRoot.GetChild(i);
+                Require(
+                    bird.position.y >= LightweightSceneLife.MinBirdHeightMeters,
+                    "Birds should stay above the near camera path.");
+                Require(
+                    bird.GetComponentsInChildren<Renderer>().Length > 0,
+                    "Each bird should have a visible renderer.");
+            }
+
+            for (var i = 0; i < sceneLife.HumansRoot.childCount; i += 1)
+            {
+                var human = sceneLife.HumansRoot.GetChild(i);
+                Require(
+                    human.GetComponentsInChildren<Renderer>().Length >= 2,
+                    "Each human silhouette should have visible primitive renderers.");
+                Require(
+                    DistanceToRouteXZ(route, human.position) >= LightweightSceneLife.MinHumanRouteClearanceMeters,
+                    "Human silhouettes should remain off the ride route.");
+            }
+        }
+
+        private static float DistanceToRouteXZ(RouteDefinition route, Vector3 position)
+        {
+            var minDistance = float.MaxValue;
+            for (var i = 0; i <= 50; i += 1)
+            {
+                var routePoint = RouteMath.SamplePosition(route, i / 50f);
+                var delta = new Vector2(position.x - routePoint.x, position.z - routePoint.z);
+                minDistance = Mathf.Min(minDistance, delta.magnitude);
+            }
+
+            return minDistance;
+        }
+
+        private static void ValidateNoVehicleScope()
+        {
+            foreach (var root in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+            {
+                var name = root.name.ToLowerInvariant();
+                Require(!name.Contains("vehicle"), "MYB-14 should not add vehicles.");
+                Require(!name.Contains("traffic"), "MYB-14 should not add traffic systems.");
+                Require(!name.Contains("car"), "MYB-14 should not add cars.");
+            }
+        }
+
+        private static void ValidateMeshyComparisonAssets()
+        {
+            Require(
+                File.Exists(Path.Combine(Application.dataPath, MeshyBirdPreviewPath)),
+                "Meshy bird FBX preview should be present for MYB-14 comparison.");
+            Require(
+                File.Exists(Path.Combine(Application.dataPath, MeshyHumanPreviewPath)),
+                "Meshy human silhouette FBX preview should be present for MYB-14 comparison.");
+        }
+
         private static void ValidateFogSettings()
         {
             Require(RenderSettings.fog, "RideMock.unity should persist fog enabled.");
@@ -335,10 +416,11 @@ namespace MyBike.Echappee3D.EditorTools
             var outputDir = Path.Combine(repoRoot, "_bmad-output/unity-test-results");
             Directory.CreateDirectory(outputDir);
             File.WriteAllText(
-                Path.Combine(outputDir, "myb-13-editor-validation.txt"),
-                "MYB-13 Unity editor validation passed.\n" +
+                Path.Combine(outputDir, "myb-14-editor-validation.txt"),
+                "MYB-14 Unity editor validation passed.\n" +
                 $"Unity: {Application.unityVersion}\n" +
-                "Checks: version, ride math, route math, elevated route, bounded grade, finite route samples, stable camera samples, route renderer visibility, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and bounded fog.\n");
+                "Checks: version, ride math, route math, elevated route, bounded grade, finite route samples, stable camera samples, route renderer visibility, lightweight scene life, birds, roadside human silhouettes, off-route placement, Meshy FBX comparison assets, no vehicle scope, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and bounded fog.\n" +
+                "Asset decision: Unity primitive/procedural scene life retained for RideMock; Meshy previews kept as comparison references only.\n");
         }
 
         private static void Require(bool condition, string message)

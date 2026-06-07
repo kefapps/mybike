@@ -4,9 +4,11 @@
 
 - Linear issue: `MYB-14`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Linear sync comment: `831d4989-4c5c-4353-a196-d1a3b969b7a0`
+- Linear implementation comment: `b01418f4-7263-45f6-ab38-f49833b24859`
+- Linear review comment: `d2435d72-0d7b-4e4f-8e5f-6197aeeb849c`
 - Created: `2026-06-07`
 - Baseline commit: `6473a9d55975cdac699e21a71e14283ef9fb1d94`
 - Depends on: `MYB-13`
@@ -57,39 +59,39 @@ Unity remains the production target. The React/Three prototype remains a referen
 
 ## Implementation Tasks
 
-- [ ] Preflight the Unity project before implementation:
+- [x] Preflight the Unity project before implementation:
   - confirm project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
   - confirm active scene `Assets/Scenes/RideMock.unity`;
   - confirm Editor idle, not compiling, not in Play Mode;
   - use MCP Unity if available, with batchmode fallback only if MCP Unity is unavailable.
-- [ ] Create a Unity primitive/procedural baseline for scene life:
+- [x] Create a Unity primitive/procedural baseline for scene life:
   - add a small `SceneLife` root or equivalent under `RideMock.unity`;
   - add a bird group in the sky using simple primitives/procedural meshes;
   - add at least two static human silhouettes beside the route;
   - keep materials simple, matte and readable through fog;
   - avoid any asset store or downloaded asset.
-- [ ] Generate and compare the Meshy candidates within the approved limit:
+- [x] Generate and compare the Meshy candidates within the approved limit:
   - generate one stylized low-poly bird FBX preview candidate;
   - generate one low-poly roadside human/spectator silhouette FBX preview candidate;
   - use `meshy-5` and `target_formats: ["fbx"]`;
   - stop before any refine/remesh/retexture/additional paid call;
   - import or inspect the candidates only under `unity/Echappee3D/` if they are used for comparison;
   - document the Meshy task IDs, credit use and final keep/discard decision in this story.
-- [ ] Integrate the selected life approach:
+- [x] Integrate the selected life approach:
   - choose Unity primitives, Meshy candidates, or a mix based on readability and stability;
   - keep counts small and placement sparse;
   - keep all life elements outside the road lane and away from the near camera path;
   - preserve route, camera, fog, HUD and controls.
-- [ ] Extend the scene builder:
+- [x] Extend the scene builder:
   - add or update `Echappee/MYB-14/Rebuild RideMock Scene`;
   - preserve MYB-13 builder behavior and legacy menu aliases if needed;
   - keep `RideMock.scene-plan.md` aligned with the hierarchy.
-- [ ] Extend validation:
+- [x] Extend validation:
   - add or update `Echappee/MYB-14/Validate RideMock Scene`;
   - validate life root, bird/human counts, renderer/material presence, off-route placement and density bounds;
   - continue validating route elevation, stable camera samples, fog, HUD/control wiring and MYB-12 session loop;
   - write `_bmad-output/unity-test-results/myb-14-editor-validation.txt`.
-- [ ] Run final safety checks:
+- [x] Run final safety checks:
   - Unity validation via MCP Unity if available, otherwise batchmode Unity;
   - Unity console 0 error / 0 warning;
   - `git diff --check`;
@@ -164,7 +166,7 @@ Low-poly static roadside spectator silhouette for a calm scenic cycling game, si
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Notes
 
@@ -174,19 +176,75 @@ Low-poly static roadside spectator silhouette for a calm scenic cycling game, si
   - Unity primitives may win.
 - The approved Meshy budget is 10 credits total for this initial comparison.
 - MYB-14 is the first story that intentionally reopens a tiny Meshy allowance after earlier stories excluded Meshy; that allowance is limited to comparison and does not create a general asset pipeline.
+- Story/tracking commit completed before implementation:
+  `f229d5151fd9661f6e9dd437a34fa5fd1583088e`.
+- Meshy preview tasks completed within the approved budget:
+  - bird: `019ea2e1-4bc6-7aa6-a8c2-229f16fd7a6a`;
+  - human silhouette: `019ea2e1-522e-7aac-b1c2-cad77720ea26`.
+- Final scene decision: Unity primitive/procedural birds and human silhouettes retained in `RideMock.unity`; Meshy FBX previews kept as comparison references only.
+- Code review approved with no blocking findings.
 
 ### Completion Evidence
 
-- Story/tracking only; no Unity implementation performed in this pass.
-- Linear issue created in `In Progress`: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
-- Linear sync comment: `831d4989-4c5c-4353-a196-d1a3b969b7a0`
+- Story/tracking commit:
+  `f229d5151fd9661f6e9dd437a34fa5fd1583088e`.
+- Linear issue moved to `In Review`: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
+- Linear sync comment: `831d4989-4c5c-4353-a196-d1a3b969b7a0`.
+- Linear implementation comment: `b01418f4-7263-45f6-ab38-f49833b24859`.
+- Linear review comment: `d2435d72-0d7b-4e4f-8e5f-6197aeeb849c`.
+- Linear issue moved to `Done`.
+- Review verdict: approved, no blocking findings.
+- Unity MCP validation passed on 2026-06-07:
+  - project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - active scene `Assets/Scenes/RideMock.unity`;
+  - Editor idle, not playing, not compiling, not updating, scene not dirty;
+  - hierarchy includes `Main Camera`, `Route`, `Fog`, `SceneLife`, `Canvas`,
+    `EventSystem`, `RideSession`;
+  - `SceneLife` includes `Birds` with `Bird_01..Bird_05` and `RoadsideHumans`
+    with `HumanSilhouette_01..03`;
+  - `Echappee/MYB-14/Rebuild RideMock Scene` executed via MCP;
+  - `Echappee/MYB-14/Validate RideMock Scene` executed via MCP;
+  - Unity console returned 0 log / warning / error entries.
+- Validation report written:
+  `_bmad-output/unity-test-results/myb-14-editor-validation.txt`.
+- Final local safety checks passed:
+  - `git diff --check`;
+  - explicit whitespace check for new untracked text files;
+  - high-confidence secret scan over text diffs and new text assets;
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changes;
+  - no video capture selected.
+- npm validation intentionally skipped because no web source changed.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-14-editor-validation.txt`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockSceneBuilder.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/LightweightSceneLife.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/LightweightSceneLife.cs.meta`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/LightweightSceneLifeTests.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/LightweightSceneLifeTests.cs.meta`
+- `unity/Echappee3D/Assets/Generated.meta`
+- `unity/Echappee3D/Assets/Generated/Meshy.meta`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14.meta`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/README.md`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/README.md.meta`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/meshy_bird_preview.fbx`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/meshy_bird_preview.fbx.meta`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/meshy_human_silhouette_preview.fbx`
+- `unity/Echappee3D/Assets/Generated/Meshy/MYB14/meshy_human_silhouette_preview.fbx.meta`
+- `unity/Echappee3D/Assets/Materials/SceneLifeBird.mat`
+- `unity/Echappee3D/Assets/Materials/SceneLifeBird.mat.meta`
+- `unity/Echappee3D/Assets/Materials/SceneLifeHuman.mat`
+- `unity/Echappee3D/Assets/Materials/SceneLifeHuman.mat.meta`
+- `unity/Echappee3D/Assets/Scenes/RideMock.scene-plan.md`
+- `unity/Echappee3D/Assets/Scenes/RideMock.unity`
 
 ### Change Log
 
 - 2026-06-07: Created MYB-14 story and tracking with approved Unity-vs-Meshy lightweight scene-life comparison.
+- 2026-06-07: Implemented MYB-14 Unity lightweight scene life, generated two bounded Meshy FBX previews, retained Unity primitive/procedural scene life, and validated via Unity MCP.
+- 2026-06-07: Review approved, Linear moved to Done, and story prepared for implementation commit.

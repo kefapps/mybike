@@ -14,8 +14,10 @@ namespace MyBike.Echappee3D.EditorTools
     {
         private const string ScenePath = "Assets/Scenes/RideMock.unity";
         private const string RouteMaterialPath = "Assets/Materials/RoutePlaceholder.mat";
+        private const string BirdMaterialPath = "Assets/Materials/SceneLifeBird.mat";
+        private const string HumanMaterialPath = "Assets/Materials/SceneLifeHuman.mat";
 
-        [MenuItem("Echappee/MYB-13/Rebuild RideMock Scene")]
+        [MenuItem("Echappee/MYB-14/Rebuild RideMock Scene")]
         public static void Build()
         {
             if (!AssetDatabase.IsValidFolder("Assets/Materials"))
@@ -35,6 +37,7 @@ namespace MyBike.Echappee3D.EditorTools
             var camera = CreateCamera();
             var route = CreateRoute(routeMaterial);
             var fog = CreateFog();
+            CreateSceneLife();
             var ui = CreateUi();
 
             route.renderer.EnsureVisible(RouteMath.CreateDefaultMockRoute());
@@ -43,6 +46,12 @@ namespace MyBike.Echappee3D.EditorTools
             EditorSceneManager.SaveScene(scene, ScenePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        [MenuItem("Echappee/MYB-13/Rebuild RideMock Scene")]
+        public static void BuildMyb13()
+        {
+            Build();
         }
 
         [MenuItem("Echappee/MYB-12/Rebuild RideMock Scene")]
@@ -80,6 +89,109 @@ namespace MyBike.Echappee3D.EditorTools
         {
             var root = new GameObject("Fog");
             return root.AddComponent<DepthFogController>();
+        }
+
+        private static LightweightSceneLife CreateSceneLife()
+        {
+            var birdMaterial = CreateMaterial(BirdMaterialPath, new Color(0.82f, 0.88f, 0.84f, 1f));
+            var humanMaterial = CreateMaterial(HumanMaterialPath, new Color(0.08f, 0.11f, 0.12f, 1f));
+            var root = new GameObject(LightweightSceneLife.RootName);
+            var birdsRoot = new GameObject(LightweightSceneLife.BirdsRootName).transform;
+            var humansRoot = new GameObject(LightweightSceneLife.HumansRootName).transform;
+            birdsRoot.SetParent(root.transform, false);
+            humansRoot.SetParent(root.transform, false);
+
+            var birdPositions = new[]
+            {
+                new Vector3(-20f, 18f, 120f),
+                new Vector3(18f, 22f, 260f),
+                new Vector3(38f, 19f, 430f),
+                new Vector3(-34f, 24f, 620f),
+                new Vector3(20f, 21f, 790f)
+            };
+
+            for (var i = 0; i < birdPositions.Length; i += 1)
+            {
+                CreateBird(birdsRoot, $"Bird_{i + 1:00}", birdPositions[i], birdMaterial, i);
+            }
+
+            var route = RouteMath.CreateDefaultMockRoute();
+            CreateHumanSilhouette(humansRoot, "HumanSilhouette_01", new Vector3(-14f, 0f, 180f), route, humanMaterial);
+            CreateHumanSilhouette(humansRoot, "HumanSilhouette_02", new Vector3(52f, 0f, 420f), route, humanMaterial);
+            CreateHumanSilhouette(humansRoot, "HumanSilhouette_03", new Vector3(24f, 0f, 760f), route, humanMaterial);
+
+            var life = root.AddComponent<LightweightSceneLife>();
+            life.Bind(birdsRoot, humansRoot);
+            return life;
+        }
+
+        private static void CreateBird(
+            Transform parent,
+            string name,
+            Vector3 position,
+            Material material,
+            int index)
+        {
+            var root = new GameObject(name);
+            root.transform.SetParent(parent, false);
+            root.transform.position = position;
+            root.transform.rotation = Quaternion.Euler(0f, index * 18f - 25f, 0f);
+            root.transform.localScale = Vector3.one * 2.2f;
+
+            var meshFilter = root.AddComponent<MeshFilter>();
+            meshFilter.sharedMesh = CreateBirdMesh(name);
+            var renderer = root.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+        }
+
+        private static Mesh CreateBirdMesh(string name)
+        {
+            var mesh = new Mesh
+            {
+                name = $"{name}_Mesh",
+                vertices = new[]
+                {
+                    new Vector3(-0.8f, 0f, 0f),
+                    new Vector3(0f, 0f, 0.16f),
+                    new Vector3(0.8f, 0f, 0f),
+                    new Vector3(-0.12f, 0.12f, 0f),
+                    new Vector3(0.12f, 0.12f, 0f)
+                },
+                triangles = new[] { 0, 1, 3, 1, 2, 4 }
+            };
+            mesh.RecalculateNormals();
+            mesh.RecalculateBounds();
+            return mesh;
+        }
+
+        private static void CreateHumanSilhouette(
+            Transform parent,
+            string name,
+            Vector3 lateralPosition,
+            RouteDefinition route,
+            Material material)
+        {
+            var root = new GameObject(name);
+            root.transform.SetParent(parent, false);
+            var progress01 = Mathf.Clamp01(lateralPosition.z / Mathf.Max(1f, route.lengthMeters));
+            var ground = RouteMath.SamplePosition(route, progress01);
+            root.transform.position = new Vector3(lateralPosition.x, ground.y, lateralPosition.z);
+
+            var body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            body.name = "Body";
+            body.transform.SetParent(root.transform, false);
+            body.transform.localPosition = new Vector3(0f, 0.9f, 0f);
+            body.transform.localScale = new Vector3(0.42f, 0.78f, 0.32f);
+            body.GetComponent<Renderer>().sharedMaterial = material;
+            UnityEngine.Object.DestroyImmediate(body.GetComponent<Collider>());
+
+            var head = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            head.name = "Head";
+            head.transform.SetParent(root.transform, false);
+            head.transform.localPosition = new Vector3(0f, 1.78f, 0f);
+            head.transform.localScale = Vector3.one * 0.36f;
+            head.GetComponent<Renderer>().sharedMaterial = material;
+            UnityEngine.Object.DestroyImmediate(head.GetComponent<Collider>());
         }
 
         private static (MockRideInput input, HudController hud, RideControlPanel controls) CreateUi()
@@ -252,15 +364,20 @@ namespace MyBike.Echappee3D.EditorTools
 
         private static Material CreateRouteMaterial()
         {
+            return CreateMaterial(RouteMaterialPath, new Color(0.16f, 0.18f, 0.16f, 1f));
+        }
+
+        private static Material CreateMaterial(string path, Color color)
+        {
             var shader = Shader.Find("Unlit/Color");
-            var material = AssetDatabase.LoadAssetAtPath<Material>(RouteMaterialPath);
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
             if (material == null)
             {
                 material = new Material(shader);
-                AssetDatabase.CreateAsset(material, RouteMaterialPath);
+                AssetDatabase.CreateAsset(material, path);
             }
 
-            material.color = new Color(0.16f, 0.18f, 0.16f, 1f);
+            material.color = color;
             return material;
         }
 
