@@ -35,12 +35,17 @@ Last sync: 2026-06-07
 - Motion & Density Pass review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
 - Motion & Density Pass review comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg`
 - Post-MYB-10 human playtest plan: `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-2026-06-07.md`
+- Post-MYB-10 human playtest waiting artifact: `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-attente-retours-2026-06-07.md`
+- Post-MYB-10 human playtest results summary: `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-resultats-2026-06-07.md`
+- Unity migration change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md`
+- Unity migration thin architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
 
 ## Linear Documents
 
 - GDD court: https://linear.app/kefjbo/document/gdd-court-echappee-3d-13a4887d3166
 - Architecture mince: https://linear.app/kefjbo/document/architecture-mince-echappee-3d-53b40d669c6f
 - Mini-backlog BMAD: https://linear.app/kefjbo/document/mini-backlog-bmad-epic-et-stories-mvp-6806d059d836
+- Architecture Unity mince: https://linear.app/kefjbo/document/architecture-unity-mince-migration-progressive-d8b71e796936
 
 ## Linear Issues
 
@@ -1424,6 +1429,176 @@ Synced on 2026-06-07:
   - no application code change;
   - no new procedural visual pass before human feedback;
   - no `npm` validation run because only docs/tracking changed.
+
+## Post-MYB-10 Human Playtest Lite Waiting For Feedback
+
+Synced on 2026-06-07:
+
+- Local result/waiting artifact created:
+  `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-attente-retours-2026-06-07.md`
+- Linear project note added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project note/comment ID: `e1af88be-452a-4b29-828d-9d84f1e23aec`
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: collect-human-playtest-feedback-post-MYB-10`
+  - `post_mvp_after_myb10_human_playtest_status: waiting-human-feedback`
+  - `post_mvp_after_myb10_human_playtest_results:
+    _bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-attente-retours-2026-06-07.md`
+  - `post_mvp_after_myb10_human_playtest_exit_decision:
+    attente-retours-humains`
+- Decision status:
+  - no human participant feedback was available in this pass;
+  - no feedback, notes or sentiment were simulated;
+  - the four target outputs remain pending until real human notes exist:
+    `demo-privee-ok`, `hardening-technique-necessaire`,
+    `meshy-cible-utile`, `ajustement-visuel-precis-necessaire`.
+- Scope confirmation:
+  - no new Linear issue or backlog expansion;
+  - no Meshy call;
+  - no application code change;
+  - no new procedural visual pass;
+  - no `npm` validation run because only docs/tracking changed.
+
+## Post-MYB-10 Human Playtest Results Synced
+
+Synced on 2026-06-07:
+
+- Local result artifact updated from waiting state to real human feedback:
+  `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-attente-retours-2026-06-07.md`
+- Local summary artifact created:
+  `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-resultats-2026-06-07.md`
+- Linear project note added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project note/comment ID: `2adf3714-bd3e-4887-b26f-62f48bbfd155`
+- Human feedback integrated without inventing additional feedback:
+  - route sometimes disappears;
+  - noticeable flickering;
+  - desire for occasional uphill/downhill slopes;
+  - desire for more life such as birds, people roadside, and vehicles;
+  - graphics acceptable for a POC but far from final;
+  - distance / fog effect appreciated.
+- Exit decision:
+  - `hardening-technique-necessaire`
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: create-render-stability-story`
+  - `post_mvp_after_myb10_human_playtest_status: completed-human-feedback`
+  - `post_mvp_after_myb10_human_playtest_exit_decision:
+    hardening-technique-necessaire`
+  - `post_mvp_after_myb10_human_playtest_linear_note:
+    2adf3714-bd3e-4887-b26f-62f48bbfd155`
+- Decision rationale:
+  - route disappearance and flickering are higher priority than Meshy, another
+    visual pass, slopes or added life;
+  - slopes and world life are valid product leads after render stabilization;
+  - preserve the appreciated distance / fog effect.
+- Scope confirmation:
+  - no new Linear issue created;
+  - no Meshy call;
+  - no application code change;
+  - no new procedural visual pass;
+  - no `npm` validation run because only docs/tracking changed.
+
+## Post-MYB-10 Unity Migration Direction Synced
+
+Synced on 2026-06-07:
+
+- Local change proposal artifact created:
+  `_bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md`
+- Linear project note added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project note/comment ID: `6b7922d0-0680-46c7-b75f-7acf3c23f06c`
+- Direction actee:
+  - React/Vite/Three.js devient le prototype de reference;
+  - Unity devient la cible de production;
+  - les artefacts MYB-2 a MYB-10, captures video et retours playtest sont
+    conserves comme specs de migration;
+  - le hardening rendu Three.js n'est plus la destination principale.
+- Options comparees:
+  1. continuer le hardening Three.js: non recommande comme direction principale;
+  2. migration Unity progressive: recommandee;
+  3. reecriture Unity complete immediate: non recommandee maintenant.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: create-unity-migration-architecture`
+  - `post_mvp_after_myb10_unity_migration_change_proposal:
+    _bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md`
+  - `post_mvp_after_myb10_unity_migration_linear_note:
+    6b7922d0-0680-46c7-b75f-7acf3c23f06c`
+- First Unity increment scope:
+  - Unity project isolated in the repo or a clearly separated subfolder;
+  - stable visible route;
+  - first-person or route camera;
+  - equivalent mock slider/input;
+  - simple progression;
+  - minimal HUD;
+  - preserve fog / depth;
+  - no Meshy, BLE/FTMS, heavy assets, broad backlog or full rewrite.
+- Next BMAD action:
+  `create-unity-migration-architecture`
+- Scope confirmation:
+  - no new Linear issue created;
+  - no new project, epic or broad backlog created;
+  - no Meshy call and no credit cost;
+  - no application code change;
+  - no `npm` validation run because only docs/tracking changed.
+
+## Unity Migration Thin Architecture Synced
+
+Synced on 2026-06-07:
+
+- Local architecture artifact created:
+  `_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
+- Linear document created:
+  - Document: `Architecture Unity mince - Migration progressive`
+  - Document ID: `f429c7fe-de1c-4692-9dea-f4b163461094`
+  - URL: https://linear.app/kefjbo/document/architecture-unity-mince-migration-progressive-d8b71e796936
+  - Slug ID: `d8b71e796936`
+- Linear project note added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project note/comment ID: `fc8f7877-b942-4738-bb19-907e39717041`
+- Architecture decision:
+  - React/Vite/Three.js remains the reference prototype through MYB-10;
+  - Unity becomes the production target;
+  - existing MYB-2 to MYB-10 artifacts become migration specs;
+  - first Unity increment is a vertical slice mock equivalent, not a final
+    rewrite.
+- Engine/version reference:
+  - Unity 6.3 LTS as production target;
+  - Unity 6000.3.17f1 as editor reference verified from official Unity release
+    pages on 2026-06-07.
+- Unity module contracts recorded:
+  - `Echappee.Core`;
+  - `Echappee.Ride`;
+  - `Echappee.Route`;
+  - `Echappee.Rendering`;
+  - `Echappee.UI`;
+  - `Echappee.Bootstrap`;
+  - EditMode and PlayMode test assemblies.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: create-unity-vertical-slice-mock-story`
+  - `post_mvp_after_myb10_unity_migration_architecture:
+    _bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
+  - `post_mvp_after_myb10_unity_migration_story_handoff:
+    create-unity-vertical-slice-mock-story`
+- Handoff:
+  - create exactly one small Unity story for an isolated project under
+    `unity/Echappee3D/`;
+  - prove route visible stable, route camera, slider mock, simple progression,
+    minimal HUD and fog/depth;
+  - no Meshy, BLE/FTMS, heavy assets, slopes, world life, backend, new epic or
+    broad Unity backlog.
+- Validation evidence:
+  - no application code changed;
+  - no `npm` validation run because this was docs/tracking only;
+  - Linear document sync returned ID and URL;
+  - Linear project note sync returned comment ID.
 
 ## Sync Policy
 

@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T09:48:34+02:00
+# last_updated: 2026-06-07T10:59:51+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: run human playtest lite post-MYB-10.
+# - Next action: create one small Unity vertical slice mock story after the thin Unity migration architecture.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T09:48:34+02:00"
+last_updated: "2026-06-07T10:59:51+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "run-human-playtest-lite-post-MYB-10"
+  next_action: "create-unity-vertical-slice-mock-story"
   first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -97,9 +97,25 @@ sprint:
   post_mvp_after_myb10_recommendation: "Lancer un playtest humain leger post-MYB-10 avant Meshy, hardening lourd ou nouveau pass procedural."
   post_mvp_after_myb10_next_action: "run-human-playtest-lite-post-MYB-10"
   post_mvp_after_myb10_human_playtest_plan: "_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-2026-06-07.md"
-  post_mvp_after_myb10_human_playtest_status: "ready-for-human-session"
+  post_mvp_after_myb10_human_playtest_status: "completed-human-feedback"
   post_mvp_after_myb10_human_playtest_duration: "10-15 minutes"
   post_mvp_after_myb10_human_playtest_decisions: "demo-privee-ok | hardening-technique-necessaire | meshy-cible-utile | ajustement-visuel-precis-necessaire"
+  post_mvp_after_myb10_human_playtest_results: "_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-attente-retours-2026-06-07.md"
+  post_mvp_after_myb10_human_playtest_result_summary: "_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-resultats-2026-06-07.md"
+  post_mvp_after_myb10_human_playtest_exit_decision: "hardening-technique-necessaire"
+  post_mvp_after_myb10_human_playtest_decision_note: "Route qui disparait et flickering prioritaires avant Meshy, nouveau pass visuel, pentes ou vie; conserver le brouillard / effet de distance."
+  post_mvp_after_myb10_human_playtest_linear_note: "2adf3714-bd3e-4887-b26f-62f48bbfd155"
+  post_mvp_after_myb10_render_stability_next_action: "create-render-stability-story"
+  post_mvp_after_myb10_render_stability_superseded_by: "migration Unity progressive"
+  post_mvp_after_myb10_unity_migration_direction: "React/Three.js prototype de reference; Unity cible de production"
+  post_mvp_after_myb10_unity_migration_change_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md"
+  post_mvp_after_myb10_unity_migration_recommendation: "Migration Unity progressive; premier increment Unity vertical slice mock equivalente, pas version finale."
+  post_mvp_after_myb10_unity_migration_next_action: "create-unity-migration-architecture"
+  post_mvp_after_myb10_unity_migration_linear_note: "6b7922d0-0680-46c7-b75f-7acf3c23f06c"
+  post_mvp_after_myb10_unity_migration_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md"
+  post_mvp_after_myb10_unity_migration_engine_target: "Unity 6.3 LTS / editor reference 6000.3.17f1"
+  post_mvp_after_myb10_unity_migration_architecture_decision: "Projet Unity isole sous unity/Echappee3D/; logique ride/route testable en C# pur; rendu/HUD applique des snapshots; pas de Meshy, BLE/FTMS, assets lourds ni gros backlog."
+  post_mvp_after_myb10_unity_migration_story_handoff: "create-unity-vertical-slice-mock-story"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
