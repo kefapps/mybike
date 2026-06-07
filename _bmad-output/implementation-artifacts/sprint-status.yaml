@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T21:09:22+02:00
+# last_updated: 2026-06-07T21:15:58+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-16.
+# - Next action: implement-MYB-17.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T21:09:22+02:00"
+last_updated: "2026-06-07T21:15:58+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-16"
+  next_action: "implement-MYB-17"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -178,6 +178,12 @@ sprint:
   post_mvp_after_myb15_scene_life_readability_review: "approved with no blocking findings and no review-time code corrections; Unity MCP validation rerun, report still shows projectedVisible=4/8, birdsInCone=2, humansInCone=2, finiteSamples=8/8; console 0 errors / 0 warnings."
   post_mvp_after_myb15_scene_life_readability_review_comment: "2407685b-a5f0-4453-b115-bb0d203a8ce4"
   post_mvp_after_myb15_scene_life_readability_next_action: "commit-MYB-16"
+  post_mvp_after_myb16_private_demo_story: "_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md"
+  post_mvp_after_myb16_private_demo_issue_created: true
+  post_mvp_after_myb16_private_demo_linear_url: "https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist"
+  post_mvp_after_myb16_private_demo_linear_comment: "0f2b2dd3-1af3-4eff-8d05-bc49887956aa"
+  post_mvp_after_myb16_private_demo_scope: "Unity-only private local demo readiness package: add MYB-17 validation menu/report/checklist, preserve current route/camera/fog/HUD/controls/mock loop/SceneLife, optional low-risk Build Settings or local macOS build validation, no gameplay or visual polish."
+  post_mvp_after_myb16_private_demo_next_action: "implement-MYB-17"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -192,6 +198,7 @@ sprint:
     - "MYB-14"
     - "MYB-15"
     - "MYB-16"
+    - "MYB-17"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -210,6 +217,7 @@ linear_mapping:
   myb-14-unity-lightweight-scene-life: "MYB-14"
   myb-15-unity-demo-validation-harness: "MYB-15"
   myb-16-unity-scene-life-readability-polish: "MYB-16"
+  myb-17-unity-private-demo-package-and-launch-checklist: "MYB-17"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -284,3 +292,7 @@ development_status:
   # MYB-16 - Story post-MYB-15 - Unity scene life readability polish
   # Story unique creee depuis le signal MYB-15: SceneLife projected visibility 0/8.
   myb-16-unity-scene-life-readability-polish: done
+
+  # MYB-17 - Story post-MYB-16 - Unity private demo package and launch checklist
+  # Story unique creee pour rendre la vertical slice Unity localement demonstrable sans nouveau gameplay ni polish visuel.
+  myb-17-unity-private-demo-package-and-launch-checklist: ready-for-dev
