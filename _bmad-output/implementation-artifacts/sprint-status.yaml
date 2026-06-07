@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T08:41:35+02:00
+# last_updated: 2026-06-07T08:49:50+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit MYB-10 Motion & Density Pass.
+# - Next action: run human playtest lite post-MYB-10.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T08:41:35+02:00"
+last_updated: "2026-06-07T08:49:50+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-10"
-  first_story_to_start: "MYB-10"
+  next_action: "run-human-playtest-lite-post-MYB-10"
+  first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -92,6 +92,10 @@ sprint:
   post_mvp_after_myb9_motion_density_review_comparison: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg"
   post_mvp_after_myb9_motion_density_validation: "passed: npm run typecheck, npm run test, npm run build, npm run capture:ride-video"
   post_mvp_after_myb9_motion_density_scope: "parallax proche, densite roadside controlee, variations route/sol, sensation de vitesse cote rendu; aucun Meshy, aucun asset externe, aucun changement src/ride/*."
+  post_mvp_after_myb10_visual_retro: "_bmad-output/implementation-artifacts/myb-10-visual-mini-retro-2026-06-07.md"
+  post_mvp_after_myb10_readiness: "Suffisant pour playtest humain leger et demo privee controlee; pas de deploiement public ouvert sans retour humain."
+  post_mvp_after_myb10_recommendation: "Lancer un playtest humain leger post-MYB-10 avant Meshy, hardening lourd ou nouveau pass procedural."
+  post_mvp_after_myb10_next_action: "run-human-playtest-lite-post-MYB-10"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
