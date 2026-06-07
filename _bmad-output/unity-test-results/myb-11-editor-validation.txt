@@ -1,0 +1,3 @@
+MYB-11 Unity editor validation passed.
+Unity: 6000.4.10f1
+Checks: version, ride math, route math, fallback route, scene, camera, route, HUD, mock input, fog.

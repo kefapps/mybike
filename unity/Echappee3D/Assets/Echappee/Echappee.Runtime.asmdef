@@ -1,0 +1,14 @@
+{
+  "name": "MyBike.Echappee3D.Runtime",
+  "rootNamespace": "MyBike.Echappee3D",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

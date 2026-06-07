@@ -1573,9 +1573,11 @@ Synced on 2026-06-07:
   - first Unity increment is a vertical slice mock equivalent, not a final
     rewrite.
 - Engine/version reference:
-  - Unity 6.3 LTS as production target;
-  - Unity 6000.3.17f1 as editor reference verified from official Unity release
-    pages on 2026-06-07.
+  - Unity as production target;
+  - Unity 6000.3.17f1 was the initial architecture reference verified from
+    official Unity release pages on 2026-06-07;
+  - MYB-11 implementation target is `6000.4.10f1`, selected from the local
+    installed Editor.
 - Unity module contracts recorded:
   - `Echappee.Core`;
   - `Echappee.Ride`;
@@ -1635,12 +1637,16 @@ Synced on 2026-06-07:
     https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold`
   - `myb-11-unity-vertical-slice-mock-scaffold: ready-for-dev`
 - Local Unity preflight recorded for the implementation story:
-  - target/reference `6000.3.17f1` not found locally;
-  - `/Applications/Unity/Hub/Editor/6000.4.10f1/` present;
-  - `unityhub` CLI not found in `PATH`.
+  - `6000.4.10f1` selected as MYB-11 target because it is installed locally;
+  - previous target/reference `6000.3.17f1` not found locally;
+  - `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity`
+    present;
+  - `unityhub` and `Unity` CLI shims not found in `PATH`;
+  - MCP status superseded on 2026-06-07 after official Unity MCP configuration:
+    verified `mcp__unity_mybike` access to the project root.
 - Story scope:
   - isolated Unity project under `unity/Echappee3D/`;
-  - Unity 6.3 LTS target, `6000.3.17f1` reference;
+  - Unity `6000.4.10f1` local target;
   - minimal scaffold only: project structure, main scene, minimal C# scripts,
     Unity README;
   - mock loop start / ride / pause / finish;
@@ -1654,6 +1660,142 @@ Synced on 2026-06-07:
   - no deletion of the React/Three prototype;
   - no broad backlog created;
   - no `npm` validation run because only docs/tracking changed.
+
+## MYB-11 Unity Vertical Slice Mock Scaffold Implemented
+
+Synced on 2026-06-07:
+
+- Story/tracking setup commit:
+  `cec0e38af3318c4f5c8bf5612c3b8a8548867e22`
+  (`MYB-11 create Unity scaffold story`).
+- Linear issue updated:
+  - Issue: `MYB-11`
+  - URL: https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold
+  - Status: `In Review`
+  - Description updated to use Unity `6000.4.10f1` as the MYB-11 target.
+  - Implementation comment ID: `e28f57b1-4cde-4d14-8f12-1481041fd100`
+  - MCP preflight correction comment ID:
+    `d585c083-11b6-4cde-b8a6-6a400682e28d`
+- Local story updated:
+  `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
+  - Status: `review`
+  - All MYB-11 tasks/subtasks checked.
+  - Dev Agent Record updated with preflight, validation, file list and limits.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-11-unity-vertical-slice-mock-scaffold: review`
+  - `next_action: review-MYB-11`
+  - Unity target/preflight updated to `6000.4.10f1`.
+- Unity preflight:
+  - Unity Hub app present.
+  - `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity`
+    present and selected.
+  - Previous reference `6000.3.17f1` absent locally and superseded for MYB-11.
+  - `unityhub` and `Unity` CLI shims not found in `PATH`.
+  - Official Unity MCP exposed as `mcp__unity_mybike`.
+  - MCP `GetProjectRoot` resolved
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - MCP listed and loaded `Assets/Scenes/RideMock.unity`.
+  - MCP read the scene hierarchy: `Main Camera`, `Route`, `Fog`, `Canvas`,
+    `EventSystem`, `RideSession`.
+  - MCP Unity console check returned 0 errors/warnings.
+- Unity scaffold created under `unity/Echappee3D/`:
+  - `README.md`;
+  - `Packages/manifest.json` and Unity-generated `packages-lock.json`;
+  - Unity-generated `ProjectSettings/`;
+  - `Assets/Echappee/Core`, `Ride`, `Route`, `Rendering`, `UI`, `Bootstrap`,
+    `Editor`, `Tests/EditMode`, `Tests/PlayMode`;
+  - `Assets/Scenes/RideMock.unity`;
+  - `Assets/Materials/RoutePlaceholder.mat`;
+  - generated `.meta` files.
+- Functional scope covered:
+  - mock input source;
+  - `RidePhase`;
+  - ride snapshots;
+  - `RideMath` speed mapping and smoothing;
+  - `RouteMath` progress, sampling, camera rail, biome selection and fallback
+    route;
+  - route renderer placeholder;
+  - camera controller;
+  - HUD controller;
+  - mock input slider;
+  - fog/depth controller;
+  - `RideSessionController`;
+  - Editor scene builder and validator.
+- Validation evidence:
+  - Unity `6000.4.10f1` import/compile passed; runtime and EditMode test
+    assemblies generated under ignored `Library/ScriptAssemblies/`.
+  - `RideMockSceneBuilder.Build` passed with code 0 and generated
+    `RideMock.unity`.
+  - `RideMockValidator.Validate` passed with code 0.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-11-editor-validation.txt`.
+  - `-runTests -testPlatform EditMode` attempted twice; Unity returned code 0
+    but did not write `myb-11-editmode.xml`, so the Editor validator is the
+    authoritative local validation for this scaffold.
+  - `git diff --check` passed.
+  - Anti-secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` files modified.
+  - Nothing staged; implementation remains uncommitted for review.
+  - Ignored generated folders/logs verified not staged:
+    `unity/Echappee3D/Library/`, `Logs/`, `UserSettings/`,
+    `_bmad-output/video-captures/`, Unity validation `.log` files.
+- Scope confirmation:
+  - React/Three prototype preserved as reference;
+  - no full migration;
+  - no Meshy or credit-cost tool call;
+  - no external asset, Unity AI generation, BLE/FTMS, backend, public deploy,
+    vehicle, human, bird, or broad Unity backlog;
+  - no `npm run typecheck`, `npm run test` or `npm run build` because no web
+    source changed.
+
+## MYB-11 Unity Vertical Slice Mock Scaffold Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-11`
+  - URL: https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold
+  - Status: `Done`
+  - Review comment ID: `f867baee-f245-4d10-b2eb-f950a1bf2b58`
+- Review verdict: approved for strict scaffold scope.
+- Finding corrected:
+  - `unity/Echappee3D/README.md` no longer says no Unity MCP was exposed; it now
+    records the successful `mcp__unity_mybike` preflight for project root,
+    `RideMock.unity` and 0 console errors/warnings.
+- Unity evidence:
+  - Successful MCP proof during review before Unity package refresh/restart:
+    project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`, Unity
+    `6000.4.10f1`, Editor idle, not compiling, not in Play Mode, active scene
+    `Assets/Scenes/RideMock.unity`, hierarchy roots `Main Camera`, `Route`,
+    `Fog`, `Canvas`, `EventSystem`, `RideSession`, and 0 console
+    errors/warnings.
+  - After Unity refresh/restart, local Unity MCP connection was revoked by Unity
+    plan state (`Connection revoked. Go to Unity Editor > Project Settings > AI
+    > Unity MCP to change approval.`). This is tracked as an external tooling
+    limit, not a scaffold code failure.
+  - Review rerun of
+    `MyBike.Echappee3D.EditorTools.RideMockValidator.Validate` passed in Unity
+    `6000.4.10f1` batchmode with code 0.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-11-editor-validation.txt`.
+- Scope confirmation:
+  - `com.unity.ai.assistant` is retained as the Unity MCP bridge package for
+    validation tooling; no Unity AI generation tool was used and no generated
+    AI asset was added.
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changed;
+  - no video capture selected or staged;
+  - no Meshy, external asset import, BLE/FTMS, backend, public deploy,
+    vehicle, human, bird, full migration or broad backlog introduced.
+- Git/safety validation:
+  - `git diff --check` passed.
+  - High-confidence anti-secret scan passed.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web files changed.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-11-unity-vertical-slice-mock-scaffold: done`
+  - `next_action: commit-MYB-11`
 
 ## Sync Policy
 

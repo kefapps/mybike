@@ -27,3 +27,14 @@ blob-report/
 _bmad/config.user.toml
 _bmad/**/*.user.toml
 _bmad-output/video-captures/
+
+# Unity generated files
+unity/Echappee3D/Library/
+unity/Echappee3D/Temp/
+unity/Echappee3D/Obj/
+unity/Echappee3D/Build/
+unity/Echappee3D/Builds/
+unity/Echappee3D/Logs/
+unity/Echappee3D/UserSettings/
+unity/Echappee3D/MemoryCaptures/
+unity/Echappee3D/Recordings/
