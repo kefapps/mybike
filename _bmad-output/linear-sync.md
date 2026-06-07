@@ -2946,3 +2946,36 @@ Synced on 2026-06-07:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-18-threejs-private-demo-recovery-and-ride-grounding: done`
   - `next_action: commit-MYB-18`
+
+## MYB-19 Three.js Private Demo Launch Readiness Story Created
+
+Synced on 2026-06-08:
+
+- Linear issue created:
+  - Issue: `MYB-19`
+  - URL: https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness
+  - Status: `In Progress`
+  - Sync comment ID: `efa4e6ae-00f7-44a8-955f-386e2e8bce57`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-19-threejs-private-demo-launch-readiness.md`
+  - Local status: `ready-for-dev`
+- Source context:
+  - MYB-18 Three.js private demo recovery and ride grounding is Done.
+  - MYB-18 commit: `0611461c3a230394abb976e17681105fac99289f`.
+  - MYB-18 review comment: `852213dc-d8c0-4b03-89b3-792685178f3b`.
+  - MYB-18 review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/`.
+  - Three.js remains the active private demo target; Unity remains parked/research, without deletion.
+- Scope confirmation:
+  - Web-only React/Vite/Three.js readiness package.
+  - Produce `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+  - Report must confirm npm typecheck/test/build, local HTTP 200, canvas nonblank, no page errors, no console errors, 60s capture evidence, launch checklist and verdict `ready-for-private-web-demo`.
+  - No `unity/Echappee3D/**` edits.
+  - No `src/ride/*` edits unless a strict, test-backed correction is unavoidable.
+  - No Meshy, external asset, backend, BLE/FTMS, public deployment, new engine migration, Unity deletion or broad visual polish.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-19-threejs-private-demo-launch-readiness: ready-for-dev`
+  - `next_action: implement-MYB-19`
+- Tracking validation:
+  - Story/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
