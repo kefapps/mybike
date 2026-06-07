@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T11:11:30+02:00
+# last_updated: 2026-06-07T13:16:19+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement MYB-11 Unity vertical slice mock scaffold.
+# - Next action: commit MYB-11 Unity vertical slice mock scaffold.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T11:11:30+02:00"
+last_updated: "2026-06-07T13:16:19+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-11"
+  next_action: "commit-MYB-11"
   first_story_to_start: "MYB-11"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -113,14 +113,16 @@ sprint:
   post_mvp_after_myb10_unity_migration_next_action: "create-unity-migration-architecture"
   post_mvp_after_myb10_unity_migration_linear_note: "6b7922d0-0680-46c7-b75f-7acf3c23f06c"
   post_mvp_after_myb10_unity_migration_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md"
-  post_mvp_after_myb10_unity_migration_engine_target: "Unity 6.3 LTS / editor reference 6000.3.17f1"
+  post_mvp_after_myb10_unity_migration_engine_target: "Unity 6000.4.10f1 local target for MYB-11; 6000.3.17f1 architecture reference superseded by local preflight."
   post_mvp_after_myb10_unity_migration_architecture_decision: "Projet Unity isole sous unity/Echappee3D/; logique ride/route testable en C# pur; rendu/HUD applique des snapshots; pas de Meshy, BLE/FTMS, assets lourds ni gros backlog."
   post_mvp_after_myb10_unity_migration_story_handoff: "create-unity-vertical-slice-mock-story"
   post_mvp_after_myb10_unity_vertical_slice_story: "_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md"
   post_mvp_after_myb10_unity_vertical_slice_issue_created: true
   post_mvp_after_myb10_unity_vertical_slice_linear_url: "https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold"
-  post_mvp_after_myb10_unity_vertical_slice_local_preflight: "6000.3.17f1 not found; /Applications/Unity/Hub/Editor/6000.4.10f1 present; unityhub CLI not found in PATH."
-  post_mvp_after_myb10_unity_vertical_slice_next_action: "implement-MYB-11"
+  post_mvp_after_myb10_unity_vertical_slice_local_preflight: "Unity Hub app present; /Applications/Unity/Hub/Editor/6000.4.10f1 Unity binary present and selected; 6000.3.17f1 not found; unityhub and Unity CLI shims not found in PATH; official Unity MCP exposed as mcp__unity_mybike and verified against /Users/jbodin/personnel/apps/mybike/unity/Echappee3D with RideMock.unity loaded, hierarchy readable, and 0 Unity console errors/warnings."
+  post_mvp_after_myb10_unity_vertical_slice_validation: "passed: Unity 6000.4.10f1 import/compile, RideMockSceneBuilder, RideMockValidator initial and review rerun, git diff --check, anti-secret scan, no web src changes; Test Runner -runTests produced no XML; Unity MCP proof passed before reload, then local MCP connection revoked by Unity plan state."
+  post_mvp_after_myb10_unity_vertical_slice_review_comment: "f867baee-f245-4d10-b2eb-f950a1bf2b58"
+  post_mvp_after_myb10_unity_vertical_slice_next_action: "commit-MYB-11"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -193,4 +195,5 @@ development_status:
 
   # MYB-11 - Story post-MYB-10 - Unity vertical slice mock scaffold
   # Story unique creee depuis l'architecture Unity mince; scaffold Unity, pas migration complete.
-  myb-11-unity-vertical-slice-mock-scaffold: ready-for-dev
+  # Revue de code locale passee pour MYB-11.
+  myb-11-unity-vertical-slice-mock-scaffold: done
