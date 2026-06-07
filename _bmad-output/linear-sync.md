@@ -2197,6 +2197,119 @@ Synced on 2026-06-07:
   - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
     run because no web source changed.
 
+## MYB-14 Unity Lightweight Scene Life Implemented
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-14`
+  - URL: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
+  - Status: `In Review`
+  - Implementation comment ID: `b01418f4-7263-45f6-ab38-f49833b24859`
+- Story/tracking commit completed before implementation:
+  - Commit: `f229d5151fd9661f6e9dd437a34fa5fd1583088e`
+  - Message: `MYB-14 create lightweight scene life story`
+- Local implementation:
+  - `RideMock.unity` now includes `SceneLife` with 5 stylized Unity primitive
+    birds and 3 static roadside human silhouettes.
+  - `LightweightSceneLife` marks and counts the life roots.
+  - `RideMockSceneBuilder` exposes MYB-14 rebuild while preserving MYB-13/MYB-12
+    aliases.
+  - `RideMockValidator` validates scene life counts, renderers, off-route human
+    placement, bounded density, Meshy FBX comparison assets, no vehicle scope,
+    route/camera/fog/HUD/control wiring and the playable mock loop.
+- Meshy comparison:
+  - Credits used: 10 total, within the approved limit.
+  - Bird preview task: `019ea2e1-4bc6-7aa6-a8c2-229f16fd7a6a`.
+  - Human silhouette preview task: `019ea2e1-522e-7aac-b1c2-cad77720ea26`.
+  - Output: FBX preview only.
+  - No refine, remesh, retexture, rigging or animation was used.
+  - FBX references kept under `unity/Echappee3D/Assets/Generated/Meshy/MYB14/`.
+  - Final scene decision: Unity primitive/procedural assets retained because
+    they are lighter, deterministic and easier to validate for the current POC.
+- Unity MCP proof:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling, not updating and scene not dirty.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `SceneLife`,
+    `Canvas`, `EventSystem`, `RideSession`.
+  - `SceneLife` contains `Birds` with `Bird_01..Bird_05` and `RoadsideHumans`
+    with `HumanSilhouette_01..03`.
+  - MCP menu execution passed:
+    `Echappee/MYB-14/Rebuild RideMock Scene` and
+    `Echappee/MYB-14/Validate RideMock Scene`.
+  - Unity console returned 0 log / warning / error entries.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-14-editor-validation.txt`.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
+    status: `review`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-14-unity-lightweight-scene-life: review`.
+  - `next_action: code-review-MYB-14`.
+- Local validation:
+  - `git diff --check` passed after Unity scene whitespace cleanup.
+  - Explicit whitespace check for new untracked text files passed.
+  - High-confidence secret scan passed over text diffs and new text assets.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+  - No video capture selected.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+
+## MYB-14 Unity Lightweight Scene Life Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-14`
+  - URL: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
+  - Status: `Done`
+  - Review comment ID: `d2435d72-0d7b-4e4f-8e5f-6197aeeb849c`
+- Review verdict:
+  - Approved with no blocking findings.
+  - Scene-life scope remains limited to stylized birds and static roadside
+    human silhouettes.
+  - No vehicle, traffic system, collision gameplay, AI, flocking, complex
+    pedestrian animation, BLE/FTMS, backend, public deploy, migration web or
+    broad asset pipeline was added.
+- Meshy review:
+  - Exactly two FBX previews are retained under
+    `unity/Echappee3D/Assets/Generated/Meshy/MYB14/`.
+  - Bird preview task: `019ea2e1-4bc6-7aa6-a8c2-229f16fd7a6a`.
+  - Human silhouette preview task: `019ea2e1-522e-7aac-b1c2-cad77720ea26`.
+  - `meshy-5`, FBX preview only, 10 credits total.
+  - No refine, remesh, retexture, rigging or animation.
+  - Unity primitive/procedural life remains the selected scene implementation.
+- Unity MCP review proof:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling, not updating and scene not dirty.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `SceneLife`,
+    `Canvas`, `EventSystem`, `RideSession`.
+  - `SceneLife/Birds`: `Bird_01..Bird_05`.
+  - `SceneLife/RoadsideHumans`: `HumanSilhouette_01..03`.
+  - `Echappee/MYB-14/Validate RideMock Scene` executed via MCP.
+  - Unity console returned 0 log / warning / error entries.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-14-editor-validation.txt`.
+- Local validation:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed over diff and new text files.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+  - No video capture selected.
+  - Unity script validation produced no diagnostics for `LightweightSceneLife`,
+    `LightweightSceneLifeTests` and `RideMockValidator`; the builder emitted
+    one non-blocking analyzer suggestion about `GetComponent` null checks on
+    Unity primitive components.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-14-unity-lightweight-scene-life: done`.
+  - `next_action: commit-MYB-14`.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
