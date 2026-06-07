@@ -72,15 +72,28 @@ namespace MyBike.Echappee3D.Route
             CameraRailConfig config)
         {
             var safeRoute = Resolve(route);
-            var position = SamplePosition(safeRoute, progress.Progress01) + Vector3.up * config.HeightMeters;
+            var routePosition = SamplePosition(safeRoute, progress.Progress01);
+            var position = routePosition + Vector3.up * config.HeightMeters;
             var lookAheadProgress = Mathf.Clamp01(
                 progress.Progress01 + config.LookAheadMeters / Mathf.Max(1f, safeRoute.lengthMeters));
-            var lookAt = SamplePosition(safeRoute, lookAheadProgress) + Vector3.up * config.HeightMeters * 0.75f;
+            var lookAheadPosition = SamplePosition(safeRoute, lookAheadProgress);
+            var direction = lookAheadPosition - routePosition;
 
-            if ((lookAt - position).sqrMagnitude < 0.001f)
+            if (direction.sqrMagnitude < 0.001f)
             {
-                lookAt = position + Vector3.forward;
+                var lookBehindProgress = Mathf.Clamp01(
+                    progress.Progress01 - config.LookAheadMeters / Mathf.Max(1f, safeRoute.lengthMeters));
+                direction = routePosition - SamplePosition(safeRoute, lookBehindProgress);
             }
+
+            if (direction.sqrMagnitude < 0.001f)
+            {
+                direction = Vector3.forward;
+            }
+
+            var lookAt = position +
+                direction.normalized * Mathf.Max(1f, config.LookAheadMeters) -
+                Vector3.up * config.HeightMeters * 0.2f;
 
             return new CameraRigSnapshot(position, lookAt, config.FovDegrees);
         }
@@ -110,11 +123,11 @@ namespace MyBike.Echappee3D.Route
                 points = new[]
                 {
                     new RoutePoint(0f, new Vector3(0f, 0f, 0f)),
-                    new RoutePoint(150f, new Vector3(24f, 0f, 148f)),
-                    new RoutePoint(320f, new Vector3(-18f, 0f, 315f)),
-                    new RoutePoint(500f, new Vector3(36f, 0f, 496f)),
-                    new RoutePoint(700f, new Vector3(4f, 0f, 698f)),
-                    new RoutePoint(850f, new Vector3(-30f, 0f, 845f)),
+                    new RoutePoint(150f, new Vector3(24f, 3f, 148f)),
+                    new RoutePoint(320f, new Vector3(-18f, 12f, 315f)),
+                    new RoutePoint(500f, new Vector3(36f, 7f, 496f)),
+                    new RoutePoint(700f, new Vector3(4f, 15f, 698f)),
+                    new RoutePoint(850f, new Vector3(-30f, 6f, 845f)),
                     new RoutePoint(1000f, new Vector3(0f, 0f, 1000f))
                 },
                 biomes = new[]

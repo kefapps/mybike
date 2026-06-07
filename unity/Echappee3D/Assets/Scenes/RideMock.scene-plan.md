@@ -14,6 +14,7 @@ La scene contient:
 - `Route`
   - `RouteRendererPlaceholder`
   - `LineRenderer`
+  - route mock avec elevation simple controlee
   - materiau opaque simple sous `Assets/Materials/`
 - `Fog`
   - `DepthFogController`
@@ -22,5 +23,6 @@ La scene contient:
   - textes vitesse, distance, temps, source `mock`, phase branches sur
     `HudController`
 
-Le rendu vise seulement une route stable visible, une camera rail simple, un HUD
-minimal et le brouillard/profondeur preserve du playtest.
+Le rendu vise seulement une route stable visible, une camera rail simple qui suit
+les montees/descentes, un HUD minimal et le brouillard/profondeur preserve du
+playtest.

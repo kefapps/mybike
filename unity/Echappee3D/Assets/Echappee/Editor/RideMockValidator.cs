@@ -17,8 +17,12 @@ namespace MyBike.Echappee3D.EditorTools
     {
         private const string ExpectedUnityVersion = "6000.4.10f1";
         private const string ScenePath = "Assets/Scenes/RideMock.unity";
+        private const float MaxRouteGrade = 0.08f;
+        private const float MaxElevationMeters = 20f;
+        private const float ExpectedFogStartDistance = 45f;
+        private const float ExpectedFogEndDistance = 220f;
 
-        [MenuItem("Echappee/MYB-12/Validate RideMock Scene")]
+        [MenuItem("Echappee/MYB-13/Validate RideMock Scene")]
         public static void Validate()
         {
             Require(
@@ -30,6 +34,12 @@ namespace MyBike.Echappee3D.EditorTools
             ValidateRideSessionLoop();
             ValidateScene();
             WriteReport();
+        }
+
+        [MenuItem("Echappee/MYB-12/Validate RideMock Scene")]
+        public static void ValidateLegacy()
+        {
+            Validate();
         }
 
         private static void ValidateRideMath()
@@ -76,10 +86,8 @@ namespace MyBike.Echappee3D.EditorTools
             Require(IsFinite(camera.Position) && IsFinite(camera.LookAt), "Camera snapshot must be finite.");
             Require(RouteMath.SelectBiome(route, 0f) == "coast", "Start biome should be coast.");
             Require(RouteMath.SelectBiome(route, 0.5f) == "forest", "Mid-route biome should be forest.");
-            foreach (var point in route.points)
-            {
-                Require(Approximately(point.Position.y, 0f), "MYB-12 route should remain flat.");
-            }
+            ValidateRouteElevation(route);
+            ValidateCameraSamples(route);
 
             Require(
                 RouteMath.Resolve(null).id == "placeholder-route",
@@ -127,7 +135,7 @@ namespace MyBike.Echappee3D.EditorTools
 
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
             Require(scene.IsValid(), "RideMock.unity did not open.");
-            Require(RenderSettings.fog, "RideMock.unity should persist fog enabled.");
+            ValidateFogSettings();
 
             var controller = Find<RideSessionController>();
             var routeRenderer = Find<RouteRendererPlaceholder>();
@@ -147,6 +155,8 @@ namespace MyBike.Echappee3D.EditorTools
             Require(Camera.main != null, "Main camera is missing.");
 
             Require(GameObject.Find("Route") != null, "Route root is missing.");
+            routeRenderer.EnsureVisible(RouteMath.CreateDefaultMockRoute());
+            ValidateRouteRenderer(routeRenderer);
             var effortSlider = RequireComponent<Slider>("MockEffortSlider", "Mock effort slider is missing.");
             var startButton = RequireComponent<Button>("StartButton", "Start button is missing.");
             var pauseButton = RequireComponent<Button>("PauseButton", "Pause button is missing.");
@@ -174,6 +184,125 @@ namespace MyBike.Echappee3D.EditorTools
             RequireReference(hud, "progressText", progressText, "Progress HUD reference is not wired.");
             RequireReference(hud, "phaseText", phaseText, "State HUD reference is not wired.");
             RequireReference(hud, "summaryText", summaryText, "Summary HUD reference is not wired.");
+        }
+
+        private static void ValidateRouteElevation(RouteDefinition route)
+        {
+            Require(route.points.Length >= 4, "MYB-13 route should have enough points for climbs and descents.");
+            Require(Approximately(route.points[0].DistanceMeters, 0f), "Route should start at distance 0.");
+            Require(
+                Approximately(route.points[route.points.Length - 1].DistanceMeters, route.lengthMeters),
+                "Route should end at lengthMeters.");
+
+            var hasClimb = false;
+            var hasDescent = false;
+            var hasElevation = false;
+
+            for (var i = 0; i < route.points.Length; i += 1)
+            {
+                var point = route.points[i];
+                Require(IsFinite(point.DistanceMeters), "Route point distance must be finite.");
+                Require(IsFinite(point.Position), "Route point position must be finite.");
+                Require(
+                    Mathf.Abs(point.Position.y) <= MaxElevationMeters,
+                    "Route elevation should stay bounded for the vertical slice.");
+
+                if (Mathf.Abs(point.Position.y) > 0.5f)
+                {
+                    hasElevation = true;
+                }
+
+                if (i == 0)
+                {
+                    continue;
+                }
+
+                var previous = route.points[i - 1];
+                var distanceDelta = point.DistanceMeters - previous.DistanceMeters;
+                var elevationDelta = point.Position.y - previous.Position.y;
+                Require(distanceDelta > 0f, "Route point distances must be strictly monotonic.");
+                Require(
+                    Mathf.Abs(elevationDelta / distanceDelta) <= MaxRouteGrade,
+                    "Route grade should stay bounded for simple controlled slopes.");
+
+                hasClimb |= elevationDelta > 0.5f;
+                hasDescent |= elevationDelta < -0.5f;
+            }
+
+            Require(hasElevation, "MYB-13 route should include visible elevation.");
+            Require(hasClimb, "MYB-13 route should include at least one climb.");
+            Require(hasDescent, "MYB-13 route should include at least one descent.");
+        }
+
+        private static void ValidateCameraSamples(RouteDefinition route)
+        {
+            var previousPosition = Vector3.zero;
+            var hasPrevious = false;
+
+            for (var i = 0; i <= 20; i += 1)
+            {
+                var progress01 = i / 20f;
+                var routePosition = RouteMath.SamplePosition(route, progress01);
+                var progress = new RouteProgressSnapshot(
+                    progress01,
+                    progress01 * route.lengthMeters,
+                    progress01 >= 1f);
+                var camera = RouteMath.CameraOnRail(route, progress, CameraRailConfig.Default);
+                var lookVector = camera.LookAt - camera.Position;
+
+                Require(IsFinite(routePosition), "Route sample must be finite.");
+                Require(IsFinite(camera.Position) && IsFinite(camera.LookAt), "Camera sample must be finite.");
+                Require(
+                    camera.Position.y - routePosition.y >= 1.3f,
+                    "Camera should remain above the elevated route.");
+                Require(lookVector.sqrMagnitude > 1f, "Camera should look ahead, not at itself.");
+                Require(Vector3.Dot(lookVector.normalized, Vector3.forward) > 0.2f, "Camera should keep looking along the route.");
+
+                if (hasPrevious)
+                {
+                    Require(
+                        Vector3.Distance(previousPosition, camera.Position) < 90f,
+                        "Camera samples should not jump abruptly along the route.");
+                }
+
+                previousPosition = camera.Position;
+                hasPrevious = true;
+            }
+        }
+
+        private static void ValidateRouteRenderer(RouteRendererPlaceholder routeRenderer)
+        {
+            var line = routeRenderer.GetComponent<LineRenderer>();
+            Require(line != null, "Route LineRenderer is missing.");
+            Require(line.enabled, "Route LineRenderer should be enabled.");
+            Require(line.positionCount >= 4, "Route LineRenderer should contain the elevated route points.");
+            Require(line.widthMultiplier >= 1f, "Route LineRenderer should remain readable.");
+            Require(line.sharedMaterial != null, "Route LineRenderer should keep a visible material.");
+
+            var hasElevation = false;
+            for (var i = 0; i < line.positionCount; i += 1)
+            {
+                var point = line.GetPosition(i);
+                Require(IsFinite(point), "Route LineRenderer point must be finite.");
+                hasElevation |= point.y > 0.5f;
+            }
+
+            Require(hasElevation, "Route LineRenderer should show elevated route points.");
+        }
+
+        private static void ValidateFogSettings()
+        {
+            Require(RenderSettings.fog, "RideMock.unity should persist fog enabled.");
+            Require(RenderSettings.fogMode == FogMode.Linear, "RideMock.unity should preserve linear depth fog.");
+            Require(
+                Approximately(RenderSettings.fogStartDistance, ExpectedFogStartDistance),
+                "RideMock.unity should preserve bounded fog start distance.");
+            Require(
+                Approximately(RenderSettings.fogEndDistance, ExpectedFogEndDistance),
+                "RideMock.unity should preserve bounded fog end distance.");
+            Require(
+                RenderSettings.fogEndDistance > RenderSettings.fogStartDistance,
+                "RideMock.unity fog should preserve readable long-distance depth.");
         }
 
         private static T Find<T>() where T : UnityEngine.Object
@@ -206,10 +335,10 @@ namespace MyBike.Echappee3D.EditorTools
             var outputDir = Path.Combine(repoRoot, "_bmad-output/unity-test-results");
             Directory.CreateDirectory(outputDir);
             File.WriteAllText(
-                Path.Combine(outputDir, "myb-12-editor-validation.txt"),
-                "MYB-12 Unity editor validation passed.\n" +
+                Path.Combine(outputDir, "myb-13-editor-validation.txt"),
+                "MYB-13 Unity editor validation passed.\n" +
                 $"Unity: {Application.unityVersion}\n" +
-                "Checks: version, ride math, route math, flat route, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and fog.\n");
+                "Checks: version, ride math, route math, elevated route, bounded grade, finite route samples, stable camera samples, route renderer visibility, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and bounded fog.\n");
         }
 
         private static void Require(bool condition, string message)

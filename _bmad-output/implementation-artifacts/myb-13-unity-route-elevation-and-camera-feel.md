@@ -4,8 +4,8 @@
 
 - Linear issue: `MYB-13`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Created: `2026-06-07`
 - Baseline commit: `0ff3e4d74ef3a3731df70a446d7cfae257e88c6f`
 - Depends on: `MYB-12`
@@ -44,33 +44,33 @@ This story responds to post-MYB-10 human feedback: slopes are desirable, the old
 
 ## Implementation Tasks
 
-- [ ] Preflight the Unity project before implementation:
+- [x] Preflight the Unity project before implementation:
   - confirm project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
   - confirm active scene `Assets/Scenes/RideMock.unity`;
   - confirm Editor idle, not compiling, not in Play Mode;
   - prefer MCP Unity if available, fallback to batchmode only if MCP is unavailable.
-- [ ] Extend the route definition used by `RideMock.unity`:
+- [x] Extend the route definition used by `RideMock.unity`:
   - reuse `Assets/Echappee/Route/RouteMath.cs` and existing `RouteDefinition` data structures;
   - replace the MYB-12 flat-only default with a small hand-authored elevation profile;
   - keep distance progression monotonic and samples finite;
   - avoid terrain mesh generation or asset imports.
-- [ ] Improve camera-on-rail feel for slopes:
+- [x] Improve camera-on-rail feel for slopes:
   - reuse the existing route sampling and camera rail code;
   - ensure look-ahead samples track the elevated route;
   - keep the camera above the route and visually stable;
   - avoid new camera systems or cinematic dependencies.
-- [ ] Keep route rendering stable:
+- [x] Keep route rendering stable:
   - reuse or minimally extend `RouteRendererPlaceholder`;
   - keep road width/offset readable on climbs and descents;
   - avoid z-fighting-prone placement and avoid any route disappearance regression.
-- [ ] Preserve scene wiring:
+- [x] Preserve scene wiring:
   - keep MYB-12 `RideSessionController`, mock input, control panel, HUD, camera, route and fog wiring intact;
   - rebuild `RideMock.unity` only through existing Unity/editor builder patterns if scene changes are required.
-- [ ] Extend validation:
+- [x] Extend validation:
   - update `RideMockValidator` menu/action for MYB-13 or make the existing validator cover MYB-13 checks clearly;
   - validate route elevation, grade bounds, finite route/camera samples, route renderer, camera stability, fog and scene hierarchy;
   - write/update `_bmad-output/unity-test-results/myb-13-editor-validation.txt`.
-- [ ] Run final safety checks:
+- [x] Run final safety checks:
   - Unity validation via MCP Unity if available, otherwise batchmode Unity;
   - Unity console 0 error / 0 warning;
   - `git diff --check`;
@@ -125,14 +125,83 @@ This story responds to post-MYB-10 human feedback: slopes are desirable, the old
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Notes
 
 - MYB-12 intentionally validated a flat route; MYB-13 replaces that constraint with bounded elevation validation.
 - The route disappearing/flickering feedback came from the web prototype and must be treated as a regression risk for the Unity target.
 - Fog/depth was appreciated in human feedback and is a required preservation check.
+- Local implementation is present under `unity/Echappee3D/`: elevated mock route, slope-aware camera look-ahead, route renderer stability lift, MYB-13 scene builder/validator menu items and route camera EditMode tests.
+- Unity MCP validation was restored after keeping only `unity_mcp` in Codex MCP config and restarting/approving the direct Unity MCP connection.
+- Batchmode fallback was not used for final acceptance because MCP Unity is available again.
 
 ### Completion Evidence
 
-- Pending implementation.
+- Story/tracking commit completed: `79fcec26c244af99793f983d77db2893970d58da`.
+- Local static checks passed after implementation/tracker sync:
+  - `git diff --check`;
+  - high-confidence secret scan;
+  - no `src/ride/*`, `src/render/*`, `src/app/*` status changes;
+  - no video capture or temporary MCP client selected.
+- Unity MCP validation passed on 2026-06-07:
+  - project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - active scene `Assets/Scenes/RideMock.unity`;
+  - Editor idle, not playing, not compiling, not updating;
+  - hierarchy includes Main Camera, Route, Fog, Canvas, EventSystem and RideSession;
+  - MYB-13 rebuild and validator executed via MCP menu items;
+  - Unity console returned 0 errors / 0 warnings.
+- Validation report written:
+  `_bmad-output/unity-test-results/myb-13-editor-validation.txt`.
+- Final safety checks passed after MCP validation:
+  - `git diff --check`;
+  - high-confidence secret scan;
+  - no `src/ride/*`, `src/render/*`, `src/app/*` status changes;
+  - no video capture selected;
+  - npm validation intentionally skipped because no web source changed.
+
+### File List
+
+- `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-13-editor-validation.txt`
+- `unity/Echappee3D/Assets/Data/Routes/mock-route.md`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockSceneBuilder.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/RouteRendererPlaceholder.cs`
+- `unity/Echappee3D/Assets/Echappee/Route/RouteMath.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/RouteMathTests.cs`
+- `unity/Echappee3D/Assets/Scenes/RideMock.scene-plan.md`
+- `unity/Echappee3D/Assets/Scenes/RideMock.unity`
+
+### Change Log
+
+- 2026-06-07: Implemented MYB-13 controlled route elevation, slope camera feel, stable route rendering and extended Unity validator; validation restored and passed via MCP Unity.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved on 2026-06-07 after one scoped review fix.
+
+### Findings
+
+- [x] [Review][Patch] Validator did not explicitly enforce bounded fog/depth settings required by AC7. Fixed in `RideMockValidator` by checking linear fog mode, expected fog start/end distances and readable distance ordering.
+
+### Review Evidence
+
+- Unity MCP validation rerun after review fix:
+  - project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - active scene `Assets/Scenes/RideMock.unity`;
+  - Editor idle, not playing, not compiling, not updating;
+  - MYB-13 rebuild and validator executed through MCP menu items;
+  - Unity console returned 0 errors / 0 warnings.
+- Validation report updated:
+  `_bmad-output/unity-test-results/myb-13-editor-validation.txt`.
+- Final safety checks passed:
+  - `git diff --check`;
+  - high-confidence secret scan;
+  - no `src/ride/*`, `src/render/*`, `src/app/*` status changes;
+  - no video capture selected;
+  - npm validation intentionally skipped because no web source changed.
