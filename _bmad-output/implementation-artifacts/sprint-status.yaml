@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T19:05:30+02:00
+# last_updated: 2026-06-07T20:00:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement-MYB-15.
+# - Next action: commit-MYB-15.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T19:05:30+02:00"
+last_updated: "2026-06-07T20:00:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-15"
+  next_action: "commit-MYB-15"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -159,7 +159,13 @@ sprint:
   post_mvp_after_myb14_unity_demo_validation_harness_linear_comment: "5c6cbedb-1fd2-4953-a42e-f0bcd23b6d09"
   post_mvp_after_myb14_unity_demo_validation_harness_scope: "Unity-only private demo validation harness; add MYB-15 editor menu and myb-15-demo-readiness report covering route, camera, fog, HUD/controls, mock loop and SceneLife projected visibility metrics; no visual polish, no repositioning life elements, no Meshy, assets, vehicles, traffic, AI, BLE/FTMS, backend, public deploy, MYB-16 creation or web source changes."
   post_mvp_after_myb14_unity_demo_validation_harness_decision: "User chose direction D first, then A: MYB-15 creates repeatable demo-readiness metrics before MYB-16 readability polish."
-  post_mvp_after_myb14_unity_demo_validation_harness_next_action: "implement-MYB-15"
+  post_mvp_after_myb14_unity_demo_validation_harness_implementation_comment: "93fad4fa-df20-45e1-ac00-112101752c10"
+  post_mvp_after_myb14_unity_demo_validation_harness_review_blocker_comment: "332597d7-2506-4466-845d-e8ace0a14b1e"
+  post_mvp_after_myb14_unity_demo_validation_harness_validation: "passed via unity_mcp: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle; hierarchy includes Main Camera, Route, Fog, SceneLife, Canvas, EventSystem and RideSession; MYB-15 demo readiness menu executed via MCP; report _bmad-output/unity-test-results/myb-15-demo-readiness.txt generated with route/camera/fog/HUD/session/SceneLife metrics and MYB-16 recommendations; projected SceneLife visibility 0/8 in camera cone; console 0 errors / 0 warnings."
+  post_mvp_after_myb14_unity_demo_validation_harness_review_blocker: "post-review corrections applied, but final Unity rerun is blocked: unity_mcp connection revoked; batchmode fallback aborts because unity/Echappee3D is open in the Unity Editor."
+  post_mvp_after_myb14_unity_demo_validation_harness_review: "approved after 2 scoped corrections: report now includes maxAbsElevation, maxAbsGrade and minForwardDot; console health report no longer uses fragile internal LogEntries reflection. Final Unity MCP validation passed and report regenerated."
+  post_mvp_after_myb14_unity_demo_validation_harness_review_comment: "06c126c1-ce0c-4b7f-b62f-451ab35de746"
+  post_mvp_after_myb14_unity_demo_validation_harness_next_action: "commit-MYB-15"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -259,4 +265,4 @@ development_status:
 
   # MYB-15 - Story post-MYB-14 - Unity demo validation harness
   # Story unique creee depuis la revue post-MYB-14; harness de validation demo avant polish lisibilite MYB-16.
-  myb-15-unity-demo-validation-harness: ready-for-dev
+  myb-15-unity-demo-validation-harness: done

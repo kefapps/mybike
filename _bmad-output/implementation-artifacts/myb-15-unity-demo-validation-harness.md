@@ -4,9 +4,12 @@
 
 - Linear issue: `MYB-15`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Linear sync comment: `5c6cbedb-1fd2-4953-a42e-f0bcd23b6d09`
+- Linear implementation comment: `93fad4fa-df20-45e1-ac00-112101752c10`
+- Linear review blocker comment: `332597d7-2506-4466-845d-e8ace0a14b1e`
+- Linear review comment: `06c126c1-ce0c-4b7f-b62f-451ab35de746`
 - Created: `2026-06-07`
 - Baseline commit: `fe98bc828c09dda470f6ca28167b5b99cef82d3d`
 - Depends on: `MYB-14`
@@ -51,31 +54,31 @@ Unity remains the production target. The React/Three prototype remains a referen
 
 ## Implementation Tasks
 
-- [ ] Preflight the Unity project:
+- [x] Preflight the Unity project:
   - confirm project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
   - confirm active scene `Assets/Scenes/RideMock.unity`;
   - confirm Editor idle, not compiling, not in Play Mode;
   - use MCP Unity if available, with batchmode fallback only if MCP Unity is unavailable.
-- [ ] Add the demo-readiness harness:
+- [x] Add the demo-readiness harness:
   - extend `RideMockValidator` or add a focused editor validator class;
   - expose `Echappee/MYB-15/Validate Demo Readiness`;
   - preserve existing MYB-14 validation entry points.
-- [ ] Generate the report:
+- [x] Generate the report:
   - write `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`;
   - include pass/fail checks and factual metric lines;
   - include a compact `MYB-16 recommendations` section.
-- [ ] Implement route/camera/fog/HUD/session coverage by reusing existing validation logic:
+- [x] Implement route/camera/fog/HUD/session coverage by reusing existing validation logic:
   - avoid duplicating logic where helper methods can stay private and clear;
   - do not change runtime behavior unless a validator bug prevents correct measurement.
-- [ ] Add `SceneLife` projected visibility metrics:
+- [x] Add `SceneLife` projected visibility metrics:
   - measure active birds and humans against representative route/camera samples;
   - report distance, yaw, pitch and in-cone boolean;
   - keep thresholds simple and explicit in code.
-- [ ] Add or extend EditMode tests if helpful:
+- [x] Add or extend EditMode tests if helpful:
   - prefer small tests for visibility math if it is extracted from the editor class;
   - avoid broad PlayMode or capture automation in MYB-15 unless already trivial.
-- [ ] Update scene plan or local docs only if the validation menu/report changes the documented scene workflow.
-- [ ] Run final safety checks:
+- [x] Update scene plan or local docs only if the validation menu/report changes the documented scene workflow.
+- [x] Run final safety checks:
   - Unity validation via MCP Unity if available, otherwise batchmode Unity;
   - execute MYB-15 menu;
   - confirm report exists and contains recommendations;
@@ -130,7 +133,7 @@ Unity remains the production target. The React/Three prototype remains a referen
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Notes
 
@@ -138,20 +141,66 @@ Unity remains the production target. The React/Three prototype remains a referen
 - Post-MYB-14 MCP audit observed active scene `Assets/Scenes/RideMock.unity`, clean editor state, route/fog present and `SceneLife` containing 5 birds and 3 human silhouettes.
 - The rough projected-visibility audit found the life elements often outside the rider forward cone, with yaw values around 60 to 100 degrees in representative checks.
 - That visibility issue is intended evidence for MYB-16, not scope for MYB-15.
+- Implementation added a MYB-15 demo-readiness validator and a pure `SceneLifeVisibility` metric helper without repositioning birds/humans or changing route/camera/fog behavior.
+- Unity console initially exposed missing `MyBike.Echappee3D.Core` imports in the new visibility helper/test; those scoped compile errors were fixed before final validation.
+- Final report records `Projected visibility in camera cone: 0/8`, confirming MYB-16 should focus on readability polish.
+- Review finding corrected: route/camera metrics are now more explicit in the report with `maxAbsElevation`, `maxAbsGrade` and `minForwardDot`.
+- Review finding corrected: fragile internal Unity console reflection was removed from the report because MCP console read is the authoritative acceptance proof.
+- Post-correction Unity validation is blocked: `unity_mcp` connection is revoked, and batchmode fallback aborts because the project is open in the Unity Editor.
+- Final review resumed after MCP cleanup/restart; MYB-15 validation passed through Unity MCP.
+- Review approved after 2 scoped corrections, with no remaining blockers.
 
 ### Completion Evidence
 
-- Story/tracking only; no Unity implementation performed in this pass.
-- Linear issue created in `In Progress`: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
+- Story/tracking commit completed first:
+  - `18ace8588346a3c7d471bb35a3ca6a5459e039bd`
+  - `MYB-15 create demo validation harness story`
+- Linear issue moved to `Done`: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
 - Linear sync comment: `5c6cbedb-1fd2-4953-a42e-f0bcd23b6d09`.
-- npm validation intentionally skipped because this pass is story/tracking only and no web source changed.
+- Linear implementation comment: `93fad4fa-df20-45e1-ac00-112101752c10`.
+- Linear review blocker comment: `332597d7-2506-4466-845d-e8ace0a14b1e`.
+- Unity MCP validation:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling and not updating.
+  - Hierarchy includes `Main Camera`, `Route`, `Fog`, `SceneLife`, `Canvas`, `EventSystem` and `RideSession`.
+  - `Echappee/MYB-15/Validate Demo Readiness` executed via MCP.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Report generated:
+  - `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`.
+  - Includes project root, active scene, editor idle, console health, route/camera/fog/HUD/session loop checks, `SceneLife` counts and projected visibility.
+  - `SceneLife` projected visibility: `0/8` in camera cone, finite samples `8/8`.
+  - MYB-16 factual recommendations included.
+- npm validation intentionally skipped because no web source changed.
+- Review rerun blocker:
+  - `unity_mcp` returns `Connection revoked. Go to Unity Editor > Project Settings > AI > Unity MCP to change approval.`
+  - Batchmode fallback command with Unity `6000.4.10f1` aborts because another Unity instance has `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D` open.
+  - Required next action: re-approve Unity MCP in the Editor, or close the project so batchmode can run.
+- Final review evidence:
+  - Unity MCP root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling, not updating; scene not dirty.
+  - `Echappee/MYB-15/Validate Demo Readiness` executed via MCP after corrections.
+  - Regenerated report includes `maxAbsElevation=15.00m`, `maxAbsGrade=0.060`, `minForwardDot=0.957`, `Projected visibility in camera cone: 0/8`, finite visibility samples `8/8`, and MYB-16 recommendations.
+  - Unity console returned 0 errors / 0 warnings after validation.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`
+- `unity/Echappee3D/Assets/Echappee/Editor/DemoReadinessValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/DemoReadinessValidator.cs.meta`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/SceneLifeVisibility.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/SceneLifeVisibility.cs.meta`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/SceneLifeVisibilityTests.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/SceneLifeVisibilityTests.cs.meta`
 
 ### Change Log
 
 - 2026-06-07: Created MYB-15 story and tracking for Unity demo validation harness.
+- 2026-06-07: Implemented Unity demo-readiness harness, generated MYB-15 report and moved story to review.
+- 2026-06-07: Review corrected report metrics and console-health wording; final post-correction Unity validation blocked by revoked MCP / open project batchmode lock.
+- 2026-06-07: Unity MCP validation resumed and MYB-15 review approved.

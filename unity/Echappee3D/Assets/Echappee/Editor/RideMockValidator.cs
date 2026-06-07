@@ -39,6 +39,11 @@ namespace MyBike.Echappee3D.EditorTools
             WriteReport();
         }
 
+        public static void ValidateDemoReadiness()
+        {
+            DemoReadinessValidator.Validate();
+        }
+
         [MenuItem("Echappee/MYB-13/Validate RideMock Scene")]
         public static void ValidateMyb13()
         {
