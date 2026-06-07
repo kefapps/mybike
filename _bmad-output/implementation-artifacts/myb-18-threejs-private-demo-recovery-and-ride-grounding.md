@@ -4,9 +4,13 @@
 
 - Linear issue: `MYB-18`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Created: `2026-06-07`
+- Story/tracking commit: `23834e8c1901b0d8e8e548115843f40e65194369`
+- Linear sync comment: `41e80cfe-c47e-4449-9e2f-0282d5f85040`
+- Linear implementation comment: `ff3d8ec1-d3c7-4916-ba3e-8ef3a6b3eb65`
+- Linear review comment: `852213dc-d8c0-4b03-89b3-792685178f3b`
 - Baseline commit: `6794394b5d878ac431a888dcad94a783dca59577`
 - Depends on: `MYB-10`, `MYB-17`
 - Correct-course source: `_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md`
@@ -78,57 +82,57 @@ The expected answer after implementation is a visual proof bundle:
 
 ## Implementation Tasks
 
-- [ ] Preflight and protect scope. (AC: 1, 2, 11, 12)
-  - [ ] Check `git status --short` and identify unrelated existing WebGL/Unity artifacts before editing.
-  - [ ] Confirm no planned edit under `unity/Echappee3D/**`.
-  - [ ] Confirm `src/ride/*` is not part of the intended change surface.
-  - [ ] Keep the story implementation focused on one demo recovery pass, not a broad visual roadmap.
+- [x] Preflight and protect scope. (AC: 1, 2, 11, 12)
+  - [x] Check `git status --short` and identify unrelated existing WebGL/Unity artifacts before editing.
+  - [x] Confirm no planned edit under `unity/Echappee3D/**`.
+  - [x] Confirm `src/ride/*` is not part of the intended change surface.
+  - [x] Keep the story implementation focused on one demo recovery pass, not a broad visual roadmap.
 
-- [ ] Inspect the active web rendering path. (AC: 3, 4, 5, 7, 8)
-  - [ ] Read `src/render/SceneController.ts`.
-  - [ ] Read `src/render/createRouteMesh.ts`.
-  - [ ] Read `src/render/createBiomeVisuals.ts`.
-  - [ ] Read `src/render/renderHelpers.ts` and `src/render/sceneTypes.ts`.
-  - [ ] Read `src/route/cameraOnRail.ts`, `src/route/mockRouteDefinition.ts`, and relevant route tests before changing camera/route behavior.
-  - [ ] Read `scripts/capture-ride-video.mjs` and existing capture outputs before changing capture flow.
+- [x] Inspect the active web rendering path. (AC: 3, 4, 5, 7, 8)
+  - [x] Read `src/render/SceneController.ts`.
+  - [x] Read `src/render/createRouteMesh.ts`.
+  - [x] Read `src/render/createBiomeVisuals.ts`.
+  - [x] Read `src/render/renderHelpers.ts` and `src/render/sceneTypes.ts`.
+  - [x] Read `src/route/cameraOnRail.ts`, `src/route/mockRouteDefinition.ts`, and relevant route tests before changing camera/route behavior.
+  - [x] Read `scripts/capture-ride-video.mjs` and existing capture outputs before changing capture flow.
 
-- [ ] Improve grounded road perception. (AC: 3, 6, 8, 9)
-  - [ ] Strengthen road contact cues with bounded procedural elements: shoulders, verge strips, ground bands, edge markings, contact shadows, low roadside reference points, or equivalent.
-  - [ ] Ensure elements track the route center with existing helpers such as `getRouteCenterXAtZ`.
-  - [ ] Keep anchors outside the ride corridor and avoid occluding the road center.
-  - [ ] Avoid z-fighting by using clear vertical offsets/material choices.
+- [x] Improve grounded road perception. (AC: 3, 6, 8, 9)
+  - [x] Strengthen road contact cues with bounded procedural elements: shoulders, verge strips, ground bands, edge markings, contact shadows, low roadside reference points, or equivalent.
+  - [x] Ensure elements track the route center with existing helpers such as `getRouteCenterXAtZ`.
+  - [x] Keep anchors outside the ride corridor and avoid occluding the road center.
+  - [x] Avoid z-fighting by using clear vertical offsets/material choices.
 
-- [ ] Improve camera feel without breaking route contracts. (AC: 4, 5, 6, 11)
-  - [ ] Tune only the minimal camera parameters or render framing needed to reduce the flying sensation.
-  - [ ] Preserve deterministic `cameraOnRail` behavior and add/update tests for any changed defaults.
-  - [ ] Keep FOV/look-ahead/height finite and bounded at route start, midpoints and end.
-  - [ ] Do not fake speed by changing ride math.
+- [x] Improve camera feel without breaking route contracts. (AC: 4, 5, 6, 11)
+  - [x] Tune only the minimal camera parameters or render framing needed to reduce the flying sensation.
+  - [x] Preserve deterministic `cameraOnRail` behavior and add/update tests for any changed defaults.
+  - [x] Keep FOV/look-ahead/height finite and bounded at route start, midpoints and end.
+  - [x] Do not fake speed by changing ride math.
 
-- [ ] Rapatrier only useful Unity learnings. (AC: 7, 8, 9, 10, 12)
-  - [ ] Use the Unity WebGL capture as a negative comparison for what to avoid: ribbon road, weak ground anchors, life too far/line-like.
-  - [ ] Add or strengthen simple slope/elevation cues only if they improve web grounding.
-  - [ ] Add or strengthen lightweight life only if it supports readability and stays procedural.
-  - [ ] Preserve fog/depth and scenic mood from MYB-10.
+- [x] Rapatrier only useful Unity learnings. (AC: 7, 8, 9, 10, 12)
+  - [x] Use the Unity WebGL capture as a negative comparison for what to avoid: ribbon road, weak ground anchors, life too far/line-like.
+  - [x] Add or strengthen simple slope/elevation cues only if they improve web grounding.
+  - [x] Add or strengthen lightweight life only if it supports readability and stays procedural.
+  - [x] Preserve fog/depth and scenic mood from MYB-10.
 
-- [ ] Add focused tests. (AC: 5, 6, 8, 13)
-  - [ ] Extend route mesh tests for any new road grounding elements, counts and resource tracking.
-  - [ ] Extend biome visual tests for bounded anchors/life placement if touched.
-  - [ ] Extend camera route tests if camera defaults or camera config change.
-  - [ ] Keep tests deterministic and independent of screenshots.
+- [x] Add focused tests. (AC: 5, 6, 8, 13)
+  - [x] Extend route mesh tests for any new road grounding elements, counts and resource tracking.
+  - [x] Extend biome visual tests for bounded anchors/life placement if touched.
+  - [x] Extend camera route tests if camera defaults or camera config change.
+  - [x] Keep tests deterministic and independent of screenshots.
 
-- [ ] Produce real demo proof. (AC: 14, 15, 16)
-  - [ ] Run `npm run typecheck`.
-  - [ ] Run `npm run test`.
-  - [ ] Run `npm run build`.
-  - [ ] Start/let the capture script start a local Vite server.
-  - [ ] Run `npm run capture:ride-video` or an equivalent 60s capture flow.
-  - [ ] Verify HTTP 200, no page errors, nonblank canvas and screenshot/video artifacts.
-  - [ ] Write a short comparison note against `_bmad-output/video-captures/unity-webgl-running-2026-06-07T19-59-58-250Z/`.
+- [x] Produce real demo proof. (AC: 14, 15, 16)
+  - [x] Run `npm run typecheck`.
+  - [x] Run `npm run test`.
+  - [x] Run `npm run build`.
+  - [x] Start/let the capture script start a local Vite server.
+  - [x] Run `npm run capture:ride-video` or an equivalent 60s capture flow.
+  - [x] Verify HTTP 200, no page errors, nonblank canvas and screenshot/video artifacts.
+  - [x] Write a short comparison note against `_bmad-output/video-captures/unity-webgl-running-2026-06-07T19-59-58-250Z/`.
 
-- [ ] Update tracking after implementation. (AC: 17)
-  - [ ] Move MYB-18 to review in the story and `sprint-status.yaml`.
-  - [ ] Add capture paths and validation evidence to `_bmad-output/linear-sync.md`.
-  - [ ] Add a Linear implementation comment and set MYB-18 to In Review.
+- [x] Update tracking after implementation. (AC: 17)
+  - [x] Move MYB-18 to review in the story and `sprint-status.yaml`.
+  - [x] Add capture paths and validation evidence to `_bmad-output/linear-sync.md`.
+  - [x] Add a Linear implementation comment and set MYB-18 to In Review.
 
 ## Probable Files
 
@@ -227,22 +231,83 @@ Implementation should record:
 
 ## Dev Agent Record
 
+### Status
+
+`done`
+
 ### Agent Model Used
 
-TBD during implementation.
+Codex GPT-5
 
 ### Debug Log References
 
 - Story/tracking creation only: npm validations intentionally not run.
+- Red tests: `npx vitest run src/render/createRouteMesh.test.ts src/route/cameraOnRail.test.ts` failed before implementation on missing grounding bands and default camera height.
+- Targeted tests after implementation: `npx vitest run src/render/createRouteMesh.test.ts src/route/cameraOnRail.test.ts` passed.
+- Final validation: `npm run typecheck`, `npm run test`, `npm run build`, `npm run capture:ride-video`.
+- Capture summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/capture-summary.json`.
+- Final frame pixel check: `YMIN=30`, `YAVG=128.949`, `YMAX=245`.
+- Desktop screenshot pixel check: `/tmp/myb18-desktop.png`, `YMIN=54`, `YAVG=180.065`, `YMAX=245`.
+- Mobile screenshot pixel check: `/tmp/myb18-mobile.png`, `YMIN=68`, `YAVG=184.482`, `YMAX=245`.
 
 ### Completion Notes
 
-TBD during implementation.
+- Restored Three.js as the active private-demo path without touching Unity.
+- Added route-following verge bands and contact-shadow strips to make the road read as sitting on surrounding ground instead of floating.
+- Lowered/tightened the default camera framing (`heightMeters=1.25`, `lookAheadMeters=18`, `fovDegrees=66`) while preserving deterministic pure route math and custom camera config behavior.
+- Updated capture flow so `npm run capture:ride-video` produces a 60 second proof by default, with 60s artifact names and 12-frame contact sheet output.
+- Added an inline local favicon to avoid a favicon 404 during browser proof.
+- Final 60s capture is cleaner than the MYB-17 Unity WebGL reference: route edges/verges and nearby anchors stay visible through the run, with preserved fog/depth and no page errors.
 
 ### File List
 
-TBD during implementation.
+- `index.html`
+- `scripts/capture-ride-video.mjs`
+- `src/render/createRouteMesh.ts`
+- `src/render/createRouteMesh.test.ts`
+- `src/route/cameraOnRail.ts`
+- `src/route/cameraOnRail.test.ts`
+- `_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/` (validation evidence, not staged)
 
 ### Change Log
 
 - 2026-06-07: Created MYB-18 story from post-MYB-17 correct-course; Three.js restored as private demo target, Unity parked/research.
+- 2026-06-07: Implemented Three.js ride grounding recovery, 60s capture validation, and BMAD/Linear implementation tracking.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved on 2026-06-07 with no code corrections.
+
+### Findings
+
+- None. Clean review against MYB-18 acceptance criteria and scope guardrails.
+
+### Review Evidence
+
+- Review validation:
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 22 files / 73 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run capture:ride-video`: pass, 60s capture.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/`.
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/capture-summary.json`.
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/ride-visual-audit-60s.mp4`.
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/ride-visual-audit-contact-sheet.jpg`.
+- Review capture metrics:
+  - HTTP 200.
+  - `consoleMessages: []`.
+  - `pageErrors: []`.
+  - `durationMs: 60000`.
+  - `frameCount: 12`.
+  - Final frame pixel stats: `YMIN=30`, `YAVG=128.639`, `YMAX=245`.
+- Scope checks:
+  - No `unity/Echappee3D/**` diff in the reviewed MYB-18 implementation.
+  - No `src/ride/*` diff.
+  - No Meshy, external asset, backend, BLE/FTMS, deployment or new engine migration.
+  - Capture artifacts remain evidence-only and are not staged.

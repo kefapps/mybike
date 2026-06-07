@@ -9,9 +9,9 @@ import type {
 } from "./routeTypes";
 
 export const DEFAULT_CAMERA_RAIL_CONFIG: CameraRailConfig = {
-  heightMeters: 1.6,
-  lookAheadMeters: 12,
-  fovDegrees: 70
+  heightMeters: 1.25,
+  lookAheadMeters: 18,
+  fovDegrees: 66
 };
 
 export function cameraOnRail(
