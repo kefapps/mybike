@@ -42,6 +42,7 @@ Last sync: 2026-06-07
 - Unity vertical slice mock scaffold story: `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
 - Unity playable parity mock loop story: `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
 - Unity route elevation and camera feel story: `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+- Unity lightweight scene life story: `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
 
 ## Linear Documents
 
@@ -67,6 +68,7 @@ Last sync: 2026-06-07
 | Post-MYB-10 Unity scaffold | `MYB-11` | Unity vertical slice mock scaffold | https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold |
 | Post-MYB-11 Unity playable loop | `MYB-12` | Unity playable parity mock loop | https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop |
 | Post-MYB-12 Unity elevation | `MYB-13` | Unity route elevation and camera feel | https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel |
+| Post-MYB-13 Unity scene life | `MYB-14` | Unity lightweight scene life | https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life |
 
 ## Dependency Mapping
 
@@ -88,6 +90,9 @@ Last sync: 2026-06-07
   story, not a full migration or Unity backlog.
 - `MYB-13` follows completed `MYB-12`; it is a single Unity route elevation and
   camera feel story, not final terrain, life, full migration or Unity backlog.
+- `MYB-14` follows completed `MYB-13`; it is a single Unity lightweight scene
+  life story, with a bounded Meshy comparison explicitly approved for this
+  story only, not a traffic system, final art pass or Unity backlog.
 
 ## Readiness Caveats Synced
 
@@ -2143,6 +2148,54 @@ Synced on 2026-06-07:
   - no birds, humans, vehicles, Meshy, external assets, Unity AI generation,
     BLE/FTMS, backend, public deploy, final terrain, full migration or broad
     backlog.
+
+## MYB-14 Unity Lightweight Scene Life Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-14`
+  - URL: https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life
+  - Status: `In Progress`
+  - Related to: `MYB-13`
+  - Sync comment ID: `831d4989-4c5c-4353-a196-d1a3b969b7a0`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
+  - Local status: `ready-for-dev`
+  - Baseline commit: `6473a9d55975cdac699e21a71e14283ef9fb1d94`
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-14-unity-lightweight-scene-life: ready-for-dev`
+  - `next_action: implement-MYB-14`
+- Scope decisions validated by user:
+  - Option 1A: low-cost Meshy comparison, `meshy-5`, preview only, FBX output,
+    10 credits total maximum.
+  - Option 2A: one stylized bird candidate and one roadside human/spectator
+    silhouette candidate.
+  - Option 3A: Unity primitives/procedural assets may win if they are clearer or
+    more stable for the POC.
+- Source evidence:
+  - MYB-11 Unity scaffold: Done.
+  - MYB-12 Unity playable parity mock loop: Done.
+  - MYB-13 Unity route elevation and camera feel: Done.
+  - MYB-13 commit: `6473a9d55975cdac699e21a71e14283ef9fb1d94`.
+  - MYB-13 review comment: `630e63eb-b994-4205-a334-302900c151ba`.
+  - Post-MYB-10 human feedback requested life elements: birds, humans on the
+    side, and vehicles; MYB-14 intentionally keeps only birds and static human
+    silhouettes.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/`;
+  - React/Three prototype preserved as reference;
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changes;
+  - no vehicle, traffic system, collision gameplay, AI vehicle, complex
+    pedestrian animation, BLE/FTMS, backend, public deploy, full migration,
+    final art pass or broad backlog;
+  - Meshy is allowed only for the two approved preview FBX candidates and does
+    not create a general asset pipeline.
+- Tracking validation:
+  - Story/tracking only; no Unity implementation performed in this pass.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
 
 ## Sync Policy
 

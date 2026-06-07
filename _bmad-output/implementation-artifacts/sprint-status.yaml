@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T17:58:35+02:00
+# last_updated: 2026-06-07T18:12:11+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit MYB-13.
+# - Next action: implement-MYB-14.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T17:58:35+02:00"
+last_updated: "2026-06-07T18:12:11+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-13"
+  next_action: "implement-MYB-14"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -142,6 +142,13 @@ sprint:
   post_mvp_after_myb12_unity_route_elevation_validation: "passed via restored unity_mcp direct MCP client: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle; hierarchy includes Main Camera, Route, Fog, Canvas, EventSystem and RideSession; MYB-13 rebuild and validator executed via MCP; console 0 error / 0 warning; report _bmad-output/unity-test-results/myb-13-editor-validation.txt."
   post_mvp_after_myb12_unity_route_elevation_review: "approved after one scoped validator patch for bounded fog/depth settings; final Unity MCP validation and safety checks passed."
   post_mvp_after_myb12_unity_route_elevation_next_action: "commit-MYB-13"
+  post_mvp_after_myb13_unity_lightweight_scene_life_story: "_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md"
+  post_mvp_after_myb13_unity_lightweight_scene_life_issue_created: true
+  post_mvp_after_myb13_unity_lightweight_scene_life_linear_url: "https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life"
+  post_mvp_after_myb13_unity_lightweight_scene_life_linear_comment: "831d4989-4c5c-4353-a196-d1a3b969b7a0"
+  post_mvp_after_myb13_unity_lightweight_scene_life_scope: "Unity-only lightweight life layer with stylized birds and static roadside human silhouettes; compare Unity primitives/procedural baseline against two approved Meshy FBX previews; no vehicles, traffic, AI, external asset packs, Unity AI generation, BLE/FTMS, backend, public deploy, full migration or web source changes."
+  post_mvp_after_myb13_unity_lightweight_scene_life_meshy_decision: "User approved 1A/2A/3A: meshy-5 preview only, target_formats [fbx], one bird and one human silhouette candidate, 10 credits total maximum; Unity primitives may win."
+  post_mvp_after_myb13_unity_lightweight_scene_life_next_action: "implement-MYB-14"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -153,6 +160,7 @@ sprint:
     - "MYB-11"
     - "MYB-12"
     - "MYB-13"
+    - "MYB-14"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -168,6 +176,7 @@ linear_mapping:
   myb-11-unity-vertical-slice-mock-scaffold: "MYB-11"
   myb-12-unity-playable-parity-mock-loop: "MYB-12"
   myb-13-unity-route-elevation-and-camera-feel: "MYB-13"
+  myb-14-unity-lightweight-scene-life: "MYB-14"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -229,3 +238,7 @@ development_status:
   # Story unique creee depuis les retours humains et MYB-12; pentes simples controlees, pas terrain final.
   # Revue de code locale passee pour MYB-13.
   myb-13-unity-route-elevation-and-camera-feel: done
+
+  # MYB-14 - Story post-MYB-13 - Unity lightweight scene life
+  # Story unique creee depuis les retours humains et MYB-13; oiseaux + silhouettes humaines, comparaison Meshy bornee validee.
+  myb-14-unity-lightweight-scene-life: ready-for-dev
