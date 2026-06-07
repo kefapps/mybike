@@ -1,0 +1,53 @@
+MYB-15 Unity demo readiness validation
+Generated UTC: 2026-06-07T18:08:28.6836530Z
+Unity version: 6000.4.10f1
+Project root: /Users/jbodin/personnel/apps/mybike/unity/Echappee3D
+Repository root: /Users/jbodin/personnel/apps/mybike
+Active scene: Assets/Scenes/RideMock.unity
+Editor idle: True
+Editor playing: False
+Editor compiling: False
+Editor updating: False
+Console health: verified by Unity MCP console read after this menu execution; expected final result is 0 errors / 0 warnings.
+
+Scene wiring
+RideSessionController: present
+MockRideInput: present
+HudController: present
+RideControlPanel: present
+Main camera: present
+Start/Pause/Resume/Finish buttons: present/present/present/present
+HUD speed/effort/progress/phase/summary: present/present/present/present/present
+
+Route visible/stable
+pass enabled=True, points=7, width=4.00, material=present, finiteSamples=21/21, elevatedSamples=19/21, maxAbsElevation=15.00m, maxAbsGrade=0.060
+
+Camera samples bounded
+pass finiteSamples=21/21, minRouteClearance=1.60m, maxSampleStep=52.66m, minForwardDot=0.957, configHeight=1.60m, lookAhead=12.00m
+
+Fog/depth
+pass enabled=True, mode=Linear, start=45.00m, end=220.00m
+
+HUD/controls/session loop
+pass sequence=Idle -> Running -> Paused -> Running -> Finished, pauseFrozen=True, resumeAdvanced=True, summary=True, summaryDistance=7.50m
+
+SceneLife presence and projected visibility
+Birds: 5 required>=5
+Humans: 3 required>=3
+Total life elements: 8/12
+Projected visibility in camera cone: 0/8
+Finite visibility samples: 8/8
+bird:Bird_01 progress=0.120 distance=41.79m yaw=-97.0deg pitch=19.7deg inCone=False
+bird:Bird_02 progress=0.260 distance=24.53m yaw=92.8deg pitch=28.6deg inCone=False
+bird:Bird_03 progress=0.430 distance=24.92m yaw=63.6deg pitch=21.5deg inCone=False
+bird:Bird_04 progress=0.620 distance=51.89m yaw=-77.7deg pitch=11.8deg inCone=False
+bird:Bird_05 progress=0.790 distance=38.07m yaw=98.4deg pitch=14.5deg inCone=False
+human:HumanSilhouette_01 progress=0.180 distance=30.70m yaw=-71.2deg pitch=-1.5deg inCone=False
+human:HumanSilhouette_02 progress=0.420 distance=40.25m yaw=67.0deg pitch=0.4deg inCone=False
+human:HumanSilhouette_03 progress=0.760 distance=33.76m yaw=97.5deg pitch=-1.6deg inCone=False
+
+MYB-16 factual recommendations
+- MYB-16 should improve SceneLife readability: current projected visibility has 0 elements inside the camera cone.
+- Birds are present but not reliably in the forward cone; consider placement/scale/contrast polish in MYB-16.
+- Human silhouettes are present but not reliably in the forward cone; consider lateral placement/readability polish in MYB-16.
+- Keep MYB-16 visual changes bounded: route, camera, fog, HUD and loop should remain regression-checked by this harness.

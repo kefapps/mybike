@@ -2348,6 +2348,139 @@ Synced on 2026-06-07:
   - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
     run because no web source changed.
 
+## MYB-15 Unity Demo Validation Harness Ready For Review
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-15`
+  - URL: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
+  - Status: `In Review`
+  - Implementation validation comment ID: `93fad4fa-df20-45e1-ac00-112101752c10`
+- Story/tracking commit completed first:
+  - Commit: `18ace8588346a3c7d471bb35a3ca6a5459e039bd`
+  - Message: `MYB-15 create demo validation harness story`
+- Local implementation:
+  - Added `Echappee/MYB-15/Validate Demo Readiness`.
+  - Added `SceneLifeVisibility` runtime helper for deterministic projected
+    visibility samples.
+  - Added `DemoReadinessValidator` editor harness.
+  - Added EditMode coverage for camera-cone visibility math.
+  - Generated `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`.
+- Unity MCP validation:
+  - Project root confirmed:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene confirmed: `Assets/Scenes/RideMock.unity`.
+  - Editor state confirmed idle, not playing, not compiling and not updating.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `SceneLife`,
+    `Canvas`, `EventSystem`, `RideSession`.
+  - MCP menu execution passed:
+    `Echappee/MYB-15/Validate Demo Readiness`.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Report evidence:
+  - `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`.
+  - Includes project root, active scene, editor idle state, Unity version,
+    timestamp, console health, route visible/stable metrics, bounded camera
+    samples, fog/depth, HUD/controls/session loop and `SceneLife` counts.
+  - `SceneLife` projected visibility: 0/8 elements in camera cone.
+  - Finite visibility samples: 8/8.
+  - MYB-16 recommendations included for readability polish.
+- Implementation correction:
+  - Unity console initially exposed missing `MyBike.Echappee3D.Core` imports in
+    the new visibility helper/test.
+  - Imports were fixed before final validation; final console proof is 0 errors
+    / 0 warnings.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
+    status: `review`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-15-unity-demo-validation-harness: review`.
+  - `next_action: code-review-MYB-15`.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/` plus BMAD/tracking
+    updates and the generated report.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+  - No visual polish, no repositioning birds or human silhouettes, no route/fog
+    / camera behavior change, no Meshy, no external asset, no Unity AI
+    generation, no vehicle, traffic, AI, BLE/FTMS, backend, public deploy, full
+    migration or MYB-16 creation.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+
+## MYB-15 Review Corrections Blocked On Unity Validation
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-15`
+  - URL: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
+  - Status: `In Progress`
+  - Review correction/blocker comment ID: `332597d7-2506-4466-845d-e8ace0a14b1e`
+- Review findings corrected locally:
+  - Report now includes explicit route bounds: `maxAbsElevation` and
+    `maxAbsGrade`.
+  - Report now includes camera forward stability: `minForwardDot`.
+  - Fragile internal Unity `LogEntries` reflection was removed from report
+    generation; final console health is verified by Unity MCP console read.
+- Post-correction Unity validation blocker:
+  - `unity_mcp` calls return `Connection revoked. Go to Unity Editor > Project
+    Settings > AI > Unity MCP to change approval.`
+  - Batchmode fallback with Unity `6000.4.10f1` aborts because
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D` is already open in
+    the Unity Editor.
+  - Required recovery: re-approve Unity MCP in the Editor, or close the project
+    so batchmode can run.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
+    status: `in-progress`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-15-unity-demo-validation-harness: in-progress`.
+  - `next_action: unblock-unity-validation-MYB-15`.
+- Local non-Unity checks remain required after Unity is unblocked:
+  - `git diff --check`.
+  - High-confidence secret scan.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+  - No video capture staged.
+  - No npm commands unless web source changes are detected.
+
+## MYB-15 Unity Demo Validation Harness Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue completed:
+  - Issue: `MYB-15`
+  - URL: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
+  - Status: `Done`
+  - Review comment ID: `06c126c1-ce0c-4b7f-b62f-451ab35de746`
+- Review verdict:
+  - Approved after 2 scoped corrections.
+  - Correction 1: report now includes explicit route/camera metrics
+    `maxAbsElevation`, `maxAbsGrade` and `minForwardDot`.
+  - Correction 2: report no longer uses fragile internal Unity `LogEntries`
+    reflection for console health; final console proof is the MCP console read.
+- Final Unity MCP proof:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling and not updating; scene not dirty.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `SceneLife`,
+    `Canvas`, `EventSystem`, `RideSession`, `Bird_01..Bird_05` and
+    `HumanSilhouette_01..03`.
+  - MCP menu execution passed:
+    `Echappee/MYB-15/Validate Demo Readiness`.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Final report:
+  - `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`.
+  - Includes `maxAbsElevation=15.00m`, `maxAbsGrade=0.060`,
+    `minForwardDot=0.957`, finite route/camera samples, fog/depth,
+    HUD/controls/session loop, `SceneLife` counts, projected visibility `0/8`
+    in camera cone and MYB-16 recommendations.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-15-unity-demo-validation-harness: done`.
+  - `next_action: commit-MYB-15`.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
