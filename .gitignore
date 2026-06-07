@@ -1,5 +1,29 @@
+.DS_Store
+
+# Dependencies and build output
 node_modules/
 dist/
-.DS_Store
+coverage/
+*.tsbuildinfo
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs and diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Test and browser artifacts
+playwright-report/
+test-results/
+blob-report/
+
+# BMAD local-only files
 _bmad/config.user.toml
+_bmad/**/*.user.toml
 _bmad-output/video-captures/
