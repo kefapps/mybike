@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T20:19:27+02:00
+# last_updated: 2026-06-07T21:09:22+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement-MYB-16.
+# - Next action: commit-MYB-16.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T20:19:27+02:00"
+last_updated: "2026-06-07T21:09:22+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-16"
+  next_action: "commit-MYB-16"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -173,7 +173,11 @@ sprint:
   post_mvp_after_myb15_scene_life_readability_source_report: "_bmad-output/unity-test-results/myb-15-demo-readiness.txt"
   post_mvp_after_myb15_scene_life_readability_signal: "MYB-15 projected SceneLife visibility 0/8 with finite samples 8/8; polish existing birds and human silhouettes to reach >=3/8, including at least 1 bird and 1 human."
   post_mvp_after_myb15_scene_life_readability_scope: "Unity-only bounded readability polish for existing MYB-14 birds and static human silhouettes; adjust placement, scale, orientation and simple material contrast only; no Meshy, external assets, Unity AI generation, vehicles, traffic, AI, complex animation, BLE/FTMS, backend, public deploy or web source changes."
-  post_mvp_after_myb15_scene_life_readability_next_action: "implement-MYB-16"
+  post_mvp_after_myb15_scene_life_readability_implementation_report: "_bmad-output/unity-test-results/myb-16-scene-life-readability.txt"
+  post_mvp_after_myb15_scene_life_readability_implementation_validation: "passed via unity_mcp: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle, not playing, not compiling; MYB-16 Validate Scene Life Readability menu executed; report shows projectedVisible=4/8, birdsInCone=2, humansInCone=2, finiteSamples=8/8; console 0 errors / 0 warnings; git diff --check; high-confidence secret scan; no src/ride, src/render or src/app changes; no video capture staged."
+  post_mvp_after_myb15_scene_life_readability_review: "approved with no blocking findings and no review-time code corrections; Unity MCP validation rerun, report still shows projectedVisible=4/8, birdsInCone=2, humansInCone=2, finiteSamples=8/8; console 0 errors / 0 warnings."
+  post_mvp_after_myb15_scene_life_readability_review_comment: "2407685b-a5f0-4453-b115-bb0d203a8ce4"
+  post_mvp_after_myb15_scene_life_readability_next_action: "commit-MYB-16"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -279,4 +283,4 @@ development_status:
 
   # MYB-16 - Story post-MYB-15 - Unity scene life readability polish
   # Story unique creee depuis le signal MYB-15: SceneLife projected visibility 0/8.
-  myb-16-unity-scene-life-readability-polish: ready-for-dev
+  myb-16-unity-scene-life-readability-polish: done

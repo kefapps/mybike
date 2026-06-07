@@ -19,9 +19,14 @@ namespace MyBike.Echappee3D.EditorTools
     public static class DemoReadinessValidator
     {
         public const string MenuPath = "Echappee/MYB-15/Validate Demo Readiness";
+        public const string ReadabilityMenuPath = "Echappee/MYB-16/Validate Scene Life Readability";
 
         private const string ScenePath = "Assets/Scenes/RideMock.unity";
         private const string ReportFileName = "myb-15-demo-readiness.txt";
+        private const string ReadabilityReportFileName = "myb-16-scene-life-readability.txt";
+        private const int Myb16RequiredVisibleCount = 3;
+        private const int Myb16RequiredVisibleBirds = 1;
+        private const int Myb16RequiredVisibleHumans = 1;
 
         [MenuItem("Echappee/MYB-15/Validate Demo Readiness")]
         public static void ValidateFromMenu()
@@ -29,16 +34,31 @@ namespace MyBike.Echappee3D.EditorTools
             Validate();
         }
 
+        [MenuItem("Echappee/MYB-16/Validate Scene Life Readability")]
+        public static void ValidateReadabilityFromMenu()
+        {
+            ValidateSceneLifeReadability();
+        }
+
         public static void Validate()
         {
             RideMockValidator.Validate();
 
-            var report = BuildReport();
-            var reportPath = WriteReport(report);
+            var report = BuildReport("MYB-15 Unity demo readiness validation", false);
+            var reportPath = WriteReport(report, ReportFileName);
             Debug.Log($"MYB-15 demo readiness validation passed. Report: {reportPath}");
         }
 
-        private static string BuildReport()
+        public static void ValidateSceneLifeReadability()
+        {
+            RideMockValidator.Validate();
+
+            var report = BuildReport("MYB-16 Unity scene life readability validation", true);
+            var reportPath = WriteReport(report, ReadabilityReportFileName);
+            Debug.Log($"MYB-16 scene life readability validation passed. Report: {reportPath}");
+        }
+
+        private static string BuildReport(string title, bool enforceMyb16Readability)
         {
             var scene = EditorSceneManager.GetActiveScene();
             if (!scene.IsValid() || scene.path != ScenePath)
@@ -61,10 +81,11 @@ namespace MyBike.Echappee3D.EditorTools
             var fogReport = AnalyzeFog();
             var loopReport = AnalyzeSessionLoop();
             var visibilitySamples = CollectSceneLifeVisibility(sceneLife, route, camera);
+            var visibilitySummary = SceneLifeVisibility.Summarize(visibilitySamples);
             var consoleHealth = ReadConsoleHealth();
 
             var output = new StringBuilder();
-            output.AppendLine("MYB-15 Unity demo readiness validation");
+            output.AppendLine(title);
             output.AppendLine($"Generated UTC: {DateTime.UtcNow:O}");
             output.AppendLine($"Unity version: {Application.unityVersion}");
             output.AppendLine($"Project root: {ProjectRoot()}");
@@ -98,10 +119,23 @@ namespace MyBike.Echappee3D.EditorTools
             output.AppendLine(loopReport);
             output.AppendLine();
             output.AppendLine("SceneLife presence and projected visibility");
-            AppendSceneLifeSection(output, sceneLife, visibilitySamples);
+            AppendSceneLifeSection(output, sceneLife, visibilitySamples, visibilitySummary);
+            output.AppendLine();
+            output.AppendLine("MYB-16 readability threshold");
+            AppendReadabilityThreshold(output, visibilitySummary);
             output.AppendLine();
             output.AppendLine("MYB-16 factual recommendations");
-            AppendRecommendations(output, visibilitySamples);
+            AppendRecommendations(output, visibilitySummary);
+
+            if (enforceMyb16Readability)
+            {
+                Require(
+                    visibilitySummary.MeetsReadabilityTarget(
+                        Myb16RequiredVisibleCount,
+                        Myb16RequiredVisibleBirds,
+                        Myb16RequiredVisibleHumans),
+                    "MYB-16 readability target should be met by SceneLife projected visibility.");
+            }
 
             return output.ToString();
         }
@@ -290,22 +324,16 @@ namespace MyBike.Echappee3D.EditorTools
         private static void AppendSceneLifeSection(
             StringBuilder output,
             LightweightSceneLife sceneLife,
-            List<SceneLifeVisibilitySample> samples)
+            List<SceneLifeVisibilitySample> samples,
+            SceneLifeVisibility.Summary summary)
         {
-            var insideCount = 0;
-            var finiteCount = 0;
-
-            foreach (var sample in samples)
-            {
-                insideCount += sample.IsInCameraCone ? 1 : 0;
-                finiteCount += sample.IsFinite ? 1 : 0;
-            }
-
             output.AppendLine($"Birds: {sceneLife.BirdCount} required>={LightweightSceneLife.RequiredBirdCount}");
             output.AppendLine($"Humans: {sceneLife.HumanCount} required>={LightweightSceneLife.RequiredHumanCount}");
             output.AppendLine($"Total life elements: {sceneLife.TotalLifeElementCount}/{LightweightSceneLife.MaxLifeElementCount}");
-            output.AppendLine($"Projected visibility in camera cone: {insideCount}/{samples.Count}");
-            output.AppendLine($"Finite visibility samples: {finiteCount}/{samples.Count}");
+            output.AppendLine($"Projected visibility in camera cone: {summary.InsideCount}/{summary.TotalCount}");
+            output.AppendLine($"Birds in camera cone: {summary.BirdInsideCount}/{sceneLife.BirdCount}");
+            output.AppendLine($"Humans in camera cone: {summary.HumanInsideCount}/{sceneLife.HumanCount}");
+            output.AppendLine($"Finite visibility samples: {summary.FiniteCount}/{summary.TotalCount}");
 
             foreach (var sample in samples)
             {
@@ -316,41 +344,53 @@ namespace MyBike.Echappee3D.EditorTools
             }
         }
 
+        private static void AppendReadabilityThreshold(
+            StringBuilder output,
+            SceneLifeVisibility.Summary summary)
+        {
+            var status = summary.MeetsReadabilityTarget(
+                Myb16RequiredVisibleCount,
+                Myb16RequiredVisibleBirds,
+                Myb16RequiredVisibleHumans)
+                ? "pass"
+                : "warn";
+
+            output.AppendLine(
+                $"{status} projectedVisible={summary.InsideCount}/{summary.TotalCount}, " +
+                $"birdsInCone={summary.BirdInsideCount}, humansInCone={summary.HumanInsideCount}, " +
+                $"finiteSamples={summary.FiniteCount}/{summary.TotalCount}, " +
+                $"requiredProjected>={Myb16RequiredVisibleCount}, " +
+                $"requiredBirds>={Myb16RequiredVisibleBirds}, " +
+                $"requiredHumans>={Myb16RequiredVisibleHumans}");
+            output.AppendLine("Baseline from MYB-15: projectedVisible=0/8, finiteSamples=8/8.");
+        }
+
         private static void AppendRecommendations(
             StringBuilder output,
-            List<SceneLifeVisibilitySample> samples)
+            SceneLifeVisibility.Summary summary)
         {
-            var insideCount = 0;
-            var birdInsideCount = 0;
-            var humanInsideCount = 0;
-
-            foreach (var sample in samples)
+            if (summary.MeetsReadabilityTarget(
+                    Myb16RequiredVisibleCount,
+                    Myb16RequiredVisibleBirds,
+                    Myb16RequiredVisibleHumans))
             {
-                if (!sample.IsInCameraCone)
-                {
-                    continue;
-                }
-
-                insideCount += 1;
-                birdInsideCount += sample.ElementType == "bird" ? 1 : 0;
-                humanInsideCount += sample.ElementType == "human" ? 1 : 0;
+                output.AppendLine("- MYB-16 readability target is met; keep later polish bounded by this harness.");
             }
-
-            if (insideCount == 0)
+            else if (summary.InsideCount == 0)
             {
                 output.AppendLine("- MYB-16 should improve SceneLife readability: current projected visibility has 0 elements inside the camera cone.");
             }
             else
             {
-                output.AppendLine($"- MYB-16 can tune SceneLife readability from current projected visibility baseline {insideCount}/{samples.Count}.");
+                output.AppendLine($"- MYB-16 should continue tuning SceneLife readability from current projected visibility {summary.InsideCount}/{summary.TotalCount}.");
             }
 
-            if (birdInsideCount == 0)
+            if (summary.BirdInsideCount == 0)
             {
                 output.AppendLine("- Birds are present but not reliably in the forward cone; consider placement/scale/contrast polish in MYB-16.");
             }
 
-            if (humanInsideCount == 0)
+            if (summary.HumanInsideCount == 0)
             {
                 output.AppendLine("- Human silhouettes are present but not reliably in the forward cone; consider lateral placement/readability polish in MYB-16.");
             }
@@ -363,11 +403,11 @@ namespace MyBike.Echappee3D.EditorTools
             return "Console health: verified by Unity MCP console read after this menu execution; expected final result is 0 errors / 0 warnings.";
         }
 
-        private static string WriteReport(string report)
+        private static string WriteReport(string report, string fileName)
         {
             var outputDir = Path.Combine(RepoRoot(), "_bmad-output/unity-test-results");
             Directory.CreateDirectory(outputDir);
-            var reportPath = Path.Combine(outputDir, ReportFileName);
+            var reportPath = Path.Combine(outputDir, fileName);
             File.WriteAllText(reportPath, report);
             return reportPath;
         }

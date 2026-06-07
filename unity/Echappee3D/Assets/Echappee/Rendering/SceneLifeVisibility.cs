@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MyBike.Echappee3D.Route;
 using MyBike.Echappee3D.Core;
 using UnityEngine;
@@ -42,6 +43,32 @@ namespace MyBike.Echappee3D.Rendering
     public static class SceneLifeVisibility
     {
         private const float Epsilon = 0.0001f;
+
+        public readonly struct Summary
+        {
+            public Summary(int totalCount, int finiteCount, int insideCount, int birdInsideCount, int humanInsideCount)
+            {
+                TotalCount = totalCount;
+                FiniteCount = finiteCount;
+                InsideCount = insideCount;
+                BirdInsideCount = birdInsideCount;
+                HumanInsideCount = humanInsideCount;
+            }
+
+            public int TotalCount { get; }
+            public int FiniteCount { get; }
+            public int InsideCount { get; }
+            public int BirdInsideCount { get; }
+            public int HumanInsideCount { get; }
+
+            public bool MeetsReadabilityTarget(int minimumInsideCount, int minimumBirdInsideCount, int minimumHumanInsideCount)
+            {
+                return FiniteCount == TotalCount &&
+                    InsideCount >= minimumInsideCount &&
+                    BirdInsideCount >= minimumBirdInsideCount &&
+                    HumanInsideCount >= minimumHumanInsideCount;
+            }
+        }
 
         public static float HorizontalFovFromVertical(float verticalFovDegrees, float aspect)
         {
@@ -116,6 +143,32 @@ namespace MyBike.Echappee3D.Rendering
                 pitchDegrees,
                 isInCameraCone,
                 isFinite);
+        }
+
+        public static Summary Summarize(IEnumerable<SceneLifeVisibilitySample> samples)
+        {
+            var totalCount = 0;
+            var finiteCount = 0;
+            var insideCount = 0;
+            var birdInsideCount = 0;
+            var humanInsideCount = 0;
+
+            foreach (var sample in samples)
+            {
+                totalCount += 1;
+                finiteCount += sample.IsFinite ? 1 : 0;
+
+                if (!sample.IsInCameraCone)
+                {
+                    continue;
+                }
+
+                insideCount += 1;
+                birdInsideCount += sample.ElementType == "bird" ? 1 : 0;
+                humanInsideCount += sample.ElementType == "human" ? 1 : 0;
+            }
+
+            return new Summary(totalCount, finiteCount, insideCount, birdInsideCount, humanInsideCount);
         }
 
         private static bool IsFinite(Vector3 value)

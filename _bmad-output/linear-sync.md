@@ -2526,3 +2526,97 @@ Synced on 2026-06-07:
 - Tracking validation:
   - Story/tracking only; no Unity implementation performed in this pass.
   - `npm run typecheck`, `npm run test` and `npm run build` intentionally not run because no web source changed.
+
+## MYB-16 Unity Scene Life Readability Polish Ready For Review
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-16`
+  - URL: https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish
+  - Status: `In Review`
+  - Implementation comment ID: `4521db96-130c-4794-821b-69d02ad92044`
+- Story/tracking commit completed first:
+  - Commit: `5a1d2ad33717b0b93127166c061a8171aa31e167`
+  - Message: `MYB-16 create scene life readability story`
+- Local implementation:
+  - Existing MYB-14 life elements preserved: 5 stylized birds and 3 static roadside human silhouettes.
+  - Adjusted only placement, scale and simple material contrast for readability.
+  - Added MYB-16 readability threshold reporting and validation through `DemoReadinessValidator`.
+  - Added summary coverage in `SceneLifeVisibility` and EditMode test coverage for the MYB-16 target.
+- Unity MCP validation:
+  - Project root confirmed: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene confirmed: `Assets/Scenes/RideMock.unity`.
+  - Editor state confirmed idle, not playing, not compiling and not updating.
+  - MCP menu execution passed: `Echappee/MYB-16/Validate Scene Life Readability`.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Report evidence:
+  - `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt`.
+  - Baseline from MYB-15: `projectedVisible=0/8`, `finiteSamples=8/8`.
+  - MYB-16 result: `projectedVisible=4/8`, `birdsInCone=2`, `humansInCone=2`, `finiteSamples=8/8`.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
+    status: `review`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-16-unity-scene-life-readability-polish: review`.
+  - `next_action: code-review-MYB-16`.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/` plus BMAD/tracking and generated report updates.
+  - No route, MYB-13 slope, camera, fog/depth, HUD, controls or MYB-12 loop changes.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+  - No Meshy, external asset, Unity AI generation, vehicle, traffic system, AI, collision gameplay, flocking complex, complex animation, BLE/FTMS, backend, public deploy or web prototype deletion.
+- Local validation:
+  - `git diff --check` passed after Unity scene whitespace cleanup.
+  - High-confidence secret scan passed.
+  - No video capture staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not run because no web source changed.
+
+## MYB-16 Unity Scene Life Readability Polish Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue completed:
+  - Issue: `MYB-16`
+  - URL: https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish
+  - Status: `Done`
+  - Review comment ID: `2407685b-a5f0-4453-b115-bb0d203a8ce4`
+- Review verdict:
+  - Approved with no blocking findings.
+  - No review-time code corrections were required.
+  - Implementation remains Unity-only and bounded to existing MYB-14 life elements:
+    5 stylized birds and 3 static roadside human silhouettes.
+- Scope review:
+  - Adjustments remain limited to placement, scale and simple material contrast.
+  - No new life system, vehicle, traffic system, AI, collision gameplay, flocking
+    complex, complex animation, Meshy, external asset, Unity AI generation,
+    BLE/FTMS, backend, public deploy or web prototype deletion.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+- Unity MCP review proof:
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling and not updating.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `SceneLife`,
+    `Canvas`, `EventSystem`, `RideSession`, `Bird_01..Bird_05` and
+    `HumanSilhouette_01..03`.
+  - MCP menu execution passed:
+    `Echappee/MYB-16/Validate Scene Life Readability`.
+  - Unity console returned 0 errors / 0 warnings after validation.
+- Final report:
+  - `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt`.
+  - `Projected visibility in camera cone: 4/8`.
+  - `Birds in camera cone: 2/5`.
+  - `Humans in camera cone: 2/3`.
+  - `Finite visibility samples: 8/8`.
+  - Baseline preserved: `projectedVisible=0/8`, `finiteSamples=8/8`.
+- Local validation:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed over diff and untracked report.
+  - No video capture staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-16-unity-scene-life-readability-polish: done`.
+  - `next_action: commit-MYB-16`.

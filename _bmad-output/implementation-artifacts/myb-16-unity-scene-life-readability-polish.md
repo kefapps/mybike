@@ -4,8 +4,8 @@
 
 - Linear issue: `MYB-16`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Linear sync comment: `e06e80e3-cf29-48fd-bb6a-116377d92185`
 - Created: `2026-06-07`
 - Baseline commit: `849ae61dd4fed8215cbfb38f7c37076c60c28168`
@@ -67,37 +67,37 @@ The implementation target is therefore simple: bring a bounded subset of existin
 
 ## Implementation Tasks
 
-- [ ] Preflight the local state:
+- [x] Preflight the local state:
   - confirm worktree status before edits;
   - confirm Unity project root `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
   - confirm active scene `Assets/Scenes/RideMock.unity`;
   - confirm Editor idle, not compiling, not in Play Mode.
-- [ ] Inspect the existing scene-life implementation:
+- [x] Inspect the existing scene-life implementation:
   - `LightweightSceneLife.cs` for count/clearance/height constants;
   - `RideMockSceneBuilder.CreateSceneLife()` for bird and human positions;
   - `SceneLifeVisibility.cs` for camera-cone metric semantics;
   - `DemoReadinessValidator.cs` for current report generation.
-- [ ] Adjust only the existing life objects:
+- [x] Adjust only the existing life objects:
   - tune bird positions, scale, yaw and/or material contrast so at least 1 bird is in the camera cone;
   - tune human positions, scale, facing and/or material contrast so at least 1 roadside human is in the camera cone;
   - target at least 3 visible life elements total;
   - keep all objects off-route and non-blocking.
-- [ ] Keep the builder and scene coherent:
+- [x] Keep the builder and scene coherent:
   - update `RideMockSceneBuilder` if positions/materials are generated there;
   - update `Assets/Scenes/RideMock.unity` through Unity tooling if the scene instances need to match the builder;
   - avoid manual YAML edits unless absolutely necessary and review them carefully.
-- [ ] Extend validation:
+- [x] Extend validation:
   - add a MYB-16 validator/menu or extend `DemoReadinessValidator` with a MYB-16 readiness section;
   - enforce `projected visible >= 3`;
   - enforce `visible birds >= 1`;
   - enforce `visible humans >= 1`;
   - enforce finite samples `8/8`;
   - preserve existing MYB-12/MYB-13/MYB-14/MYB-15 validation coverage.
-- [ ] Generate or update a report:
+- [x] Generate or update a report:
   - preferred: `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt`;
   - acceptable if cleaner: extend `_bmad-output/unity-test-results/myb-15-demo-readiness.txt` with MYB-16 threshold evidence;
   - include before/after note derived from MYB-15 baseline `0/8`.
-- [ ] Final hygiene:
+- [x] Final hygiene:
   - `git diff --check`;
   - high-confidence secret scan;
   - verify no `src/ride/*`, `src/render/*`, `src/app/*` changes;
@@ -182,20 +182,36 @@ Do not change the camera just to make this pass. If the life is invisible becaus
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Notes
 
 - User validated the MYB-16 direction after MYB-15 reported `Projected visibility in camera cone: 0/8`.
 - Story intentionally keeps the threshold modest: `>=3/8` total visible, including at least 1 bird and 1 human.
 - The implementation should prefer moving/scaling/orienting existing elements over changing camera or route behavior.
+- Implemented as a bounded Unity-only polish: adjusted placement, scale and simple contrast for existing birds and human silhouettes only.
+- Preserved route, MYB-13 elevation, camera rail, fog/depth, HUD, controls and the MYB-12 mock loop.
+- Generated `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt` through the MYB-16 Unity MCP validation menu.
+- Visibility improved from MYB-15 baseline `0/8` to `4/8`, with `2` birds and `2` humans in cone and finite samples `8/8`.
+- Review approved with no blocking findings and no review-time code corrections.
+- Linear review comment: `2407685b-a5f0-4453-b115-bb0d203a8ce4`.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt`
+- `unity/Echappee3D/Assets/Echappee/Editor/DemoReadinessValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockSceneBuilder.cs`
+- `unity/Echappee3D/Assets/Echappee/Rendering/SceneLifeVisibility.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/SceneLifeVisibilityTests.cs`
+- `unity/Echappee3D/Assets/Materials/SceneLifeBird.mat`
+- `unity/Echappee3D/Assets/Materials/SceneLifeHuman.mat`
+- `unity/Echappee3D/Assets/Scenes/RideMock.unity`
 
 ### Change Log
 
 - 2026-06-07: Created MYB-16 story and tracking for Unity scene-life readability polish.
+- 2026-06-07: Implemented Unity scene-life readability polish and MYB-16 validation report; projected visibility now passes `4/8`, birds `2`, humans `2`, finite `8/8`.
+- 2026-06-07: Review approved, Linear moved to Done, local tracker ready for commit.
