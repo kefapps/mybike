@@ -1,0 +1,3 @@
+MYB-12 Unity editor validation passed.
+Unity: 6000.4.10f1
+Checks: version, ride math, route math, flat route, playable session loop, pause freeze, resume continuity, finish summary, scene hierarchy, wired controls, wired HUD, camera, route and fog.

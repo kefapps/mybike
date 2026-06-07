@@ -110,12 +110,12 @@ namespace MyBike.Echappee3D.Route
                 points = new[]
                 {
                     new RoutePoint(0f, new Vector3(0f, 0f, 0f)),
-                    new RoutePoint(150f, new Vector3(24f, 1f, 148f)),
+                    new RoutePoint(150f, new Vector3(24f, 0f, 148f)),
                     new RoutePoint(320f, new Vector3(-18f, 0f, 315f)),
-                    new RoutePoint(500f, new Vector3(36f, 2f, 496f)),
-                    new RoutePoint(700f, new Vector3(4f, 1f, 698f)),
+                    new RoutePoint(500f, new Vector3(36f, 0f, 496f)),
+                    new RoutePoint(700f, new Vector3(4f, 0f, 698f)),
                     new RoutePoint(850f, new Vector3(-30f, 0f, 845f)),
-                    new RoutePoint(1000f, new Vector3(0f, 1f, 1000f))
+                    new RoutePoint(1000f, new Vector3(0f, 0f, 1000f))
                 },
                 biomes = new[]
                 {
