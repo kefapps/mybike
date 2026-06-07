@@ -4,7 +4,7 @@ story_key: "myb-10-motion-density-pass"
 linear_id: "MYB-10"
 linear_url: "https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass"
 title: "Motion & Density Pass"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-07"
 baseline_commit: "eb51de7fc92e12ce486b414c4bd74f1c8f8972ce"
 source_previous_commit: "4963300704e51da458f714809498aa355fba869b"
@@ -18,7 +18,7 @@ depends_on:
 
 # Story MYB-10: Motion & Density Pass
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -122,70 +122,79 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Verifier les contrats existants avant implementation. (AC: 4, 6, 7, 8)
-  - [ ] Lire `src/render/SceneController.ts`.
-  - [ ] Lire `src/render/createBiomeVisuals.ts`.
-  - [ ] Lire `src/render/createRouteMesh.ts`.
-  - [ ] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
-  - [ ] Lire les tests render existants avant de modifier.
-  - [ ] Confirmer que `src/ride/*` reste hors surface d'implementation.
+- [x] Verifier les contrats existants avant implementation. (AC: 4, 6, 7, 8)
+  - [x] Lire `src/render/SceneController.ts`.
+  - [x] Lire `src/render/createBiomeVisuals.ts`.
+  - [x] Lire `src/render/createRouteMesh.ts`.
+  - [x] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
+  - [x] Lire les tests render existants avant de modifier.
+  - [x] Confirmer que `src/ride/*` reste hors surface d'implementation.
 
-- [ ] Ajouter du parallax proche borne. (AC: 1, 2, 5, 6)
-  - [ ] Ajouter ou extraire un helper procedural pour les near-road details si
+- [x] Ajouter du parallax proche borne. (AC: 1, 2, 5, 6)
+  - [x] Ajouter ou extraire un helper procedural pour les near-road details si
     `createBiomeVisuals.ts` devient trop gros.
-  - [ ] Placer des objets proches a intervalles controles le long de la route,
+  - [x] Placer des objets proches a intervalles controles le long de la route,
     en utilisant `getRouteCenterXAtZ` ou les frames route existantes.
-  - [ ] Garder les geometries et materials partages, nommes, et trackes pour
+  - [x] Garder les geometries et materials partages, nommes, et trackes pour
     disposal.
-  - [ ] Eviter les placements qui traversent la route ou masquent le centre.
+  - [x] Eviter les placements qui traversent la route ou masquent le centre.
 
-- [ ] Ajouter une densite roadside composee. (AC: 2, 5, 8)
-  - [ ] Varier les familles proches/moyennes sans depasser une petite liste de
+- [x] Ajouter une densite roadside composee. (AC: 2, 5, 8)
+  - [x] Varier les familles proches/moyennes sans depasser une petite liste de
     props proceduraux simples.
-  - [ ] Distinguer les zones coast/forest par composition si possible, sans
+  - [x] Distinguer les zones coast/forest par composition si possible, sans
     redefinir les biomes.
-  - [ ] Preserver les landmarks MYB-9: phare, arche, tunnel forest et relief.
+  - [x] Preserver les landmarks MYB-9: phare, arche, tunnel forest et relief.
 
-- [ ] Ajouter des variations route/sol. (AC: 3, 5, 6)
-  - [ ] Enrichir `createRouteMesh.ts` avec motifs de surface, accotements ou
+- [x] Ajouter des variations route/sol. (AC: 3, 5, 6)
+  - [x] Enrichir `createRouteMesh.ts` avec motifs de surface, accotements ou
     micro-bandes si c'est le meilleur point d'extension.
-  - [ ] Ou enrichir le ground/terrain dans `SceneController.ts` si la variation
+  - [x] Ou enrichir le ground/terrain dans `SceneController.ts` si la variation
     de sol est plus claire cote terrain.
-  - [ ] Tester que les geometries/materiaux ajoutes sont inclus dans le retour
+  - [x] Tester que les geometries/materiaux ajoutes sont inclus dans le retour
     `RouteMeshResult` ou disposes par le controller.
 
-- [ ] Renforcer la sensation de vitesse sans toucher au ride. (AC: 4, 7)
-  - [ ] Utiliser uniquement des reperes visuels proches, densite, echelle,
+- [x] Renforcer la sensation de vitesse sans toucher au ride. (AC: 4, 7)
+  - [x] Utiliser uniquement des reperes visuels proches, densite, echelle,
     parallax et composition.
-  - [ ] Ne pas modifier `mapMockInputToSpeed`, `smoothSpeed`,
+  - [x] Ne pas modifier `mapMockInputToSpeed`, `smoothSpeed`,
     `advanceRideFrame`, `advanceRouteProgress` ou les stats.
-  - [ ] Si un changement de camera est envisage, verifier qu'il reste cote
+  - [x] Si un changement de camera est envisage, verifier qu'il reste cote
     render/capture et ne remplace pas `cameraOnRail`.
 
-- [ ] Option capture sans HUD, seulement si simple. (AC: 9)
-  - [ ] Preferer un flag capture/query param/env dans le chemin de capture plutot
+- [x] Option capture sans HUD, seulement si simple. (AC: 9)
+  - [x] Preferer un flag capture/query param/env dans le chemin de capture plutot
     qu'une option UI visible.
-  - [ ] Isoler le changement a `scripts/capture-ride-video.mjs`,
+  - [x] Isoler le changement a `scripts/capture-ride-video.mjs`,
     `src/app/screens/RideScreen.tsx` ou `src/styles.css` si necessaire.
-  - [ ] Ne pas remodeler `RideHud` ou les controles mock pour le joueur.
+  - [x] Ne pas remodeler `RideHud` ou les controles mock pour le joueur.
 
-- [ ] Ajouter les tests attendus. (AC: 1, 2, 3, 5, 6, 9)
-  - [ ] Tests render sur comptage/noms des near-road details et densite bornee.
-  - [ ] Tests route mesh/ground si de nouvelles variations ou geometries sont
+- [x] Ajouter les tests attendus. (AC: 1, 2, 3, 5, 6, 9)
+  - [x] Tests render sur comptage/noms des near-road details et densite bornee.
+  - [x] Tests route mesh/ground si de nouvelles variations ou geometries sont
     ajoutees.
-  - [ ] Tests option capture sans HUD uniquement si l'option est implementee.
-  - [ ] Verifier qu'aucun test n'importe `src/ride/*` depuis `src/render/*`.
+  - [x] Tests option capture sans HUD uniquement si l'option est implementee.
+  - [x] Verifier qu'aucun test n'importe `src/ride/*` depuis `src/render/*`.
 
-- [ ] Valider et documenter. (AC: 10, 11)
-  - [ ] Lancer `npm run typecheck`.
-  - [ ] Lancer `npm run test`.
-  - [ ] Lancer `npm run build`.
-  - [ ] Lancer `npm run capture:ride-video`.
-  - [ ] Comparer la nouvelle capture a
+- [x] Valider et documenter. (AC: 10, 11)
+  - [x] Lancer `npm run typecheck`.
+  - [x] Lancer `npm run test`.
+  - [x] Lancer `npm run build`.
+  - [x] Lancer `npm run capture:ride-video`.
+  - [x] Comparer la nouvelle capture a
     `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg`
     ou produire une nouvelle comparaison si necessaire.
-  - [ ] Mettre a jour cette story, `sprint-status.yaml` et
+  - [x] Mettre a jour cette story, `sprint-status.yaml` et
     `_bmad-output/linear-sync.md` avec les preuves.
+
+### Review Findings
+
+- [x] [Review][Approved] Clean review — aucun patch requis; MYB-10 respecte la
+  story, le parallax proche et la densite roadside sont visibles, les variations
+  route/sol ameliorent la lecture du mouvement, la route reste lisible,
+  `src/ride/*` est intact, aucun Meshy/asset externe/pipeline lourd/BLE/FTMS/
+  backend/routes multiples n'a ete ajoute, et le mode capture sans HUD reste
+  opt-in et leger.
 
 ## Dev Notes
 
@@ -265,18 +274,75 @@ Eviter:
 
 ### Agent Model Used
 
-TBD
+GPT-5 Codex
+
+### Implementation Plan
+
+- Ajouter des familles procedurales proches route dans `createBiomeVisuals.ts`,
+  bornees par listes fixes de positions et offsets hors corridor ride.
+- Ajouter des reperes de surface/accotements dans `createRouteMesh.ts` en
+  reutilisant les frames route existantes.
+- Ajouter un mode capture clean HUD par query param `captureHud=hidden`, active
+  par le script de capture uniquement.
+- Couvrir les ajouts par tests render et capture flag, puis valider avec la
+  capture video obligatoire.
 
 ### Debug Log References
 
 - Story/tracking creation only: npm validations intentionally not run.
+- TDD rouge: `npm run test` echoue d'abord sur les nouveaux noms/quantites
+  attendus (`scenic-near-speed-post`, `scenic-route-shoulder-rhythm`,
+  `isCaptureCleanHudEnabled`).
+- Validation verte: `npm run test` passe avec 71 tests.
+- Validation finale: `npm run typecheck && npm run test && npm run build`
+  passe; Vite conserve le warning non bloquant de taille de chunk.
+- Capture finale: `npm run capture:ride-video` genere
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/`.
+- Code review: `npm run typecheck`, `npm run test`, `npm run build`,
+  `npm run capture:ride-video`, `git diff --check` et scan anti-secret passent.
+- Capture review:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`.
+- Controle image review: `final-frame.png` non blank (`1440x948`, mean
+  `0.425477`, stddev `0.27979`); contact sheet non blank (`1920x200`, mean
+  `0.460195`, stddev `0.274536`).
+- Note capture: une premiere capture a revele un port `5174` deja occupe; le
+  script choisit maintenant un port libre et lance Vite en `--strictPort`.
+- Controle image: `final-frame.png` non blank (`1440x948`, mean `0.423508`,
+  stddev `0.28025`).
 
 ### Completion Notes
 
-TBD
+- Parallax proche renforce avec potelets, herbes, pierres, roseaux coast et
+  fougeres forest, tous route-aware via `getRouteCenterXAtZ`.
+- Densite roadside augmentee de facon bornee; les landmarks MYB-9 restent
+  visibles et le couloir route reste lisible en capture.
+- Route enrichie par reperes d'accotement et grain de surface proceduraux sans
+  texture externe.
+- Mode capture clean HUD opt-in via `captureHud=hidden`, active par defaut dans
+  le script de capture et desactivable avec `CAPTURE_HIDE_HUD=0`.
+- Aucun fichier `src/ride/*` modifie.
+- Linear MYB-10 passe en review avec commentaire de sync implementation.
+- Code review approved sans correction; Linear MYB-10 passe en Done avec
+  commentaire de review.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/`
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
+- `scripts/capture-ride-video.mjs`
+- `src/app/screens/RideScreen.test.tsx`
+- `src/app/screens/RideScreen.tsx`
+- `src/render/createBiomeVisuals.test.ts`
+- `src/render/createBiomeVisuals.ts`
+- `src/render/createRouteMesh.test.ts`
+- `src/render/createRouteMesh.ts`
+- `src/styles.css`
+
+### Change Log
+
+- 2026-06-07: Implemented MYB-10 motion/density pass, added render tests,
+  generated visual capture evidence, and moved story to review.
+- 2026-06-07: Code review MYB-10 approved sans patch; story passee a done.

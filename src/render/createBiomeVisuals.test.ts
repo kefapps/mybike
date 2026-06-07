@@ -13,7 +13,7 @@ describe("createBiomeVisuals", () => {
 
     expect(visuals.group.name).toBe("scenic-biome-visuals");
     expect(visuals.group.children.length).toBeGreaterThan(120);
-    expect(meshCount).toBeLessThan(260);
+    expect(meshCount).toBeLessThan(380);
     expect([...names]).toEqual(
       expect.arrayContaining([
         "scenic-coast-post",
@@ -26,7 +26,8 @@ describe("createBiomeVisuals", () => {
         "scenic-tree-trunk",
         "scenic-tree-canopy",
         "scenic-forest-canopy-tunnel",
-        "scenic-road-sign"
+        "scenic-road-sign",
+        "scenic-near-road-motion-details"
       ])
     );
   });
@@ -63,11 +64,47 @@ describe("createBiomeVisuals", () => {
     ).toBeGreaterThanOrEqual(28);
   });
 
+  it("adds bounded near-road parallax families outside the ride corridor", () => {
+    const visuals = createBiomeVisuals();
+    const speedPosts = findObjectsByName(visuals.group, "scenic-near-speed-post");
+    const edgeGrass = findObjectsByName(visuals.group, "scenic-near-edge-grass");
+    const edgeStones = findObjectsByName(visuals.group, "scenic-near-edge-stone");
+
+    expect(speedPosts.length).toBeGreaterThanOrEqual(34);
+    expect(speedPosts.length).toBeLessThanOrEqual(52);
+    expect(edgeGrass.length).toBeGreaterThanOrEqual(48);
+    expect(edgeGrass.length).toBeLessThanOrEqual(96);
+    expect(edgeStones.length).toBeGreaterThanOrEqual(20);
+    expect(edgeStones.length).toBeLessThanOrEqual(44);
+    expect(Math.min(...speedPosts.map((post) => post.position.z))).toBeLessThan(42);
+    expect(Math.max(...speedPosts.map((post) => post.position.z))).toBeGreaterThan(930);
+
+    for (const object of [...speedPosts, ...edgeGrass, ...edgeStones]) {
+      const lateralDistance = Math.abs(
+        object.position.x - getRouteCenterXAtZ(mockRouteDefinition, object.position.z)
+      );
+
+      expect(lateralDistance).toBeGreaterThanOrEqual(6.2);
+      expect(lateralDistance).toBeLessThanOrEqual(15.5);
+    }
+  });
+
+  it("keeps coast and forest motion details visually distinct", () => {
+    const visuals = createBiomeVisuals();
+    const coastReeds = findObjectsByName(visuals.group, "scenic-coast-motion-reed");
+    const forestFerns = findObjectsByName(visuals.group, "scenic-forest-motion-fern");
+
+    expect(coastReeds.length).toBeGreaterThanOrEqual(8);
+    expect(forestFerns.length).toBeGreaterThanOrEqual(14);
+    expect(Math.max(...coastReeds.map((reed) => reed.position.z))).toBeLessThan(230);
+    expect(Math.min(...forestFerns.map((fern) => fern.position.z))).toBeGreaterThan(235);
+  });
+
   it("tracks shared resources for deterministic disposal", () => {
     const visuals = createBiomeVisuals();
 
-    expect(visuals.geometries.length).toBeGreaterThanOrEqual(15);
-    expect(visuals.materials.length).toBeGreaterThanOrEqual(11);
+    expect(visuals.geometries.length).toBeGreaterThanOrEqual(20);
+    expect(visuals.materials.length).toBeGreaterThanOrEqual(16);
     expect(visuals.fallbackTintMaterials.length).toBeGreaterThanOrEqual(6);
     expect(visuals.coastMaterial).toBe(visuals.materials[0]);
     expect(visuals.forestMaterial).toBe(visuals.materials[1]);

@@ -23,6 +23,7 @@ export function RideScreen({
   onFinish
 }: RideScreenProps) {
   const isPaused = phase === "paused";
+  const captureCleanHud = isCaptureCleanHudEnabled();
   const [effort01, setEffort01] = useState(DEFAULT_MOCK_EFFORT01);
   const [latestSnapshot, setLatestSnapshot] = useState<RenderFrameSnapshot>();
   const finishWithLatestSummary = useCallback(() => {
@@ -30,7 +31,10 @@ export function RideScreen({
   }, [latestSnapshot, onFinish]);
 
   return (
-    <section className="screen ride-screen" aria-labelledby="ride-title">
+    <section
+      className={`screen ride-screen${captureCleanHud ? " ride-screen--capture-clean" : ""}`}
+      aria-labelledby="ride-title"
+    >
       <header className="ride-header">
         <div>
           <p className="eyebrow">Balade mock</p>
@@ -75,4 +79,10 @@ export function RideScreen({
       </div>
     </section>
   );
+}
+
+export function isCaptureCleanHudEnabled(
+  search = typeof window === "undefined" ? "" : window.location.search
+): boolean {
+  return new URLSearchParams(search).get("captureHud") === "hidden";
 }

@@ -17,11 +17,13 @@ describe("createRouteMesh", () => {
         "scenic-route-left-edge",
         "scenic-route-right-edge",
         "scenic-route-center-markings",
-        "scenic-route-surface-bands"
+        "scenic-route-surface-bands",
+        "scenic-route-shoulder-rhythm",
+        "scenic-route-surface-grain"
       ])
     );
-    expect(routeMesh.geometries.length).toBeGreaterThanOrEqual(5);
-    expect(routeMesh.materials.length).toBeGreaterThanOrEqual(5);
+    expect(routeMesh.geometries.length).toBeGreaterThanOrEqual(9);
+    expect(routeMesh.materials.length).toBeGreaterThanOrEqual(7);
   });
 
   it("keeps repeated visual markers bounded and procedural", () => {
@@ -32,10 +34,20 @@ describe("createRouteMesh", () => {
     const surfaceBands = routeMesh.group.getObjectByName(
       "scenic-route-surface-bands"
     );
+    const shoulderRhythm = routeMesh.group.getObjectByName(
+      "scenic-route-shoulder-rhythm"
+    );
+    const surfaceGrain = routeMesh.group.getObjectByName(
+      "scenic-route-surface-grain"
+    );
 
     expect(centerMarkings?.children.length).toBeGreaterThan(10);
     expect(centerMarkings?.children.length).toBeLessThan(40);
     expect(surfaceBands?.children.length).toBeGreaterThan(8);
     expect(surfaceBands?.children.length).toBeLessThan(35);
+    expect(shoulderRhythm?.children.length).toBeGreaterThan(30);
+    expect(shoulderRhythm?.children.length).toBeLessThan(90);
+    expect(surfaceGrain?.children.length).toBeGreaterThan(24);
+    expect(surfaceGrain?.children.length).toBeLessThan(80);
   });
 });

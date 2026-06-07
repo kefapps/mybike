@@ -51,6 +51,8 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     0.028,
     0.42
   );
+  const shoulderRhythmGeometry = new THREE.BoxGeometry(0.46, 0.035, 2.4);
+  const surfaceGrainGeometry = new THREE.BoxGeometry(0.72, 0.024, 0.18);
 
   const roadMaterial = new THREE.MeshStandardMaterial({
     color: 0xf2d58b,
@@ -81,6 +83,20 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     metalness: 0,
     transparent: true,
     opacity: 0.42
+  });
+  const shoulderRhythmMaterial = new THREE.MeshStandardMaterial({
+    color: 0xe8d793,
+    roughness: 0.9,
+    metalness: 0,
+    transparent: true,
+    opacity: 0.62
+  });
+  const surfaceGrainMaterial = new THREE.MeshStandardMaterial({
+    color: 0xa88345,
+    roughness: 0.98,
+    metalness: 0,
+    transparent: true,
+    opacity: 0.34
   });
 
   const roadMesh = new THREE.Mesh(roadGeometry, roadMaterial);
@@ -116,6 +132,24 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     47,
     0.12
   );
+  const shoulderRhythm = createMirroredRouteMarkers(
+    frames,
+    shoulderRhythmGeometry,
+    shoulderRhythmMaterial,
+    "scenic-route-shoulder-rhythm",
+    18,
+    29,
+    ROUTE_WIDTH_METERS / 2 + 2.55
+  );
+  const surfaceGrain = createAlternatingRouteMarkers(
+    frames,
+    surfaceGrainGeometry,
+    surfaceGrainMaterial,
+    "scenic-route-surface-grain",
+    8,
+    22,
+    1.35
+  );
 
   group.add(
     leftShoulder,
@@ -124,7 +158,9 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     leftEdge,
     rightEdge,
     centerMarkings,
-    surfaceBands
+    surfaceBands,
+    shoulderRhythm,
+    surfaceGrain
   );
 
   return {
@@ -139,14 +175,18 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
       leftEdgeGeometry,
       rightEdgeGeometry,
       dashGeometry,
-      surfaceBandGeometry
+      surfaceBandGeometry,
+      shoulderRhythmGeometry,
+      surfaceGrainGeometry
     ],
     materials: [
       roadMaterial,
       shoulderMaterial,
       edgeMaterial,
       dashMaterial,
-      surfaceBandMaterial
+      surfaceBandMaterial,
+      shoulderRhythmMaterial,
+      surfaceGrainMaterial
     ]
   };
 }
@@ -269,6 +309,80 @@ function createRepeatedRouteMarkers(
     marker.position.y += 0.045;
     marker.rotation.y = Math.atan2(frame.tangent.x, frame.tangent.z);
     group.add(marker);
+  }
+
+  return group;
+}
+
+function createMirroredRouteMarkers(
+  frames: RouteRenderFrame[],
+  geometry: THREE.BufferGeometry,
+  material: THREE.Material,
+  groupName: string,
+  startMeters: number,
+  stepMeters: number,
+  lateralOffset: number
+): THREE.Group {
+  const group = new THREE.Group();
+  group.name = groupName;
+  const lastDistance = frames.at(-1)?.distanceMeters ?? 0;
+
+  for (
+    let distanceMeters = startMeters;
+    distanceMeters < lastDistance - 20;
+    distanceMeters += stepMeters
+  ) {
+    const frame = sampleFrameAtDistance(frames, distanceMeters);
+
+    for (const side of [-1, 1] as const) {
+      const marker = new THREE.Mesh(geometry, material);
+      marker.position
+        .copy(frame.center)
+        .addScaledVector(frame.perpendicular, lateralOffset * side);
+      marker.position.y += 0.052;
+      marker.rotation.y = Math.atan2(frame.tangent.x, frame.tangent.z);
+      marker.rotation.z = side * 0.04;
+      group.add(marker);
+    }
+  }
+
+  return group;
+}
+
+function createAlternatingRouteMarkers(
+  frames: RouteRenderFrame[],
+  geometry: THREE.BufferGeometry,
+  material: THREE.Material,
+  groupName: string,
+  startMeters: number,
+  stepMeters: number,
+  maxLateralOffset: number
+): THREE.Group {
+  const group = new THREE.Group();
+  group.name = groupName;
+  const lastDistance = frames.at(-1)?.distanceMeters ?? 0;
+  let markerIndex = 0;
+
+  for (
+    let distanceMeters = startMeters;
+    distanceMeters < lastDistance - 20;
+    distanceMeters += stepMeters
+  ) {
+    const frame = sampleFrameAtDistance(frames, distanceMeters);
+    const side = markerIndex % 2 === 0 ? -1 : 1;
+    const lateralOffset =
+      side * (0.35 + (markerIndex % 4) * ((maxLateralOffset - 0.35) / 3));
+    const marker = new THREE.Mesh(geometry, material);
+    marker.position
+      .copy(frame.center)
+      .addScaledVector(frame.perpendicular, lateralOffset);
+    marker.position.y += 0.052;
+    marker.rotation.y =
+      Math.atan2(frame.tangent.x, frame.tangent.z) +
+      (markerIndex % 3 === 0 ? 0.07 : -0.04);
+    marker.scale.set(0.76 + (markerIndex % 5) * 0.06, 1, 1);
+    group.add(marker);
+    markerIndex += 1;
   }
 
   return group;

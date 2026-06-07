@@ -63,6 +63,11 @@ export function createBiomeVisuals(
   const bermGeometry = new THREE.BoxGeometry(18, 2.4, 26);
   const ridgeGeometry = new THREE.BoxGeometry(56, 8, 30);
   const canopyBridgeGeometry = new THREE.BoxGeometry(26, 4.2, 5.4);
+  const nearPostGeometry = new THREE.BoxGeometry(0.24, 2.1, 0.24);
+  const nearBladeGeometry = new THREE.ConeGeometry(0.16, 1.25, 4);
+  const nearStoneGeometry = new THREE.DodecahedronGeometry(0.45, 0);
+  const coastReedGeometry = new THREE.BoxGeometry(0.12, 1.85, 0.12);
+  const forestFernGeometry = new THREE.ConeGeometry(0.42, 1.15, 6);
 
   const coastMaterial = new THREE.MeshStandardMaterial({
     color: 0x4f9fcf,
@@ -118,6 +123,26 @@ export function createBiomeVisuals(
     color: 0x486f5d,
     roughness: 0.98
   });
+  const nearPostMaterial = new THREE.MeshStandardMaterial({
+    color: 0xf7e8b6,
+    roughness: 0.74
+  });
+  const nearBladeMaterial = new THREE.MeshStandardMaterial({
+    color: 0x89b66c,
+    roughness: 0.96
+  });
+  const nearStoneMaterial = new THREE.MeshStandardMaterial({
+    color: 0x696d66,
+    roughness: 0.9
+  });
+  const coastReedMaterial = new THREE.MeshStandardMaterial({
+    color: 0xb58d55,
+    roughness: 0.9
+  });
+  const forestFernMaterial = new THREE.MeshStandardMaterial({
+    color: 0x2f7a42,
+    roughness: 0.94
+  });
 
   geometries.push(
     coastGeometry,
@@ -138,7 +163,12 @@ export function createBiomeVisuals(
     archBridgeGeometry,
     bermGeometry,
     ridgeGeometry,
-    canopyBridgeGeometry
+    canopyBridgeGeometry,
+    nearPostGeometry,
+    nearBladeGeometry,
+    nearStoneGeometry,
+    coastReedGeometry,
+    forestFernGeometry
   );
   materials.push(
     coastMaterial,
@@ -153,7 +183,12 @@ export function createBiomeVisuals(
     lighthouseRoofMaterial,
     rockArchMaterial,
     bermMaterial,
-    ridgeMaterial
+    ridgeMaterial,
+    nearPostMaterial,
+    nearBladeMaterial,
+    nearStoneMaterial,
+    coastReedMaterial,
+    forestFernMaterial
   );
   const fallbackTintMaterials: FallbackTintMaterial[] = [
     {
@@ -187,6 +222,74 @@ export function createBiomeVisuals(
       fallbackColor: 0x66746f
     }
   ];
+
+  const nearRoadMotionDetails = new THREE.Group();
+  nearRoadMotionDetails.name = "scenic-near-road-motion-details";
+
+  for (const z of [
+    24, 74, 124, 174, 224, 274, 324, 374, 424, 474, 524, 574, 624, 674, 724,
+    774, 824, 874, 924, 974
+  ]) {
+    for (const side of [-1, 1] as const) {
+      const post = new THREE.Mesh(nearPostGeometry, nearPostMaterial);
+      post.name = "scenic-near-speed-post";
+      post.position.set(routeSideX(z, side, 6.35 + (z % 5) * 0.12), 1.05, z);
+      post.scale.set(1, 0.82 + (z % 4) * 0.04, 1);
+      post.rotation.set(0.04 * side, side * 0.08, -0.03 * side);
+      nearRoadMotionDetails.add(post);
+    }
+  }
+
+  for (const z of [
+    18, 38, 58, 82, 108, 134, 162, 190, 222, 256, 292, 330, 370, 412, 456,
+    502, 550, 600, 652, 706, 762, 820, 880, 942
+  ]) {
+    for (const side of [-1, 1] as const) {
+      const blade = new THREE.Mesh(nearBladeGeometry, nearBladeMaterial);
+      blade.name = "scenic-near-edge-grass";
+      blade.position.set(routeSideX(z, side, 7.4 + (z % 7) * 0.18), 0.62, z);
+      blade.scale.set(0.72 + (z % 3) * 0.1, 0.86 + (z % 5) * 0.07, 0.72);
+      blade.rotation.set(0.08 * side, z * 0.041, 0.06 * side);
+      nearRoadMotionDetails.add(blade);
+    }
+  }
+
+  for (const z of [
+    42, 118, 188, 268, 342, 428, 516, 612, 710, 812, 916
+  ]) {
+    for (const side of [-1, 1] as const) {
+      const stone = new THREE.Mesh(nearStoneGeometry, nearStoneMaterial);
+      stone.name = "scenic-near-edge-stone";
+      stone.position.set(routeSideX(z, side, 10.2 + (z % 9) * 0.42), 0.36, z);
+      stone.scale.set(1.15 + (z % 4) * 0.18, 0.46, 0.72 + (z % 5) * 0.09);
+      stone.rotation.set(0.1, z * 0.019, -0.12 * side);
+      nearRoadMotionDetails.add(stone);
+    }
+  }
+
+  for (const z of [36, 66, 98, 132, 168]) {
+    for (const side of [-1, 1] as const) {
+      const reed = new THREE.Mesh(coastReedGeometry, coastReedMaterial);
+      reed.name = "scenic-coast-motion-reed";
+      reed.position.set(routeSideX(z, side, 11.1 + (z % 4) * 0.28), 0.92, z);
+      reed.scale.set(1, 0.82 + (z % 5) * 0.08, 1);
+      reed.rotation.set(0.08 * side, side * 0.14, 0.11 * side);
+      nearRoadMotionDetails.add(reed);
+    }
+  }
+
+  for (const z of [248, 286, 326, 368, 414, 462, 516, 574, 640, 712]) {
+    for (const side of [-1, 1] as const) {
+      const fern = new THREE.Mesh(forestFernGeometry, forestFernMaterial);
+      fern.name = "scenic-forest-motion-fern";
+      fern.position.set(routeSideX(z, side, 8.6 + (z % 6) * 0.22), 0.58, z);
+      fern.scale.set(0.78 + (z % 4) * 0.06, 0.78 + (z % 5) * 0.08, 0.78);
+      fern.rotation.set(0.1 * side, z * 0.031, -0.07 * side);
+      nearRoadMotionDetails.add(fern);
+    }
+  }
+
+  group.add(nearRoadMotionDetails);
 
   for (const z of [52, 86, 122, 158, 196, 236, 278]) {
     for (const side of [-1, 1] as const) {

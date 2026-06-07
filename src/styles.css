@@ -128,6 +128,31 @@ h1 {
     #e3ebda;
 }
 
+.ride-screen--capture-clean {
+  width: min(100%, 1440px);
+  min-height: calc(100vh - 2rem);
+  gap: 0;
+}
+
+.ride-screen--capture-clean .ride-header,
+.ride-screen--capture-clean .ride-hud,
+.ride-screen--capture-clean .mock-controls,
+.ride-screen--capture-clean .action-row {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ride-screen--capture-clean .ride-viewport {
+  height: calc(100vh - 2rem);
+  border: 0;
+  border-radius: 0;
+}
+
 .three-canvas {
   display: block;
   width: 100%;

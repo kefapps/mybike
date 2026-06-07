@@ -30,6 +30,10 @@ Last sync: 2026-06-07
 - Motion & Density source capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/`
 - Motion & Density comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg`
 - Motion & Density Pass dev story: `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
+- Motion & Density Pass final capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/`
+- Motion & Density Pass final comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/visual-comparison-stack.jpg`
+- Motion & Density Pass review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
+- Motion & Density Pass review comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg`
 
 ## Linear Documents
 
@@ -1246,6 +1250,105 @@ Synced on 2026-06-07:
   - no broad backlog created;
   - no application code changed;
   - no `npm` validation run because this was story/tracking only.
+
+## MYB-10 Implementation Status Synced
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-10`
+  - URL: https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass
+  - Previous status: `In Progress`
+  - New status: `In Review`
+  - Implementation sync comment ID: `babca1e5-b98f-4f06-ab77-78c3d0f22ec1`
+- Local BMAD story updated:
+  `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
+  - Status: `review`
+  - All tasks/subtasks checked
+  - Dev Agent Record, Completion Notes, File List and Change Log updated
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `development_status.myb-10-motion-density-pass: review`
+  - `next_action: review-MYB-10`
+  - Final capture:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/`
+  - Final comparison stack:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/visual-comparison-stack.jpg`
+- Implementation summary:
+  - bounded near-road parallax props added in `src/render/createBiomeVisuals.ts`;
+  - route/ground motion cues added in `src/render/createRouteMesh.ts`;
+  - capture clean HUD mode added through `captureHud=hidden`;
+  - capture script now chooses a free strict Vite port so it does not record a
+    stale server when `5174` is occupied;
+  - no `src/ride/*` files modified.
+- Validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 71 tests;
+  - `npm run build`: passed, with existing non-blocking Vite chunk-size warning;
+  - `npm run capture:ride-video`: passed.
+- Visual evidence:
+  - HTTP `200`;
+  - `pageErrors: []`;
+  - console messages: one isolated known 404 only;
+  - final frame non blank: `1440x948`, mean `0.423508`, stddev `0.28025`;
+  - comparison against source capture shows more near-road parallax/density and
+    route surface variation while preserving route readability and coast/forest
+    distinction.
+- Scope confirmation:
+  - no Meshy call, no credit cost;
+  - no external asset or asset pipeline;
+  - no BLE/FTMS, backend, persistence or multiple routes;
+  - no Linear backlog expansion;
+  - implementation intentionally left uncommitted for review.
+
+## MYB-10 Review Approved and Synced
+
+Synced on 2026-06-07:
+
+- Review verdict: `Approved / clean review`.
+- Linear issue updated:
+  - Issue: `MYB-10`
+  - URL: https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass
+  - Previous status: `In Review`
+  - New status: `Done`
+  - Review comment ID: `f05d4435-7f4a-4004-87ee-a877bed45218`
+  - Completed at: `2026-06-07T06:42:23.359Z`
+- Local BMAD story updated:
+  `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
+  - Status: `done`
+  - Review Findings: clean review, no patch required
+  - Dev Agent Record, Completion Notes and Change Log updated
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `development_status.myb-10-motion-density-pass: done`
+  - `next_action: commit-MYB-10`
+  - Review capture:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
+  - Review comparison stack:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg`
+- Review validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 71 tests;
+  - `npm run build`: passed, with existing non-blocking Vite chunk-size warning;
+  - `npm run capture:ride-video`: passed;
+  - `git diff --check`: passed;
+  - anti-secret scan over the diff: passed.
+- Visual review evidence:
+  - HTTP `200`;
+  - `pageErrors: []`;
+  - console messages: one isolated known 404 only;
+  - final frame non blank: `1440x948`, mean `0.425477`, stddev `0.27979`;
+  - contact sheet non blank: `1920x200`, mean `0.460195`, stddev `0.274536`;
+  - comparison against source capture confirms more near-road parallax, roadside
+    density and route/ground variation while preserving route readability and
+    coast/forest distinction.
+- Scope confirmation:
+  - no `src/ride/*` files modified;
+  - no Meshy call, no credit cost;
+  - no external asset or asset pipeline;
+  - no BLE/FTMS, backend, persistence or multiple routes;
+  - no Linear backlog expansion;
+  - no review patches required before commit.
 
 ## Sync Policy
 

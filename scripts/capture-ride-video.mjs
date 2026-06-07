@@ -2,6 +2,7 @@ import { chromium } from "@playwright/test";
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync } from "node:fs";
 import { readdir, rename, rm, writeFile } from "node:fs/promises";
+import { createServer } from "node:net";
 import { join, resolve } from "node:path";
 
 const repoRoot = resolve(new URL("..", import.meta.url).pathname);
@@ -10,7 +11,15 @@ const runId = new Date().toISOString().replace(/[:.]/g, "-");
 const runDir = join(outputRoot, `ride-visual-audit-${runId}`);
 const videoDir = join(runDir, "raw");
 const framesDir = join(runDir, "frames");
-const url = process.env.CAPTURE_URL ?? "http://127.0.0.1:5174/";
+const preferredPort = Number(process.env.CAPTURE_PORT ?? 5174);
+const capturePort = process.env.CAPTURE_URL
+  ? Number(new URL(process.env.CAPTURE_URL).port || preferredPort)
+  : await findAvailablePort(preferredPort);
+const captureHud = process.env.CAPTURE_HIDE_HUD === "0" ? "visible" : "hidden";
+const url = withCaptureHudParam(
+  process.env.CAPTURE_URL ?? `http://127.0.0.1:${capturePort}/`,
+  captureHud
+);
 const captureMs = Number(process.env.CAPTURE_MS ?? 30_000);
 const viewport = { width: 1440, height: 900 };
 const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
@@ -18,10 +27,56 @@ const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 mkdirSync(videoDir, { recursive: true });
 mkdirSync(framesDir, { recursive: true });
 
-const server = spawn("npm", ["run", "dev", "--", "--host", "127.0.0.1", "--port", "5174"], {
-  cwd: repoRoot,
-  stdio: ["ignore", "pipe", "pipe"]
-});
+function withCaptureHudParam(targetUrl, mode) {
+  if (mode !== "hidden") {
+    return targetUrl;
+  }
+
+  const nextUrl = new URL(targetUrl);
+  nextUrl.searchParams.set("captureHud", "hidden");
+
+  return nextUrl.toString();
+}
+
+async function findAvailablePort(preferred) {
+  for (let port = preferred; port < preferred + 20; port += 1) {
+    if (await canUsePort(port)) {
+      return port;
+    }
+  }
+
+  throw new Error(`No available capture port from ${preferred} to ${preferred + 19}`);
+}
+
+function canUsePort(port) {
+  return new Promise((resolveCanUse) => {
+    const probe = createServer();
+
+    probe.once("error", () => resolveCanUse(false));
+    probe.once("listening", () => {
+      probe.close(() => resolveCanUse(true));
+    });
+    probe.listen(port, "127.0.0.1");
+  });
+}
+
+const server = spawn(
+  "npm",
+  [
+    "run",
+    "dev",
+    "--",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    String(capturePort),
+    "--strictPort"
+  ],
+  {
+    cwd: repoRoot,
+    stdio: ["ignore", "pipe", "pipe"]
+  }
+);
 
 const serverLogs = [];
 server.stdout.on("data", (chunk) => serverLogs.push(chunk.toString()));
@@ -170,6 +225,8 @@ async function main() {
     httpStatus,
     mp4Path,
     pageErrors,
+    captureHud,
+    capturePort,
     runDir,
     screenshotPath,
     serverLogs: serverLogs.join(""),

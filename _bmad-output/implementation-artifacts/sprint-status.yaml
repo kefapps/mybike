@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T07:39:10+02:00
+# last_updated: 2026-06-07T08:41:35+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement MYB-10 Motion & Density Pass.
+# - Next action: commit MYB-10 Motion & Density Pass.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T07:39:10+02:00"
+last_updated: "2026-06-07T08:41:35+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-10"
+  next_action: "commit-MYB-10"
   first_story_to_start: "MYB-10"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -86,6 +86,11 @@ sprint:
   post_mvp_after_myb9_motion_density_story: "_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md"
   post_mvp_after_myb9_motion_density_issue_created: true
   post_mvp_after_myb9_motion_density_linear_url: "https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass"
+  post_mvp_after_myb9_motion_density_capture_final: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/"
+  post_mvp_after_myb9_motion_density_comparison_final: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/visual-comparison-stack.jpg"
+  post_mvp_after_myb9_motion_density_review_capture: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/"
+  post_mvp_after_myb9_motion_density_review_comparison: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg"
+  post_mvp_after_myb9_motion_density_validation: "passed: npm run typecheck, npm run test, npm run build, npm run capture:ride-video"
   post_mvp_after_myb9_motion_density_scope: "parallax proche, densite roadside controlee, variations route/sol, sensation de vitesse cote rendu; aucun Meshy, aucun asset externe, aucun changement src/ride/*."
   backlog_order:
     - "MYB-4"
@@ -153,4 +158,4 @@ development_status:
 
   # MYB-10 - Story post-MVP - Motion & Density Pass
   # Story unique creee depuis le cadrage Motion & Density Pass; pas de nouveau backlog.
-  myb-10-motion-density-pass: ready-for-dev
+  myb-10-motion-density-pass: done
