@@ -1,5 +1,6 @@
 using MyBike.Echappee3D.Bootstrap;
 using MyBike.Echappee3D.Rendering;
+using MyBike.Echappee3D.Route;
 using MyBike.Echappee3D.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -14,7 +15,7 @@ namespace MyBike.Echappee3D.EditorTools
         private const string ScenePath = "Assets/Scenes/RideMock.unity";
         private const string RouteMaterialPath = "Assets/Materials/RoutePlaceholder.mat";
 
-        [MenuItem("Echappee/MYB-12/Rebuild RideMock Scene")]
+        [MenuItem("Echappee/MYB-13/Rebuild RideMock Scene")]
         public static void Build()
         {
             if (!AssetDatabase.IsValidFolder("Assets/Materials"))
@@ -36,11 +37,18 @@ namespace MyBike.Echappee3D.EditorTools
             var fog = CreateFog();
             var ui = CreateUi();
 
+            route.renderer.EnsureVisible(RouteMath.CreateDefaultMockRoute());
             CreateRideSession(camera.controller, route.renderer, fog, ui.input, ui.hud, ui.controls);
 
             EditorSceneManager.SaveScene(scene, ScenePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        [MenuItem("Echappee/MYB-12/Rebuild RideMock Scene")]
+        public static void BuildLegacy()
+        {
+            Build();
         }
 
         private static (GameObject root, RideCameraController controller) CreateCamera()

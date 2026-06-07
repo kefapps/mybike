@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T15:02:26+02:00
+# last_updated: 2026-06-07T17:58:35+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement MYB-13 Unity route elevation and camera feel.
+# - Next action: commit MYB-13.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T15:02:26+02:00"
+last_updated: "2026-06-07T17:58:35+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-13"
+  next_action: "commit-MYB-13"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -136,8 +136,12 @@ sprint:
   post_mvp_after_myb12_unity_route_elevation_issue_created: true
   post_mvp_after_myb12_unity_route_elevation_linear_url: "https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel"
   post_mvp_after_myb12_unity_route_elevation_linear_comment: "03b15a41-fdbc-47d9-b305-2970c5616d35"
+  post_mvp_after_myb12_unity_route_elevation_implementation_comment: "8a80d52c-6484-46a4-a946-d5ae9bffa6ab"
   post_mvp_after_myb12_unity_route_elevation_scope: "simple controlled Unity route elevation, stable route visibility and slope camera feel; no terrain final, life, Meshy, external assets, Unity AI generation, BLE/FTMS, backend, public deploy, full migration or web source changes."
-  post_mvp_after_myb12_unity_route_elevation_next_action: "implement-MYB-13"
+  post_mvp_after_myb12_unity_route_elevation_local_implementation: "present locally under unity/Echappee3D: elevated mock route, slope-aware camera look-ahead, lifted route renderer, MYB-13 builder/validator menu items and route camera EditMode tests."
+  post_mvp_after_myb12_unity_route_elevation_validation: "passed via restored unity_mcp direct MCP client: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle; hierarchy includes Main Camera, Route, Fog, Canvas, EventSystem and RideSession; MYB-13 rebuild and validator executed via MCP; console 0 error / 0 warning; report _bmad-output/unity-test-results/myb-13-editor-validation.txt."
+  post_mvp_after_myb12_unity_route_elevation_review: "approved after one scoped validator patch for bounded fog/depth settings; final Unity MCP validation and safety checks passed."
+  post_mvp_after_myb12_unity_route_elevation_next_action: "commit-MYB-13"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -223,4 +227,5 @@ development_status:
 
   # MYB-13 - Story post-MYB-12 - Unity route elevation and camera feel
   # Story unique creee depuis les retours humains et MYB-12; pentes simples controlees, pas terrain final.
-  myb-13-unity-route-elevation-and-camera-feel: ready-for-dev
+  # Revue de code locale passee pour MYB-13.
+  myb-13-unity-route-elevation-and-camera-feel: done

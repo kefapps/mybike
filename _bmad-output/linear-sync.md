@@ -2006,6 +2006,144 @@ Synced on 2026-06-07:
     anti-secret scan including the new story file, no web source changes under
     `src/ride/*`, `src/render/*`, `src/app/*`, and no video capture selected.
 
+## MYB-13 Unity Route Elevation Local Implementation Blocked On Unity Validation
+
+Synced on 2026-06-07:
+
+- Linear issue remains:
+  - Issue: `MYB-13`
+  - URL: https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel
+  - Status: `In Progress`
+  - Implementation/blocker comment ID: `8a80d52c-6484-46a4-a946-d5ae9bffa6ab`
+- Story/tracking commit completed:
+  - Commit: `79fcec26c244af99793f983d77db2893970d58da`
+  - Message: `MYB-13 create route elevation story`
+- Local implementation present under `unity/Echappee3D/`:
+  - default mock route has controlled climb/descent elevation and bounded grade;
+  - camera rail look-ahead now follows elevated route samples and handles route
+    end fallback without looking at itself;
+  - route renderer keeps a small lift and readable line corners/caps;
+  - MYB-13 builder/validator menu items added while MYB-12 aliases remain;
+  - route tests cover bounded elevation and camera look-ahead on elevated route.
+- Unity validation blocker:
+  - `mcp__unity_mybike` and `mcp__unity_mcp` transports are closed.
+  - Manual `relay_mac_arm64 --mcp` connects to Unity PID `24532`, discovers
+    Unity MCP tools, then tool calls return `Connection revoked`.
+  - Batchmode fallback reaches licensing when reusing the active Unity Hub
+    session, then Unity aborts because the same project is already open in the
+    Editor.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+    status: `in-progress`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-13-unity-route-elevation-and-camera-feel: in-progress`.
+  - `next_action: unblock-unity-validation-MYB-13`.
+- Local non-Unity checks:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` status changes.
+  - No video capture or temporary MCP client selected.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Scope confirmation:
+  - Unity-only changes under `unity/Echappee3D/` plus BMAD/tracking updates;
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changes;
+  - no birds, humans, vehicles, Meshy, external assets, Unity AI generation,
+    BLE/FTMS, backend, public deploy, final terrain, full migration or broad
+    backlog.
+
+## MYB-13 Unity Route Elevation Validation Restored And Ready For Review
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-13`
+  - URL: https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel
+  - Status: `In Review`
+  - Implementation validation comment ID: `df6cc72a-7a1d-4e7e-81ed-ae43d5ad1ba1`
+- Unity MCP validation restored:
+  - Codex MCP config now keeps only `unity_mcp`; duplicate direct Unity MCP
+    clients were removed before restart / approval.
+  - Project root confirmed via MCP:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene confirmed via MCP: `Assets/Scenes/RideMock.unity`.
+  - Editor state confirmed idle, not playing, not compiling and not updating.
+  - Hierarchy read via MCP: `Main Camera`, `Route`, `Fog`, `Canvas`,
+    `EventSystem`, `RideSession`, controls and HUD texts present.
+  - MCP menu execution passed:
+    `Echappee/MYB-13/Rebuild RideMock Scene` and
+    `Echappee/MYB-13/Validate RideMock Scene`.
+  - Unity console returned 0 errors / 0 warnings.
+- Validation report:
+  - `_bmad-output/unity-test-results/myb-13-editor-validation.txt`
+  - Checks: Unity version, ride math, route math, elevated route, bounded grade,
+    finite route samples, stable camera samples, route renderer visibility,
+    playable loop, pause/resume/finish summary, scene hierarchy, wired controls,
+    wired HUD, camera, route and fog.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+    status: `review`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-13-unity-route-elevation-and-camera-feel: review`.
+  - `next_action: code-review-MYB-13`.
+- Local safety checks:
+  - `git diff --check` passed after Unity scene whitespace cleanup.
+  - High-confidence secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` status changes.
+  - No video capture selected.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Scope confirmation:
+  - Unity-only changes under `unity/Echappee3D/` plus BMAD/tracking updates;
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changes;
+  - no birds, humans, vehicles, Meshy, external assets, Unity AI generation,
+    BLE/FTMS, backend, public deploy, final terrain, full migration or broad
+    backlog.
+
+## MYB-13 Unity Route Elevation Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue completed:
+  - Issue: `MYB-13`
+  - URL: https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel
+  - Status: `Done`
+  - Review comment ID: `630e63eb-b994-4205-a334-302900c151ba`
+- Review verdict:
+  - Approved after 1 scoped correction.
+  - Correction: `RideMockValidator` now explicitly validates bounded fog/depth
+    settings required by AC7: fog enabled, linear fog mode, expected fog
+    start/end distances and valid distance ordering.
+- Final Unity MCP proof:
+  - MCP server: approved direct `unity_mcp` connection.
+  - Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle, not playing, not compiling and not updating.
+  - MCP menu execution passed:
+    `Echappee/MYB-13/Rebuild RideMock Scene` and
+    `Echappee/MYB-13/Validate RideMock Scene`.
+  - Unity console returned 0 errors / 0 warnings.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-13-editor-validation.txt`.
+- Local tracker state:
+  - `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-13-unity-route-elevation-and-camera-feel: done`.
+  - `next_action: commit-MYB-13`.
+- Final local validation:
+  - `git diff --check` passed.
+  - High-confidence secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` status changes.
+  - No video capture staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Scope confirmation:
+  - Unity-only changes under `unity/Echappee3D/` plus BMAD/tracking updates;
+  - no birds, humans, vehicles, Meshy, external assets, Unity AI generation,
+    BLE/FTMS, backend, public deploy, final terrain, full migration or broad
+    backlog.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

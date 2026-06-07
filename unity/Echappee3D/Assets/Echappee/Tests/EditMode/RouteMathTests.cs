@@ -43,6 +43,63 @@ namespace MyBike.Echappee3D.Tests
             Assert.That(RouteMath.SelectBiome(route, 0.5f), Is.EqualTo("forest"));
         }
 
+        [Test]
+        public void DefaultMockRouteIncludesBoundedElevation()
+        {
+            var route = RouteMath.CreateDefaultMockRoute();
+            var hasClimb = false;
+            var hasDescent = false;
+            var hasElevation = false;
+
+            for (var i = 0; i < route.points.Length; i += 1)
+            {
+                var point = route.points[i];
+                Assert.That(IsFinite(point.Position.y), Is.True);
+                Assert.That(Mathf.Abs(point.Position.y), Is.LessThanOrEqualTo(20f));
+                hasElevation |= Mathf.Abs(point.Position.y) > 0.5f;
+
+                if (i == 0)
+                {
+                    continue;
+                }
+
+                var previous = route.points[i - 1];
+                var distanceDelta = point.DistanceMeters - previous.DistanceMeters;
+                var elevationDelta = point.Position.y - previous.Position.y;
+
+                Assert.That(distanceDelta, Is.GreaterThan(0f));
+                Assert.That(Mathf.Abs(elevationDelta / distanceDelta), Is.LessThanOrEqualTo(0.08f));
+                hasClimb |= elevationDelta > 0.5f;
+                hasDescent |= elevationDelta < -0.5f;
+            }
+
+            Assert.That(hasElevation, Is.True);
+            Assert.That(hasClimb, Is.True);
+            Assert.That(hasDescent, Is.True);
+        }
+
+        [Test]
+        public void CameraOnRailLooksForwardAlongElevatedRoute()
+        {
+            var route = RouteMath.CreateDefaultMockRoute();
+
+            for (var i = 0; i <= 10; i += 1)
+            {
+                var progress01 = i / 10f;
+                var routePosition = RouteMath.SamplePosition(route, progress01);
+                var progress = new RouteProgressSnapshot(progress01, progress01 * route.lengthMeters, progress01 >= 1f);
+                var camera = RouteMath.CameraOnRail(route, progress, CameraRailConfig.Default);
+                var lookVector = camera.LookAt - camera.Position;
+
+                Assert.That(IsFinite(camera.Position.x), Is.True);
+                Assert.That(IsFinite(camera.Position.y), Is.True);
+                Assert.That(IsFinite(camera.Position.z), Is.True);
+                Assert.That(camera.Position.y - routePosition.y, Is.GreaterThanOrEqualTo(1.3f));
+                Assert.That(lookVector.sqrMagnitude, Is.GreaterThan(1f));
+                Assert.That(Vector3.Dot(lookVector.normalized, Vector3.forward), Is.GreaterThan(0.2f));
+            }
+        }
+
         private static bool IsFinite(float value)
         {
             return !float.IsNaN(value) && !float.IsInfinity(value);
