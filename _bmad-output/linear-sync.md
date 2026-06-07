@@ -46,6 +46,8 @@ Last sync: 2026-06-07
 - Unity demo validation harness story: `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
 - Unity scene life readability polish story: `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
 - Unity private demo package story: `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
+- Three.js demo recovery correct-course: `_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md`
+- Three.js private demo recovery story: `_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md`
 
 ## Linear Documents
 
@@ -75,6 +77,7 @@ Last sync: 2026-06-07
 | Post-MYB-14 Unity demo harness | `MYB-15` | Unity demo validation harness | https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness |
 | Post-MYB-15 Unity readability | `MYB-16` | Unity scene life readability polish | https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish |
 | Post-MYB-16 Unity private demo | `MYB-17` | Unity private demo package and launch checklist | https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist |
+| Post-MYB-17 Three.js demo recovery | `MYB-18` | Three.js private demo recovery and ride grounding | https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding |
 
 ## Dependency Mapping
 
@@ -106,6 +109,9 @@ Last sync: 2026-06-07
 - `MYB-17` follows completed `MYB-16`; it is a single Unity private local demo
   package/checklist story, not new gameplay, public deployment or broad release
   tooling.
+- `MYB-18` follows the post-MYB-17 correct-course decision; it is a single
+  web/Three.js private demo recovery and ride grounding story, not a Unity
+  continuation, engine migration, backend, BLE/FTMS or new broad backlog.
 
 ## Readiness Caveats Synced
 
@@ -2795,3 +2801,64 @@ Synced on 2026-06-07:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
     `myb-17-unity-private-demo-package-and-launch-checklist: done`.
   - `next_action: commit-MYB-17`
+
+## Correct-course Post-MYB-17: Three.js Demo Recovery
+
+Synced on 2026-06-07:
+
+- Linear project comment added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Comment ID: `3e065289-990a-470b-a2e5-7ad9e8593586`
+- Local artifact:
+  - `_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md`
+- Trigger:
+  - MYB-17 Unity WebGL local build launched at `http://127.0.0.1:8087/`.
+  - Real 60s capture:
+    `_bmad-output/video-captures/unity-webgl-running-2026-06-07T19-59-58-250Z/`.
+  - Human observation: the Unity WebGL ride advances, but feels like flying;
+    route reads as a ribbon in empty space, with weak ground/proximity anchors
+    and slower iteration than Three.js.
+- Decision:
+  - Three.js becomes the active target for the private demo again.
+  - Unity is preserved as parking/research and is not deleted.
+  - No new broad backlog and no immediate new Unity story.
+- Next recommended increment:
+  - Create one web/Three.js story for private demo recovery and ride grounding.
+  - Main acceptance should be a real 60s browser capture proving route
+    visibility, grounded camera feel, preserved fog/depth and no major
+    flickering/disappearance.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: create-threejs-private-demo-recovery-story`
+
+## MYB-18 Three.js Private Demo Recovery Story Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-18`
+  - URL: https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding
+  - Status: `In Progress`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Sync comment ID: `41e80cfe-c47e-4449-9e2f-0282d5f85040`
+  - Correct-course source: `_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md`
+  - Status: `ready-for-dev`
+  - Baseline commit: `6794394b5d878ac431a888dcad94a783dca59577`
+- Decision:
+  - Three.js redevient la cible principale de la demo privee.
+  - Unity reste parking/recherche, non supprime.
+- Scope:
+  - Web-only React/Vite/Three.js recovery pass.
+  - Grounded road feel, less floaty camera, nearby anchors, preserved fog/depth.
+  - Future acceptance must include 60s browser capture plus screenshots.
+  - No Unity edits, Meshy, external assets, backend, BLE/FTMS, public deploy or new engine migration.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-18-threejs-private-demo-recovery-and-ride-grounding: ready-for-dev`
+  - `next_action: implement-MYB-18`
+- Tracking validation:
+  - Story/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, `npm run build` intentionally not run because no web source changed.

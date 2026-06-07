@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T21:38:13+02:00
+# last_updated: 2026-06-07T22:20:10+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-17.
+# - Next action: implement-MYB-18.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T21:38:13+02:00"
+last_updated: "2026-06-07T22:20:10+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-17"
+  next_action: "implement-MYB-18"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -190,6 +190,18 @@ sprint:
   post_mvp_after_myb16_private_demo_implementation_validation: "passed via unity_mcp: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle, not playing, not compiling, not updating; MYB-17 Validate Private Demo menu exists and executed; report shows ready-for-private-local-demo, route finiteSamples=21/21, camera finiteSamples=21/21, fog linear 45-220m, mock loop Idle -> Running -> Paused -> Running -> Finished, SceneLife projectedVisible=4/8, birdsInCone=2, humansInCone=2, finiteSamples=8/8; console 0 errors / 0 warnings."
   post_mvp_after_myb16_private_demo_review: "approved after one scoped tracking fix: restored an existing MYB-13 hygiene note in linear-sync.md; no Unity code correction required. Final Unity MCP validation passed with ready-for-private-local-demo and console 0 errors / 0 warnings."
   post_mvp_after_myb16_private_demo_next_action: "commit-MYB-17"
+  post_mvp_after_myb17_unity_webgl_url: "http://127.0.0.1:8087/"
+  post_mvp_after_myb17_unity_webgl_build: "_bmad-output/unity-webgl-builds/myb-17-private-demo/"
+  post_mvp_after_myb17_unity_webgl_capture: "_bmad-output/video-captures/unity-webgl-running-2026-06-07T19-59-58-250Z/"
+  post_mvp_after_myb17_unity_webgl_signal: "Unity WebGL avance bien, mais le ressenti donne l'impression de voler: route trop ruban dans le vide, manque d'ancrage sol/proximite, iteration Unity plus lente que Three.js."
+  post_mvp_after_myb17_threejs_recovery_proposal: "_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md"
+  post_mvp_after_myb17_direction_decision: "Three.js redevient cible demo privee; Unity reste parking/recherche, non supprime."
+  post_mvp_after_myb17_threejs_recovery_next_action: "create-MYB-18-threejs-private-demo-recovery-story"
+  post_mvp_after_myb17_threejs_recovery_story: "_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md"
+  post_mvp_after_myb17_threejs_recovery_issue_created: true
+  post_mvp_after_myb17_threejs_recovery_linear_url: "https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding"
+  post_mvp_after_myb17_threejs_recovery_linear_comment: "41e80cfe-c47e-4449-9e2f-0282d5f85040"
+  post_mvp_after_myb17_threejs_recovery_scope: "Web-only React/Vite/Three.js recovery pass: grounded road feel, less floaty camera, nearby anchors, preserved fog/depth and 60s browser capture proof; no Unity edits, Meshy, external assets, backend, BLE/FTMS or new engine migration."
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -205,6 +217,7 @@ sprint:
     - "MYB-15"
     - "MYB-16"
     - "MYB-17"
+    - "MYB-18"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -224,6 +237,7 @@ linear_mapping:
   myb-15-unity-demo-validation-harness: "MYB-15"
   myb-16-unity-scene-life-readability-polish: "MYB-16"
   myb-17-unity-private-demo-package-and-launch-checklist: "MYB-17"
+  myb-18-threejs-private-demo-recovery-and-ride-grounding: "MYB-18"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -302,3 +316,7 @@ development_status:
   # MYB-17 - Story post-MYB-16 - Unity private demo package and launch checklist
   # Story unique creee pour rendre la vertical slice Unity localement demonstrable sans nouveau gameplay ni polish visuel.
   myb-17-unity-private-demo-package-and-launch-checklist: done
+
+  # MYB-18 - Story post-MYB-17 - Three.js private demo recovery and ride grounding
+  # Story unique creee depuis le correct-course post-MYB-17; Three.js redevient cible demo privee, Unity reste parking/recherche.
+  myb-18-threejs-private-demo-recovery-and-ride-grounding: ready-for-dev
