@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T18:47:30+02:00
+# last_updated: 2026-06-07T19:05:30+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-14.
+# - Next action: implement-MYB-15.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T18:47:30+02:00"
+last_updated: "2026-06-07T19:05:30+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-14"
+  next_action: "implement-MYB-15"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -153,6 +153,13 @@ sprint:
   post_mvp_after_myb13_unity_lightweight_scene_life_validation: "passed via unity_mcp: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle; hierarchy includes Main Camera, Route, Fog, SceneLife, Canvas, EventSystem and RideSession; MYB-14 rebuild and validator executed via MCP; console 0 log / warning / error; report _bmad-output/unity-test-results/myb-14-editor-validation.txt."
   post_mvp_after_myb13_unity_lightweight_scene_life_review: "approved with no blocking findings; Unity MCP validation rerun, console 0 log/warning/error, git diff check, anti-secret scan, no web source changes and no video capture selected."
   post_mvp_after_myb13_unity_lightweight_scene_life_next_action: "commit-MYB-14"
+  post_mvp_after_myb14_unity_demo_validation_harness_story: "_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md"
+  post_mvp_after_myb14_unity_demo_validation_harness_issue_created: true
+  post_mvp_after_myb14_unity_demo_validation_harness_linear_url: "https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness"
+  post_mvp_after_myb14_unity_demo_validation_harness_linear_comment: "5c6cbedb-1fd2-4953-a42e-f0bcd23b6d09"
+  post_mvp_after_myb14_unity_demo_validation_harness_scope: "Unity-only private demo validation harness; add MYB-15 editor menu and myb-15-demo-readiness report covering route, camera, fog, HUD/controls, mock loop and SceneLife projected visibility metrics; no visual polish, no repositioning life elements, no Meshy, assets, vehicles, traffic, AI, BLE/FTMS, backend, public deploy, MYB-16 creation or web source changes."
+  post_mvp_after_myb14_unity_demo_validation_harness_decision: "User chose direction D first, then A: MYB-15 creates repeatable demo-readiness metrics before MYB-16 readability polish."
+  post_mvp_after_myb14_unity_demo_validation_harness_next_action: "implement-MYB-15"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -165,6 +172,7 @@ sprint:
     - "MYB-12"
     - "MYB-13"
     - "MYB-14"
+    - "MYB-15"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -181,6 +189,7 @@ linear_mapping:
   myb-12-unity-playable-parity-mock-loop: "MYB-12"
   myb-13-unity-route-elevation-and-camera-feel: "MYB-13"
   myb-14-unity-lightweight-scene-life: "MYB-14"
+  myb-15-unity-demo-validation-harness: "MYB-15"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -247,3 +256,7 @@ development_status:
   # Story unique creee depuis les retours humains et MYB-13; oiseaux + silhouettes humaines, comparaison Meshy bornee validee.
   # Revue de code locale passee pour MYB-14.
   myb-14-unity-lightweight-scene-life: done
+
+  # MYB-15 - Story post-MYB-14 - Unity demo validation harness
+  # Story unique creee depuis la revue post-MYB-14; harness de validation demo avant polish lisibilite MYB-16.
+  myb-15-unity-demo-validation-harness: ready-for-dev

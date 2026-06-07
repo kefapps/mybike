@@ -2310,6 +2310,44 @@ Synced on 2026-06-07:
     `myb-14-unity-lightweight-scene-life: done`.
   - `next_action: commit-MYB-14`.
 
+## MYB-15 Unity Demo Validation Harness Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-15`
+  - URL: https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness
+  - Status: `In Progress`
+  - Sync comment ID: `5c6cbedb-1fd2-4953-a42e-f0bcd23b6d09`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
+  - Status: `ready-for-dev`
+  - Baseline commit: `fe98bc828c09dda470f6ca28167b5b99cef82d3d`
+- Decision:
+  - User selected direction D first, then A.
+  - MYB-15 builds a repeatable Unity private-demo validation harness.
+  - MYB-16 is intended to use those metrics for readability polish, but MYB-16
+    was not created in this pass.
+- Scope:
+  - Unity-only under `unity/Echappee3D/`.
+  - Add a menu such as `Echappee/MYB-15/Validate Demo Readiness`.
+  - Generate `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`.
+  - Report project root, active scene, editor idle state, console health, route
+    visibility/stability, bounded camera samples, fog/depth, HUD/controls,
+    mock loop, `SceneLife` presence and projected visibility metrics.
+  - Include factual recommendations for MYB-16 readability polish.
+- Guardrails:
+  - No visual polish in MYB-15.
+  - Do not reposition birds or human silhouettes.
+  - Do not change route/camera/fog behavior except obvious validator correctness
+    fixes.
+  - No Meshy, external asset, Unity AI generation, vehicle, traffic, AI,
+    BLE/FTMS, backend, public deploy, MYB-16 creation or web source changes.
+- Tracking validation:
+  - Story/tracking only; no Unity implementation performed in this pass.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the
