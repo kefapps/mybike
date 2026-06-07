@@ -43,6 +43,9 @@ Last sync: 2026-06-07
 - Unity playable parity mock loop story: `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
 - Unity route elevation and camera feel story: `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
 - Unity lightweight scene life story: `_bmad-output/implementation-artifacts/myb-14-unity-lightweight-scene-life.md`
+- Unity demo validation harness story: `_bmad-output/implementation-artifacts/myb-15-unity-demo-validation-harness.md`
+- Unity scene life readability polish story: `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
+- Unity private demo package story: `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
 
 ## Linear Documents
 
@@ -69,6 +72,9 @@ Last sync: 2026-06-07
 | Post-MYB-11 Unity playable loop | `MYB-12` | Unity playable parity mock loop | https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop |
 | Post-MYB-12 Unity elevation | `MYB-13` | Unity route elevation and camera feel | https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel |
 | Post-MYB-13 Unity scene life | `MYB-14` | Unity lightweight scene life | https://linear.app/kefjbo/issue/MYB-14/unity-lightweight-scene-life |
+| Post-MYB-14 Unity demo harness | `MYB-15` | Unity demo validation harness | https://linear.app/kefjbo/issue/MYB-15/unity-demo-validation-harness |
+| Post-MYB-15 Unity readability | `MYB-16` | Unity scene life readability polish | https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish |
+| Post-MYB-16 Unity private demo | `MYB-17` | Unity private demo package and launch checklist | https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist |
 
 ## Dependency Mapping
 
@@ -93,6 +99,13 @@ Last sync: 2026-06-07
 - `MYB-14` follows completed `MYB-13`; it is a single Unity lightweight scene
   life story, with a bounded Meshy comparison explicitly approved for this
   story only, not a traffic system, final art pass or Unity backlog.
+- `MYB-15` follows completed `MYB-14`; it is a single Unity demo validation
+  harness story, not a visual polish pass or public deployment gate.
+- `MYB-16` follows completed `MYB-15`; it is a single Unity scene-life
+  readability polish story, not a new life system or asset pipeline.
+- `MYB-17` follows completed `MYB-16`; it is a single Unity private local demo
+  package/checklist story, not new gameplay, public deployment or broad release
+  tooling.
 
 ## Readiness Caveats Synced
 
@@ -2620,3 +2633,47 @@ Synced on 2026-06-07:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
     `myb-16-unity-scene-life-readability-polish: done`.
   - `next_action: commit-MYB-16`.
+
+## MYB-17 Unity Private Demo Package And Launch Checklist Story Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-17`
+  - URL: https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist
+  - Status: `In Progress`
+  - Project: `Échappée 3D — Vertical Slice Mock`
+  - Sync comment ID: `0f2b2dd3-1af3-4eff-8d05-bc49887956aa`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
+  - Status: `ready-for-dev`
+  - Baseline commit: `4de2bc8d50ccf0583920cf129f72ee5ba3a51a11`
+- Source evidence:
+  - MYB-15 Unity demo validation harness: Done.
+  - MYB-16 Unity scene life readability polish: Done.
+  - MYB-16 review comment: `2407685b-a5f0-4453-b115-bb0d203a8ce4`.
+  - MYB-16 report: `_bmad-output/unity-test-results/myb-16-scene-life-readability.txt`.
+  - Current Unity signal: `projectedVisible=4/8`, `birdsInCone=2`,
+    `humansInCone=2`, `finiteSamples=8/8`, console Unity 0 error / 0 warning.
+- Scope:
+  - Unity-only private local demo readiness wrapper.
+  - Add or extend a menu such as `Echappee/MYB-17/Validate Private Demo`.
+  - Generate `_bmad-output/unity-test-results/myb-17-private-demo-readiness.txt`.
+  - Include project root, active scene, editor idle state, console health,
+    route/camera/fog/HUD/controls/mock loop, SceneLife MYB-16 visibility,
+    readiness verdict and short launch checklist.
+  - Optional Build Settings or local macOS build validation only if low-risk and
+    stable.
+- Guardrails:
+  - No new gameplay, visual polish, vehicle, traffic system, AI, collision
+    gameplay, flocking complex, complex animation, Meshy, external asset, Unity
+    AI generation, BLE/FTMS, backend, public deployment, broad backlog or web
+    source changes.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-17-unity-private-demo-package-and-launch-checklist: ready-for-dev`
+  - `next_action: implement-MYB-17`
+- Tracking validation:
+  - Story/tracking only; no Unity implementation performed in this pass.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
