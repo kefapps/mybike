@@ -34,6 +34,7 @@ Last sync: 2026-06-07
 - Motion & Density Pass final comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-52-51-683Z/visual-comparison-stack.jpg`
 - Motion & Density Pass review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
 - Motion & Density Pass review comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/visual-comparison-stack.jpg`
+- Post-MYB-10 human playtest plan: `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-2026-06-07.md`
 
 ## Linear Documents
 
@@ -1388,6 +1389,41 @@ Synced on 2026-06-07:
   - no Meshy call;
   - no application code change;
   - no `npm` validation run because this was a retrospective/tracking sync only.
+
+## Post-MYB-10 Human Playtest Lite Prepared
+
+Synced on 2026-06-07:
+
+- Local playtest artifact created:
+  `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-2026-06-07.md`
+- Linear project note added:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project note/comment ID: `d257d713-b7ef-4091-ad66-3e6978b4789e`
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `next_action: run-human-playtest-lite-post-MYB-10`
+  - `post_mvp_after_myb10_human_playtest_plan:
+    _bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-2026-06-07.md`
+  - `post_mvp_after_myb10_human_playtest_status:
+    ready-for-human-session`
+- Playtest scope:
+  - 10-15 minute human session;
+  - validate immediate comprehension, ride feel, route readability,
+    HUD/controls and private demo interest after MYB-10;
+  - include a simple note-taking grid;
+  - decide between `demo-privee-ok`, `hardening-technique-necessaire`,
+    `meshy-cible-utile` and `ajustement-visuel-precis-necessaire`.
+- Sources used:
+  - `_bmad-output/implementation-artifacts/myb-10-visual-mini-retro-2026-06-07.md`
+  - `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb9-2026-06-07.md`
+  - `_bmad-output/video-captures/ride-visual-audit-2026-06-07T06-39-46-859Z/`
+- Scope confirmation:
+  - no new Linear issue or backlog expansion;
+  - no Meshy call;
+  - no application code change;
+  - no new procedural visual pass before human feedback;
+  - no `npm` validation run because only docs/tracking changed.
 
 ## Sync Policy
 
