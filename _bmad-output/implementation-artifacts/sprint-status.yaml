@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T14:48:23+02:00
+# last_updated: 2026-06-07T15:02:26+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit MYB-12 Unity playable parity mock loop.
+# - Next action: implement MYB-13 Unity route elevation and camera feel.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T14:48:23+02:00"
+last_updated: "2026-06-07T15:02:26+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-12"
+  next_action: "implement-MYB-13"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -132,6 +132,12 @@ sprint:
   post_mvp_after_myb10_unity_playable_parity_mcp_preflight: "passed via approved direct Unity MCP client: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle, not playing, not compiling; hierarchy Main Camera, Route, Fog, Canvas, EventSystem, RideSession; console 0 error / 0 warning."
   post_mvp_after_myb10_unity_playable_parity_validation: "passed via approved unity-relay-client MCP process: project root /Users/jbodin/personnel/apps/mybike/unity/Echappee3D; active scene Assets/Scenes/RideMock.unity; Editor idle; hierarchy includes Main Camera, Route, Fog, Canvas, EventSystem, RideSession, slider, Start/Pause/Resume/Finish buttons and HUD texts; RideMockValidator MYB-12 executed via MCP after review hardening for wired controls/HUD and flat route; console 0 error / 0 warning; git diff --check; anti-secret scan; no web source changes; no video capture selected."
   post_mvp_after_myb10_unity_playable_parity_next_action: "commit-MYB-12"
+  post_mvp_after_myb12_unity_route_elevation_story: "_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md"
+  post_mvp_after_myb12_unity_route_elevation_issue_created: true
+  post_mvp_after_myb12_unity_route_elevation_linear_url: "https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel"
+  post_mvp_after_myb12_unity_route_elevation_linear_comment: "03b15a41-fdbc-47d9-b305-2970c5616d35"
+  post_mvp_after_myb12_unity_route_elevation_scope: "simple controlled Unity route elevation, stable route visibility and slope camera feel; no terrain final, life, Meshy, external assets, Unity AI generation, BLE/FTMS, backend, public deploy, full migration or web source changes."
+  post_mvp_after_myb12_unity_route_elevation_next_action: "implement-MYB-13"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -142,6 +148,7 @@ sprint:
     - "MYB-10"
     - "MYB-11"
     - "MYB-12"
+    - "MYB-13"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -156,6 +163,7 @@ linear_mapping:
   myb-10-motion-density-pass: "MYB-10"
   myb-11-unity-vertical-slice-mock-scaffold: "MYB-11"
   myb-12-unity-playable-parity-mock-loop: "MYB-12"
+  myb-13-unity-route-elevation-and-camera-feel: "MYB-13"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -212,3 +220,7 @@ development_status:
   # MYB-12 - Story post-MYB-11 - Unity playable parity mock loop
   # Story unique creee depuis MYB-11 et l'architecture Unity mince; boucle jouable minimale, pas migration complete.
   myb-12-unity-playable-parity-mock-loop: done
+
+  # MYB-13 - Story post-MYB-12 - Unity route elevation and camera feel
+  # Story unique creee depuis les retours humains et MYB-12; pentes simples controlees, pas terrain final.
+  myb-13-unity-route-elevation-and-camera-feel: ready-for-dev

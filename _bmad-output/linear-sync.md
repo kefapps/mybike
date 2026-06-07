@@ -41,6 +41,7 @@ Last sync: 2026-06-07
 - Unity migration thin architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
 - Unity vertical slice mock scaffold story: `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
 - Unity playable parity mock loop story: `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
+- Unity route elevation and camera feel story: `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
 
 ## Linear Documents
 
@@ -65,6 +66,7 @@ Last sync: 2026-06-07
 | Post-MYB-9 motion density | `MYB-10` | Motion & Density Pass | https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass |
 | Post-MYB-10 Unity scaffold | `MYB-11` | Unity vertical slice mock scaffold | https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold |
 | Post-MYB-11 Unity playable loop | `MYB-12` | Unity playable parity mock loop | https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop |
+| Post-MYB-12 Unity elevation | `MYB-13` | Unity route elevation and camera feel | https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel |
 
 ## Dependency Mapping
 
@@ -84,6 +86,8 @@ Last sync: 2026-06-07
   is a single Unity scaffold story, not a full migration or Unity backlog.
 - `MYB-12` follows completed `MYB-11`; it is a single Unity playable mock loop
   story, not a full migration or Unity backlog.
+- `MYB-13` follows completed `MYB-12`; it is a single Unity route elevation and
+  camera feel story, not final terrain, life, full migration or Unity backlog.
 
 ## Readiness Caveats Synced
 
@@ -1958,6 +1962,49 @@ Synced on 2026-06-07:
   - no Meshy or credit-cost tool call;
   - no external asset, Unity AI generation, slope, bird, human, vehicle,
     BLE/FTMS, backend, public deploy, full migration or broad backlog.
+
+## MYB-13 Unity Route Elevation And Camera Feel Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-13`
+  - URL: https://linear.app/kefjbo/issue/MYB-13/unity-route-elevation-and-camera-feel
+  - Status: `In Progress`
+  - Related to: `MYB-12`
+  - Sync comment ID: `03b15a41-fdbc-47d9-b305-2970c5616d35`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-13-unity-route-elevation-and-camera-feel.md`
+  - Local status: `ready-for-dev`
+  - Baseline commit: `0ff3e4d74ef3a3731df70a446d7cfae257e88c6f`
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-13-unity-route-elevation-and-camera-feel: ready-for-dev`
+  - `next_action: implement-MYB-13`
+- Source evidence:
+  - MYB-11 Unity scaffold: Done.
+  - MYB-12 Unity playable parity mock loop: Done.
+  - MYB-12 review comment: `06256ee1-8ea0-4631-8de7-4c52b942dd8e`.
+  - MYB-12 validation report:
+    `_bmad-output/unity-test-results/myb-12-editor-validation.txt`.
+  - Post-MYB-10 human feedback requested slopes, flagged route disappearance /
+    flickering as a regression risk, and liked fog / long-distance depth.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/`;
+  - simple controlled elevation and stable slope camera feel only;
+  - React/Three prototype preserved as reference;
+  - no `src/ride/*`, `src/render/*` or `src/app/*` changes;
+  - no birds, humans, vehicles, Meshy, external assets, Unity AI generation,
+    BLE/FTMS, backend, public deploy, final terrain, full migration or broad
+    backlog.
+- Tracking validation:
+  - Story/tracking only; no Unity implementation performed in this pass.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+  - Hygiene checks performed locally after artifact updates:
+    `git diff --check`, untracked story whitespace check, high-confidence
+    anti-secret scan including the new story file, no web source changes under
+    `src/ride/*`, `src/render/*`, `src/app/*`, and no video capture selected.
 
 ## Sync Policy
 
