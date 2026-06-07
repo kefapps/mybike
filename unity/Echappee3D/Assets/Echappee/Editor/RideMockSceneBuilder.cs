@@ -93,8 +93,8 @@ namespace MyBike.Echappee3D.EditorTools
 
         private static LightweightSceneLife CreateSceneLife()
         {
-            var birdMaterial = CreateMaterial(BirdMaterialPath, new Color(0.82f, 0.88f, 0.84f, 1f));
-            var humanMaterial = CreateMaterial(HumanMaterialPath, new Color(0.08f, 0.11f, 0.12f, 1f));
+            var birdMaterial = CreateMaterial(BirdMaterialPath, new Color(0.92f, 0.96f, 0.9f, 1f));
+            var humanMaterial = CreateMaterial(HumanMaterialPath, new Color(0.03f, 0.05f, 0.06f, 1f));
             var root = new GameObject(LightweightSceneLife.RootName);
             var birdsRoot = new GameObject(LightweightSceneLife.BirdsRootName).transform;
             var humansRoot = new GameObject(LightweightSceneLife.HumansRootName).transform;
@@ -103,8 +103,8 @@ namespace MyBike.Echappee3D.EditorTools
 
             var birdPositions = new[]
             {
-                new Vector3(-20f, 18f, 120f),
-                new Vector3(18f, 22f, 260f),
+                new Vector3(-20f, 18f, 290f),
+                new Vector3(-8f, 18f, 320f),
                 new Vector3(38f, 19f, 430f),
                 new Vector3(-34f, 24f, 620f),
                 new Vector3(20f, 21f, 790f)
@@ -116,8 +116,8 @@ namespace MyBike.Echappee3D.EditorTools
             }
 
             var route = RouteMath.CreateDefaultMockRoute();
-            CreateHumanSilhouette(humansRoot, "HumanSilhouette_01", new Vector3(-14f, 0f, 180f), route, humanMaterial);
-            CreateHumanSilhouette(humansRoot, "HumanSilhouette_02", new Vector3(52f, 0f, 420f), route, humanMaterial);
+            CreateHumanSilhouette(humansRoot, "HumanSilhouette_01", new Vector3(-20f, 0f, 300f), route, humanMaterial);
+            CreateHumanSilhouette(humansRoot, "HumanSilhouette_02", new Vector3(-10.5f, 0f, 324f), route, humanMaterial);
             CreateHumanSilhouette(humansRoot, "HumanSilhouette_03", new Vector3(24f, 0f, 760f), route, humanMaterial);
 
             var life = root.AddComponent<LightweightSceneLife>();
@@ -136,7 +136,7 @@ namespace MyBike.Echappee3D.EditorTools
             root.transform.SetParent(parent, false);
             root.transform.position = position;
             root.transform.rotation = Quaternion.Euler(0f, index * 18f - 25f, 0f);
-            root.transform.localScale = Vector3.one * 2.2f;
+            root.transform.localScale = Vector3.one * 2.6f;
 
             var meshFilter = root.AddComponent<MeshFilter>();
             meshFilter.sharedMesh = CreateBirdMesh(name);
@@ -181,7 +181,7 @@ namespace MyBike.Echappee3D.EditorTools
             body.name = "Body";
             body.transform.SetParent(root.transform, false);
             body.transform.localPosition = new Vector3(0f, 0.9f, 0f);
-            body.transform.localScale = new Vector3(0.42f, 0.78f, 0.32f);
+            body.transform.localScale = new Vector3(0.5f, 0.88f, 0.36f);
             body.GetComponent<Renderer>().sharedMaterial = material;
             UnityEngine.Object.DestroyImmediate(body.GetComponent<Collider>());
 
@@ -189,7 +189,7 @@ namespace MyBike.Echappee3D.EditorTools
             head.name = "Head";
             head.transform.SetParent(root.transform, false);
             head.transform.localPosition = new Vector3(0f, 1.78f, 0f);
-            head.transform.localScale = Vector3.one * 0.36f;
+            head.transform.localScale = Vector3.one * 0.4f;
             head.GetComponent<Renderer>().sharedMaterial = material;
             UnityEngine.Object.DestroyImmediate(head.GetComponent<Collider>());
         }
