@@ -2496,3 +2496,33 @@ Ask for confirmation before destructive or scope-changing Linear operations:
 creating new projects, initiatives, epics, or broad backlog; archiving/deleting;
 renaming canonical trackers; changing team/project ownership; or expanding beyond
 the current one MVP epic and five vertical-slice stories.
+
+## MYB-16 Unity Scene Life Readability Polish Story Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-16`
+  - URL: https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish
+  - Status: `In Progress`
+  - Project: `Échappée 3D — Vertical Slice Mock`
+  - Sync comment ID: `e06e80e3-cf29-48fd-bb6a-116377d92185`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-16-unity-scene-life-readability-polish.md`
+  - Status: `ready-for-dev`
+  - Baseline commit: `849ae61dd4fed8215cbfb38f7c37076c60c28168`
+- Source signal:
+  - `_bmad-output/unity-test-results/myb-15-demo-readiness.txt`
+  - `Projected visibility in camera cone: 0/8`
+  - `Finite visibility samples: 8/8`
+- Scope:
+  - Unity-only under `unity/Echappee3D/`.
+  - Polish existing MYB-14 life elements only: 5 birds and 3 static roadside human silhouettes.
+  - Allowed changes: placement, scale, orientation and simple material/contrast adjustments.
+  - Validation target: at least `3/8` life elements inside the camera cone, including at least 1 bird and 1 human, with finite visibility samples `8/8`.
+- Guardrails:
+  - Preserve route, MYB-13 slopes, camera, fog/depth, HUD, controls and MYB-12 loop.
+  - No Meshy, external asset, Unity AI generation, vehicle, traffic system, AI, collision gameplay, flocking complex, complex animation, BLE/FTMS, backend, public deploy, prototype web deletion or web source changes.
+- Tracking validation:
+  - Story/tracking only; no Unity implementation performed in this pass.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not run because no web source changed.
