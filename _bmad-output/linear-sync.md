@@ -985,6 +985,108 @@ Synced on 2026-06-06:
   only BMAD/Linear tracking artifacts changed, with no application code
   modification.
 
+## MYB-9 Scenic Mood Pass Procedural In Review
+
+Synced on 2026-06-06:
+
+- Linear issue updated:
+  - Linear issue: `MYB-9`
+  - Title: `Scenic Mood Pass procedural`
+  - URL: https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural
+  - Status: `In Review`
+  - Team: `MYB`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Implementation sync comment ID: `8613ad45-9108-49a9-bb21-8a63d4fd480b`
+- Local BMAD story updated:
+  `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: review-MYB-9`
+  - `myb-9-scenic-mood-pass-procedural: review`
+- Implementation summary:
+  1. coast motif: procedural lighthouse and rock arch;
+  2. forest motif: procedural canopy tunnel and trunk silhouettes;
+  3. terrain composition: near berms, far ridges and stronger ground relief;
+  4. biome mood: sky, fog near/far, horizon, light intensity and sun direction
+     now come from `getBiomePalette`.
+- Scope guardrails validated:
+  - no Meshy call, no credit cost;
+  - no external asset, glTF or heavy asset pipeline;
+  - no multiple routes or HUD redesign;
+  - no advanced bundle optimization;
+  - no `src/ride/*` modification;
+  - mock happy path preserved.
+- Validation evidence:
+  - `npm run typecheck`: passed.
+  - `npm run test`: passed, 21 files / 67 tests.
+  - `npm run build`: passed with the known Vite chunk warning for Three.js
+    (> 500 kB), out of scope for MYB-9.
+  - Vite local HTTP check: `200 OK` on `http://127.0.0.1:5174/`.
+  - Browser check: WebGL canvas non blank (`878x350`), no page errors; only
+    WebGL `ReadPixels` screenshot warnings.
+  - `npm run capture:ride-video`: passed.
+- Visual proof:
+  - Run dir:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-44-36-975Z/`
+  - MP4:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-44-36-975Z/ride-visual-audit-30s.mp4`
+  - Contact sheet:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T21-44-36-975Z/ride-visual-audit-contact-sheet.jpg`
+  - Capture summary:
+    HTTP `200`, 6 frames, no page errors, one isolated known 404 from capture.
+
+## MYB-9 Scenic Mood Pass Procedural Reviewed
+
+Synced on 2026-06-07:
+
+- `MYB-9`: code review approved and Linear moved from `In Review` to `Done`.
+- Review verdict: `approved`.
+- Review fixes applied before approval:
+  - moved the forest canopy tunnel/trunk silhouettes earlier so the 30s visual
+    proof shows the forest motif;
+  - made sculpted ground and nearby scenic props route-aware so berms/relief do
+    not assume the road center is always `x=0`;
+  - reused scene `Color`/`Fog` objects during frame updates to reduce GC churn;
+  - extended render tests to cap nested renderable mesh density, cover
+    route-aware scenic offsets and cover route center sampling;
+  - added fallback tint handling for new prominent scenic materials.
+- Final validation evidence:
+  - `npm run typecheck`: passed;
+  - `npm run test`: passed, 21 files / 68 tests;
+  - `npm run build`: passed, with the expected Vite chunk-size warning for the
+    Three.js bundle;
+  - Vite local HTTP check: `200 OK` on `http://127.0.0.1:5174/`;
+  - `npm run capture:ride-video`: passed.
+- Final visual proof:
+  - Run dir:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T23-54-18-055Z/`
+  - MP4:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T23-54-18-055Z/ride-visual-audit-30s.mp4`
+  - Contact sheet:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-06T23-54-18-055Z/ride-visual-audit-contact-sheet.jpg`
+  - Capture summary:
+    HTTP `200`, 6 frames, no page errors, one isolated known 404 from capture;
+  - Nonblank proof:
+    final frame `1440x900 mean=50628.3 stddev=18742.4`, contact sheet
+    `1920x200 mean=51378.5 stddev=17634.3`.
+- Final scope confirmation:
+  - no Meshy call, no credit cost;
+  - no external asset, glTF or heavy asset pipeline;
+  - no multiple routes, route selector, HUD redesign, advanced bundle
+    optimization or new Linear backlog;
+  - no `src/ride/*` modification;
+  - mock mode and existing snapshot-driven render contract preserved.
+- Local BMAD status recorded as `done` in
+  `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`
+  and `_bmad-output/implementation-artifacts/sprint-status.yaml`; sprint
+  `next_action: commit-MYB-9`.
+- Linear sync evidence:
+  - Linear issue: `MYB-9`
+  - Status: `Done`
+  - Completed at: `2026-06-06T23:56:32.039Z`
+  - Issue updated at: `2026-06-06T23:56:32.057Z`
+  - Review comment ID: `074b7b89-f153-451b-889a-7c8e54cfe4ab`
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

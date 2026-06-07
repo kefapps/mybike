@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-06T23:29:23+02:00
+# last_updated: 2026-06-07T01:55:26+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; MYB-8 is done and the next visual step must remain one story.
-# - Next action: implement MYB-9, the single Scenic Mood Pass procedural story.
+# - Next action: commit MYB-9 after approved local review.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-06T23:29:23+02:00"
+last_updated: "2026-06-07T01:55:26+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-9"
+  next_action: "commit-MYB-9"
   first_story_to_start: "MYB-9"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -131,4 +131,5 @@ development_status:
 
   # MYB-9 - Story post-MVP - Scenic Mood Pass procedural
   # Story unique approuvee depuis la decision Scenic Mood Pass procedural; pas de nouveau backlog.
-  myb-9-scenic-mood-pass-procedural: ready-for-dev
+  # Revue de code locale passee pour MYB-9.
+  myb-9-scenic-mood-pass-procedural: done

@@ -3,7 +3,11 @@ import * as THREE from "three";
 import { mockRouteDefinition, type RouteDefinition } from "../route";
 import { createBiomeVisuals, type BiomeVisuals } from "./createBiomeVisuals";
 import { createRouteMesh, type RouteMeshResult } from "./createRouteMesh";
-import { getBiomePalette, toThreeVector3 } from "./renderHelpers";
+import {
+  getBiomePalette,
+  getRouteCenterXAtZ,
+  toThreeVector3
+} from "./renderHelpers";
 import type {
   RenderFrameSnapshot,
   SceneController as SceneControllerApi
@@ -21,6 +25,8 @@ export type SceneControllerOptions = {
 export class ThreeSceneController implements SceneControllerApi {
   private readonly route: RouteDefinition;
   private readonly scene = new THREE.Scene();
+  private readonly backgroundColor = new THREE.Color(0xb7d9ec);
+  private readonly fog = new THREE.Fog(0xd4eef5, 22, 380);
   private readonly camera = new THREE.PerspectiveCamera(
     70,
     DEFAULT_WIDTH / DEFAULT_HEIGHT,
@@ -47,8 +53,10 @@ export class ThreeSceneController implements SceneControllerApi {
     this.routeMesh = createRouteMesh(this.route);
     this.ground = this.createGround();
     this.horizon = this.createHorizon();
-    this.biomeVisuals = createBiomeVisuals();
+    this.biomeVisuals = createBiomeVisuals(this.route);
 
+    this.scene.background = this.backgroundColor;
+    this.scene.fog = this.fog;
     this.sunLight.position.set(-14, 38, -18);
     this.scene.add(
       this.ambientLight,
@@ -106,19 +114,34 @@ export class ThreeSceneController implements SceneControllerApi {
       snapshot.route.usedFallback
     );
 
-    this.scene.background = new THREE.Color(palette.sky);
-    this.scene.fog = new THREE.Fog(palette.fog, 22, 380);
+    this.backgroundColor.setHex(palette.sky);
+    this.fog.color.setHex(palette.fog);
+    this.fog.near = palette.fogNear;
+    this.fog.far = palette.fogFar;
     this.routeMesh.material.color.setHex(palette.route);
     this.ground.material.color.setHex(palette.ground);
     this.horizon.material.color.setHex(palette.horizon);
+    this.horizon.material.opacity = palette.horizonOpacity;
     this.biomeVisuals.coastMaterial.color.setHex(
-      snapshot.route.usedFallback ? palette.accent : 0x4f9fcf
+      snapshot.route.usedFallback ? palette.accent : 0x277fa8
     );
     this.biomeVisuals.forestMaterial.color.setHex(
-      snapshot.route.usedFallback ? palette.accent : 0x174d2e
+      snapshot.route.usedFallback ? palette.accent : 0x1a5f39
     );
-    this.ambientLight.intensity = snapshot.route.biomeId === "forest" ? 0.62 : 0.82;
-    this.sunLight.intensity = snapshot.route.biomeId === "forest" ? 0.9 : 1.2;
+    for (const tint of this.biomeVisuals.fallbackTintMaterials) {
+      tint.material.color.setHex(
+        snapshot.route.usedFallback ? tint.fallbackColor : tint.defaultColor
+      );
+    }
+    this.ambientLight.color.setHex(palette.ambientColor);
+    this.ambientLight.intensity = palette.ambientIntensity;
+    this.sunLight.color.setHex(palette.sunColor);
+    this.sunLight.intensity = palette.sunIntensity;
+    this.sunLight.position.set(
+      palette.sunPosition.x,
+      palette.sunPosition.y,
+      palette.sunPosition.z
+    );
 
     this.camera.fov = snapshot.route.camera.fovDegrees;
     this.camera.position.copy(toThreeVector3(snapshot.route.camera.position));
@@ -145,17 +168,31 @@ export class ThreeSceneController implements SceneControllerApi {
     THREE.PlaneGeometry,
     THREE.MeshStandardMaterial
   > {
-    const geometry = new THREE.PlaneGeometry(360, 1400, 10, 34);
+    const geometry = new THREE.PlaneGeometry(420, 1400, 18, 54);
     const positions = geometry.attributes.position;
 
     for (let index = 0; index < positions.count; index += 1) {
       const x = positions.getX(index);
       const y = positions.getY(index);
-      const awayFromRoad = Math.max(0, Math.abs(x) - 18);
+      const worldZ = 560 - y;
+      const routeCenterX = getRouteCenterXAtZ(this.route, worldZ);
+      const lateralDistance = Math.abs(x - routeCenterX);
+      const roadClearance = Math.max(0, lateralDistance - 7);
+      const berm =
+        Math.max(0, 1 - Math.abs(lateralDistance - 18) / 12) *
+        (1.2 + Math.sin(y * 0.021) * 0.35);
+      const midSlope =
+        Math.min(1, Math.max(0, (lateralDistance - 34) / 80)) * 4.8;
+      const farRidge =
+        Math.min(1, Math.max(0, (lateralDistance - 108) / 86)) * 6.4;
       const wave =
-        Math.sin(y * 0.018) * 0.42 + Math.cos((x + y) * 0.012) * 0.28;
+        Math.sin(y * 0.018) * 0.38 +
+        Math.cos((x + y) * 0.012) * 0.32 +
+        Math.sin((x - y) * 0.007) * 0.28;
+      const height =
+        roadClearance > 0 ? berm + midSlope + farRidge + wave * 1.25 : 0;
 
-      positions.setZ(index, awayFromRoad > 0 ? wave * (awayFromRoad / 180) : 0);
+      positions.setZ(index, height);
     }
 
     geometry.computeVertexNormals();

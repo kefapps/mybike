@@ -4,7 +4,7 @@ story_key: "myb-9-scenic-mood-pass-procedural"
 linear_id: "MYB-9"
 linear_url: "https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural"
 title: "Scenic Mood Pass procedural"
-status: "ready-for-dev"
+status: "done"
 created: "2026-06-06"
 baseline_commit: "4f2ce690a5e2f9d365742f8693dd82dda15fca88"
 scope: "post-MYB-8 procedural scenic mood pass"
@@ -17,7 +17,7 @@ depends_on:
 
 # Story MYB-9: Scenic Mood Pass procedural
 
-Status: ready-for-dev
+Status: done
 
 ## Story
 
@@ -111,51 +111,51 @@ Exclus:
 
 ## Tasks / Subtasks
 
-- [ ] Verifier les contrats existants avant modification. (AC: 4, 5, 6, 7)
-  - [ ] Lire `src/render/SceneController.ts`.
-  - [ ] Lire `src/render/createBiomeVisuals.ts`.
-  - [ ] Lire `src/render/createRouteMesh.ts`.
-  - [ ] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
-  - [ ] Lire `src/route/mockRouteDefinition.ts` et
+- [x] Verifier les contrats existants avant modification. (AC: 4, 5, 6, 7)
+  - [x] Lire `src/render/SceneController.ts`.
+  - [x] Lire `src/render/createBiomeVisuals.ts`.
+  - [x] Lire `src/render/createRouteMesh.ts`.
+  - [x] Lire `src/render/renderHelpers.ts` et `src/render/sceneTypes.ts`.
+  - [x] Lire `src/route/mockRouteDefinition.ts` et
     `src/route/createRouteFrameSnapshot.ts`.
-  - [ ] Ne lire `src/ride/*` que pour verifier un type si necessaire; ne pas en
+  - [x] Ne lire `src/ride/*` que pour verifier un type si necessaire; ne pas en
     faire une surface d'implementation.
 
-- [ ] Ajouter un motif fort par biome. (AC: 1, 4, 7)
-  - [ ] Creer des landmarks proceduraux simples et instanciables dans
+- [x] Ajouter un motif fort par biome. (AC: 1, 4, 7)
+  - [x] Creer des landmarks proceduraux simples et instanciables dans
     `src/render/createBiomeVisuals.ts` ou un helper voisin.
-  - [ ] Coast: ajouter un motif maritime ou rocheux identifiable.
-  - [ ] Forest: ajouter un motif vegetal/silhouette identifiable.
-  - [ ] Garder geometries et materiaux partages et trackes pour disposal.
+  - [x] Coast: ajouter un motif maritime ou rocheux identifiable.
+  - [x] Forest: ajouter un motif vegetal/silhouette identifiable.
+  - [x] Garder geometries et materiaux partages et trackes pour disposal.
 
-- [ ] Composer le relief lateral et les silhouettes terrain. (AC: 2, 4, 7, 8)
-  - [ ] Etendre le terrain/horizon dans `SceneController` ou via un helper
+- [x] Composer le relief lateral et les silhouettes terrain. (AC: 2, 4, 7, 8)
+  - [x] Etendre le terrain/horizon dans `SceneController` ou via un helper
     render dedie.
-  - [ ] Ajouter bermes, talus ou silhouettes near/mid/far autour de la route.
-  - [ ] Eviter toute generation de route, tout changement de progression et tout
+  - [x] Ajouter bermes, talus ou silhouettes near/mid/far autour de la route.
+  - [x] Eviter toute generation de route, tout changement de progression et tout
     asset externe obligatoire.
 
-- [ ] Renforcer lumiere, fog, ciel et mood par biome. (AC: 3, 5)
-  - [ ] Ajuster `getBiomePalette` ou une structure voisine pour porter les
+- [x] Renforcer lumiere, fog, ciel et mood par biome. (AC: 3, 5)
+  - [x] Ajuster `getBiomePalette` ou une structure voisine pour porter les
     besoins de mood.
-  - [ ] Modifier intensite/couleur/direction de lumiere et fog selon biome, en
+  - [x] Modifier intensite/couleur/direction de lumiere et fog selon biome, en
     restant lisible et confortable en premiere personne.
-  - [ ] Conserver le fallback placeholder lisible pour route absente/invalide.
+  - [x] Conserver le fallback placeholder lisible pour route absente/invalide.
 
-- [ ] Garder Meshy hors scope. (AC: 4, 8)
-  - [ ] Ne pas appeler Meshy.
-  - [ ] Documenter dans le Dev Agent Record si un landmark futur pourrait
+- [x] Garder Meshy hors scope. (AC: 4, 8)
+  - [x] Ne pas appeler Meshy.
+  - [x] Documenter dans le Dev Agent Record si un landmark futur pourrait
     beneficier de Meshy, sans declencher de generation.
-  - [ ] Si Meshy devient indispensable, stopper et demander confirmation du cout
+  - [x] Si Meshy devient indispensable, stopper et demander confirmation du cout
     avant tout appel outil.
 
-- [ ] Valider et documenter. (AC: 9, 10)
-  - [ ] Lancer `npm run typecheck` si du code applicatif est modifie.
-  - [ ] Lancer `npm run test` si du code applicatif est modifie.
-  - [ ] Lancer `npm run build` si du code applicatif est modifie.
-  - [ ] Produire une capture courte ou screenshots comparables si l'outil est
+- [x] Valider et documenter. (AC: 9, 10)
+  - [x] Lancer `npm run typecheck` si du code applicatif est modifie.
+  - [x] Lancer `npm run test` si du code applicatif est modifie.
+  - [x] Lancer `npm run build` si du code applicatif est modifie.
+  - [x] Produire une capture courte ou screenshots comparables si l'outil est
     disponible.
-  - [ ] Mettre a jour cette story, `sprint-status.yaml` et `_bmad-output/linear-sync.md`.
+  - [x] Mettre a jour cette story, `sprint-status.yaml` et `_bmad-output/linear-sync.md`.
 
 ## Dev Notes
 
@@ -230,21 +230,65 @@ Eviter `src/ride/*`.
 
 ### Agent Model Used
 
-TBD
+GPT-5 Codex
 
 ### Debug Log References
 
-TBD
+- `npm run test -- src/render/createBiomeVisuals.test.ts src/render/renderHelpers.test.ts`:
+  RED confirme avant implementation, 4 echecs attendus sur landmarks, relief et
+  palette mood.
+- `npm run test -- src/render/createBiomeVisuals.test.ts src/render/renderHelpers.test.ts`:
+  GREEN apres implementation, 7 tests render.
+- `npm run typecheck`: passe.
+- `npm run test`: passe, 21 fichiers / 68 tests.
+- `npm run build`: passe avec l'avertissement Vite connu sur le chunk Three.js >
+  500 kB.
+- Vite local: HTTP 200 sur `http://127.0.0.1:5174/`.
+- Capture browser: canvas non blank, aucune page error; un 404 isole connu cote
+  capture.
+- Capture video finale review:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T23-54-18-055Z/ride-visual-audit-30s.mp4`.
+- Contact sheet finale review:
+  `_bmad-output/video-captures/ride-visual-audit-2026-06-06T23-54-18-055Z/ride-visual-audit-contact-sheet.jpg`.
+- Capture summary: HTTP 200, 6 frames, aucune page error, un 404 isole deja connu
+  cote capture.
+- Nonblank final: `final-frame.png` 1440x900 mean=50628.3 stddev=18742.4;
+  contact sheet 1920x200 mean=51378.5 stddev=17634.3.
 
 ### Completion Notes
 
-TBD
+- Ajout d'un motif coast fort en procedural: phare low-poly et arche rocheuse,
+  visibles en debut de capture.
+- Ajout d'un motif forest fort: tunnel vegetal/silhouettes de troncs et canopee
+  sur le segment forest.
+- Ajout de bermes proches, ridges lointains et relief ground plus marque pour
+  composer des plans near/mid/far autour de la route.
+- Renforcement des palettes de biome: ciel, fog near/far, horizon, intensite et
+  direction de lumiere sont maintenant portes par `getBiomePalette`.
+- Review gds-code-review: tunnel forest avance dans la capture 30s, ground et
+  props laterales rendus route-aware pour eviter le clipping avec la route
+  courbe, `Color`/`Fog` reutilises par frame et nouveaux materiaux scenic teintes
+  en fallback placeholder.
+- Aucun Meshy, aucun asset externe, aucun pipeline glTF et aucun changement
+  `src/ride/*`; un futur landmark Meshy pourrait rester utile seulement pour un
+  objet precise apres confirmation du cout.
 
 ### File List
 
-TBD
+- `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `src/render/SceneController.ts`
+- `src/render/createBiomeVisuals.ts`
+- `src/render/createBiomeVisuals.test.ts`
+- `src/render/renderHelpers.ts`
+- `src/render/renderHelpers.test.ts`
 
 ### Change Log
 
 - 2026-06-06: Story MYB-9 creee depuis la decision Scenic Mood Pass procedural;
   status ready-for-dev, implementation non lancee.
+- 2026-06-06: MYB-9 implemente; story mise en review avec validations et preuve
+  video.
+- 2026-06-07: Revue gds-code-review approuvee apres corrections route-aware,
+  perf/cleanup et preuve video finale; status done.
