@@ -29,6 +29,7 @@ Last sync: 2026-06-07
 - Motion & Density Pass proposal: `_bmad-output/planning-artifacts/proposition-motion-density-pass-2026-06-07.md`
 - Motion & Density source capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/`
 - Motion & Density comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg`
+- Motion & Density Pass dev story: `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
 
 ## Linear Documents
 
@@ -49,6 +50,7 @@ Last sync: 2026-06-07
 | Post-MVP polish | `MYB-7` | Polish UX / sensation de ride mock | https://linear.app/kefjbo/issue/MYB-7/polish-ux-sensation-de-ride-mock |
 | Post-MVP visual | `MYB-8` | Visual Upgrade Scenic Pass | https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass |
 | Post-MVP scenic mood | `MYB-9` | Scenic Mood Pass procedural | https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural |
+| Post-MYB-9 motion density | `MYB-10` | Motion & Density Pass | https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass |
 
 ## Dependency Mapping
 
@@ -62,6 +64,8 @@ Last sync: 2026-06-07
   new epic or backlog.
 - `MYB-9` follows completed `MYB-8`; it is a single post-MVP scenic mood story,
   not a new epic or backlog.
+- `MYB-10` follows completed `MYB-9`; it is a single post-MYB-9 motion and
+  density story, not a new epic or backlog.
 
 ## Readiness Caveats Synced
 
@@ -1197,6 +1201,51 @@ Synced on 2026-06-07:
   - no BLE/FTMS, backend, persistence or multiple routes;
   - no application code changed;
   - no `npm` validation run because this was doc/tracking only.
+
+## MYB-10 Story Created and Synced
+
+Synced on 2026-06-07:
+
+- Baseline commit before story creation:
+  `eb51de7fc92e12ce486b414c4bd74f1c8f8972ce`
+  (`Choose motion density pass direction`).
+- Previous implementation baseline:
+  `4963300704e51da458f714809498aa355fba869b` (`MYB-9 scenic mood pass`).
+- Local story artifact created:
+  `_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`.
+- Linear issue created:
+  - Issue: `MYB-10`
+  - Title: `Motion & Density Pass`
+  - URL: https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass
+  - Team: `MYB` / `MyBike`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Status: `In Progress`
+  - Created at: `2026-06-07T05:39:05.103Z`
+  - Started at: `2026-06-07T05:39:05.131Z`
+  - Related to: `MYB-9`
+  - Sync comment ID: `29ec7d13-7b79-493f-aa80-28de1449053c`
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: implement-MYB-10`
+  - `first_story_to_start: MYB-10`
+  - `post_mvp_after_myb9_motion_density_story:
+    _bmad-output/implementation-artifacts/myb-10-motion-density-pass.md`
+  - `post_mvp_after_myb9_motion_density_issue_created: true`
+  - `post_mvp_after_myb9_motion_density_linear_url:
+    https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass`
+- Story scope:
+  - parallax proche;
+  - densite roadside controlee;
+  - variations visuelles route/sol;
+  - sensation de vitesse cote rendu sans toucher a `src/ride/*`;
+  - option capture sans HUD seulement si simple.
+- Scope confirmation:
+  - no Meshy, no credit cost;
+  - no external assets or heavy pipeline;
+  - no BLE/FTMS, backend, persistence or multiple routes;
+  - no broad backlog created;
+  - no application code changed;
+  - no `npm` validation run because this was story/tracking only.
 
 ## Sync Policy
 

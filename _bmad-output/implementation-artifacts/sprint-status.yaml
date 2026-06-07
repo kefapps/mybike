@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T07:30:35+02:00
+# last_updated: 2026-06-07T07:39:10+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: create MYB-10 Motion & Density Pass story; no Linear issue created yet.
+# - Next action: implement MYB-10 Motion & Density Pass.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T07:30:35+02:00"
+last_updated: "2026-06-07T07:39:10+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "create-MYB-10-motion-density-story"
-  first_story_to_start: "none"
+  next_action: "implement-MYB-10"
+  first_story_to_start: "MYB-10"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -83,7 +83,9 @@ sprint:
   post_mvp_after_myb9_motion_density_proposal: "_bmad-output/planning-artifacts/proposition-motion-density-pass-2026-06-07.md"
   post_mvp_after_myb9_motion_density_capture: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/"
   post_mvp_after_myb9_motion_density_comparison: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg"
-  post_mvp_after_myb9_motion_density_issue_created: false
+  post_mvp_after_myb9_motion_density_story: "_bmad-output/implementation-artifacts/myb-10-motion-density-pass.md"
+  post_mvp_after_myb9_motion_density_issue_created: true
+  post_mvp_after_myb9_motion_density_linear_url: "https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass"
   post_mvp_after_myb9_motion_density_scope: "parallax proche, densite roadside controlee, variations route/sol, sensation de vitesse cote rendu; aucun Meshy, aucun asset externe, aucun changement src/ride/*."
   backlog_order:
     - "MYB-4"
@@ -92,6 +94,7 @@ sprint:
     - "MYB-7"
     - "MYB-8"
     - "MYB-9"
+    - "MYB-10"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -103,6 +106,7 @@ linear_mapping:
   myb-7-polish-ux-sensation-de-ride-mock: "MYB-7"
   myb-8-visual-upgrade-scenic-pass: "MYB-8"
   myb-9-scenic-mood-pass-procedural: "MYB-9"
+  myb-10-motion-density-pass: "MYB-10"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -146,3 +150,7 @@ development_status:
   # Story unique approuvee depuis la decision Scenic Mood Pass procedural; pas de nouveau backlog.
   # Revue de code locale passee pour MYB-9.
   myb-9-scenic-mood-pass-procedural: done
+
+  # MYB-10 - Story post-MVP - Motion & Density Pass
+  # Story unique creee depuis le cadrage Motion & Density Pass; pas de nouveau backlog.
+  myb-10-motion-density-pass: ready-for-dev
