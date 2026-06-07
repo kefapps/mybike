@@ -5,6 +5,8 @@ import { toThreeVector3 } from "./renderHelpers";
 
 const ROUTE_WIDTH_METERS = 5;
 const SHOULDER_WIDTH_METERS = 3.8;
+const VERGE_WIDTH_METERS = 2.9;
+const CONTACT_SHADOW_WIDTH_METERS = 0.55;
 
 export type RouteMeshResult = {
   group: THREE.Group;
@@ -45,6 +47,34 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     ROUTE_WIDTH_METERS / 2 - 0.02,
     -1
   );
+  const leftVergeGeometry = createSideRibbonGeometry(
+    frames,
+    ROUTE_WIDTH_METERS / 2 + SHOULDER_WIDTH_METERS + 0.22,
+    ROUTE_WIDTH_METERS / 2 + SHOULDER_WIDTH_METERS + VERGE_WIDTH_METERS,
+    1
+  );
+  const rightVergeGeometry = createSideRibbonGeometry(
+    frames,
+    ROUTE_WIDTH_METERS / 2 + SHOULDER_WIDTH_METERS + 0.22,
+    ROUTE_WIDTH_METERS / 2 + SHOULDER_WIDTH_METERS + VERGE_WIDTH_METERS,
+    -1
+  );
+  const leftContactShadowGeometry = createSideRibbonGeometry(
+    frames,
+    ROUTE_WIDTH_METERS / 2 + 0.04,
+    ROUTE_WIDTH_METERS / 2 + CONTACT_SHADOW_WIDTH_METERS,
+    1
+  );
+  const rightContactShadowGeometry = createSideRibbonGeometry(
+    frames,
+    ROUTE_WIDTH_METERS / 2 + 0.04,
+    ROUTE_WIDTH_METERS / 2 + CONTACT_SHADOW_WIDTH_METERS,
+    -1
+  );
+  leftVergeGeometry.translate(0, 0.012, 0);
+  rightVergeGeometry.translate(0, 0.012, 0);
+  leftContactShadowGeometry.translate(0, 0.028, 0);
+  rightContactShadowGeometry.translate(0, 0.028, 0);
   const dashGeometry = new THREE.BoxGeometry(0.18, 0.035, 7);
   const surfaceBandGeometry = new THREE.BoxGeometry(
     ROUTE_WIDTH_METERS - 0.45,
@@ -71,6 +101,23 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     roughness: 0.7,
     metalness: 0,
     side: THREE.DoubleSide
+  });
+  const vergeMaterial = new THREE.MeshStandardMaterial({
+    color: 0x5b7d4a,
+    roughness: 0.98,
+    metalness: 0,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.78
+  });
+  const contactShadowMaterial = new THREE.MeshStandardMaterial({
+    color: 0x2d2618,
+    roughness: 1,
+    metalness: 0,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.32,
+    depthWrite: false
   });
   const dashMaterial = new THREE.MeshStandardMaterial({
     color: 0xfdf4d0,
@@ -114,6 +161,26 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
   const rightEdge = new THREE.Mesh(rightEdgeGeometry, edgeMaterial);
   rightEdge.name = "scenic-route-right-edge";
 
+  const leftVerge = new THREE.Mesh(leftVergeGeometry, vergeMaterial);
+  leftVerge.name = "scenic-route-left-verge";
+
+  const rightVerge = new THREE.Mesh(rightVergeGeometry, vergeMaterial);
+  rightVerge.name = "scenic-route-right-verge";
+
+  const leftContactShadow = new THREE.Mesh(
+    leftContactShadowGeometry,
+    contactShadowMaterial
+  );
+  leftContactShadow.name = "scenic-route-left-contact-shadow";
+  leftContactShadow.renderOrder = 1;
+
+  const rightContactShadow = new THREE.Mesh(
+    rightContactShadowGeometry,
+    contactShadowMaterial
+  );
+  rightContactShadow.name = "scenic-route-right-contact-shadow";
+  rightContactShadow.renderOrder = 1;
+
   const centerMarkings = createRepeatedRouteMarkers(
     frames,
     dashGeometry,
@@ -152,8 +219,12 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
   );
 
   group.add(
+    leftVerge,
+    rightVerge,
     leftShoulder,
     rightShoulder,
+    leftContactShadow,
+    rightContactShadow,
     roadMesh,
     leftEdge,
     rightEdge,
@@ -174,6 +245,10 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
       rightShoulderGeometry,
       leftEdgeGeometry,
       rightEdgeGeometry,
+      leftVergeGeometry,
+      rightVergeGeometry,
+      leftContactShadowGeometry,
+      rightContactShadowGeometry,
       dashGeometry,
       surfaceBandGeometry,
       shoulderRhythmGeometry,
@@ -183,6 +258,8 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
       roadMaterial,
       shoulderMaterial,
       edgeMaterial,
+      vergeMaterial,
+      contactShadowMaterial,
       dashMaterial,
       surfaceBandMaterial,
       shoulderRhythmMaterial,

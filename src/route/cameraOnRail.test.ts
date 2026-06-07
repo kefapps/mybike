@@ -44,6 +44,19 @@ describe("cameraOnRail", () => {
     expectFiniteVec3(camera.lookAt);
   });
 
+  it("keeps default framing close to the road for private demo grounding", () => {
+    const camera = cameraOnRail(mockRouteDefinition, 0.5);
+
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.heightMeters).toBeGreaterThanOrEqual(1.1);
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.heightMeters).toBeLessThanOrEqual(1.35);
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.lookAheadMeters).toBeGreaterThanOrEqual(16);
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.fovDegrees).toBeLessThanOrEqual(68);
+    expect(camera.position.y).toBeCloseTo(3.25, 2);
+    expect(camera.lookAt.z).toBeGreaterThan(camera.position.z);
+    expectFiniteVec3(camera.position);
+    expectFiniteVec3(camera.lookAt);
+  });
+
   it("keeps the look-at finite at the end of the rail", () => {
     const camera = cameraOnRail(mockRouteDefinition, {
       distanceMeters: 1000,

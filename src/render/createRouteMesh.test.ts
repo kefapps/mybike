@@ -16,14 +16,37 @@ describe("createRouteMesh", () => {
         "scenic-route-right-shoulder",
         "scenic-route-left-edge",
         "scenic-route-right-edge",
+        "scenic-route-left-verge",
+        "scenic-route-right-verge",
+        "scenic-route-left-contact-shadow",
+        "scenic-route-right-contact-shadow",
         "scenic-route-center-markings",
         "scenic-route-surface-bands",
         "scenic-route-shoulder-rhythm",
         "scenic-route-surface-grain"
       ])
     );
-    expect(routeMesh.geometries.length).toBeGreaterThanOrEqual(9);
-    expect(routeMesh.materials.length).toBeGreaterThanOrEqual(7);
+    expect(routeMesh.geometries.length).toBeGreaterThanOrEqual(13);
+    expect(routeMesh.materials.length).toBeGreaterThanOrEqual(9);
+  });
+
+  it("adds route-following grounding bands outside the ride corridor", () => {
+    const routeMesh = createRouteMesh(mockRouteDefinition);
+    const leftVerge = routeMesh.group.getObjectByName("scenic-route-left-verge");
+    const rightVerge = routeMesh.group.getObjectByName("scenic-route-right-verge");
+    const leftShadow = routeMesh.group.getObjectByName(
+      "scenic-route-left-contact-shadow"
+    );
+    const rightShadow = routeMesh.group.getObjectByName(
+      "scenic-route-right-contact-shadow"
+    );
+
+    expect(leftVerge?.type).toBe("Mesh");
+    expect(rightVerge?.type).toBe("Mesh");
+    expect(leftShadow?.type).toBe("Mesh");
+    expect(rightShadow?.type).toBe("Mesh");
+    expect(leftVerge?.position.y ?? 0).toBe(0);
+    expect(rightVerge?.position.y ?? 0).toBe(0);
   });
 
   it("keeps repeated visual markers bounded and procedural", () => {

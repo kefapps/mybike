@@ -2862,3 +2862,87 @@ Synced on 2026-06-07:
 - Tracking validation:
   - Story/tracking only; no implementation performed.
   - `npm run typecheck`, `npm run test`, `npm run build` intentionally not run because no web source changed.
+
+## MYB-18 Three.js Private Demo Recovery Implemented
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-18`
+  - URL: https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding
+  - Status: `In Review`
+  - Implementation comment ID: `ff3d8ec1-d3c7-4916-ba3e-8ef3a6b3eb65`
+- Local implementation:
+  - Added route-following verge bands and contact-shadow strips in `src/render/createRouteMesh.ts`.
+  - Lowered/tightened default camera framing in `src/route/cameraOnRail.ts`: `heightMeters=1.25`, `lookAheadMeters=18`, `fovDegrees=66`.
+  - Updated `scripts/capture-ride-video.mjs` so `npm run capture:ride-video` produces a 60s proof by default.
+  - Added an inline local favicon in `index.html` to avoid browser 404 noise during capture.
+- Scope guardrails:
+  - No `unity/Echappee3D/**` implementation change.
+  - No `src/ride/*` change.
+  - No Meshy, external asset, backend, BLE/FTMS, deployment or new engine migration.
+- Validation:
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 22 files / 73 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run capture:ride-video`: pass, 60s capture.
+- Final capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/ride-visual-audit-contact-sheet.jpg`
+  - Final frame: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-33-18-080Z/final-frame.png`
+- Capture metrics:
+  - HTTP 200.
+  - `consoleMessages: []`.
+  - `pageErrors: []`.
+  - `durationMs: 60000`.
+  - `frameCount: 12`.
+  - Final frame pixel stats: `YMIN=30`, `YAVG=128.949`, `YMAX=245`.
+  - Desktop screenshot pixel stats: `YMIN=54`, `YAVG=180.065`, `YMAX=245`.
+  - Mobile screenshot pixel stats: `YMIN=68`, `YAVG=184.482`, `YMAX=245`.
+- Visual assessment:
+  - Compared with the MYB-17 Unity WebGL capture, the Three.js demo now reads more grounded: road edges/verges stay visible, nearby anchors provide scale, fog/depth remains present, and the ride no longer reads as a road ribbon floating in empty space.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-18-threejs-private-demo-recovery-and-ride-grounding: review`
+  - `next_action: review-MYB-18`
+
+## MYB-18 Three.js Private Demo Recovery Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-18`
+  - URL: https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding
+  - Status: `Done`
+  - Review comment ID: `852213dc-d8c0-4b03-89b3-792685178f3b`
+- Review verdict:
+  - Approved with no code corrections.
+  - No unresolved findings.
+- Review validations rerun:
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 22 files / 73 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run capture:ride-video`: pass, 60s capture.
+  - `git diff --check`: pass.
+  - High-confidence secret scan: pass.
+  - No `unity/Echappee3D/**` diff.
+  - No `src/ride/*` diff.
+  - No capture video staged.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/ride-visual-audit-contact-sheet.jpg`
+- Review capture metrics:
+  - HTTP 200.
+  - `consoleMessages: []`.
+  - `pageErrors: []`.
+  - `durationMs: 60000`.
+  - `frameCount: 12`.
+  - Final frame pixel stats: `YMIN=30`, `YAVG=128.639`, `YMAX=245`.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-18-threejs-private-demo-recovery-and-ride-grounding: done`
+  - `next_action: commit-MYB-18`

@@ -20,7 +20,8 @@ const url = withCaptureHudParam(
   process.env.CAPTURE_URL ?? `http://127.0.0.1:${capturePort}/`,
   captureHud
 );
-const captureMs = Number(process.env.CAPTURE_MS ?? 30_000);
+const captureMs = Number(process.env.CAPTURE_MS ?? 60_000);
+const captureSeconds = Math.max(1, Math.round(captureMs / 1000));
 const viewport = { width: 1440, height: 900 };
 const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
@@ -178,11 +179,11 @@ async function main() {
   await browser.close();
 
   const rawVideoPath = await video.path();
-  const webmPath = join(runDir, "ride-visual-audit-30s.webm");
+  const webmPath = join(runDir, `ride-visual-audit-${captureSeconds}s.webm`);
   await rm(webmPath, { force: true });
   await rename(rawVideoPath, webmPath);
 
-  const mp4Path = join(runDir, "ride-visual-audit-30s.mp4");
+  const mp4Path = join(runDir, `ride-visual-audit-${captureSeconds}s.mp4`);
   const contactSheetPath = join(runDir, "ride-visual-audit-contact-sheet.jpg");
 
   await runFfmpeg([
@@ -202,7 +203,7 @@ async function main() {
     "-i",
     mp4Path,
     "-vf",
-    "fps=1/5,scale=320:-1,tile=6x1",
+    "fps=1/5,scale=320:-1,tile=6x2",
     "-frames:v",
     "1",
     contactSheetPath
