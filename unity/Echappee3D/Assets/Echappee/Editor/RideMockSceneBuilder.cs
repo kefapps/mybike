@@ -14,12 +14,14 @@ namespace MyBike.Echappee3D.EditorTools
         private const string ScenePath = "Assets/Scenes/RideMock.unity";
         private const string RouteMaterialPath = "Assets/Materials/RoutePlaceholder.mat";
 
+        [MenuItem("Echappee/MYB-12/Rebuild RideMock Scene")]
         public static void Build()
         {
             if (!AssetDatabase.IsValidFolder("Assets/Materials"))
             {
                 AssetDatabase.CreateFolder("Assets", "Materials");
             }
+
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             var routeMaterial = CreateRouteMaterial();
 
@@ -33,7 +35,8 @@ namespace MyBike.Echappee3D.EditorTools
             var route = CreateRoute(routeMaterial);
             var fog = CreateFog();
             var ui = CreateUi();
-            CreateRideSession(camera.controller, route.renderer, fog, ui.input, ui.hud);
+
+            CreateRideSession(camera.controller, route.renderer, fog, ui.input, ui.hud, ui.controls);
 
             EditorSceneManager.SaveScene(scene, ScenePath);
             AssetDatabase.SaveAssets();
@@ -48,6 +51,7 @@ namespace MyBike.Echappee3D.EditorTools
             camera.fieldOfView = 70f;
             root.transform.position = new Vector3(0f, 1.6f, -6f);
             root.transform.LookAt(new Vector3(0f, 1.2f, 20f));
+
             var controller = root.AddComponent<RideCameraController>();
             SetObjectReference(controller, "targetCamera", camera);
             return (root, controller);
@@ -70,7 +74,7 @@ namespace MyBike.Echappee3D.EditorTools
             return root.AddComponent<DepthFogController>();
         }
 
-        private static (MockRideInput input, HudController hud) CreateUi()
+        private static (MockRideInput input, HudController hud, RideControlPanel controls) CreateUi()
         {
             var canvasRoot = new GameObject("Canvas");
             var canvas = canvasRoot.AddComponent<Canvas>();
@@ -83,23 +87,40 @@ namespace MyBike.Echappee3D.EditorTools
             eventSystem.AddComponent<StandaloneInputModule>();
 
             var slider = CreateSlider(canvasRoot.transform);
-            var speed = CreateText(canvasRoot.transform, "SpeedText", new Vector2(16f, -16f));
-            var distance = CreateText(canvasRoot.transform, "DistanceText", new Vector2(16f, -44f));
-            var time = CreateText(canvasRoot.transform, "TimeText", new Vector2(16f, -72f));
-            var source = CreateText(canvasRoot.transform, "SourceText", new Vector2(16f, -100f));
-            var phase = CreateText(canvasRoot.transform, "PhaseText", new Vector2(16f, -128f));
+            var start = CreateButton(canvasRoot.transform, "StartButton", "Start", new Vector2(16f, 64f));
+            var pause = CreateButton(canvasRoot.transform, "PauseButton", "Pause", new Vector2(100f, 64f));
+            var resume = CreateButton(canvasRoot.transform, "ResumeButton", "Resume", new Vector2(184f, 64f));
+            var finish = CreateButton(canvasRoot.transform, "FinishButton", "Finish", new Vector2(284f, 64f));
+
+            var speed = CreateText(canvasRoot.transform, "SpeedText", new Vector2(16f, -16f), 280f);
+            var effort = CreateText(canvasRoot.transform, "EffortText", new Vector2(16f, -44f), 280f);
+            var progress = CreateText(canvasRoot.transform, "ProgressText", new Vector2(16f, -72f), 280f);
+            var distance = CreateText(canvasRoot.transform, "DistanceText", new Vector2(16f, -100f), 280f);
+            var time = CreateText(canvasRoot.transform, "TimeText", new Vector2(16f, -128f), 280f);
+            var source = CreateText(canvasRoot.transform, "SourceText", new Vector2(16f, -156f), 280f);
+            var phase = CreateText(canvasRoot.transform, "PhaseText", new Vector2(16f, -184f), 280f);
+            var summary = CreateText(canvasRoot.transform, "SummaryText", new Vector2(16f, -224f), 520f);
 
             var input = canvasRoot.AddComponent<MockRideInput>();
             SetObjectReference(input, "effortSlider", slider);
 
             var hud = canvasRoot.AddComponent<HudController>();
             SetObjectReference(hud, "speedText", speed);
+            SetObjectReference(hud, "effortText", effort);
+            SetObjectReference(hud, "progressText", progress);
             SetObjectReference(hud, "distanceText", distance);
             SetObjectReference(hud, "timeText", time);
             SetObjectReference(hud, "sourceText", source);
             SetObjectReference(hud, "phaseText", phase);
+            SetObjectReference(hud, "summaryText", summary);
 
-            return (input, hud);
+            var controls = canvasRoot.AddComponent<RideControlPanel>();
+            SetObjectReference(controls, "startButton", start);
+            SetObjectReference(controls, "pauseButton", pause);
+            SetObjectReference(controls, "resumeButton", resume);
+            SetObjectReference(controls, "finishButton", finish);
+
+            return (input, hud, controls);
         }
 
         private static Slider CreateSlider(Transform parent)
@@ -122,8 +143,16 @@ namespace MyBike.Echappee3D.EditorTools
             backgroundRect.anchorMax = Vector2.one;
             backgroundRect.sizeDelta = Vector2.zero;
 
+            var fillArea = new GameObject("Fill Area");
+            fillArea.transform.SetParent(root.transform, false);
+            var fillAreaRect = fillArea.AddComponent<RectTransform>();
+            fillAreaRect.anchorMin = Vector2.zero;
+            fillAreaRect.anchorMax = Vector2.one;
+            fillAreaRect.offsetMin = new Vector2(2f, 2f);
+            fillAreaRect.offsetMax = new Vector2(-2f, -2f);
+
             var fill = new GameObject("Fill");
-            fill.transform.SetParent(root.transform, false);
+            fill.transform.SetParent(fillArea.transform, false);
             var fillImage = fill.AddComponent<Image>();
             fillImage.color = new Color(0.2f, 0.8f, 0.45f, 1f);
             var fillRect = fill.GetComponent<RectTransform>();
@@ -145,11 +174,38 @@ namespace MyBike.Echappee3D.EditorTools
             slider.fillRect = fillRect;
             slider.handleRect = handleRect;
             slider.targetGraphic = handleImage;
-
             return slider;
         }
 
-        private static Text CreateText(Transform parent, string name, Vector2 anchoredPosition)
+        private static Button CreateButton(Transform parent, string name, string label, Vector2 anchoredPosition)
+        {
+            var root = new GameObject(name);
+            root.transform.SetParent(parent, false);
+            var rect = root.AddComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0f, 0f);
+            rect.anchorMax = new Vector2(0f, 0f);
+            rect.pivot = new Vector2(0f, 0f);
+            rect.anchoredPosition = anchoredPosition;
+            rect.sizeDelta = new Vector2(label == "Resume" ? 88f : 72f, 28f);
+
+            var image = root.AddComponent<Image>();
+            image.color = new Color(0.08f, 0.1f, 0.12f, 0.92f);
+            var button = root.AddComponent<Button>();
+            button.targetGraphic = image;
+
+            var labelText = CreateText(root.transform, "Label", Vector2.zero, rect.sizeDelta.x);
+            var labelRect = labelText.GetComponent<RectTransform>();
+            labelRect.anchorMin = Vector2.zero;
+            labelRect.anchorMax = Vector2.one;
+            labelRect.pivot = new Vector2(0.5f, 0.5f);
+            labelRect.anchoredPosition = Vector2.zero;
+            labelRect.sizeDelta = Vector2.zero;
+            labelText.alignment = TextAnchor.MiddleCenter;
+            labelText.text = label;
+            return button;
+        }
+
+        private static Text CreateText(Transform parent, string name, Vector2 anchoredPosition, float width)
         {
             var root = new GameObject(name);
             root.transform.SetParent(parent, false);
@@ -158,7 +214,7 @@ namespace MyBike.Echappee3D.EditorTools
             rect.anchorMax = new Vector2(0f, 1f);
             rect.pivot = new Vector2(0f, 1f);
             rect.anchoredPosition = anchoredPosition;
-            rect.sizeDelta = new Vector2(240f, 24f);
+            rect.sizeDelta = new Vector2(width, 24f);
 
             var text = root.AddComponent<Text>();
             text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
@@ -173,7 +229,8 @@ namespace MyBike.Echappee3D.EditorTools
             RouteRendererPlaceholder route,
             DepthFogController fog,
             MockRideInput input,
-            HudController hud)
+            HudController hud,
+            RideControlPanel controls)
         {
             var root = new GameObject("RideSession");
             var controller = root.AddComponent<RideSessionController>();
@@ -182,13 +239,13 @@ namespace MyBike.Echappee3D.EditorTools
             SetObjectReference(controller, "fogController", fog);
             SetObjectReference(controller, "mockRideInput", input);
             SetObjectReference(controller, "hudController", hud);
+            SetObjectReference(controller, "controlPanel", controls);
         }
 
         private static Material CreateRouteMaterial()
         {
             var shader = Shader.Find("Unlit/Color");
             var material = AssetDatabase.LoadAssetAtPath<Material>(RouteMaterialPath);
-
             if (material == null)
             {
                 material = new Material(shader);
@@ -199,7 +256,7 @@ namespace MyBike.Echappee3D.EditorTools
             return material;
         }
 
-        private static void SetObjectReference(Object target, string propertyName, Object value)
+        private static void SetObjectReference(UnityEngine.Object target, string propertyName, UnityEngine.Object value)
         {
             var serialized = new SerializedObject(target);
             serialized.FindProperty(propertyName).objectReferenceValue = value;

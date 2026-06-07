@@ -1839,6 +1839,126 @@ Synced on 2026-06-07:
   - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
     run because this pass only created story/tracking artifacts.
 
+## MYB-12 Unity Playable Parity Mock Loop Implemented
+
+Synced on 2026-06-07:
+
+- Story/tracking setup commit:
+  `a02fe9bcedc4` (`MYB-12 create playable parity story`).
+- Linear issue updated:
+  - Issue: `MYB-12`
+  - URL: https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop
+  - Status: `In Review`
+  - Implementation comment ID: `20b21050-289d-437d-b0c0-d78e75bab0e2`
+- Local story updated:
+  `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
+  - Local status: `review`
+  - All MYB-12 tasks checked.
+  - Dev Agent Record updated with implementation notes, final MCP proof, repo
+    checks, file list and scope limits.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-12-unity-playable-parity-mock-loop: review`
+  - `next_action: review-MYB-12`
+- Unity implementation summary:
+  - pure `RideSessionLoop` added for
+    `Idle -> Running -> Paused -> Running -> Finished`;
+  - `RideSessionController` now starts in readable Idle state and drives
+    start/pause/resume/finish actions;
+  - Unity uGUI slider remains the simple mock input;
+  - Start/Pause/Resume/Finish buttons added through `RideControlPanel`;
+  - HUD shows speed, effort, progress, distance, time, input source, state and
+    summary;
+  - default route remains procedural, visible and flat;
+  - camera stays simple/stable and fog/depth is preserved.
+- MCP Unity proof:
+  - final validation ran through the approved `unity-relay-client` process whose
+    executable is `relay_mac_arm64 --mcp`;
+  - no batchmode fallback was used as acceptance proof;
+  - project root:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - Editor idle: not playing, not paused, not compiling, not updating;
+  - active scene: `Assets/Scenes/RideMock.unity`;
+  - hierarchy included `Main Camera`, `Route`, `Fog`, `Canvas`, `EventSystem`,
+    `RideSession`, `MockEffortSlider`, `StartButton`, `PauseButton`,
+    `ResumeButton`, `FinishButton` and HUD text objects;
+  - `Echappee/MYB-12/Validate RideMock Scene` executed via MCP;
+  - console after validator: 0 errors, 0 warnings.
+- Validation evidence:
+  - Unity `6000.4.10f1` import/compile passed after `Assets/Refresh` via MCP.
+  - `Echappee/MYB-12/Rebuild RideMock Scene` executed via MCP.
+  - `Echappee/MYB-12/Validate RideMock Scene` executed via MCP.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-12-editor-validation.txt`.
+  - Report checks: Unity version, ride math, route math, playable session loop,
+    pause freeze, resume continuity, finish summary, scene hierarchy, controls,
+    HUD, camera, route and fog.
+  - `git diff --check` passed.
+  - Anti-secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` files modified.
+  - No video capture selected or staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/`;
+  - React/Three prototype preserved as reference;
+  - no Meshy or credit-cost tool call;
+  - no external asset, Unity AI generation, slope, bird, human, vehicle,
+    BLE/FTMS, backend, public deploy, full migration or broad backlog.
+
+## MYB-12 Unity Playable Parity Mock Loop Review Approved
+
+Synced on 2026-06-07:
+
+- Linear issue updated:
+  - Issue: `MYB-12`
+  - URL: https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop
+  - Status: `Done`
+  - Review comment ID: `06256ee1-8ea0-4631-8de7-4c52b942dd8e`
+- Review verdict: approved after one scoped validator hardening patch.
+- Finding corrected:
+  - `RideMockValidator` now verifies serialized wiring for
+    `RideSessionController`, `MockRideInput`, `RideControlPanel` and HUD
+    references instead of only checking component presence.
+  - `RideMockValidator` now checks that the MYB-12 default route remains flat.
+- Unity evidence:
+  - Final proof used the approved `unity-relay-client` MCP process whose
+    executable is `relay_mac_arm64 --mcp`.
+  - Project root:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+  - Active scene: `Assets/Scenes/RideMock.unity`.
+  - Editor idle: not playing, not paused, not compiling, not updating.
+  - Hierarchy roots and UI children included `Main Camera`, `Route`, `Fog`,
+    `Canvas`, `EventSystem`, `RideSession`, `MockEffortSlider`,
+    `StartButton`, `PauseButton`, `ResumeButton`, `FinishButton` and HUD text
+    objects.
+  - `Echappee/MYB-12/Validate RideMock Scene` executed via MCP.
+  - Unity console after validator: 0 errors, 0 warnings.
+  - Validation report:
+    `_bmad-output/unity-test-results/myb-12-editor-validation.txt`.
+  - Report checks: Unity version, ride math, route math, flat route, playable
+    session loop, pause freeze, resume continuity, finish summary, scene
+    hierarchy, wired controls, wired HUD, camera, route and fog.
+- Local story and sprint status updated:
+  - `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
+    status: `done`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+    `myb-12-unity-playable-parity-mock-loop: done`.
+  - `next_action: commit-MYB-12`.
+- Git/safety validation:
+  - `git diff --check` passed.
+  - High-confidence anti-secret scan passed.
+  - No `src/ride/*`, `src/render/*` or `src/app/*` files modified.
+  - No video capture selected or staged.
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because no web source changed.
+- Scope confirmation:
+  - Unity-only implementation under `unity/Echappee3D/`;
+  - React/Three prototype preserved as reference;
+  - no Meshy or credit-cost tool call;
+  - no external asset, Unity AI generation, slope, bird, human, vehicle,
+    BLE/FTMS, backend, public deploy, full migration or broad backlog.
+
 ## Sync Policy
 
 BMAD artifacts remain the local, versionable source of truth. Linear is the

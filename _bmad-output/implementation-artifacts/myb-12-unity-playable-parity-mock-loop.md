@@ -4,8 +4,8 @@
 
 - Linear issue: `MYB-12`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Created: `2026-06-07`
 - Baseline commit: `c81ee147a5fb53da0d4bccae2524099cc4cdaf9e`
 - Depends on: `MYB-11`
@@ -84,22 +84,22 @@ par batchmode.
 
 ## Tasks
 
-- [ ] Relancer le preflight MCP Unity obligatoire avant implementation.
-- [ ] Etendre la boucle de session Unity pour `start`, `ride`, `pause`,
+- [x] Relancer le preflight MCP Unity obligatoire avant implementation.
+- [x] Etendre la boucle de session Unity pour `start`, `ride`, `pause`,
       `resume`, `finish` et summary/end state minimal.
-- [ ] Ajouter ou brancher un controle mock simple dans la scene, idealement un
+- [x] Ajouter ou brancher un controle mock simple dans la scene, idealement un
       slider Unity UI.
-- [ ] Ajouter ou completer le HUD minimal: vitesse, effort, progression, etat.
-- [ ] Conserver une route visible et stable dans `RideMock.unity`.
-- [ ] Stabiliser la camera ride simple sans package lourd.
-- [ ] Preserver le brouillard/profondeur de MYB-11.
-- [ ] Etendre `RideMockSceneBuilder` si necessaire pour reconstruire la scene
+- [x] Ajouter ou completer le HUD minimal: vitesse, effort, progression, etat.
+- [x] Conserver une route visible et stable dans `RideMock.unity`.
+- [x] Stabiliser la camera ride simple sans package lourd.
+- [x] Preserver le brouillard/profondeur de MYB-11.
+- [x] Etendre `RideMockSceneBuilder` si necessaire pour reconstruire la scene
       minimale coherente.
-- [ ] Etendre `RideMockValidator` ou ajouter un test equivalent pour couvrir les
+- [x] Etendre `RideMockValidator` ou ajouter un test equivalent pour couvrir les
       nouveaux invariants.
-- [ ] Documenter la validation Unity/MCP et les limites restantes dans BMAD et
+- [x] Documenter la validation Unity/MCP et les limites restantes dans BMAD et
       Linear.
-- [ ] Verifier qu'aucun changement web ni scope interdit n'a ete ajoute.
+- [x] Verifier qu'aucun changement web ni scope interdit n'a ete ajoute.
 
 ## Fichiers Unity probables
 
@@ -175,16 +175,132 @@ classes existantes:
 
 ### Implementation Notes
 
-To be filled during MYB-12 implementation.
+- Preflight MCP obligatoire relance via le relais Unity `unity-relay-client`.
+  Les namespaces Codex directs restaient revoques; le slot MCP `1/1` a ete
+  libere en fermant les anciens process `relay_mac_arm64 --mcp`, puis la
+  connexion `unity-mcp` a ete relancee via `http://127.0.0.1:9002`.
+- Ajout d'une boucle pure `RideSessionLoop` pour les transitions
+  `Idle -> Running -> Paused -> Running -> Finished`, avec pause qui fige la
+  progression, resume sans reset, et summary minimal au finish.
+- `RideSessionController` ne demarre plus automatiquement: la scene arrive en
+  etat initial Idle lisible, publie un snapshot initial, puis pilote la boucle
+  depuis les actions start/pause/resume/finish.
+- HUD et controles Unity uGUI restent simples: slider effort mock, boutons
+  Start/Pause/Resume/Finish, textes vitesse, effort, progression, distance,
+  temps, input, etat et summary.
+- `RideMockSceneBuilder` reconstruit la scene coherente avec les controles/HUD
+  MYB-12. La route par defaut reste proceduralement plate, visible et stable,
+  sans pente ni asset externe.
+- `RideMockValidator` couvre maintenant la boucle jouable, pause/resume,
+  summary, controles, HUD, camera, route et fog. Un test EditMode
+  `RideSessionLoopTests` couvre aussi la boucle pure.
 
 ### Validation Evidence
 
-To be filled during MYB-12 implementation.
+- MCP preflight avant implementation:
+  - project root:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - Editor idle: pas Play Mode, pas pause, pas compilation, pas update;
+  - scene active: `Assets/Scenes/RideMock.unity`;
+  - hierarchy lisible: `Main Camera`, `Route`, `Fog`, `Canvas`, `EventSystem`,
+    `RideSession`;
+  - console nettoyee puis relue: 0 error / 0 warning.
+- Compilation/import Editor:
+  - `Assets/Refresh` execute via MCP `Unity_ManageMenuItem`;
+  - Editor revenu idle, console Unity 0 error / 0 warning;
+  - menu items MYB-12 detectes via MCP:
+    `Echappee/MYB-12/Rebuild RideMock Scene` et
+    `Echappee/MYB-12/Validate RideMock Scene`.
+- Validation Unity via MCP:
+  - `Echappee/MYB-12/Rebuild RideMock Scene` execute via MCP;
+  - `Echappee/MYB-12/Validate RideMock Scene` execute via MCP;
+  - rapport genere:
+    `_bmad-output/unity-test-results/myb-12-editor-validation.txt`;
+  - rapport: version, ride math, route math, boucle jouable, pause freeze,
+    resume continuity, finish summary, scene hierarchy, controls, HUD, camera,
+    route and fog passed;
+  - console Unity apres validation: 0 error / 0 warning.
+- Validation finale MCP via `unity-relay-client` autorise:
+  - project root:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - Editor idle: pas Play Mode, pas pause, pas compilation, pas update;
+  - scene active: `Assets/Scenes/RideMock.unity`;
+  - hierarchy lisible avec `Main Camera`, `Route`, `Fog`, `Canvas`,
+    `EventSystem`, `RideSession`, slider mock, boutons
+    Start/Pause/Resume/Finish et textes HUD;
+  - `Echappee/MYB-12/Validate RideMock Scene` execute via MCP;
+  - console apres validator: 0 error / 0 warning.
+- Validation finale review apres correction:
+  - `RideMockValidator` durci pour verifier le cablage serialise controller,
+    slider, controles et HUD, ainsi que la route plate MYB-12;
+  - `Assets/Refresh` execute via MCP; premier `GetState` a timeout pendant
+    l'import, puis l'Editor est revenu idle;
+  - `Echappee/MYB-12/Validate RideMock Scene` relance via MCP;
+  - rapport mis a jour: version, ride math, route math, flat route, playable
+    session loop, pause freeze, resume continuity, finish summary, scene
+    hierarchy, wired controls, wired HUD, camera, route and fog passed;
+  - console apres validator: 0 error / 0 warning.
+- Validation repo:
+  - `git diff --check`: passed;
+  - scan anti-secret haute confiance du diff: passed;
+  - aucun changement dans `src/ride/*`, `src/render/*` ou `src/app/*`;
+  - aucune capture video selected/staged;
+  - `npm run typecheck`, `npm run test` et `npm run build` non lances car aucun
+    changement web detecte;
+  - aucun Meshy, asset externe, Unity AI generation, pente, oiseau, humain,
+    vehicule, BLE/FTMS, backend, deploiement public ou migration complete.
 
 ### File List
 
-To be filled during MYB-12 implementation.
+- `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `_bmad-output/unity-test-results/myb-12-editor-validation.txt`
+- `unity/Echappee3D/Assets/Echappee/Bootstrap/RideSessionController.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockSceneBuilder.cs`
+- `unity/Echappee3D/Assets/Echappee/Editor/RideMockValidator.cs`
+- `unity/Echappee3D/Assets/Echappee/Ride/RideSessionLoop.cs`
+- `unity/Echappee3D/Assets/Echappee/Ride/RideSessionLoop.cs.meta`
+- `unity/Echappee3D/Assets/Echappee/Route/RouteMath.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/RideSessionLoopTests.cs`
+- `unity/Echappee3D/Assets/Echappee/Tests/EditMode/RideSessionLoopTests.cs.meta`
+- `unity/Echappee3D/Assets/Echappee/UI/HudController.cs`
+- `unity/Echappee3D/Assets/Echappee/UI/RideControlPanel.cs`
+- `unity/Echappee3D/Assets/Echappee/UI/RideControlPanel.cs.meta`
+- `unity/Echappee3D/Assets/Scenes/RideMock.unity`
+
+### Change Log
+
+- 2026-06-07: Implemented MYB-12 Unity playable parity mock loop and moved story
+  to review.
+- 2026-06-07: Review approved after validator hardening and moved story to done.
 
 ## QA / Review Notes
 
-To be filled during MYB-12 review.
+Verdict: approved.
+
+Review findings corrected:
+
+- [x] [Review][Patch] `RideMockValidator` did not prove wired UI/session
+  references or the no-slope constraint strongly enough. Correction applied in
+  `unity/Echappee3D/Assets/Echappee/Editor/RideMockValidator.cs`: serialized
+  references for controller, mock slider, buttons and HUD texts are now checked,
+  and default route point heights must remain flat for MYB-12.
+
+Final review validation:
+
+- MCP Unity via approved `unity-relay-client` / `relay_mac_arm64 --mcp`.
+- Project root: `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`.
+- Active scene: `Assets/Scenes/RideMock.unity`.
+- Editor idle: not playing, not paused, not compiling, not updating.
+- Hierarchy: `Main Camera`, `Route`, `Fog`, `Canvas`, `EventSystem`,
+  `RideSession`, `MockEffortSlider`, Start/Pause/Resume/Finish buttons and HUD
+  texts.
+- `Echappee/MYB-12/Validate RideMock Scene` executed via MCP.
+- Console: 0 error / 0 warning.
+- `git diff --check`: passed.
+- High-confidence anti-secret scan: passed.
+- No `src/ride/*`, `src/render/*` or `src/app/*` changes.
+- No video capture selected or staged.
+- `npm run typecheck`, `npm run test` and `npm run build` intentionally not run
+  because no web source changed.
