@@ -39,6 +39,7 @@ Last sync: 2026-06-07
 - Post-MYB-10 human playtest results summary: `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb10-resultats-2026-06-07.md`
 - Unity migration change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md`
 - Unity migration thin architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
+- Unity vertical slice mock scaffold story: `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
 
 ## Linear Documents
 
@@ -61,6 +62,7 @@ Last sync: 2026-06-07
 | Post-MVP visual | `MYB-8` | Visual Upgrade Scenic Pass | https://linear.app/kefjbo/issue/MYB-8/visual-upgrade-scenic-pass |
 | Post-MVP scenic mood | `MYB-9` | Scenic Mood Pass procedural | https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural |
 | Post-MYB-9 motion density | `MYB-10` | Motion & Density Pass | https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass |
+| Post-MYB-10 Unity scaffold | `MYB-11` | Unity vertical slice mock scaffold | https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold |
 
 ## Dependency Mapping
 
@@ -76,6 +78,8 @@ Last sync: 2026-06-07
   not a new epic or backlog.
 - `MYB-10` follows completed `MYB-9`; it is a single post-MYB-9 motion and
   density story, not a new epic or backlog.
+- `MYB-11` follows completed `MYB-10` and the Unity migration architecture; it
+  is a single Unity scaffold story, not a full migration or Unity backlog.
 
 ## Readiness Caveats Synced
 
@@ -1599,6 +1603,57 @@ Synced on 2026-06-07:
   - no `npm` validation run because this was docs/tracking only;
   - Linear document sync returned ID and URL;
   - Linear project note sync returned comment ID.
+
+## MYB-11 Unity Vertical Slice Mock Scaffold Created
+
+Synced on 2026-06-07:
+
+- Baseline commit before story creation:
+  `1b77e6d060f209b482d8fd62a95e272b465bf3d2`
+  (`Choose Unity migration architecture`).
+- Local story artifact created:
+  `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`.
+- Linear issue created:
+  - Issue: `MYB-11`
+  - Title: `Unity vertical slice mock scaffold`
+  - URL: https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold
+  - Team: `MYB` / `MyBike`
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Status: `In Progress`
+  - Created at: `2026-06-07T09:11:00.748Z`
+  - Started at: `2026-06-07T09:11:00.790Z`
+  - Related to: `MYB-10`
+  - Sync comment ID: `b67ffc49-ebf0-4aec-b1cc-eb5d514b7412`
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: implement-MYB-11`
+  - `first_story_to_start: MYB-11`
+  - `post_mvp_after_myb10_unity_vertical_slice_story:
+    _bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
+  - `post_mvp_after_myb10_unity_vertical_slice_issue_created: true`
+  - `post_mvp_after_myb10_unity_vertical_slice_linear_url:
+    https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold`
+  - `myb-11-unity-vertical-slice-mock-scaffold: ready-for-dev`
+- Local Unity preflight recorded for the implementation story:
+  - target/reference `6000.3.17f1` not found locally;
+  - `/Applications/Unity/Hub/Editor/6000.4.10f1/` present;
+  - `unityhub` CLI not found in `PATH`.
+- Story scope:
+  - isolated Unity project under `unity/Echappee3D/`;
+  - Unity 6.3 LTS target, `6000.3.17f1` reference;
+  - minimal scaffold only: project structure, main scene, minimal C# scripts,
+    Unity README;
+  - mock loop start / ride / pause / finish;
+  - stable simple route, mock camera, mock input, minimal HUD and fog/depth;
+  - React/Three prototype preserved as reference.
+- Scope confirmation:
+  - no full Unity migration;
+  - no Meshy call or credit cost;
+  - no external assets, Unity AI generation, BLE/FTMS, backend or public deploy;
+  - no vehicles, humans or birds;
+  - no deletion of the React/Three prototype;
+  - no broad backlog created;
+  - no `npm` validation run because only docs/tracking changed.
 
 ## Sync Policy
 
