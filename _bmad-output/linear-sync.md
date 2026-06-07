@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-06
+Last sync: 2026-06-07
 
 ## Workspace
 
@@ -26,6 +26,9 @@ Last sync: 2026-06-06
 - Visual Upgrade Scenic Pass dev story: `_bmad-output/implementation-artifacts/myb-8-visual-upgrade-scenic-pass.md`
 - Scenic Mood Pass procedural proposal: `_bmad-output/planning-artifacts/proposition-scenic-mood-pass-procedural-2026-06-06.md`
 - Scenic Mood Pass procedural dev story: `_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md`
+- Motion & Density Pass proposal: `_bmad-output/planning-artifacts/proposition-motion-density-pass-2026-06-07.md`
+- Motion & Density source capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/`
+- Motion & Density comparison stack: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg`
 
 ## Linear Documents
 
@@ -1086,6 +1089,114 @@ Synced on 2026-06-07:
   - Completed at: `2026-06-06T23:56:32.039Z`
   - Issue updated at: `2026-06-06T23:56:32.057Z`
   - Review comment ID: `074b7b89-f153-451b-889a-7c8e54cfe4ab`
+
+## Post-MYB-9 Visual Mini-Retro Synced
+
+Synced on 2026-06-07:
+
+- Local retrospective artifact created:
+  `_bmad-output/implementation-artifacts/myb-9-visual-mini-retro-2026-06-07.md`.
+- Visual readiness verdict:
+  - sufficient for a light/private human playtest;
+  - not yet recommended for an open light public deployment without human
+    feedback.
+- Options compared:
+  1. `Deploiement / playtest humain`: selected as the next best signal, scoped
+     to light human playtest rather than open public deployment.
+  2. `Meshy cible, 1 a 2 landmarks`: deferred until feedback identifies a
+     precise landmark need; any Meshy call still requires credit-cost
+     confirmation first.
+  3. `Nouveau pass procedural`: deferred because visual polish now has
+     diminishing return without human feedback.
+- Recommended next action:
+  `run-human-playtest-lite`.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: run-human-playtest-lite`
+  - `first_story_to_start: none`
+  - `post_mvp_after_myb9_visual_retro:
+    _bmad-output/implementation-artifacts/myb-9-visual-mini-retro-2026-06-07.md`
+- Linear project note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `4f422e32-ff36-4f61-a661-76bf0bb39cd7`
+- Scope confirmation:
+  - no new Linear issue created;
+  - no broad backlog created;
+  - no Meshy call, no credit cost;
+  - no application code changed.
+
+## Post-MYB-9 Human Playtest Lite Started
+
+Synced on 2026-06-07:
+
+- Local playtest artifact created:
+  `_bmad-output/implementation-artifacts/playtest-human-lite-post-myb9-2026-06-07.md`.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: collect-human-playtest-feedback`
+  - `post_mvp_after_myb9_human_playtest_status:
+    ready-for-human-session`
+  - `post_mvp_after_myb9_human_playtest_url: http://127.0.0.1:5174/`
+- Preflight evidence:
+  - `npm run build`: passed;
+  - expected Vite warning: Three.js chunk > 500 kB after minification;
+  - Vite local server: `http://127.0.0.1:5174/`;
+  - HTTP check: `200 OK`.
+- Playtest objective:
+  - validate comprehension without explanation;
+  - validate ride feel, HUD/controls and visual identity after MYB-9;
+  - decide after human feedback between private playtest only, light public
+    deployment, targeted Meshy or a new procedural pass.
+- Linear project note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `20f0e4d2-a965-436f-995b-e9ad5c78274d`
+- Scope confirmation:
+  - no new Linear issue created;
+  - no broad backlog created;
+  - no Meshy call, no credit cost;
+  - no application code changed.
+
+## Post-MYB-9 Motion & Density Decision Synced
+
+Synced on 2026-06-07:
+
+- Local proposal artifact created:
+  `_bmad-output/planning-artifacts/proposition-motion-density-pass-2026-06-07.md`.
+- Evidence reviewed:
+  - current 30s capture:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/`;
+  - stacked comparison:
+    `_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg`;
+  - capture summary: HTTP `200`, 6 frames, no page errors, one isolated known
+    404 console message from capture.
+- Visual decision:
+  - no regression since MYB-9;
+  - rendering is more identifiable than pre-MYB-8/MYB-9;
+  - still too prototype: repetitive scenery, flat materials, limited near-camera
+    life and limited speed sensation.
+- Selected next action:
+  `create-MYB-10-motion-density-story`.
+- Strict story candidate:
+  `MYB-10 Motion & Density Pass`.
+- Local BMAD sprint status updated in
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`:
+  - `next_action: create-MYB-10-motion-density-story`
+  - `first_story_to_start: none`
+  - `post_mvp_after_myb9_motion_density_issue_created: false`
+- Linear project note:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Project comment ID: `8a6dd220-f679-4af1-91c2-8c2d649e9e90`
+- Scope confirmation:
+  - no new Linear issue created;
+  - no broad backlog created;
+  - no Meshy call, no credit cost;
+  - no external assets or heavy pipeline;
+  - no BLE/FTMS, backend, persistence or multiple routes;
+  - no application code changed;
+  - no `npm` validation run because this was doc/tracking only.
 
 ## Sync Policy
 

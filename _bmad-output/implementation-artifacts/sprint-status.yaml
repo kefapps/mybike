@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T01:55:26+02:00
+# last_updated: 2026-06-07T07:30:35+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -28,12 +28,12 @@
 #
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
-# - Do not create a new backlog; MYB-8 is done and the next visual step must remain one story.
-# - Next action: commit MYB-9 after approved local review.
+# - Do not create a new backlog; any next visual step must remain one story.
+# - Next action: create MYB-10 Motion & Density Pass story; no Linear issue created yet.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T01:55:26+02:00"
+last_updated: "2026-06-07T07:30:35+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-9"
-  first_story_to_start: "MYB-9"
+  next_action: "create-MYB-10-motion-density-story"
+  first_story_to_start: "none"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -72,6 +72,19 @@ sprint:
   post_mvp_next_visual_story: "_bmad-output/implementation-artifacts/myb-9-scenic-mood-pass-procedural.md"
   post_mvp_next_visual_story_created: true
   post_mvp_next_visual_linear_url: "https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural"
+  post_mvp_after_myb9_visual_retro: "_bmad-output/implementation-artifacts/myb-9-visual-mini-retro-2026-06-07.md"
+  post_mvp_after_myb9_readiness: "Suffisant pour playtest humain leger; pas encore recommande pour deploiement public leger ouvert sans retour humain."
+  post_mvp_after_myb9_recommendation: "Lancer un playtest humain leger avant Meshy ou nouveau pass procedural."
+  post_mvp_after_myb9_human_playtest_plan: "_bmad-output/implementation-artifacts/playtest-human-lite-post-myb9-2026-06-07.md"
+  post_mvp_after_myb9_human_playtest_status: "ready-for-human-session"
+  post_mvp_after_myb9_human_playtest_url: "http://127.0.0.1:5174/"
+  post_mvp_after_myb9_human_playtest_preflight: "passed: npm run build, Vite HTTP 200 on 127.0.0.1:5174"
+  post_mvp_after_myb9_motion_density_direction: "MYB-10 Motion & Density Pass"
+  post_mvp_after_myb9_motion_density_proposal: "_bmad-output/planning-artifacts/proposition-motion-density-pass-2026-06-07.md"
+  post_mvp_after_myb9_motion_density_capture: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/"
+  post_mvp_after_myb9_motion_density_comparison: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T05-24-07-932Z/visual-comparison-stack.jpg"
+  post_mvp_after_myb9_motion_density_issue_created: false
+  post_mvp_after_myb9_motion_density_scope: "parallax proche, densite roadside controlee, variations route/sol, sensation de vitesse cote rendu; aucun Meshy, aucun asset externe, aucun changement src/ride/*."
   backlog_order:
     - "MYB-4"
     - "MYB-5"
