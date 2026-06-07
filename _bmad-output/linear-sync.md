@@ -40,6 +40,7 @@ Last sync: 2026-06-07
 - Unity migration change proposal: `_bmad-output/planning-artifacts/sprint-change-proposal-unity-migration-2026-06-07.md`
 - Unity migration thin architecture: `_bmad-output/planning-artifacts/echappee-3d-architecture-unity-mince-2026-06-07.md`
 - Unity vertical slice mock scaffold story: `_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md`
+- Unity playable parity mock loop story: `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
 
 ## Linear Documents
 
@@ -63,6 +64,7 @@ Last sync: 2026-06-07
 | Post-MVP scenic mood | `MYB-9` | Scenic Mood Pass procedural | https://linear.app/kefjbo/issue/MYB-9/scenic-mood-pass-procedural |
 | Post-MYB-9 motion density | `MYB-10` | Motion & Density Pass | https://linear.app/kefjbo/issue/MYB-10/motion-and-density-pass |
 | Post-MYB-10 Unity scaffold | `MYB-11` | Unity vertical slice mock scaffold | https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold |
+| Post-MYB-11 Unity playable loop | `MYB-12` | Unity playable parity mock loop | https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop |
 
 ## Dependency Mapping
 
@@ -80,6 +82,8 @@ Last sync: 2026-06-07
   density story, not a new epic or backlog.
 - `MYB-11` follows completed `MYB-10` and the Unity migration architecture; it
   is a single Unity scaffold story, not a full migration or Unity backlog.
+- `MYB-12` follows completed `MYB-11`; it is a single Unity playable mock loop
+  story, not a full migration or Unity backlog.
 
 ## Readiness Caveats Synced
 
@@ -1796,6 +1800,44 @@ Synced on 2026-06-07:
   `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-11-unity-vertical-slice-mock-scaffold: done`
   - `next_action: commit-MYB-11`
+
+## MYB-12 Unity Playable Parity Mock Loop Created
+
+Synced on 2026-06-07:
+
+- Linear issue created:
+  - Issue: `MYB-12`
+  - URL: https://linear.app/kefjbo/issue/MYB-12/unity-playable-parity-mock-loop
+  - Status: `In Progress`
+  - Related to: `MYB-11`
+  - Sync comment ID: `9aed1c84-6df5-4be9-98e3-4aba3e89e68f`
+- Local story created:
+  `_bmad-output/implementation-artifacts/myb-12-unity-playable-parity-mock-loop.md`
+  - Local status: `ready-for-dev`
+  - Scope: minimum Unity playable parity loop, not final quality and not a full
+    migration.
+- Local sprint status updated:
+  `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-12-unity-playable-parity-mock-loop: ready-for-dev`
+  - `next_action: implement-MYB-12`
+- MCP Unity proof:
+  - direct MCP client `codex-unity-mcp-direct-preflight` approved in Unity MCP
+    settings;
+  - project root:
+    `/Users/jbodin/personnel/apps/mybike/unity/Echappee3D`;
+  - Editor idle: not playing, not paused, not compiling, not updating;
+  - active scene: `Assets/Scenes/RideMock.unity`;
+  - hierarchy roots: `Main Camera`, `Route`, `Fog`, `Canvas`, `EventSystem`,
+    `RideSession`;
+  - console: 0 errors, 0 warnings.
+- Scope confirmation:
+  - Unity-only work under `unity/Echappee3D/`;
+  - React/Three prototype remains the reference and must not be modified;
+  - no Meshy, external assets, Unity AI generation, slopes, birds, humans,
+    vehicles, BLE/FTMS, backend, public deploy, full migration or broad backlog.
+- Validation note:
+  - `npm run typecheck`, `npm run test` and `npm run build` intentionally not
+    run because this pass only created story/tracking artifacts.
 
 ## Sync Policy
 
