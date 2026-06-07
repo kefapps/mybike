@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T22:48:10+02:00
+# last_updated: 2026-06-08T01:09:28+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-18.
+# - Next action: implement-MYB-19.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T22:48:10+02:00"
+last_updated: "2026-06-08T01:09:28+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-18"
+  next_action: "implement-MYB-19"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -209,6 +209,12 @@ sprint:
   post_mvp_after_myb17_threejs_recovery_validation: "passed: npm run typecheck; npm run test (22 files / 73 tests); npm run build (Vite chunk-size warning only); npm run capture:ride-video (60s, HTTP 200, consoleMessages [], pageErrors [], frameCount 12); ffprobe final frame YMIN=30 YAVG=128.949 YMAX=245; desktop screenshot YMIN=54 YAVG=180.065 YMAX=245; mobile screenshot YMIN=68 YAVG=184.482 YMAX=245."
   post_mvp_after_myb17_threejs_recovery_implementation_scope: "Added route-following verges/contact shadows, tighter lower default camera framing and 60s capture default; added inline favicon to remove capture 404; no Unity, src/ride, Meshy, external asset, backend, BLE/FTMS, deployment or engine migration changes."
   post_mvp_after_myb17_threejs_recovery_review: "approved with no code corrections; review reran npm run typecheck, npm run test (22 files / 73 tests), npm run build, npm run capture:ride-video; review capture _bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/ shows HTTP 200, consoleMessages [], pageErrors [], durationMs 60000, frameCount 12, final frame YMIN=30 YAVG=128.639 YMAX=245; no Unity or src/ride diff; capture artifacts not staged."
+  post_mvp_after_myb18_private_demo_launch_story: "_bmad-output/implementation-artifacts/myb-19-threejs-private-demo-launch-readiness.md"
+  post_mvp_after_myb18_private_demo_launch_issue_created: true
+  post_mvp_after_myb18_private_demo_launch_linear_url: "https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness"
+  post_mvp_after_myb18_private_demo_launch_linear_comment: "efa4e6ae-00f7-44a8-955f-386e2e8bce57"
+  post_mvp_after_myb18_private_demo_launch_scope: "Web-only React/Vite/Three.js private demo readiness: generate local readiness report and short launch checklist, verify HTTP 200, canvas nonblank, no page/console errors, npm typecheck/test/build and 60s capture proof; no Unity edits, Meshy, external assets, backend, BLE/FTMS, public deploy, new engine migration or visual polish."
+  post_mvp_after_myb18_private_demo_launch_next_action: "implement-MYB-19"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -225,6 +231,7 @@ sprint:
     - "MYB-16"
     - "MYB-17"
     - "MYB-18"
+    - "MYB-19"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -245,6 +252,7 @@ linear_mapping:
   myb-16-unity-scene-life-readability-polish: "MYB-16"
   myb-17-unity-private-demo-package-and-launch-checklist: "MYB-17"
   myb-18-threejs-private-demo-recovery-and-ride-grounding: "MYB-18"
+  myb-19-threejs-private-demo-launch-readiness: "MYB-19"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -327,3 +335,7 @@ development_status:
   # MYB-18 - Story post-MYB-17 - Three.js private demo recovery and ride grounding
   # Story unique creee depuis le correct-course post-MYB-17; Three.js redevient cible demo privee, Unity reste parking/recherche.
   myb-18-threejs-private-demo-recovery-and-ride-grounding: done
+
+  # MYB-19 - Story post-MYB-18 - Three.js private demo launch readiness
+  # Story unique creee pour rendre la demo web locale demonstrable avec rapport readiness et checklist courte, sans nouveau polish.
+  myb-19-threejs-private-demo-launch-readiness: ready-for-dev
