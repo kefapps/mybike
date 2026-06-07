@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-07T10:59:51+02:00
+# last_updated: 2026-06-07T11:11:30+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: create one small Unity vertical slice mock story after the thin Unity migration architecture.
+# - Next action: implement MYB-11 Unity vertical slice mock scaffold.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-07T10:59:51+02:00"
+last_updated: "2026-06-07T11:11:30+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,8 +47,8 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "create-unity-vertical-slice-mock-story"
-  first_story_to_start: "none"
+  next_action: "implement-MYB-11"
+  first_story_to_start: "MYB-11"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
   post_mvp_decision_note: "Choisir une seule prochaine direction centree sur le coeur jouable mock avant de creer de nouvelles issues Linear."
@@ -116,6 +116,11 @@ sprint:
   post_mvp_after_myb10_unity_migration_engine_target: "Unity 6.3 LTS / editor reference 6000.3.17f1"
   post_mvp_after_myb10_unity_migration_architecture_decision: "Projet Unity isole sous unity/Echappee3D/; logique ride/route testable en C# pur; rendu/HUD applique des snapshots; pas de Meshy, BLE/FTMS, assets lourds ni gros backlog."
   post_mvp_after_myb10_unity_migration_story_handoff: "create-unity-vertical-slice-mock-story"
+  post_mvp_after_myb10_unity_vertical_slice_story: "_bmad-output/implementation-artifacts/myb-11-unity-vertical-slice-mock-scaffold.md"
+  post_mvp_after_myb10_unity_vertical_slice_issue_created: true
+  post_mvp_after_myb10_unity_vertical_slice_linear_url: "https://linear.app/kefjbo/issue/MYB-11/unity-vertical-slice-mock-scaffold"
+  post_mvp_after_myb10_unity_vertical_slice_local_preflight: "6000.3.17f1 not found; /Applications/Unity/Hub/Editor/6000.4.10f1 present; unityhub CLI not found in PATH."
+  post_mvp_after_myb10_unity_vertical_slice_next_action: "implement-MYB-11"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -124,6 +129,7 @@ sprint:
     - "MYB-8"
     - "MYB-9"
     - "MYB-10"
+    - "MYB-11"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -136,6 +142,7 @@ linear_mapping:
   myb-8-visual-upgrade-scenic-pass: "MYB-8"
   myb-9-scenic-mood-pass-procedural: "MYB-9"
   myb-10-motion-density-pass: "MYB-10"
+  myb-11-unity-vertical-slice-mock-scaffold: "MYB-11"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -183,3 +190,7 @@ development_status:
   # MYB-10 - Story post-MVP - Motion & Density Pass
   # Story unique creee depuis le cadrage Motion & Density Pass; pas de nouveau backlog.
   myb-10-motion-density-pass: done
+
+  # MYB-11 - Story post-MYB-10 - Unity vertical slice mock scaffold
+  # Story unique creee depuis l'architecture Unity mince; scaffold Unity, pas migration complete.
+  myb-11-unity-vertical-slice-mock-scaffold: ready-for-dev
