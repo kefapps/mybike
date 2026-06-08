@@ -212,6 +212,10 @@ Codex GPT-5
 - Review finding: human silhouettes needed to follow elevated terrain instead of staying at absolute `y=0`.
 - Review validation: `npm run validate:private-demo`.
 - Review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/`.
+- Post-review human feedback: the first route elevation pass could read as broken road panels instead of smooth slopes.
+- Post-review route continuity fix: densified the Three.js route ribbon to approximately 9 m rendered samples and added regression coverage in `createRouteMesh.test.ts`.
+- Post-review validation: targeted route/render tests, `npm run typecheck`, `npm run test`, `npm run build`, `npm run validate:private-demo`.
+- Post-review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-21-11-816Z/`.
 
 ### Completion Notes
 
@@ -222,6 +226,7 @@ Codex GPT-5
 - Adjusted default camera height/lookahead to keep crests readable without returning to a flying viewpoint.
 - Preserved MYB-20 birds/human silhouettes and MYB-19 private demo readiness.
 - Final contact sheet shows a readable, grounded road over the full capture, with stronger slope feel and visible birds.
+- After human browser feedback, corrected the route ribbon itself so pentes render as continuous road instead of large broken panels.
 
 ### File List
 
@@ -237,16 +242,20 @@ Codex GPT-5
 - `src/render/renderHelpers.test.ts`
 - `src/render/groundHeight.ts`
 - `src/render/groundHeight.test.ts`
+- `src/render/createRouteMesh.ts`
+- `src/render/createRouteMesh.test.ts`
 - `src/render/SceneController.ts`
 - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
 - `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-00-23-806Z/` (implementation evidence, not staged)
 - `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/` (review evidence, not staged)
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-21-11-816Z/` (post-review continuity evidence, not staged)
 
 ### Change Log
 
 - 2026-06-08: Created MYB-21 story for Three.js route elevation feel.
 - 2026-06-08: Implemented Three.js route elevation feel pass and moved MYB-21 to review.
 - 2026-06-08: Review approved MYB-21 after anchoring human silhouettes to elevated terrain.
+- 2026-06-08: Corrected post-review route continuity after human browser feedback showed the initial slope mesh could read as broken panels.
 
 ## Senior Developer Review (AI)
 
@@ -257,6 +266,7 @@ Approved on 2026-06-08 after one scoped correction.
 ### Findings
 
 - Fixed: MYB-20 human silhouettes were still placed at absolute `y≈0`, which could bury them under the elevated MYB-21 terrain. They now use `calculateGroundHeight(...) + 0.02`.
+- Fixed post-review: the elevated road ribbon was under-sampled and could read as broken panels. `createRouteMesh` now renders the ribbon with approximately 9 m samples, covered by a regression test.
 
 ### Review Evidence
 
@@ -270,6 +280,13 @@ Approved on 2026-06-08 after one scoped correction.
 - Review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/`.
 - Review contact sheet shows a visible, grounded route over stronger slopes, visible birds, and a readable roadside human silhouette.
 - HTTP 200, `canvasNonBlank: true`, `pageErrors: []`, `consoleMessages: []`.
+- Post-review route/render tests: pass, 6 files / 26 tests.
+- Post-review `npm run typecheck`: pass.
+- Post-review `npm run test`: pass, 24 files / 82 tests.
+- Post-review `npm run build`: pass, Vite chunk-size warning only.
+- Post-review `npm run validate:private-demo`: pass, `ready-for-private-web-demo`.
+- Post-review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-21-11-816Z/`.
+- Post-review contact sheet shows the route as a continuous ribbon over the stronger elevation pass.
 
 ### Scope Checks
 

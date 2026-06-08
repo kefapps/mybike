@@ -1,12 +1,17 @@
 import * as THREE from "three";
 
-import { resolveRouteDefinition, type RouteDefinition } from "../route";
+import {
+  resolveRouteDefinition,
+  sampleRouteAt,
+  type RouteDefinition
+} from "../route";
 import { toThreeVector3 } from "./renderHelpers";
 
 const ROUTE_WIDTH_METERS = 5;
 const SHOULDER_WIDTH_METERS = 3.8;
 const VERGE_WIDTH_METERS = 2.9;
 const CONTACT_SHADOW_WIDTH_METERS = 0.55;
+const ROUTE_FRAME_STEP_METERS = 9;
 
 export type RouteMeshResult = {
   group: THREE.Group;
@@ -277,10 +282,28 @@ type RouteRenderFrame = {
 
 function getRouteFrames(route: RouteDefinition): RouteRenderFrame[] {
   const { route: resolvedRoute } = resolveRouteDefinition(route);
-  const points = resolvedRoute.points.map((point) => ({
-    center: toThreeVector3(point.position, 0.04),
-    distanceMeters: point.distanceMeters
-  }));
+  const points: { center: THREE.Vector3; distanceMeters: number }[] = [];
+
+  for (
+    let distanceMeters = 0;
+    distanceMeters < resolvedRoute.lengthMeters;
+    distanceMeters += ROUTE_FRAME_STEP_METERS
+  ) {
+    const sample = sampleRouteAt(
+      resolvedRoute,
+      distanceMeters / resolvedRoute.lengthMeters
+    );
+    points.push({
+      center: toThreeVector3(sample.position, 0.04),
+      distanceMeters
+    });
+  }
+
+  const endSample = sampleRouteAt(resolvedRoute, 1);
+  points.push({
+    center: toThreeVector3(endSample.position, 0.04),
+    distanceMeters: resolvedRoute.lengthMeters
+  });
 
   return points.map((point, index) => {
     const previous = points[Math.max(0, index - 1)].center;
