@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     globals: true,
-    environment: "node"
+    environment: "node",
+    exclude: ["**/node_modules/**", "**/dist/**"]
   }
 });
