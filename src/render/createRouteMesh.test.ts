@@ -49,6 +49,27 @@ describe("createRouteMesh", () => {
     expect(rightVerge?.position.y ?? 0).toBe(0);
   });
 
+  it("densifies the road ribbon so elevation does not render as broken panels", () => {
+    const routeMesh = createRouteMesh(mockRouteDefinition);
+    const positions = routeMesh.geometry.attributes.position;
+    const renderedFrameCount = positions.count / 2;
+    let maxSegmentDepthMeters = 0;
+
+    for (let frameIndex = 1; frameIndex < renderedFrameCount; frameIndex += 1) {
+      const previousLeftIndex = (frameIndex - 1) * 2;
+      const currentLeftIndex = frameIndex * 2;
+      maxSegmentDepthMeters = Math.max(
+        maxSegmentDepthMeters,
+        Math.abs(
+          positions.getZ(currentLeftIndex) - positions.getZ(previousLeftIndex)
+        )
+      );
+    }
+
+    expect(renderedFrameCount).toBeGreaterThan(100);
+    expect(maxSegmentDepthMeters).toBeLessThanOrEqual(10);
+  });
+
   it("keeps repeated visual markers bounded and procedural", () => {
     const routeMesh = createRouteMesh(mockRouteDefinition);
     const centerMarkings = routeMesh.group.getObjectByName(

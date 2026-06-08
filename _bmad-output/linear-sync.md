@@ -3303,3 +3303,32 @@ Synced on 2026-06-08:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-21-threejs-route-elevation-feel-pass: done`
   - `next_action: commit-MYB-21`
+
+## MYB-21 Route Continuity Post-Review Correction
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-21`
+  - URL: https://linear.app/kefjbo/issue/MYB-21/threejs-route-elevation-feel-pass
+  - Status: `Done`
+  - Post-review correction comment ID: `f293c853-7fd6-4085-b59c-48dec9c043ee`
+- Human browser feedback:
+  - Initial slope pass could read as broken road panels rather than smooth climbs/descents.
+- Correction:
+  - Densified Three.js route ribbon frames to approximately 9 m samples instead of one rendered frame per route control point.
+  - Added regression coverage in `src/render/createRouteMesh.test.ts` for rendered route frame count and max segment depth.
+  - Kept scope to web route rendering continuity; no Unity, gameplay, Meshy, external asset, backend, BLE/FTMS, public deploy or engine migration changes.
+- Validation:
+  - Targeted route/render tests: pass, 6 files / 26 tests.
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 24 files / 82 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run validate:private-demo`: pass.
+  - `git diff --check`: pass.
+- Readiness report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+- Visual evidence:
+  - `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-21-11-816Z/`
+  - Contact sheet reviewed: route reads as a continuous ribbon over the stronger elevation pass.
