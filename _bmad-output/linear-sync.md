@@ -48,6 +48,8 @@ Last sync: 2026-06-07
 - Unity private demo package story: `_bmad-output/implementation-artifacts/myb-17-unity-private-demo-package-and-launch-checklist.md`
 - Three.js demo recovery correct-course: `_bmad-output/planning-artifacts/sprint-change-proposal-threejs-demo-recovery-2026-06-07.md`
 - Three.js private demo recovery story: `_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md`
+- Three.js bundle size optimization: `_bmad-output/implementation-artifacts/myb-24-threejs-bundle-size-optimization.md`
+- Three.js bundle size watchdog: `_bmad-output/implementation-artifacts/myb-25-threejs-bundle-size-watchdog.md`
 
 ## Linear Documents
 
@@ -78,6 +80,7 @@ Last sync: 2026-06-07
 | Post-MYB-15 Unity readability | `MYB-16` | Unity scene life readability polish | https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish |
 | Post-MYB-16 Unity private demo | `MYB-17` | Unity private demo package and launch checklist | https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist |
 | Post-MYB-17 Three.js demo recovery | `MYB-18` | Three.js private demo recovery and ride grounding | https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding |
+| Three.js bundle size | `MYB-24` | Optimiser la taille de bundle / code splitting budget de build (+ watchdog follow-up) | https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build |
 
 ## Dependency Mapping
 
@@ -110,8 +113,13 @@ Last sync: 2026-06-07
   package/checklist story, not new gameplay, public deployment or broad release
   tooling.
 - `MYB-18` follows the post-MYB-17 correct-course decision; it is a single
-  web/Three.js private demo recovery and ride grounding story, not a Unity
-  continuation, engine migration, backend, BLE/FTMS or new broad backlog.
+web/Three.js private demo recovery and ride grounding story, not a Unity
+continuation, engine migration, backend, BLE/FTMS or new broad backlog.
+- `MYB-24` is a hardening follow-up after MYB-21 and stays scoped to React/Vite/Three.js
+  bundle health and startup behavior; no new gameplay, assets, or platform scope.
+- `MYB-25` follows the MYB-24 chunking optimization and adds a deterministic local
+  JS chunk budget watchdog before review; no gameplay, assets, Unity, BLE/FTMS,
+  or broader scope changes.
 
 ## Readiness Caveats Synced
 
@@ -3332,3 +3340,58 @@ Synced on 2026-06-08:
 - Visual evidence:
   - `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-21-11-816Z/`
   - Contact sheet reviewed: route reads as a continuous ribbon over the stronger elevation pass.
+
+## MYB-24 Three.js Bundle Size Optimization Implemented
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-24`
+  - URL: https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build
+  - Status: implementation artifact recorded (`Local status: done` in BMAD story).
+- Local story:
+  - `_bmad-output/implementation-artifacts/myb-24-threejs-bundle-size-optimization.md`
+  - Local status: `done`.
+- Implementation summary:
+  - Added Vite manual chunking for `vendor-react`, `vendor-three`, and fallback `vendor`.
+  - Set `chunkSizeWarningLimit` to `380` in `vite.config.ts`.
+  - Switched render imports from `three` barrel to `three/src/...` modules in
+    Three.js render modules.
+  - Added `RideScreen` as a lazy import in `src/App.tsx` with `Suspense`.
+  - Updated `src/App.test.tsx` async assertions for lazy load timing.
+- Validation evidence:
+  - `npm run build` ✅ (pass; largest `vendor-three-renderers` chunk ~361 KB, under 380 KB warning budget).
+  - `npm run typecheck` ✅
+  - `npm run test` ✅ (24 files, 92 tests)
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-24-threejs-bundle-size-optimization: done`
+
+## MYB-25 Three.js Bundle Size Watchdog Implemented
+
+Synced on 2026-06-08:
+
+  - Linear issue updated:
+  - Issue: `MYB-24`
+  - URL: https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build
+  - Status: implementation artifact recorded (`Local status: done` in BMAD story).
+- Local story:
+  - `_bmad-output/implementation-artifacts/myb-25-threejs-bundle-size-watchdog.md`
+  - Local status: `done`.
+- Implementation summary:
+  - Added `scripts/validate-build-budgets.mjs` to generate and enforce a local JS
+    chunk budget check against 380 KB.
+  - Added `npm run validate:bundle-budget` script in `package.json`.
+  - Added deterministic unit coverage in `scripts/validate-build-budgets.test.mjs`.
+  - Report output path: `_bmad-output/web-test-results/myb-25-bundle-size-budget.txt`.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-25-threejs-bundle-size-watchdog: done`
+- Validation evidence:
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 25 files / 94 tests.
+  - `npm run build`: pass, 15 JS chunks, max 352.684 KB.
+  - `npm run validate:bundle-budget`: pass.
+  - `npm run capture:ride-video`: pass (60s), HTTP 200, canvasNonBlank true.
+- Validation report:
+  - `_bmad-output/web-test-results/myb-25-bundle-size-budget.txt`

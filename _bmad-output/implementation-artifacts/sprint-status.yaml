@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-21"
+  next_action: "commit-MYB-25"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -262,6 +262,7 @@ sprint:
     - "MYB-19"
     - "MYB-20"
     - "MYB-21"
+    - "MYB-25"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -285,6 +286,7 @@ linear_mapping:
   myb-19-threejs-private-demo-launch-readiness: "MYB-19"
   myb-20-threejs-lightweight-scene-life-parity: "MYB-20"
   myb-21-threejs-route-elevation-feel-pass: "MYB-21"
+  myb-25-threejs-bundle-size-watchdog: "MYB-24"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -379,3 +381,11 @@ development_status:
   # MYB-21 - Story post-MYB-20 - Three.js route elevation feel pass
   # Story unique creee pour rendre les pentes web perceptibles tout en gardant la route ancree.
   myb-21-threejs-route-elevation-feel-pass: done
+
+  # MYB-24 - Three.js bundle size optimization
+  # Story implemented for chunking/build budget control.
+  myb-24-threejs-bundle-size-optimization: done
+
+  # MYB-25 - Three.js bundle size watchdog
+  # Story follows MYB-24 and keeps scoped Three.js bundle regression checks.
+  myb-25-threejs-bundle-size-watchdog: done
