@@ -3,9 +3,9 @@ import * as THREE from "three";
 import { mockRouteDefinition, type RouteDefinition } from "../route";
 import { createBiomeVisuals, type BiomeVisuals } from "./createBiomeVisuals";
 import { createRouteMesh, type RouteMeshResult } from "./createRouteMesh";
+import { calculateGroundHeight } from "./groundHeight";
 import {
   getBiomePalette,
-  getRouteCenterXAtZ,
   toThreeVector3
 } from "./renderHelpers";
 import type {
@@ -168,31 +168,14 @@ export class ThreeSceneController implements SceneControllerApi {
     THREE.PlaneGeometry,
     THREE.MeshStandardMaterial
   > {
-    const geometry = new THREE.PlaneGeometry(420, 1400, 18, 54);
+    const geometry = new THREE.PlaneGeometry(420, 1400, 72, 80);
     const positions = geometry.attributes.position;
 
     for (let index = 0; index < positions.count; index += 1) {
       const x = positions.getX(index);
       const y = positions.getY(index);
-      const worldZ = 560 - y;
-      const routeCenterX = getRouteCenterXAtZ(this.route, worldZ);
-      const lateralDistance = Math.abs(x - routeCenterX);
-      const roadClearance = Math.max(0, lateralDistance - 7);
-      const berm =
-        Math.max(0, 1 - Math.abs(lateralDistance - 18) / 12) *
-        (1.2 + Math.sin(y * 0.021) * 0.35);
-      const midSlope =
-        Math.min(1, Math.max(0, (lateralDistance - 34) / 80)) * 4.8;
-      const farRidge =
-        Math.min(1, Math.max(0, (lateralDistance - 108) / 86)) * 6.4;
-      const wave =
-        Math.sin(y * 0.018) * 0.38 +
-        Math.cos((x + y) * 0.012) * 0.32 +
-        Math.sin((x - y) * 0.007) * 0.28;
-      const height =
-        roadClearance > 0 ? berm + midSlope + farRidge + wave * 1.25 : 0;
 
-      positions.setZ(index, height);
+      positions.setZ(index, calculateGroundHeight(this.route, x, y));
     }
 
     geometry.computeVertexNormals();

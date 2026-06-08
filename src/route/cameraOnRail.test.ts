@@ -16,7 +16,7 @@ describe("cameraOnRail", () => {
       { heightMeters: 2, lookAheadMeters: 50, fovDegrees: 80 }
     );
 
-    expect(camera.position).toEqual({ x: 36, y: 4, z: 496 });
+    expect(camera.position).toEqual({ x: 36, y: 12, z: 496 });
     expect(camera.lookAt.z).toBeGreaterThan(camera.position.z);
     expect(camera.fovDegrees).toBe(80);
     expect(camera.usedFallback).toBe(false);
@@ -48,10 +48,10 @@ describe("cameraOnRail", () => {
     const camera = cameraOnRail(mockRouteDefinition, 0.5);
 
     expect(DEFAULT_CAMERA_RAIL_CONFIG.heightMeters).toBeGreaterThanOrEqual(1.1);
-    expect(DEFAULT_CAMERA_RAIL_CONFIG.heightMeters).toBeLessThanOrEqual(1.35);
-    expect(DEFAULT_CAMERA_RAIL_CONFIG.lookAheadMeters).toBeGreaterThanOrEqual(16);
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.heightMeters).toBeLessThanOrEqual(1.5);
+    expect(DEFAULT_CAMERA_RAIL_CONFIG.lookAheadMeters).toBeGreaterThanOrEqual(22);
     expect(DEFAULT_CAMERA_RAIL_CONFIG.fovDegrees).toBeLessThanOrEqual(68);
-    expect(camera.position.y).toBeCloseTo(3.25, 2);
+    expect(camera.position.y).toBeCloseTo(11.45, 2);
     expect(camera.lookAt.z).toBeGreaterThan(camera.position.z);
     expectFiniteVec3(camera.position);
     expectFiniteVec3(camera.lookAt);

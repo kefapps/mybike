@@ -3,6 +3,7 @@ import type { Object3D } from "three";
 
 import { mockRouteDefinition } from "../route";
 import { createBiomeVisuals } from "./createBiomeVisuals";
+import { calculateGroundHeight, GROUND_MESH_CENTER_Z } from "./groundHeight";
 import { getRouteCenterXAtZ } from "./renderHelpers";
 
 describe("createBiomeVisuals", () => {
@@ -123,7 +124,13 @@ describe("createBiomeVisuals", () => {
 
       expect(lateralDistance).toBeGreaterThanOrEqual(7.2);
       expect(lateralDistance).toBeLessThanOrEqual(8.7);
-      expect(human.position.y).toBeGreaterThanOrEqual(0);
+      expect(human.position.y).toBeCloseTo(
+        calculateGroundHeight(
+          mockRouteDefinition,
+          human.position.x,
+          GROUND_MESH_CENTER_Z - human.position.z
+        ) + 0.02
+      );
       expect(human.children.length).toBeGreaterThanOrEqual(4);
     }
 

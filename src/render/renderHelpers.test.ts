@@ -5,6 +5,7 @@ import type { RouteDefinition } from "../route";
 import {
   getBiomePalette,
   getRouteCenterXAtZ,
+  getRouteElevationAtZ,
   getRouteRenderPoints,
   toThreeVector3
 } from "./renderHelpers";
@@ -54,7 +55,7 @@ describe("render helpers", () => {
 
     expect(points).toHaveLength(mockRouteDefinition.points.length);
     expect(points[0]).toMatchObject({ x: 0, y: 0.03, z: 0 });
-    expect(points.at(-1)).toMatchObject({ x: 0, y: 1.03, z: 1000 });
+    expect(points.at(-1)).toMatchObject({ x: 0, y: 3.03, z: 1000 });
   });
 
   it("samples route center x for route-aware scenic offsets", () => {
@@ -62,6 +63,14 @@ describe("render helpers", () => {
     expect(getRouteCenterXAtZ(mockRouteDefinition, 231.5)).toBeCloseTo(3);
     expect(getRouteCenterXAtZ(mockRouteDefinition, -50)).toBe(0);
     expect(getRouteCenterXAtZ(mockRouteDefinition, 1200)).toBe(0);
+  });
+
+  it("samples route elevation for terrain anchoring", () => {
+    expect(getRouteElevationAtZ(mockRouteDefinition, 0)).toBe(0);
+    expect(getRouteElevationAtZ(mockRouteDefinition, 148)).toBe(5);
+    expect(getRouteElevationAtZ(mockRouteDefinition, 405.5)).toBeCloseTo(6);
+    expect(getRouteElevationAtZ(mockRouteDefinition, -50)).toBe(0);
+    expect(getRouteElevationAtZ(mockRouteDefinition, 1200)).toBe(3);
   });
 
   it("uses placeholder route points when a malformed route reaches render", () => {
