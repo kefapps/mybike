@@ -12,6 +12,7 @@ type RideScreenProps = {
   onPause: () => void;
   onResume: () => void;
   onFinish: (summary: RideStats) => void;
+  onRenderFailure: (message: string) => void;
 };
 
 const DEFAULT_MOCK_EFFORT01 = 0.55;
@@ -20,7 +21,8 @@ export function RideScreen({
   phase,
   onPause,
   onResume,
-  onFinish
+  onFinish,
+  onRenderFailure
 }: RideScreenProps) {
   const isPaused = phase === "paused";
   const captureCleanHud = isCaptureCleanHudEnabled();
@@ -48,6 +50,7 @@ export function RideScreen({
           phase={phase}
           effort01={effort01}
           onFrame={setLatestSnapshot}
+          onRenderFailure={onRenderFailure}
         />
         <RideHud phase={phase} snapshot={latestSnapshot} />
       </div>

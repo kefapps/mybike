@@ -34,6 +34,10 @@ export function App() {
     dispatch({ type: "finish", now: Date.now(), summary });
   };
 
+  const handleRenderFailure = (message: string) => {
+    dispatch({ type: "fail", message });
+  };
+
   return (
     <main className="app-shell">
       {session.phase === "idle" ? <StartScreen onStart={startRide} /> : null}
@@ -44,6 +48,7 @@ export function App() {
           onPause={() => dispatch({ type: "pause" })}
           onResume={() => dispatch({ type: "resume" })}
           onFinish={finishRide}
+          onRenderFailure={handleRenderFailure}
         />
       ) : null}
 

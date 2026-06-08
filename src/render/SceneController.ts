@@ -68,9 +68,9 @@ export class ThreeSceneController implements SceneControllerApi {
     );
   }
 
-  mount(canvas: HTMLCanvasElement): void {
+  mount(canvas: HTMLCanvasElement): boolean {
     if (this.disposed) {
-      return;
+      return false;
     }
 
     try {
@@ -81,7 +81,11 @@ export class ThreeSceneController implements SceneControllerApi {
       });
     } catch {
       this.renderer = undefined;
-      return;
+      return false;
+    }
+
+    if (this.renderer === undefined) {
+      return false;
     }
 
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
@@ -90,6 +94,8 @@ export class ThreeSceneController implements SceneControllerApi {
       canvas.clientWidth || DEFAULT_WIDTH,
       canvas.clientHeight || DEFAULT_HEIGHT
     );
+
+    return true;
   }
 
   resize(width: number, height: number): void {

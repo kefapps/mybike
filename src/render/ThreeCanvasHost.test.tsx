@@ -14,7 +14,7 @@ function createFakeController(): SceneController & {
   return {
     updates: [],
     resizes: [],
-    mount: vi.fn(),
+    mount: vi.fn(() => true),
     resize: vi.fn((width: number, height: number) => {
       fakeController.resizes.push({ width, height });
     }),
@@ -69,25 +69,26 @@ function renderHost(props?: Partial<Parameters<typeof ThreeCanvasHost>[0]>) {
     render(props?.phase ?? "running");
   });
 
-  return {
-    container,
-    root,
-    tick(ms: number) {
-      nowMs += ms;
-      const callback = frameCallbacks.shift();
+    return {
+      container,
+      root,
+      tick(ms: number) {
+        nowMs += ms;
+        const callback = frameCallbacks.shift();
 
       if (!callback) {
         throw new Error("No frame callback scheduled");
       }
 
-      act(() => {
-        callback(nowMs);
-      });
-    },
-    rerender(
-      phase: "running" | "paused",
-      nextProps?: Partial<Parameters<typeof ThreeCanvasHost>[0]>
-    ) {
+        act(() => {
+          callback(nowMs);
+        });
+      },
+      cancelFrame,
+      rerender(
+        phase: "running" | "paused",
+        nextProps?: Partial<Parameters<typeof ThreeCanvasHost>[0]>
+      ) {
       act(() => {
         render(phase, nextProps);
       });
@@ -188,6 +189,133 @@ describe("ThreeCanvasHost", () => {
 
     expect(frames[frames.length - 1].ride.input.effort01).toBe(0.9);
     expect(frames[frames.length - 1].route.biomeId).toBe("coast");
+  });
+
+  it("reports render failure when mount fails", () => {
+    const onRenderFailure = vi.fn();
+    const mountFailureController: SceneController & {
+      updates: RenderFrameSnapshot[];
+      resizes: Array<{ width: number; height: number }>;
+    } = {
+      updates: [],
+      resizes: [],
+      mount: vi.fn(() => false),
+      resize: vi.fn(),
+      update: vi.fn(),
+      dispose: vi.fn()
+    };
+    const rendered = renderHost({
+      onRenderFailure,
+      controllerFactory: () => mountFailureController
+    });
+    root = rendered.root;
+
+    expect(onRenderFailure).toHaveBeenCalledTimes(1);
+    expect(onRenderFailure).toHaveBeenLastCalledWith(
+      "WebGL renderer introuvable ou indisponible. Verifiez que votre navigateur prend en charge WebGL."
+    );
+    expect(mountFailureController.dispose).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      rendered.root.unmount();
+    });
+    root = undefined;
+
+    expect(mountFailureController.dispose).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports render failure and stops loop if a frame update fails", () => {
+    const onRenderFailure = vi.fn();
+    const failureController: SceneController & {
+      updates: RenderFrameSnapshot[];
+      resizes: Array<{ width: number; height: number }>;
+    } = {
+      updates: [],
+      resizes: [],
+      mount: vi.fn(() => true),
+      resize: vi.fn(() => {
+        failureController.resizes.push({ width: 640, height: 360 });
+      }),
+      update: vi.fn(() => {
+        throw new Error("boom");
+      }),
+      dispose: vi.fn()
+    };
+
+    const rendered = renderHost({
+      onRenderFailure,
+      controllerFactory: () => failureController
+    });
+    root = rendered.root;
+
+    rendered.tick(100);
+
+    expect(onRenderFailure).toHaveBeenCalledTimes(1);
+    expect(onRenderFailure).toHaveBeenLastCalledWith("boom");
+    expect(failureController.dispose).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports render failure when input source creation throws", () => {
+    const onRenderFailure = vi.fn();
+    const rendered = renderHost({
+      onRenderFailure,
+      createInputSource: () => {
+        throw new Error("input source failed");
+      }
+    });
+    root = rendered.root;
+
+    expect(onRenderFailure).toHaveBeenCalledTimes(1);
+    expect(onRenderFailure).toHaveBeenLastCalledWith("input source failed");
+  });
+
+  it("reports render failure when mount throws", () => {
+    const onRenderFailure = vi.fn();
+    const mountErrorController: SceneController & {
+      updates: RenderFrameSnapshot[];
+      resizes: Array<{ width: number; height: number }>;
+    } = {
+      updates: [],
+      resizes: [],
+      mount: vi.fn(() => {
+        throw new Error("renderer failed");
+      }),
+      resize: vi.fn(),
+      update: vi.fn(),
+      dispose: vi.fn()
+    };
+    const rendered = renderHost({
+      onRenderFailure,
+      controllerFactory: () => mountErrorController
+    });
+    root = rendered.root;
+
+    expect(onRenderFailure).toHaveBeenCalledTimes(1);
+    expect(onRenderFailure).toHaveBeenLastCalledWith("renderer failed");
+    expect(mountErrorController.dispose).toHaveBeenCalledTimes(1);
+  });
+
+  it("reports render failure when WebGL context is lost", () => {
+    const onRenderFailure = vi.fn();
+    const rendered = renderHost({
+      onRenderFailure
+    });
+    root = rendered.root;
+
+    const canvas = rendered.container.querySelector("canvas");
+    if (!canvas) {
+      throw new Error("Canvas not found");
+    }
+
+    act(() => {
+      const event = new Event("webglcontextlost");
+      canvas.dispatchEvent(event);
+    });
+
+    expect(onRenderFailure).toHaveBeenCalledTimes(1);
+    expect(onRenderFailure).toHaveBeenLastCalledWith(
+      "Le contexte WebGL a ete perdu."
+    );
   });
 
   it("preserves a caller-provided mock input source when effort is not controlled", () => {

@@ -7,7 +7,7 @@ export type RenderFrameSnapshot = {
 };
 
 export type SceneController = {
-  mount(canvas: HTMLCanvasElement): void;
+  mount(canvas: HTMLCanvasElement): boolean;
   resize(width: number, height: number): void;
   update(snapshot: RenderFrameSnapshot): void;
   dispose(): void;
