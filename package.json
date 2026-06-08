@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "capture:ride-video": "node scripts/capture-ride-video.mjs",
+    "validate:private-demo": "node scripts/private-demo-readiness.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "build": "tsc --noEmit && vite build"

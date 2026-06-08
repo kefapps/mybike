@@ -2976,6 +2976,95 @@ Synced on 2026-06-08:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-19-threejs-private-demo-launch-readiness: ready-for-dev`
   - `next_action: implement-MYB-19`
-- Tracking validation:
+  - Tracking validation:
   - Story/tracking only; no implementation performed.
   - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
+
+## MYB-19 Three.js Private Demo Launch Readiness Implemented
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-19`
+  - URL: https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness
+  - Status: `In Review`
+  - Implementation comment ID: `eb06889a-b097-49e7-9cdc-47ea927130dd`
+- Story/tracking commit:
+  - `a993a1efafd949ce16656a9f70b1cd3bc0db6ebd`
+- Local implementation:
+  - Added `npm run validate:private-demo`.
+  - Added `scripts/private-demo-readiness.mjs` to run readiness checks and generate `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+  - Added `scripts/private-demo-readiness.test.mjs` for readiness verdict/report formatting.
+  - Extended `scripts/capture-ride-video.mjs` with canvas screenshot luma stats and `canvasNonBlank` evidence.
+- Validation:
+  - `npm run validate:private-demo`: pass.
+  - Harness executed `npm run typecheck`: pass.
+  - Harness executed `npm run test`: pass, 23 files / 76 tests.
+  - Harness executed `npm run build`: pass, Vite chunk-size warning only.
+  - Harness executed `npm run capture:ride-video`: pass, 60s capture.
+- Readiness report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+  - HTTP 200: pass.
+  - Canvas nonblank: pass.
+  - Page errors: `[]`.
+  - Console messages: `[]`.
+- Final capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/ride-visual-audit-contact-sheet.jpg`
+  - Canvas luma: `YMIN=30`, `YAVG=112.091`, `YMAX=172`.
+  - `durationMs=60000`, `frameCount=12`.
+- Scope guardrails:
+  - No `unity/Echappee3D/**` implementation edits.
+  - No `src/ride/*` edits.
+  - No Meshy, external asset, backend, BLE/FTMS, public deployment or engine migration.
+  - Capture artifacts remain evidence-only and are not staged.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-19-threejs-private-demo-launch-readiness: review`
+  - `next_action: review-MYB-19`
+
+## MYB-19 Three.js Private Demo Launch Readiness Review Approved
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-19`
+  - URL: https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness
+  - Status: `Done`
+  - Review comment ID: `5b2fc124-7157-470a-8f4b-65672800d23d`
+- Review verdict:
+  - Approved with no code corrections.
+  - No unresolved findings.
+- Review validations rerun:
+  - `npm run validate:private-demo`: pass.
+  - Harness executed `npm run typecheck`: pass.
+  - Harness executed `npm run test`: pass, 23 files / 76 tests.
+  - Harness executed `npm run build`: pass, Vite chunk-size warning only.
+  - Harness executed `npm run capture:ride-video`: pass, 60s capture.
+  - `git diff --check`: pass.
+  - High-confidence secret scan: pass.
+  - No `src/ride/*` diff.
+  - No tracked `unity/Echappee3D/**` diff selected for MYB-19.
+  - No capture artifact staged.
+- Review report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-contact-sheet.jpg`
+- Review capture metrics:
+  - HTTP 200.
+  - `pageErrors: []`.
+  - `consoleMessages: []`.
+  - `canvasNonBlank: true`.
+  - Canvas luma: `YMIN=30`, `YAVG=111.717`, `YMAX=172`.
+  - `durationMs=60000`, `frameCount=12`.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-19-threejs-private-demo-launch-readiness: done`
+  - `next_action: commit-MYB-19`

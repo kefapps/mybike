@@ -4,10 +4,12 @@
 
 - Linear issue: `MYB-19`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Created: `2026-06-08`
 - Linear sync comment: `efa4e6ae-00f7-44a8-955f-386e2e8bce57`
+- Linear implementation comment: `eb06889a-b097-49e7-9cdc-47ea927130dd`
+- Linear review comment: `5b2fc124-7157-470a-8f4b-65672800d23d`
 - Baseline commit: `0611461c3a230394abb976e17681105fac99289f`
 - Depends on: `MYB-18`
 - Source capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T20-45-29-441Z/`
@@ -72,50 +74,50 @@ The expected implementation output is:
 
 ## Implementation Tasks
 
-- [ ] Preflight and protect scope. (AC: 1, 2, 4, 16)
-  - [ ] Check `git status --short` and identify unrelated existing Unity/WebGL artifacts before editing.
-  - [ ] Confirm no intended edit under `unity/Echappee3D/**`.
-  - [ ] Confirm `src/ride/*` is not part of the intended change surface.
-  - [ ] Keep this story focused on launch readiness, not new polish.
+- [x] Preflight and protect scope. (AC: 1, 2, 4, 16)
+  - [x] Check `git status --short` and identify unrelated existing Unity/WebGL artifacts before editing.
+  - [x] Confirm no intended edit under `unity/Echappee3D/**`.
+  - [x] Confirm `src/ride/*` is not part of the intended change surface.
+  - [x] Keep this story focused on launch readiness, not new polish.
 
-- [ ] Inspect the current web demo and capture tooling. (AC: 3, 5, 8, 9, 10)
-  - [ ] Read `package.json` scripts.
-  - [ ] Read `scripts/capture-ride-video.mjs`.
-  - [ ] Read current capture summary format from the MYB-18 review capture.
-  - [ ] Read the app/render entrypoints only as needed to verify canvas and page health signals.
+- [x] Inspect the current web demo and capture tooling. (AC: 3, 5, 8, 9, 10)
+  - [x] Read `package.json` scripts.
+  - [x] Read `scripts/capture-ride-video.mjs`.
+  - [x] Read current capture summary format from the MYB-18 review capture.
+  - [x] Read the app/render entrypoints only as needed to verify canvas and page health signals.
 
-- [ ] Add or extend a lightweight readiness harness. (AC: 5, 6, 7, 8, 9, 10, 12, 13)
-  - [ ] Prefer a simple Node script under `scripts/` if the existing capture script does not already provide enough report data.
-  - [ ] Generate `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
-  - [ ] Include explicit pass/fail lines for typecheck, tests, build, HTTP 200, browser errors, console errors, canvas nonblank and capture evidence.
-  - [ ] Make the verdict deterministic: `ready-for-private-web-demo` only when all required checks pass.
-  - [ ] Do not require public hosting or deployment.
+- [x] Add or extend a lightweight readiness harness. (AC: 5, 6, 7, 8, 9, 10, 12, 13)
+  - [x] Prefer a simple Node script under `scripts/` if the existing capture script does not already provide enough report data.
+  - [x] Generate `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+  - [x] Include explicit pass/fail lines for typecheck, tests, build, HTTP 200, browser errors, console errors, canvas nonblank and capture evidence.
+  - [x] Make the verdict deterministic: `ready-for-private-web-demo` only when all required checks pass.
+  - [x] Do not require public hosting or deployment.
 
-- [ ] Add a concise launch checklist. (AC: 6, 11, 12, 13)
-  - [ ] Include install/build assumption if relevant.
-  - [ ] Include the local command to start or preview the demo.
-  - [ ] Include the URL to open.
-  - [ ] Include the minimal operator path: start ride, adjust mock effort, pause/resume, finish, check summary.
-  - [ ] Include what to do if the report is not ready.
+- [x] Add a concise launch checklist. (AC: 6, 11, 12, 13)
+  - [x] Include install/build assumption if relevant.
+  - [x] Include the local command to start or preview the demo.
+  - [x] Include the URL to open.
+  - [x] Include the minimal operator path: start ride, adjust mock effort, pause/resume, finish, check summary.
+  - [x] Include what to do if the report is not ready.
 
-- [ ] Preserve the existing demo behavior. (AC: 3, 4, 14, 15, 16)
-  - [ ] Avoid rendering or camera edits unless a readiness blocker proves a tiny correction is necessary.
-  - [ ] Preserve MYB-18 grounded route cues and camera defaults.
-  - [ ] Preserve fog/depth and the capture-clean-HUD flow.
-  - [ ] Keep all tests deterministic.
+- [x] Preserve the existing demo behavior. (AC: 3, 4, 14, 15, 16)
+  - [x] Avoid rendering or camera edits unless a readiness blocker proves a tiny correction is necessary.
+  - [x] Preserve MYB-18 grounded route cues and camera defaults.
+  - [x] Preserve fog/depth and the capture-clean-HUD flow.
+  - [x] Keep all tests deterministic.
 
-- [ ] Validate and record proof. (AC: 7, 8, 9, 10, 14, 15)
-  - [ ] Run `npm run typecheck`.
-  - [ ] Run `npm run test`.
-  - [ ] Run `npm run build`.
-  - [ ] Run the MYB-19 readiness command or script.
-  - [ ] Run `npm run capture:ride-video` if not already covered by the readiness command.
-  - [ ] Verify the readiness report includes the final verdict and links to the capture artifacts.
+- [x] Validate and record proof. (AC: 7, 8, 9, 10, 14, 15)
+  - [x] Run `npm run typecheck`.
+  - [x] Run `npm run test`.
+  - [x] Run `npm run build`.
+  - [x] Run the MYB-19 readiness command or script.
+  - [x] Run `npm run capture:ride-video` if not already covered by the readiness command.
+  - [x] Verify the readiness report includes the final verdict and links to the capture artifacts.
 
-- [ ] Update tracking after implementation. (AC: 17)
-  - [ ] Move MYB-19 to review in this story and `sprint-status.yaml`.
-  - [ ] Add validation evidence to `_bmad-output/linear-sync.md`.
-  - [ ] Add a Linear implementation comment and set MYB-19 to In Review.
+- [x] Update tracking after implementation. (AC: 17)
+  - [x] Move MYB-19 to review in this story and `sprint-status.yaml`.
+  - [x] Add validation evidence to `_bmad-output/linear-sync.md`.
+  - [x] Add a Linear implementation comment and set MYB-19 to In Review.
 
 ## Probable Files
 
@@ -243,24 +245,86 @@ Do not run Unity MCP or Unity batchmode for MYB-19. Unity is not acceptance proo
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Agent Model Used
 
-TBD
+Codex GPT-5
 
 ### Debug Log References
 
 - Story/tracking creation only: npm validations intentionally not run.
+- Story/tracking commit: `a993a1efafd949ce16656a9f70b1cd3bc0db6ebd`.
+- Targeted readiness tests: `npx vitest run scripts/private-demo-readiness.test.mjs`.
+- First full readiness run correctly failed with `not-ready-for-private-web-demo` because canvas nonblank was measured from the raw WebGL framebuffer.
+- Corrected canvas nonblank proof to use a real canvas screenshot measured by `ffprobe` luma stats.
+- Final validation: `npm run validate:private-demo`.
+- Final report: `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+- Final capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/`.
+- Review validation: `npm run validate:private-demo`.
+- Review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/`.
 
 ### Completion Notes
 
-TBD during implementation.
+- Added `npm run validate:private-demo`, a local readiness harness that runs `npm run typecheck`, `npm run test`, `npm run build` and `npm run capture:ride-video`.
+- Added a deterministic readiness report writer with pass/fail checks and the final verdict `ready-for-private-web-demo` only when all required checks pass.
+- Extended capture summaries with `canvasNonBlank`, `canvasHealth`, `canvasScreenshotPath` and `framebufferHealth`; the ready gate uses a real canvas screenshot measured with `ffprobe`.
+- Generated `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+- Preserved MYB-18 ride visuals, camera defaults, fog/depth, HUD, controls and mock loop; no `src/ride/*` or `unity/Echappee3D/**` implementation edits.
+- Final report shows HTTP 200, no page errors, no console messages, 60s capture, 12 frames, `canvasNonBlank: true`, and `ready-for-private-web-demo`.
 
 ### File List
 
-TBD during implementation.
+- `package.json`
+- `scripts/capture-ride-video.mjs`
+- `scripts/private-demo-readiness.mjs`
+- `scripts/private-demo-readiness.test.mjs`
+- `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+- `_bmad-output/implementation-artifacts/myb-19-threejs-private-demo-launch-readiness.md`
+- `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- `_bmad-output/linear-sync.md`
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/` (validation evidence, not staged)
 
 ### Change Log
 
 - 2026-06-08: Created MYB-19 story for private Three.js demo launch readiness.
+- 2026-06-08: Implemented private demo readiness harness, report generation and final 60s capture proof.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved on 2026-06-08 with no code corrections.
+
+### Findings
+
+- None. Clean review against MYB-19 acceptance criteria and scope guardrails.
+
+### Review Evidence
+
+- Review validation:
+  - `npm run validate:private-demo`: pass.
+  - Harness executed `npm run typecheck`: pass.
+  - Harness executed `npm run test`: pass, 23 files / 76 tests.
+  - Harness executed `npm run build`: pass, Vite chunk-size warning only.
+  - Harness executed `npm run capture:ride-video`: pass, 60s capture.
+- Review report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+  - Verdict: `ready-for-private-web-demo`.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/`.
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/capture-summary.json`.
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.mp4`.
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-contact-sheet.jpg`.
+- Review capture metrics:
+  - HTTP 200.
+  - `pageErrors: []`.
+  - `consoleMessages: []`.
+  - `canvasNonBlank: true`.
+  - Canvas luma: `YMIN=30`, `YAVG=111.717`, `YMAX=172`.
+  - `durationMs=60000`, `frameCount=12`.
+- Scope checks:
+  - No `unity/Echappee3D/**` tracked diff selected for MYB-19.
+  - No `src/ride/*` diff.
+  - No Meshy, external asset, backend, BLE/FTMS, public deployment or engine migration.
+  - Capture artifacts remain evidence-only and are not staged.

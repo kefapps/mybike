@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-08T01:09:28+02:00
+# last_updated: 2026-06-08T03:26:49+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: implement-MYB-19.
+# - Next action: commit-MYB-19.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-08T01:09:28+02:00"
+last_updated: "2026-06-08T03:26:49+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "implement-MYB-19"
+  next_action: "commit-MYB-19"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -214,7 +214,15 @@ sprint:
   post_mvp_after_myb18_private_demo_launch_linear_url: "https://linear.app/kefjbo/issue/MYB-19/threejs-private-demo-launch-readiness"
   post_mvp_after_myb18_private_demo_launch_linear_comment: "efa4e6ae-00f7-44a8-955f-386e2e8bce57"
   post_mvp_after_myb18_private_demo_launch_scope: "Web-only React/Vite/Three.js private demo readiness: generate local readiness report and short launch checklist, verify HTTP 200, canvas nonblank, no page/console errors, npm typecheck/test/build and 60s capture proof; no Unity edits, Meshy, external assets, backend, BLE/FTMS, public deploy, new engine migration or visual polish."
-  post_mvp_after_myb18_private_demo_launch_next_action: "implement-MYB-19"
+  post_mvp_after_myb18_private_demo_launch_story_commit: "a993a1efafd949ce16656a9f70b1cd3bc0db6ebd"
+  post_mvp_after_myb18_private_demo_launch_implementation_comment: "eb06889a-b097-49e7-9cdc-47ea927130dd"
+  post_mvp_after_myb18_private_demo_launch_report: "_bmad-output/web-test-results/myb-19-private-demo-readiness.txt"
+  post_mvp_after_myb18_private_demo_launch_capture: "_bmad-output/video-captures/ride-visual-audit-2026-06-07T23-23-08-765Z/"
+  post_mvp_after_myb18_private_demo_launch_validation: "passed: npm run validate:private-demo executed npm run typecheck, npm run test (23 files / 76 tests), npm run build (Vite chunk-size warning only) and npm run capture:ride-video; report verdict ready-for-private-web-demo; HTTP 200; canvasNonBlank true with YMIN=30 YAVG=112.091 YMAX=172; pageErrors [] and consoleMessages []."
+  post_mvp_after_myb18_private_demo_launch_implementation_scope: "Added local readiness report harness and capture summary canvas nonblank evidence; no gameplay, visual polish, src/ride, Unity, Meshy, external asset, backend, BLE/FTMS, public deploy or engine migration changes."
+  post_mvp_after_myb18_private_demo_launch_review_comment: "5b2fc124-7157-470a-8f4b-65672800d23d"
+  post_mvp_after_myb18_private_demo_launch_review: "approved with no code corrections; review reran npm run validate:private-demo, which executed typecheck, test (23 files / 76 tests), build and 60s capture; report verdict ready-for-private-web-demo; HTTP 200; canvasNonBlank true with YMIN=30 YAVG=111.717 YMAX=172; pageErrors [] and consoleMessages []; no src/ride diff; no Unity tracked diff selected; no capture artifacts staged."
+  post_mvp_after_myb18_private_demo_launch_next_action: "commit-MYB-19"
   backlog_order:
     - "MYB-4"
     - "MYB-5"
@@ -338,4 +346,4 @@ development_status:
 
   # MYB-19 - Story post-MYB-18 - Three.js private demo launch readiness
   # Story unique creee pour rendre la demo web locale demonstrable avec rapport readiness et checklist courte, sans nouveau polish.
-  myb-19-threejs-private-demo-launch-readiness: ready-for-dev
+  myb-19-threejs-private-demo-launch-readiness: done
