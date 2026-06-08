@@ -3068,3 +3068,36 @@ Synced on 2026-06-08:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-19-threejs-private-demo-launch-readiness: done`
   - `next_action: commit-MYB-19`
+
+## MYB-20 Three.js Lightweight Scene Life Parity Story Created
+
+Synced on 2026-06-08:
+
+- Linear issue created:
+  - Issue: `MYB-20`
+  - URL: https://linear.app/kefjbo/issue/MYB-20/threejs-lightweight-scene-life-parity
+  - Status: `In Progress`
+  - Sync comment ID: `45b4e1c3-cef5-4ad0-b496-d468635493c4`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-20-threejs-lightweight-scene-life-parity.md`
+  - Local status: `ready-for-dev`
+- Source context:
+  - MYB-19 Three.js private demo launch readiness is Done.
+  - MYB-19 commit: `6059f95b8ad170b88b6ee8a382db5647779ca737`.
+  - Three.js remains the active private demo target.
+  - Unity remains parked/research, without deletion.
+  - Existing MYB-14 Meshy FBX previews are available as references under `unity/Echappee3D/Assets/Generated/Meshy/MYB14/`.
+- Scope confirmation:
+  - Web-only React/Vite/Three.js scene-life parity.
+  - Add lightweight birds and static human silhouettes to the browser demo.
+  - Evaluate existing MYB-14 Meshy assets, but do not call Meshy again without explicit cost confirmation.
+  - Preserve MYB-18 grounded route, camera, fog/depth, HUD, controls and mock loop.
+  - Preserve MYB-19 readiness harness and `ready-for-private-web-demo` target.
+  - No Unity implementation edits, vehicle/traffic/AI, collision gameplay, backend, BLE/FTMS, public deploy or new engine migration.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-20-threejs-lightweight-scene-life-parity: ready-for-dev`
+  - `next_action: implement-MYB-20`
+- Tracking validation:
+  - Story/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
