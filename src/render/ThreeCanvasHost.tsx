@@ -4,8 +4,8 @@ import {
   advanceRideFrame,
   createInitialRideFrameState,
   createMockRideInputSource,
-  type RideFrameState,
   type MockRideInputSource,
+  type RideFrameState,
   type RideInputSource
 } from "../ride";
 import {
@@ -28,6 +28,7 @@ export type ThreeCanvasHostProps = {
   controllerFactory?: SceneControllerFactory;
   createInputSource?: () => RideInputSource;
   effort01?: number;
+  onRenderFailure?: (message: string) => void;
   onFrame?: (snapshot: RenderFrameSnapshot) => void;
   now?: () => number;
   scheduleFrame?: (callback: FrameRequestCallback) => number;
@@ -45,6 +46,7 @@ export function ThreeCanvasHost({
   controllerFactory,
   createInputSource,
   effort01,
+  onRenderFailure,
   onFrame,
   now = defaultNow,
   scheduleFrame = defaultScheduleFrame,
@@ -57,6 +59,7 @@ export function ThreeCanvasHost({
     createInputSource === undefined || effort01 !== undefined
   );
   const onFrameRef = useRef(onFrame);
+  const onRenderFailureRef = useRef(onRenderFailure);
 
   useEffect(() => {
     phaseRef.current = phase;
@@ -73,6 +76,10 @@ export function ThreeCanvasHost({
   }, [onFrame]);
 
   useEffect(() => {
+    onRenderFailureRef.current = onRenderFailure;
+  }, [onRenderFailure]);
+
+  useEffect(() => {
     const canvas = canvasRef.current;
 
     if (!canvas) {
@@ -83,20 +90,95 @@ export function ThreeCanvasHost({
       controllerFactory === undefined
         ? createSceneController({ route })
         : controllerFactory();
-    const inputSource =
-      createInputSource === undefined
-        ? createMockRideInputSource(effortRef.current)
-        : createInputSource();
     const startedAtMs = now();
     let rideState: RideFrameState = createInitialRideFrameState(startedAtMs);
     let lastFrameAtMs = startedAtMs;
     let activeRideNowMs = startedAtMs;
     let frameHandle: number | undefined;
+    let resizeObserver: ResizeObserver | undefined;
+    let handleContextLost: ((event: Event) => void) | undefined;
+    let handleContextRestored: (() => void) | undefined;
+    let resize: (() => void) | undefined;
+    const controllerFailedRef = { current: false };
     let disposed = false;
 
-    controller.mount(canvas);
+    const reportFailure = (error: unknown): void => {
+      if (controllerFailedRef.current || disposed) {
+        return;
+      }
 
-    const resize = () => {
+      controllerFailedRef.current = true;
+      const message =
+        error instanceof Error
+          ? error.message
+          : "La creation du rendu 3D a echoue.";
+      onRenderFailureRef.current?.(message);
+      stopLoop();
+    };
+
+    const stopLoop = () => {
+      if (disposed) {
+        return;
+      }
+
+      disposed = true;
+
+      if (frameHandle !== undefined) {
+        cancelFrame(frameHandle);
+      }
+
+      resizeObserver?.disconnect();
+      if (resize) {
+        window.removeEventListener("resize", resize);
+      }
+      if (handleContextLost) {
+        canvas.removeEventListener("webglcontextlost", handleContextLost);
+      }
+      if (handleContextRestored) {
+        canvas.removeEventListener("webglcontextrestored", handleContextRestored);
+      }
+      controller.dispose();
+    };
+
+    const onFrameError = (error: unknown) => {
+      reportFailure(error);
+    };
+
+    let inputSource: RideInputSource;
+    try {
+      inputSource =
+        createInputSource === undefined
+          ? createMockRideInputSource(effortRef.current)
+          : createInputSource();
+    } catch (error) {
+      reportFailure(error);
+      return () => {
+        stopLoop();
+      };
+    }
+
+    let mounted = false;
+    try {
+      mounted = controller.mount(canvas);
+    } catch (error) {
+      reportFailure(error);
+      return () => {
+        stopLoop();
+      };
+    }
+
+    if (!mounted) {
+      reportFailure(
+        new Error(
+          "WebGL renderer introuvable ou indisponible. Verifiez que votre navigateur prend en charge WebGL."
+        )
+      );
+      return () => {
+        stopLoop();
+      };
+    }
+
+    resize = () => {
       const { width, height } = measureCanvas(canvas);
       controller.resize(width, height);
     };
@@ -123,6 +205,14 @@ export function ThreeCanvasHost({
       onFrameRef.current?.(snapshot);
     };
 
+    const safeEmitFrame = (frameNowMs: number, dtSeconds: number) => {
+      try {
+        emitFrame(frameNowMs, dtSeconds);
+      } catch (error) {
+        onFrameError(error);
+      }
+    };
+
     const scheduleNextFrame = () => {
       frameHandle = scheduleFrame((frameNowMs) => {
         if (disposed) {
@@ -137,7 +227,7 @@ export function ThreeCanvasHost({
             Math.max(0, (safeFrameNowMs - lastFrameAtMs) / 1000)
           );
           activeRideNowMs += dtSeconds * 1000;
-          emitFrame(activeRideNowMs, dtSeconds);
+          safeEmitFrame(activeRideNowMs, dtSeconds);
         }
 
         lastFrameAtMs = safeFrameNowMs;
@@ -145,27 +235,38 @@ export function ThreeCanvasHost({
       });
     };
 
-    const resizeObserver =
+    handleContextLost = (event: Event) => {
+      event.preventDefault();
+      reportFailure(new Error("Le contexte WebGL a ete perdu."));
+    };
+
+    handleContextRestored = () => {
+      if (controllerFailedRef.current || disposed) {
+        return;
+      }
+
+      try {
+        resize?.();
+      } catch (error) {
+        reportFailure(error);
+      }
+    };
+
+    resizeObserver =
       typeof ResizeObserver === "undefined"
         ? undefined
         : new ResizeObserver(resize);
 
     resize();
-    emitFrame(startedAtMs, 0);
+    safeEmitFrame(startedAtMs, 0);
     resizeObserver?.observe(canvas);
     window.addEventListener("resize", resize);
+    canvas.addEventListener("webglcontextlost", handleContextLost);
+    canvas.addEventListener("webglcontextrestored", handleContextRestored);
     scheduleNextFrame();
 
     return () => {
-      disposed = true;
-
-      if (frameHandle !== undefined) {
-        cancelFrame(frameHandle);
-      }
-
-      resizeObserver?.disconnect();
-      window.removeEventListener("resize", resize);
-      controller.dispose();
+      stopLoop();
     };
   }, [cancelFrame, controllerFactory, createInputSource, now, route, scheduleFrame]);
 

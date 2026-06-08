@@ -5,6 +5,24 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { App } from "./App";
 
+vi.mock("three", async () => {
+  const actual = await vi.importActual<typeof import("three")>("three");
+
+  return {
+    ...actual,
+    WebGLRenderer: vi.fn(() => {
+      return {
+        setPixelRatio: vi.fn(),
+        setClearColor: vi.fn(),
+        setSize: vi.fn(),
+        render: vi.fn(),
+        dispose: vi.fn(),
+        setAnimationLoop: vi.fn()
+      } as unknown as import("three").WebGLRenderer;
+    })
+  };
+});
+
 function renderApp() {
   const container = document.createElement("div");
   document.body.append(container);
@@ -107,5 +125,30 @@ describe("App", () => {
       "Impossible de lancer la balade"
     );
     expect(rendered.container.textContent).toContain("WebGL");
+  });
+
+  it("renders the WebGL fallback when the context is lost during a running ride", () => {
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(
+      {} as RenderingContext
+    );
+    const rendered = renderApp();
+    root = rendered.root;
+
+    clickButton("Lancer");
+    expect(rendered.container.textContent).toContain("running");
+
+    act(() => {
+      const canvas = rendered.container.querySelector("canvas");
+      if (!canvas) {
+        throw new Error("Canvas not found");
+      }
+
+      canvas.dispatchEvent(new Event("webglcontextlost"));
+    });
+
+    expect(rendered.container.textContent).toContain(
+      "Impossible de lancer la balade"
+    );
+    expect(rendered.container.textContent).toContain("Rendu indisponible");
   });
 });
