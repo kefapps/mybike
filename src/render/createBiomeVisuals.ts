@@ -68,6 +68,12 @@ export function createBiomeVisuals(
   const nearStoneGeometry = new THREE.DodecahedronGeometry(0.45, 0);
   const coastReedGeometry = new THREE.BoxGeometry(0.12, 1.85, 0.12);
   const forestFernGeometry = new THREE.ConeGeometry(0.42, 1.15, 6);
+  const birdWingGeometry = new THREE.BoxGeometry(1.8, 0.08, 0.18);
+  const birdBodyGeometry = new THREE.BoxGeometry(0.5, 0.18, 0.5);
+  const humanBodyGeometry = new THREE.BoxGeometry(0.62, 1.65, 0.28);
+  const humanHeadGeometry = new THREE.SphereGeometry(0.3, 10, 8);
+  const humanBaseGeometry = new THREE.BoxGeometry(0.86, 0.1, 0.42);
+  const humanVestGeometry = new THREE.BoxGeometry(0.68, 0.34, 0.3);
 
   const coastMaterial = new THREE.MeshStandardMaterial({
     color: 0x4f9fcf,
@@ -143,6 +149,26 @@ export function createBiomeVisuals(
     color: 0x2f7a42,
     roughness: 0.94
   });
+  const birdWingMaterial = new THREE.MeshBasicMaterial({
+    color: 0x19272d,
+    fog: true
+  });
+  const birdBodyMaterial = new THREE.MeshBasicMaterial({
+    color: 0xf2e8c4,
+    fog: true
+  });
+  const humanBodyMaterial = new THREE.MeshBasicMaterial({
+    color: 0x202825,
+    fog: true
+  });
+  const humanHeadMaterial = new THREE.MeshBasicMaterial({
+    color: 0xe8d0a8,
+    fog: true
+  });
+  const humanVestMaterial = new THREE.MeshBasicMaterial({
+    color: 0xf2d36b,
+    fog: true
+  });
 
   geometries.push(
     coastGeometry,
@@ -168,7 +194,13 @@ export function createBiomeVisuals(
     nearBladeGeometry,
     nearStoneGeometry,
     coastReedGeometry,
-    forestFernGeometry
+    forestFernGeometry,
+    birdWingGeometry,
+    birdBodyGeometry,
+    humanBodyGeometry,
+    humanHeadGeometry,
+    humanBaseGeometry,
+    humanVestGeometry
   );
   materials.push(
     coastMaterial,
@@ -188,7 +220,12 @@ export function createBiomeVisuals(
     nearBladeMaterial,
     nearStoneMaterial,
     coastReedMaterial,
-    forestFernMaterial
+    forestFernMaterial,
+    birdWingMaterial,
+    birdBodyMaterial,
+    humanBodyMaterial,
+    humanHeadMaterial,
+    humanVestMaterial
   );
   const fallbackTintMaterials: FallbackTintMaterial[] = [
     {
@@ -290,6 +327,73 @@ export function createBiomeVisuals(
   }
 
   group.add(nearRoadMotionDetails);
+
+  const sceneLife = new THREE.Group();
+  sceneLife.name = "scenic-life";
+
+  for (const [z, sideOffset, height, scale] of [
+    [54, -5.4, 8.6, 1.08],
+    [112, 7.2, 10.8, 1.18],
+    [205, -8.8, 9.4, 1.28],
+    [336, 6.5, 12.2, 1.36],
+    [516, -3.6, 11.2, 1.24]
+  ] as const) {
+    const bird = new THREE.Group();
+    bird.name = "scenic-life-bird";
+    bird.position.set(getRouteCenterXAtZ(route, z) + sideOffset, height, z);
+    bird.scale.setScalar(scale);
+    bird.rotation.set(0.08, sideOffset < 0 ? 0.22 : -0.18, sideOffset * 0.012);
+
+    const leftWing = new THREE.Mesh(birdWingGeometry, birdWingMaterial);
+    leftWing.name = "scenic-life-bird-wing";
+    leftWing.position.set(-0.72, 0, 0);
+    leftWing.rotation.z = -0.34;
+
+    const rightWing = new THREE.Mesh(birdWingGeometry, birdWingMaterial);
+    rightWing.name = "scenic-life-bird-wing";
+    rightWing.position.set(0.72, 0, 0);
+    rightWing.rotation.z = 0.34;
+
+    const body = new THREE.Mesh(birdBodyGeometry, birdBodyMaterial);
+    body.name = "scenic-life-bird-body";
+    body.scale.set(0.75, 0.9, 0.72);
+
+    bird.add(leftWing, rightWing, body);
+    sceneLife.add(bird);
+  }
+
+  for (const [z, side, offset, scale] of [
+    [96, -1, 7.4, 1.18],
+    [184, 1, 7.8, 1.3],
+    [332, -1, 8.4, 1.42]
+  ] as const) {
+    const spectator = new THREE.Group();
+    spectator.name = "scenic-life-human";
+    spectator.position.set(routeSideX(z, side, offset), 0.02, z);
+    spectator.scale.setScalar(scale);
+    spectator.rotation.y = side < 0 ? 0.34 : -0.34;
+
+    const base = new THREE.Mesh(humanBaseGeometry, humanBodyMaterial);
+    base.name = "scenic-life-human-base";
+    base.position.y = 0.04;
+
+    const body = new THREE.Mesh(humanBodyGeometry, humanBodyMaterial);
+    body.name = "scenic-life-human-body";
+    body.position.y = 0.82;
+
+    const head = new THREE.Mesh(humanHeadGeometry, humanHeadMaterial);
+    head.name = "scenic-life-human-head";
+    head.position.y = 1.92;
+
+    const vest = new THREE.Mesh(humanVestGeometry, humanVestMaterial);
+    vest.name = "scenic-life-human-vest";
+    vest.position.y = 1.18;
+
+    spectator.add(base, body, vest, head);
+    sceneLife.add(spectator);
+  }
+
+  group.add(sceneLife);
 
   for (const z of [52, 86, 122, 158, 196, 236, 278]) {
     for (const side of [-1, 1] as const) {

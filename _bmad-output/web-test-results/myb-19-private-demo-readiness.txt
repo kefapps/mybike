@@ -1,12 +1,12 @@
 MYB-19 Private Web Demo Readiness
 
-Generated: 2026-06-08T01:25:58.986Z
+Generated: 2026-06-08T04:23:43.003Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Baseline commit: 0611461c3a230394abb976e17681105fac99289f
-Current commit: a993a1efafd949ce16656a9f70b1cd3bc0db6ebd
-Target URL: http://127.0.0.1:5174/?captureHud=hidden
+Current commit: 55505a6e46cef808704ccf2759da3485a0f7c2c5
+Target URL: http://127.0.0.1:5175/?captureHud=hidden
 Build mode: local Vite development server with production build validation
-Local launch command: npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
+Local launch command: npm run dev -- --host 127.0.0.1 --port 5175 --strictPort
 Report path: _bmad-output/web-test-results/myb-19-private-demo-readiness.txt
 
 Checks
@@ -24,23 +24,23 @@ Checks
 - capture summary: pass
 
 Capture Evidence
-- directory: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z
-- video: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.mp4
-- webm: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.webm
-- contact sheet: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-contact-sheet.jpg
-- final frame: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/final-frame.png
-- summary: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/capture-summary.json
+- directory: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z
+- video: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ride-visual-audit-60s.mp4
+- webm: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ride-visual-audit-60s.webm
+- contact sheet: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ride-visual-audit-contact-sheet.jpg
+- final frame: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/final-frame.png
+- summary: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/capture-summary.json
 - durationMs: 60000
 - frameCount: 12
 - canvasNonBlank: true
-- canvasHealth: {"avgLuma":111.717,"maxLuma":172,"minLuma":30,"nonBlank":true}
+- canvasHealth: {"avgLuma":112.39,"maxLuma":172,"minLuma":30,"nonBlank":true}
 - pageErrors: []
 - consoleMessages: []
 
 Launch Checklist
 1. From the repo root, run `npm install` if dependencies are not already installed.
-2. Run `npm run dev -- --host 127.0.0.1 --port 5174 --strictPort` for the local demo server.
-3. Open `http://127.0.0.1:5174/` in the browser.
+2. Run `npm run dev -- --host 127.0.0.1 --port 5175 --strictPort` for the local demo server.
+3. Open `http://127.0.0.1:5175/` in the browser.
 4. Click `Lancer la balade mock`.
 5. Adjust the mock effort slider and confirm speed, distance and progress update.
 6. Use pause/resume, then finish the ride and confirm the summary appears.
