@@ -1,0 +1,21 @@
+[MYB-25] Bundle budget report
+Generated: 2026-06-08T21:30:31.503Z
+Max JS chunk budget: 380 KB
+Total JS assets: 15
+Oversized chunks: 0
+
+OK: vendor-three-renderers-UstY4rKd.js       (352.684 KB)
+OK: vendor-react-C2StAl4u.js                 (187.839 KB)
+OK: vendor-three-math-DkqEwok6.js            (64.683 KB)
+OK: RideScreen-DSFNNMI1.js                   (30.865 KB)
+OK: vendor-three-core-C9v5IVXJ.js            (29.021 KB)
+OK: vendor-three-extras-AyOgWVhd.js          (18.509 KB)
+OK: vendor-three-materials-HIzZK4VC.js       (17.553 KB)
+OK: vendor-three-geometries-DmtRHW5X.js      (7.989 KB)
+OK: vendor-three-cameras-BOKG5A2F.js         (7.695 KB)
+OK: vendor-three-textures-DYpynRH-.js        (7.603 KB)
+OK: index-hMWTq971.js                        (7.102 KB)
+OK: vendor-three-objects-DNCzinmq.js         (4.181 KB)
+OK: vendor-three-BrKWVUhP.js                 (3.487 KB)
+OK: vendor-three-lights-C9SvYQPx.js          (2.999 KB)
+OK: vendor-three-scenes-cUdVpDa4.js          (1.802 KB)
