@@ -1,0 +1,52 @@
+MYB-19 Private Web Demo Readiness
+
+Generated: 2026-06-08T01:25:58.986Z
+Project root: /Users/jbodin/personnel/apps/mybike
+Baseline commit: 0611461c3a230394abb976e17681105fac99289f
+Current commit: a993a1efafd949ce16656a9f70b1cd3bc0db6ebd
+Target URL: http://127.0.0.1:5174/?captureHud=hidden
+Build mode: local Vite development server with production build validation
+Local launch command: npm run dev -- --host 127.0.0.1 --port 5174 --strictPort
+Report path: _bmad-output/web-test-results/myb-19-private-demo-readiness.txt
+
+Checks
+- npm run typecheck: pass
+- npm run test: pass
+- npm run build: pass
+- npm run capture:ride-video: pass
+- HTTP 200: pass
+- canvas nonblank: pass
+- no page errors: pass
+- no console errors: pass
+- 60s capture: pass
+- video artifact: pass
+- contact sheet: pass
+- capture summary: pass
+
+Capture Evidence
+- directory: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z
+- video: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.mp4
+- webm: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-60s.webm
+- contact sheet: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/ride-visual-audit-contact-sheet.jpg
+- final frame: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/final-frame.png
+- summary: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T01-24-48-674Z/capture-summary.json
+- durationMs: 60000
+- frameCount: 12
+- canvasNonBlank: true
+- canvasHealth: {"avgLuma":111.717,"maxLuma":172,"minLuma":30,"nonBlank":true}
+- pageErrors: []
+- consoleMessages: []
+
+Launch Checklist
+1. From the repo root, run `npm install` if dependencies are not already installed.
+2. Run `npm run dev -- --host 127.0.0.1 --port 5174 --strictPort` for the local demo server.
+3. Open `http://127.0.0.1:5174/` in the browser.
+4. Click `Lancer la balade mock`.
+5. Adjust the mock effort slider and confirm speed, distance and progress update.
+6. Use pause/resume, then finish the ride and confirm the summary appears.
+7. Keep this report with the latest 60s capture as the private-demo proof.
+
+If Not Ready
+- Do not show the demo as ready; fix the failing check named above and regenerate this report.
+
+Verdict: ready-for-private-web-demo

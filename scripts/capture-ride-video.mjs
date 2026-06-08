@@ -115,6 +115,72 @@ async function setSlider(page, value) {
   );
 }
 
+async function readCanvasHealth(page) {
+  return page.locator("canvas").evaluate((canvas) => {
+    const sampleWidth = 64;
+    const sampleHeight = 64;
+    let data;
+    const gl = canvas.getContext("webgl2") ?? canvas.getContext("webgl");
+
+    if (gl) {
+      data = new Uint8Array(sampleWidth * sampleHeight * 4);
+      const x = Math.max(0, Math.floor(gl.drawingBufferWidth / 2 - sampleWidth / 2));
+      const y = Math.max(0, Math.floor(gl.drawingBufferHeight / 2 - sampleHeight / 2));
+      gl.readPixels(x, y, sampleWidth, sampleHeight, gl.RGBA, gl.UNSIGNED_BYTE, data);
+    } else {
+      const probe = document.createElement("canvas");
+      probe.width = sampleWidth;
+      probe.height = sampleHeight;
+
+      const context = probe.getContext("2d");
+      if (!context) {
+        return {
+          avgLuma: 0,
+          height: canvas.height,
+          maxLuma: 0,
+          minLuma: 0,
+          nonBlank: false,
+          width: canvas.width
+        };
+      }
+
+      context.drawImage(canvas, 0, 0, sampleWidth, sampleHeight);
+      data = context.getImageData(0, 0, sampleWidth, sampleHeight).data;
+    }
+
+    let minLuma = Number.POSITIVE_INFINITY;
+    let maxLuma = Number.NEGATIVE_INFINITY;
+    let totalLuma = 0;
+    let visiblePixels = 0;
+
+    for (let index = 0; index < data.length; index += 4) {
+      const alpha = data[index + 3];
+      if (alpha === 0) {
+        continue;
+      }
+
+      const luma = 0.2126 * data[index] + 0.7152 * data[index + 1] + 0.0722 * data[index + 2];
+      minLuma = Math.min(minLuma, luma);
+      maxLuma = Math.max(maxLuma, luma);
+      totalLuma += luma;
+      visiblePixels += 1;
+    }
+
+    const avgLuma = visiblePixels > 0 ? totalLuma / visiblePixels : 0;
+    const finiteMin = Number.isFinite(minLuma) ? minLuma : 0;
+    const finiteMax = Number.isFinite(maxLuma) ? maxLuma : 0;
+
+    return {
+      avgLuma: Number(avgLuma.toFixed(3)),
+      height: canvas.height,
+      maxLuma: Number(finiteMax.toFixed(3)),
+      minLuma: Number(finiteMin.toFixed(3)),
+      nonBlank: visiblePixels > 0 && finiteMax - finiteMin > 5,
+      width: canvas.width
+    };
+  });
+}
+
 async function runFfmpeg(args) {
   return new Promise((resolveRun, rejectRun) => {
     const process = spawn("ffmpeg", args, { stdio: ["ignore", "pipe", "pipe"] });
@@ -133,6 +199,57 @@ async function runFfmpeg(args) {
       rejectRun(new Error(`ffmpeg failed with code ${code}: ${stderr}`));
     });
   });
+}
+
+async function runFfprobe(args) {
+  return new Promise((resolveRun, rejectRun) => {
+    const process = spawn("ffprobe", args, { stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = "";
+    let stderr = "";
+
+    process.stdout.on("data", (chunk) => {
+      stdout += chunk.toString();
+    });
+    process.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+    });
+
+    process.on("close", (code) => {
+      if (code === 0) {
+        resolveRun(stdout);
+        return;
+      }
+
+      rejectRun(new Error(`ffprobe failed with code ${code}: ${stderr}`));
+    });
+  });
+}
+
+async function readImageLumaStats(imagePath) {
+  const output = await runFfprobe([
+    "-v",
+    "error",
+    "-f",
+    "lavfi",
+    "-i",
+    `movie=${imagePath},signalstats`,
+    "-show_entries",
+    "frame_tags=lavfi.signalstats.YMIN,lavfi.signalstats.YAVG,lavfi.signalstats.YMAX",
+    "-of",
+    "json"
+  ]);
+  const parsed = JSON.parse(output);
+  const tags = parsed.frames?.[0]?.tags ?? {};
+  const minLuma = Number(tags["lavfi.signalstats.YMIN"] ?? 0);
+  const avgLuma = Number(tags["lavfi.signalstats.YAVG"] ?? 0);
+  const maxLuma = Number(tags["lavfi.signalstats.YMAX"] ?? 0);
+
+  return {
+    avgLuma,
+    maxLuma,
+    minLuma,
+    nonBlank: maxLuma - minLuma > 5
+  };
 }
 
 async function main() {
@@ -171,6 +288,9 @@ async function main() {
   await setSlider(page, 92);
   await page.waitForTimeout(Math.max(0, captureMs - 15_000));
 
+  const framebufferHealth = await readCanvasHealth(page);
+  const canvasScreenshotPath = join(runDir, "canvas-frame.png");
+  await page.locator("canvas").screenshot({ path: canvasScreenshotPath });
   const screenshotPath = join(runDir, "final-frame.png");
   await page.screenshot({ fullPage: true, path: screenshotPath });
 
@@ -185,6 +305,7 @@ async function main() {
 
   const mp4Path = join(runDir, `ride-visual-audit-${captureSeconds}s.mp4`);
   const contactSheetPath = join(runDir, "ride-visual-audit-contact-sheet.jpg");
+  const canvasHealth = await readImageLumaStats(canvasScreenshotPath);
 
   await runFfmpeg([
     "-y",
@@ -226,6 +347,10 @@ async function main() {
     httpStatus,
     mp4Path,
     pageErrors,
+    canvasHealth,
+    canvasScreenshotPath,
+    framebufferHealth,
+    canvasNonBlank: canvasHealth.nonBlank,
     captureHud,
     capturePort,
     runDir,
