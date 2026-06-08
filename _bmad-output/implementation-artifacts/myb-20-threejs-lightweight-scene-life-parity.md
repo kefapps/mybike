@@ -4,10 +4,12 @@
 
 - Linear issue: `MYB-20`
 - Linear URL: https://linear.app/kefjbo/issue/MYB-20/threejs-lightweight-scene-life-parity
-- Local status: `ready-for-dev`
-- Linear status: `In Progress`
+- Local status: `done`
+- Linear status: `Done`
 - Created: `2026-06-08`
 - Linear sync comment: `45b4e1c3-cef5-4ad0-b496-d468635493c4`
+- Linear implementation comment: `7dadf92c-b211-4e64-9fce-ad2f09cb68be`
+- Linear review comment: `5ec7770e-9c84-4a0f-abb4-5028a391396c`
 - Baseline commit: `6059f95b8ad170b88b6ee8a382db5647779ca737`
 - Depends on: `MYB-19`
 - Active target: React/Vite/TypeScript/Three.js web demo
@@ -60,48 +62,48 @@ Do not make any new Meshy call in MYB-20 unless Julien explicitly validates the 
 
 ## Implementation Tasks
 
-- [ ] Preflight and protect scope. (AC: 1, 2, 6, 8, 15)
-  - [ ] Check `git status --short` and identify unrelated Unity/WebGL leftovers.
-  - [ ] Confirm no intended write under `unity/Echappee3D/**`.
-  - [ ] Confirm no new Meshy call is needed before implementation.
-  - [ ] Confirm `src/ride/*` is not part of the intended change surface.
+- [x] Preflight and protect scope. (AC: 1, 2, 6, 8, 15)
+  - [x] Check `git status --short` and identify unrelated Unity/WebGL leftovers.
+  - [x] Confirm no intended write under `unity/Echappee3D/**`.
+  - [x] Confirm no new Meshy call is needed before implementation.
+  - [x] Confirm `src/ride/*` is not part of the intended change surface.
 
-- [ ] Inspect the current Three.js scene-life opportunity. (AC: 3, 4, 5, 9, 11)
-  - [ ] Read the renderer entrypoints and existing scenic visual helpers.
-  - [ ] Identify where route-side anchors can be placed deterministically.
-  - [ ] Verify the camera/capture framing likely shows near-road elements.
+- [x] Inspect the current Three.js scene-life opportunity. (AC: 3, 4, 5, 9, 11)
+  - [x] Read the renderer entrypoints and existing scenic visual helpers.
+  - [x] Identify where route-side anchors can be placed deterministically.
+  - [x] Verify the camera/capture framing likely shows near-road elements.
 
-- [ ] Evaluate existing Meshy MYB-14 assets. (AC: 2, 7, 8)
-  - [ ] Inspect the existing FBX sizes and README.
-  - [ ] Decide whether direct runtime FBX loading is worth the added web complexity.
-  - [ ] Document the decision in this story and Linear implementation comment.
+- [x] Evaluate existing Meshy MYB-14 assets. (AC: 2, 7, 8)
+  - [x] Inspect the existing FBX sizes and README.
+  - [x] Decide whether direct runtime FBX loading is worth the added web complexity.
+  - [x] Document the decision in this story and Linear implementation comment.
 
-- [ ] Add lightweight Three.js birds and human silhouettes. (AC: 3, 4, 5, 6, 9, 11)
-  - [ ] Prefer deterministic procedural primitives unless the FBX path is clearly simpler and stable.
-  - [ ] Place birds in the forward sky/near horizon with enough contrast to read through fog.
-  - [ ] Place human silhouettes on the roadside, off the player lane and away from the road center.
-  - [ ] Keep materials simple and lightweight.
-  - [ ] Avoid new animation, flocking, traffic or collision systems.
+- [x] Add lightweight Three.js birds and human silhouettes. (AC: 3, 4, 5, 6, 9, 11)
+  - [x] Prefer deterministic procedural primitives unless the FBX path is clearly simpler and stable.
+  - [x] Place birds in the forward sky/near horizon with enough contrast to read through fog.
+  - [x] Place human silhouettes on the roadside, off the player lane and away from the road center.
+  - [x] Keep materials simple and lightweight.
+  - [x] Avoid new animation, flocking, traffic or collision systems.
 
-- [ ] Add or update tests. (AC: 3, 5, 6, 12)
-  - [ ] Cover expected bird/human counts.
-  - [ ] Cover off-road or broad placement constraints.
-  - [ ] Cover that scene-life materials/objects are deterministic enough for validation.
+- [x] Add or update tests. (AC: 3, 5, 6, 12)
+  - [x] Cover expected bird/human counts.
+  - [x] Cover off-road or broad placement constraints.
+  - [x] Cover that scene-life materials/objects are deterministic enough for validation.
 
-- [ ] Validate and capture. (AC: 10, 13, 14, 15)
-  - [ ] Run `npm run typecheck`.
-  - [ ] Run `npm run test`.
-  - [ ] Run `npm run build`.
-  - [ ] Run `npm run validate:private-demo`.
-  - [ ] Review the generated contact sheet or screenshots.
-  - [ ] Verify no page errors, no console errors and canvas nonblank.
-  - [ ] Run `git diff --check`.
-  - [ ] Run a high-confidence secret scan.
+- [x] Validate and capture. (AC: 10, 13, 14, 15)
+  - [x] Run `npm run typecheck`.
+  - [x] Run `npm run test`.
+  - [x] Run `npm run build`.
+  - [x] Run `npm run validate:private-demo`.
+  - [x] Review the generated contact sheet or screenshots.
+  - [x] Verify no page errors, no console errors and canvas nonblank.
+  - [x] Run `git diff --check`.
+  - [x] Run a high-confidence secret scan.
 
-- [ ] Update tracking after implementation. (AC: 16)
-  - [ ] Move MYB-20 to review in this story and `sprint-status.yaml`.
-  - [ ] Add implementation evidence to `_bmad-output/linear-sync.md`.
-  - [ ] Add a Linear implementation comment and set MYB-20 to In Review.
+- [x] Update tracking after implementation. (AC: 16)
+  - [x] Move MYB-20 to review in this story and `sprint-status.yaml`.
+  - [x] Add implementation evidence to `_bmad-output/linear-sync.md`.
+  - [x] Add a Linear implementation comment and set MYB-20 to In Review.
 
 ## Probable Files
 
@@ -202,7 +204,7 @@ Do not stage capture videos or screenshots unless explicitly requested.
 
 ### Status
 
-`ready-for-dev`
+`done`
 
 ### Agent Model Used
 
@@ -211,17 +213,69 @@ Codex GPT-5
 ### Debug Log References
 
 - Story/tracking creation only: npm validations intentionally not run.
+- Story/tracking commit: `55505a6e46cef808704ccf2759da3485a0f7c2c5`.
+- Existing Meshy references evaluated from `unity/Echappee3D/Assets/Generated/Meshy/MYB14/README.md`.
+- Targeted validation: `npx vitest run src/render/createBiomeVisuals.test.ts`.
+- Full validation: `npm run typecheck`, `npm run test`, `npm run build`, `npm run validate:private-demo`.
+- First 60s capture proved birds clearly but human silhouettes were too subtle; adjusted human placement, scale and contrast within scope.
+- Final readiness report: `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+- Implementation capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/`.
+- Review validation: `npm run validate:private-demo`.
+- Review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/`.
 
 ### Completion Notes
 
-- Pending implementation.
+- Added deterministic procedural scene life in the Three.js renderer: 5 birds and 3 static human silhouettes.
+- Kept existing MYB-14 Meshy FBX previews as references only: direct FBX runtime loading was not selected because the files are comparatively heavy for the private web demo and would add loader/async risk.
+- Used no new Meshy call and consumed no new Meshy credits.
+- Preserved MYB-18 route grounding, camera framing, fog/depth, HUD, controls and mock loop.
+- The final contact sheet shows birds and at least one readable human silhouette on the roadside without occluding the route.
+- MYB-19 readiness remains `ready-for-private-web-demo` with HTTP 200, canvas nonblank, no page errors and no console messages.
 
 ### File List
 
 - `_bmad-output/implementation-artifacts/myb-20-threejs-lightweight-scene-life-parity.md`
 - `_bmad-output/implementation-artifacts/sprint-status.yaml`
 - `_bmad-output/linear-sync.md`
+- `src/render/createBiomeVisuals.ts`
+- `src/render/createBiomeVisuals.test.ts`
+- `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/` (implementation evidence, not staged)
+- `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/` (review evidence, not staged)
 
 ### Change Log
 
 - 2026-06-08: Created MYB-20 story for Three.js lightweight scene-life parity.
+- 2026-06-08: Implemented lightweight Three.js scene-life parity and moved MYB-20 to review.
+- 2026-06-08: Review approved MYB-20 with no code corrections.
+
+## Senior Developer Review (AI)
+
+### Verdict
+
+Approved on 2026-06-08 with no code corrections.
+
+### Findings
+
+- None. The implementation satisfies the MYB-20 acceptance criteria and scope guardrails.
+
+### Review Evidence
+
+- `npm run validate:private-demo`: pass.
+- Harness executed `npm run typecheck`: pass.
+- Harness executed `npm run test`: pass, 23 files / 77 tests.
+- Harness executed `npm run build`: pass, Vite chunk-size warning only.
+- Harness executed `npm run capture:ride-video`: pass, 60s capture.
+- Review report: `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`.
+- Review verdict: `ready-for-private-web-demo`.
+- Review capture: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/`.
+- Review contact sheet shows birds and a readable roadside human silhouette.
+- HTTP 200, `canvasNonBlank: true`, `pageErrors: []`, `consoleMessages: []`.
+
+### Scope Checks
+
+- No `src/ride/*` edits.
+- No `unity/Echappee3D/**` implementation edits.
+- No new Meshy call and no new Meshy credit consumed.
+- No vehicles, traffic, AI, collision gameplay, backend, BLE/FTMS, public deployment or engine migration.
+- Capture artifacts remain evidence-only and are not staged.

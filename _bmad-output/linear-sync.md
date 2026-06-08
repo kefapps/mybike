@@ -3101,3 +3101,88 @@ Synced on 2026-06-08:
 - Tracking validation:
   - Story/tracking only; no implementation performed.
   - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
+
+## MYB-20 Three.js Lightweight Scene Life Parity Implemented
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-20`
+  - URL: https://linear.app/kefjbo/issue/MYB-20/threejs-lightweight-scene-life-parity
+  - Status: `In Review`
+  - Implementation comment ID: `7dadf92c-b211-4e64-9fce-ad2f09cb68be`
+- Story/tracking commit:
+  - `55505a6e46cef808704ccf2759da3485a0f7c2c5`
+- Local implementation:
+  - Added 5 stylized procedural birds to `src/render/createBiomeVisuals.ts`.
+  - Added 3 static roadside human silhouettes with simple contrast materials.
+  - Extended `src/render/createBiomeVisuals.test.ts` for counts, broad off-road placement and deterministic resource tracking.
+- Meshy/assets decision:
+  - Existing MYB-14 Meshy FBX previews were evaluated from `unity/Echappee3D/Assets/Generated/Meshy/MYB14/`.
+  - Direct runtime FBX loading was not selected because the previews are comparatively heavy for the private web demo and would add loader/async risk.
+  - No new Meshy call was made and no new credit was consumed.
+- Validation:
+  - `npx vitest run src/render/createBiomeVisuals.test.ts`: pass, 6 tests.
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 23 files / 77 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run validate:private-demo`: pass.
+- Readiness report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+  - HTTP 200: pass.
+  - Canvas nonblank: pass.
+  - Page errors: `[]`.
+  - Console messages: `[]`.
+- Final capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-18-08-245Z/ride-visual-audit-contact-sheet.jpg`
+  - Visual check: birds visible; a human silhouette is readable on the roadside without occluding the route.
+- Scope guardrails:
+  - No `src/ride/*` edits.
+  - No `unity/Echappee3D/**` implementation edits.
+  - No vehicle/traffic/AI, collision gameplay, backend, BLE/FTMS, public deploy or new engine migration.
+  - Capture artifacts remain evidence-only and are not staged.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-20-threejs-lightweight-scene-life-parity: review`
+  - `next_action: review-MYB-20`
+
+## MYB-20 Three.js Lightweight Scene Life Parity Review Approved
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-20`
+  - URL: https://linear.app/kefjbo/issue/MYB-20/threejs-lightweight-scene-life-parity
+  - Status: `Done`
+  - Review comment ID: `5ec7770e-9c84-4a0f-abb4-5028a391396c`
+- Review verdict:
+  - Approved with no code corrections.
+  - No unresolved findings.
+- Review validations rerun:
+  - `npm run validate:private-demo`: pass.
+  - Harness executed `npm run typecheck`: pass.
+  - Harness executed `npm run test`: pass, 23 files / 77 tests.
+  - Harness executed `npm run build`: pass, Vite chunk-size warning only.
+  - Harness executed `npm run capture:ride-video`: pass, 60s capture.
+  - `git diff --check`: pass before review completion.
+  - High-confidence secret scan: pass; only literal story text mentioning `secret scan` matched.
+  - No `src/ride/*` diff.
+  - No Unity implementation diff selected.
+  - No capture artifact staged.
+- Review report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ride-visual-audit-contact-sheet.jpg`
+  - Visual check: birds visible; a human silhouette is readable on the roadside without occluding the route.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-20-threejs-lightweight-scene-life-parity: done`
+  - `next_action: commit-MYB-20`

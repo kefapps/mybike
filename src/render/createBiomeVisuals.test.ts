@@ -6,14 +6,14 @@ import { createBiomeVisuals } from "./createBiomeVisuals";
 import { getRouteCenterXAtZ } from "./renderHelpers";
 
 describe("createBiomeVisuals", () => {
-  it("creates dense reusable lateral scenery without external assets", () => {
+  it("creates dense reusable lateral scenery with lightweight local scene life", () => {
     const visuals = createBiomeVisuals();
     const names = collectObjectNames(visuals.group);
     const meshCount = countRenderableMeshes(visuals.group);
 
     expect(visuals.group.name).toBe("scenic-biome-visuals");
     expect(visuals.group.children.length).toBeGreaterThan(120);
-    expect(meshCount).toBeLessThan(380);
+    expect(meshCount).toBeLessThan(410);
     expect([...names]).toEqual(
       expect.arrayContaining([
         "scenic-coast-post",
@@ -27,7 +27,10 @@ describe("createBiomeVisuals", () => {
         "scenic-tree-canopy",
         "scenic-forest-canopy-tunnel",
         "scenic-road-sign",
-        "scenic-near-road-motion-details"
+        "scenic-near-road-motion-details",
+        "scenic-life",
+        "scenic-life-bird",
+        "scenic-life-human"
       ])
     );
   });
@@ -100,11 +103,42 @@ describe("createBiomeVisuals", () => {
     expect(Math.min(...forestFerns.map((fern) => fern.position.z))).toBeGreaterThan(235);
   });
 
+  it("adds visible birds and roadside silhouettes without occupying the ride lane", () => {
+    const visuals = createBiomeVisuals();
+    const birds = findObjectsByName(visuals.group, "scenic-life-bird");
+    const humans = findObjectsByName(visuals.group, "scenic-life-human");
+
+    expect(birds).toHaveLength(5);
+    expect(humans).toHaveLength(3);
+    expect(Math.min(...birds.map((bird) => bird.position.y))).toBeGreaterThan(8);
+    expect(Math.max(...birds.map((bird) => bird.position.y))).toBeLessThan(13);
+    expect(Math.min(...birds.map((bird) => bird.position.z))).toBeLessThan(70);
+    expect(Math.max(...birds.map((bird) => bird.position.z))).toBeGreaterThan(500);
+    expect(Math.min(...humans.map((human) => human.position.z))).toBeLessThan(110);
+
+    for (const human of humans) {
+      const lateralDistance = Math.abs(
+        human.position.x - getRouteCenterXAtZ(mockRouteDefinition, human.position.z)
+      );
+
+      expect(lateralDistance).toBeGreaterThanOrEqual(7.2);
+      expect(lateralDistance).toBeLessThanOrEqual(8.7);
+      expect(human.position.y).toBeGreaterThanOrEqual(0);
+      expect(human.children.length).toBeGreaterThanOrEqual(4);
+    }
+
+    for (const object of [...birds, ...humans]) {
+      expect(Number.isFinite(object.position.x)).toBe(true);
+      expect(Number.isFinite(object.position.y)).toBe(true);
+      expect(Number.isFinite(object.position.z)).toBe(true);
+    }
+  });
+
   it("tracks shared resources for deterministic disposal", () => {
     const visuals = createBiomeVisuals();
 
-    expect(visuals.geometries.length).toBeGreaterThanOrEqual(20);
-    expect(visuals.materials.length).toBeGreaterThanOrEqual(16);
+    expect(visuals.geometries.length).toBeGreaterThanOrEqual(29);
+    expect(visuals.materials.length).toBeGreaterThanOrEqual(21);
     expect(visuals.fallbackTintMaterials.length).toBeGreaterThanOrEqual(6);
     expect(visuals.coastMaterial).toBe(visuals.materials[0]);
     expect(visuals.forestMaterial).toBe(visuals.materials[1]);
