@@ -45,4 +45,24 @@ describe("mockRouteDefinition", () => {
       toProgress01: 1
     });
   });
+
+  it("contains bounded climbs and descents for the Three.js elevation feel pass", () => {
+    const elevations = mockRouteDefinition.points.map((point) => point.position.y);
+    const grades = mockRouteDefinition.points
+      .slice(1)
+      .map((point, index) => {
+        const previous = mockRouteDefinition.points[index];
+        const elevationDelta = point.position.y - previous.position.y;
+        const distanceDelta = point.distanceMeters - previous.distanceMeters;
+
+        return elevationDelta / distanceDelta;
+      });
+
+    expect(Math.min(...elevations)).toBeGreaterThanOrEqual(0);
+    expect(Math.max(...elevations)).toBeGreaterThanOrEqual(10);
+    expect(Math.max(...elevations)).toBeLessThanOrEqual(10);
+    expect(grades.some((grade) => grade > 0.03)).toBe(true);
+    expect(grades.some((grade) => grade < -0.03)).toBe(true);
+    expect(Math.max(...grades.map((grade) => Math.abs(grade)))).toBeLessThan(0.07);
+  });
 });

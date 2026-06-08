@@ -3218,3 +3218,88 @@ Synced on 2026-06-08:
 - Tracking validation:
   - Story/tracking only; no implementation performed.
   - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
+
+## MYB-21 Three.js Route Elevation Feel Pass Implemented
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-21`
+  - URL: https://linear.app/kefjbo/issue/MYB-21/threejs-route-elevation-feel-pass
+  - Status: `In Review`
+  - Implementation comment ID: `1ff40e6c-b22e-44d6-9be1-1efedb6940eb`
+- Story/tracking commit:
+  - `0e735d6e5cd83b40e5b7961c34e4efb5c63dd60d`
+- Local implementation:
+  - Amplified mock route elevation from about 0-2 m to 0-10 m.
+  - Added route elevation interpolation in `src/render/renderHelpers.ts`.
+  - Added `src/render/groundHeight.ts` to anchor the road corridor to route elevation and fall off lateral terrain smoothly.
+  - Densified the ground mesh in `SceneController` so terrain triangles do not cover the elevated road.
+  - Adjusted default camera height/lookahead for readable crests without returning to a flying viewpoint.
+- Validation:
+  - Targeted route/render tests: pass, 22 tests.
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 24 files / 81 tests.
+  - `npm run build`: pass, Vite chunk-size warning only.
+  - `npm run validate:private-demo`: pass.
+- Readiness report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+  - HTTP 200: pass.
+  - Canvas nonblank: pass.
+  - Page errors: `[]`.
+  - Console messages: `[]`.
+- Final capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-00-23-806Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-00-23-806Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-00-23-806Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-00-23-806Z/ride-visual-audit-contact-sheet.jpg`
+  - Visual check: route remains visible over stronger slopes; terrain stays grounded; birds remain visible.
+- Scope guardrails:
+  - No `src/ride/*` edits.
+  - No `unity/Echappee3D/**` implementation edits.
+  - No Meshy, external asset, backend, BLE/FTMS, public deploy or new engine migration.
+  - Capture artifacts remain evidence-only and are not staged.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-21-threejs-route-elevation-feel-pass: review`
+  - `next_action: review-MYB-21`
+
+## MYB-21 Three.js Route Elevation Feel Pass Review Approved
+
+Synced on 2026-06-08:
+
+- Linear issue updated:
+  - Issue: `MYB-21`
+  - URL: https://linear.app/kefjbo/issue/MYB-21/threejs-route-elevation-feel-pass
+  - Status: `Done`
+  - Review comment ID: `c046114b-3f16-46e3-af4d-49903d3698a7`
+- Review verdict:
+  - Approved after one scoped correction.
+  - No unresolved findings.
+- Review correction:
+  - Human silhouettes now use `calculateGroundHeight(...) + 0.02` so they remain placed on elevated terrain.
+- Review validations rerun:
+  - `npm run validate:private-demo`: pass.
+  - Harness executed `npm run typecheck`: pass.
+  - Harness executed `npm run test`: pass, 24 files / 81 tests.
+  - Harness executed `npm run build`: pass, Vite chunk-size warning only.
+  - Harness executed `npm run capture:ride-video`: pass, 60s capture.
+  - `git diff --check`: pass before review completion.
+  - High-confidence secret scan: pass; only literal story text mentioning `secret scan` matched.
+  - No `src/ride/*` diff.
+  - No Unity implementation diff selected.
+  - No capture artifact staged.
+- Review report:
+  - `_bmad-output/web-test-results/myb-19-private-demo-readiness.txt`
+  - Verdict: `ready-for-private-web-demo`.
+- Review capture:
+  - Directory: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/`
+  - Summary: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/ride-visual-audit-60s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-04-58-032Z/ride-visual-audit-contact-sheet.jpg`
+  - Visual check: route remains visible over stronger slopes; terrain stays grounded; birds and a human silhouette remain visible.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-21-threejs-route-elevation-feel-pass: done`
+  - `next_action: commit-MYB-21`

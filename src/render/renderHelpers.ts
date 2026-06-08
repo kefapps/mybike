@@ -92,6 +92,21 @@ export function getRouteRenderPoints(route: RouteDefinition): THREE.Vector3[] {
 }
 
 export function getRouteCenterXAtZ(route: RouteDefinition, worldZ: number): number {
+  return getRouteValueAtZ(route, worldZ, "x");
+}
+
+export function getRouteElevationAtZ(
+  route: RouteDefinition,
+  worldZ: number
+): number {
+  return getRouteValueAtZ(route, worldZ, "y");
+}
+
+function getRouteValueAtZ(
+  route: RouteDefinition,
+  worldZ: number,
+  axis: "x" | "y"
+): number {
   const { route: resolvedRoute } = resolveRouteDefinition(route);
   const first = resolvedRoute.points[0];
   const last = resolvedRoute.points.at(-1);
@@ -101,11 +116,11 @@ export function getRouteCenterXAtZ(route: RouteDefinition, worldZ: number): numb
   }
 
   if (worldZ <= first.position.z) {
-    return first.position.x;
+    return first.position[axis];
   }
 
   if (worldZ >= last.position.z) {
-    return last.position.x;
+    return last.position[axis];
   }
 
   for (let index = 0; index < resolvedRoute.points.length - 1; index += 1) {
@@ -116,9 +131,12 @@ export function getRouteCenterXAtZ(route: RouteDefinition, worldZ: number): numb
       const spanZ = next.position.z - current.position.z || 1;
       const progress = (worldZ - current.position.z) / spanZ;
 
-      return current.position.x + (next.position.x - current.position.x) * progress;
+      return (
+        current.position[axis] +
+        (next.position[axis] - current.position[axis]) * progress
+      );
     }
   }
 
-  return last.position.x;
+  return last.position[axis];
 }

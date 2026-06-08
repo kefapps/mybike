@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { mockRouteDefinition, type RouteDefinition } from "../route";
+import { calculateGroundHeight, GROUND_MESH_CENTER_Z } from "./groundHeight";
 import { getRouteCenterXAtZ } from "./renderHelpers";
 
 type FallbackTintMaterial = {
@@ -367,9 +368,14 @@ export function createBiomeVisuals(
     [184, 1, 7.8, 1.3],
     [332, -1, 8.4, 1.42]
   ] as const) {
+    const x = routeSideX(z, side, offset);
     const spectator = new THREE.Group();
     spectator.name = "scenic-life-human";
-    spectator.position.set(routeSideX(z, side, offset), 0.02, z);
+    spectator.position.set(
+      x,
+      calculateGroundHeight(route, x, GROUND_MESH_CENTER_Z - z) + 0.02,
+      z
+    );
     spectator.scale.setScalar(scale);
     spectator.rotation.y = side < 0 ? 0.34 : -0.34;
 

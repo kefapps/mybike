@@ -20,14 +20,14 @@ describe("sampleRouteAt", () => {
     expect(sampleRouteAt(mockRouteDefinition, 0.5)).toMatchObject({
       progress01: 0.5,
       distanceMeters: 500,
-      position: { x: 36, y: 2, z: 496 },
+      position: { x: 36, y: 10, z: 496 },
       usedFallback: false
     });
 
     expect(sampleRouteAt(mockRouteDefinition, 1)).toMatchObject({
       progress01: 1,
       distanceMeters: 1000,
-      position: { x: 0, y: 1, z: 1000 },
+      position: { x: 0, y: 3, z: 1000 },
       usedFallback: false
     });
   });
