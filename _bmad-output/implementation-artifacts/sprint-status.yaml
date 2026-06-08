@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-08T06:24:06+02:00
+# last_updated: 2026-06-08T08:51:21+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-20.
+# - Next action: implement-MYB-21.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-08T06:24:06+02:00"
+last_updated: "2026-06-08T08:51:21+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-20"
+  next_action: "implement-MYB-21"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -232,6 +232,12 @@ sprint:
   post_mvp_after_myb19_threejs_scene_life_parity_review_comment: "5ec7770e-9c84-4a0f-abb4-5028a391396c"
   post_mvp_after_myb19_threejs_scene_life_parity_review: "approved with no code corrections; review reran npm run validate:private-demo, which executed typecheck, test (23 files / 77 tests), build and 60s capture; report verdict ready-for-private-web-demo; capture _bmad-output/video-captures/ride-visual-audit-2026-06-08T04-22-32-862Z/ shows birds and a readable roadside human silhouette; HTTP 200, canvasNonBlank true, pageErrors [], consoleMessages []; no src/ride diff; no Unity implementation diff selected; no capture artifacts staged."
   post_mvp_after_myb19_threejs_scene_life_parity_next_action: "commit-MYB-20"
+  post_mvp_after_myb20_threejs_route_elevation_feel_story: "_bmad-output/implementation-artifacts/myb-21-threejs-route-elevation-feel-pass.md"
+  post_mvp_after_myb20_threejs_route_elevation_feel_linear_issue: "MYB-21"
+  post_mvp_after_myb20_threejs_route_elevation_feel_linear_url: "https://linear.app/kefjbo/issue/MYB-21/threejs-route-elevation-feel-pass"
+  post_mvp_after_myb20_threejs_route_elevation_feel_sync_comment: "140168c5-b8af-43d1-b9c6-08ee4accaa49"
+  post_mvp_after_myb20_threejs_route_elevation_feel_scope: "Web-only React/Vite/Three.js route elevation feel pass; amplify bounded mock-route climbs/descents and anchor nearby terrain to route elevation; no Unity implementation edits."
+  post_mvp_after_myb20_threejs_route_elevation_feel_next_action: "implement-MYB-21"
   post_mvp_after_myb18_private_demo_launch_next_action: "commit-MYB-19"
   backlog_order:
     - "MYB-4"
@@ -251,6 +257,7 @@ sprint:
     - "MYB-18"
     - "MYB-19"
     - "MYB-20"
+    - "MYB-21"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -273,6 +280,7 @@ linear_mapping:
   myb-18-threejs-private-demo-recovery-and-ride-grounding: "MYB-18"
   myb-19-threejs-private-demo-launch-readiness: "MYB-19"
   myb-20-threejs-lightweight-scene-life-parity: "MYB-20"
+  myb-21-threejs-route-elevation-feel-pass: "MYB-21"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -363,3 +371,7 @@ development_status:
   # MYB-20 - Story post-MYB-19 - Three.js lightweight scene life parity
   # Story unique creee pour rapatrier oiseaux + silhouettes humaines dans la demo web, avec Meshy MYB-14 comme reference existante seulement.
   myb-20-threejs-lightweight-scene-life-parity: done
+
+  # MYB-21 - Story post-MYB-20 - Three.js route elevation feel pass
+  # Story unique creee pour rendre les pentes web perceptibles tout en gardant la route ancree.
+  myb-21-threejs-route-elevation-feel-pass: ready-for-dev

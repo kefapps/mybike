@@ -3186,3 +3186,35 @@ Synced on 2026-06-08:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-20-threejs-lightweight-scene-life-parity: done`
   - `next_action: commit-MYB-20`
+
+## MYB-21 Three.js Route Elevation Feel Pass Story Created
+
+Synced on 2026-06-08:
+
+- Linear issue created:
+  - Issue: `MYB-21`
+  - URL: https://linear.app/kefjbo/issue/MYB-21/threejs-route-elevation-feel-pass
+  - Status: `In Progress`
+  - Sync comment ID: `140168c5-b8af-43d1-b9c6-08ee4accaa49`
+- Local story created:
+  - `_bmad-output/implementation-artifacts/myb-21-threejs-route-elevation-feel-pass.md`
+  - Local status: `ready-for-dev`
+- Source context:
+  - MYB-20 Three.js lightweight scene life parity is Done.
+  - MYB-20 commit: `40ef48073e66683e7216ddd209c8cf2c1385e06d`.
+  - Current web route has technical elevation, but only about 0 to 2 meters over 1000 meters.
+  - Three.js remains the active private demo target.
+  - Unity remains parked/research, without deletion.
+- Scope confirmation:
+  - Web-only React/Vite/Three.js route elevation feel pass.
+  - Amplify bounded mock-route climbs/descents.
+  - Anchor nearby terrain/verges to route elevation to avoid a floating road.
+  - Preserve MYB-18 grounding, MYB-20 birds/silhouettes, fog/depth, camera, HUD, controls and mock loop.
+  - No Unity implementation edits, Meshy, external assets, backend, BLE/FTMS, public deploy or new engine migration.
+- Local sprint status updated:
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+  - `myb-21-threejs-route-elevation-feel-pass: ready-for-dev`
+  - `next_action: implement-MYB-21`
+- Tracking validation:
+  - Story/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run because no implementation code changed in this pass.
