@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-08T03:26:49+02:00
+# last_updated: 2026-06-08T06:08:31+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -29,11 +29,11 @@
 # WORKFLOW NOTES:
 # - Sprint scope is limited to the Echappee 3D mock vertical slice.
 # - Do not create a new backlog; any next visual step must remain one story.
-# - Next action: commit-MYB-19.
+# - Next action: implement-MYB-20.
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-08T03:26:49+02:00"
+last_updated: "2026-06-08T06:08:31+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-19"
+  next_action: "implement-MYB-20"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -222,6 +222,12 @@ sprint:
   post_mvp_after_myb18_private_demo_launch_implementation_scope: "Added local readiness report harness and capture summary canvas nonblank evidence; no gameplay, visual polish, src/ride, Unity, Meshy, external asset, backend, BLE/FTMS, public deploy or engine migration changes."
   post_mvp_after_myb18_private_demo_launch_review_comment: "5b2fc124-7157-470a-8f4b-65672800d23d"
   post_mvp_after_myb18_private_demo_launch_review: "approved with no code corrections; review reran npm run validate:private-demo, which executed typecheck, test (23 files / 76 tests), build and 60s capture; report verdict ready-for-private-web-demo; HTTP 200; canvasNonBlank true with YMIN=30 YAVG=111.717 YMAX=172; pageErrors [] and consoleMessages []; no src/ride diff; no Unity tracked diff selected; no capture artifacts staged."
+  post_mvp_after_myb19_threejs_scene_life_parity_story: "_bmad-output/implementation-artifacts/myb-20-threejs-lightweight-scene-life-parity.md"
+  post_mvp_after_myb19_threejs_scene_life_parity_linear_issue: "MYB-20"
+  post_mvp_after_myb19_threejs_scene_life_parity_linear_url: "https://linear.app/kefjbo/issue/MYB-20/threejs-lightweight-scene-life-parity"
+  post_mvp_after_myb19_threejs_scene_life_parity_sync_comment: "45b4e1c3-cef5-4ad0-b496-d468635493c4"
+  post_mvp_after_myb19_threejs_scene_life_parity_scope: "Web-only React/Vite/Three.js parity pass to add birds and human silhouettes to the private demo; existing MYB-14 Meshy FBX references may be evaluated; no new Meshy call without explicit cost confirmation; no Unity implementation edits."
+  post_mvp_after_myb19_threejs_scene_life_parity_next_action: "implement-MYB-20"
   post_mvp_after_myb18_private_demo_launch_next_action: "commit-MYB-19"
   backlog_order:
     - "MYB-4"
@@ -240,6 +246,7 @@ sprint:
     - "MYB-17"
     - "MYB-18"
     - "MYB-19"
+    - "MYB-20"
 
 linear_mapping:
   epic-1: "MYB-1"
@@ -261,6 +268,7 @@ linear_mapping:
   myb-17-unity-private-demo-package-and-launch-checklist: "MYB-17"
   myb-18-threejs-private-demo-recovery-and-ride-grounding: "MYB-18"
   myb-19-threejs-private-demo-launch-readiness: "MYB-19"
+  myb-20-threejs-lightweight-scene-life-parity: "MYB-20"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -347,3 +355,7 @@ development_status:
   # MYB-19 - Story post-MYB-18 - Three.js private demo launch readiness
   # Story unique creee pour rendre la demo web locale demonstrable avec rapport readiness et checklist courte, sans nouveau polish.
   myb-19-threejs-private-demo-launch-readiness: done
+
+  # MYB-20 - Story post-MYB-19 - Three.js lightweight scene life parity
+  # Story unique creee pour rapatrier oiseaux + silhouettes humaines dans la demo web, avec Meshy MYB-14 comme reference existante seulement.
+  myb-20-threejs-lightweight-scene-life-parity: ready-for-dev
