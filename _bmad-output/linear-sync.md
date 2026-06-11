@@ -4415,3 +4415,22 @@ Synced on 2026-06-11:
 - Product caveat:
   - `approved` in the manifest means legal/technical POC import approval, not
     final V1 art-direction adoption.
+
+## MYB-42 Unity Asset Import Guardrails Closed
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-42`
+- Status returned by Linear: `Done`
+- Completed at: `2026-06-11T14:46:34.659Z`
+- Closure comment ID: `9090272a-0fac-46da-a434-75e659e362bb`
+- Local branch: `myb-42-import-assets-unity-guardrails`
+- Implementation commit: `fafe5a1`
+- Closure decision:
+  - User accepted the implementation and requested push/merge.
+  - Branch can be merged into `main`.
+- Next recommended issue:
+  - `MYB-53` if we continue the free asset pipeline toward a more visually
+    ambitious POC.
+  - `MYB-95` if the next priority is comparing Meshy custom generation against
+    the now-proven Unity import baseline.
