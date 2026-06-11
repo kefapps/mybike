@@ -77,6 +77,78 @@ Non-examples:
 - A vague "free asset pack" mention, a missing author, or a long URL displayed
   directly in the gameplay HUD.
 
+### Scan Asset V1
+
+Definition: The broad review pool for MYB-41-style asset research: candidates
+that may be sources, packs, or exact assets, scanned for art fit, license
+clarity, Unity/macOS usefulness, and likely integration effort.
+
+Relationships:
+
+- A `Scan Asset V1` can become a `Shortlist Asset V1`, stay `needs-review`, or
+  be rejected.
+- The scan may include 25 to 30 candidates so the final shortlist is not too
+  narrow.
+
+Examples:
+
+- A biome kit source, a paved-road material pack, a forest prop set, or a hero
+  landmark model with a visible source and license page.
+
+Non-examples:
+
+- An asset imported into Unity before license review, or a vague inspiration
+  image with no reusable asset source.
+
+### Shortlist Asset V1
+
+Definition: A candidate selected from the broad scan for near-term Unity POC
+evaluation. It has a verified source, an accepted MYB-38 license by default,
+clear intended use, and a known integration effort.
+
+Relationships:
+
+- A `Shortlist Asset V1` is not imported automatically; it becomes an
+  `Asset Tiers Approuve` only after manifest metadata and approval are complete.
+- The final MYB-41 shortlist should stay balanced across biome kits, route
+  surfaces/materials, ambience props, and `Signal Fantasy Premium` candidates.
+
+Examples:
+
+- A CC0 forest kit suitable for `Foret claire`, a CC-BY cobblestone material for
+  `Village / campagne pavee`, or a premium landmark model with acceptable
+  attribution.
+
+Non-examples:
+
+- A visually promising Unity Asset Store free asset that requires a policy
+  exception, or a model with unclear author/license metadata.
+
+### Inspection Asset V1
+
+Definition: The evidence pass required before an asset candidate can enter the
+MYB-41 final shortlist. It combines visual inspection of previews or renders
+with technical inspection of source, license, formats, file size, texture needs,
+animation state, and likely Unity/macOS integration effort.
+
+Relationships:
+
+- `Inspection Asset V1` protects `Shortlist Asset V1` from relying only on pack
+  descriptions or marketing copy.
+- It does not import the asset into Unity; import and scene validation belong to
+  later POC/import tickets.
+
+Examples:
+
+- Checking preview images for silhouette, density and premium fit, then checking
+  that the download offers FBX/OBJ/GLB, texture files, accepted license, author,
+  source URL, and reasonable integration risk.
+
+Non-examples:
+
+- Copying a pack description into the shortlist without looking at the preview,
+  license page, or technical file information.
+
 ### Stylise Premium
 
 Definition: The canonical visual direction for MyBike: a stylized scenic

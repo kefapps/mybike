@@ -59,6 +59,7 @@ Last sync: 2026-06-11
 - Unity canonical baseline MYB-91: `_bmad-output/implementation-artifacts/myb-91-unity-canonical-baseline.md`
 - Unity legacy cleanup MYB-92: `_bmad-output/implementation-artifacts/myb-92-delete-unity-echappee3d.md`
 - Unity free asset license policy MYB-38: `_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md`
+- Unity free asset shortlist MYB-41: `_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md`
 
 ## Linear Documents
 
@@ -94,6 +95,7 @@ Last sync: 2026-06-11
 | Product vision | `MYB-35` | [MYB-001] Cadrer la vision MyBike : balade indoor premium, pas clone cheap de Zwift | https://linear.app/kefjbo/issue/MYB-35/myb-001-cadrer-la-vision-mybike-balade-indoor-premium-pas-clone-cheap |
 | Unity art direction | `MYB-37` | [MYB-003] Definir une direction artistique low-poly premium pour Unity | https://linear.app/kefjbo/issue/MYB-37/myb-003-definir-une-direction-artistique-low-poly-premium-pour-unity |
 | Unity free asset license policy | `MYB-38` | [MYB-004] Etablir une politique de licences pour assets Unity gratuits | https://linear.app/kefjbo/issue/MYB-38/myb-004-etablir-une-politique-de-licences-pour-assets-unity-gratuits |
+| Unity free asset shortlist | `MYB-41` | [MYB-007] Shortlister les modeles 3D gratuits V1 compatibles Unity | https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -4296,3 +4298,36 @@ Synced on 2026-06-11:
   - PR `#8`: mergeable; no checks reported.
 - Next recommended issue:
   - `MYB-41` - Shortlist assets 3D gratuits compatibles Unity/macOS-first.
+
+## MYB-41 Unity Free Asset Shortlist Ready For Review
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-41`
+- URL: https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity
+- Local branch: `MYB-41-shortlist-assets-unity-macos`
+- Local artifact: `_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md`
+- Status intent: ready for user review, not Done until shortlist is validated.
+- Linear status returned: `In Review`
+- Linear start comment ID: `80f7cfa2-8a61-4353-b09e-4284c49b9567`
+- Linear review comment ID: `439d2eaa-45c5-4e35-8ef3-902df818963d`
+- Scope completed:
+  - Scan large of 30 candidates across biome kits, road/surface materials,
+    props/ambience, and premium signal candidates.
+  - Final shortlist of 11 candidates, balanced for `Foret claire` and
+    `Village / campagne pavee`.
+  - User-requested inspection added as a hard criterion: do not rely only on
+    pack descriptions.
+  - Visual inspection recorded from source previews/renders.
+  - Technical inspection recorded from source pages, licenses, formats, archive
+    streams when public, GitHub/API metadata when available, texture maps,
+    animation state, size and Unity/macOS integration risk.
+- No production code, no Unity import, no committed third-party asset files, and
+  no `src/**` change.
+- Recommended POC after validation:
+  - `Foret claire`: Quaternius Stylized Nature MegaKit + Kenney Nature Kit +
+    Poly Haven Forest Ground 03.
+  - `Village / campagne pavee`: Quaternius Medieval Village MegaKit + KayKit
+    Medieval Builder Pack + ambientCG Paving Stones 141.
+  - Accents: Quaternius Fantasy Props MegaKit, then Quaternius Farm Animal Pack
+    if animation import is cheap.

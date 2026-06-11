@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-11T14:21:10+02:00
+# last_updated: 2026-06-11T15:26:39+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-11T14:21:10+02:00"
+last_updated: "2026-06-11T15:26:39+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "start-MYB-41"
+  next_action: "review-MYB-41"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -418,6 +418,10 @@ development_status:
   # Cadrage plateforme: Unity macOS first, WebGL secondaire, Android candidat.
   myb-94-unity-macos-platform-decision: done
 
+  # MYB-41 - Shortlist assets 3D gratuits V1 compatibles Unity
+  # Shortlist documentee avec scan large, inspection visuelle et inspection technique hors import Unity.
+  myb-41-unity-free-asset-shortlist: review
+
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
 unity_canonical_decision: "User decision after MYB-90 video moved active work to Unity; MYB-94 refines the platform priority to Unity macOS first, with WebGL secondary and Three.js parked as historical prototype/reference."
@@ -429,7 +433,7 @@ unity_canonical_gdd: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
 unity_canonical_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md"
 unity_canonical_epic_stories: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
 unity_canonical_evidence: "MYB-89 Unity-MCP probe, MYB-90 Unity WebGL readiness capture, and MYB-94 platform decision."
-unity_canonical_next_action: "start-MYB-41"
+unity_canonical_next_action: "review-MYB-41"
 unity_canonical_first_story_to_start: "MYB-91"
 unity_canonical_validation_expected: "unity-mcp-cli status unity/Echapee4D --timeout 10000; Unity validators and macOS build/capture when applicable; WebGL build/capture only when explicitly scoped; npm only if parked web files change."
 unity_canonical_linear_label: "unity"
@@ -437,7 +441,7 @@ unity_canonical_linear_decision_issue: "MYB-39 Done"
 unity_canonical_linear_probe_issue: "MYB-89 Done"
 unity_canonical_linear_webgl_issue: "MYB-90 Done"
 unity_canonical_linear_baseline_issue: "MYB-91 Done"
-unity_canonical_linear_next_issue: "MYB-41 Backlog"
+unity_canonical_linear_next_issue: "MYB-41 Review"
 unity_canonical_linear_sync_comment: "15b7646e-2311-4181-935d-bbbd9a923378"
 unity_canonical_linear_next_issue_comment: "5da2601f-999b-455b-8f16-40e8e053fb3a"
 unity_canonical_baseline_report: "_bmad-output/implementation-artifacts/myb-91-unity-canonical-baseline.md"
@@ -475,3 +479,11 @@ unity_platform_priority_pr: "https://github.com/kefapps/mybike/pull/8"
 unity_platform_priority_merge_commit: "088c09c6f562ca56769f0fa5e17d9dd2513a3d17"
 unity_platform_priority_closure_comment: "1c057370-e00c-45c3-98a0-6e62e0707685"
 unity_platform_priority_completed_at: "2026-06-11T12:51:38.621Z"
+unity_asset_shortlist_issue: "MYB-41 Review"
+unity_asset_shortlist_url: "https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity"
+unity_asset_shortlist_report: "_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md"
+unity_asset_shortlist_branch: "MYB-41-shortlist-assets-unity-macos"
+unity_asset_shortlist_scope: "Scan 30 candidats; shortlist 11 finalistes gratuits/CC0 ou Public Domain compatibles Unity macOS-first; priorite foret claire et village/campagne pavee."
+unity_asset_shortlist_inspection: "Chaque finaliste inclut inspection visuelle et technique; archives inspectees en streaming quand possible, API/GitHub tree quand disponibles, et pages sources/previews inspectees sinon. Aucun asset importe dans Unity."
+unity_asset_shortlist_start_comment: "80f7cfa2-8a61-4353-b09e-4284c49b9567"
+unity_asset_shortlist_review_comment: "439d2eaa-45c5-4e35-8ef3-902df818963d"
