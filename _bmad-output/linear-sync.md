@@ -4355,3 +4355,21 @@ Synced on 2026-06-11:
   - No broad Meshy pipeline.
   - No open-ended credit consumption.
   - No production scene import without provenance/licence/manifest validation.
+
+## MYB-41 Unity Free Asset Shortlist Closed
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-41`
+- URL: https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity
+- Status returned by Linear: `Done`
+- Completed at: `2026-06-11T14:06:04.483Z`
+- Closure comment ID: `8d936a19-35af-4c3d-b415-65e48bcd3c74`
+- User validation:
+  - Shortlist and recommended choices accepted.
+  - No additional validation requested for the local gallery server.
+- Local note:
+  - Temporary localhost server for
+    `_bmad-output/implementation-artifacts/myb-41-asset-gallery.html` was
+    stopped.
+  - No asset import was performed.
