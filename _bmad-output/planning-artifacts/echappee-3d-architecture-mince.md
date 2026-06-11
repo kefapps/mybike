@@ -1,338 +1,186 @@
 ---
-title: "Architecture mince - Echappee 3D"
+title: "Architecture mince - Echappee 3D Unity"
 project: "mybike"
-date: "2026-06-06"
+date: "2026-06-11"
 source: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
 status: "draft"
-scope: "vertical slice mock MVP"
+scope: "vertical slice mock Unity WebGL"
 ---
 
-# Architecture mince - Echappee 3D
+# Architecture mince - Echappee 3D Unity
 
 ## Intention
 
-Cette architecture cible uniquement la vertical slice mock d'Echappee 3D: une balade 3D web en premiere personne sur rail, jouable sans velo connecte, avec entree mock, progression lissee, scene Three.js simple, HUD minimal et resume de session.
+Cette architecture cible uniquement la vertical slice mock Unity WebGL
+d'Echappee 3D: une balade 3D en premiere personne sur rail, jouable sans velo
+connecte, avec entree mock, progression lissee, scene Unity stylisee premium,
+lisibilite suffisante, HUD minimal et resume de session.
 
 Flux principal verrouille:
 
 ```text
-MockRideInputSource -> speed mapping/smoothing -> RouteProgress -> cameraOnRail -> SceneController -> Hud/Summary
+MockRideInput -> SpeedModel -> RouteProgress -> CameraRail -> UnityScene -> HUD/Summary -> WebGLCapture
 ```
 
-La structure doit garder trois frontieres nettes:
+La structure doit garder quatre frontieres nettes:
 
-- React gere l'interface, les etats d'ecran et le montage du canvas.
-- La logique ride reste testable hors React et hors Three.js.
-- Three.js gere seulement le rendu, a partir d'un snapshot deja calcule.
+- Unity porte l'experience active: scene, runtime, HUD, ride loop et build WebGL.
+- La logique de ride reste testable par code C# pur ou validators Unity.
+- Les assets et prefabs restent optionnels tant que des placeholders Unity
+  lisibles existent pour valider le flux. Ces placeholders restent provisoires
+  et ne remplacent pas la cible DA MYB-37.
+- React/Vite/Three.js est reference historique, pas surface d'implementation
+  active.
 
-## Décisions techniques verrouillées
+## Decisions techniques verrouillees
 
-- Stack MVP: Vite + React + TypeScript + Three.js.
-- Rendu Three.js direct pour le MVP: React monte le canvas, mais ne pilote pas les objets 3D a chaque composant UI.
+- Stack MVP active: Unity `6000.4.10f1`, WebGL, projet `unity/Echapee4D`.
+- Workflow Unity prefere: IvanMurzak Unity-MCP / `unity-mcp-cli`.
+- Scene de depart reference: `Assets/Scenes/MYB89UnityMcpProbe.unity`, a
+  transformer ou remplacer par une scene canonique de vertical slice.
 - Pas de backend, pas de compte utilisateur, pas de synchronisation cloud.
 - Pas de BLE, Web Bluetooth, FTMS ou parser Indoor Bike Data dans le MVP.
 - Le mode mock est une source produit MVP, pas seulement un outil de debug.
-- La source d'entree MVP unique est `mock`, pilotable par slider et/ou clavier.
+- La source d'entree MVP unique est `mock`, pilotable par UI et/ou clavier.
 - Le joueur ne dirige pas lateralement le velo; la camera suit un rail.
-- La vitesse visuelle est derivee d'une entree mock puis lissee avant d'avancer la route.
-- La progression de route est normalisee de `0` a `1`, avec distance en metres derivee de la route.
-- La camera est calculee par une fonction pure `cameraOnRail`, sans dependance a `THREE.Vector3`.
-- Les fonctions critiques a tester en priorite: mapping vitesse, smoothing, progression, stats, selection biome, camera rail.
-- Les assets externes ne sont pas necessaires au MVP; chaque element visuel doit pouvoir tomber sur un placeholder procedural.
-- Les donnees de session sont en memoire pendant la balade; le resume n'est pas persiste.
+- La vitesse visuelle est derivee d'une entree mock puis lissee avant d'avancer
+  la route.
+- La route est prefabriquee ou generee localement pour la demo; plusieurs routes
+  restent post-MVP sauf ticket explicite.
+- Chaque story demo-facing doit produire une preuve: validator, screenshot,
+  video/contact sheet ou capture WebGL.
 
-## Modules MVP
+## Modules MVP Unity
 
-### `app`
+### `Runtime/Ride`
 
-Responsabilite: assembler l'application Vite/React, choisir l'ecran actif et brancher les providers legers si necessaire.
-
-Elements attendus:
-
-- `App`
-- `StartScreen`
-- `RideScreen`
-- `SummaryScreen`
-- `WebGlFallback`
-
-### `ui`
-
-Responsabilite: afficher et modifier l'etat ride sans connaitre Three.js.
+Responsabilite: logique de ride testable et modele de progression.
 
 Elements attendus:
 
-- `MockRideControls`: slider d'effort/vitesse mock et raccourcis clavier optionnels.
-- `RideHud`: vitesse simulee, distance, temps, source `mock`, etat pause/running.
-- `PauseOverlay`: pause, reprise, fin.
-- `RideSummary`: duree, distance, vitesse moyenne.
+- entree mock bornee;
+- mapping effort -> vitesse;
+- smoothing vitesse;
+- progression route;
+- stats de session;
+- transitions start, pause, resume, finish.
 
-### `ride`
+Ce module ne doit pas dependre de prefabs visuels pour pouvoir etre valide par
+tests ou validators.
 
-Responsabilite: logique pure de ride, machine d'etat et calculs testables.
+### `Runtime/Route`
 
-Elements attendus:
-
-- `MockRideInputSource`
-- `mapMockInputToSpeed`
-- `smoothSpeed`
-- `advanceRideFrame`
-- `calculateRideStats`
-- `rideReducer` ou equivalent simple pour `idle/running/paused/finished/error`
-
-Ce module ne doit importer ni React, ni Three.js.
-
-### `route`
-
-Responsabilite: definition de route MVP, sampling, progression, camera et biomes.
+Responsabilite: definition de route, sampling, segments, biomes et camera.
 
 Elements attendus:
 
-- `mockRouteDefinition`: route courte prefabriquee.
-- `advanceRouteProgress`
-- `sampleRouteAt`
-- `cameraOnRail`
-- `selectBiomeAtProgress`
+- route courte de demo;
+- points/elevation/segments lisibles;
+- sampling deterministe;
+- camera rail stable;
+- selection biome/ambiance.
 
-Ce module manipule des types numeriques simples (`Vec3`, metres, secondes, progression normalisee), pas des classes Three.js.
+### `Runtime/Scene`
 
-### `render`
-
-Responsabilite: cycle de vie Three.js et rendu de la scene a partir d'un snapshot.
+Responsabilite: rendu Unity lisible a partir de l'etat de ride.
 
 Elements attendus:
 
-- `ThreeCanvasHost`: composant React mince qui monte/demonte le canvas.
-- `SceneController`: create, update, resize, dispose.
-- `createRouteMesh`
-- `createBiomeVisuals`
-- `createLighting`
-- `createPlaceholderAssets`
+- route visible;
+- terrain/verges/horizon;
+- props simples ou placeholders provisoires;
+- lumiere/fog/couleurs par ambiance;
+- cockpit ou repere velo minimal.
 
-Ce module peut importer Three.js. Il ne doit pas contenir la logique de progression, de vitesse ou de stats.
+### `Runtime/UI`
 
-### `test`
+Responsabilite: interactions mock et feedback joueur.
 
-Responsabilite: garantir la boucle mock avec un effort de test proportionne au MVP.
+Elements attendus:
 
-Priorite unit tests:
+- start/pause/resume/finish;
+- effort mock;
+- vitesse, distance, temps;
+- etat `mock`;
+- resume final.
 
-- `mapMockInputToSpeed`: clamp, bornes min/max, source `mock`.
-- `smoothSpeed`: montee/descente progressive, pas de saut brutal, stabilite avec `dt` variable.
-- `advanceRouteProgress`: integration distance/vitesse, clamp fin de route, completion.
-- `cameraOnRail`: position et look-ahead deterministes, absence de valeurs invalides.
-- `selectBiomeAtProgress`: transition au bon seuil.
-- `calculateRideStats`: duree, distance, moyenne.
-- `rideReducer`: transitions start, pause, resume, finish.
+### `Editor/Validation`
 
-Playwright:
+Responsabilite: preuves repetables pour chaque increment.
 
-- Un seul happy path mock: ouvrir l'app, lancer une balade, modifier l'entree mock, voir HUD progresser, pause/reprise, finir, voir le resume.
+Elements attendus:
 
-## Contrats minimum
+- builders de scene;
+- validators route/camera/HUD/scene;
+- rapports dans `_bmad-output/unity-test-results/`;
+- build WebGL local quand necessaire.
 
-Ces contrats sont volontairement petits. Ils fixent les frontieres; l'implementation peut les enrichir seulement si une story MVP en a besoin.
+### `Scripts/Capture`
 
-```ts
-export type RidePhase = "idle" | "running" | "paused" | "finished" | "error";
+Responsabilite: validation navigateur WebGL hors Unity Editor.
 
-export type RideInputSourceKind = "mock";
+Elements attendus:
 
-export interface Vec3 {
-  x: number;
-  y: number;
-  z: number;
-}
+- serveur local statique;
+- capture Playwright;
+- HTTP status, page errors, console errors/warnings;
+- canvas/screenshot nonblank;
+- video/contact sheet.
 
-export interface RideInputSample {
-  source: RideInputSourceKind;
-  effort01: number;
-  timestampMs: number;
-}
+## Flux de donnees MVP
 
-export interface RideInputSource {
-  kind: RideInputSourceKind;
-  read(nowMs: number): RideInputSample;
-}
-
-export interface MockRideInputSource extends RideInputSource {
-  kind: "mock";
-  setEffort01(value: number): void;
-}
-
-export interface SpeedMappingConfig {
-  minSpeedMps: number;
-  maxSpeedMps: number;
-}
-
-export interface SpeedSmoothingConfig {
-  accelerationPerSecond: number;
-  decelerationPerSecond: number;
-}
-
-export interface SmoothedSpeedState {
-  speedMps: number;
-}
-
-export interface RoutePoint {
-  position: Vec3;
-}
-
-export interface BiomeSegment {
-  id: string;
-  fromProgress01: number;
-  toProgress01: number;
-}
-
-export interface RouteDefinition {
-  id: string;
-  lengthMeters: number;
-  points: RoutePoint[];
-  biomes: BiomeSegment[];
-}
-
-export interface RouteProgress {
-  progress01: number;
-  distanceMeters: number;
-  completed: boolean;
-}
-
-export interface CameraRailConfig {
-  heightMeters: number;
-  lookAheadMeters: number;
-  fovDegrees: number;
-}
-
-export interface CameraRigSnapshot {
-  position: Vec3;
-  lookAt: Vec3;
-  fovDegrees: number;
-}
-
-export interface RideFrameSnapshot {
-  phase: RidePhase;
-  source: RideInputSourceKind;
-  elapsedMs: number;
-  input: RideInputSample;
-  speedMps: number;
-  route: RouteProgress;
-  camera: CameraRigSnapshot;
-  biomeId: string;
-}
-
-export interface RideSummary {
-  elapsedMs: number;
-  distanceMeters: number;
-  averageSpeedMps: number;
-}
-
-export interface SceneController {
-  mount(target: HTMLCanvasElement): void;
-  resize(width: number, height: number): void;
-  update(snapshot: RideFrameSnapshot): void;
-  dispose(): void;
-}
-```
-
-Fonctions minimum attendues:
-
-```ts
-export function mapMockInputToSpeed(
-  sample: RideInputSample,
-  config: SpeedMappingConfig
-): number;
-
-export function smoothSpeed(
-  targetSpeedMps: number,
-  previous: SmoothedSpeedState,
-  dtSeconds: number,
-  config: SpeedSmoothingConfig
-): SmoothedSpeedState;
-
-export function advanceRouteProgress(
-  previous: RouteProgress,
-  speedMps: number,
-  dtSeconds: number,
-  route: RouteDefinition
-): RouteProgress;
-
-export function cameraOnRail(
-  route: RouteDefinition,
-  progress: RouteProgress,
-  config: CameraRailConfig
-): CameraRigSnapshot;
-
-export function selectBiomeAtProgress(
-  route: RouteDefinition,
-  progress01: number
-): string;
-
-export function calculateRideStats(
-  elapsedMs: number,
-  distanceMeters: number
-): RideSummary;
-```
-
-## Flux de données MVP
-
-1. `MockRideControls` met a jour `MockRideInputSource`.
-2. La boucle ride lit `RideInputSample` a chaque frame active.
-3. `mapMockInputToSpeed` convertit `effort01` en vitesse cible.
-4. `smoothSpeed` produit une vitesse visuelle stable.
-5. `advanceRouteProgress` avance la distance et `progress01`.
-6. `cameraOnRail` calcule position, look-at et FOV.
-7. `selectBiomeAtProgress` choisit l'ambiance active.
-8. `SceneController.update` applique route, camera, lumiere, fog et placeholders.
-9. `RideHud` lit le snapshot courant; `RideSummary` lit le resume final.
+1. Le controle mock met a jour l'effort courant.
+2. Le ride loop lit l'entree mock pendant `running`.
+3. Le modele de vitesse calcule et lisse la vitesse.
+4. La progression avance sur la route.
+5. La camera rail calcule position/look-at/FOV.
+6. La scene Unity applique route, camera, lumiere, fog et elements visuels
+   provisoires.
+7. Le HUD lit l'etat courant; le resume lit les stats finales.
+8. Les validators et captures prouvent l'etat pour review.
 
 ## Hors scope technique
 
-- Unity, Unreal, Godot ou autre moteur non web.
+- Nouveaux travaux React/Vite/Three.js.
 - Backend, API serveur, base de donnees, auth, compte utilisateur.
 - BLE, Web Bluetooth, FTMS, Indoor Bike Data, resistance controlee.
 - Persistance d'historique de sessions.
 - Import GPX ou editeur de route.
-- Pipeline Meshy obligatoire, generation d'assets IA obligatoire, asset manager lourd.
+- Pipeline Meshy obligatoire, generation d'assets IA obligatoire, asset manager
+  lourd.
 - Multijoueur, classements, ghosts, scoring competitif.
 - VR, mobile natif, packaging desktop.
 - Simulation physique velo realiste, collisions gameplay, steering lateral.
-- Systemes de telemetry reelle ou calibration materiel.
-- Suite Playwright exhaustive; seulement le happy path mock.
 
 ## Risques / mitigations
 
-- Camera inconfortable: garder un rail prefabrique doux, look-ahead fixe, smoothing vitesse, tests unitaires sur `cameraOnRail` et validation visuelle du happy path.
-- Couplage React/Three.js: limiter React au host canvas et a l'UI; isoler le cycle Three.js dans `SceneController`.
-- Derive de scope vers BLE/assets/backlog Linear: conserver les contrats d'extension, mais ne pas implementer les sources ou pipelines post-MVP.
-- Scene trop vide: livrer deux biomes placeholders avec lumiere/fog/couleur/terrain simples avant tout asset externe.
-- Performance instable: geometrie simple, peu de meshes, disposal explicite, resize controle, pas de chargement asset lourd.
-- Stats incoherentes: calculer distance, duree et moyenne depuis les fonctions pures de ride, pas depuis le rendu.
-- Route/camera difficiles a tester si basees sur Three.js: conserver `Vec3` et les calculs route en TypeScript pur, adapter vers `THREE.Vector3` seulement dans `render`.
+- WebGL lourd ou lent: garder les assets simples, mesurer `.wasm/.data`, limiter
+  les effets URP non supportes et capturer le navigateur a chaque increment.
+- Iteration Unity lente: garder les builders/validators Editor scriptables et
+  documenter chaque commande.
+- Drift entre deux projets Unity: `unity/Echapee4D` est canonique;
+  `unity/Echappee3D` est reference seulement.
+- Scene trop vide: livrer corridor, route, props simples et lumiere/fog avant
+  tout asset externe, en gardant la cible `stylise premium` visible dans les
+  criteres d'acceptation.
+- Stats incoherentes: calculer distance, duree et moyenne depuis le modele ride,
+  pas depuis le rendu.
 
 ## Points d'extension post-MVP
 
-- Nouvelle source `bleFtms` derriere `RideInputSource`, sans changer `RouteProgress`.
-- Routes multiples via `RouteDefinition[]`, sans editeur au depart.
-- Biomes plus riches via factories visuelles, sans changer `selectBiomeAtProgress`.
-- Assets externes optionnels derriere `createPlaceholderAssets`.
-- Historique local ou cloud seulement apres validation de la boucle mock.
-- Smoothing telemetrie reelle separe du smoothing mock.
+- Nouvelle source BLE/FTMS derriere une abstraction d'entree ou resistance.
+- Routes multiples via donnees Unity/JSON importees dans le projet Unity.
+- Biomes plus riches via prefabs, Addressables ou scenes additives si justifie.
+- Assets externes optimises apres politique licence/performance.
+- Wrapper web ou page marketing autour du build Unity seulement si un ticket le
+  demande explicitement.
 
-## Handoff pour gds-create-epics-and-stories
+## Handoff pour backlog Unity
 
 Contraintes pour l'etape suivante:
 
-- Generer exactement 1 epic MVP, centre sur la boucle de ride mock jouable.
-- Generer 3 a 6 stories maximum.
-- Ne pas importer le backlog Linear complet.
-- Ne pas creer de stories BLE/FTMS, compte, backend, Meshy, GPX ou assets lourds.
-- Garder chaque story verifiable localement avec Vite/React/TypeScript/Three.js.
-- Prioriser les tests unitaires sur `ride` et `route`; garder Playwright au happy path mock.
-
-Decoupage conseille, sans details de stories a ce stade:
-
-- App shell et etats de session.
-- Input mock, mapping vitesse, smoothing, progression et stats.
-- Route prefabriquee, camera sur rail et selection biome.
-- Scene Three.js MVP avec route visible, deux ambiances et placeholders.
-- HUD, pause/reprise, fin de session, resume et happy path Playwright.
-
+- Garder `unity/Echapee4D` comme projet unique actif.
+- Ne pas recreer un large backlog.
+- Rebaseliner les tickets ouverts pour Unity avant implementation.
+- Prioriser: hygiene repo Unity, scene canonique, validator, build/capture WebGL.
+- Ne pas supprimer `src/**` ni `unity/Echappee3D/**` dans ce correct-course.

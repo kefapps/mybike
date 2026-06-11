@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-07
+Last sync: 2026-06-11
 
 ## Workspace
 
@@ -50,6 +50,15 @@ Last sync: 2026-06-07
 - Three.js private demo recovery story: `_bmad-output/implementation-artifacts/myb-18-threejs-private-demo-recovery-and-ride-grounding.md`
 - Three.js bundle size optimization: `_bmad-output/implementation-artifacts/myb-24-threejs-bundle-size-optimization.md`
 - Three.js bundle size watchdog: `_bmad-output/implementation-artifacts/myb-25-threejs-bundle-size-watchdog.md`
+- Product vision MYB-35: `docs/product/vision.md`
+- Unity WebGL gameplay audit MYB-39: `_bmad-output/implementation-artifacts/myb-39-unity-webgl-audit-2026-06-11.md`
+- Unity-MCP IvanMurzak probe MYB-89: `_bmad-output/implementation-artifacts/myb-89-unity-mcp-ivanmurzak-probe.md`
+- Unity WebGL readiness spike MYB-90: `_bmad-output/planning-artifacts/unity-webgl-readiness-spike-2026-06-11.md`
+- Unity WebGL readiness report MYB-90: `_bmad-output/implementation-artifacts/myb-90-unity-webgl-readiness-spike.md`
+- Unity canonical correct-course 2026-06-11: `_bmad-output/planning-artifacts/sprint-change-proposal-unity-canonical-2026-06-11.md`
+- Unity canonical baseline MYB-91: `_bmad-output/implementation-artifacts/myb-91-unity-canonical-baseline.md`
+- Unity legacy cleanup MYB-92: `_bmad-output/implementation-artifacts/myb-92-delete-unity-echappee3d.md`
+- Unity free asset license policy MYB-38: `_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md`
 
 ## Linear Documents
 
@@ -80,7 +89,17 @@ Last sync: 2026-06-07
 | Post-MYB-15 Unity readability | `MYB-16` | Unity scene life readability polish | https://linear.app/kefjbo/issue/MYB-16/unity-scene-life-readability-polish |
 | Post-MYB-16 Unity private demo | `MYB-17` | Unity private demo package and launch checklist | https://linear.app/kefjbo/issue/MYB-17/unity-private-demo-package-and-launch-checklist |
 | Post-MYB-17 Three.js demo recovery | `MYB-18` | Three.js private demo recovery and ride grounding | https://linear.app/kefjbo/issue/MYB-18/threejs-private-demo-recovery-and-ride-grounding |
-| Three.js bundle size | `MYB-24` | Optimiser la taille de bundle / code splitting budget de build (+ watchdog follow-up) | https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build |
+| Three.js bundle size optimization | `MYB-24` | Optimiser la taille de bundle / code splitting budget de build | https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build |
+| Three.js bundle size watchdog | `MYB-28` | Three.js bundle size watchdog | https://linear.app/kefjbo/issue/MYB-28/threejs-bundle-size-watchdog |
+| Product vision | `MYB-35` | [MYB-001] Cadrer la vision MyBike : balade indoor premium, pas clone cheap de Zwift | https://linear.app/kefjbo/issue/MYB-35/myb-001-cadrer-la-vision-mybike-balade-indoor-premium-pas-clone-cheap |
+| Unity art direction | `MYB-37` | [MYB-003] Definir une direction artistique low-poly premium pour Unity | https://linear.app/kefjbo/issue/MYB-37/myb-003-definir-une-direction-artistique-low-poly-premium-pour-unity |
+| Unity free asset license policy | `MYB-38` | [MYB-004] Etablir une politique de licences pour assets Unity gratuits | https://linear.app/kefjbo/issue/MYB-38/myb-004-etablir-une-politique-de-licences-pour-assets-unity-gratuits |
+| Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
+| Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
+| Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
+| Unity canonical baseline | `MYB-91` | [MYB-008] Baseline Unity canonique Echapee4D : hygiene repo, validation et WebGL reproductible | https://linear.app/kefjbo/issue/MYB-91/myb-008-baseline-unity-canonique-echapee4d-hygiene-repo-validation-et |
+| Unity legacy cleanup | `MYB-92` | [MYB-009] Supprimer le projet Unity legacy unity/Echappee3D | https://linear.app/kefjbo/issue/MYB-92/myb-009-supprimer-le-projet-unity-legacy-unityechappee3d |
+| Unity terrain skill adaptation | `MYB-93` | Adapter le skill terrain-3d à Unity/Echapee4D | https://linear.app/kefjbo/issue/MYB-93/adapter-le-skill-terrain-3d-a-unityechapee4d |
 
 ## Dependency Mapping
 
@@ -117,9 +136,24 @@ web/Three.js private demo recovery and ride grounding story, not a Unity
 continuation, engine migration, backend, BLE/FTMS or new broad backlog.
 - `MYB-24` is a hardening follow-up after MYB-21 and stays scoped to React/Vite/Three.js
   bundle health and startup behavior; no new gameplay, assets, or platform scope.
-- `MYB-25` follows the MYB-24 chunking optimization and adds a deterministic local
+- `MYB-28` follows the MYB-24 chunking optimization and adds a deterministic local
   JS chunk budget watchdog before review; no gameplay, assets, Unity, BLE/FTMS,
   or broader scope changes.
+- `MYB-35` is a product vision framing ticket under `MYB-29`; it updates docs
+  only and does not create implementation, hardware, asset, or broad backlog
+  scope.
+- `MYB-89` is a bounded spike under `MYB-39`; it evaluates
+ IvanMurzak/Unity-MCP from a fresh Unity project only, without reusing
+ `unity/Echappee3D/**`, touching `src/**`, or reopening a broad Unity
+ migration.
+- `MYB-90` follows and is blocked by `MYB-89`; it tests whether the clean
+ Unity-MCP probe scene can survive a Unity WebGL export/readiness check,
+ without modifying `unity/Echappee3D/**`, `src/**`, or reopening a broad
+ Unity migration.
+- `MYB-91` follows completed `MYB-90`; it stabilizes `unity/Echapee4D` as the
+  canonical Unity baseline before gameplay, assets, HUD, CI or performance work.
+- `MYB-92` follows and is blocked by `MYB-91`; it removes the legacy
+  `unity/Echappee3D` project after the canonical baseline is reviewed.
 
 ## Readiness Caveats Synced
 
@@ -3367,13 +3401,13 @@ Synced on 2026-06-08:
   - `_bmad-output/implementation-artifacts/sprint-status.yaml`
   - `myb-24-threejs-bundle-size-optimization: done`
 
-## MYB-25 Three.js Bundle Size Watchdog Implemented
+## MYB-28 Three.js Bundle Size Watchdog Implemented
 
 Synced on 2026-06-08:
 
   - Linear issue updated:
-  - Issue: `MYB-24`
-  - URL: https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build
+  - Issue: `MYB-28`
+  - URL: https://linear.app/kefjbo/issue/MYB-28/threejs-bundle-size-watchdog
   - Status: implementation artifact recorded (`Local status: done` in BMAD story).
 - Local story:
   - `_bmad-output/implementation-artifacts/myb-25-threejs-bundle-size-watchdog.md`
@@ -3395,3 +3429,685 @@ Synced on 2026-06-08:
   - `npm run capture:ride-video`: pass (60s), HTTP 200, canvasNonBlank true.
 - Validation report:
   - `_bmad-output/web-test-results/myb-25-bundle-size-budget.txt`
+
+## MYB-35 Product Vision Document Created
+
+Synced on 2026-06-09:
+
+- Linear issue updated:
+  - Issue: `MYB-35`
+  - URL: https://linear.app/kefjbo/issue/MYB-35/myb-001-cadrer-la-vision-mybike-balade-indoor-premium-pas-clone-cheap
+  - Status: `Done`
+  - Sync comment ID: `0d1a4594-4ece-4ad0-ba7e-7978fbb2f6cf`
+- Local document:
+  - `docs/product/vision.md`
+- Product framing:
+  - Smart trainer / FTMS is the target product core; slider remains development/test simulation.
+  - Main promise: short heroic expeditions replacing home-trainer boredom.
+  - Main campaign: explore a magical world, recover relics, and free it from an advanced threat.
+  - Core mission loop: choose mission, choose difficulty, ride through evasion/tension, complete a rhythmic guardian/boss challenge, receive a clear reward.
+  - Acceptance coverage: 3 personas, 5-step session loop, existing epic/objective mapping, assumed product tradeoffs, and open questions.
+  - V1 reward families: relics, consumable effort bonuses, mission/route/region unlocks.
+  - Open questions recorded in the document.
+- Validation:
+  - Docs/tracking only; no app code changed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not run.
+
+## Git History Linear Status Reconciliation
+
+Synced on 2026-06-11:
+
+- Source of truth checked:
+  - Git history for explicit `MYB-*` implementation/integration commits.
+  - Current Linear issue statuses in team `MYB`.
+  - Current repo validation after integration.
+- Linear issues moved to `Done`:
+  - `MYB-43` - asset manifest / asset pipeline.
+    - Evidence: `3e3874a` integrate: MYB-43 asset pipeline (DeepSeek).
+    - Sync comment ID: `1f5e89e2-2d49-46d1-9e3c-99e65dca3eab`
+  - `MYB-46` - procedural roadside scenery placement.
+    - Evidence: `2dabf19` integrate: MYB-46 procedural scenery (DeepSeek).
+    - Sync comment ID: `2b17fd1f-9f03-42e2-9c79-d04695bdca4a`
+  - `MYB-52` - credits and third-party asset attribution.
+    - Evidence: `28c1cc9` integrate: MYB-52 credits and attribution (MiniMax);
+      `0ba0980` merge: resolve MYB-52 conflicts (assets doc + script).
+    - Sync comment ID: `91396c28-798c-45af-a354-770904215dca`
+  - `MYB-56` - route profile, elevation, grade, difficulty segments.
+    - Evidence: `6e72238` integrate: MYB-56 route profile and elevation (DeepSeek).
+    - Sync comment ID: `8973822b-5c59-45b3-8033-7c93dacd14a2`
+  - `MYB-62` - training segments.
+    - Evidence: `ed81ef1` integrate: MYB-62 training segments (MiniMax);
+      `c39ee25` merge: resolve MYB-62 conflicts (segments integration).
+    - Sync comment ID: `5df61341-756e-4cdf-8b77-9d4104f99099`
+  - `MYB-67` - local challenge system.
+    - Evidence: `f7991be` integrate: MYB-67 challenge system (MiniMax);
+      `302334d` merge: resolve MYB-67 conflicts (challenge system).
+    - Sync comment ID: `e69f1965-da37-46b4-b034-ffc8329d19ec`
+  - `MYB-75` - zen/free-ride mode.
+    - Evidence: `bc3e8b7` integrate: MYB-75 zen mode free ride (MiniMax);
+      `29ae96c` merge: resolve MYB-75 conflicts (zen mode).
+    - Sync comment ID: `c6999e67-1877-4fda-95d3-f97eb21c14dd`
+  - `MYB-81` - French premium microcopy.
+    - Evidence: `0193734` integrate: MYB-81 microcopy FR (DeepSeek);
+      `0eb8dd9` merge: resolve MYB-81 conflicts (microcopy).
+    - Sync comment ID: `2b68a97f-26ba-46e9-88ef-8afd6a24fb30`
+  - `MYB-86` - multi-route JSON loader.
+    - Evidence: `4e110bb` integrate: MYB-86 multi-route JSON loader (MiniMax);
+      `6507640` merge: resolve MYB-86 conflicts (multi-route).
+    - Sync comment ID: `8ddbab4a-d4eb-4d9b-ac7a-233384b9f9d3`
+- Parent/container issues moved to `In Progress`:
+  - `MYB-29` - product positioning / loop parent.
+    - Rationale: child `MYB-35` is done; `MYB-39` remains open.
+    - Sync comment ID: `0a9f3e22-ab2d-4064-b0b0-984a2f15ae0a`
+  - `MYB-30` - 3D scenery/assets parent.
+    - Rationale: children `MYB-43`, `MYB-46`, `MYB-49`, `MYB-52`, and
+      `MYB-86` are done; more asset/scenery work remains.
+    - Sync comment ID: `bc51c4e7-97b2-4fd2-906d-46d5912cafdf`
+  - `MYB-31` - dynamic difficulty/resistance parent.
+    - Rationale: children `MYB-56` and `MYB-62` are done; mock/hardware
+      resistance work remains.
+    - Sync comment ID: `2bffbfb9-8195-4ae3-a72d-15a7ae67966a`
+  - `MYB-32` - gamification/retention parent.
+    - Rationale: children `MYB-67` and `MYB-75` are done; progression,
+      rewards, collectibles, and retention work remain.
+    - Sync comment ID: `e441e134-3522-47f6-80af-0796bd0d8687`
+  - `MYB-34` - UX/performance/delivery parent.
+    - Rationale: child `MYB-81` is done; quality, CI, performance,
+      StartScreen, and documentation work remain.
+    - Sync comment ID: `30f6afff-f253-4146-a21c-3f2967013746`
+- Validation evidence:
+  - `npm run typecheck`: pass.
+  - `npm run test`: pass, 48 files / 276 tests passed / 2 skipped.
+  - `npm run build`: pass; Vite circular chunk warnings remain from manual
+    Three.js chunking but build completed.
+- Not moved:
+  - `MYB-26` has bench commits in git history, but no explicit integrated
+    implementation commit was found; it remains backlog.
+
+## MYB-89 Unity-MCP IvanMurzak Probe Story Created
+
+Synced on 2026-06-11:
+
+- Linear issue created:
+  - Issue: `MYB-89`
+  - URL: https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de
+  - Status: `Todo`
+  - Parent: `MYB-39`
+  - Priority: `Medium`
+  - Estimate: `5`
+  - Label: `implement`
+- Source context:
+  - User requested a bounded evaluation of
+    https://github.com/IvanMurzak/Unity-MCP.
+  - GitHub README reviewed on 2026-06-11: the project advertises
+    `unity-mcp-cli`, plugin install/setup, Unity project creation/opening,
+    `wait-for-ready`, scene/hierarchy/script/test/screenshot/profiler tools,
+    and local/remote transports.
+  - Recent Unity WebGL audit concluded the existing MYB-17 artifact is a
+    running technical proof, not a usable gameplay demo:
+    `_bmad-output/implementation-artifacts/myb-39-unity-webgl-audit-2026-06-11.md`.
+- Scope confirmation:
+  - Start from a fresh Unity project under `unity/`, distinct from
+    `unity/Echappee3D`.
+  - Evaluate whether IvanMurzak/Unity-MCP gives a simpler, repeatable
+    Codex/Unity loop than the prior official Unity MCP beta path.
+  - Produce a small route/corridor demo with real screenshot/video evidence.
+  - Do not modify `unity/Echappee3D/**` or `src/**` as part of the spike.
+  - No Meshy, BLE/FTMS, backend, paid/external assets, public build pipeline,
+    or broad Unity migration.
+- Tracking validation:
+  - Linear/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no application code changed in this pass.
+
+## MYB-89 Unity-MCP IvanMurzak Probe Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-89`
+  - URL: https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de
+  - Status: `In Review`
+  - Implementation comment ID: `1a89e429-80c2-4b66-b664-8b7d039c138f`
+- Local report:
+  - `_bmad-output/implementation-artifacts/myb-89-unity-mcp-ivanmurzak-probe.md`
+- Unity project:
+  - `unity/Echapee4D`
+  - Unity `6000.4.10f1`
+  - `unity-mcp-cli` `0.80.0`
+  - Package `com.ivanmurzak.unity.mcp` `0.80.0`
+- Scene and implementation:
+  - `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`
+  - `unity/Echapee4D/Assets/MYB89/Runtime/MYB89ProbeRide.cs`
+  - `unity/Echapee4D/Assets/MYB89/Editor/MYB89ProbeBuilder.cs`
+  - Route corridor: 245.0 m, 9 route markers, 130 renderers.
+- MCP evidence:
+  - `console_get_logs`: pass, final recent window had 0 errors / 0 warnings.
+  - `scene_get_data`: confirmed generated hierarchy with route, camera, HUD,
+    cockpit, markers, posts, arches and scenery.
+  - `script_execute`: refreshed assets, built scene, validated scene, captured
+    frames, entered Play mode, read runtime movement, and exited Play mode.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: configured server
+    `http://localhost:8081` reachable; auto-probed local URL `20376` refused.
+- Visual evidence:
+  - Screenshot: `_bmad-output/video-captures/myb-89-unity-mcp-probe-20260611-080446/screenshot.png`
+  - Video: `_bmad-output/video-captures/myb-89-unity-mcp-probe-20260611-080446/unity-mcp-probe-6s.mp4`
+  - Contact sheet: `_bmad-output/video-captures/myb-89-unity-mcp-probe-20260611-080446/contact-sheet.jpg`
+  - Video metadata: H.264, 1280x720, 12 fps, 6.0 s, 504 KB.
+- Validator evidence:
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`
+  - Status: `PASS`.
+- Local validation:
+  - `git diff --check`: pass.
+  - Targeted trailing whitespace scan on edited text/C# files: pass.
+  - High-confidence secret scan on edited text/C#/Unity scene files: pass.
+  - `git status --short -- src unity/Echappee3D`: empty.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no React/Vite/Three.js app code changed.
+- Verdict:
+  - `promising`, with scope limits.
+  - Recommendation for `MYB-39`: keep Three.js for V1/private demo; keep
+    IvanMurzak Unity-MCP as a viable Unity authoring/probe workflow; require a
+    separate WebGL export/readiness test before considering any engine pivot.
+- Scope guardrails:
+  - No `unity/Echappee3D/**` edits.
+  - No `src/**` edits.
+  - No Meshy, BLE/FTMS, backend, paid/external assets, public build pipeline or
+    broad Unity migration.
+
+## MYB-90 Unity WebGL Readiness Spike Story Created
+
+Synced on 2026-06-11:
+
+- Linear issue created:
+  - Issue: `MYB-90`
+  - URL: https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre
+  - Status: `Todo`
+  - Parent: `MYB-39`
+  - Blocked by: `MYB-89`
+  - Sync comment ID: `c3b4a78c-414e-42b5-abe2-7a78cf08fc0d`
+  - Priority: `Medium`
+  - Estimate: `3`
+  - Label: `implement`
+- Local planning artifact:
+  - `_bmad-output/planning-artifacts/unity-webgl-readiness-spike-2026-06-11.md`
+- Source context:
+  - `MYB-89` produced a clean Unity-MCP probe scene in `unity/Echapee4D` with
+    a readable route/corridor, runtime movement, HUD, screenshot and 6s video.
+  - `MYB-89` verdict was `promising`, but explicitly recommended keeping
+    Three.js for V1/private demo until a separate Unity WebGL readiness spike
+    passes.
+  - `MYB-39` audit found the previous Unity WebGL artifact technically alive
+    but not usable as a gameplay demo.
+- Scope confirmation:
+  - Use `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+  - Attempt a Unity WebGL build and serve it locally.
+  - Validate browser HTTP status, page errors, console errors/warnings, canvas
+    nonblank state, canvas dimensions, build sizes, and visual readability.
+  - Produce screenshot/video/contact sheet evidence if the build loads.
+  - Conclude `ready`, `not-ready`, or `blocked` for `MYB-39`.
+  - Do not modify `unity/Echappee3D/**` or `src/**`.
+  - No Meshy, BLE/FTMS, backend, asset pipeline, auth, public deploy, hardware,
+    or broad Unity migration.
+- Tracking validation:
+  - Linear/tracking only; no implementation performed.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no application code changed in this pass.
+
+## MYB-90 Unity WebGL Readiness Spike Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-90`
+  - URL: https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre
+  - Status: `In Review`
+  - Start/progress comment ID: `b6f18a05-7abf-46b9-baf7-6759c12e97a3`
+  - Implementation comment ID: `ca8fe650-4cae-411f-9238-73c603238943`
+- Parent decision context updated:
+  - Issue: `MYB-39`
+  - Recommendation comment ID: `e77f7305-6cd6-4736-8664-705530bedee5`
+- Local report:
+  - `_bmad-output/implementation-artifacts/myb-90-unity-webgl-readiness-spike.md`
+- Unity project/build:
+  - Project: `unity/Echapee4D`
+  - Unity: `6000.4.10f1`
+  - Source scene: `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`
+  - Build helper: `unity/Echapee4D/Assets/MYB90/Editor/MYB90WebGLReadinessBuilder.cs`
+  - Build output: `_bmad-output/unity-webgl-builds/myb-90-unity-mcp-probe`
+  - Build report: `_bmad-output/unity-test-results/myb-90-unity-webgl-build.txt`
+- Build evidence:
+  - Status: `Succeeded`
+  - Build target supported: `True`
+  - Build report warnings/errors: `0` / `0`
+  - Total reported size: `78,075,757` bytes
+  - Build directory size: about `75M`
+  - `Build/myb-90-unity-mcp-probe.wasm`: `61,032,893` bytes
+  - `Build/myb-90-unity-mcp-probe.data`: `16,505,871` bytes
+- Browser evidence:
+  - Capture script: `scripts/capture-unity-webgl-readiness.mjs`
+  - Capture summary: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T08-46-03-838Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T08-46-03-838Z/unity-webgl-readiness.mp4`
+  - Contact sheet: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T08-46-03-838Z/unity-webgl-readiness-contact-sheet.jpg`
+  - Canvas screenshot: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T08-46-03-838Z/canvas-frame.png`
+  - HTTP status: `200`
+  - Failed requests: `0`
+  - Page errors: `0`
+  - Console errors/warnings: `0` / `7`
+  - Canvas screenshot nonblank: `true`
+  - Video metadata: H.264, 1280x720, 25 fps, 33.24 s.
+- Verdict:
+  - `ready` for the strict local WebGL-readiness spike.
+  - Recommendation for `MYB-39`: keep Three.js as the MVP/private-demo default,
+    keep Unity-MCP/WebGL as a viable exploration lane, and require a separate
+    hardening ticket before reconsidering any Unity-first pivot.
+- Caveats:
+  - WebGL/URP browser warnings remain.
+  - WebGL payload is still heavy for a demo-facing path.
+  - Capture script direct final canvas read returned blank, but saved canvas
+    screenshot, page screenshot, and video are visibly nonblank.
+- Local validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: pass; configured
+    server `http://localhost:8081` connected and fixed local `20376` probe
+    treated as skipped/info.
+  - `node scripts/capture-unity-webgl-readiness.mjs`: pass.
+  - `git diff --check`: pass.
+  - Targeted trailing whitespace scan on edited text/C#/JS files: pass.
+  - High-confidence secret scan on edited text/C#/JS files: pass.
+  - `git status --short -- src unity/Echappee3D`: empty.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no React/Vite/Three.js app code changed.
+
+## Unity Canonical Correct-Course Implemented
+
+Synced on 2026-06-11:
+
+- User decision:
+  - After reviewing the MYB-90 video, active work moves to Unity WebGL.
+  - Canonical Unity project: `unity/Echapee4D`.
+  - Parked historical/reference paths: `src/**` and `unity/Echappee3D/**`.
+  - No destructive Linear operations were performed; useful tickets were
+    renamed/re-scoped instead of archived/deleted.
+- Local planning updates:
+  - `AGENTS.md`: Unity WebGL-first rules, `unity/Echapee4D` as canonical
+    project, `MYB-91` as next active issue.
+  - `_bmad-output/planning-artifacts/echappee-3d-gdd-court.md`: Unity WebGL
+    product framing.
+  - `_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md`: Unity
+    architecture and module boundaries.
+  - `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`: Unity
+    U1-U5 story slice and Linear alignment.
+  - `_bmad-output/planning-artifacts/sprint-change-proposal-unity-canonical-2026-06-11.md`:
+    correct-course rationale and handoff.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`: current Unity
+    decision and Linear sync IDs.
+- Linear project updated:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Summary now points to Unity WebGL and `unity/Echapee4D`.
+- Linear label created:
+  - Label: `unity`
+  - ID: `f2a08ffd-39d2-4060-a337-144d08dd02e6`
+- Linear issues completed:
+  - `MYB-39`: `[MYB-005] ADR moteur final : Unity WebGL devient la cible active`
+    - URL: https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active
+    - Status returned by Linear: `Done`
+  - `MYB-89`: `[MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable`
+    - URL: https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de
+    - Status returned by Linear: `Done`
+  - `MYB-90`: `[MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre`
+    - URL: https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre
+    - Status returned by Linear: `Done`
+- Linear issue created:
+  - `MYB-91`: `[MYB-008] Baseline Unity canonique Echapee4D : hygiene repo, validation et WebGL reproductible`
+  - URL: https://linear.app/kefjbo/issue/MYB-91/myb-008-baseline-unity-canonique-echapee4d-hygiene-repo-validation-et
+  - Status returned by Linear: `Todo`
+  - Parent: `MYB-39`
+  - Blocked by: `MYB-90`
+  - Labels: `unity`, `implement`
+  - Priority: `Urgent`
+  - Estimate: `5`
+- Linear comments:
+  - `MYB-39` sync summary comment ID: `15b7646e-2311-4181-935d-bbbd9a923378`
+  - `MYB-91` recommended order comment ID: `5da2601f-999b-455b-8f16-40e8e053fb3a`
+- Linear tickets re-scoped to Unity:
+  - Epics: `MYB-30`, `MYB-31`, `MYB-32`, `MYB-34`.
+  - Assets/visuals: `MYB-37`, `MYB-38`, `MYB-41`, `MYB-42`, `MYB-44`,
+    `MYB-45`, `MYB-47`, `MYB-50`, `MYB-53`, `MYB-55`.
+  - Gameplay/difficulty: `MYB-48`, `MYB-57`, `MYB-59`, `MYB-60`, `MYB-64`.
+  - UX/performance/delivery: `MYB-51`, `MYB-63`, `MYB-73`, `MYB-79`,
+    `MYB-80`, `MYB-82`, `MYB-83`, `MYB-84`, `MYB-87`, `MYB-88`.
+  - Hardware/post-baseline: `MYB-40`, `MYB-58`, `MYB-61` lowered to Low
+    priority and explicitly marked post-baseline.
+- Recommended remaining order:
+  - 1. `MYB-91` alone: stabilize repo/project baseline.
+  - 2. Parallel after `MYB-91`: `MYB-37`, `MYB-38`, `MYB-41` and `MYB-51`,
+    `MYB-83`.
+  - 3. Gameplay mock: `MYB-57`, `MYB-59`, `MYB-60`, `MYB-63`.
+  - 4. Scene/UX demo: `MYB-44`, `MYB-79`, `MYB-73`, `MYB-80`.
+  - 5. Visual/content expansion: `MYB-42`, `MYB-50`, `MYB-45`, `MYB-53`,
+    `MYB-47`, `MYB-55`, `MYB-87`, `MYB-88`, `MYB-84`.
+  - 6. Hardware only after mock Unity proves itself: `MYB-40`, `MYB-58`,
+    `MYB-61`.
+- Tracking validation:
+  - Linear status re-read confirmed `MYB-39`, `MYB-89`, `MYB-90` are `Done`.
+  - Linear status re-read confirmed `MYB-91` is `Todo`.
+  - Linear label re-read confirmed re-scoped tickets carry `unity`.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml` parses as YAML.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: pass.
+  - `git diff --check`: pass.
+  - High-confidence secret scan on edited planning/tracking docs: pass.
+  - `git status --short -- src unity/Echappee3D`: empty.
+  - `git check-ignore` confirms generated Unity folders under
+    `unity/Echapee4D/Library`, `Temp`, `Logs`, and `UserSettings` are ignored.
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no parked React/Vite/Three.js app code changed.
+
+## MYB-92 Unity Legacy Cleanup Ticket Created
+
+Synced on 2026-06-11:
+
+- Linear issue created:
+  - Issue: `MYB-92`
+  - URL: https://linear.app/kefjbo/issue/MYB-92/myb-009-supprimer-le-projet-unity-legacy-unityechappee3d
+  - Status returned by Linear: `Todo`
+  - Parent: `MYB-39`
+  - Blocked by: `MYB-91`
+  - Labels: `unity`, `implement`
+  - Priority: `High`
+  - Estimate: `3`
+- Scope:
+  - Remove `unity/Echappee3D/**` after MYB-91 baseline review.
+  - Keep `unity/Echapee4D` intact and validated.
+  - Clean obsolete docs and ignore rules only where they could steer active work
+    toward the legacy Unity project.
+
+## MYB-91 Unity Canonical Baseline Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-91`
+  - URL: https://linear.app/kefjbo/issue/MYB-91/myb-008-baseline-unity-canonique-echapee4d-hygiene-repo-validation-et
+  - Status returned by Linear: `In Review`
+  - Implementation comment ID: `0f71e3f0-17b3-4c1c-9cf7-5a461bb645e6`
+- Local report:
+  - `_bmad-output/implementation-artifacts/myb-91-unity-canonical-baseline.md`
+- Unity project:
+  - Canonical project: `unity/Echapee4D`
+  - Unity: `6000.4.10f1`
+  - Package: `com.ivanmurzak.unity.mcp` `0.80.0`
+  - Canonical scene: `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`
+- Implementation summary:
+  - `unity/Echapee4D/ProjectSettings/EditorBuildSettings.asset` now uses the
+    canonical scene instead of `SampleScene`.
+  - `unity/Echapee4D/README.md` documents project ownership, source-control
+    boundaries, Unity-MCP validation, baseline validation and WebGL rebuild/capture.
+  - `unity/Echapee4D/Assets/MYB91/Editor/MYB91CanonicalBaselineValidator.cs`
+    adds a repeatable baseline validator.
+  - `.gitignore` ignores local WebGL build outputs under
+    `_bmad-output/unity-webgl-builds/` plus generated Unity folders under
+    `unity/Echapee4D`.
+- Validator evidence:
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`
+  - Status: `PASS`
+  - Build settings scene: `Assets/Scenes/MYB89UnityMcpProbe.unity`
+  - WebGL supported: `True`
+  - Route markers: `9`
+  - Route length: `245.0 m`
+  - Renderer count: `130`
+  - Main camera, road mesh, HUD canvas and HUD labels: present/wired.
+- WebGL rebuild evidence:
+  - `_bmad-output/unity-test-results/myb-90-unity-webgl-build.txt`
+  - Status: `Succeeded`
+  - Build summary warnings/errors: `0` / `0`
+  - Build output: `_bmad-output/unity-webgl-builds/myb-90-unity-mcp-probe`
+  - Build directory size: `75M`
+- Browser capture evidence:
+  - Summary: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T09-37-30-711Z/capture-summary.json`
+  - Video: `_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T09-37-30-711Z/unity-webgl-readiness.mp4`
+  - HTTP status: `200`
+  - Canvas screenshot nonblank: `true`
+  - Failed requests: `0`
+  - Page errors: `0`
+  - Console errors/warnings: `0` / `7`
+- Caveats:
+  - Browser-side WebGL/URP warnings from MYB-90 remain.
+  - Direct final canvas read still reports blank, while saved canvas screenshot,
+    page screenshot and video are nonblank.
+   - `unity/Echappee3D` remains present until `MYB-92`.
+
+## MYB-91 Unity Canonical Baseline Reviewed And Closed
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-91`
+  - Status returned by Linear: `Done`
+  - Review comment ID: `c4732066-3def-4aa1-b092-51a0dd9128b0`
+- Review result:
+  - One patch finding fixed before closure: the baseline validator now fails if
+    the prior MYB-90 WebGL report is present but its `Status` is not exactly
+    `Succeeded`.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt` now records
+    `Previous MYB-90 WebGL build status: Succeeded`.
+- Final review validation:
+  - `MYB91.Editor.MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`:
+    pass.
+  - `git diff --check`: pass.
+  - Unity console after the qualified validator run logged the expected pass.
+
+## MYB-92 Unity Legacy Cleanup Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-92`
+  - URL: https://linear.app/kefjbo/issue/MYB-92/myb-009-supprimer-le-projet-unity-legacy-unityechappee3d
+  - Status returned by Linear: `In Review`
+  - Implementation comment ID: `20c38eaa-6947-4333-a55a-9f0818f4b373`
+- Local report:
+  - `_bmad-output/implementation-artifacts/myb-92-delete-unity-echappee3d.md`
+- Implementation summary:
+  - Removed `unity/Echappee3D/**`.
+  - Removed obsolete `.gitignore` rules for generated folders under the legacy
+    Unity project.
+  - Updated `AGENTS.md` and `unity/Echapee4D/README.md` so active instructions
+    say `unity/Echappee3D` was removed by `MYB-92` and must not be recreated.
+  - Left `_bmad-output/**` historical references intact as implementation and
+    decision evidence.
+- Validation evidence:
+  - `test ! -e unity/Echappee3D`: pass.
+  - `git status --short -- unity/Echappee3D | wc -l`: `124` tracked deletions.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: pass.
+  - `MYB91.Editor.MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`:
+    pass.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`: `Status:
+    PASS`, `Previous MYB-90 WebGL build status: Succeeded`.
+  - `git diff --check`: pass.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml` parses as YAML.
+  - No active `unity/Echappee3D` references remain in `.gitignore` or
+    `scripts/**`; remaining references in `AGENTS.md` and
+    `unity/Echapee4D/README.md` are explicit removal/history notes.
+  - High-confidence secret scan on touched files: pass.
+- Validation not run:
+  - `npm run typecheck`, `npm run test`, and `npm run build` intentionally not
+    run because no active React/Vite/Three.js app code changed.
+
+## MYB-92 Unity Legacy Cleanup Closed
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-92`
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-11T10:04:29.596Z`
+- Closure note:
+  - User confirmed no MYB-92 review is required after implementation evidence.
+  - Local status moved from `review` to `done`.
+- Recommended next issue after cleanup:
+  - `MYB-37` - `[MYB-003] Définir une direction artistique low-poly premium
+    pour Unity`.
+
+## MYB-37 Unity Art Direction Drafted For Joint Review
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-37`
+  - Status returned by Linear: `In Review`
+  - Cadrage comment ID: `16b6f9ea-dfa0-4821-8331-47139e2193aa`
+  - Review status comment ID: `a30d69fa-edeb-480e-bf8b-5d68141ffb0b`
+- Local planning artifacts:
+  - `CONTEXT.md`
+  - `_bmad-output/planning-artifacts/myb-37-direction-artistique-low-poly-premium-unity.md`
+- Scope:
+  - Planning/docs only.
+  - No Unity code, Unity scene, asset, React/Vite/Three.js source, or external
+    image was added.
+- Review status at draft stage:
+  - The mini-bible was not approved yet.
+  - Review narrowed the open point to external inspiration validation.
+  - Direction now uses `stylise premium avec socle low-poly de production`.
+  - Low-poly explicitly means optimized/stylized production geometry, not
+    placeholder or cheap visual quality.
+  - V1 keeps `Foret claire` and `Village / campagne pavee` as priority biomes,
+    but both must remain premium and can alternate open, dense, magical and
+    spectacular moments.
+  - Road surfaces may vary and strongly suggest future physical feel, without
+    promising a mechanic already implemented.
+  - Inspirations still required explicit user validation before canonization.
+
+## MYB-37 Unity Art Direction Reviewed And Closed
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-37`
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-11T11:16:17.893Z`
+- Local planning artifacts:
+  - `CONTEXT.md`
+  - `_bmad-output/planning-artifacts/myb-37-direction-artistique-low-poly-premium-unity.md`
+- Final decisions:
+  - Direction canonique: `stylise premium avec socle low-poly de production`.
+  - `low-poly` means optimized/stylized production geometry, not placeholder or
+    cheap visual quality.
+  - V1 priority biomes: `Foret claire` and `Village / campagne pavee`.
+  - Main fantasy signals: maximum three per biome; they can be high-poly,
+    shader-driven, animated or hero assets when explicitly budgeted.
+  - Road surfaces can vary and suggest future physical feel without promising
+    an implemented mechanic.
+- References:
+  - `validee partielle`: `Lonely Mountains: Downhill`, `Alto's Adventure /
+    Alto's Odyssey`, `Sable`, `Jusant`, `RiME`, `The Pathless`, `Omno`,
+    `Journey`.
+  - `refusee`: `Dorfromantik`, `The Touryst`.
+- Scope confirmation:
+  - Planning/docs only.
+  - No Unity code, Unity scene, asset, React/Vite/Three.js source, or external
+    image was added.
+  - Next recommended issue: `MYB-38`.
+
+## MYB-37 DA Documentation Consistency Pass
+
+Synced on 2026-06-11:
+
+- Linear comment added:
+  - Issue: `MYB-37`
+  - Comment ID: `38919884-b1b0-4204-932e-1c83011aab54`
+- Local docs aligned:
+  - `CONTEXT.md`
+  - `docs/product/vision.md`
+  - `THIRD_PARTY_ASSETS.md`
+  - `_bmad-output/planning-artifacts/myb-37-direction-artistique-low-poly-premium-unity.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-gdd-court.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- Corrections:
+  - Removed stale `proposed` reference wording from active MYB-37 rules.
+  - Kept `scenic fantasy lisible` only as a readability guardrail under
+    `Stylise Premium`, not as the canonical DA.
+  - Replaced active `low-poly premium baseline` alias with
+    `low-poly de production` / optimized stylized geometry language.
+  - Clarified placeholders as validation/provisional tools, not final DA
+    quality.
+  - Re-aligned product vision, GDD, architecture and MVP stories around
+    adventure/wonder first, sufficient readability second.
+  - Clarified that `THIRD_PARTY_ASSETS.md` no longer treats the historical
+    Three.js manifest as the active Unity asset source.
+- Validation:
+  - Targeted stale-term scan: only historical `linear-sync.md` entries remain.
+  - `git diff --check`: pass.
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`: parses as YAML.
+
+## MYB-93 Unity Terrain Skill Adaptation Ticket Created
+
+Synced on 2026-06-11:
+
+- Linear issue created:
+  - Issue: `MYB-93`
+  - URL: https://linear.app/kefjbo/issue/MYB-93/adapter-le-skill-terrain-3d-a-unityechapee4d
+  - Status returned by Linear: `Backlog`
+  - Related to: `MYB-37`
+  - Labels returned by Linear: `unity`
+  - Priority: `Medium`
+  - Estimate: `2`
+- Scope:
+  - Adapt local skill `terrain-3d` from old Three.js/WebGL prototype assumptions
+    to the active Unity project `unity/Echapee4D`.
+  - Keep generic terrain knowledge where useful: heightmaps, biomes, vertex
+    colors, splatmaps, erosion, LOD, chunks and caves/overhangs.
+  - Add Unity-specific guidance for terrain versus custom meshes, route
+    corridor, height sampling, biomes, surfaces, WebGL constraints and future
+    physical feel language.
+  - Documentation/outillage only; no terrain generation, asset import, scene
+    edit or Three.js reactivation.
+
+## MYB-38 Unity Free Asset License Policy Implemented And Closed
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-38`
+  - URL: https://linear.app/kefjbo/issue/MYB-38/myb-004-etablir-une-politique-de-licences-pour-assets-unity-gratuits
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-11T11:54:00.980Z`
+  - Implementation comment ID: `2ee291c6-aca7-4026-85a0-f56db6d5d7af`
+  - Closure comment ID: `b2f34fda-9921-4cf1-9517-14d951196b02`
+- Branch:
+  - `myb-38-asset-license-policy`
+- Local artifacts:
+  - `AGENTS.md`
+  - `THIRD_PARTY_ASSETS.md`
+  - `CONTEXT.md`
+  - `unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json`
+  - `_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md`
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- Decisions:
+  - Accepted free asset licenses by default: `CC0`, `Public Domain`, `CC-BY`
+    with verified source, complete metadata and attribution where required.
+  - `MIT`, `Apache-2.0` and `OFL` are accepted only for suitable technical/font
+    content types, not as generic 3D/art asset licenses.
+  - `NC`, `ND`, `SA`, ambiguous/custom terms, unverified reuploads, no-license
+    assets, unclear AI-generated packs, extracted IP and too-direct MYB-37
+    copies are refused by default.
+  - Asset statuses are `approved`, `needs-review` and `rejected`; `needs-review`
+    assets cannot be imported into Unity or included in WebGL builds.
+  - Attribution lives in `THIRD_PARTY_ASSETS.md` and the Unity manifest, then in
+    a build Credits surface when one exists; never in the ride HUD.
+  - Each Linear ticket must now use a dedicated branch, and merge plus Linear
+    `Done` happen in the same completion step.
+- Validation:
+  - `jq empty unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json`: pass.
+  - `git diff --check`: pass.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: pass.
+  - YAML parse was not rerun through Ruby inline mode because the local runner
+    blocks interpreter eval flags; no YAML structural change beyond simple key
+    updates was made.
+- Scope confirmation:
+  - No third-party asset imported.
+  - No Unity scene/code change.
+  - No `src/**` React/Vite/Three.js change.
+  - Moved to `Done` as part of the branch cleanup and merge completion step.
