@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "skills": {
+    "Playwright Visual AI Testing": {
+      "source": "PramodDutta/qaskills",
+      "sourceType": "github",
+      "skillPath": "seed-skills/playwright-visual-ai/SKILL.md",
+      "computedHash": "7b46479a9ba479519c787d9049e193a934822999f1a9469a6025e82d282c2918"
+    },
+    "Playwright Visual Testing": {
+      "source": "PramodDutta/qaskills",
+      "sourceType": "github",
+      "skillPath": "seed-skills/playwright-visual-testing/SKILL.md",
+      "computedHash": "49f2ea2a30d2bac43e1bc98422bf1157f596e612253fb8d8a13029d88de751e1"
+    },
+    "blender-threejs-export": {
+      "source": "kevinbadi/blender-skills",
+      "sourceType": "github",
+      "skillPath": "threejs-export/SKILL.md",
+      "computedHash": "8be4b7e790ed1de98961471b7722437ef2eda24b4e9230b2e759eb314f252eb6"
+    },
+    "blender-web-asset-optimizer": {
+      "source": "HHSOLL/freestyle",
+      "sourceType": "github",
+      "skillPath": "plugins/blender/skills/blender-web-asset-optimizer/SKILL.md",
+      "computedHash": "cc8dbd5201821fab355a176cf6c2a78623469d40abfe8a672af08290b6df8fd4"
+    },
+    "browser-test": {
+      "source": "alfredolopez80/multi-agent-ralph-loop",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/browser-test/SKILL.md",
+      "computedHash": "af265aaf094dec9212b901ac101f1b6e31f7c025c50336d37f8f18777b78c671"
+    },
+    "clickup-mcp": {
+      "source": "/tmp/awesome-openclaw-skills",
+      "sourceType": "local",
+      "computedHash": "b4c6808e38b8828cf9969f196b7575335506c0bedbc9bedad37052f3b34eb9a6"
+    },
+    "gstack-game": {
+      "source": "fagemx/gstack-game",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "3dbdbd58e970193a8dca75793def22575cf4c4b51d76dc48cd1b567aa782cbc9"
+    },
+    "meshy-ai": {
+      "source": "/tmp/awesome-openclaw-skills",
+      "sourceType": "local",
+      "computedHash": "af9513a4d02b8747c7d773f13ad9230fde7213dda5f057f78f6fde1ade0f08a4"
+    },
+    "react-threejs-coder-01": {
+      "source": "that-in-rust/agent-room-of-requirements",
+      "sourceType": "github",
+      "skillPath": "agents-used-monthly-archive/codex-skills-202604/react-threejs-coder-01/SKILL.md",
+      "computedHash": "932e52373653e44bb6190e7e04dab8a69b14a87cc1c7c92852539d9305e2072e"
+    },
+    "terrain-3d": {
+      "source": "markkampstra/fp-survival",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/terrain-3d/SKILL.md",
+      "computedHash": "098b761541e8846d70a934db5c01074f04be1eb7cbd7115804f0c1d42f1eeba1"
+    },
+    "unity-plugin": {
+      "source": "TomLeeLive/openclaw-unity-plugin",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "2b25c0137673a6958b5db1e553a3cc99825624784e5fd289aa6c537822d1b005"
+    }
+  }
+}
