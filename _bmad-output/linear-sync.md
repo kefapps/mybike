@@ -4111,3 +4111,70 @@ Synced on 2026-06-11:
   - No Unity scene/code change.
   - No `src/**` React/Vite/Three.js change.
   - Moved to `Done` as part of the branch cleanup and merge completion step.
+
+## MYB-93 Terrain Skill Adaptation Started
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-93`
+  - URL: https://linear.app/kefjbo/issue/MYB-93/adapter-le-skill-terrain-3d-a-unityechapee4d
+  - Status returned by Linear: `In Progress`
+- Branch:
+  - `MYB-93`
+  - Worktree: `/Users/jbodin/personnel/apps/mybike-worktrees/MYB-93`
+- Grill decisions applied to implementation scope:
+  - `terrain-3d` targets `unity/Echapee4D`, not the historical `src/**`
+    Three.js prototype.
+  - Terrain default is `mesh custom route-first`; Unity Terrain is supporting
+    or prototype-only unless a future issue decides otherwise.
+  - `MYB-37` DA remains mandatory: `stylise premium avec socle low-poly de
+    production`, with `Foret claire` and `Village / campagne pavee` as V1
+    biome priorities.
+  - WebGL is no longer treated as the terrain architecture default; guidance is
+    Unity native-first with macOS and Android as candidate targets pending
+    `MYB-94`.
+- Related platform ticket:
+  - Issue: `MYB-94`
+  - URL: https://linear.app/kefjbo/issue/MYB-94/cadrer-plateforme-cible-prioritaire-macos-ftms-android-ou-webgl
+  - Purpose: decide macOS FTMS vs Android priority and clarify WebGL as
+    secondary/proof/debug path.
+
+## MYB-93 Terrain Skill Adaptation Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-93`
+  - Status returned by Linear: `In Review`
+  - Implementation comment ID: `9b6bd552-9763-4f14-8167-ce92aaf95ed4`
+  - Description updated to replace WebGL-first acceptance language with Unity
+    native-first wording tied to `MYB-94`.
+- Local artifacts:
+  - `.agents/skills/terrain-3d/SKILL.md`
+  - `.agents/skills/terrain-3d/references/terrain-techniques.md`
+  - `_bmad-output/linear-sync.md`
+- Implementation summary:
+  - Rewrote `terrain-3d` as an active Unity/Echapee4D guide.
+  - Removed active Three.js/src terrain assumptions.
+  - Added route-first mesh custom guidance, Unity Terrain support guidance,
+    biome/surface terms, native/mobile performance posture and WebGL secondary
+    caveat.
+  - Added a reusable terrain techniques reference for heightmaps, route
+    corridors, height sampling, biomes, materials, erosion, LOD/chunks and
+    caves/overhangs.
+- Validation:
+  - `git diff --check`: pass.
+  - Targeted trailing-whitespace scan on modified docs: pass.
+  - Stale active-reference scan: pass; remaining `src/world/terrain.ts`
+    mention is only in `What To Avoid`.
+- Review fix:
+  - Review fix comment ID: `1355df41-f489-4ade-8c56-76e2463f3048`
+  - Restored important skill trigger keywords in `terrain-3d` frontmatter
+    without reintroducing active Three.js/WebGL guidance.
+- Scope confirmation:
+  - Documentation/outillage only.
+  - No Unity scene/code change.
+  - No asset import.
+  - No Android, FTMS, macOS plugin or WebGL build implementation.
+  - No `src/**` React/Vite/Three.js change.

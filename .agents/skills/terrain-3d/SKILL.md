@@ -1,180 +1,200 @@
 ---
 name: terrain-3d
-description: "3D terrain generation expert for browser-based games using Three.js/WebGL. TRIGGER when: creating or modifying terrain, heightmaps, islands, biomes, terrain texturing, vertex colors, splatmaps, erosion simulation, LOD systems, terrain noise functions, caves, cliffs, overhangs, underwater terrain, procedural landscape generation, terrain performance optimization, or chunk-based terrain. Also trigger when discussing terrain mesh resolution, island shaping, radial falloff, terrain colliders, height sampling, or any terrain-related visual quality improvements. Even if the user just says 'make the terrain look better', 'add a cave', 'bigger island', or 'more interesting landscape' — use this skill."
+description: "Unity terrain guidance for Echappee 3D in unity/Echapee4D. Use when creating or reviewing terrain, route corridors, heightmaps, height sampling, terrain mesh resolution, terrain colliders, biomes, road surfaces, vertex colors, splatmaps, erosion, LOD, chunks, cliffs, caves, overhangs, terrain noise, procedural landscape generation, terrain performance, or visual terrain quality. Also use for requests like make the terrain look better, add a cave, bigger landscape, or more interesting ground."
 ---
 
 # 3D Terrain Generation Expert
 
-You are an expert in real-time procedural terrain generation for browser-based 3D games using Three.js + WebGL. Read the detailed reference file when you need specific technique details:
+You are a terrain specialist for Echappee 3D, the Unity project at
+`unity/Echapee4D`.
 
-```
+Use this skill for terrain planning, implementation review, and future terrain
+tasks. Do not treat the historical React/Vite/Three.js prototype under `src/**`
+as the active terrain target unless a Linear issue explicitly says to work on
+that parked prototype.
+
+Read the detailed reference when you need technique details:
+
+```text
 references/terrain-techniques.md
 ```
 
-## Current Project Terrain
+## Active Project Context
 
-**File:** `src/world/terrain.ts`
-- 500x500 unit PlaneGeometry with 256x256 segments (65K vertices)
-- FBM noise (6 octaves, persistence 0.5, lacunarity 2.0, scale 0.005)
-- Radial falloff (radius 200) creates island silhouette
-- Max height 40 units
-- Biome colors from `src/world/biome.ts`: beach (0-2.5), jungle (2.5-15), highlands (15+)
-- `getHeightAt(x, z)` — bilinear interpolation for camera/object ground-following
-- Height fog shader patched into material (denser at low altitude)
+- Active project: `unity/Echapee4D`.
+- Current platform posture: Unity native-first. macOS and Android are active
+  platform candidates pending `MYB-94`; WebGL is a secondary proof/debug path,
+  not the terrain architecture default.
+- Visual direction: `MYB-37`, `stylise premium avec socle low-poly de
+  production`.
+- V1 priority biomes: `Foret claire` and `Village / campagne pavee`.
+- Road surfaces may vary by biome and may suggest future physical feel, but do
+  not promise a physics mechanic unless the current issue implements one.
+- Mock mode must remain playable unless the current issue explicitly changes
+  ride input scope.
 
-## Core Principles
+## Prescriptive Defaults
 
-1. **Heightmap first, details second.** Get the silhouette right (island shape, mountain placement) before adding detail noise or erosion. A good silhouette at 64x64 resolution beats a bad one at 1024x1024.
+1. Build terrain around the ride route first.
+   The route corridor is the gameplay spine: road ribbon, shoulders, verges,
+   close terrain, camera comfort, and surface cues take priority over generic
+   open-world terrain generation.
+2. Prefer custom meshes for the playable corridor.
+   Use route-driven custom meshes for the road, near-ground silhouettes,
+   berms, cuts, talus, bridges, walls, and authored premium moments.
+3. Use Unity Terrain only as support.
+   Unity Terrain is acceptable for prototyping, broad distant masses, or
+   background landscape, but it must not become the authoritative source for
+   route progression, ride comfort, or surface feel without a specific decision.
+4. Keep the DA production-grade.
+   Low-poly means optimized and stylized, not placeholder. Terrain should have
+   clean silhouettes, controlled density, intentional materials, and readable
+   composition.
+5. Keep platform budgets native and mobile-aware.
+   Assume mobile-class GPU and memory constraints until `MYB-94` settles the
+   priority order. Favor precomputed/editor-time terrain data, simple materials,
+   bounded chunks, and explicit LOD.
 
-2. **Layer noise, don't just add octaves.** Use domain warping (feed noise output back as UV offset) for organic shapes. Combine noise types: FBM for rolling hills, ridged noise for mountain peaks, Worley for rocky crags.
+## Unity Terrain vs Custom Mesh
 
-3. **Biomes drive everything.** Height alone isn't enough — use moisture/temperature maps (or just distance from water + height) to determine biome. Biome then drives vertex color, vegetation density, resource spawns, and creature habitats.
+### Custom Mesh Corridor
 
-4. **Performance = vertex count × shader complexity.** A 256x256 heightmap (65K vertices) is fine for a single island. Beyond that, use LOD (geomorphing between resolution levels) or chunked terrain. Never go above 512x512 without LOD.
+Use this for:
 
-## Noise Function Toolkit
+- road ribbon and road edges;
+- shoulders, verges, ditches, retaining walls, talus and embankments;
+- close terrain visible from the first-person camera;
+- surface variation such as paved road, dirt, gravel, asphalt or relic slabs;
+- deterministic height and normal sampling near the route;
+- premium scenic beats that need authored silhouettes.
 
-### Available in this project
-- **FBM** (`src/utils/noise.ts`): Standard fractal Brownian motion using simplex-noise. Good for smooth rolling terrain.
-- **Simplex 2D** (via `simplex-noise` package): Base noise, already installed.
+Strengths:
 
-### Techniques to add when needed
+- strong control over MYB-37 stylized premium art direction;
+- predictable performance and vertex budgets;
+- route readability and camera comfort stay under project control;
+- easy surface tags for future ride feel;
+- supports non-heightmap shapes such as cliffs, bridges and arches.
 
-**Ridged FBM** — for mountain ridges and peaks:
-```typescript
-function ridgedFbm(x: number, z: number, octaves: number, scale: number): number {
-  let value = 0, amplitude = 0.5, frequency = scale;
-  for (let i = 0; i < octaves; i++) {
-    const n = 1 - Math.abs(noise2D(x * frequency, z * frequency));
-    value += n * n * amplitude; // square for sharper ridges
-    amplitude *= 0.5;
-    frequency *= 2.0;
-  }
-  return value;
-}
-```
+Costs:
 
-**Domain Warping** — for organic, river-like shapes:
-```typescript
-function warpedNoise(x: number, z: number, scale: number): number {
-  const wx = fbm(x + 5.2, z + 1.3, 4, 0.5, 2.0, scale) * 20;
-  const wz = fbm(x + 9.7, z + 6.8, 4, 0.5, 2.0, scale) * 20;
-  return fbm(x + wx, z + wz, 6, 0.5, 2.0, scale);
-}
-```
+- requires our own generation, authoring or import pipeline;
+- requires explicit collision, LOD, sampling and chunk rules;
+- needs careful seams between route segments and distant landscape.
 
-**Worley/Voronoi Noise** — for rocky, cellular terrain:
-```typescript
-function worley(x: number, z: number): number {
-  const ix = Math.floor(x), iz = Math.floor(z);
-  let minDist = 1;
-  for (let dx = -1; dx <= 1; dx++) {
-    for (let dz = -1; dz <= 1; dz++) {
-      const cx = ix + dx + hash(ix + dx, iz + dz);
-      const cz = iz + dz + hash(ix + dx + 31, iz + dz + 17);
-      const d = Math.sqrt((x - cx) ** 2 + (z - cz) ** 2);
-      minDist = Math.min(minDist, d);
-    }
-  }
-  return minDist;
-}
-```
+### Unity Terrain
 
-## Island Shaping
+Use this for:
 
-### Radial Falloff (current approach)
-Good for single islands. Height drops to 0 beyond radius:
-```
-falloff = max(0, 1 - (dist/radius)²)
-smoothFalloff = falloff² × (3 - 2 × falloff)  // smoothstep
-finalHeight = noise × maxHeight × smoothFalloff
-```
+- quick landscape prototyping;
+- large background masses;
+- distant valleys, hills and horizon shapes;
+- optional authoring tools when a ticket budgets them.
 
-### Multiple Islands
-Use multiple radial centers with different radii and heights, sum their falloffs:
-```typescript
-const islands = [
-  { x: 0, z: 0, radius: 200, height: 40 },  // main
-  { x: 300, z: 200, radius: 80, height: 20 }, // small island
-];
-let falloff = 0;
-for (const island of islands) {
-  const d = dist(x - island.x, z - island.z);
-  const f = smoothstep(1 - (d / island.radius) ** 2);
-  falloff = Math.max(falloff, f * island.height / maxHeight);
-}
-```
+Strengths:
 
-### Continent Mask
-For larger worlds, use a low-frequency noise as a continent mask instead of radial falloff. Threshold it to get irregular coastlines.
+- built-in heightmap tooling, terrain collider and terrain layers;
+- fast editor iteration for broad landscape forms;
+- useful for rough scenic composition.
 
-## Texturing Strategies
+Costs:
 
-### Tier 1 — Vertex Colors (current)
-Height-based colors via `getBiomeColor()`. Fast, no texture memory. Limited to smooth gradients between biomes. Good for low-poly aesthetics.
+- heightmap-based, so no true overhangs, caves or vertical complexity;
+- less direct control over low-poly premium silhouettes;
+- can encourage terrain-first decisions that fight the route corridor;
+- materials, details and vegetation can become expensive on mobile/native
+  targets if left unbounded.
 
-### Tier 2 — Slope + Height Shader
-Modify the terrain material via `onBeforeCompile` to blend textures based on slope (normal.y) and height. Steep slopes get rock, flat areas get grass/sand:
-```glsl
-float slope = 1.0 - normal.y; // 0 = flat, 1 = vertical
-vec3 color = mix(grassColor, rockColor, smoothstep(0.3, 0.6, slope));
-```
+### Hybrid Rule
 
-### Tier 3 — Splatmap
-Generate a splatmap texture (RGBA where each channel = weight of a texture layer). Requires 4-5 texture samples per fragment but gives full control. Use vertex colors as the splatmap input (free — already computed).
+If both are used, the custom route corridor wins. Blend Unity Terrain or distant
+meshes into the corridor visually, but keep gameplay sampling, surface tags and
+camera-critical geometry tied to the route-first mesh layer.
 
-## Erosion (Post-Processing Heightmap)
+## Core Terrain Contracts
 
-### Hydraulic Erosion (most impactful)
-Simulate water droplets rolling downhill, picking up sediment, depositing when slowing:
-1. Spawn droplet at random position
-2. Compute gradient (downhill direction)
-3. Move droplet, adjust speed by slope
-4. Erode terrain at steep descent, deposit at slow areas
-5. Repeat 50K-200K droplets
+Future terrain code should make these concepts explicit when the issue needs
+them:
 
-**Result:** Natural-looking valleys, river beds, smooth slopes. Run once at terrain generation, not per-frame.
+- `Route corridor`: the playable scenic band around the rail, including road,
+  shoulder, verge and close terrain.
+- `Height sample`: a deterministic query returning height, normal and surface
+  information at or near the route.
+- `Surface type`: a road or ground material category that can later feed audio,
+  vibration, effort feedback or handling.
+- `Biome segment`: a route interval with visual rules, surface tendencies,
+  scatter rules and premium signal budget.
+- `Distant mass`: non-gameplay landscape used for framing, horizon and scale.
 
-### Thermal Erosion
-Material falls from steep slopes to accumulate at the base. Creates talus slopes and softens sharp peaks:
-```
-if (slope > talusAngle) transfer material downhill
-```
-Simpler than hydraulic, good for rocky highlands.
+Keep runtime ride logic independent from terrain rendering where practical.
+Terrain should consume route/biome data; it should not own ride progression,
+mock input, session state or HUD behavior.
 
-## Performance Guide
+## Biomes And Surfaces
 
-| Terrain Size | Segments | Vertices | FPS Impact | Use Case |
-|-------------|----------|----------|------------|----------|
-| 500×500 | 128×128 | 16K | ~0ms | Small island, low detail |
-| 500×500 | 256×256 | 65K | ~0.1ms | Current project — good balance |
-| 500×500 | 512×512 | 262K | ~0.5ms | High detail single island |
-| 2000×2000 | 512×512 | 262K | ~0.5ms | Large world, lower density |
-| Chunked | 64×64 per chunk | 4K each | Varies | Infinite terrain |
+For V1, terrain guidance should support:
 
-### LOD (Level of Detail)
-For larger terrains, use geomorphing: render nearby chunks at high resolution, distant chunks at lower. Three.js doesn't have built-in terrain LOD — implement via multiple PlaneGeometry meshes at different resolutions, swapped by camera distance.
+- `Foret claire`: open and dense alternation, readable route framing, foliage
+  and ground cover that feel premium rather than noisy.
+- `Village / campagne pavee`: paved or mixed surfaces, walls, paths, fields,
+  village edges and road texture cues that imply physical texture.
 
-### Chunk Loading
-For very large worlds: divide terrain into tiles (e.g., 128×128 each), load/unload based on player position. Keep 3×3 grid of chunks around the player.
+Surface examples:
 
-## Caves and Overhangs
+- smooth asphalt: speed and comfort;
+- paved road: vibration, village age, texture;
+- dirt: softer nature passage;
+- gravel: mild instability and adventure;
+- relic slab: ceremonial or magical passage.
 
-Heightmaps cannot represent caves or overhangs (single height per XZ). Options:
+These are visual and semantic cues unless a current issue implements physical
+feedback.
 
-1. **Fake caves:** Place box/cylinder geometry into hillsides at specific locations. Cheapest — just add mesh objects at designated positions.
+## Platform Guidance
 
-2. **Marching cubes:** Generate a 3D density field, extract mesh via marching cubes algorithm. Expensive but supports full caves, tunnels, arches. Use only for small cave sections, not the entire terrain.
+Until `MYB-94` is closed:
 
-3. **Cliff meshes:** Place vertical wall geometry at steep terrain transitions. Creates the illusion of cliffs without true overhangs.
+- write terrain recommendations as Unity native-first;
+- keep macOS and Android viable;
+- treat WebGL as secondary validation or historical proof, not the default;
+- prefer editor-time/pre-build processing over heavy runtime terrain generation;
+- avoid mandatory compute-shader terrain pipelines for core functionality;
+- keep material count, texture memory, draw calls and overdraw controlled.
 
-## Key References
+For Android/mobile viability:
 
-- Three.js terrain libraries: [THREE.Terrain](https://github.com/IceCreamYou/THREE.Terrain)
-- Procedural generation tutorial: [LearnProceduralGeneration](https://aparis69.github.io/LearnProceduralGeneration/)
-- Terrain erosion on GPU: [aparis69 blog](https://aparis69.github.io/public_html/posts/terrain_erosion.html)
-- Terrain rendering tricks: [kosmonaut's blog](https://kosmonautblog.wordpress.com/2017/06/04/terrain-rendering-overview-and-tricks/)
-- Hydraulic erosion 3 ways: [GitHub](https://github.com/dandrino/terrain-erosion-3-ways)
-- Splatmap terrain shader: [Godot Shaders](https://godotshaders.com/shader/simple-splat-map-shader-for-3d-terrain-uses-vertex-colors-as-splatmap/)
-- Gamasutra terrain generation: [GameDeveloper](https://www.gamedeveloper.com/design/how-to-procedurally-generate-terrain-in-20-minutes-or-less)
-- MIT terrain paper: [Realtime Procedural Terrain](https://web.mit.edu/cesium/Public/terrain.pdf)
+- use simple shaders and small texture sets;
+- prefer atlases, vertex colors, baked masks or compact surface maps;
+- chunk close terrain explicitly;
+- use pooled/instanced scatter only when budgeted;
+- define LOD and culling rules before adding density.
+
+For macOS FTMS viability:
+
+- terrain can assume more local GPU headroom than Android, but must not hide
+  future mobile costs;
+- do not couple terrain architecture to Bluetooth or FTMS input code.
+
+## What To Avoid
+
+- Presenting `src/world/terrain.ts` or any `src/**` Three.js file as active
+  project terrain.
+- Creating a terrain system that requires connected-bike hardware.
+- Adding heavy asset, shader or runtime generation dependencies without a
+  Linear issue.
+- Treating low-poly as unfinished placeholder art.
+- Letting procedural terrain obscure the route, HUD, effort feedback or camera
+  comfort for long stretches.
+- Encoding WebGL-first constraints as the primary design target.
+
+## Quick Review Checklist
+
+- Does the plan target `unity/Echapee4D`?
+- Is the route corridor the first-class terrain object?
+- Is custom mesh the default for close playable terrain?
+- Is Unity Terrain optional/supporting rather than authoritative?
+- Are `MYB-37` DA terms respected?
+- Are `Foret claire` and `Village / campagne pavee` supported first?
+- Are surface cues separated from unimplemented physics?
+- Are native/mobile budgets explicit?
+- Is WebGL treated as secondary until `MYB-94` decides otherwise?
