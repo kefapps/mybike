@@ -412,11 +412,11 @@ development_status:
 
   # MYB-93 - Adapter le skill terrain-3d a Unity/Echapee4D
   # Ticket documentaire/outillage cree depuis la revue MYB-37.
-  myb-93-adapter-terrain-3d-skill-unity: backlog
+  myb-93-adapter-terrain-3d-skill-unity: done
 
   # MYB-94 - Decision plateforme cible prioritaire Unity macOS
   # Cadrage plateforme: Unity macOS first, WebGL secondaire, Android candidat.
-  myb-94-unity-macos-platform-decision: review
+  myb-94-unity-macos-platform-decision: done
 
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
@@ -465,9 +465,13 @@ unity_asset_license_policy_manifest: "unity/Echapee4D/Assets/Echappee/Art/ThirdP
 unity_asset_license_policy_summary: "Accept CC0/Public Domain/CC-BY with verified source and metadata; restrict MIT/Apache-2.0/OFL to technical/font uses; default-refuse NC/ND/SA, ambiguous/custom terms, unverified reuploads, unclear AI-generated packs, extracted IP and too-direct MYB-37 copies; use approved/needs-review/rejected statuses."
 unity_asset_license_policy_implementation_comment: "2ee291c6-aca7-4026-85a0-f56db6d5d7af"
 unity_asset_license_policy_closure_comment: "b2f34fda-9921-4cf1-9517-14d951196b02"
-unity_platform_priority_issue: "MYB-94 In Review"
+unity_platform_priority_issue: "MYB-94 Done"
 unity_platform_priority_url: "https://linear.app/kefjbo/issue/MYB-94/cadrer-plateforme-cible-prioritaire-unity-macos-first-webgl-secondaire"
 unity_platform_priority_report: "_bmad-output/implementation-artifacts/myb-94-unity-macos-platform-decision.md"
 unity_platform_priority_summary: "Decision utilisateur: Unity macOS est la cible runtime prioritaire. WebGL devient une cible secondaire de validation/demo locale; Android reste candidat secondaire apres ticket dedie; macOS/CoreBluetooth/FTMS reste ticket-gated et doit etre prouve avec un peripherique reel avant implementation dependante."
 unity_platform_priority_linear_consistency_pass: "Project summary and remaining open Linear tickets aligned with Unity macOS-first on 2026-06-11: MYB-26, MYB-30, MYB-31, MYB-34, MYB-40, MYB-41, MYB-42, MYB-44, MYB-45, MYB-47, MYB-48, MYB-50, MYB-51, MYB-53, MYB-58, MYB-61, MYB-63, MYB-73, MYB-79, MYB-80, MYB-82, MYB-83, MYB-84, MYB-87, MYB-88. MYB-93 is Done and coherent."
 unity_platform_priority_local_preflight: "MacBook Pro Mac14,9 Apple M2 Pro, macOS 26.5.1, Bluetooth On BCM_4388 with GATT support, Unity 6000.4.10f1 installed, WebGLSupport present, AndroidPlayer missing, no separate MacStandaloneSupport folder observed in PlaybackEngines."
+unity_platform_priority_pr: "https://github.com/kefapps/mybike/pull/8"
+unity_platform_priority_merge_commit: "088c09c6f562ca56769f0fa5e17d9dd2513a3d17"
+unity_platform_priority_closure_comment: "1c057370-e00c-45c3-98a0-6e62e0707685"
+unity_platform_priority_completed_at: "2026-06-11T12:51:38.621Z"

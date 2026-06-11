@@ -4273,3 +4273,26 @@ Synced on 2026-06-11:
   - No Unity scene/code change.
   - No asset import.
   - No `src/**` React/Vite/Three.js change.
+
+## MYB-94 Unity macOS Platform Decision Closed
+
+Synced on 2026-06-11:
+
+- GitHub:
+  - PR: https://github.com/kefapps/mybike/pull/8
+  - Merge type: squash merge into `main`
+  - Merge commit: `088c09c6f562ca56769f0fa5e17d9dd2513a3d17`
+  - Remote branch `myb-94-unity-macos-target` deleted after merge.
+- Linear issue updated:
+  - Issue: `MYB-94`
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-11T12:51:38.621Z`
+  - Closure comment ID: `1c057370-e00c-45c3-98a0-6e62e0707685`
+- Final validation:
+  - `git diff --check`: pass.
+  - YAML parse for `_bmad-output/implementation-artifacts/sprint-status.yaml`: pass.
+  - Targeted stale wording scan: pass.
+  - `unity-mcp-cli status /Users/jbodin/personnel/apps/mybike/unity/Echapee4D --timeout 10000`: pass.
+  - PR `#8`: mergeable; no checks reported.
+- Next recommended issue:
+  - `MYB-41` - Shortlist assets 3D gratuits compatibles Unity/macOS-first.

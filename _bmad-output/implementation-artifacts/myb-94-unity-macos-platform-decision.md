@@ -2,9 +2,10 @@
 
 Date: 2026-06-11
 Ticket Linear: https://linear.app/kefjbo/issue/MYB-94/cadrer-plateforme-cible-prioritaire-unity-macos-first-webgl-secondaire
-Statut: implementation/cadrage
+Statut: Done
 Commentaires Linear: `0f59b35f-edf5-410c-8beb-1bd29438c516`,
-`c8e1b231-13a4-475b-a2c6-22556999eda1`
+`c8e1b231-13a4-475b-a2c6-22556999eda1`,
+`1c057370-e00c-45c3-98a0-6e62e0707685`
 
 ## Decision
 
@@ -143,3 +144,11 @@ Ticket verifie sans modification par cette passe:
 - Modifier la scene Unity.
 - Importer des assets.
 - Supprimer les preuves WebGL existantes.
+
+## Cloture
+
+- PR: https://github.com/kefapps/mybike/pull/8
+- Merge type: squash merge into `main`.
+- Merge commit: `088c09c6f562ca56769f0fa5e17d9dd2513a3d17`.
+- Linear status: `Done` at `2026-06-11T12:51:38.621Z`.
+- Closure comment: `1c057370-e00c-45c3-98a0-6e62e0707685`.
