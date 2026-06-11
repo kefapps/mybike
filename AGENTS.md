@@ -2,12 +2,14 @@
 
 ## Project Context
 
-mybike is a Unity WebGL-first first-person scenic cycling game, currently
-scoped to the Echappee 3D vertical slice.
+mybike is a Unity-first first-person scenic cycling game, currently scoped to
+the Echappee 3D vertical slice. The priority runtime target is macOS through
+the canonical Unity project; WebGL remains a secondary validation/demo path.
 
-As of 2026-06-11, the active engine direction is Unity, based on the
-IvanMurzak Unity-MCP probe and WebGL readiness evidence from `MYB-89` and
-`MYB-90`.
+As of 2026-06-11, `MYB-94` records the active platform decision: Unity macOS
+first. The IvanMurzak Unity-MCP probe and WebGL readiness evidence from
+`MYB-89` and `MYB-90` remain useful technical proof, but they no longer make
+WebGL the primary product target.
 
 Canonical Unity project:
 
@@ -20,10 +22,11 @@ Removed or reference-only legacy areas:
 - `src/**` is the historical React/Vite/Three.js prototype. Do not extend it
   unless a Linear issue explicitly says to touch the parked web prototype.
 
-The MVP must be playable entirely in mock mode, without connected-bike
-hardware. BLE, Web Bluetooth, FTMS, real-bike telemetry, Meshy, heavy asset
-pipelines, rich history, multiple routes, and post-MVP backlog work are out of
-scope unless a Linear issue explicitly says otherwise.
+The MVP must remain playable entirely in mock mode, without connected-bike
+hardware. macOS/CoreBluetooth/FTMS is a product direction for connected-bike
+work, but real-bike telemetry, Meshy, heavy asset pipelines, rich history,
+multiple routes, Web Bluetooth, Android delivery, and post-MVP backlog work
+are out of scope unless a Linear issue explicitly says otherwise.
 
 ## Active Planning Sources
 
@@ -61,7 +64,7 @@ validation evidence, review verdicts, and BMAD/local artifact references.
 Ask for confirmation before destructive or scope-changing Linear operations:
 creating new projects, initiatives, epics, or broad backlog; deleting/archiving;
 renaming canonical trackers; changing team/project ownership; or expanding
-beyond the approved Unity-first roadmap.
+beyond the approved Unity macOS-first roadmap.
 
 ## Linear Tracking
 
@@ -78,13 +81,16 @@ Current Unity decision tracker:
   WebGL reproductible
 - `MYB-92` - Supprimer le projet Unity legacy `unity/Echappee3D` apres la
   baseline canonique
+- `MYB-94` - Cadrer la plateforme cible prioritaire: Unity macOS first, WebGL
+  secondaire
 
 Next active implementation issue:
 
-- `MYB-91` and `MYB-92` are the baseline/cleanup gate before gameplay, assets,
-  HUD, CI, or performance work.
-- Hardware/BLE/FTMS tickets are post-baseline backlog unless a Linear issue
-  explicitly pulls them back into scope.
+- `MYB-94` is the platform decision gate before assets, performance, CI, input
+  or delivery tickets assume WebGL constraints.
+- After `MYB-94`, the recommended next implementation issue is `MYB-41`.
+- Hardware/BLE/FTMS remains ticket-gated; macOS FTMS feasibility needs a
+  dedicated real-device proof before implementation tickets depend on it.
 
 Historical web MVP tracker:
 
@@ -108,8 +114,9 @@ Prefer Linear issue IDs in branch names, summaries, and implementation notes.
 
 - Keep scope strict to the current Linear issue.
 - Preserve mock mode at all times.
-- Unity owns runtime, scene, ride loop, HUD, visuals, and WebGL delivery for
-  new active work.
+- Unity owns runtime, scene, ride loop, HUD, visuals, and macOS delivery for
+  new active work. WebGL delivery is secondary and should be run when a ticket
+  explicitly targets browser proof, regression evidence, or legacy comparison.
 - Use IvanMurzak Unity-MCP / `unity-mcp-cli` as the preferred automation path
   for Unity Editor work.
 - Keep Unity gameplay logic testable with C# validators or Unity tests where
@@ -131,8 +138,8 @@ For Unity work, prefer the narrowest applicable validation:
 unity-mcp-cli status unity/Echapee4D --timeout 10000
 ```
 
-When applicable, run Unity validators, Editor play/build checks, WebGL build
-checks, and browser capture scripts tied to the current issue.
+When applicable, run Unity validators, Editor play/build checks, macOS build
+checks, and browser/WebGL capture scripts tied to the current issue.
 
 For parked web prototype work only, run:
 

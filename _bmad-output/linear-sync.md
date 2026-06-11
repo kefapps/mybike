@@ -247,7 +247,7 @@ Synced on 2026-06-06:
   `next_action: implement-MYB-4`.
 - `MYB-4` Linear sync evidence:
   - URL: https://linear.app/kefjbo/issue/MYB-4/story-13-route-prefabriquee-biomes-et-camera-sur-rail
-  - Status returned by Linear: `In Progress`
+  - Status returned by Linear: `In Review`
   - Comment ID: `7c68c142-aea9-4226-bdf5-26809b9192f2`
 - `MYB-4` scope confirmation recorded in Linear: route prefabriquee minimale,
   route sampling, biomes, camera sur rail; consumes MYB-3 progression/snapshot
@@ -4198,3 +4198,78 @@ Synced on 2026-06-11:
   - Targeted trailing-whitespace scan: pass.
   - Stale active-reference scan: pass.
   - PR `#7`: merge state clean; no checks reported.
+
+## MYB-94 Unity macOS Platform Decision Implemented
+
+Synced on 2026-06-11:
+
+- Linear issue updated:
+  - Issue: `MYB-94`
+  - URL: https://linear.app/kefjbo/issue/MYB-94/cadrer-plateforme-cible-prioritaire-unity-macos-first-webgl-secondaire
+  - Status returned by Linear: `In Review`
+  - Implementation comment ID: `0f59b35f-edf5-410c-8beb-1bd29438c516`
+  - Linear consistency pass comment ID: `c8e1b231-13a4-475b-a2c6-22556999eda1`
+- Linear project updated:
+  - Project: `Echappee 3D - Vertical Slice Mock`
+  - Project ID: `7abb762d-4eb3-4089-af1f-0b973eeadd65`
+  - Summary/description now state Unity macOS-first and WebGL secondary.
+- Branch:
+  - `myb-94-unity-macos-target`
+- Local artifacts:
+  - `AGENTS.md`
+  - `CONTEXT.md`
+  - `THIRD_PARTY_ASSETS.md`
+  - `docs/product/vision.md`
+  - `unity/Echapee4D/README.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-gdd-court.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md`
+  - `_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md`
+  - `_bmad-output/planning-artifacts/sprint-change-proposal-unity-canonical-2026-06-11.md`
+  - `_bmad-output/implementation-artifacts/myb-94-unity-macos-platform-decision.md`
+  - `_bmad-output/implementation-artifacts/sprint-status.yaml`
+- Decision:
+  - User decision: Unity macOS is now the priority runtime target.
+  - Unity remains the active engine and `unity/Echapee4D` remains the canonical
+    project.
+  - WebGL is secondary: browser proof, private demo validation, regression
+    evidence or legacy comparison when explicitly scoped.
+  - Android is a later candidate target and is not locally ready without module
+    installation.
+  - macOS/CoreBluetooth/FTMS is the connected-bike direction, but remains
+    ticket-gated until proven with a real FTMS peripheral.
+- Local preflight:
+  - MacBook Pro `Mac14,9`, Apple M2 Pro, macOS `26.5.1` build `25F80`.
+  - Bluetooth `On`, chipset `BCM_4388`, supported services include `GATT`.
+  - Unity `6000.4.10f1`.
+  - Unity `WebGLSupport` is present.
+  - Unity `AndroidPlayer` is missing.
+  - No separate `MacStandaloneSupport` folder was observed under
+    `PlaybackEngines`.
+- Impacted tickets:
+  - `MYB-39`, `MYB-90`, `MYB-91`: keep as Unity/WebGL evidence, but platform
+    priority is superseded by `MYB-94`.
+  - `MYB-93`: terrain skill should say Unity macOS-first, not WebGL-first.
+  - `MYB-41`: shortlist assets for Unity/macOS first; WebGL risk only when
+    browser proof is in scope.
+  - `MYB-51`: change performance budgets from WebGL-first to platform budgets,
+    macOS first and WebGL secondary.
+  - `MYB-83`: change CI/validation framing from WebGL build first to Unity
+    macOS-first validation with optional WebGL proof.
+  - `MYB-40`, `MYB-58`, `MYB-61`: requalify around macOS/CoreBluetooth/FTMS
+    before Web Bluetooth.
+- Linear consistency pass for remaining open tickets:
+  - Project `Echappee 3D - Vertical Slice Mock` summary/description updated to
+    Unity macOS-first.
+  - Updated open issues: `MYB-26`, `MYB-30`, `MYB-31`, `MYB-34`, `MYB-40`,
+    `MYB-41`, `MYB-42`, `MYB-44`, `MYB-45`, `MYB-47`, `MYB-48`, `MYB-50`,
+    `MYB-51`, `MYB-53`, `MYB-58`, `MYB-61`, `MYB-63`, `MYB-73`, `MYB-79`,
+    `MYB-80`, `MYB-82`, `MYB-83`, `MYB-84`, `MYB-87`, `MYB-88`.
+  - `MYB-93` is now `Done`; it adapts the terrain skill to
+    Unity/Echapee4D and remains coherent with macOS-first/WebGL secondary.
+  - Completed/historical WebGL tickets were not rewritten; `MYB-94` supersedes
+    their platform implication without deleting evidence.
+- Scope confirmation:
+  - Planning/docs only.
+  - No Unity scene/code change.
+  - No asset import.
+  - No `src/**` React/Vite/Three.js change.

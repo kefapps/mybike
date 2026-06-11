@@ -96,6 +96,10 @@ Le velo connecte est obligatoire pour la vision produit cible. MyBike doit
 utiliser au maximum ce que FTMS permet pour enrichir l'experience: resistance,
 rythme, variations d'effort, recuperations et moments de soulagement.
 
+La premiere cible produit connectee est Unity macOS via CoreBluetooth/FTMS. Les
+cibles WebGL et Android restent secondaires tant qu'un ticket dedie ne les
+requalifie pas.
+
 Pour le developpement et les tests, un slider de force peut simuler l'effort du
 joueur et permettre de valider les boucles sans materiel. Ce mode reste un outil
 de construction, pas le coeur de la promesse.

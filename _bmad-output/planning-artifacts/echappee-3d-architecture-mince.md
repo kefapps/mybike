@@ -4,27 +4,29 @@ project: "mybike"
 date: "2026-06-11"
 source: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
 status: "draft"
-scope: "vertical slice mock Unity WebGL"
+scope: "vertical slice mock Unity macOS-first"
 ---
 
 # Architecture mince - Echappee 3D Unity
 
 ## Intention
 
-Cette architecture cible uniquement la vertical slice mock Unity WebGL
+Cette architecture cible uniquement la vertical slice mock Unity macOS-first
 d'Echappee 3D: une balade 3D en premiere personne sur rail, jouable sans velo
 connecte, avec entree mock, progression lissee, scene Unity stylisee premium,
-lisibilite suffisante, HUD minimal et resume de session.
+lisibilite suffisante, HUD minimal et resume de session. WebGL reste une cible
+secondaire de validation/demo locale.
 
 Flux principal verrouille:
 
 ```text
-MockRideInput -> SpeedModel -> RouteProgress -> CameraRail -> UnityScene -> HUD/Summary -> WebGLCapture
+MockRideInput -> SpeedModel -> RouteProgress -> CameraRail -> UnityScene -> HUD/Summary -> PlatformValidation
 ```
 
 La structure doit garder quatre frontieres nettes:
 
-- Unity porte l'experience active: scene, runtime, HUD, ride loop et build WebGL.
+- Unity porte l'experience active: scene, runtime, HUD, ride loop et cible
+  macOS.
 - La logique de ride reste testable par code C# pur ou validators Unity.
 - Les assets et prefabs restent optionnels tant que des placeholders Unity
   lisibles existent pour valider le flux. Ces placeholders restent provisoires
@@ -34,12 +36,19 @@ La structure doit garder quatre frontieres nettes:
 
 ## Decisions techniques verrouillees
 
-- Stack MVP active: Unity `6000.4.10f1`, WebGL, projet `unity/Echapee4D`.
+- Stack MVP active: Unity `6000.4.10f1`, macOS first, projet
+  `unity/Echapee4D`.
+- WebGL reste disponible comme cible secondaire pour preuve navigateur,
+  regression visuelle ou demo privee quand un ticket le demande.
 - Workflow Unity prefere: IvanMurzak Unity-MCP / `unity-mcp-cli`.
 - Scene de depart reference: `Assets/Scenes/MYB89UnityMcpProbe.unity`, a
   transformer ou remplacer par une scene canonique de vertical slice.
 - Pas de backend, pas de compte utilisateur, pas de synchronisation cloud.
-- Pas de BLE, Web Bluetooth, FTMS ou parser Indoor Bike Data dans le MVP.
+- Pas de BLE/Web Bluetooth/FTMS complet ou parser Indoor Bike Data dans le MVP
+  mock. La faisabilite macOS/CoreBluetooth/FTMS doit etre prouvee avec un
+  peripherique reel avant de devenir une dependance d'implementation.
+- Android reste candidat secondaire; le module Android n'est pas present dans
+  l'installation Unity locale du 2026-06-11.
 - Le mode mock est une source produit MVP, pas seulement un outil de debug.
 - La source d'entree MVP unique est `mock`, pilotable par UI et/ou clavier.
 - Le joueur ne dirige pas lateralement le velo; la camera suit un rail.
@@ -48,7 +57,7 @@ La structure doit garder quatre frontieres nettes:
 - La route est prefabriquee ou generee localement pour la demo; plusieurs routes
   restent post-MVP sauf ticket explicite.
 - Chaque story demo-facing doit produire une preuve: validator, screenshot,
-  video/contact sheet ou capture WebGL.
+  video/contact sheet, build/capture macOS, ou capture WebGL quand applicable.
 
 ## Modules MVP Unity
 
@@ -113,11 +122,12 @@ Elements attendus:
 - builders de scene;
 - validators route/camera/HUD/scene;
 - rapports dans `_bmad-output/unity-test-results/`;
-- build WebGL local quand necessaire.
+- build macOS ou WebGL local quand necessaire.
 
 ### `Scripts/Capture`
 
-Responsabilite: validation navigateur WebGL hors Unity Editor.
+Responsabilite: validation navigateur WebGL hors Unity Editor quand un ticket
+demande une preuve browser.
 
 Elements attendus:
 
@@ -143,19 +153,22 @@ Elements attendus:
 
 - Nouveaux travaux React/Vite/Three.js.
 - Backend, API serveur, base de donnees, auth, compte utilisateur.
-- BLE, Web Bluetooth, FTMS, Indoor Bike Data, resistance controlee.
+- BLE, Web Bluetooth, FTMS complet, Indoor Bike Data, resistance controlee.
 - Persistance d'historique de sessions.
 - Import GPX ou editeur de route.
 - Pipeline Meshy obligatoire, generation d'assets IA obligatoire, asset manager
   lourd.
 - Multijoueur, classements, ghosts, scoring competitif.
-- VR, mobile natif, packaging desktop.
+- VR, Android natif avant ticket dedie.
 - Simulation physique velo realiste, collisions gameplay, steering lateral.
 
 ## Risques / mitigations
 
-- WebGL lourd ou lent: garder les assets simples, mesurer `.wasm/.data`, limiter
-  les effets URP non supportes et capturer le navigateur a chaque increment.
+- macOS FTMS non prouve: garder le mock produit, documenter le preflight local
+  et exiger un test peripherique reel avant tout ticket dependant du materiel.
+- WebGL lourd ou lent si utilise comme preuve secondaire: garder les assets
+  simples, mesurer `.wasm/.data`, limiter les effets URP non supportes et
+  capturer le navigateur seulement quand le ticket le demande.
 - Iteration Unity lente: garder les builders/validators Editor scriptables et
   documenter chaque commande.
 - Drift entre deux projets Unity: `unity/Echapee4D` est canonique;
@@ -168,11 +181,12 @@ Elements attendus:
 
 ## Points d'extension post-MVP
 
-- Nouvelle source BLE/FTMS derriere une abstraction d'entree ou resistance.
+- Nouvelle source CoreBluetooth/FTMS macOS derriere une abstraction d'entree ou
+  resistance.
 - Routes multiples via donnees Unity/JSON importees dans le projet Unity.
 - Biomes plus riches via prefabs, Addressables ou scenes additives si justifie.
 - Assets externes optimises apres politique licence/performance.
-- Wrapper web ou page marketing autour du build Unity seulement si un ticket le
+- WebGL, Android ou wrapper web autour du build Unity seulement si un ticket le
   demande explicitement.
 
 ## Handoff pour backlog Unity
@@ -182,5 +196,7 @@ Contraintes pour l'etape suivante:
 - Garder `unity/Echapee4D` comme projet unique actif.
 - Ne pas recreer un large backlog.
 - Rebaseliner les tickets ouverts pour Unity avant implementation.
-- Prioriser: hygiene repo Unity, scene canonique, validator, build/capture WebGL.
-- Ne pas supprimer `src/**` ni `unity/Echappee3D/**` dans ce correct-course.
+- Prioriser: hygiene repo Unity, scene canonique, validator, cible macOS, puis
+  WebGL seulement comme validation secondaire.
+- Ne pas toucher `src/**` sauf ticket explicite et ne pas recreer
+  `unity/Echappee3D/**`.

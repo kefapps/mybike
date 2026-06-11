@@ -2,8 +2,8 @@
 
 ## Purpose
 
-This context owns the shared visual language for MyBike's active Unity WebGL
-work. It is a glossary, not an implementation plan.
+This context owns the shared visual language for MyBike's active Unity
+macOS-first work. It is a glossary, not an implementation plan.
 
 ## Terms
 
@@ -39,7 +39,7 @@ license, complete metadata, and status `approved` in the Unity asset manifest.
 Relationships:
 
 - Only an `Asset Tiers Approuve` may be imported into `unity/Echapee4D` or
-  shipped in a WebGL build.
+  shipped in a macOS/WebGL build.
 - Assets with unclear terms stay in `needs-review`; rejected assets stay
   documented only if that helps future decisions.
 
