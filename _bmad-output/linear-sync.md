@@ -4178,3 +4178,23 @@ Synced on 2026-06-11:
   - No asset import.
   - No Android, FTMS, macOS plugin or WebGL build implementation.
   - No `src/**` React/Vite/Three.js change.
+
+## MYB-93 Terrain Skill Adaptation Closed
+
+Synced on 2026-06-11:
+
+- GitHub:
+  - PR: https://github.com/kefapps/mybike/pull/7
+  - Merge type: squash merge into `main`
+  - Merge commit: `80d07778ef270c41d0a5449a5f5a7579cae3cbb1`
+  - Remote branch `MYB-93` deleted after merge.
+- Linear issue updated:
+  - Issue: `MYB-93`
+  - Status returned by Linear: `Done`
+  - Completed at: `2026-06-11T12:35:32.077Z`
+  - Closure comment ID: `240a3a01-fa8f-42d7-add6-202a66ae495d`
+- Final validation:
+  - `git diff --check`: pass.
+  - Targeted trailing-whitespace scan: pass.
+  - Stale active-reference scan: pass.
+  - PR `#7`: merge state clean; no checks reported.
