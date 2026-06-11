@@ -121,6 +121,54 @@
       "status": "approved",
       "reviewNotes": "Approved for MYB-42 legal/technical POC import only; final V1 art adoption remains a separate verdict.",
       "linearIssue": "MYB-42"
+    },
+    {
+      "id": "kaykit-medieval-hexagon-pack-myb53-subset",
+      "assetName": "KayKit Medieval Hexagon Pack - MYB-53 subset",
+      "author": "Kay Lousberg / KayKit",
+      "sourceUrl": "https://github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0",
+      "license": "CC0",
+      "licenseUrl": "https://github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0/blob/main/LICENSE.txt",
+      "retrievedAt": "2026-06-11",
+      "category": "3D model",
+      "intendedUse": "Village / campagne pavee premium POC: warm village silhouettes, roadside props, and composition support for a dedicated MYB-53 validation scene.",
+      "modifications": "Subset extraction only: five FBX models and one 1024x1024 atlas texture. No geometry or texture edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Medieval Hexagon Pack by KayKit / Kay Lousberg)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack",
+      "importedFiles": [
+        "Models/building_home_A_yellow.fbx",
+        "Models/building_market_yellow.fbx",
+        "Models/building_well_yellow.fbx",
+        "Models/fence_stone_straight.fbx",
+        "Models/barrel.fbx",
+        "Textures/hexagons_medieval.png",
+        "License/LICENSE.txt",
+        "License/README.md"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-53 legal/technical POC import only; final art-direction verdict is tracked separately as Verdict Artistique V1.",
+      "linearIssue": "MYB-53"
+    },
+    {
+      "id": "quaternius-horse-animated-myb53",
+      "assetName": "Horse animated model - MYB-53",
+      "author": "Quaternius",
+      "sourceUrl": "https://poly.pizza/m/qvTrSG9pZF",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrievedAt": "2026-06-11",
+      "category": "3D model / animation",
+      "intendedUse": "Village / campagne pavee POC: single light animated life accent placed off the route.",
+      "modifications": "Source GLB converted to FBX with Blender 5.1.1 for native Unity import. No intentional geometry, texture, rig, or keyframe edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Horse by Quaternius)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated",
+      "importedFiles": [
+        "Models/horse_animated.fbx",
+        "License/SOURCE.txt"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-53 legal/technical POC import only; animation clips must be verified in Unity before any V1 adoption decision.",
+      "linearIssue": "MYB-53"
     }
   ]
 }

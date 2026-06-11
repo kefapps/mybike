@@ -1,0 +1,11 @@
+Asset: Horse
+Author: Quaternius
+Source: https://poly.pizza/m/qvTrSG9pZF
+License: Public Domain (CC0)
+License URL: https://creativecommons.org/publicdomain/zero/1.0/
+Retrieved: 2026-06-11
+
+Processing note:
+The source GLB exposed by Poly Pizza was converted to FBX with Blender 5.1.1
+for native Unity import. No geometry, texture, rig, or keyframe edits were
+made intentionally.

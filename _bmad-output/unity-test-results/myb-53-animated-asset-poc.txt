@@ -1,0 +1,87 @@
+# MYB-53 Animated Asset POC
+GeneratedAt: 2026-06-11T15:10:02Z
+UnityVersion: 6000.4.10f1
+Project: unity/Echapee4D
+Scene: Assets/Scenes/MYB53AnimatedAssetPoc.unity
+Status: PASS
+
+## Imported files
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_home_A_yellow.fbx (47.5 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_market_yellow.fbx (112.0 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_well_yellow.fbx (40.6 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/fence_stone_straight.fbx (27.1 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/barrel.fbx (26.3 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Textures/hexagons_medieval.png (15.4 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/License/LICENSE.txt (1.0 KB)
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/License/README.md (2.6 KB)
+- Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated/Models/horse_animated.fbx (7.0 MB)
+- Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated/License/SOURCE.txt (377 B)
+
+## Texture dimensions
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Textures/hexagons_medieval.png (1024x1024)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Color.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_NormalGL.jpg (1024x1024)
+
+## Generated materials
+- Assets/Echappee/Art/MYB53Validation/Materials/MYB53_KayKitAtlas.mat
+- Assets/Echappee/Art/MYB53Validation/Materials/MYB53_PavingStones141_Stylized.mat
+- Assets/Echappee/Art/MYB53Validation/Materials/MYB53_SoftVillageGrass.mat
+- Assets/Echappee/Art/MYB53Validation/Materials/MYB53_WarmRoadEdge.mat
+- Assets/Echappee/Art/MYB53Validation/Materials/MYB53_RelicWarmLight.mat
+
+## Animation clips
+- AnimalArmature|AnimalArmature|Attack_Headbutt (1.00s)
+- AnimalArmature|AnimalArmature|Attack_Kick (1.00s)
+- AnimalArmature|AnimalArmature|Death (1.00s)
+- AnimalArmature|AnimalArmature|Eating (6.00s)
+- AnimalArmature|AnimalArmature|Gallop (0.58s)
+- AnimalArmature|AnimalArmature|Gallop_Jump (1.46s)
+- AnimalArmature|AnimalArmature|Idle (3.33s)
+- AnimalArmature|AnimalArmature|Idle_2 (3.33s)
+- AnimalArmature|AnimalArmature|Idle_Headlow (3.33s)
+- AnimalArmature|AnimalArmature|Idle_HitReact_Left (0.67s)
+- AnimalArmature|AnimalArmature|Idle_HitReact_Right (0.67s)
+- AnimalArmature|AnimalArmature|Jump_toIdle (1.71s)
+- AnimalArmature|AnimalArmature|Walk (1.17s)
+- AnimalArmature|Attack_Headbutt (1.00s)
+- AnimalArmature|Attack_Kick (1.00s)
+- AnimalArmature|Death (1.00s)
+- AnimalArmature|Eating (6.00s)
+- AnimalArmature|Gallop (0.58s)
+- AnimalArmature|Gallop_Jump (1.46s)
+- AnimalArmature|Idle (3.33s)
+- AnimalArmature|Idle_2 (3.33s)
+- AnimalArmature|Idle_Headlow (3.33s)
+- AnimalArmature|Idle_HitReact_Left (0.67s)
+- AnimalArmature|Idle_HitReact_Right (0.67s)
+- AnimalArmature|Jump_toIdle (1.71s)
+- AnimalArmature|Walk (1.17s)
+
+## Animation controller
+- Assets/Echappee/Art/MYB53Validation/Animations/MYB53_HorseIdle.controller
+
+## Validation scene objects
+- MYB53 Village Home
+- MYB53 Village Market
+- MYB53 Village Well
+- MYB53 Stone Fence Left
+- MYB53 Barrel Roadside
+- MYB53 Animated Horse Accent
+
+## Enabled build scenes
+- Assets/Scenes/MYB89UnityMcpProbe.unity
+
+## Verdict Artistique V1
+- KayKit Medieval Hexagon subset: support/fallback - useful for fast village composition and warm silhouettes, but still reads grid/board-game if used as the primary V1 art source without stronger material/lighting polish.
+- Quaternius animated horse: support/fallback - animation import is valuable and the model adds light life to the village, but it is not a premium hero asset by itself.
+- Paving Stones 141 reuse: support/fallback - strong rough-surface signal for Village / campagne pavee, but needs a stylization pass before final adoption.
+
+## Failures
+- none
+
+## Notes
+- Manifest approved status is legal/technical POC import approval, not final V1 art adoption.
+- MYB-53 scene is dedicated to the animated asset POC and is intentionally not added to Build Settings.
+- No ambiguous free/pro asset was imported; Quaternius Medieval Village MegaKit remained source evidence only because direct file retrieval goes through Itch.
+- Capture: _bmad-output/unity-test-results/myb-53-animated-asset-poc.png
+

@@ -57,6 +57,34 @@ Non-examples:
   with unclear commercial/build rights; a model copied too directly from a
   MYB-37 inspiration reference.
 
+### Verdict Artistique V1
+
+Definition: The art-direction verdict for an imported or inspected asset after
+it is seen in context. It answers whether the asset can support the V1 visual
+quality bar, independently from legal/technical import approval.
+
+Relationships:
+
+- `Verdict Artistique V1` is separate from `Asset Tiers Approuve`.
+- `adoptable-v1` means the asset can plausibly ship in the V1 direction after
+  normal integration polish.
+- `support/fallback` means the asset is useful for validation, blockout,
+  fallback, or secondary support, but should not carry the premium look alone.
+- `reject` means the asset should not be used for the V1 visual direction even
+  if its license and import are technically valid.
+
+Examples:
+
+- A village landmark that looks premium in the Unity scene can be
+  `adoptable-v1`.
+- A clean but plain road module can be `support/fallback`.
+
+Non-examples:
+
+- Treating manifest status `approved` as automatic final art adoption.
+- Keeping an asset because it is legally free while it still looks cheap in the
+  scene.
+
 ### Attribution Asset
 
 Definition: The credit text and metadata required by a third-party asset

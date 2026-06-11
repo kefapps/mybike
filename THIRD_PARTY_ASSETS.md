@@ -157,6 +157,8 @@ La capture minimale a conserver est :
 | `kenney-fantasy-town-kit-myb42-subset` | Fantasy Town Kit 2.0 - MYB-42 subset | Kenney | https://kenney.nl/assets/fantasy-town-kit | 3D model | CC0 | Subset extraction only: `road.fbx`, `wall-window-stone.fbx`; no geometry/material edits. |
 | `ambientcg-paving-stones-141-1k-jpg-myb42` | Paving Stones 141 - 1K JPG subset | ambientCG | https://ambientcg.com/view?id=pavingstones141 | Texture material | CC0 | Subset extraction only: Color, NormalGL and Roughness 1K JPG maps; no texture edits. |
 | `polyhaven-forest-ground-03-1k-jpg-myb42` | Forest Ground 03 - 1K JPG subset | Rob Tuytel / Poly Haven | https://polyhaven.com/a/forrest_ground_03 | Texture material | CC0 | Subset download only: diffuse, NormalGL and roughness 1K JPG maps; no texture edits. |
+| `kaykit-medieval-hexagon-pack-myb53-subset` | KayKit Medieval Hexagon Pack - MYB-53 subset | Kay Lousberg / KayKit | https://github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0 | 3D model | CC0 | Subset extraction only: five FBX models and one 1024x1024 atlas texture; no geometry/texture edits. |
+| `quaternius-horse-animated-myb53` | Horse animated model - MYB-53 | Quaternius | https://poly.pizza/m/qvTrSG9pZF | 3D model / animation | CC0 | Source GLB converted to FBX with Blender 5.1.1 for native Unity import; no intentional geometry, texture, rig, or keyframe edits. |
 
 ## Hors scope
 
