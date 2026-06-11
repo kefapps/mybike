@@ -4440,9 +4440,11 @@ Synced on 2026-06-11:
 Synced on 2026-06-11:
 
 - Issue: `MYB-53`
-- Status returned by Linear: `In Review`
+- Status returned by Linear: `Done`
+- Completed at: `2026-06-11T15:19:09.995Z`
 - Cadrage comment ID: `8c98d846-7b5d-43aa-9094-5765427b68a2`
 - Implementation comment ID: `696ae4f6-3cef-4190-b7d4-46dc75738dcf`
+- Closure comment ID: `e5abe149-669e-4881-84f7-f85549f97938`
 - Local branch: `myb-53-free-animated-asset-poc`
 - Local report: `_bmad-output/implementation-artifacts/myb-53-free-animated-asset-poc.md`
 - Unity validation report:
