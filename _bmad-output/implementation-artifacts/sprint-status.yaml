@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-08T09:07:14+02:00
+# last_updated: 2026-06-11T13:54:13+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-08T09:07:14+02:00"
+last_updated: "2026-06-11T13:54:13+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -47,7 +47,7 @@ sprint:
   readiness_verdict: "ready-with-caveats"
   readiness_source: "_bmad-output/planning-artifacts/implementation-readiness-report-2026-06-06.md"
   caveats_synced_in_linear: true
-  next_action: "commit-MYB-25"
+  next_action: "start-MYB-41"
   first_story_to_start: "MYB-12"
   post_mvp_direction: "polish UX / sensation de ride"
   post_mvp_decision_source: "_bmad-output/implementation-artifacts/epic-1-retro-2026-06-06.md"
@@ -286,7 +286,11 @@ linear_mapping:
   myb-19-threejs-private-demo-launch-readiness: "MYB-19"
   myb-20-threejs-lightweight-scene-life-parity: "MYB-20"
   myb-21-threejs-route-elevation-feel-pass: "MYB-21"
-  myb-25-threejs-bundle-size-watchdog: "MYB-24"
+  myb-25-threejs-bundle-size-watchdog: "MYB-28"
+  myb-91-unity-canonical-baseline: "MYB-91"
+  myb-92-delete-unity-echappee3d: "MYB-92"
+  myb-37-unity-low-poly-premium-art-direction: "MYB-37"
+  myb-93-adapter-terrain-3d-skill-unity: "MYB-93"
 
 development_status:
   # MYB-1 - Epic MVP 1 - Boucle de ride mock jouable
@@ -386,6 +390,74 @@ development_status:
   # Story implemented for chunking/build budget control.
   myb-24-threejs-bundle-size-optimization: done
 
-  # MYB-25 - Three.js bundle size watchdog
+  # MYB-28 - Three.js bundle size watchdog
   # Story follows MYB-24 and keeps scoped Three.js bundle regression checks.
   myb-25-threejs-bundle-size-watchdog: done
+
+  # MYB-91 - Baseline Unity canonique Echapee4D
+  # Stabilise source control, Build Settings, validation Unity-MCP and WebGL reproducibility.
+  myb-91-unity-canonical-baseline: done
+
+  # MYB-92 - Supprimer le projet Unity legacy unity/Echappee3D
+  # Follow-up cleanup ticket blocked by MYB-91.
+  myb-92-delete-unity-echappee3d: done
+
+  # MYB-37 - Direction artistique stylisee premium Unity
+  # Cadrage stylise premium avec socle low-poly de production; references externes triees en validee partielle/refusee.
+  myb-37-unity-low-poly-premium-art-direction: done
+
+  # MYB-38 - Politique de licences pour assets Unity gratuits
+  # Politique conservatrice pour sources verifiees, licences accepte/refusee, attribution et manifest Unity.
+  myb-38-unity-free-asset-license-policy: done
+
+  # MYB-93 - Adapter le skill terrain-3d a Unity/Echapee4D
+  # Ticket documentaire/outillage cree depuis la revue MYB-37.
+  myb-93-adapter-terrain-3d-skill-unity: backlog
+
+# Correct-course 2026-06-11 - Unity canonical
+unity_canonical_decision_date: "2026-06-11"
+unity_canonical_decision: "User decision after MYB-90 video: active work moves to Unity WebGL; Three.js is parked as historical prototype/reference."
+unity_canonical_project: "unity/Echapee4D"
+unity_legacy_project: "unity/Echappee3D"
+web_prototype_status: "parked-history; do not modify src/** unless a Linear issue explicitly targets the parked web prototype."
+unity_canonical_source_artifact: "_bmad-output/planning-artifacts/sprint-change-proposal-unity-canonical-2026-06-11.md"
+unity_canonical_gdd: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
+unity_canonical_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md"
+unity_canonical_epic_stories: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
+unity_canonical_evidence: "MYB-89 Unity-MCP probe and MYB-90 Unity WebGL readiness capture."
+unity_canonical_next_action: "start-MYB-41"
+unity_canonical_first_story_to_start: "MYB-91"
+unity_canonical_validation_expected: "unity-mcp-cli status unity/Echapee4D --timeout 10000; Unity validators/build/capture when applicable; npm only if parked web files change."
+unity_canonical_linear_label: "unity"
+unity_canonical_linear_decision_issue: "MYB-39 Done"
+unity_canonical_linear_probe_issue: "MYB-89 Done"
+unity_canonical_linear_webgl_issue: "MYB-90 Done"
+unity_canonical_linear_baseline_issue: "MYB-91 Done"
+unity_canonical_linear_next_issue: "MYB-41 Backlog"
+unity_canonical_linear_sync_comment: "15b7646e-2311-4181-935d-bbbd9a923378"
+unity_canonical_linear_next_issue_comment: "5da2601f-999b-455b-8f16-40e8e053fb3a"
+unity_canonical_baseline_report: "_bmad-output/implementation-artifacts/myb-91-unity-canonical-baseline.md"
+unity_canonical_baseline_validation_report: "_bmad-output/unity-test-results/myb-91-canonical-baseline.txt"
+unity_canonical_baseline_validation: "PASS: Unity 6000.4.10f1, package com.ivanmurzak.unity.mcp 0.80.0, canonical scene in Build Settings, route 245.0m, 9 markers, 130 renderers, HUD/camera/road present."
+unity_canonical_webgl_rebuild: "Succeeded: _bmad-output/unity-test-results/myb-90-unity-webgl-build.txt, 0 build summary warnings/errors, 75M output."
+unity_canonical_webgl_capture: "_bmad-output/video-captures/myb-90-unity-webgl-readiness-2026-06-11T09-37-30-711Z/capture-summary.json"
+unity_canonical_cleanup_issue: "MYB-92 Done"
+unity_canonical_baseline_linear_comment: "0f71e3f0-17b3-4c1c-9cf7-5a461bb645e6"
+unity_canonical_baseline_review_comment: "c4732066-3def-4aa1-b092-51a0dd9128b0"
+unity_canonical_cleanup_report: "_bmad-output/implementation-artifacts/myb-92-delete-unity-echappee3d.md"
+unity_canonical_cleanup_validation: "PASS: unity/Echappee3D removed, 124 tracked legacy files deleted, .gitignore/scripts have no active legacy project references, unity-mcp-cli status passes for unity/Echapee4D, MYB91CanonicalBaselineValidator remains PASS, git diff --check passes."
+unity_legacy_project_status: "removed-by-MYB-92"
+unity_art_direction_issue: "MYB-37 Done"
+unity_art_direction_report: "_bmad-output/planning-artifacts/myb-37-direction-artistique-low-poly-premium-unity.md"
+unity_art_direction_context: "CONTEXT.md"
+unity_art_direction_summary: "Stylise premium avec socle low-poly de production; aventure/emerveillement first; readability sufficient for on-rail ride; up to three premium main fantasy signals per biome; V1 priority biomes are foret claire and village/campagne pavee; road surfaces may vary and suggest future physical feel without promising implemented mechanics; references are triaged as validated partial or refused."
+unity_art_direction_consistency_pass: "2026-06-11: active DA docs aligned; placeholders are provisional validation tools, references are validee partielle/refusee, product vision/GDD/architecture/stories no longer imply readability-first or Three.js asset pipeline as active DA source."
+unity_art_direction_consistency_linear_comment: "38919884-b1b0-4204-932e-1c83011aab54"
+unity_terrain_skill_adaptation_issue: "MYB-93 Backlog"
+unity_terrain_skill_adaptation_url: "https://linear.app/kefjbo/issue/MYB-93/adapter-le-skill-terrain-3d-a-unityechapee4d"
+unity_asset_license_policy_issue: "MYB-38 Done"
+unity_asset_license_policy_report: "_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md"
+unity_asset_license_policy_manifest: "unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json"
+unity_asset_license_policy_summary: "Accept CC0/Public Domain/CC-BY with verified source and metadata; restrict MIT/Apache-2.0/OFL to technical/font uses; default-refuse NC/ND/SA, ambiguous/custom terms, unverified reuploads, unclear AI-generated packs, extracted IP and too-direct MYB-37 copies; use approved/needs-review/rejected statuses."
+unity_asset_license_policy_implementation_comment: "2ee291c6-aca7-4026-85a0-f56db6d5d7af"
+unity_asset_license_policy_closure_comment: "b2f34fda-9921-4cf1-9517-14d951196b02"

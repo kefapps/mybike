@@ -1,0 +1,34 @@
+MYB-90 Unity WebGL readiness build
+Timestamp UTC: 2026-06-11T09:36:56.5108600Z
+Unity: 6000.4.10f1
+Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Build target supported: True
+Initial active build target: WebGL
+Configured server note: unity-mcp-cli status should treat local 20376 as skipped when 8081 is configured.
+
+Status: Succeeded
+Build path: /Users/jbodin/personnel/apps/mybike/_bmad-output/unity-webgl-builds/myb-90-unity-mcp-probe
+Duration seconds: 4.8
+Total size bytes: 78075757
+Warnings: 0
+Errors: 0
+
+Files:
+- Build/myb-90-unity-mcp-probe.data :: 16505871 bytes
+- Build/myb-90-unity-mcp-probe.framework.js :: 491616 bytes
+- Build/myb-90-unity-mcp-probe.loader.js :: 25778 bytes
+- Build/myb-90-unity-mcp-probe.wasm :: 61032893 bytes
+- TemplateData/MemoryProfiler.png :: 665 bytes
+- TemplateData/favicon.ico :: 2305 bytes
+- TemplateData/fullscreen-button.png :: 175 bytes
+- TemplateData/progress-bar-empty-dark.png :: 96 bytes
+- TemplateData/progress-bar-empty-light.png :: 109 bytes
+- TemplateData/progress-bar-full-dark.png :: 74 bytes
+- TemplateData/progress-bar-full-light.png :: 84 bytes
+- TemplateData/style.css :: 1448 bytes
+- TemplateData/unity-logo-dark.png :: 3042 bytes
+- TemplateData/unity-logo-light.png :: 3077 bytes
+- TemplateData/unity-logo-title-footer.png :: 1151 bytes
+- TemplateData/webmemd-icon.png :: 1670 bytes
+- index.html :: 5703 bytes

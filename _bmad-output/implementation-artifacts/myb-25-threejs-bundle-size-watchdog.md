@@ -1,7 +1,9 @@
-# Story MYB-25: Three.js bundle size watchdog
+# Story MYB-28: Three.js bundle size watchdog
 ## Metadata
-- Linear issue: `MYB-24` (follow-up)
-- Linear URL: https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build
+- Linear issue: `MYB-28`
+- Linear URL: https://linear.app/kefjbo/issue/MYB-28/threejs-bundle-size-watchdog
+- Linear parent issue: `MYB-24`
+- Linear parent URL: https://linear.app/kefjbo/issue/MYB-24/optimiser-la-taille-de-bundle-code-splitting-budget-de-build
 - Local status: `done`
 - Depends on: `MYB-24`
 - Active target: React/Vite/Three.js web demo
