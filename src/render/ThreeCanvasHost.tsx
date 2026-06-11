@@ -192,7 +192,9 @@ export function ThreeCanvasHost({
         inputSource,
         rideState,
         frameNowMs,
-        dtSeconds
+        dtSeconds,
+        undefined,
+        route
       );
       rideState = result.state;
 

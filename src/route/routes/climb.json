@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "echappee-montee",
+  "displayName": "Montee",
+  "description": "Montee progressive, 1.5 km, denivele marque, ambiance foret.",
+  "profile": "climb",
+  "biome": "forest",
+  "lengthMeters": 1500,
+  "points": [
+    { "distanceMeters": 0, "position": { "x": 0, "y": 0, "z": 0 } },
+    { "distanceMeters": 120, "position": { "x": 14, "y": 2, "z": 118 } },
+    { "distanceMeters": 260, "position": { "x": -10, "y": 6, "z": 258 } },
+    { "distanceMeters": 420, "position": { "x": 18, "y": 12, "z": 416 } },
+    { "distanceMeters": 600, "position": { "x": -8, "y": 18, "z": 594 } },
+    { "distanceMeters": 780, "position": { "x": 22, "y": 24, "z": 772 } },
+    { "distanceMeters": 960, "position": { "x": -16, "y": 30, "z": 950 } },
+    { "distanceMeters": 1140, "position": { "x": 12, "y": 26, "z": 1130 } },
+    { "distanceMeters": 1320, "position": { "x": -10, "y": 18, "z": 1310 } },
+    { "distanceMeters": 1500, "position": { "x": 0, "y": 10, "z": 1500 } }
+  ],
+  "segments": [
+    { "id": "forest", "fromProgress01": 0, "toProgress01": 0.6 },
+    { "id": "summit", "fromProgress01": 0.6, "toProgress01": 0.75 },
+    { "id": "forest", "fromProgress01": 0.75, "toProgress01": 1 }
+  ],
+  "collectibles": []
+}

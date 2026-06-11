@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "policy": {
+    "ticket": "MYB-52",
+    "summary": "MyBike vertical slice mock n'utilise aujourd'hui aucun asset tiers non produit par l'equipe. Ce manifest reste vide en l'etat mais documente la convention a suivre des qu'un asset CC0, CC-BY ou equivalent est ajoute a la scene 3D, a l'audio ou aux ressources telechargeables.",
+    "licensePolicyUrl": "./THIRD_PARTY_ASSETS.md"
+  },
+  "assets": []
+}

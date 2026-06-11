@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { withZenMode } from "../preferences";
 import {
   createInitialSessionState,
   sessionReducer
@@ -67,19 +68,53 @@ describe("sessionReducer", () => {
     });
   });
 
-  it("resets any phase to idle", () => {
-    const running = sessionReducer(createInitialSessionState(), {
-      type: "start",
-      now: 1000
-    });
+  it("resets to idle while keeping the current preferences", () => {
+    const initial = createInitialSessionState();
+    const zen = sessionReducer(initial, { type: "setZenMode", zenMode: true });
+    const running = sessionReducer(zen, { type: "start", now: 1000 });
     const failed = sessionReducer(running, {
       type: "fail",
       message: "WebGL indisponible"
     });
 
-    expect(sessionReducer(failed, { type: "reset" })).toEqual(
-      createInitialSessionState()
+    const reset = sessionReducer(failed, { type: "reset" });
+
+    expect(reset.phase).toBe("idle");
+    expect(reset.preferences).toEqual({ zenMode: true });
+    expect(reset.preferences).not.toBe(initial.preferences);
+  });
+
+  it("updates zen mode preferences without changing phase", () => {
+    const initial = createInitialSessionState();
+
+    const zen = sessionReducer(initial, { type: "setZenMode", zenMode: true });
+    const off = sessionReducer(zen, { type: "setZenMode", zenMode: false });
+
+    expect(zen.phase).toBe("idle");
+    expect(zen.preferences).toEqual({ zenMode: true });
+    expect(off.preferences).toEqual({ zenMode: false });
+    expect(off.phase).toBe("idle");
+  });
+
+  it("ignores non-boolean zen mode payloads", () => {
+    const initial = createInitialSessionState();
+
+    const next = sessionReducer(initial, {
+      type: "setZenMode",
+      zenMode: "yes" as unknown as boolean
+    });
+
+    expect(next.preferences).toEqual({ zenMode: false });
+  });
+
+  it("preserves custom initial preferences", () => {
+    const custom = withZenMode(
+      { zenMode: false },
+      true
     );
+    const initial = createInitialSessionState(custom);
+
+    expect(initial.preferences).toEqual({ zenMode: true });
   });
 
   it("keeps incoherent transitions deterministic", () => {

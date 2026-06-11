@@ -3,12 +3,16 @@ import { describe, expect, it } from "vitest";
 import { mockRouteDefinition } from "../route";
 import type { RouteDefinition } from "../route";
 import {
+  getBiomeBasePalette,
   getBiomePalette,
   getRouteCenterXAtZ,
   getRouteElevationAtZ,
   getRouteRenderPoints,
+  resolveRenderPalette,
+  resolveRenderPaletteForPresetId,
   toThreeVector3
 } from "./renderHelpers";
+import { getEnvironmentPreset } from "./environmentPresets";
 
 describe("render helpers", () => {
   it("maps route Vec3 values to Three.js vectors without mutating input", () => {
@@ -84,5 +88,65 @@ describe("render helpers", () => {
     expect(points).toHaveLength(2);
     expect(points[0]).toMatchObject({ x: 0, y: 0.03, z: 0 });
     expect(points.at(-1)).toMatchObject({ x: 0, y: 0.03, z: 100 });
+  });
+
+  it("returns biome base palettes for coast, forest, placeholder and unknown", () => {
+    expect(getBiomeBasePalette("coast", false)).toEqual({
+      ground: 0x79b99b,
+      route: 0xeecf82,
+      accent: 0x277fa8
+    });
+    expect(getBiomeBasePalette("forest", false)).toEqual({
+      ground: 0x234c34,
+      route: 0x8c7047,
+      accent: 0x1a5f39
+    });
+    expect(getBiomeBasePalette("coast", true)).toEqual({
+      ground: 0x8b9691,
+      route: 0x607080,
+      accent: 0x4d5a62
+    });
+    expect(getBiomeBasePalette("unknown", false)).toEqual(
+      getBiomeBasePalette("placeholder", false)
+    );
+  });
+
+  it("merges biome base colors with environment preset values", () => {
+    const preset = getEnvironmentPreset("softNight");
+    const merged = resolveRenderPalette("coast", false, preset);
+
+    expect(merged.ground).toBe(0x79b99b);
+    expect(merged.route).toBe(0xeecf82);
+    expect(merged.accent).toBe(0x277fa8);
+    expect(merged.sky).toBe(preset.sky);
+    expect(merged.fog).toBe(preset.fog);
+    expect(merged.fogNear).toBe(preset.fogNear);
+    expect(merged.fogFar).toBe(preset.fogFar);
+    expect(merged.ambientColor).toBe(preset.ambientColor);
+    expect(merged.sunColor).toBe(preset.sunColor);
+    expect(merged.sunIntensity).toBe(preset.sunIntensity);
+    expect(merged.sunPosition).toEqual(preset.sunPosition);
+  });
+
+  it("falls back to placeholder base palette when route uses the fallback biome", () => {
+    const preset = getEnvironmentPreset("morning");
+    const merged = resolveRenderPalette("coast", true, preset);
+
+    expect(merged.ground).toBe(0x8b9691);
+    expect(merged.route).toBe(0x607080);
+    expect(merged.accent).toBe(0x4d5a62);
+    expect(merged.sky).toBe(preset.sky);
+  });
+
+  it("resolves palettes for preset ids including unknown values", () => {
+    const merged = resolveRenderPaletteForPresetId("forest", false, "softNight");
+    const preset = getEnvironmentPreset("softNight");
+
+    expect(merged.ground).toBe(0x234c34);
+    expect(merged.sky).toBe(preset.sky);
+    expect(merged.fog).toBe(preset.fog);
+    expect(resolveRenderPaletteForPresetId("forest", false, null)).toEqual(
+      resolveRenderPalette("forest", false, getEnvironmentPreset("morning"))
+    );
   });
 });

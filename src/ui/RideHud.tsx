@@ -1,5 +1,6 @@
 import type { RenderFrameSnapshot } from "../render";
 import type { RidePhase } from "../app/session/sessionTypes";
+import { COPY, getBiomeLabel, getPhaseLabel, getSourceLabel } from "./copy";
 import {
   formatDistance,
   formatDuration,
@@ -19,31 +20,31 @@ export function RideHud({ phase, snapshot }: RideHudProps) {
   const biomeId = snapshot?.route.biomeId ?? "coast";
 
   return (
-    <aside className="ride-hud" aria-label="HUD de balade">
+    <aside className="ride-hud" aria-label={COPY["hud.label"]}>
       <dl className="ride-hud__metrics">
         <div className="ride-hud__metric ride-hud__metric--primary">
-          <dt>Vitesse</dt>
+          <dt>{COPY["hud.speed"]}</dt>
           <dd>{formatSpeed(speedMps)}</dd>
         </div>
         <div className="ride-hud__metric ride-hud__metric--primary">
-          <dt>Distance</dt>
+          <dt>{COPY["hud.distance"]}</dt>
           <dd>{formatDistance(stats.distanceMeters)}</dd>
         </div>
         <div className="ride-hud__metric ride-hud__metric--primary">
-          <dt>Temps</dt>
+          <dt>{COPY["hud.time"]}</dt>
           <dd>{formatDuration(stats.elapsedMs)}</dd>
         </div>
         <div className="ride-hud__metric ride-hud__metric--meta">
-          <dt>Source</dt>
-          <dd>{source}</dd>
+          <dt>{COPY["hud.source"]}</dt>
+          <dd>{getSourceLabel(source)}</dd>
         </div>
         <div className="ride-hud__metric ride-hud__metric--meta">
-          <dt>Ambiance</dt>
-          <dd>{biomeId}</dd>
+          <dt>{COPY["hud.biome"]}</dt>
+          <dd>{getBiomeLabel(biomeId)}</dd>
         </div>
         <div className="ride-hud__metric ride-hud__metric--meta">
-          <dt>Phase</dt>
-          <dd>{phase}</dd>
+          <dt>{COPY["hud.phase"]}</dt>
+          <dd>{getPhaseLabel(phase)}</dd>
         </div>
       </dl>
     </aside>

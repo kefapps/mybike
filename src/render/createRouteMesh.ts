@@ -1,4 +1,14 @@
-import * as THREE from "three";
+import {
+  BoxGeometry
+} from "three/src/geometries/BoxGeometry.js";
+import { BufferGeometry } from "three/src/core/BufferGeometry.js";
+import { DoubleSide } from "three/src/constants.js";
+import { Float32BufferAttribute } from "three/src/core/BufferAttribute.js";
+import { Material } from "three/src/materials/Material.js";
+import { Group } from "three/src/objects/Group.js";
+import { Mesh } from "three/src/objects/Mesh.js";
+import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial.js";
+import { Vector3 } from "three/src/math/Vector3.js";
 
 import {
   resolveRouteDefinition,
@@ -14,17 +24,17 @@ const CONTACT_SHADOW_WIDTH_METERS = 0.55;
 const ROUTE_FRAME_STEP_METERS = 9;
 
 export type RouteMeshResult = {
-  group: THREE.Group;
-  mesh: THREE.Mesh;
-  geometry: THREE.BufferGeometry;
-  material: THREE.MeshStandardMaterial;
-  geometries: THREE.BufferGeometry[];
-  materials: THREE.Material[];
+  group: Group;
+  mesh: Mesh;
+  geometry: BufferGeometry;
+  material: MeshStandardMaterial;
+  geometries: BufferGeometry[];
+  materials: Material[];
 };
 
 export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
   const frames = getRouteFrames(route);
-  const group = new THREE.Group();
+  const group = new Group();
   group.name = "scenic-route";
 
   const roadGeometry = createRibbonGeometry(frames, ROUTE_WIDTH_METERS / 2);
@@ -80,70 +90,70 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
   rightVergeGeometry.translate(0, 0.012, 0);
   leftContactShadowGeometry.translate(0, 0.028, 0);
   rightContactShadowGeometry.translate(0, 0.028, 0);
-  const dashGeometry = new THREE.BoxGeometry(0.18, 0.035, 7);
-  const surfaceBandGeometry = new THREE.BoxGeometry(
+  const dashGeometry = new BoxGeometry(0.18, 0.035, 7);
+  const surfaceBandGeometry = new BoxGeometry(
     ROUTE_WIDTH_METERS - 0.45,
     0.028,
     0.42
   );
-  const shoulderRhythmGeometry = new THREE.BoxGeometry(0.46, 0.035, 2.4);
-  const surfaceGrainGeometry = new THREE.BoxGeometry(0.72, 0.024, 0.18);
+  const shoulderRhythmGeometry = new BoxGeometry(0.46, 0.035, 2.4);
+  const surfaceGrainGeometry = new BoxGeometry(0.72, 0.024, 0.18);
 
-  const roadMaterial = new THREE.MeshStandardMaterial({
+  const roadMaterial = new MeshStandardMaterial({
     color: 0xf2d58b,
     roughness: 0.9,
     metalness: 0,
-    side: THREE.DoubleSide
+    side: DoubleSide
   });
-  const shoulderMaterial = new THREE.MeshStandardMaterial({
+  const shoulderMaterial = new MeshStandardMaterial({
     color: 0xb5b36f,
     roughness: 0.96,
     metalness: 0,
-    side: THREE.DoubleSide
+    side: DoubleSide
   });
-  const edgeMaterial = new THREE.MeshStandardMaterial({
+  const edgeMaterial = new MeshStandardMaterial({
     color: 0xfff3c2,
     roughness: 0.7,
     metalness: 0,
-    side: THREE.DoubleSide
+    side: DoubleSide
   });
-  const vergeMaterial = new THREE.MeshStandardMaterial({
+  const vergeMaterial = new MeshStandardMaterial({
     color: 0x5b7d4a,
     roughness: 0.98,
     metalness: 0,
-    side: THREE.DoubleSide,
+    side: DoubleSide,
     transparent: true,
     opacity: 0.78
   });
-  const contactShadowMaterial = new THREE.MeshStandardMaterial({
+  const contactShadowMaterial = new MeshStandardMaterial({
     color: 0x2d2618,
     roughness: 1,
     metalness: 0,
-    side: THREE.DoubleSide,
+    side: DoubleSide,
     transparent: true,
     opacity: 0.32,
     depthWrite: false
   });
-  const dashMaterial = new THREE.MeshStandardMaterial({
+  const dashMaterial = new MeshStandardMaterial({
     color: 0xfdf4d0,
     roughness: 0.74,
     metalness: 0
   });
-  const surfaceBandMaterial = new THREE.MeshStandardMaterial({
+  const surfaceBandMaterial = new MeshStandardMaterial({
     color: 0xd7b96d,
     roughness: 0.95,
     metalness: 0,
     transparent: true,
     opacity: 0.42
   });
-  const shoulderRhythmMaterial = new THREE.MeshStandardMaterial({
+  const shoulderRhythmMaterial = new MeshStandardMaterial({
     color: 0xe8d793,
     roughness: 0.9,
     metalness: 0,
     transparent: true,
     opacity: 0.62
   });
-  const surfaceGrainMaterial = new THREE.MeshStandardMaterial({
+  const surfaceGrainMaterial = new MeshStandardMaterial({
     color: 0xa88345,
     roughness: 0.98,
     metalness: 0,
@@ -151,35 +161,35 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
     opacity: 0.34
   });
 
-  const roadMesh = new THREE.Mesh(roadGeometry, roadMaterial);
+  const roadMesh = new Mesh(roadGeometry, roadMaterial);
   roadMesh.name = "scenic-route-surface";
 
-  const leftShoulder = new THREE.Mesh(leftShoulderGeometry, shoulderMaterial);
+  const leftShoulder = new Mesh(leftShoulderGeometry, shoulderMaterial);
   leftShoulder.name = "scenic-route-left-shoulder";
 
-  const rightShoulder = new THREE.Mesh(rightShoulderGeometry, shoulderMaterial);
+  const rightShoulder = new Mesh(rightShoulderGeometry, shoulderMaterial);
   rightShoulder.name = "scenic-route-right-shoulder";
 
-  const leftEdge = new THREE.Mesh(leftEdgeGeometry, edgeMaterial);
+  const leftEdge = new Mesh(leftEdgeGeometry, edgeMaterial);
   leftEdge.name = "scenic-route-left-edge";
 
-  const rightEdge = new THREE.Mesh(rightEdgeGeometry, edgeMaterial);
+  const rightEdge = new Mesh(rightEdgeGeometry, edgeMaterial);
   rightEdge.name = "scenic-route-right-edge";
 
-  const leftVerge = new THREE.Mesh(leftVergeGeometry, vergeMaterial);
+  const leftVerge = new Mesh(leftVergeGeometry, vergeMaterial);
   leftVerge.name = "scenic-route-left-verge";
 
-  const rightVerge = new THREE.Mesh(rightVergeGeometry, vergeMaterial);
+  const rightVerge = new Mesh(rightVergeGeometry, vergeMaterial);
   rightVerge.name = "scenic-route-right-verge";
 
-  const leftContactShadow = new THREE.Mesh(
+  const leftContactShadow = new Mesh(
     leftContactShadowGeometry,
     contactShadowMaterial
   );
   leftContactShadow.name = "scenic-route-left-contact-shadow";
   leftContactShadow.renderOrder = 1;
 
-  const rightContactShadow = new THREE.Mesh(
+  const rightContactShadow = new Mesh(
     rightContactShadowGeometry,
     contactShadowMaterial
   );
@@ -274,15 +284,15 @@ export function createRouteMesh(route: RouteDefinition): RouteMeshResult {
 }
 
 type RouteRenderFrame = {
-  center: THREE.Vector3;
-  tangent: THREE.Vector3;
-  perpendicular: THREE.Vector3;
+  center: Vector3;
+  tangent: Vector3;
+  perpendicular: Vector3;
   distanceMeters: number;
 };
 
 function getRouteFrames(route: RouteDefinition): RouteRenderFrame[] {
   const { route: resolvedRoute } = resolveRouteDefinition(route);
-  const points: { center: THREE.Vector3; distanceMeters: number }[] = [];
+  const points: { center: Vector3; distanceMeters: number }[] = [];
 
   for (
     let distanceMeters = 0;
@@ -309,7 +319,7 @@ function getRouteFrames(route: RouteDefinition): RouteRenderFrame[] {
     const previous = points[Math.max(0, index - 1)].center;
     const next = points[Math.min(points.length - 1, index + 1)].center;
     const tangent = next.clone().sub(previous);
-    const perpendicular = new THREE.Vector3(-tangent.z, 0, tangent.x);
+    const perpendicular = new Vector3(-tangent.z, 0, tangent.x);
 
     if (tangent.lengthSq() === 0) {
       tangent.set(0, 0, 1);
@@ -331,7 +341,7 @@ function getRouteFrames(route: RouteDefinition): RouteRenderFrame[] {
 function createRibbonGeometry(
   frames: RouteRenderFrame[],
   halfWidth: number
-): THREE.BufferGeometry {
+): BufferGeometry {
   return createSideRibbonGeometry(frames, halfWidth, halfWidth, 0);
 }
 
@@ -340,7 +350,7 @@ function createSideRibbonGeometry(
   innerOffset: number,
   outerOffset: number,
   side: -1 | 0 | 1
-): THREE.BufferGeometry {
+): BufferGeometry {
   const vertices: number[] = [];
   const indices: number[] = [];
 
@@ -372,10 +382,10 @@ function createSideRibbonGeometry(
     }
   }
 
-  const geometry = new THREE.BufferGeometry();
+  const geometry = new BufferGeometry();
   geometry.setAttribute(
     "position",
-    new THREE.Float32BufferAttribute(vertices, 3)
+    new Float32BufferAttribute(vertices, 3)
   );
   geometry.setIndex(indices);
   geometry.computeVertexNormals();
@@ -385,14 +395,14 @@ function createSideRibbonGeometry(
 
 function createRepeatedRouteMarkers(
   frames: RouteRenderFrame[],
-  geometry: THREE.BufferGeometry,
-  material: THREE.Material,
+  geometry: BufferGeometry,
+  material: Material,
   groupName: string,
   startMeters: number,
   stepMeters: number,
   lateralOffset: number
-): THREE.Group {
-  const group = new THREE.Group();
+): Group {
+  const group = new Group();
   group.name = groupName;
   const lastDistance = frames.at(-1)?.distanceMeters ?? 0;
 
@@ -402,7 +412,7 @@ function createRepeatedRouteMarkers(
     distanceMeters += stepMeters
   ) {
     const frame = sampleFrameAtDistance(frames, distanceMeters);
-    const marker = new THREE.Mesh(geometry, material);
+    const marker = new Mesh(geometry, material);
     marker.position
       .copy(frame.center)
       .addScaledVector(frame.perpendicular, lateralOffset);
@@ -416,14 +426,14 @@ function createRepeatedRouteMarkers(
 
 function createMirroredRouteMarkers(
   frames: RouteRenderFrame[],
-  geometry: THREE.BufferGeometry,
-  material: THREE.Material,
+  geometry: BufferGeometry,
+  material: Material,
   groupName: string,
   startMeters: number,
   stepMeters: number,
   lateralOffset: number
-): THREE.Group {
-  const group = new THREE.Group();
+): Group {
+  const group = new Group();
   group.name = groupName;
   const lastDistance = frames.at(-1)?.distanceMeters ?? 0;
 
@@ -435,7 +445,7 @@ function createMirroredRouteMarkers(
     const frame = sampleFrameAtDistance(frames, distanceMeters);
 
     for (const side of [-1, 1] as const) {
-      const marker = new THREE.Mesh(geometry, material);
+      const marker = new Mesh(geometry, material);
       marker.position
         .copy(frame.center)
         .addScaledVector(frame.perpendicular, lateralOffset * side);
@@ -451,14 +461,14 @@ function createMirroredRouteMarkers(
 
 function createAlternatingRouteMarkers(
   frames: RouteRenderFrame[],
-  geometry: THREE.BufferGeometry,
-  material: THREE.Material,
+  geometry: BufferGeometry,
+  material: Material,
   groupName: string,
   startMeters: number,
   stepMeters: number,
   maxLateralOffset: number
-): THREE.Group {
-  const group = new THREE.Group();
+): Group {
+  const group = new Group();
   group.name = groupName;
   const lastDistance = frames.at(-1)?.distanceMeters ?? 0;
   let markerIndex = 0;
@@ -472,7 +482,7 @@ function createAlternatingRouteMarkers(
     const side = markerIndex % 2 === 0 ? -1 : 1;
     const lateralOffset =
       side * (0.35 + (markerIndex % 4) * ((maxLateralOffset - 0.35) / 3));
-    const marker = new THREE.Mesh(geometry, material);
+    const marker = new Mesh(geometry, material);
     marker.position
       .copy(frame.center)
       .addScaledVector(frame.perpendicular, lateralOffset);
@@ -510,7 +520,7 @@ function sampleFrameAtDistance(
       }
 
       tangent.normalize();
-      const perpendicular = new THREE.Vector3(-tangent.z, 0, tangent.x);
+      const perpendicular = new Vector3(-tangent.z, 0, tangent.x);
 
       if (perpendicular.lengthSq() === 0) {
         perpendicular.set(1, 0, 0);

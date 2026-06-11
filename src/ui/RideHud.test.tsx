@@ -71,9 +71,9 @@ describe("RideHud", () => {
     expect(rendered.container.textContent).toContain("0,0 km/h");
     expect(rendered.container.textContent).toContain("0 m");
     expect(rendered.container.textContent).toContain("0 min 00 s");
-    expect(rendered.container.textContent).toContain("mock");
-    expect(rendered.container.textContent).toContain("coast");
-    expect(rendered.container.textContent).toContain("running");
+    expect(rendered.container.textContent).toContain("Simulation");
+    expect(rendered.container.textContent).toContain("Côte");
+    expect(rendered.container.textContent).toContain("En selle");
   });
 
   it("renders speed, distance, time, source, biome and phase from a snapshot", () => {
@@ -83,8 +83,8 @@ describe("RideHud", () => {
     expect(rendered.container.textContent).toContain("10,8 km/h");
     expect(rendered.container.textContent).toContain("1,2 km");
     expect(rendered.container.textContent).toContain("1 min 05 s");
-    expect(rendered.container.textContent).toContain("mock");
-    expect(rendered.container.textContent).toContain("forest");
-    expect(rendered.container.textContent).toContain("running");
+    expect(rendered.container.textContent).toContain("Simulation");
+    expect(rendered.container.textContent).toContain("Forêt");
+    expect(rendered.container.textContent).toContain("En selle");
   });
 });

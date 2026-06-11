@@ -7,6 +7,8 @@
     "dev": "vite",
     "capture:ride-video": "node scripts/capture-ride-video.mjs",
     "validate:private-demo": "node scripts/private-demo-readiness.mjs",
+    "validate:bundle-budget": "node scripts/validate-build-budgets.mjs",
+    "credits:gen": "node scripts/generate-third-party-assets.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run src scripts",
     "test:app": "vitest run src scripts",

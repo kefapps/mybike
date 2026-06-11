@@ -1,7 +1,10 @@
+import { createInitialRidePreferences, withZenMode } from "../preferences";
 import type { SessionAction, SessionState } from "./sessionTypes";
 
-export function createInitialSessionState(): SessionState {
-  return { phase: "idle" };
+export function createInitialSessionState(
+  preferences = createInitialRidePreferences()
+): SessionState {
+  return { phase: "idle", preferences };
 }
 
 export function sessionReducer(
@@ -15,6 +18,7 @@ export function sessionReducer(
       }
 
       return {
+        ...state,
         phase: "running",
         startedAt: action.now
       };
@@ -63,8 +67,14 @@ export function sessionReducer(
         errorMessage: action.message
       };
 
+    case "setZenMode":
+      return {
+        ...state,
+        preferences: withZenMode(state.preferences ?? { zenMode: false }, action.zenMode === true)
+      };
+
     case "reset":
-      return createInitialSessionState();
+      return createInitialSessionState(state.preferences);
 
     default:
       return state;

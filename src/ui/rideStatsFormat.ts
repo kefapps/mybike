@@ -1,4 +1,5 @@
 import { clampEffort01, type RideStats } from "../ride";
+import { COPY } from "./copy";
 
 export const EMPTY_RIDE_STATS: RideStats = Object.freeze({
   elapsedMs: 0,
@@ -15,25 +16,25 @@ export function formatDuration(elapsedMs: number): string {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
-  return `${minutes} min ${seconds.toString().padStart(2, "0")} s`;
+  return `${minutes} ${COPY["unit.min"]} ${seconds.toString().padStart(2, "0")} ${COPY["unit.s"]}`;
 }
 
 export function formatDistance(distanceMeters: number): string {
   const safeDistanceMeters = coerceNonNegative(distanceMeters);
 
   if (safeDistanceMeters < 1000) {
-    return `${Math.round(safeDistanceMeters)} m`;
+    return `${Math.round(safeDistanceMeters)} ${COPY["unit.m"]}`;
   }
 
-  return `${formatDecimal(safeDistanceMeters / 1000)} km`;
+  return `${formatDecimal(safeDistanceMeters / 1000)} ${COPY["unit.km"]}`;
 }
 
 export function formatSpeed(speedMps: number): string {
-  return `${formatDecimal(coerceNonNegative(speedMps) * 3.6)} km/h`;
+  return `${formatDecimal(coerceNonNegative(speedMps) * 3.6)} ${COPY["unit.kmh"]}`;
 }
 
 export function formatEffortPercent(effort01: number): string {
-  return `${Math.round(clampEffort01(effort01) * 100)} %`;
+  return `${Math.round(clampEffort01(effort01) * 100)} ${COPY["unit.percent"]}`;
 }
 
 function coerceNonNegative(value: number): number {

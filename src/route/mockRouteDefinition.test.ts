@@ -65,4 +65,30 @@ describe("mockRouteDefinition", () => {
     expect(grades.some((grade) => grade < -0.03)).toBe(true);
     expect(Math.max(...grades.map((grade) => Math.abs(grade)))).toBeLessThan(0.07);
   });
+
+  it("exposes at least four training segments covering the full ride", () => {
+    const segments = mockRouteDefinition.segments ?? [];
+
+    expect(segments.length).toBeGreaterThanOrEqual(4);
+
+    const expectedKinds = segments.map((segment) => segment.kind);
+    const uniqueKinds = new Set(expectedKinds);
+
+    expect(uniqueKinds.size).toBeGreaterThanOrEqual(4);
+
+    const sortedKinds = segments
+      .slice()
+      .sort((left, right) => left.fromProgress01 - right.fromProgress01)
+      .map((segment) => segment.kind);
+    expect(sortedKinds[0]).toBe("warmup");
+    expect(sortedKinds[sortedKinds.length - 1]).toBe("cooldown");
+
+    expect(segments[0].fromProgress01).toBe(0);
+    expect(segments[segments.length - 1].toProgress01).toBe(1);
+
+    for (const segment of segments) {
+      expect(segment.targetEffort01).toBeGreaterThanOrEqual(0);
+      expect(segment.targetEffort01).toBeLessThanOrEqual(1);
+    }
+  });
 });

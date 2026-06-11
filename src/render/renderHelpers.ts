@@ -1,6 +1,10 @@
-import * as THREE from "three";
+import { Vector3 } from "three/src/math/Vector3.js";
 
 import { resolveRouteDefinition, type RouteDefinition, type Vec3 } from "../route";
+import {
+  getEnvironmentPreset,
+  type EnvironmentPreset
+} from "./environmentPresets";
 
 export type BiomePalette = {
   sky: number;
@@ -17,6 +21,12 @@ export type BiomePalette = {
   sunColor: number;
   sunIntensity: number;
   sunPosition: Vec3;
+};
+
+export type BiomeBasePalette = {
+  ground: number;
+  route: number;
+  accent: number;
 };
 
 const BIOME_PALETTES: Record<string, BiomePalette> = {
@@ -70,8 +80,14 @@ const BIOME_PALETTES: Record<string, BiomePalette> = {
   }
 };
 
-export function toThreeVector3(vec: Vec3, yOffset = 0): THREE.Vector3 {
-  return new THREE.Vector3(vec.x, vec.y + yOffset, vec.z);
+const BIOME_BASE_PALETTES: Record<string, BiomeBasePalette> = {
+  coast: { ground: 0x79b99b, route: 0xeecf82, accent: 0x277fa8 },
+  forest: { ground: 0x234c34, route: 0x8c7047, accent: 0x1a5f39 },
+  placeholder: { ground: 0x8b9691, route: 0x607080, accent: 0x4d5a62 }
+};
+
+export function toThreeVector3(vec: Vec3, yOffset = 0): Vector3 {
+  return new Vector3(vec.x, vec.y + yOffset, vec.z);
 }
 
 export function getBiomePalette(
@@ -85,7 +101,55 @@ export function getBiomePalette(
   return BIOME_PALETTES[biomeId] ?? BIOME_PALETTES.placeholder;
 }
 
-export function getRouteRenderPoints(route: RouteDefinition): THREE.Vector3[] {
+export function getBiomeBasePalette(
+  biomeId: string,
+  usedFallback: boolean
+): BiomeBasePalette {
+  if (usedFallback) {
+    return BIOME_BASE_PALETTES.placeholder;
+  }
+
+  return BIOME_BASE_PALETTES[biomeId] ?? BIOME_BASE_PALETTES.placeholder;
+}
+
+export function resolveRenderPalette(
+  biomeId: string,
+  usedFallback: boolean,
+  preset: EnvironmentPreset
+): BiomePalette {
+  const base = getBiomeBasePalette(biomeId, usedFallback);
+
+  return {
+    sky: preset.sky,
+    fog: preset.fog,
+    fogNear: preset.fogNear,
+    fogFar: preset.fogFar,
+    ambientColor: preset.ambientColor,
+    ambientIntensity: preset.ambientIntensity,
+    sunColor: preset.sunColor,
+    sunIntensity: preset.sunIntensity,
+    sunPosition: preset.sunPosition,
+    horizon: preset.horizon,
+    horizonOpacity: preset.horizonOpacity,
+    ground: base.ground,
+    route: base.route,
+    accent: base.accent
+  };
+}
+
+export function resolveRenderPaletteForPresetId(
+  biomeId: string,
+  usedFallback: boolean,
+  presetId: string | null | undefined
+): BiomePalette {
+  return resolveRenderPalette(
+    biomeId,
+    usedFallback,
+    getEnvironmentPreset(presetId)
+  );
+}
+
+export function getRouteRenderPoints(route: RouteDefinition): Vector3[] {
   const { route: resolvedRoute } = resolveRouteDefinition(route);
 
   return resolvedRoute.points.map((point) => toThreeVector3(point.position, 0.03));

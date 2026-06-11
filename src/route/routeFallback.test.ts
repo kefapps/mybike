@@ -107,7 +107,8 @@ describe("createRouteFrameSnapshot", () => {
       progress: { distanceMeters: 500, progress01: 0.5, completed: false },
       elapsedMs: 1000,
       stats: { elapsedMs: 1000, distanceMeters: 500, averageSpeedMps: 500 },
-      completed: false
+      completed: false,
+      segmentStatsResults: []
     };
 
     const routeFrame = createRouteFrameSnapshot(
@@ -119,5 +120,7 @@ describe("createRouteFrameSnapshot", () => {
     expect(routeFrame.sample.distanceMeters).toBe(500);
     expect(routeFrame.biomeId).toBe("forest");
     expect(routeFrame.camera.progress01).toBe(0.5);
+    expect(routeFrame.segment.current?.kind).toBe("sprint");
+    expect(routeFrame.segment.count).toBe(5);
   });
 });

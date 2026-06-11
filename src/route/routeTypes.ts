@@ -1,4 +1,5 @@
 import type { RideFrameSnapshot, RideProgress } from "../ride";
+import type { SegmentDefinition, SegmentSelection } from "./segments";
 
 export type Vec3 = {
   x: number;
@@ -22,13 +23,16 @@ export type RouteDefinition = {
   lengthMeters: number;
   points: RoutePoint[];
   biomes: BiomeSegment[];
+  segments?: SegmentDefinition[];
+  profile?: RouteProfile;
 };
 
 export type RouteFallbackReason =
   | "missing-route"
   | "invalid-length"
   | "invalid-points"
-  | "invalid-biomes";
+  | "invalid-biomes"
+  | "invalid-segments";
 
 export type RouteResolution = {
   route: RouteDefinition;
@@ -69,6 +73,37 @@ export type RouteFrameSnapshot = {
   sample: RouteSample;
   camera: CameraRigSnapshot;
   biomeId: string;
+  segment: SegmentSelection;
+  difficulty?: RouteDifficultySnapshot;
   usedFallback: boolean;
   fallbackReason?: RouteFallbackReason;
+};
+
+export type DifficultySegmentType =
+  | "flat"
+  | "climb"
+  | "descent"
+  | "sprint"
+  | "recovery";
+
+export type RouteDifficultySegment = {
+  fromProgress01: number;
+  toProgress01: number;
+  segmentType: DifficultySegmentType;
+};
+
+export type RouteElevationPoint = {
+  distanceMeters: number;
+  elevationMeters: number;
+};
+
+export type RouteProfile = {
+  elevationPoints: RouteElevationPoint[];
+  difficultySegments: RouteDifficultySegment[];
+};
+
+export type RouteDifficultySnapshot = {
+  elevationMeters: number;
+  grade: number;
+  segmentType: DifficultySegmentType;
 };

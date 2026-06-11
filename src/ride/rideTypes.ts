@@ -1,3 +1,5 @@
+import type { SegmentStatsResult, SegmentStatsState } from "./segments";
+
 export type RideInputSourceKind = "mock";
 
 export type RideInputSample = {
@@ -51,6 +53,7 @@ export type RideFrameState = {
   startedAtMs: number;
   speed: SmoothedSpeedState;
   progress: RideProgress;
+  segmentStats: SegmentStatsState;
 };
 
 export type RideFrameSnapshot = {
@@ -62,6 +65,7 @@ export type RideFrameSnapshot = {
   elapsedMs: number;
   stats: RideStats;
   completed: boolean;
+  segmentStatsResults?: SegmentStatsResult[];
 };
 
 export type RideFrameConfig = {

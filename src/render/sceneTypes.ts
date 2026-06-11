@@ -1,9 +1,12 @@
 import type { RideFrameSnapshot } from "../ride";
 import type { RouteFrameSnapshot } from "../route";
+import type { EnvironmentPresetId } from "./environmentPresets";
 
 export type RenderFrameSnapshot = {
   ride: RideFrameSnapshot;
   route: RouteFrameSnapshot;
+  environmentPresetId?: EnvironmentPresetId | null | undefined;
+  weatherEnabled?: boolean | null | undefined;
 };
 
 export type SceneController = {

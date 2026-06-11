@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "assets": [
+    {
+      "id": "tree-oak-01",
+      "name": "Oak Tree",
+      "file": "tree_oak_01.glb",
+      "sourceUrl": "https://polyhaven.com/a/oak_tree",
+      "author": "Poly Haven",
+      "license": "CC0",
+      "attributionRequired": false,
+      "tags": ["vegetation", "tree", "oak", "deciduous"],
+      "biomes": ["forest", "countryside"],
+      "animated": false,
+      "sizeKb": 320,
+      "triangleBudget": 1200,
+      "scale": { "x": 1.0, "y": 1.0, "z": 1.0 },
+      "notes": "Placeholder — remplacer par un asset final avant la release"
+    },
+    {
+      "id": "rock-boulder-01",
+      "name": "Boulder Rock",
+      "file": "rock_boulder_01.glb",
+      "sourceUrl": "https://quaternius.com/models/rock-boulder",
+      "author": "Quaternius",
+      "license": "CC0",
+      "attributionRequired": false,
+      "tags": ["rock", "boulder", "geology", "obstacle"],
+      "biomes": ["mountain", "countryside"],
+      "animated": false,
+      "sizeKb": 180,
+      "triangleBudget": 800,
+      "scale": { "x": 1.0, "y": 1.0, "z": 1.0 },
+      "notes": "Placeholder — remplacer par un asset final avant la release"
+    },
+    {
+      "id": "building-cottage-01",
+      "name": "Cottage",
+      "file": "building_cottage_01.glb",
+      "sourceUrl": "https://kenney.nl/assets/cottage",
+      "author": "Kenney",
+      "license": "CC0",
+      "attributionRequired": false,
+      "tags": ["building", "cottage", "architecture", "village"],
+      "biomes": ["village", "countryside"],
+      "animated": false,
+      "sizeKb": 450,
+      "triangleBudget": 2200,
+      "scale": { "x": 1.0, "y": 1.0, "z": 1.0 },
+      "notes": "Placeholder — remplacer par un asset final avant la release"
+    }
+  ]
+}

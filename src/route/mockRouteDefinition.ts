@@ -15,5 +15,60 @@ export const mockRouteDefinition: RouteDefinition = {
   biomes: [
     { id: "coast", fromProgress01: 0, toProgress01: 0.01 },
     { id: "forest", fromProgress01: 0.01, toProgress01: 1 }
+  ],
+  segments: [
+    {
+      id: "warmup",
+      kind: "warmup",
+      fromProgress01: 0,
+      toProgress01: 0.15,
+      targetEffort01: 0.3
+    },
+    {
+      id: "climb",
+      kind: "climb",
+      fromProgress01: 0.15,
+      toProgress01: 0.45,
+      targetEffort01: 0.7
+    },
+    {
+      id: "sprint",
+      kind: "sprint",
+      fromProgress01: 0.45,
+      toProgress01: 0.55,
+      targetEffort01: 0.95
+    },
+    {
+      id: "recovery",
+      kind: "recovery",
+      fromProgress01: 0.55,
+      toProgress01: 0.85,
+      targetEffort01: 0.4
+    },
+    {
+      id: "cooldown",
+      kind: "cooldown",
+      fromProgress01: 0.85,
+      toProgress01: 1,
+      targetEffort01: 0.25
+    }
   ]
+,  profile: {
+    elevationPoints: [
+      { distanceMeters: 0, elevationMeters: 0 },
+      { distanceMeters: 150, elevationMeters: 5 },
+      { distanceMeters: 320, elevationMeters: 2 },
+      { distanceMeters: 500, elevationMeters: 10 },
+      { distanceMeters: 700, elevationMeters: 4 },
+      { distanceMeters: 850, elevationMeters: 8 },
+      { distanceMeters: 1000, elevationMeters: 3 }
+    ],
+    difficultySegments: [
+      { fromProgress01: 0, toProgress01: 0.15, segmentType: "flat" },
+      { fromProgress01: 0.15, toProgress01: 0.5, segmentType: "climb" },
+      { fromProgress01: 0.5, toProgress01: 0.7, segmentType: "descent" },
+      { fromProgress01: 0.7, toProgress01: 0.85, segmentType: "sprint" },
+      { fromProgress01: 0.85, toProgress01: 1, segmentType: "recovery" }
+    ]
+  }
 };

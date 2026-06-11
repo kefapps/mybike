@@ -1,6 +1,7 @@
 import { useId } from "react";
 
 import { clampEffort01 } from "../ride";
+import { COPY } from "./copy";
 import { formatEffortPercent, formatSpeed } from "./rideStatsFormat";
 
 type MockRideControlsProps = {
@@ -21,20 +22,24 @@ export function MockRideControls({
   const sliderId = useId();
   const safeEffort01 = clampEffort01(effort01);
   const targetSpeedLabel =
-    targetSpeedMps === undefined ? "en attente" : formatSpeed(targetSpeedMps);
+    targetSpeedMps === undefined
+      ? COPY["mock.feedback.pending"]
+      : formatSpeed(targetSpeedMps);
 
   return (
     <div className="mock-controls">
       <div className="mock-controls__header">
-        <label htmlFor={sliderId}>Effort mock</label>
+        <label htmlFor={sliderId}>{COPY["mock.slider.label"]}</label>
         <output htmlFor={sliderId}>{formatEffortPercent(safeEffort01)}</output>
       </div>
       <p className="mock-controls__feedback">
-        Allure cible {targetSpeedLabel} · affichée {formatSpeed(currentSpeedMps)}
+        {COPY["mock.feedback.template"]
+          .replace("{target}", targetSpeedLabel)
+          .replace("{current}", formatSpeed(currentSpeedMps))}
       </p>
       <input
         id={sliderId}
-        aria-label="Effort mock"
+        aria-label={COPY["mock.slider.aria"]}
         type="range"
         min="0"
         max="1"

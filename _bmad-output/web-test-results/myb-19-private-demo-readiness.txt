@@ -1,9 +1,9 @@
 MYB-19 Private Web Demo Readiness
 
-Generated: 2026-06-08T07:24:15.372Z
+Generated: 2026-06-08T10:42:01.917Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Baseline commit: 0611461c3a230394abb976e17681105fac99289f
-Current commit: 7cfd6e52975c20173d8162b83c55f2593cbc762b
+Current commit: 1e3a743259d92f32d5606aa6f0fa6ba8ed9364cf
 Target URL: http://127.0.0.1:5175/?captureHud=hidden
 Build mode: local Vite development server with production build validation
 Local launch command: npm run dev -- --host 127.0.0.1 --port 5175 --strictPort
@@ -24,16 +24,16 @@ Checks
 - capture summary: pass
 
 Capture Evidence
-- directory: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z
-- video: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z/ride-visual-audit-60s.mp4
-- webm: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z/ride-visual-audit-60s.webm
-- contact sheet: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z/ride-visual-audit-contact-sheet.jpg
-- final frame: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z/final-frame.png
-- summary: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T07-23-05-622Z/capture-summary.json
+- directory: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z
+- video: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z/ride-visual-audit-60s.mp4
+- webm: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z/ride-visual-audit-60s.webm
+- contact sheet: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z/ride-visual-audit-contact-sheet.jpg
+- final frame: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z/final-frame.png
+- summary: /Users/jbodin/personnel/apps/mybike/_bmad-output/video-captures/ride-visual-audit-2026-06-08T10-40-43-506Z/capture-summary.json
 - durationMs: 60000
 - frameCount: 12
 - canvasNonBlank: true
-- canvasHealth: {"avgLuma":109.737,"maxLuma":172,"minLuma":30,"nonBlank":true}
+- canvasHealth: {"avgLuma":109.437,"maxLuma":172,"minLuma":30,"nonBlank":true}
 - pageErrors: []
 - consoleMessages: []
 

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "echappee-zen",
+  "displayName": "Zen",
+  "description": "Balade zen, 600 m, terrain doux, ambiance cote.",
+  "profile": "zen",
+  "biome": "coast",
+  "lengthMeters": 600,
+  "points": [
+    { "distanceMeters": 0, "position": { "x": 0, "y": 0, "z": 0 } },
+    { "distanceMeters": 80, "position": { "x": 10, "y": 0.4, "z": 78 } },
+    { "distanceMeters": 170, "position": { "x": -6, "y": 0.6, "z": 168 } },
+    { "distanceMeters": 260, "position": { "x": 12, "y": 0.5, "z": 258 } },
+    { "distanceMeters": 350, "position": { "x": -4, "y": 0.3, "z": 348 } },
+    { "distanceMeters": 450, "position": { "x": 8, "y": 0.4, "z": 448 } },
+    { "distanceMeters": 540, "position": { "x": -2, "y": 0.5, "z": 538 } },
+    { "distanceMeters": 600, "position": { "x": 0, "y": 0.4, "z": 600 } }
+  ],
+  "segments": [
+    { "id": "coast", "fromProgress01": 0, "toProgress01": 1 }
+  ],
+  "collectibles": []
+}

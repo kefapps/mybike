@@ -6,6 +6,7 @@ import {
   mapMockInputToSpeed,
   smoothSpeed
 } from "./speed";
+import type { RouteDefinition } from "../route/routeTypes";
 import type {
   RideFrameConfig,
   RideFrameResult,
@@ -16,7 +17,7 @@ import type {
 export const DEFAULT_RIDE_FRAME_CONFIG: RideFrameConfig = {
   speedMapping: DEFAULT_SPEED_MAPPING_CONFIG,
   speedSmoothing: DEFAULT_SPEED_SMOOTHING_CONFIG,
-  progress: { totalDistanceMeters: 1000 }
+  progress: { totalDistanceMeters: 0 }
 };
 
 function coerceNonNegative(value: number): number {
@@ -27,13 +28,25 @@ function coerceNonNegative(value: number): number {
   return Math.max(0, value);
 }
 
+function resolveTotalDistanceMeters(
+  config: RideFrameConfig,
+  route: RouteDefinition | null | undefined
+): number {
+  if (route && Number.isFinite(route.lengthMeters) && route.lengthMeters > 0) {
+    return route.lengthMeters;
+  }
+
+  return config.progress.totalDistanceMeters;
+}
+
 export function createInitialRideFrameState(
   startedAtMs = 0
 ): RideFrameState {
   return {
     startedAtMs: coerceNonNegative(startedAtMs),
     speed: { speedMps: 0 },
-    progress: createInitialRideProgress()
+    progress: createInitialRideProgress(),
+    segmentStats: { currentSegmentId: null, entries: {} }
   };
 }
 
@@ -42,29 +55,33 @@ export function advanceRideFrame(
   previous: RideFrameState,
   nowMs: number,
   dtSeconds: number,
-  config: RideFrameConfig = DEFAULT_RIDE_FRAME_CONFIG
+  config: RideFrameConfig | null | undefined = DEFAULT_RIDE_FRAME_CONFIG,
+  route: RouteDefinition | null | undefined = null
 ): RideFrameResult {
+  const safeConfig = config ?? DEFAULT_RIDE_FRAME_CONFIG;
+  const totalDistanceMeters = resolveTotalDistanceMeters(safeConfig, route);
   const safeNowMs = coerceNonNegative(nowMs);
   const sample = inputSource.read(safeNowMs);
-  const targetSpeedMps = mapMockInputToSpeed(sample, config.speedMapping);
+  const targetSpeedMps = mapMockInputToSpeed(sample, safeConfig.speedMapping);
   const speed = smoothSpeed(
     targetSpeedMps,
     previous.speed,
     dtSeconds,
-    config.speedSmoothing
+    safeConfig.speedSmoothing
   );
   const progress = advanceRouteProgress(
     previous.progress,
     speed.speedMps,
     dtSeconds,
-    config.progress
+    { totalDistanceMeters }
   );
   const elapsedMs = Math.max(0, safeNowMs - coerceNonNegative(previous.startedAtMs));
   const stats = calculateRideStats(elapsedMs, progress.distanceMeters);
-  const state = {
+  const state: RideFrameState = {
     startedAtMs: coerceNonNegative(previous.startedAtMs),
     speed,
-    progress
+    progress,
+    segmentStats: previous.segmentStats
   };
 
   return {

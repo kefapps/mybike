@@ -2,13 +2,16 @@ import { useCallback, useState } from "react";
 
 import { MockRideControls } from "../../ui/MockRideControls";
 import { RideHud } from "../../ui/RideHud";
+import { COPY, getPhaseLabel } from "../../ui/copy";
 import { EMPTY_RIDE_STATS } from "../../ui/rideStatsFormat";
 import type { RidePhase } from "../session/sessionTypes";
 import { ThreeCanvasHost, type RenderFrameSnapshot } from "../../render";
 import type { RideStats } from "../../ride";
+import type { RouteDefinition } from "../../route";
 
 type RideScreenProps = {
   phase: Extract<RidePhase, "running" | "paused">;
+  route: RouteDefinition;
   onPause: () => void;
   onResume: () => void;
   onFinish: (summary: RideStats) => void;
@@ -19,6 +22,7 @@ const DEFAULT_MOCK_EFFORT01 = 0.55;
 
 export function RideScreen({
   phase,
+  route,
   onPause,
   onResume,
   onFinish,
@@ -39,15 +43,18 @@ export function RideScreen({
     >
       <header className="ride-header">
         <div>
-          <p className="eyebrow">Balade mock</p>
-          <h1 id="ride-title">{isPaused ? "Pause" : "En selle"}</h1>
+          <p className="eyebrow">{COPY["ride.eyebrow"]}</p>
+          <h1 id="ride-title">
+            {isPaused ? COPY["ride.title.paused"] : COPY["ride.title.running"]}
+          </h1>
         </div>
-        <span className="phase-pill">{isPaused ? "paused" : "running"}</span>
+        <span className="phase-pill">{getPhaseLabel(phase)}</span>
       </header>
 
-      <div className="ride-viewport" aria-label="Zone ride MVP">
+      <div className="ride-viewport" aria-label={COPY["ride.viewport.label"]}>
         <ThreeCanvasHost
           phase={phase}
+          route={route}
           effort01={effort01}
           onFrame={setLatestSnapshot}
           onRenderFailure={onRenderFailure}
@@ -65,11 +72,11 @@ export function RideScreen({
       <div className="action-row">
         {isPaused ? (
           <button className="secondary-action" type="button" onClick={onResume}>
-            Reprendre
+            {COPY["ride.button.resume"]}
           </button>
         ) : (
           <button className="secondary-action" type="button" onClick={onPause}>
-            Pause
+            {COPY["ride.button.pause"]}
           </button>
         )}
         <button
@@ -77,7 +84,7 @@ export function RideScreen({
           type="button"
           onClick={finishWithLatestSummary}
         >
-          Terminer
+          {COPY["ride.button.finish"]}
         </button>
       </div>
     </section>

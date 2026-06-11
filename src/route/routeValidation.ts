@@ -1,4 +1,5 @@
 import { isFiniteNumber, isFiniteVec3 } from "./routeMath";
+import { isSegmentDefinition } from "./segments";
 import type {
   BiomeSegment,
   RouteDefinition,
@@ -58,6 +59,10 @@ function getInvalidRouteReason(
 
   if (!hasFullBiomeCoverage(route.biomes)) {
     return "invalid-biomes";
+  }
+
+  if (route.segments !== undefined && !hasValidSegments(route.segments)) {
+    return "invalid-segments";
   }
 
   return undefined;
@@ -149,4 +154,40 @@ function isValidBiomeSegment(biome: unknown): biome is BiomeSegment {
     candidate.toProgress01 <= 1 &&
     candidate.fromProgress01 < candidate.toProgress01
   );
+}
+
+function hasValidSegments(
+  segments: NonNullable<RouteDefinition["segments"]>
+): boolean {
+  if (!Array.isArray(segments)) {
+    return false;
+  }
+
+  if (segments.length === 0) {
+    return true;
+  }
+
+  if (!segments.every(isSegmentDefinition)) {
+    return false;
+  }
+
+  const sorted = [...segments].sort(
+    (left, right) => left.fromProgress01 - right.fromProgress01
+  );
+
+  if (sorted[0].fromProgress01 > EPSILON) {
+    return false;
+  }
+
+  let coveredUntil = 0;
+
+  for (const segment of sorted) {
+    if (segment.fromProgress01 > coveredUntil + EPSILON) {
+      return false;
+    }
+
+    coveredUntil = Math.max(coveredUntil, segment.toProgress01);
+  }
+
+  return coveredUntil >= 1 - EPSILON;
 }

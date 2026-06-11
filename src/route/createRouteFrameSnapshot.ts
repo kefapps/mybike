@@ -2,6 +2,7 @@ import { cameraOnRail } from "./cameraOnRail";
 import { mockRouteDefinition } from "./mockRouteDefinition";
 import { sampleRouteAt } from "./sampleRouteAt";
 import { selectBiomeAtProgress } from "./selectBiomeAtProgress";
+import { selectSegmentAtProgress } from "./segments";
 import type {
   CameraRailConfig,
   RouteDefinition,
@@ -17,11 +18,13 @@ export function createRouteFrameSnapshot(
   const sample = sampleRouteAt(route, extractProgress01(progress));
   const camera = cameraOnRail(route, progress, cameraConfig);
   const biomeId = selectBiomeAtProgress(route, sample.progress01);
+  const segment = selectSegmentAtProgress(route, sample.progress01);
 
   return {
     sample,
     camera,
     biomeId,
+    segment,
     usedFallback: sample.usedFallback || camera.usedFallback,
     fallbackReason: sample.fallbackReason ?? camera.fallbackReason
   };
