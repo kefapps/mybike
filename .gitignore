@@ -27,14 +27,15 @@ blob-report/
 _bmad/config.user.toml
 _bmad/**/*.user.toml
 _bmad-output/video-captures/
+_bmad-output/unity-webgl-builds/
 
 # Unity generated files
-unity/Echappee3D/Library/
-unity/Echappee3D/Temp/
-unity/Echappee3D/Obj/
-unity/Echappee3D/Build/
-unity/Echappee3D/Builds/
-unity/Echappee3D/Logs/
-unity/Echappee3D/UserSettings/
-unity/Echappee3D/MemoryCaptures/
-unity/Echappee3D/Recordings/
+unity/Echapee4D/Library/
+unity/Echapee4D/Temp/
+unity/Echapee4D/Obj/
+unity/Echapee4D/Build/
+unity/Echapee4D/Builds/
+unity/Echapee4D/Logs/
+unity/Echapee4D/UserSettings/
+unity/Echapee4D/MemoryCaptures/
+unity/Echapee4D/Recordings/

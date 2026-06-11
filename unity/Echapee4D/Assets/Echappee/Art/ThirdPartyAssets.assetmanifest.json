@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "project": "unity/Echapee4D",
+  "policyIssue": "MYB-38",
+  "lastReviewedAt": "2026-06-11",
+  "policy": {
+    "acceptedAssetLicenses": [
+      "CC0",
+      "Public Domain",
+      "CC-BY"
+    ],
+    "technicalLicenses": [
+      "MIT",
+      "Apache-2.0",
+      "OFL"
+    ],
+    "rejectedByDefault": [
+      "CC-BY-SA",
+      "CC-BY-NC",
+      "CC-BY-NC-SA",
+      "CC-BY-ND",
+      "CC-BY-NC-ND",
+      "NC",
+      "ND",
+      "SA",
+      "Other",
+      "Ambiguous",
+      "No explicit license"
+    ],
+    "statuses": [
+      "approved",
+      "needs-review",
+      "rejected"
+    ]
+  },
+  "assets": []
+}
