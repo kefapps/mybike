@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MYB-41 - Revue assets Unity V1</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232e6b4f'/%3E%3Cpath d='M14 42c8-18 15-27 22-27 8 0 12 7 14 20-8-6-14-8-19-7-6 1-11 6-17 14z' fill='%23f5f7f3'/%3E%3Cpath d='M12 48c13-10 27-14 42-12' stroke='%23a64f3a' stroke-width='5' stroke-linecap='round' fill='none'/%3E%3C/svg%3E"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f5f7f3;
+        --ink: #172019;
+        --muted: #627064;
+        --line: #d9dfd7;
+        --panel: #ffffff;
+        --panel-soft: #eef3eb;
+        --forest: #2e6b4f;
+        --village: #a64f3a;
+        --surface: #3f648d;
+        --signal: #7553a7;
+        --shadow: 0 18px 44px rgba(26, 36, 29, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(135deg, rgba(46, 107, 79, 0.14), transparent 34%),
+          linear-gradient(215deg, rgba(166, 79, 58, 0.12), transparent 32%),
+          var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      header {
+        padding: 34px 0 22px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 32px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background:
+          linear-gradient(140deg, rgba(46, 107, 79, 0.95), rgba(117, 83, 167, 0.9)),
+          #2e6b4f;
+        box-shadow: inset 0 -8px 18px rgba(255, 255, 255, 0.18);
+        flex: 0 0 auto;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand span {
+        color: var(--muted);
+        display: block;
+        font-size: 13px;
+      }
+
+      .source-note {
+        color: var(--muted);
+        font-size: 13px;
+        text-align: right;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      h1 {
+        font-size: clamp(36px, 5vw, 66px);
+        line-height: 0.95;
+        letter-spacing: 0;
+        margin: 0 0 22px;
+        max-width: 880px;
+      }
+
+      .lead {
+        color: #334137;
+        font-size: clamp(17px, 2vw, 21px);
+        margin: 0;
+        max-width: 760px;
+      }
+
+      .hero-copy {
+        padding: 16px 0 8px;
+      }
+
+      .hero-media {
+        min-height: 360px;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        background: #dfe7dc;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .hero-media figcaption {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        right: 14px;
+        border-radius: 8px;
+        background: rgba(23, 32, 25, 0.72);
+        color: #f8fbf6;
+        padding: 10px 12px;
+        font-size: 13px;
+        backdrop-filter: blur(10px);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 28px 0 8px;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(217, 223, 215, 0.92);
+        border-radius: 8px;
+        padding: 16px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 28px;
+        line-height: 1;
+        margin-bottom: 7px;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .filters {
+        position: sticky;
+        top: 0;
+        z-index: 3;
+        margin: 18px 0 30px;
+        padding: 12px 0;
+        background: rgba(245, 247, 243, 0.86);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(217, 223, 215, 0.8);
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .filter {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 9px 14px;
+        font: inherit;
+        font-size: 14px;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .filter[aria-pressed="true"] {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+
+      main {
+        padding-bottom: 52px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .asset-card {
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(217, 223, 215, 0.95);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 8px 22px rgba(26, 36, 29, 0.06);
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .asset-media {
+        background: #dfe7dc;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .asset-media img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        display: block;
+        object-fit: cover;
+      }
+
+      .asset-media img.contain {
+        object-fit: contain;
+        background: #e8eee5;
+        padding: 10px;
+      }
+
+      .asset-media img.failed {
+        display: none;
+      }
+
+      .image-fallback {
+        min-height: 220px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .image-fallback.visible {
+        display: flex;
+      }
+
+      .thumbs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .thumbs img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: #eef3eb;
+      }
+
+      .asset-body {
+        padding: 20px;
+      }
+
+      .asset-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 12px;
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 1.08;
+        margin: 0;
+        letter-spacing: 0;
+      }
+
+      .id {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-bottom: 15px;
+      }
+
+      .chip {
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .chip.foret { background: var(--forest); }
+      .chip.village { background: var(--village); }
+      .chip.surface { background: var(--surface); }
+      .chip.signal { background: var(--signal); }
+      .chip.neutral { background: #5b675f; }
+
+      .reason {
+        font-size: 16px;
+        margin: 0 0 14px;
+      }
+
+      dl {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+      }
+
+      dt {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      dd {
+        margin: 3px 0 0;
+        color: #2c392f;
+        font-size: 14px;
+      }
+
+      .card-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .license {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .source-link {
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 800;
+        padding: 8px 12px;
+        text-decoration: none;
+      }
+
+      .source-link:hover,
+      .source-link:focus-visible {
+        background: var(--ink);
+        color: #fff;
+        outline: none;
+      }
+
+      .poc {
+        margin: 34px 0 0;
+        background: #172019;
+        color: #f8fbf6;
+        border-radius: 8px;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .poc h2 {
+        font-size: 32px;
+      }
+
+      .poc p,
+      .poc li {
+        color: #dce6dc;
+      }
+
+      .poc ol {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      footer {
+        color: var(--muted);
+        font-size: 13px;
+        padding: 26px 0 42px;
+      }
+
+      @media (max-width: 880px) {
+        .hero,
+        .poc {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-media {
+          min-height: 280px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .shell {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .source-note {
+          text-align: left;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .asset-head {
+          display: block;
+        }
+
+        .id {
+          display: block;
+          margin-bottom: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <strong>MYB-41</strong>
+            <span>Shortlist assets Unity macOS-first</span>
+          </div>
+        </div>
+        <div class="source-note">
+          Visuels issus des pages sources officielles, aucun import Unity.
+        </div>
+      </div>
+
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <h1 id="page-title">Revue visuelle des assets gratuits V1.</h1>
+          <p class="lead">
+            Une page de decision pour regarder les candidats retenus, comprendre
+            dans quels biomes ils servent, et pourquoi ils meritaient d'entrer
+            dans le prochain POC Unity.
+          </p>
+          <div class="stats" aria-label="Synthese">
+            <div class="stat"><strong>11</strong><span>finalistes</span></div>
+            <div class="stat"><strong>30</strong><span>candidats inspectes</span></div>
+            <div class="stat"><strong>2</strong><span>biomes prioritaires</span></div>
+            <div class="stat"><strong>0</strong><span>asset importe</span></div>
+          </div>
+        </div>
+        <figure class="hero-media">
+          <img
+            src="https://img.itch.zone/aW1hZ2UvMjg2MjIxNC8xNzEwOTU4Ny5wbmc=/794x1000/kHbD02.png"
+            alt="Scene de foret stylisee avec chemin, arbres verts, rochers et ciel clair"
+          />
+          <figcaption>
+            Priorite V1: foret claire, village/campagne pavee, surfaces qui
+            suggerent un futur ressenti physique.
+          </figcaption>
+        </figure>
+      </section>
+    </header>
+
+    <nav class="filters" aria-label="Filtres">
+      <div class="shell filter-row">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">Tout voir</button>
+        <button class="filter" type="button" data-filter="foret">Foret claire</button>
+        <button class="filter" type="button" data-filter="village">Village / campagne pavee</button>
+        <button class="filter" type="button" data-filter="surface">Surfaces</button>
+        <button class="filter" type="button" data-filter="signal">Props / signaux</button>
+      </div>
+    </nav>
+
+    <main class="shell">
+      <section class="grid" id="asset-grid" aria-label="Assets short-listes"></section>
+
+      <section class="poc" aria-labelledby="poc-title">
+        <div>
+          <h2 id="poc-title">Ordre recommande pour le POC.</h2>
+          <p>
+            L'objectif n'est pas d'importer des packs entiers, mais de prouver
+            tres vite une scene premium avec peu d'assets reels.
+          </p>
+        </div>
+        <ol>
+          <li>Foret claire: Quaternius Stylized Nature + Kenney Nature + Poly Haven Forest Ground 03.</li>
+          <li>Village / campagne pavee: Quaternius Medieval Village + KayKit Medieval Builder + ambientCG Paving Stones 141.</li>
+          <li>Accents: Quaternius Fantasy Props, puis Farm Animal Pack si l'import animation est simple.</li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="shell">
+      Page locale de review MYB-41. Les licences et perimetres gratuits restent
+      a verifier asset par asset avant import dans <code>unity/Echapee4D</code>.
+    </footer>
+
+    <script>
+      const assets = [
+        {
+          id: "S1",
+          title: "Quaternius - Stylized Nature MegaKit",
+          filters: ["foret"],
+          biomes: ["Foret claire"],
+          family: "Kit de biome",
+          license: "CC0",
+          image: "https://img.itch.zone/aW1hZ2UvMjg2MjIxNC8xNzEwOTU4Ny5wbmc=/794x1000/kHbD02.png",
+          thumbnails: [
+            "https://img.itch.zone/aW1hZ2UvMjg2MjIxNC8xNzEwOTU4MC5wbmc=/794x1000/daxBqf.png",
+            "https://img.itch.zone/aW1hZ2UvMjg2MjIxNC8xNzExMDY5MS5wbmc=/794x1000/0dTxUb.png",
+            "https://img.itch.zone/aW1hZ2UvMjg2MjIxNC8xNzExMDY5Mi5wbmc=/794x1000/i9qljx.png"
+          ],
+          why: "C'est le candidat le plus proche de notre foret stylisee premium: silhouettes fortes, densite modulable, couleurs assumables et vraie capacite a faire alterner respiration et passages plus magiques.",
+          use: "Base du biome foret claire: arbres principaux, rochers, fleurs, masses de vegetation et corridors vegetaux ponctuels.",
+          inspection: "Previews et screenshots source inspectes; 116 modeles annonces en FBX/OBJ/glTF, version Standard 99 MB, capture Standard Free indiquant 81 assets gratuits.",
+          risk: "Verifier la frontiere Standard/Pro/Source avant import et ne prendre qu'un sous-ensemble."
+        },
+        {
+          id: "S2",
+          title: "Kenney - Nature Kit",
+          filters: ["foret"],
+          biomes: ["Foret claire"],
+          family: "Props support",
+          license: "CC0",
+          image: "https://kenney.nl/media/pages/assets/nature-kit/656a90532f-1677698896/sample.png",
+          why: "Tres propre et facile a integrer. Moins spectaculaire que Quaternius, mais parfait pour densifier la foret sans exploser le temps d'import.",
+          use: "Fond de scene, bords de route, petits rochers, arbres secondaires, remplissage lisible.",
+          inspection: "Archive inspectee en streaming: 329 FBX, 329 OBJ, 329 GLB, 329 DAE, 1640 PNG.",
+          risk: "Peut vite faire trop simple si utilise seul; a combiner avec lumiere, composition et assets plus premium."
+        },
+        {
+          id: "S3",
+          title: "Quaternius - Medieval Village MegaKit",
+          filters: ["village"],
+          biomes: ["Village / campagne pavee"],
+          family: "Kit de biome",
+          license: "CC0",
+          image: "https://img.itch.zone/aW1nLzE5NDcwOTI3LmpwZw==/original/w5Suu6.jpg",
+          thumbnails: [
+            "https://img.itch.zone/aW1hZ2UvMzI2MTU0NS8xOTQ3MDg1Mi5qcGc=/794x1000/wCJ0g6.jpg",
+            "https://img.itch.zone/aW1hZ2UvMzI2MTU0NS8xOTQ3MDg1My5qcGc=/794x1000/eHl5sl.jpg",
+            "https://img.itch.zone/aW1hZ2UvMzI2MTU0NS8xOTQ3MDg1NC5qcGc=/794x1000/RiIpWZ.jpg"
+          ],
+          why: "Le meilleur candidat village premium: maisons pierre/bois, toits rouges, modules riches, assez de presence pour creer un vrai lieu et pas juste un decor generique.",
+          use: "Passage village/campagne pavee: maisons, murs, toits, details de facades, silhouettes de hameau.",
+          inspection: "Page source inspectee: 300+ modeles annonces, FBX/OBJ/glTF, Standard 153 MB, capture Standard Free indiquant 170 assets gratuits.",
+          risk: "Risque de volume et de modularite lourde; verifier le perimetre gratuit et importer peu."
+        },
+        {
+          id: "S4",
+          title: "Kenney - Fantasy Town Kit",
+          filters: ["village"],
+          biomes: ["Village / campagne pavee"],
+          family: "Kit village leger",
+          license: "CC0",
+          image: "https://kenney.nl/media/pages/assets/fantasy-town-kit/c13eafebab-1754222363/sample.png",
+          thumbnails: [
+            "https://kenney.nl/media/pages/assets/fantasy-town-kit/4d60467c94-1754222370/preview-variation-a.png"
+          ],
+          why: "Bon fallback propre et coherent. Il permet de composer vite un village simple si le MegaKit Quaternius est trop lourd pour le premier test.",
+          use: "Maisons secondaires, volumes de village, tests rapides de composition et profondeur.",
+          inspection: "Archive inspectee en streaming: 167 FBX, 167 GLB, 167 OBJ, 167 MTL, 174 PNG.",
+          risk: "Peut lire game-jam; necessite un vrai pass lumiere/materiaux pour ne pas paraitre cheap."
+        },
+        {
+          id: "S5",
+          title: "KayKit - Medieval Builder Pack",
+          filters: ["village"],
+          biomes: ["Village / campagne pavee"],
+          family: "Kit village + chemins",
+          license: "CC0",
+          image: "https://img.itch.zone/aW1nLzY3MTQ5OTUucG5n/original/Vc3jyZ.png",
+          thumbnails: [
+            "https://img.itch.zone/aW1hZ2UvMTE0ODY1MS82NzE1NTIzLnBuZw==/347x500/RceF2E.png",
+            "https://img.itch.zone/aW1hZ2UvMTE0ODY1MS82NzE1NTI1LnBuZw==/347x500/B9DY5Z.png",
+            "https://img.itch.zone/aW1hZ2UvMTE0ODY1MS82NzE1NTI2LnBuZw==/347x500/3BpVvW.png"
+          ],
+          why: "Il apporte routes, eau, murs, batiments et pieces de terrain avec une lecture immediate. C'est utile pour prototyper un hameau traversable.",
+          use: "Chemins, bords de village, petits ponts, pieces d'ambiance campagne, silhouettes simples autour de la route.",
+          inspection: "Page source/purchase inspectee: pack legacy, 200+ assets, zip annonce autour de 14 MB, FBX/OBJ/DAE/GLTF.",
+          risk: "La logique tile/hex doit etre adaptee a une route first-person continue."
+        },
+        {
+          id: "S6",
+          title: "KayKit - Medieval Hexagon Pack",
+          filters: ["village", "signal"],
+          biomes: ["Village / campagne pavee"],
+          family: "Props village / signaux secondaires",
+          license: "CC0",
+          image: "https://img.itch.zone/aW1nLzI0OTA3MTcyLmpwZw==/original/EJpDhR.jpg",
+          thumbnails: [
+            "https://img.itch.zone/aW1hZ2UvMjY2ODI5MC8xNTkwNTU5Mi5qcGc=/794x1000/qVMHme.jpg",
+            "https://img.itch.zone/aW1hZ2UvMjY2ODI5MC8xNTkwNTYwMC5qcGc=/794x1000/Ry6zNJ.jpg",
+            "https://img.itch.zone/aW1hZ2UvMjY2ODI5MC8xNTkwNTU5NS5qcGc=/794x1000/GnAK9P.jpg"
+          ],
+          why: "Tres riche en moulins, eglise, marche, murs et props. C'est un bon reservoir pour donner de la vie au village.",
+          use: "Props village, points d'interet, silhouettes au loin, accents de campagne pavee.",
+          inspection: "GitHub tree inspecte: 221 GLTF, 442 FBX, 263 OBJ, 54 PNG, guide PDF; atlas 1024 downsampleable.",
+          risk: "Attention a l'effet jeu de plateau; choisir des pieces, pas importer le langage hexagonal entier."
+        },
+        {
+          id: "S7",
+          title: "ambientCG - Paving Stones 141",
+          filters: ["village", "surface"],
+          biomes: ["Village / campagne pavee"],
+          family: "Surface de route",
+          license: "CC0",
+          image: "https://acg-media.struffelproductions.com/file/ambientCG-Web/media/thumbnail/2048-WEBP/PavingStones141.webp",
+          why: "Le meilleur candidat pour une route pavee qui suggere immediatement rugosite, vibration et village ancien.",
+          use: "Surface principale des sections village/campagne pavee, avec stylisation couleur dans Unity.",
+          inspection: "Archive 1K-JPG inspectee: Color, AO, Displacement, NormalDX, NormalGL, Roughness, plus Blend/MTLX/TRES/USDC.",
+          risk: "Photorealisme a styliser pour rester dans `Stylise Premium`."
+        },
+        {
+          id: "S8",
+          title: "ambientCG - Paving Stones 057",
+          filters: ["village", "surface"],
+          biomes: ["Village / campagne pavee"],
+          family: "Surface alternative",
+          license: "CC0",
+          image: "https://acg-media.struffelproductions.com/file/ambientCG-Web/media/thumbnail/2048-WEBP/PavingStones057.webp",
+          why: "Petits paves plus fins que S7. Utile pour ruelles, transitions courtes ou endroits plus denses.",
+          use: "Variante de surface pavee, petites rues, placettes, zones de transition.",
+          inspection: "Archive 1K-JPG inspectee: Color, AO, Displacement, NormalDX, NormalGL, Roughness, plus Blend/MTLX/TRES/USDC.",
+          risk: "Motif dense et repetitif; a tester a hauteur camera."
+        },
+        {
+          id: "S9",
+          title: "Poly Haven - Forest Ground 03",
+          filters: ["foret", "surface"],
+          biomes: ["Foret claire"],
+          family: "Surface sol",
+          license: "CC0",
+          image: "https://cdn.polyhaven.com/asset_img/thumbs/forrest_ground_03.png?width=900&quality=95",
+          thumbnails: [
+            "https://cdn.polyhaven.com/asset_img/renders/forrest_ground_03/clay.png",
+            "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forrest_ground_03/forrest_ground_03_diff_1k.jpg",
+            "https://cdn.polyhaven.com/asset_img/map_previews/forrest_ground_03/forrest_ground_03_nor_gl_1k.jpg"
+          ],
+          why: "Sol forestier credible avec aiguilles, feuilles, brindilles. Il donne de la matiere aux bas-cotes et chemins naturels.",
+          use: "Bas-cotes, sol naturel, chemin de foret clair, transitions dirt/forest ground.",
+          inspection: "API Poly Haven inspectee: Diffuse, normal DX/GL, AO, Rough, Bump, Displacement, ARM, Spec, Blend, GLTF, MTLX. Diffuse 1K autour de 0.8 MB.",
+          risk: "Partir 1K/2K et styliser pour ne pas casser la DA."
+        },
+        {
+          id: "S10",
+          title: "Quaternius - Fantasy Props MegaKit",
+          filters: ["signal"],
+          biomes: ["Commun", "Village / campagne pavee", "Foret claire"],
+          family: "Props / signaux premium",
+          license: "CC0",
+          image: "https://quaternius.com/assets/images/fullres/fantasypropsmegakit/standard.jpg",
+          contain: true,
+          why: "Reservoir d'accents fantasy: coffres, potions, livres, etals, outils. Bon pour enrichir un lieu sans inventer un systeme de gameplay.",
+          use: "Accents premium secondaires, marche, bord de route, reliques, details de village ou clairiere magique.",
+          inspection: "Page source inspectee: 211 modeles, non anime, textures presentes, FBX/OBJ/glTF, 4 texture sets partages, 60-70% free.",
+          risk: "Verifier la frontiere free/pro avant usage."
+        },
+        {
+          id: "S11",
+          title: "Quaternius - Farm Animal Pack",
+          filters: ["village", "signal"],
+          biomes: ["Village / campagne pavee"],
+          family: "Vie legere",
+          license: "CC0",
+          image: "https://static.poly.pizza/listimg/HmFSHfQOArcDCgG9wKyV.webp",
+          thumbnails: [
+            "https://static.poly.pizza/a4bd2c4e-fe71-4dbd-9881-cf3ac8a00bbf.webp",
+            "https://static.poly.pizza/30b503df-69cf-4086-b323-f1dcbb95a7c4.webp",
+            "https://static.poly.pizza/48c5f4af-07d6-4493-a261-0919967afe85.webp"
+          ],
+          why: "Petite dose de vie pour la campagne: mouton, cheval ou vache peuvent donner du charme sans devenir le sujet de la scene.",
+          use: "Accents vivants en bord de route, pres de ferme, paturage, entree de village.",
+          inspection: "Page Poly Pizza inspectee: 7 modeles, boutons FBX/GLTF, animations run/idle/jump/walk annoncees, CC0.",
+          risk: "Verifier l'import animation Unity; rester en accent, pas en systeme."
+        }
+      ];
+
+      const grid = document.querySelector("#asset-grid");
+      const filters = document.querySelectorAll(".filter");
+
+      function chipClass(label, family) {
+        const normalized = `${label} ${family}`.toLowerCase();
+        if (normalized.includes("foret")) return "foret";
+        if (normalized.includes("village") || normalized.includes("campagne")) return "village";
+        if (normalized.includes("surface")) return "surface";
+        if (normalized.includes("signal") || normalized.includes("props") || normalized.includes("vie")) return "signal";
+        return "neutral";
+      }
+
+      function renderCards(activeFilter = "all") {
+        const visibleAssets = assets.filter((asset) => {
+          return activeFilter === "all" || asset.filters.includes(activeFilter);
+        });
+
+        grid.innerHTML = visibleAssets
+          .map((asset) => {
+            const biomeChips = asset.biomes
+              .map((biome) => `<span class="chip ${chipClass(biome, asset.family)}">${biome}</span>`)
+              .join("");
+            const familyChip = `<span class="chip ${chipClass("", asset.family)}">${asset.family}</span>`;
+            const thumbs = asset.thumbnails?.length
+              ? `<div class="thumbs">${asset.thumbnails
+                  .map((src) => `<img src="${src}" alt="" loading="lazy" />`)
+                  .join("")}</div>`
+              : "";
+
+            return `
+              <article class="asset-card" data-id="${asset.id}">
+                <div class="asset-media">
+                  <img class="${asset.contain ? "contain" : ""}" src="${asset.image}" alt="Visuel source pour ${asset.title}" loading="lazy" />
+                  <div class="image-fallback">Visuel non charge depuis la source publique.</div>
+                  ${thumbs}
+                </div>
+                <div class="asset-body">
+                  <div class="asset-head">
+                    <span class="id">${asset.id}</span>
+                    <h2>${asset.title}</h2>
+                  </div>
+                  <div class="chips">${biomeChips}${familyChip}</div>
+                  <p class="reason">${asset.why}</p>
+                  <dl>
+                    <div>
+                      <dt>Ou le mettre</dt>
+                      <dd>${asset.use}</dd>
+                    </div>
+                    <div>
+                      <dt>Inspection technique</dt>
+                      <dd>${asset.inspection}</dd>
+                    </div>
+                    <div>
+                      <dt>Point de vigilance</dt>
+                      <dd>${asset.risk}</dd>
+                    </div>
+                  </dl>
+                  <div class="card-actions">
+                    <span class="license">${asset.license}</span>
+                    <a class="source-link" href="${sourceUrl(asset.id)}" target="_blank" rel="noreferrer">Source</a>
+                  </div>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
+
+        document.querySelectorAll(".asset-media > img").forEach((image) => {
+          image.addEventListener("error", () => {
+            image.classList.add("failed");
+            const fallback = image.parentElement.querySelector(".image-fallback");
+            fallback?.classList.add("visible");
+          });
+        });
+      }
+
+      function sourceUrl(id) {
+        return {
+          S1: "https://quaternius.itch.io/stylized-nature-megakit",
+          S2: "https://kenney.nl/assets/nature-kit",
+          S3: "https://quaternius.itch.io/medieval-village-megakit",
+          S4: "https://kenney.nl/assets/fantasy-town-kit",
+          S5: "https://kaylousberg.itch.io/kaykit-medieval-builder-pack",
+          S6: "https://kaylousberg.itch.io/kaykit-medieval-hexagon",
+          S7: "https://ambientcg.com/view?id=pavingstones141",
+          S8: "https://ambientcg.com/view?id=PavingStones057",
+          S9: "https://polyhaven.com/a/forrest_ground_03",
+          S10: "https://quaternius.com/packs/fantasypropsmegakit.html",
+          S11: "https://poly.pizza/bundle/Farm-Animal-Pack-1kUvRTPLzT"
+        }[id];
+      }
+
+      filters.forEach((button) => {
+        button.addEventListener("click", () => {
+          filters.forEach((filter) => filter.setAttribute("aria-pressed", "false"));
+          button.setAttribute("aria-pressed", "true");
+          renderCards(button.dataset.filter);
+        });
+      });
+
+      renderCards();
+    </script>
+  </body>
+</html>

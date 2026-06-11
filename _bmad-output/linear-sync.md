@@ -60,6 +60,7 @@ Last sync: 2026-06-11
 - Unity legacy cleanup MYB-92: `_bmad-output/implementation-artifacts/myb-92-delete-unity-echappee3d.md`
 - Unity free asset license policy MYB-38: `_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md`
 - Unity free asset shortlist MYB-41: `_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md`
+- Meshy custom models POC MYB-95: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
 
 ## Linear Documents
 
@@ -96,6 +97,7 @@ Last sync: 2026-06-11
 | Unity art direction | `MYB-37` | [MYB-003] Definir une direction artistique low-poly premium pour Unity | https://linear.app/kefjbo/issue/MYB-37/myb-003-definir-une-direction-artistique-low-poly-premium-pour-unity |
 | Unity free asset license policy | `MYB-38` | [MYB-004] Etablir une politique de licences pour assets Unity gratuits | https://linear.app/kefjbo/issue/MYB-38/myb-004-etablir-une-politique-de-licences-pour-assets-unity-gratuits |
 | Unity free asset shortlist | `MYB-41` | [MYB-007] Shortlister les modeles 3D gratuits V1 compatibles Unity | https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity |
+| Meshy custom models POC | `MYB-95` | POC Meshy : modèles 3D animés custom et effort d’intégration Unity | https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -4331,3 +4333,25 @@ Synced on 2026-06-11:
     Medieval Builder Pack + ambientCG Paving Stones 141.
   - Accents: Quaternius Fantasy Props MegaKit, then Quaternius Farm Animal Pack
     if animation import is cheap.
+
+## MYB-95 Meshy Custom Models POC Created
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-95`
+- URL: https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity
+- Parent issue: `MYB-30`
+- Status returned by Linear: `Backlog`
+- Labels: `unity`, `implement`
+- Estimate: 5
+- Local artifact: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
+- Context:
+  - User confirmed available Meshy credits.
+  - POC must confirm credit cost before each generation.
+  - POC evaluates three complexity levels: simple, medium, and super chiade.
+  - The core metric is real Unity integration effort, not only Meshy output
+    visual quality.
+- Scope guard:
+  - No broad Meshy pipeline.
+  - No open-ended credit consumption.
+  - No production scene import without provenance/licence/manifest validation.
