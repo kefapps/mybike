@@ -4,6 +4,11 @@ Date: 2026-06-11
 
 Projet: mybike / Echappee 3D
 
+Note de mise a jour MYB-94: ce document reste la trace du pivot moteur
+MYB-39/MYB-90 vers Unity. La priorite plateforme active a ensuite ete precisee
+par `MYB-94`: Unity macOS-first; WebGL devient une validation secondaire quand
+un ticket le demande explicitement.
+
 Decision utilisateur: travailler a partir de maintenant sur le projet Unity et
 mettre Three.js de cote.
 
@@ -12,7 +17,8 @@ mettre Three.js de cote.
 La video MYB-90 a montre que le projet propre `unity/Echapee4D`, pilote par
 IvanMurzak Unity-MCP, peut produire une preuve WebGL locale lisible. Cette
 preuve change la decision moteur: la roadmap active quitte React/Vite/Three.js
-et devient Unity WebGL-first.
+et devient Unity-first. La priorite plateforme active est maintenant Unity
+macOS-first, avec WebGL secondaire.
 
 Trigger:
 
@@ -38,7 +44,7 @@ Impact stories/tickets:
 - Tickets ouverts explicitement Three.js/React/Vite: renommer ou reecrire en
   equivalents Unity.
 - Tickets produit generiques: conserver, mais adapter criteres d'acceptation et
-  validations vers Unity/WebGL.
+  validations vers Unity macOS-first; WebGL seulement quand le ticket le scope.
 
 Impact artefacts:
 
@@ -54,8 +60,9 @@ Impact technique:
 - `unity/Echappee3D/**` devient reference historique.
 - `unity/Echapee4D` doit etre hygiene: ne pas tracker `Library`, `Temp`,
   `Logs`, `UserSettings`, builds ou captures.
-- Les validations actives deviennent Unity-MCP, validators Unity, build WebGL et
-  captures navigateur.
+- Les validations actives deviennent Unity-MCP, validators Unity, checks macOS
+  first, et preuves WebGL/captures navigateur seulement quand elles sont
+  explicitement scopees.
 
 ## 3. Recommended Approach
 
@@ -77,8 +84,8 @@ Classification: changement majeur de direction, implementation en deux temps:
 
 Documents locaux:
 
-- `AGENTS.md`: Unity WebGL-first, `unity/Echapee4D` canonical, `src/**` parked.
-- `echappee-3d-gdd-court.md`: stack cible Unity WebGL.
+- `AGENTS.md`: Unity macOS-first, `unity/Echapee4D` canonical, `src/**` parked.
+- `echappee-3d-gdd-court.md`: stack cible Unity macOS-first; WebGL secondaire.
 - `echappee-3d-architecture-mince.md`: architecture Unity runtime/validators/build.
 - `echappee-3d-mvp-epic-stories.md`: stories U1-U5 Unity.
 - `linear-sync.md`: sync des statuts et commentaires.
@@ -103,7 +110,7 @@ Responsabilites:
 Prochain travail recommande:
 
 1. Baseline Unity canonical: scene, README local, validator, hygiene repo.
-2. Hardening Unity WebGL: load time, taille, warnings WebGL/URP, capture.
+2. Validation Unity macOS-first; WebGL secondaire seulement si un ticket le scope.
 3. Scenic corridor Unity.
 4. HUD / UX Unity.
 5. Pipeline assets Unity.
@@ -117,4 +124,3 @@ Prochain travail recommande:
 - [x] Artefacts locaux identifies.
 - [x] Path forward choisi: rebaseline directe sans rollback.
 - [x] Handoff et validations definis.
-

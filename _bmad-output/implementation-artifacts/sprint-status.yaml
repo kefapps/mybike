@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-11T13:54:13+02:00
+# last_updated: 2026-06-11T14:21:10+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-11T13:54:13+02:00"
+last_updated: "2026-06-11T14:21:10+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -414,9 +414,13 @@ development_status:
   # Ticket documentaire/outillage cree depuis la revue MYB-37.
   myb-93-adapter-terrain-3d-skill-unity: backlog
 
+  # MYB-94 - Decision plateforme cible prioritaire Unity macOS
+  # Cadrage plateforme: Unity macOS first, WebGL secondaire, Android candidat.
+  myb-94-unity-macos-platform-decision: review
+
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
-unity_canonical_decision: "User decision after MYB-90 video: active work moves to Unity WebGL; Three.js is parked as historical prototype/reference."
+unity_canonical_decision: "User decision after MYB-90 video moved active work to Unity; MYB-94 refines the platform priority to Unity macOS first, with WebGL secondary and Three.js parked as historical prototype/reference."
 unity_canonical_project: "unity/Echapee4D"
 unity_legacy_project: "unity/Echappee3D"
 web_prototype_status: "parked-history; do not modify src/** unless a Linear issue explicitly targets the parked web prototype."
@@ -424,10 +428,10 @@ unity_canonical_source_artifact: "_bmad-output/planning-artifacts/sprint-change-
 unity_canonical_gdd: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
 unity_canonical_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md"
 unity_canonical_epic_stories: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
-unity_canonical_evidence: "MYB-89 Unity-MCP probe and MYB-90 Unity WebGL readiness capture."
+unity_canonical_evidence: "MYB-89 Unity-MCP probe, MYB-90 Unity WebGL readiness capture, and MYB-94 platform decision."
 unity_canonical_next_action: "start-MYB-41"
 unity_canonical_first_story_to_start: "MYB-91"
-unity_canonical_validation_expected: "unity-mcp-cli status unity/Echapee4D --timeout 10000; Unity validators/build/capture when applicable; npm only if parked web files change."
+unity_canonical_validation_expected: "unity-mcp-cli status unity/Echapee4D --timeout 10000; Unity validators and macOS build/capture when applicable; WebGL build/capture only when explicitly scoped; npm only if parked web files change."
 unity_canonical_linear_label: "unity"
 unity_canonical_linear_decision_issue: "MYB-39 Done"
 unity_canonical_linear_probe_issue: "MYB-89 Done"
@@ -453,7 +457,7 @@ unity_art_direction_context: "CONTEXT.md"
 unity_art_direction_summary: "Stylise premium avec socle low-poly de production; aventure/emerveillement first; readability sufficient for on-rail ride; up to three premium main fantasy signals per biome; V1 priority biomes are foret claire and village/campagne pavee; road surfaces may vary and suggest future physical feel without promising implemented mechanics; references are triaged as validated partial or refused."
 unity_art_direction_consistency_pass: "2026-06-11: active DA docs aligned; placeholders are provisional validation tools, references are validee partielle/refusee, product vision/GDD/architecture/stories no longer imply readability-first or Three.js asset pipeline as active DA source."
 unity_art_direction_consistency_linear_comment: "38919884-b1b0-4204-932e-1c83011aab54"
-unity_terrain_skill_adaptation_issue: "MYB-93 Backlog"
+unity_terrain_skill_adaptation_issue: "MYB-93 Done"
 unity_terrain_skill_adaptation_url: "https://linear.app/kefjbo/issue/MYB-93/adapter-le-skill-terrain-3d-a-unityechapee4d"
 unity_asset_license_policy_issue: "MYB-38 Done"
 unity_asset_license_policy_report: "_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md"
@@ -461,3 +465,9 @@ unity_asset_license_policy_manifest: "unity/Echapee4D/Assets/Echappee/Art/ThirdP
 unity_asset_license_policy_summary: "Accept CC0/Public Domain/CC-BY with verified source and metadata; restrict MIT/Apache-2.0/OFL to technical/font uses; default-refuse NC/ND/SA, ambiguous/custom terms, unverified reuploads, unclear AI-generated packs, extracted IP and too-direct MYB-37 copies; use approved/needs-review/rejected statuses."
 unity_asset_license_policy_implementation_comment: "2ee291c6-aca7-4026-85a0-f56db6d5d7af"
 unity_asset_license_policy_closure_comment: "b2f34fda-9921-4cf1-9517-14d951196b02"
+unity_platform_priority_issue: "MYB-94 In Review"
+unity_platform_priority_url: "https://linear.app/kefjbo/issue/MYB-94/cadrer-plateforme-cible-prioritaire-unity-macos-first-webgl-secondaire"
+unity_platform_priority_report: "_bmad-output/implementation-artifacts/myb-94-unity-macos-platform-decision.md"
+unity_platform_priority_summary: "Decision utilisateur: Unity macOS est la cible runtime prioritaire. WebGL devient une cible secondaire de validation/demo locale; Android reste candidat secondaire apres ticket dedie; macOS/CoreBluetooth/FTMS reste ticket-gated et doit etre prouve avec un peripherique reel avant implementation dependante."
+unity_platform_priority_linear_consistency_pass: "Project summary and remaining open Linear tickets aligned with Unity macOS-first on 2026-06-11: MYB-26, MYB-30, MYB-31, MYB-34, MYB-40, MYB-41, MYB-42, MYB-44, MYB-45, MYB-47, MYB-48, MYB-50, MYB-51, MYB-53, MYB-58, MYB-61, MYB-63, MYB-73, MYB-79, MYB-80, MYB-82, MYB-83, MYB-84, MYB-87, MYB-88. MYB-93 is Done and coherent."
+unity_platform_priority_local_preflight: "MacBook Pro Mac14,9 Apple M2 Pro, macOS 26.5.1, Bluetooth On BCM_4388 with GATT support, Unity 6000.4.10f1 installed, WebGLSupport present, AndroidPlayer missing, no separate MacStandaloneSupport folder observed in PlaybackEngines."

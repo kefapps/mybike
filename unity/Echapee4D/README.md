@@ -1,20 +1,32 @@
 # Echapee4D Unity Baseline
 
-`unity/Echapee4D` is the canonical Unity WebGL project for active MyBike work.
-`unity/Echappee3D` was removed by `MYB-92`. `src/**` remains a historical
-React/Vite/Three.js reference unless a Linear issue explicitly targets it.
+`unity/Echapee4D` is the canonical Unity project for active MyBike work. As of
+`MYB-94`, the priority runtime target is macOS. WebGL remains a secondary
+validation/demo path. `unity/Echappee3D` was removed by `MYB-92`. `src/**`
+remains a historical React/Vite/Three.js reference unless a Linear issue
+explicitly targets it.
 
 ## Current Baseline
 
 - Unity editor: `6000.4.10f1`
 - Unity-MCP package: `com.ivanmurzak.unity.mcp` `0.80.0`
 - Canonical scene: `Assets/Scenes/MYB89UnityMcpProbe.unity`
-- WebGL build helper: `Tools/MYB-90/Build WebGL Readiness Probe`
+- WebGL build helper, secondary proof: `Tools/MYB-90/Build WebGL Readiness Probe`
 - Baseline validator: `Tools/MYB-91/Validate Canonical Unity Baseline`
 
 The scene keeps the `MYB89` name because it is the proven Unity-MCP/WebGL probe
 that became the baseline on 2026-06-11. Rename it only through an explicit
 follow-up ticket, after updating builders, captures, reports, and Linear sync.
+
+## Platform Priority
+
+- Primary target: Unity macOS.
+- Secondary target: Unity WebGL for browser proof, private demo validation or
+  regression evidence when a Linear issue explicitly asks for it.
+- Candidate later target: Android, after a dedicated platform ticket and module
+  installation check.
+- Connected-bike direction: macOS/CoreBluetooth/FTMS, only after a real-device
+  proof ticket. Mock mode remains required at all times.
 
 ## Source Control Boundary
 
@@ -59,9 +71,10 @@ The validator writes:
 _bmad-output/unity-test-results/myb-91-canonical-baseline.txt
 ```
 
-## WebGL Rebuild And Capture
+## Secondary WebGL Rebuild And Capture
 
-Rebuild the current WebGL probe through Unity:
+When a ticket asks for WebGL proof, rebuild the current WebGL probe through
+Unity:
 
 ```text
 Tools/MYB-90/Build WebGL Readiness Probe

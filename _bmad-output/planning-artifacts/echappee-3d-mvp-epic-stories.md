@@ -3,7 +3,7 @@ title: "Epic et stories MVP - Echappee 3D Unity"
 project: "mybike"
 date: "2026-06-11"
 status: "draft"
-scope: "vertical slice mock Unity WebGL jouable"
+scope: "vertical slice mock Unity macOS-first jouable"
 stepsCompleted:
   - "correct-course-unity-canonical"
 inputDocuments:
@@ -16,12 +16,15 @@ inputDocuments:
 
 ## Cadrage
 
-Ce document decompose la vertical slice mock Unity WebGL d'Echappee 3D. Il ne
-reprend pas le backlog complet ni les tickets de l'archive d'origine.
+Ce document decompose la vertical slice mock Unity macOS-first d'Echappee 3D.
+Il ne reprend pas le backlog complet ni les tickets de l'archive d'origine.
 
 Decision active du 2026-06-11:
 
-- Unity WebGL devient la cible active.
+- Unity reste la cible active.
+- Unity macOS devient la cible runtime prioritaire via `MYB-94`.
+- WebGL devient une cible secondaire de validation/demo locale, pas la plateforme
+  produit principale.
 - `unity/Echapee4D` devient le projet canonique.
 - React/Vite/Three.js reste en parking historique.
 - Les tickets ouverts doivent etre relus en Unity-first avant implementation.
@@ -29,7 +32,7 @@ Decision active du 2026-06-11:
 Flux cible:
 
 ```text
-MockRideInput -> SpeedModel -> RouteProgress -> CameraRail -> UnityScene -> HUD/Summary -> WebGLCapture
+MockRideInput -> SpeedModel -> RouteProgress -> CameraRail -> UnityScene -> HUD/Summary -> PlatformValidation
 ```
 
 ## Historique conserve
@@ -42,17 +45,17 @@ active.
 Les anciens tickets Unity `MYB-11` a `MYB-17` restent une reference historique
 utile, mais le projet associe `unity/Echappee3D` n'est plus la cible active.
 
-## Epic MVP Unity - Boucle de ride mock WebGL jouable
+## Epic MVP Unity - Boucle de ride mock macOS-first jouable
 
-Objectif: livrer une scene Unity WebGL locale courte, jouable sans velo
+Objectif: livrer une scene Unity locale courte, jouable sans velo
 connecte, pilotable par une source mock, affichant une route suffisamment
 lisible dans une scene stylisee premium, un HUD minimal, pause/reprise/fin,
-resume coherent et preuves de build/capture.
+resume coherent et preuves de validation de plateforme.
 
 Scope de l'epic:
 
 - Projet canonique `unity/Echapee4D`.
-- Scene Unity WebGL jouable avec route visible.
+- Scene Unity jouable avec route visible, cible macOS prioritaire.
 - Source unique `mock` via UI et/ou clavier.
 - Mapping d'effort vers vitesse, smoothing, progression de route et stats.
 - Route courte prefabriquee, camera rail, deux ambiances visuelles simples.
@@ -60,8 +63,9 @@ Scope de l'epic:
   production`; les placeholders restent provisoires.
 - HUD minimal, controle start/pause/resume/finish et resume de session.
 - Validators Unity ou tests C# critiques.
-- Build WebGL local et capture navigateur quand la story touche le rendu ou la
-  boucle jouable.
+- Build/capture macOS ou validation Editor quand la story touche la boucle
+  jouable; build/capture WebGL seulement quand la story cible une preuve
+  navigateur.
 
 Hors scope de l'epic:
 
@@ -141,39 +145,45 @@ premiere personne.
 - Au moins un changement d'ambiance visible.
 - Capture ou screenshot valide la lisibilite.
 
-## Story U4 - WebGL build readiness
+## Story U4 - Platform build readiness
 
 ### Objectif
 
-Garder la vertical slice Unity exportable et visible dans un navigateur.
+Garder la vertical slice Unity validable sur la cible prioritaire macOS, avec
+WebGL comme preuve secondaire quand un ticket le demande.
 
 ### Scope
 
-- Build WebGL local.
-- Serveur statique local.
-- Capture Playwright ou equivalent.
-- Rapport build/capture.
+- Preflight macOS local: version Unity, OS, support de build et contraintes
+  connues.
+- Build ou lancement macOS quand le support local est disponible.
+- Capture/screenshot/video de la cible locale.
+- WebGL local, serveur statique et capture Playwright seulement pour tickets
+  qui demandent une preuve navigateur.
+- Rapport build/capture avec limites explicites.
 
 ### Critères d'acceptation
 
-- Build WebGL reussit.
-- HTTP 200, failed requests 0, page errors 0.
+- La cible macOS prioritaire est documentee et validable localement, ou le
+  manque de module/support est explicite avec action suivante.
 - Console errors 0; warnings documentes.
-- Canvas/screenshot nonblank.
-- Video ou contact sheet prouve route/HUD/mouvement.
+- Screenshot, video ou contact sheet prouve route/HUD/mouvement pour la cible
+  testee.
+- Si WebGL est dans le scope du ticket: build reussit, HTTP 200, failed requests
+  0, page errors 0, canvas/screenshot nonblank.
 
 ## Story U5 - Polish MVP et decision demo
 
 ### Objectif
 
-Transformer la preuve Unity WebGL en demo courte montrable.
+Transformer la preuve Unity macOS en demo courte montrable.
 
 ### Scope
 
-- Nettoyer warnings Unity/WebGL prioritaires.
+- Nettoyer warnings Unity prioritaires sur la cible active.
 - Reduire poids ou documenter budget.
 - Ameliorer lisibilite route/HUD/camera.
-- README local Unity-first.
+- README local Unity macOS-first.
 
 ### Critères d'acceptation
 
@@ -186,31 +196,34 @@ Transformer la preuve Unity WebGL en demo courte montrable.
 - Projet Unity canonique: Story U1.
 - Mode mock et ride loop: Story U2.
 - Route/camera/biomes: Story U3.
-- Build/capture WebGL: Story U4.
+- Build/capture plateforme: Story U4.
 - Demo readiness: Story U5.
 
 ## Alignement Linear 2026-06-11
 
-- `MYB-39`: ADR moteur final, Done. Unity WebGL devient la cible active.
+- `MYB-39`: ADR moteur final, Done. Unity devient la cible active.
 - `MYB-89`: spike IvanMurzak Unity-MCP, Done.
-- `MYB-90`: spike Unity WebGL readiness, Done.
-- `MYB-91`: premier ticket actif, mappe Story U1.
+- `MYB-90`: spike Unity WebGL readiness, Done; preuve technique secondaire.
+- `MYB-91`: baseline Unity canonique, Done, mappe Story U1.
+- `MYB-94`: decision plateforme, Done. Unity macOS devient la cible prioritaire;
+  WebGL devient secondaire.
 - Tickets actifs recalés vers Unity: `MYB-30`, `MYB-31`, `MYB-32`, `MYB-34`,
   `MYB-37`, `MYB-38`, `MYB-41`, `MYB-42`, `MYB-44`, `MYB-45`, `MYB-47`,
   `MYB-48`, `MYB-50`, `MYB-51`, `MYB-53`, `MYB-55`, `MYB-57`, `MYB-59`,
   `MYB-60`, `MYB-63`, `MYB-64`, `MYB-73`, `MYB-79`, `MYB-80`, `MYB-82`,
   `MYB-83`, `MYB-84`, `MYB-87`, `MYB-88`.
-- Tickets materiel post-baseline: `MYB-40`, `MYB-58`, `MYB-61`.
+- Tickets materiel/FTMS a requalifier apres MYB-94: `MYB-40`, `MYB-58`,
+  `MYB-61`.
 - Les tickets web termines restent historiques et ne sont pas supprimes.
 
 ## Ce qui a ete volontairement exclu
 
-- BLE, Web Bluetooth, FTMS et velo reel.
+- Support complet BLE/Web Bluetooth/FTMS et velo reel dans le MVP mock.
 - Parser Indoor Bike Data, cadence, puissance, resistance controlee et
   calibration materiel.
 - Meshy, pipeline assets IA, asset manager lourd ou dependance a des assets
   externes.
 - Historique local riche, comptes utilisateur, backend, cloud sync.
 - Plusieurs routes, editeur de route et import GPX.
-- Suite Playwright exhaustive et backlog post-MVP.
+- Suite Playwright/WebGL exhaustive et backlog post-MVP.
 - Reprise des 32 tickets de l'archive d'origine.

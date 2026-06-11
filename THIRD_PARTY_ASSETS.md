@@ -10,7 +10,7 @@
 ## Etat actuel
 
 La vertical slice mock active d'Echappee 3D n'integre **aucun asset artistique
-tiers** au moment de cette passe. Le projet actif est Unity WebGL
+tiers** au moment de cette passe. Le projet actif est Unity macOS-first
 `unity/Echapee4D`; la scene de baseline utilise des primitives/geometries
 internes et aucun modele 3D, texture, sample audio ou police personnalisee
 externe n'est canonise comme asset de DA.
@@ -59,7 +59,7 @@ polices, icones/UI, scripts/outils importes et packages Unity gratuits.
 ### Refus par defaut
 
 Les cas suivants ne peuvent pas etre importes dans Unity ni apparaitre dans une
-build WebGL sans exception explicite :
+build macOS/WebGL sans exception explicite :
 
 - Licences ou clauses `NC`, `ND` ou `SA`, dont `CC-BY-SA`, `CC-BY-NC`,
   `CC-BY-NC-SA`, `CC-BY-ND` et `CC-BY-NC-ND`.
