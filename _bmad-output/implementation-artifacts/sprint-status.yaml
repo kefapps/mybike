@@ -422,6 +422,10 @@ development_status:
   # Shortlist documentee avec scan large, inspection visuelle et inspection technique hors import Unity.
   myb-41-unity-free-asset-shortlist: done
 
+  # MYB-42 - Import assets 3D Unity avec garde-fous licence/perf
+  # Premier flux d'import minimal: assets CC0 directs, manifest, credits, scene de validation et capture Unity.
+  myb-42-unity-asset-import-guardrails: in-review
+
   # MYB-95 - POC Meshy modeles 3D animes custom et effort integration Unity
   # POC cree pour tester credits Meshy sur 3 niveaux de complexite et mesurer l'effort Unity reel.
   myb-95-meshy-custom-models-poc: backlog
@@ -437,7 +441,7 @@ unity_canonical_gdd: "_bmad-output/planning-artifacts/echappee-3d-gdd-court.md"
 unity_canonical_architecture: "_bmad-output/planning-artifacts/echappee-3d-architecture-mince.md"
 unity_canonical_epic_stories: "_bmad-output/planning-artifacts/echappee-3d-mvp-epic-stories.md"
 unity_canonical_evidence: "MYB-89 Unity-MCP probe, MYB-90 Unity WebGL readiness capture, and MYB-94 platform decision."
-unity_canonical_next_action: "select-next-ticket-after-MYB-41"
+unity_canonical_next_action: "review-MYB-42"
 unity_canonical_first_story_to_start: "MYB-91"
 unity_canonical_validation_expected: "unity-mcp-cli status unity/Echapee4D --timeout 10000; Unity validators and macOS build/capture when applicable; WebGL build/capture only when explicitly scoped; npm only if parked web files change."
 unity_canonical_linear_label: "unity"
@@ -493,6 +497,16 @@ unity_asset_shortlist_start_comment: "80f7cfa2-8a61-4353-b09e-4284c49b9567"
 unity_asset_shortlist_review_comment: "439d2eaa-45c5-4e35-8ef3-902df818963d"
 unity_asset_shortlist_closure_comment: "8d936a19-35af-4c3d-b415-65e48bcd3c74"
 unity_asset_shortlist_completed_at: "2026-06-11T14:06:04.483Z"
+unity_asset_import_issue: "MYB-42 In Review"
+unity_asset_import_url: "https://linear.app/kefjbo/issue/MYB-42/myb-010-importer-des-assets-3d-dans-unity-avec-garde-fous-licenceperf"
+unity_asset_import_report: "_bmad-output/implementation-artifacts/myb-42-unity-asset-import-guardrails.md"
+unity_asset_import_manifest: "unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json"
+unity_asset_import_credits: "THIRD_PARTY_ASSETS.md"
+unity_asset_import_validation_report: "_bmad-output/unity-test-results/myb-42-asset-import-validation.txt"
+unity_asset_import_capture: "_bmad-output/unity-test-results/myb-42-asset-import-validation.png"
+unity_asset_import_scope: "Premier subset minimal versionne: Kenney Nature Kit tree_tall/rock_smallA, Kenney Fantasy Town road/wall-window-stone, ambientCG Paving Stones 141 1K maps, Poly Haven Forest Ground 03 1K maps."
+unity_asset_import_validation: "PASS: Unity 6000.4.10f1, dedicated MYB42AssetImportValidation scene, textures 1024x1024, manifest approved entries present, MYB89 canonical scene remains the only enabled Build Settings scene, no validator failures."
+unity_asset_import_review_comment: "16b4ba19-c3ea-422b-8b13-adc8cc9538eb"
 unity_meshy_custom_models_poc_issue: "MYB-95 Backlog"
 unity_meshy_custom_models_poc_url: "https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity"
 unity_meshy_custom_models_poc_report: "_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md"

@@ -35,6 +35,8 @@ Non-examples:
 
 Definition: A free third-party resource that has a verified source, an accepted
 license, complete metadata, and status `approved` in the Unity asset manifest.
+This approves legal and technical import/use for a POC; it does not mean the
+asset is adopted as final V1 art direction.
 
 Relationships:
 
@@ -42,6 +44,7 @@ Relationships:
   shipped in a macOS/WebGL build.
 - Assets with unclear terms stay in `needs-review`; rejected assets stay
   documented only if that helps future decisions.
+- Final art-direction adoption stays a separate POC verdict.
 
 Examples:
 

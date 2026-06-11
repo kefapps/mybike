@@ -4373,3 +4373,45 @@ Synced on 2026-06-11:
     `_bmad-output/implementation-artifacts/myb-41-asset-gallery.html` was
     stopped.
   - No asset import was performed.
+
+## MYB-42 Unity Asset Import Guardrails Ready For Review
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-42`
+- URL: https://linear.app/kefjbo/issue/MYB-42/myb-010-importer-des-assets-3d-dans-unity-avec-garde-fous-licenceperf
+- Local branch: `myb-42-import-assets-unity-guardrails`
+- Local artifact:
+  `_bmad-output/implementation-artifacts/myb-42-unity-asset-import-guardrails.md`
+- Validation report:
+  `_bmad-output/unity-test-results/myb-42-asset-import-validation.txt`
+- Validation capture:
+  `_bmad-output/unity-test-results/myb-42-asset-import-validation.png`
+- Manifest:
+  `unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json`
+- Credits:
+  `THIRD_PARTY_ASSETS.md`
+- Status intent: ready for user review, not Done until the import POC is
+  accepted.
+- Linear status returned: `In Review`
+- Linear review comment ID: `16b4ba19-c3ea-422b-8b13-adc8cc9538eb`
+- Scope completed:
+  - Imported a minimal directly downloadable CC0 subset, not full packs.
+  - Versioned four model files from Kenney and six 1K texture maps from
+    ambientCG/Poly Haven.
+  - Updated manifest and credits with source, author, licence, local paths and
+    MYB-42 traceability.
+  - Added a dedicated Unity validation scene:
+    `Assets/Scenes/MYB42AssetImportValidation.unity`.
+  - Added `MYB42AssetImportValidator` to rebuild scene, materials, capture and
+    validation report.
+  - Left canonical `Assets/Scenes/MYB89UnityMcpProbe.unity` out of the change
+    surface and confirmed it remains the only enabled Build Settings scene.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: pass.
+  - `MYB42AssetImportValidator.BuildAndValidateCli`: pass.
+  - Report status: `PASS`, no failures.
+  - Textures imported at `1024x1024`.
+- Product caveat:
+  - `approved` in the manifest means legal/technical POC import approval, not
+    final V1 art-direction adoption.

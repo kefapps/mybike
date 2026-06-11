@@ -33,5 +33,94 @@
       "rejected"
     ]
   },
-  "assets": []
+  "assets": [
+    {
+      "id": "kenney-nature-kit-myb42-subset",
+      "assetName": "Nature Kit - MYB-42 subset",
+      "author": "Kenney",
+      "sourceUrl": "https://kenney.nl/assets/nature-kit",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrievedAt": "2026-06-11",
+      "category": "3D model",
+      "intendedUse": "Foret claire validation: roadside tree and rock scale/material import POC.",
+      "modifications": "Subset extraction only: tree_tall.fbx and rock_smallA.fbx. No geometry or material edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Nature Kit by Kenney)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/Kenney/NatureKit",
+      "importedFiles": [
+        "Models/tree_tall.fbx",
+        "Models/rock_smallA.fbx",
+        "License/License.txt"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-42 legal/technical POC import only; final V1 art adoption remains a separate verdict.",
+      "linearIssue": "MYB-42"
+    },
+    {
+      "id": "kenney-fantasy-town-kit-myb42-subset",
+      "assetName": "Fantasy Town Kit 2.0 - MYB-42 subset",
+      "author": "Kenney",
+      "sourceUrl": "https://kenney.nl/assets/fantasy-town-kit",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrievedAt": "2026-06-11",
+      "category": "3D model",
+      "intendedUse": "Village / campagne pavee validation: road module and wall landmark scale/material import POC.",
+      "modifications": "Subset extraction only: road.fbx and wall-window-stone.fbx. No geometry or material edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Fantasy Town Kit by Kenney)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit",
+      "importedFiles": [
+        "Models/road.fbx",
+        "Models/wall-window-stone.fbx",
+        "License/License.txt"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-42 legal/technical POC import only; final V1 art adoption remains a separate verdict.",
+      "linearIssue": "MYB-42"
+    },
+    {
+      "id": "ambientcg-paving-stones-141-1k-jpg-myb42",
+      "assetName": "Paving Stones 141 - 1K JPG subset",
+      "author": "ambientCG",
+      "sourceUrl": "https://ambientcg.com/view?id=pavingstones141",
+      "license": "CC0",
+      "licenseUrl": "https://docs.ambientcg.com/license/",
+      "retrievedAt": "2026-06-11",
+      "category": "Texture material",
+      "intendedUse": "Village / campagne pavee validation: rough paved Surface de Route material POC.",
+      "modifications": "Subset extraction only: Color, NormalGL and Roughness 1K JPG maps. No texture edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Paving Stones 141 from ambientCG.com)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141",
+      "importedFiles": [
+        "Textures/PavingStones141_1K-JPG_Color.jpg",
+        "Textures/PavingStones141_1K-JPG_NormalGL.jpg",
+        "Textures/PavingStones141_1K-JPG_Roughness.jpg"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-42 legal/technical POC import only; final V1 art adoption remains a separate verdict.",
+      "linearIssue": "MYB-42"
+    },
+    {
+      "id": "polyhaven-forest-ground-03-1k-jpg-myb42",
+      "assetName": "Forest Ground 03 - 1K JPG subset",
+      "author": "Rob Tuytel / Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/forrest_ground_03",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-11",
+      "category": "Texture material",
+      "intendedUse": "Foret claire validation: forest floor / dirt path Surface de Route and roadside ground material POC.",
+      "modifications": "Subset download only: diffuse, NormalGL and roughness 1K JPG maps. No texture edits.",
+      "attributionText": "none-required (CC0; courtesy credit: Forest Ground 03 by Rob Tuytel / Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03",
+      "importedFiles": [
+        "Textures/forrest_ground_03_diff_1k.jpg",
+        "Textures/forrest_ground_03_nor_gl_1k.jpg",
+        "Textures/forrest_ground_03_rough_1k.jpg"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-42 legal/technical POC import only; final V1 art adoption remains a separate verdict.",
+      "linearIssue": "MYB-42"
+    }
+  ]
 }

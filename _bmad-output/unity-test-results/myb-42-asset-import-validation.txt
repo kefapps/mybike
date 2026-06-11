@@ -1,0 +1,50 @@
+# MYB-42 Asset Import Validation
+GeneratedAt: 2026-06-11T14:39:18Z
+UnityVersion: 6000.4.10f1
+Project: unity/Echapee4D
+Scene: Assets/Scenes/MYB42AssetImportValidation.unity
+Status: PASS
+
+## Imported files
+- Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/tree_tall.fbx (23.2 KB)
+- Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/rock_smallA.fbx (13.6 KB)
+- Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/License/License.txt (611 B)
+- Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/Models/road.fbx (26.8 KB)
+- Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/Models/wall-window-stone.fbx (26.1 KB)
+- Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/License/License.txt (705 B)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Color.jpg (1.7 MB)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_NormalGL.jpg (1.9 MB)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Roughness.jpg (680.3 KB)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_diff_1k.jpg (801.9 KB)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_nor_gl_1k.jpg (1.5 MB)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_rough_1k.jpg (408.4 KB)
+
+## Texture dimensions
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Color.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_NormalGL.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Roughness.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_diff_1k.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_nor_gl_1k.jpg (1024x1024)
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_rough_1k.jpg (1024x1024)
+
+## Generated materials
+- Assets/Echappee/Art/MYB42Validation/Materials/MYB42_PavingStones141.mat
+- Assets/Echappee/Art/MYB42Validation/Materials/MYB42_ForestGround03.mat
+
+## Validation scene objects
+- Tree Tall
+- Rock Small A
+- Fantasy Town Road
+- Wall Window Stone
+
+## Enabled build scenes
+- Assets/Scenes/MYB89UnityMcpProbe.unity
+
+## Failures
+- none
+
+## Notes
+- Manifest approved status is legal/technical POC import approval, not final V1 art adoption.
+- Validation scene is dedicated to MYB-42 and is intentionally not added to Build Settings.
+- Capture: _bmad-output/unity-test-results/myb-42-asset-import-validation.png
+

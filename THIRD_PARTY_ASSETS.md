@@ -9,15 +9,14 @@
 
 ## Etat actuel
 
-La vertical slice mock active d'Echappee 3D n'integre **aucun asset artistique
-tiers** au moment de cette passe. Le projet actif est Unity macOS-first
-`unity/Echapee4D`; la scene de baseline utilise des primitives/geometries
-internes et aucun modele 3D, texture, sample audio ou police personnalisee
-externe n'est canonise comme asset de DA.
+La vertical slice mock active d'Echappee 3D integre depuis **MYB-42** un premier
+subset minimal d'assets tiers dans le projet Unity macOS-first
+`unity/Echapee4D`. Ces assets sont approuves pour import legal/technique et
+validation POC; cela ne vaut pas adoption artistique finale pour la V1.
 
-Le manifest Unity actif est vide et structurel. Il fixe le contrat de
-metadonnees pour les prochains tickets d'assets, mais aucun asset reel n'est
-encore approuve ou importe par MYB-38.
+La scene de baseline canonique reste `Assets/Scenes/MYB89UnityMcpProbe.unity`.
+MYB-42 ajoute une scene de validation dediee pour verifier l'import, l'echelle,
+les materiaux, les warnings Unity et la non-regression de la baseline.
 
 Les dependances Unity, packages et outils deja presents ne sont pas audites
 retroactivement par MYB-38. Cette politique s'applique des qu'un ticket ajoute
@@ -152,11 +151,12 @@ La capture minimale a conserver est :
 
 ## Tableau des assets approuves
 
-Aucun asset tiers approuve par cette politique n'est enregistre a ce jour.
-
 | ID | Nom | Auteur | Source | Categorie | Licence | Modifications |
 |---|---|---|---|---|---|---|
-| _aucun_ | _aucun_ | _aucun_ | _aucun_ | _aucun_ | _aucun_ | _aucun_ |
+| `kenney-nature-kit-myb42-subset` | Nature Kit - MYB-42 subset | Kenney | https://kenney.nl/assets/nature-kit | 3D model | CC0 | Subset extraction only: `tree_tall.fbx`, `rock_smallA.fbx`; no geometry/material edits. |
+| `kenney-fantasy-town-kit-myb42-subset` | Fantasy Town Kit 2.0 - MYB-42 subset | Kenney | https://kenney.nl/assets/fantasy-town-kit | 3D model | CC0 | Subset extraction only: `road.fbx`, `wall-window-stone.fbx`; no geometry/material edits. |
+| `ambientcg-paving-stones-141-1k-jpg-myb42` | Paving Stones 141 - 1K JPG subset | ambientCG | https://ambientcg.com/view?id=pavingstones141 | Texture material | CC0 | Subset extraction only: Color, NormalGL and Roughness 1K JPG maps; no texture edits. |
+| `polyhaven-forest-ground-03-1k-jpg-myb42` | Forest Ground 03 - 1K JPG subset | Rob Tuytel / Poly Haven | https://polyhaven.com/a/forrest_ground_03 | Texture material | CC0 | Subset download only: diffuse, NormalGL and roughness 1K JPG maps; no texture edits. |
 
 ## Hors scope
 
