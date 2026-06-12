@@ -5977,6 +5977,7 @@ Synced on 2026-06-12:
 - Linear status: `In Review`.
 - Linear start comment ID: `939e8360-b5da-4442-9efc-2f6489ca018c`.
 - Linear implementation comment ID: `d69c0267-e140-4af0-b63a-ff9c38a942b0`.
+- Linear review comment ID: `0e6bd3d3-bfd9-410b-92c4-0dd844cc43b0`.
 - Branch: `myb-64-myb-038-fallback-unity-sans-smart-trainer`.
 - Implementation commit: `859fbeb` (`MYB-64 add Unity no-trainer fallback`).
 - Local implementation report:
