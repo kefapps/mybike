@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-11
+Last sync: 2026-06-12
 
 ## Workspace
 
@@ -61,6 +61,7 @@ Last sync: 2026-06-11
 - Unity free asset license policy MYB-38: `_bmad-output/implementation-artifacts/myb-38-unity-free-asset-license-policy.md`
 - Unity free asset shortlist MYB-41: `_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md`
 - Meshy custom models POC MYB-95: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
+- Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
 
 ## Linear Documents
 
@@ -99,6 +100,7 @@ Last sync: 2026-06-11
 | Unity free asset shortlist | `MYB-41` | [MYB-007] Shortlister les modeles 3D gratuits V1 compatibles Unity | https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity |
 | Meshy custom models POC | `MYB-95` | POC Meshy : modèles 3D animés custom et effort d’intégration Unity | https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity |
 | Blender MCP asset pack | `MYB-96` | Générer un pack d'assets Blender via MCP pour la vertical slice Unity | https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity |
+| Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -5512,3 +5514,35 @@ Synced on 2026-06-12:
     provenance.
   - Keep scope bounded: no Meshy, paid external service, gameplay changes,
     hardware-bike dependency or full level-art pass.
+
+### MYB-88 Start Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-88`.
+- Linear status: `In Review`.
+- Linear start comment ID: `83b84ae7-fe4b-4cfa-9ba1-3e449d0badf3`.
+- Linear review comment ID: `c6b2bb41-2afa-4fc2-ad37-6a2740038984`.
+- Branch: `myb-88-unity-pr-checklist`.
+- Pull request: `https://github.com/kefapps/mybike/pull/16`.
+- Implementation commit: `1dd7aed` (`MYB-88 add Unity PR checklist`).
+- Grill-with-docs decisions:
+  - Primary artifact is `.github/PULL_REQUEST_TEMPLATE.md`.
+  - Use one general template with a conditional Unity macOS-first block.
+  - Allow `N/A` with a short reason.
+  - Include Linear/tracking, scope, Unity platform impact, asset provenance,
+    performance/budget impact, validation, and repo hygiene.
+  - Third-party assets without complete provenance are not adoptable/buildable;
+    they must stay `needs-review` and out of active scenes/builds.
+  - Locally generated assets need generation provenance plus performance/budget
+    notes.
+  - Explicitly check Unity/PackageManager/ProjectSettings generated changes to
+    avoid accidental package bumps or serialization drift.
+- Implementation summary:
+  - Added `.github/PULL_REQUEST_TEMPLATE.md`.
+  - Added local implementation report:
+    `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`.
+- Validation:
+  - `git diff --check`: PASS.
+  - Targeted secret/path scan: PASS; only historical `anti-secret scan` text in
+    sync artifacts matched.
