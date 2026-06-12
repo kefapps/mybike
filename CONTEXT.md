@@ -326,6 +326,35 @@ Relationships:
 
 Aliases: indice visuel de difficulte, route difficulty marker, segment cue.
 
+### Fiche Route
+
+Definition: A lightweight pre-ride surface that previews the single canonical
+route before the mock ride starts. It gives the rider route facts and intent:
+distance, estimated duration, biomes, overall difficulty, and up to three key
+moments.
+
+Relationships:
+
+- A `Fiche Route` describes one `Scenic Corridor`; it is not a route browser.
+- It can use calculated route stats and small editorial labels, but it must not
+  promise hardware telemetry, training plans, or unimplemented route variants.
+- It should hand off directly to the ride loop and keep mock mode playable.
+
+Aliases: apercu de l'echappee, route preview, pre-ride route card.
+
+### Moment Cle
+
+Definition: A short pre-ride promise for a memorable or mechanically relevant
+part of the route, such as the warmup, the main climb, or the short sprint.
+
+Relationships:
+
+- A `Moment Cle` can reference `Route Difficulty Cue`, `Biome`, or effort
+  pacing, but it remains descriptive rather than a quest objective.
+- A `Fiche Route` should surface at most three `Moment Cle` entries for the MVP.
+
+Aliases: moment cle, route highlight, key moment.
+
 ### Biome
 
 Definition: A route region with a coherent identity, surface language,

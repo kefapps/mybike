@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using MYB89;
+using MYB73;
 using MYB48;
 using MYB59;
 using MYB60;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -38,6 +40,7 @@ namespace MYB89.Editor
             EnsureFolder("Assets/Scenes");
             EnsureFolder("Assets/MYB89");
             EnsureFolder("Assets/MYB89/Materials");
+            EnsureFolder("Assets/MYB73");
             EnsureFolder("Assets/MYB48");
             EnsureFolder("Assets/MYB48/Materials");
 
@@ -60,6 +63,19 @@ namespace MYB89.Editor
             EditorSceneManager.SaveScene(scene, ScenePath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+            NormalizeSerializedWhitespace(
+                ScenePath,
+                "Assets/Echappee/Art/MYB53Validation/Materials/MYB53_SoftVillageGrass.mat",
+                "Assets/Echappee/Art/MYB53Validation/Materials/MYB53_WarmRoadEdge.mat",
+                "Assets/MYB48/Materials/MYB48_ClimbCue.mat",
+                "Assets/MYB48/Materials/MYB48_RecoveryCue.mat",
+                "Assets/MYB48/Materials/MYB48_SprintCue.mat",
+                "Assets/MYB89/Materials/MYB89_HorizonHill.mat",
+                "Assets/MYB89/Materials/MYB89_HorizonVillage.mat",
+                "Assets/MYB89/Materials/MYB89_PremiumWarmGlow.mat",
+                "Assets/MYB89/Materials/MYB89_VillageRoof.mat",
+                "Assets/MYB89/Materials/MYB89_VillageWall.mat",
+                "Assets/MYB89/Materials/MYB89_VillageWood.mat");
 
             Debug.Log($"MYB-89 probe scene built at {ScenePath} with {routeMarkers.Count} route markers.");
         }
@@ -986,9 +1002,14 @@ namespace MYB89.Editor
             ride.verdictLabel = verdictLabel;
             ride.keyLight = keyLight;
             ride.speedMetersPerSecond = 12.5f;
+            ride.waitForRoutePreview = true;
+            ride.autoplay = false;
             ride.resistanceMapper = rig.AddComponent<MYB60ResistanceMapper>();
             ride.resistanceController = rig.AddComponent<MYB59ResistanceController>();
-            ride.SetPreviewProgress(0f);
+            ride.PrepareRoutePreview();
+
+            CreateRoutePreviewPanel(hud.transform, ride);
+            EnsureEventSystem(parent);
 
             hud.name = "MYB89_HUD";
         }
@@ -998,6 +1019,79 @@ namespace MYB89.Editor
             CreateCube("MYB89_Handlebar_Left", parent, new Vector3(-0.45f, 1.05f, 0.46f), new Vector3(0.85f, 0.08f, 0.08f), Quaternion.identity, material);
             CreateCube("MYB89_Handlebar_Right", parent, new Vector3(0.45f, 1.05f, 0.46f), new Vector3(0.85f, 0.08f, 0.08f), Quaternion.identity, material);
             CreateCube("MYB89_Stem", parent, new Vector3(0f, 0.97f, 0.25f), new Vector3(0.11f, 0.11f, 0.55f), Quaternion.identity, material);
+        }
+
+        private static MYB73RoutePreviewPanel CreateRoutePreviewPanel(Transform canvasRoot, MYB89ProbeRide ride)
+        {
+            var panelObject = new GameObject("MYB73_RoutePreview", typeof(RectTransform));
+            panelObject.transform.SetParent(canvasRoot, false);
+
+            var panelRect = (RectTransform)panelObject.transform;
+            panelRect.anchorMin = new Vector2(0.5f, 0.5f);
+            panelRect.anchorMax = new Vector2(0.5f, 0.5f);
+            panelRect.pivot = new Vector2(0.5f, 0.5f);
+            panelRect.anchoredPosition = new Vector2(0f, -10f);
+            panelRect.sizeDelta = new Vector2(760f, 390f);
+
+            var image = panelObject.AddComponent<Image>();
+            image.color = new Color(0.055f, 0.07f, 0.06f, 0.9f);
+
+            var preview = panelObject.AddComponent<MYB73RoutePreviewPanel>();
+            preview.panelRoot = panelObject;
+            preview.ride = ride;
+            preview.titleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Title", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -22f), new Vector2(600f, 48f), TextAnchor.UpperLeft, 34);
+            preview.subtitleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Subtitle", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -76f), new Vector2(690f, 62f), TextAnchor.UpperLeft, 20);
+            preview.statsLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Stats", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -146f), new Vector2(690f, 36f), TextAnchor.UpperLeft, 24);
+            preview.difficultyLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Difficulty", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -192f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 22);
+            preview.biomesLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Biomes", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -236f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 20);
+            preview.momentsLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Moments", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -278f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 20);
+            preview.launchButton = CreateRoutePreviewButton(panelObject.transform);
+            preview.Refresh();
+
+            return preview;
+        }
+
+        private static Button CreateRoutePreviewButton(Transform parent)
+        {
+            var buttonObject = new GameObject("MYB73_RoutePreview_LaunchButton", typeof(RectTransform));
+            buttonObject.transform.SetParent(parent, false);
+
+            var rect = (RectTransform)buttonObject.transform;
+            rect.anchorMin = new Vector2(1f, 0f);
+            rect.anchorMax = new Vector2(1f, 0f);
+            rect.pivot = new Vector2(1f, 0f);
+            rect.anchoredPosition = new Vector2(-28f, 24f);
+            rect.sizeDelta = new Vector2(220f, 52f);
+
+            var image = buttonObject.AddComponent<Image>();
+            image.color = new Color(0.97f, 0.74f, 0.24f, 0.95f);
+
+            var button = buttonObject.AddComponent<Button>();
+            var colors = button.colors;
+            colors.normalColor = new Color(0.97f, 0.74f, 0.24f, 0.95f);
+            colors.highlightedColor = new Color(1f, 0.84f, 0.36f, 1f);
+            colors.pressedColor = new Color(0.86f, 0.56f, 0.16f, 1f);
+            colors.selectedColor = colors.highlightedColor;
+            button.colors = colors;
+
+            var label = CreateHudText(buttonObject.transform, "MYB73_RoutePreview_LaunchLabel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(200f, 42f), TextAnchor.MiddleCenter, 22);
+            label.text = "Lancer le ride";
+            label.color = new Color(0.06f, 0.07f, 0.05f, 1f);
+
+            return button;
+        }
+
+        private static void EnsureEventSystem(Transform parent)
+        {
+            if (UnityEngine.Object.FindAnyObjectByType<EventSystem>() != null)
+            {
+                return;
+            }
+
+            var eventSystemObject = new GameObject("MYB89_EventSystem");
+            eventSystemObject.transform.SetParent(parent);
+            eventSystemObject.AddComponent<EventSystem>();
+            eventSystemObject.AddComponent<StandaloneInputModule>();
         }
 
         private static GameObject CreateHud(
@@ -1254,6 +1348,37 @@ namespace MYB89.Editor
         {
             var projectRoot = Directory.GetParent(Application.dataPath);
             return Path.Combine(projectRoot == null ? Application.dataPath : projectRoot.FullName, assetPath);
+        }
+
+        private static void NormalizeSerializedWhitespace(params string[] assetPaths)
+        {
+            foreach (var assetPath in assetPaths)
+            {
+                var absolutePath = ProjectRelativeToAbsolute(assetPath);
+                if (!File.Exists(absolutePath))
+                {
+                    continue;
+                }
+
+                var lines = File.ReadAllLines(absolutePath);
+                var changed = false;
+                for (var i = 0; i < lines.Length; i++)
+                {
+                    var trimmed = lines[i].TrimEnd(' ', '\t');
+                    if (trimmed == lines[i])
+                    {
+                        continue;
+                    }
+
+                    lines[i] = trimmed;
+                    changed = true;
+                }
+
+                if (changed)
+                {
+                    File.WriteAllLines(absolutePath, lines);
+                }
+            }
         }
 
         private static string GetRepoRoot()
