@@ -5235,3 +5235,23 @@ Synced on 2026-06-12:
 - Scope note:
   - Pre-existing unstaged `MYB53Validation/*.mat` Unity serialization changes
     were intentionally left out of the MYB-95 commits.
+
+### MYB-95 Closure Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-95`.
+- Linear status: `Done`.
+- Linear closure comment ID: `c3cb0e0a-a171-4896-87d7-e7e19e006132`.
+- Pull request: `https://github.com/kefapps/mybike/pull/9`.
+- Merge commit on `main`: `9cd9ab8482431b522149c8be37e641b64c68ebd6`.
+- Merge method: squash merge.
+- GitHub/Linear attachments:
+  - Commit attachment:
+    `https://github.com/kefapps/mybike/commit/9cd9ab8482431b522149c8be37e641b64c68ebd6`.
+  - PR attachment: `https://github.com/kefapps/mybike/pull/9`.
+- Closure evidence:
+  - PR #9 was `MERGEABLE` / `CLEAN` before merge.
+  - `origin/main` updated to `9cd9ab8`.
+  - MYB-95 remains sandbox-only in Unity; no Meshy asset was added to the main
+    gameplay scene.

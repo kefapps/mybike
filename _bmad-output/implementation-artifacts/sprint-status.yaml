@@ -428,7 +428,7 @@ development_status:
 
   # MYB-95 - POC Meshy modeles 3D animes custom et effort integration Unity
   # POC cree pour tester credits Meshy sur 3 niveaux de complexite et mesurer l'effort Unity reel.
-  myb-95-meshy-custom-models-poc: backlog
+  myb-95-meshy-custom-models-poc: done
 
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
@@ -521,7 +521,7 @@ unity_free_animated_asset_poc_verdict: "support/fallback: technically usable and
 unity_free_animated_asset_poc_implementation_comment: "696ae4f6-3cef-4190-b7d4-46dc75738dcf"
 unity_free_animated_asset_poc_closure_comment: "e5abe149-669e-4881-84f7-f85549f97938"
 unity_free_animated_asset_poc_completed_at: "2026-06-11T15:19:09.995Z"
-unity_meshy_custom_models_poc_issue: "MYB-95 In Review"
+unity_meshy_custom_models_poc_issue: "MYB-95 Done"
 unity_meshy_custom_models_poc_url: "https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity"
 unity_meshy_custom_models_poc_report: "_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md"
 unity_meshy_custom_models_poc_scope: "Tester Meshy sur 3 niveaux (simple, moyen, super chiade) et mesurer l'effort reel d'integration Unity; confirmer le cout en credits avant chaque generation."
@@ -529,4 +529,4 @@ unity_meshy_custom_models_poc_preflight_report: "_bmad-output/implementation-art
 unity_meshy_custom_models_poc_credits: "124 Meshy credits consumed with explicit approval before each paid call."
 unity_meshy_custom_models_poc_validation: "PASS: lantern prefab validator, route guardian direct import validator, relic-fountain LOD prefab validator, MYB91 canonical baseline, unity-mcp-cli status, git diff --check, targeted secret scan."
 unity_meshy_custom_models_poc_verdict: "adopt ponctuel/premium: useful for 1-2 targeted hero landmarks after Blender optimization/LOD and direct Unity import; not a bulk asset pipeline; raw refined meshes too dense; Meshy Unity bridge not adopted for animated validation."
-unity_meshy_custom_models_poc_review_next_action: "review-MYB-95-and-select-next-Unity-art-integration-ticket"
+unity_meshy_custom_models_poc_review_next_action: "closed-via-pr-9-and-select-next-Unity-ticket"
