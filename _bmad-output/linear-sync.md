@@ -5275,3 +5275,30 @@ Synced on 2026-06-12:
     available.
   - Preserve mock mode and existing speed, distance, time and session state.
   - No React HUD refactor and no hardware-bike connection work.
+
+### MYB-63 Implementation Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-63`.
+- Linear status: `In Review`.
+- Linear review comment ID: `cb6b120c-316e-40e3-b3b9-eb7d6f6c37cd`.
+- Branch: `myb-63-hud-difficulty-slope-segment`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-63-unity-hud-difficulty-slope-segment.md`.
+- Implementation summary:
+  - Added Unity HUD labels for effort/difficulty, slope and current segment.
+  - Preserved existing speed, distance, progress and mock ride state.
+  - Updated MYB-89 scene builder to create and wire the new HUD labels.
+  - Updated MYB-89 and MYB-91 validators to fail when HUD difficulty/slope or
+    segment readouts are missing.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB89ProbeBuilder.BuildScene()`: PASS.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`: PASS.
+  - `git diff --check`: PASS.
+  - Targeted secret/path scan: PASS.
+- Visual evidence:
+  - `_bmad-output/unity-test-results/myb-63-unity-hud-difficulty-slope-segment.png`.

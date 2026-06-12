@@ -86,9 +86,30 @@ namespace MYB89.Editor
                     failures.Add($"Route length too short: {ride.RouteLength:0.0} m.");
                 }
 
-                if (ride.distanceLabel == null || ride.speedLabel == null || ride.verdictLabel == null)
+                if (ride.distanceLabel == null
+                    || ride.speedLabel == null
+                    || ride.difficultyLabel == null
+                    || ride.gradeLabel == null
+                    || ride.segmentLabel == null
+                    || ride.verdictLabel == null)
                 {
                     failures.Add("HUD labels are not wired to MYB89ProbeRide.");
+                }
+
+                ride.SetPreviewProgress(ride.RouteLength * 0.42f);
+                if (ride.difficultyLabel == null || !ride.difficultyLabel.text.Contains("Effort:"))
+                {
+                    failures.Add("HUD difficulty label is missing the effort readout.");
+                }
+
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Pente:"))
+                {
+                    failures.Add("HUD grade label is missing the slope readout.");
+                }
+
+                if (ride.segmentLabel == null || !ride.segmentLabel.text.Contains("Segment: Climb"))
+                {
+                    failures.Add("HUD segment label does not report the current climb segment.");
                 }
             }
 
@@ -463,7 +484,15 @@ namespace MYB89.Editor
             cameraObject.AddComponent<AudioListener>();
 
             CreateCockpit(rig.transform, materials["cockpit"]);
-            var hud = CreateHud(parent, camera, out var distanceLabel, out var speedLabel, out var verdictLabel);
+            var hud = CreateHud(
+                parent,
+                camera,
+                out var distanceLabel,
+                out var speedLabel,
+                out var difficultyLabel,
+                out var gradeLabel,
+                out var segmentLabel,
+                out var verdictLabel);
 
             var ride = rig.AddComponent<MYB89ProbeRide>();
             ride.routeMarkers = new Transform[routeMarkers.Count];
@@ -475,6 +504,9 @@ namespace MYB89.Editor
             ride.cameraPivot = cameraObject.transform;
             ride.distanceLabel = distanceLabel;
             ride.speedLabel = speedLabel;
+            ride.difficultyLabel = difficultyLabel;
+            ride.gradeLabel = gradeLabel;
+            ride.segmentLabel = segmentLabel;
             ride.verdictLabel = verdictLabel;
             ride.keyLight = keyLight;
             ride.speedMetersPerSecond = 12.5f;
@@ -490,7 +522,15 @@ namespace MYB89.Editor
             CreateCube("MYB89_Stem", parent, new Vector3(0f, 0.97f, 0.25f), new Vector3(0.11f, 0.11f, 0.55f), Quaternion.identity, material);
         }
 
-        private static GameObject CreateHud(Transform parent, Camera camera, out Text distanceLabel, out Text speedLabel, out Text verdictLabel)
+        private static GameObject CreateHud(
+            Transform parent,
+            Camera camera,
+            out Text distanceLabel,
+            out Text speedLabel,
+            out Text difficultyLabel,
+            out Text gradeLabel,
+            out Text segmentLabel,
+            out Text verdictLabel)
         {
             var canvasObject = new GameObject("MYB89_HUD", typeof(RectTransform));
             canvasObject.transform.SetParent(parent);
@@ -510,6 +550,9 @@ namespace MYB89.Editor
 
             distanceLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Distance", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -22f), new Vector2(330f, 48f), TextAnchor.UpperLeft, 28);
             speedLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Speed", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-26f, -22f), new Vector2(220f, 48f), TextAnchor.UpperRight, 30);
+            difficultyLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Difficulty", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -66f), new Vector2(390f, 38f), TextAnchor.UpperLeft, 22);
+            gradeLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Grade", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-26f, -66f), new Vector2(280f, 38f), TextAnchor.UpperRight, 22);
+            segmentLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Segment", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -24f), new Vector2(400f, 42f), TextAnchor.UpperCenter, 24);
             verdictLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Verdict", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 28f), new Vector2(680f, 42f), TextAnchor.LowerCenter, 22);
 
             return canvasObject;
@@ -686,6 +729,9 @@ namespace MYB89.Editor
                 writer.WriteLine("Route markers: " + (ride == null || ride.routeMarkers == null ? 0 : ride.routeMarkers.Length));
                 writer.WriteLine("Route length: " + (ride == null ? 0f : ride.RouteLength).ToString("0.0") + " m");
                 writer.WriteLine("Renderer count: " + rendererCount);
+                writer.WriteLine("HUD difficulty: " + (ride == null || ride.difficultyLabel == null ? "missing" : ride.difficultyLabel.text));
+                writer.WriteLine("HUD grade: " + (ride == null || ride.gradeLabel == null ? "missing" : ride.gradeLabel.text));
+                writer.WriteLine("HUD segment: " + (ride == null || ride.segmentLabel == null ? "missing" : ride.segmentLabel.text));
 
                 if (failures.Count > 0)
                 {

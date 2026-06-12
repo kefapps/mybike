@@ -178,7 +178,16 @@ namespace MYB91.Editor
             report.RouteMarkerCount = ride.routeMarkers == null ? 0 : ride.routeMarkers.Count(marker => marker != null);
             report.RouteLengthMeters = ride.RouteLength;
             report.SpeedMetersPerSecond = ride.speedMetersPerSecond;
-            report.HudLabelsWired = ride.distanceLabel != null && ride.speedLabel != null && ride.verdictLabel != null;
+            ride.SetPreviewProgress(ride.RouteLength * 0.42f);
+            report.HudLabelsWired = ride.distanceLabel != null
+                && ride.speedLabel != null
+                && ride.difficultyLabel != null
+                && ride.gradeLabel != null
+                && ride.segmentLabel != null
+                && ride.verdictLabel != null;
+            report.HudDifficultyText = ride.difficultyLabel == null ? string.Empty : ride.difficultyLabel.text;
+            report.HudGradeText = ride.gradeLabel == null ? string.Empty : ride.gradeLabel.text;
+            report.HudSegmentText = ride.segmentLabel == null ? string.Empty : ride.segmentLabel.text;
 
             if (report.RouteMarkerCount < 8)
             {
@@ -198,6 +207,21 @@ namespace MYB91.Editor
             if (!report.HudLabelsWired)
             {
                 failures.Add("HUD labels are not wired to MYB89ProbeRide.");
+            }
+
+            if (!report.HudDifficultyText.Contains("Effort:"))
+            {
+                failures.Add("HUD difficulty label is missing the effort readout.");
+            }
+
+            if (!report.HudGradeText.Contains("Pente:"))
+            {
+                failures.Add("HUD grade label is missing the slope readout.");
+            }
+
+            if (!report.HudSegmentText.Contains("Segment: Climb"))
+            {
+                failures.Add("HUD segment label does not report the current climb segment.");
             }
 
             if (!report.HasMainCamera)
@@ -287,6 +311,9 @@ namespace MYB91.Editor
                 writer.WriteLine("Road mesh: " + report.HasRoad);
                 writer.WriteLine("HUD canvas: " + report.HasHud);
                 writer.WriteLine("HUD labels wired: " + report.HudLabelsWired);
+                writer.WriteLine("HUD difficulty: " + EmptyAsMissing(report.HudDifficultyText));
+                writer.WriteLine("HUD grade: " + EmptyAsMissing(report.HudGradeText));
+                writer.WriteLine("HUD segment: " + EmptyAsMissing(report.HudSegmentText));
                 writer.WriteLine("Local generated roots present: " + (report.LocalGeneratedRoots.Length == 0 ? "none" : string.Join(", ", report.LocalGeneratedRoots)));
 
                 if (notes.Count > 0)
@@ -356,6 +383,9 @@ namespace MYB91.Editor
             public bool HasRoad;
             public bool HasHud;
             public bool HudLabelsWired;
+            public string HudDifficultyText = string.Empty;
+            public string HudGradeText = string.Empty;
+            public string HudSegmentText = string.Empty;
             public string[] LocalGeneratedRoots = Array.Empty<string>();
         }
     }

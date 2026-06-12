@@ -20,6 +20,9 @@ namespace MYB89
         [Header("HUD")]
         public Text distanceLabel;
         public Text speedLabel;
+        public Text difficultyLabel;
+        public Text gradeLabel;
+        public Text segmentLabel;
         public Text verdictLabel;
 
         [Header("Lighting")]
@@ -133,8 +136,14 @@ namespace MYB89
 
         private bool TrySampleRoute(float meters, out Vector3 position, out Vector3 forward)
         {
+            return TrySampleRoute(meters, out position, out forward, out _);
+        }
+
+        private bool TrySampleRoute(float meters, out Vector3 position, out Vector3 forward, out int routeSegmentIndex)
+        {
             position = Vector3.zero;
             forward = Vector3.forward;
+            routeSegmentIndex = -1;
 
             if (routeMarkers == null || routeMarkers.Length < 2 || routeLength <= 0.01f)
             {
@@ -160,6 +169,7 @@ namespace MYB89
 
                     position = Vector3.Lerp(a, b, Mathf.SmoothStep(0f, 1f, t));
                     forward = (b - a).normalized;
+                    routeSegmentIndex = i;
                     return true;
                 }
 
@@ -173,7 +183,9 @@ namespace MYB89
         {
             var total = routeLength <= 0.01f ? 1f : routeLength;
             var wrappedMeters = Mathf.Repeat(progressMeters, total);
-            var percent = Mathf.Clamp01(wrappedMeters / total) * 100f;
+            var progress01 = Mathf.Clamp01(wrappedMeters / total);
+            var percent = progress01 * 100f;
+            var routeHud = SampleRouteHud(wrappedMeters, progress01);
 
             if (distanceLabel != null)
             {
@@ -185,10 +197,117 @@ namespace MYB89
                 speedLabel.text = $"{speedMetersPerSecond * 3.6f:00} km/h";
             }
 
+            if (difficultyLabel != null)
+            {
+                difficultyLabel.text = $"Effort: {routeHud.DifficultyLabel}";
+            }
+
+            if (gradeLabel != null)
+            {
+                gradeLabel.text = $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
+            }
+
+            if (segmentLabel != null)
+            {
+                segmentLabel.text = $"Segment: {routeHud.SegmentLabel}";
+            }
+
             if (verdictLabel != null)
             {
-                verdictLabel.text = $"MYB-89 MCP probe | {percent:00}% | readable motion corridor";
+                verdictLabel.text = $"Mock ride running | {percent:00}% | readable motion corridor";
             }
+        }
+
+        private RouteHudSnapshot SampleRouteHud(float wrappedMeters, float progress01)
+        {
+            var gradePercent = 0f;
+            var segmentIndex = -1;
+
+            if (TrySampleRoute(wrappedMeters, out _, out _, out segmentIndex)
+                && routeMarkers != null
+                && segmentIndex >= 0
+                && segmentIndex < routeMarkers.Length - 1)
+            {
+                var a = routeMarkers[segmentIndex];
+                var b = routeMarkers[segmentIndex + 1];
+                if (a != null && b != null)
+                {
+                    var delta = b.position - a.position;
+                    var horizontalMeters = new Vector2(delta.x, delta.z).magnitude;
+                    if (horizontalMeters > 0.01f)
+                    {
+                        gradePercent = delta.y / horizontalMeters * 100f;
+                    }
+                }
+            }
+
+            var segmentLabel = SegmentLabelFor(progress01);
+            var difficultyLabel = DifficultyLabelFor(progress01, gradePercent);
+            return new RouteHudSnapshot(difficultyLabel, gradePercent, segmentLabel);
+        }
+
+        private static string SegmentLabelFor(float progress01)
+        {
+            if (progress01 < 0.26f)
+            {
+                return "Warmup";
+            }
+
+            if (progress01 < 0.56f)
+            {
+                return "Climb";
+            }
+
+            if (progress01 < 0.84f)
+            {
+                return "Sprint";
+            }
+
+            return "Recovery";
+        }
+
+        private static string DifficultyLabelFor(float progress01, float gradePercent)
+        {
+            if (progress01 < 0.26f)
+            {
+                return "Easy spin";
+            }
+
+            if (progress01 >= 0.84f)
+            {
+                return "Recovery";
+            }
+
+            if (progress01 >= 0.56f && progress01 < 0.84f)
+            {
+                return "Hard sprint";
+            }
+
+            if (gradePercent >= 0.25f || (progress01 >= 0.26f && progress01 < 0.56f))
+            {
+                return "Sustained climb";
+            }
+
+            if (gradePercent < -0.25f)
+            {
+                return "Recovery";
+            }
+
+            return "Easy spin";
+        }
+
+        private readonly struct RouteHudSnapshot
+        {
+            public RouteHudSnapshot(string difficultyLabel, float gradePercent, string segmentLabel)
+            {
+                DifficultyLabel = difficultyLabel;
+                GradePercent = gradePercent;
+                SegmentLabel = segmentLabel;
+            }
+
+            public string DifficultyLabel { get; }
+            public float GradePercent { get; }
+            public string SegmentLabel { get; }
         }
 
         private void AnimateKeyLight()
