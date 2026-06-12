@@ -49,6 +49,7 @@ namespace MYB89.Editor
             ConfigureRenderSettings();
             CreateTerrain(root.transform, materials);
             var routeMarkers = CreateRoute(root.transform, materials);
+            CreateScenicCorridor(root.transform, materials);
             CreateRoadsideRhythm(root.transform, materials);
             CreateRouteDifficultyCues(root.transform, routeMarkers, cueMaterials);
             var keyLight = CreateLighting(root.transform);
@@ -72,6 +73,15 @@ namespace MYB89.Editor
             var road = GameObject.Find("MYB89_RouteRoad");
             var hud = GameObject.Find("MYB89_HUD");
             var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
+            var scenicCorridor = GameObject.Find("MYB44_ScenicCorridor");
+            var scenicRenderers = scenicCorridor == null
+                ? Array.Empty<Renderer>()
+                : scenicCorridor.GetComponentsInChildren<Renderer>(false);
+            var horizon = GameObject.Find("MYB44_Horizon");
+            var horizonRenderers = horizon == null
+                ? Array.Empty<Renderer>()
+                : horizon.GetComponentsInChildren<Renderer>(false);
+            var premiumSignal = GameObject.Find("MYB44_PremiumSignal_RelicLantern");
             var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude);
 
             if (ride == null)
@@ -161,12 +171,34 @@ namespace MYB89.Editor
                 }
             }
 
+            if (scenicCorridor == null)
+            {
+                failures.Add("Missing MYB44 scenic corridor root.");
+            }
+            else
+            {
+                if (scenicRenderers.Length < 45)
+                {
+                    failures.Add($"MYB44 scenic corridor has too few renderers: {scenicRenderers.Length}.");
+                }
+
+                if (horizonRenderers.Length < 10)
+                {
+                    failures.Add($"MYB44 horizon has too few renderers: {horizonRenderers.Length}.");
+                }
+
+                if (premiumSignal == null)
+                {
+                    failures.Add("Missing MYB44 premium signal.");
+                }
+            }
+
             if (renderers.Length < 55)
             {
                 failures.Add($"Scene has too few renderers for readable motion: {renderers.Length}.");
             }
 
-            var report = WriteValidationReport(failures, ride, difficultyCues, renderers.Length);
+            var report = WriteValidationReport(failures, ride, difficultyCues, renderers.Length, scenicRenderers.Length, horizonRenderers.Length);
             if (failures.Count > 0)
             {
                 throw new InvalidOperationException("MYB-89 probe validation failed. See " + report);
@@ -226,11 +258,19 @@ namespace MYB89.Editor
         {
             return new Dictionary<string, Material>
             {
-                { "road", MaterialAt("Assets/MYB89/Materials/MYB89_Road.mat", new Color(0.13f, 0.15f, 0.14f), 0.12f) },
+                { "road", LoadMaterialOrFallback("Assets/Echappee/Art/MYB53Validation/Materials/MYB53_PavingStones141_Stylized.mat", "Assets/MYB89/Materials/MYB89_Road.mat", new Color(0.34f, 0.3f, 0.25f), 0.18f) },
                 { "lane", MaterialAt("Assets/MYB89/Materials/MYB89_LanePaint.mat", new Color(0.96f, 0.91f, 0.73f), 0.04f) },
                 { "edge", MaterialAt("Assets/MYB89/Materials/MYB89_EdgeLine.mat", new Color(0.88f, 0.96f, 0.95f), 0.04f) },
                 { "grass", MaterialAt("Assets/MYB89/Materials/MYB89_Grass.mat", new Color(0.19f, 0.42f, 0.27f), 0f) },
                 { "hill", MaterialAt("Assets/MYB89/Materials/MYB89_Hill.mat", new Color(0.31f, 0.5f, 0.35f), 0f) },
+                { "villageGrass", LoadMaterialOrFallback("Assets/Echappee/Art/MYB53Validation/Materials/MYB53_SoftVillageGrass.mat", "Assets/MYB89/Materials/MYB89_VillageGrass.mat", new Color(0.29f, 0.46f, 0.28f), 0f) },
+                { "roadEdgeWarm", LoadMaterialOrFallback("Assets/Echappee/Art/MYB53Validation/Materials/MYB53_WarmRoadEdge.mat", "Assets/MYB89/Materials/MYB89_WarmRoadEdge.mat", new Color(0.55f, 0.43f, 0.3f), 0.08f) },
+                { "villageWall", MaterialAt("Assets/MYB89/Materials/MYB89_VillageWall.mat", new Color(0.72f, 0.64f, 0.5f), 0.18f) },
+                { "villageRoof", MaterialAt("Assets/MYB89/Materials/MYB89_VillageRoof.mat", new Color(0.62f, 0.24f, 0.18f), 0.22f) },
+                { "villageWood", MaterialAt("Assets/MYB89/Materials/MYB89_VillageWood.mat", new Color(0.39f, 0.25f, 0.14f), 0.12f) },
+                { "horizonVillage", MaterialAt("Assets/MYB89/Materials/MYB89_HorizonVillage.mat", new Color(0.44f, 0.36f, 0.28f), 0.08f) },
+                { "horizonHill", MaterialAt("Assets/MYB89/Materials/MYB89_HorizonHill.mat", new Color(0.24f, 0.38f, 0.31f), 0f) },
+                { "premiumGlow", EmissiveMaterialAt("Assets/MYB89/Materials/MYB89_PremiumWarmGlow.mat", new Color(1f, 0.66f, 0.25f), 1.75f) },
                 { "postBlue", MaterialAt("Assets/MYB89/Materials/MYB89_PostBlue.mat", new Color(0.15f, 0.45f, 0.92f), 0.18f) },
                 { "postCoral", MaterialAt("Assets/MYB89/Materials/MYB89_PostCoral.mat", new Color(0.95f, 0.31f, 0.24f), 0.18f) },
                 { "postWhite", MaterialAt("Assets/MYB89/Materials/MYB89_PostWhite.mat", new Color(0.93f, 0.95f, 0.91f), 0.08f) },
@@ -241,32 +281,33 @@ namespace MYB89.Editor
             };
         }
 
+        private static Material LoadMaterialOrFallback(string existingAssetPath, string fallbackAssetPath, Color color, float smoothness)
+        {
+            return AssetDatabase.LoadAssetAtPath<Material>(existingAssetPath)
+                ?? MaterialAt(fallbackAssetPath, color, smoothness);
+        }
+
         private static Material MaterialAt(string assetPath, Color color, float smoothness)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(assetPath);
+            var dirty = false;
             if (material == null)
             {
                 var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard") ?? Shader.Find("Unlit/Color");
                 material = new Material(shader);
                 AssetDatabase.CreateAsset(material, assetPath);
+                dirty = true;
             }
 
-            if (material.HasProperty("_BaseColor"))
+            dirty |= SetColorIfDifferent(material, "_BaseColor", color);
+            dirty |= SetColorIfDifferent(material, "_Color", color);
+            dirty |= SetFloatIfDifferent(material, "_Smoothness", smoothness);
+
+            if (dirty)
             {
-                material.SetColor("_BaseColor", color);
+                EditorUtility.SetDirty(material);
             }
 
-            if (material.HasProperty("_Color"))
-            {
-                material.SetColor("_Color", color);
-            }
-
-            if (material.HasProperty("_Smoothness"))
-            {
-                material.SetFloat("_Smoothness", smoothness);
-            }
-
-            EditorUtility.SetDirty(material);
             return material;
         }
 
@@ -283,36 +324,68 @@ namespace MYB89.Editor
         private static Material EmissiveMaterialAt(string assetPath, Color color, float emissionIntensity)
         {
             var material = AssetDatabase.LoadAssetAtPath<Material>(assetPath);
+            var dirty = false;
             if (material == null)
             {
                 var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard") ?? Shader.Find("Unlit/Color");
                 material = new Material(shader);
                 AssetDatabase.CreateAsset(material, assetPath);
+                dirty = true;
             }
 
-            if (material.HasProperty("_BaseColor"))
+            dirty |= SetColorIfDifferent(material, "_BaseColor", color);
+            dirty |= SetColorIfDifferent(material, "_Color", color);
+            dirty |= SetColorIfDifferent(material, "_EmissionColor", color * emissionIntensity);
+            dirty |= SetFloatIfDifferent(material, "_Smoothness", 0.42f);
+
+            if (!material.IsKeywordEnabled("_EMISSION"))
             {
-                material.SetColor("_BaseColor", color);
+                material.EnableKeyword("_EMISSION");
+                dirty = true;
             }
 
-            if (material.HasProperty("_Color"))
+            if (dirty)
             {
-                material.SetColor("_Color", color);
+                EditorUtility.SetDirty(material);
             }
 
-            if (material.HasProperty("_EmissionColor"))
-            {
-                material.SetColor("_EmissionColor", color * emissionIntensity);
-            }
-
-            if (material.HasProperty("_Smoothness"))
-            {
-                material.SetFloat("_Smoothness", 0.42f);
-            }
-
-            material.EnableKeyword("_EMISSION");
-            EditorUtility.SetDirty(material);
             return material;
+        }
+
+        private static bool SetColorIfDifferent(Material material, string propertyName, Color color)
+        {
+            if (!material.HasProperty(propertyName))
+            {
+                return false;
+            }
+
+            var current = material.GetColor(propertyName);
+            if (Mathf.Abs(current.r - color.r) < 0.0001f
+                && Mathf.Abs(current.g - color.g) < 0.0001f
+                && Mathf.Abs(current.b - color.b) < 0.0001f
+                && Mathf.Abs(current.a - color.a) < 0.0001f)
+            {
+                return false;
+            }
+
+            material.SetColor(propertyName, color);
+            return true;
+        }
+
+        private static bool SetFloatIfDifferent(Material material, string propertyName, float value)
+        {
+            if (!material.HasProperty(propertyName))
+            {
+                return false;
+            }
+
+            if (Mathf.Abs(material.GetFloat(propertyName) - value) < 0.0001f)
+            {
+                return false;
+            }
+
+            material.SetFloat(propertyName, value);
+            return true;
         }
 
         private static void ConfigureRenderSettings()
@@ -341,6 +414,269 @@ namespace MYB89.Editor
             CreateHill("MYB89_RightHill_A", parent, new Vector3(36f, 3.5f, 92f), new Vector3(30f, 7f, 20f), materials["hill"]);
             CreateHill("MYB89_LeftHill_B", parent, new Vector3(-30f, 4f, 175f), new Vector3(34f, 8f, 25f), materials["hill"]);
             CreateHill("MYB89_RightHill_B", parent, new Vector3(42f, 4f, 210f), new Vector3(32f, 8f, 22f), materials["hill"]);
+        }
+
+        private static void CreateScenicCorridor(Transform parent, IReadOnlyDictionary<string, Material> materials)
+        {
+            var corridor = new GameObject("MYB44_ScenicCorridor");
+            corridor.transform.SetParent(parent);
+
+            var foreground = new GameObject("MYB44_Foreground");
+            foreground.transform.SetParent(corridor.transform);
+            var midground = new GameObject("MYB44_Midground");
+            midground.transform.SetParent(corridor.transform);
+            var horizon = new GameObject("MYB44_Horizon");
+            horizon.transform.SetParent(corridor.transform);
+
+            CreateStripMesh("MYB44_LeftWarmShoulder", foreground.transform, RoutePoints, -RoadWidth * 0.5f - 1.9f, 3.1f, 0.025f, materials["roadEdgeWarm"]);
+            CreateStripMesh("MYB44_RightWarmShoulder", foreground.transform, RoutePoints, RoadWidth * 0.5f + 1.9f, 3.1f, 0.025f, materials["roadEdgeWarm"]);
+            CreateStripMesh("MYB44_LeftVillageVerge", foreground.transform, RoutePoints, -RoadWidth * 0.5f - 5.2f, 3.2f, 0.018f, materials["villageGrass"]);
+            CreateStripMesh("MYB44_RightVillageVerge", foreground.transform, RoutePoints, RoadWidth * 0.5f + 5.2f, 3.2f, 0.018f, materials["villageGrass"]);
+
+            CreateVillageAssetCluster(midground.transform, materials);
+            CreateVillagePrimitiveRhythm(foreground.transform, materials);
+            CreateVillageHorizon(horizon.transform, materials);
+            CreatePremiumSignal(corridor.transform, materials);
+        }
+
+        private static void CreateVillageAssetCluster(Transform parent, IReadOnlyDictionary<string, Material> materials)
+        {
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_home_A_yellow.fbx",
+                "MYB44_VillageHome_A",
+                parent,
+                52f,
+                -1f,
+                14.5f,
+                5.2f,
+                null);
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_market_yellow.fbx",
+                "MYB44_VillageMarket_A",
+                parent,
+                96f,
+                1f,
+                16.5f,
+                5.4f,
+                null);
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/Models/wall-window-stone.fbx",
+                "MYB44_WallWindow_A",
+                parent,
+                121f,
+                -1f,
+                10.5f,
+                4.3f,
+                null);
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_home_A_yellow.fbx",
+                "MYB44_VillageHome_B",
+                parent,
+                163f,
+                1f,
+                15.8f,
+                5.0f,
+                null);
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_well_yellow.fbx",
+                "MYB44_VillageWell",
+                parent,
+                182f,
+                -1f,
+                9.6f,
+                1.8f,
+                null);
+
+            for (var i = 0; i < 11; i++)
+            {
+                var side = i % 2 == 0 ? -1f : 1f;
+                PlaceAssetAtDistance(
+                    "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/fence_stone_straight.fbx",
+                    $"MYB44_StoneFence_{i:00}",
+                    parent,
+                    28f + i * 18f,
+                    side,
+                    6.7f + (i % 3) * 0.55f,
+                    0.8f,
+                    null);
+            }
+
+            for (var i = 0; i < 9; i++)
+            {
+                var side = i % 2 == 0 ? 1f : -1f;
+                PlaceAssetAtDistance(
+                    "Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/barrel.fbx",
+                    $"MYB44_RoadsideBarrel_{i:00}",
+                    parent,
+                    36f + i * 22f,
+                    side,
+                    5.9f + (i % 2) * 1.1f,
+                    0.65f,
+                    null);
+            }
+
+            PlaceAssetAtDistance(
+                "Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated/Models/horse_animated.fbx",
+                "MYB44_VillageHorse_LifeAccent",
+                parent,
+                148f,
+                -1f,
+                12.5f,
+                1.45f,
+                null);
+
+            for (var i = 0; i < 10; i++)
+            {
+                var side = i % 2 == 0 ? -1f : 1f;
+                var assetPath = i % 3 == 0
+                    ? "Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/rock_smallA.fbx"
+                    : "Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/tree_tall.fbx";
+                PlaceAssetAtDistance(
+                    assetPath,
+                    $"MYB44_VergeNaturalAccent_{i:00}",
+                    parent,
+                    20f + i * 20f,
+                    side,
+                    10.5f + (i % 4) * 1.4f,
+                    i % 3 == 0 ? 0.75f : 4.0f,
+                    null);
+            }
+        }
+
+        private static void CreateVillagePrimitiveRhythm(Transform parent, IReadOnlyDictionary<string, Material> materials)
+        {
+            for (var i = 0; i < 14; i++)
+            {
+                var side = i % 2 == 0 ? -1f : 1f;
+                if (!SampleRoute(18f + i * 15f, out var position, out var forward, out var right))
+                {
+                    continue;
+                }
+
+                var basePosition = position + right * side * (RoadWidth * 0.5f + 7.4f + (i % 3) * 0.8f);
+                var rotation = Quaternion.LookRotation(forward, Vector3.up);
+                CreateCube($"MYB44_LowWall_{i:00}", parent, basePosition + Vector3.up * 0.34f, new Vector3(3.6f, 0.68f, 0.38f), rotation, materials["villageWall"]);
+                CreateCube($"MYB44_WoodCrate_{i:00}", parent, basePosition + right * side * 1.55f + Vector3.up * 0.38f, new Vector3(0.75f, 0.75f, 0.75f), rotation, materials["villageWood"]);
+            }
+        }
+
+        private static void CreateVillageHorizon(Transform parent, IReadOnlyDictionary<string, Material> materials)
+        {
+            CreateHill("MYB44_HorizonHill_Left", parent, new Vector3(-70f, 3.2f, 245f), new Vector3(64f, 6.4f, 34f), materials["horizonHill"]);
+            CreateHill("MYB44_HorizonHill_Right", parent, new Vector3(78f, 3.4f, 265f), new Vector3(72f, 6.8f, 38f), materials["horizonHill"]);
+            CreateHill("MYB44_HorizonHill_Center", parent, new Vector3(5f, 3.0f, 292f), new Vector3(92f, 6.0f, 42f), materials["horizonHill"]);
+
+            var positions = new[]
+            {
+                new Vector3(-42f, 4.2f, 228f),
+                new Vector3(-24f, 4.0f, 242f),
+                new Vector3(28f, 4.4f, 236f),
+                new Vector3(47f, 4.1f, 252f),
+                new Vector3(-58f, 4.8f, 278f),
+                new Vector3(62f, 4.6f, 284f)
+            };
+
+            for (var i = 0; i < positions.Length; i++)
+            {
+                var body = CreateCube($"MYB44_HorizonCottage_{i:00}", parent, positions[i], new Vector3(8.2f, 5.4f, 6.4f), Quaternion.identity, materials["horizonVillage"]);
+                body.transform.rotation = Quaternion.Euler(0f, i % 2 == 0 ? 8f : -12f, 0f);
+                var roof = CreateCube($"MYB44_HorizonRoof_{i:00}", parent, positions[i] + Vector3.up * 3.35f, new Vector3(9.3f, 1.2f, 7.2f), body.transform.rotation, materials["villageRoof"]);
+                roof.transform.rotation *= Quaternion.Euler(0f, 0f, 45f);
+            }
+
+            for (var i = 0; i < 14; i++)
+            {
+                var x = -66f + i * 10.5f;
+                var z = 218f + (i % 5) * 13f;
+                CreateTree($"MYB44_HorizonTree_{i:00}", parent, new Vector3(x, 0f, z), materials["treeTrunk"], materials["treeLeaf"]);
+            }
+        }
+
+        private static void CreatePremiumSignal(Transform parent, IReadOnlyDictionary<string, Material> materials)
+        {
+            if (!SampleRoute(126f, out var position, out var forward, out var right))
+            {
+                return;
+            }
+
+            var signal = new GameObject("MYB44_PremiumSignal_RelicLantern");
+            signal.transform.SetParent(parent);
+            signal.transform.position = position + right * (RoadWidth * 0.5f + 9.2f);
+            signal.transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+
+            CreateCube("MYB44_RelicBase", signal.transform, signal.transform.position + Vector3.up * 0.24f, new Vector3(1.35f, 0.48f, 1.35f), signal.transform.rotation, materials["villageWall"]);
+            CreateCube("MYB44_RelicPillar", signal.transform, signal.transform.position + Vector3.up * 1.25f, new Vector3(0.55f, 2.0f, 0.55f), signal.transform.rotation, materials["villageWood"]);
+            CreateCube("MYB44_RelicCore", signal.transform, signal.transform.position + Vector3.up * 2.4f, new Vector3(0.82f, 0.82f, 0.82f), signal.transform.rotation * Quaternion.Euler(0f, 45f, 0f), materials["premiumGlow"]);
+
+            var lightObject = new GameObject("MYB44_RelicWarmLight");
+            lightObject.transform.SetParent(signal.transform);
+            lightObject.transform.position = signal.transform.position + Vector3.up * 2.45f;
+            var light = lightObject.AddComponent<Light>();
+            light.type = LightType.Point;
+            light.color = new Color(1f, 0.64f, 0.32f);
+            light.intensity = 1.2f;
+            light.range = 9f;
+            light.shadows = LightShadows.None;
+        }
+
+        private static void PlaceAssetAtDistance(
+            string assetPath,
+            string name,
+            Transform parent,
+            float distance,
+            float side,
+            float lateralOffset,
+            float targetHeight,
+            Material fallbackMaterial)
+        {
+            if (!SampleRoute(distance, out var position, out var forward, out var right))
+            {
+                return;
+            }
+
+            var rotation = Quaternion.LookRotation(forward, Vector3.up);
+            var placement = position + right * side * (RoadWidth * 0.5f + lateralOffset);
+            var asset = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
+            GameObject instance;
+            if (asset == null)
+            {
+                instance = CreateCube(name, parent, placement + Vector3.up * 0.7f, Vector3.one, rotation, fallbackMaterial);
+                return;
+            }
+
+            instance = (GameObject)PrefabUtility.InstantiatePrefab(asset);
+            instance.name = name;
+            instance.transform.SetParent(parent);
+            instance.transform.SetPositionAndRotation(placement, rotation);
+            FitToHeight(instance, targetHeight);
+
+            if (fallbackMaterial != null && instance.GetComponentsInChildren<Renderer>(true).Length == 0)
+            {
+                SetMaterialRecursive(instance, fallbackMaterial);
+            }
+        }
+
+        private static void FitToHeight(GameObject instance, float targetHeight)
+        {
+            var renderers = instance.GetComponentsInChildren<Renderer>(true);
+            if (renderers.Length == 0)
+            {
+                instance.transform.localScale = Vector3.one * targetHeight;
+                return;
+            }
+
+            var bounds = renderers[0].bounds;
+            for (var i = 1; i < renderers.Length; i++)
+            {
+                bounds.Encapsulate(renderers[i].bounds);
+            }
+
+            if (bounds.size.y <= 0.001f)
+            {
+                return;
+            }
+
+            instance.transform.localScale *= targetHeight / bounds.size.y;
         }
 
         private static void CreateHill(string name, Transform parent, Vector3 position, Vector3 scale, Material material)
@@ -705,6 +1041,14 @@ namespace MYB89.Editor
             }
         }
 
+        private static void SetMaterialRecursive(GameObject gameObject, Material material)
+        {
+            foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>(true))
+            {
+                renderer.sharedMaterial = material;
+            }
+        }
+
         private static Vector3 TangentAt(IReadOnlyList<Vector3> points, int index)
         {
             if (index <= 0)
@@ -813,7 +1157,13 @@ namespace MYB89.Editor
             }
         }
 
-        private static string WriteValidationReport(IReadOnlyList<string> failures, MYB89ProbeRide ride, MYB48RouteDifficultyCueController difficultyCues, int rendererCount)
+        private static string WriteValidationReport(
+            IReadOnlyList<string> failures,
+            MYB89ProbeRide ride,
+            MYB48RouteDifficultyCueController difficultyCues,
+            int rendererCount,
+            int scenicRendererCount,
+            int horizonRendererCount)
         {
             var repoRoot = GetRepoRoot();
             var reportDir = Path.Combine(repoRoot, "_bmad-output", "unity-test-results");
@@ -830,6 +1180,8 @@ namespace MYB89.Editor
                 writer.WriteLine("Route markers: " + (ride == null || ride.routeMarkers == null ? 0 : ride.routeMarkers.Length));
                 writer.WriteLine("Route length: " + (ride == null ? 0f : ride.RouteLength).ToString("0.0") + " m");
                 writer.WriteLine("Renderer count: " + rendererCount);
+                writer.WriteLine("MYB44 scenic renderers: " + scenicRendererCount);
+                writer.WriteLine("MYB44 horizon renderers: " + horizonRendererCount);
                 writer.WriteLine("HUD difficulty: " + (ride == null || ride.difficultyLabel == null ? "missing" : ride.difficultyLabel.text));
                 writer.WriteLine("HUD grade: " + (ride == null || ride.gradeLabel == null ? "missing" : ride.gradeLabel.text));
                 writer.WriteLine("HUD segment: " + (ride == null || ride.segmentLabel == null ? "missing" : ride.segmentLabel.text));

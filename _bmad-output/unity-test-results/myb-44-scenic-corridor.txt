@@ -1,0 +1,10 @@
+MYB-44 Scenic Corridor validation
+Timestamp UTC: 2026-06-12T08:03:59.2188590Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Scenic corridor renderers: 116
+Horizon renderers: 43
+Premium signal lights: 1
+Corridor: Village / campagne pavee
+Validation target: Unity Editor/macOS local proof only

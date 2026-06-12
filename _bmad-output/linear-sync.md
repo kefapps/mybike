@@ -5403,3 +5403,28 @@ Synced on 2026-06-12:
     capture evidence.
 - Next requested workflow:
   - `$grill-with-docs` and implementation for `MYB-44`.
+
+### MYB-44 Start Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-44`.
+- Linear status: `In Progress`.
+- Linear start comment ID: `9f743cd5-6fcf-43e5-b4f8-6ed0cb99894b`.
+- Branch: `myb-44-scenic-corridor`.
+- Grill-with-docs decisions:
+  - Canonical term: `Scenic Corridor`.
+  - First corridor: `Village / campagne pavee`.
+  - Composition: approved/imported assets as the identity base, Unity
+    primitives for composition, silhouettes, grounding and polish.
+  - Premium accent: at most one discreet `Signal Fantasy Premium`, off the ride
+    lane and subordinate to route, HUD and Route Difficulty Cues.
+  - Target scene: enrich canonical
+    `Assets/Scenes/MYB89UnityMcpProbe.unity` through `MYB89ProbeBuilder`.
+  - Spatial scope: foreground, roadside, mid-ground, background and horizon.
+  - Horizon tone: warm countryside/village, readable and soft, with controlled
+    fantasy accent only.
+  - Density: moderate but composed, macOS-first, no massive asset import.
+  - Validation: Unity Editor/macOS local proof only; no WebGL proof.
+- Documentation update:
+  - `CONTEXT.md` now defines `Scenic Corridor`.

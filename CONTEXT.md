@@ -347,6 +347,31 @@ Non-examples:
 
 - A random asset cluster that does not change the rider's sense of place.
 
+### Scenic Corridor
+
+Definition: A playable route stretch that turns one or more biomes into a
+continuous first-person ride space with readable edges, surface changes,
+roadside silhouettes, and a few memorable accents.
+
+Aliases: corridor scenic, visual corridor, ride corridor.
+
+Relationships:
+
+- A `Scenic Corridor` uses `Biome`, `Surface de Route`, `Scenic Fantasy
+  Lisible`, and selective `Signal Fantasy Premium` language.
+- A `Scenic Corridor` must stay playable first: route, camera, HUD, mock mode,
+  and difficulty feedback remain readable while the environment becomes richer.
+
+Examples:
+
+- A village/countryside paved stretch with warmer road surface, low walls,
+  cottages, barrels, trees, subtle lights, and a clear ride lane.
+
+Non-examples:
+
+- A decorative asset gallery, a disconnected set of props, or a fully separate
+  open-world level.
+
 ### Surface de Route
 
 Definition: The visible riding surface and its edge language. It can change by
