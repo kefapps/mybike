@@ -432,7 +432,7 @@ development_status:
 
   # MYB-63 - Refondre le HUD Unity : difficulte, pente et segment courant
   # Prochain ticket actif apres MYB-95, base sur les donnees RouteProfile/difficulty deja creees.
-  myb-63-unity-hud-difficulty-slope-segment: in_review
+  myb-63-unity-hud-difficulty-slope-segment: done
 
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
@@ -534,11 +534,13 @@ unity_meshy_custom_models_poc_credits: "124 Meshy credits consumed with explicit
 unity_meshy_custom_models_poc_validation: "PASS: lantern prefab validator, route guardian direct import validator, relic-fountain LOD prefab validator, MYB91 canonical baseline, unity-mcp-cli status, git diff --check, targeted secret scan."
 unity_meshy_custom_models_poc_verdict: "adopt ponctuel/premium: useful for 1-2 targeted hero landmarks after Blender optimization/LOD and direct Unity import; not a bulk asset pipeline; raw refined meshes too dense; Meshy Unity bridge not adopted for animated validation."
 unity_meshy_custom_models_poc_review_next_action: "closed-via-pr-9-and-select-next-Unity-ticket"
-unity_hud_difficulty_slope_segment_issue: "MYB-63 In Review"
+unity_hud_difficulty_slope_segment_issue: "MYB-63 Done"
 unity_hud_difficulty_slope_segment_url: "https://linear.app/kefjbo/issue/MYB-63/myb-037-refondre-le-hud-unity-difficulte-pente-et-segment-courant"
 unity_hud_difficulty_slope_segment_branch: "myb-63-hud-difficulty-slope-segment"
 unity_hud_difficulty_slope_segment_pr: "https://github.com/kefapps/mybike/pull/10"
 unity_hud_difficulty_slope_segment_scope: "Afficher effort/difficulte, pente ou segment courant dans le HUD Unity en gardant vitesse, distance, temps et etat session; mock mode obligatoire."
 unity_hud_difficulty_slope_segment_report: "_bmad-output/implementation-artifacts/myb-63-unity-hud-difficulty-slope-segment.md"
 unity_hud_difficulty_slope_segment_review_comment: "cb6b120c-316e-40e3-b3b9-eb7d6f6c37cd"
+unity_hud_difficulty_slope_segment_closure_comment: "52c12f9c-0c01-4741-900e-ea9604b23523"
+unity_hud_difficulty_slope_segment_merge_commit: "7cbd9b8d25e698496594ca3d3168a8687b714914"
 unity_hud_difficulty_slope_segment_validation: "PASS: unity-mcp-cli status, assets-refresh, MYB89 BuildScene, MYB89 ValidateProbeScene, MYB91 canonical baseline, git diff --check, targeted secret/path scan."
