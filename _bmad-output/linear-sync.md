@@ -5612,3 +5612,22 @@ Synced on 2026-06-12:
     Unity-MCP plugin logged token/handshake failures during shutdown.
 - Visual evidence:
   - `_bmad-output/unity-test-results/myb-96-blender-asset-yard.png`.
+
+### MYB-96 Blender MCP Asset Pack Closure Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-96`.
+- Linear status: `Done`.
+- Pull request: `https://github.com/kefapps/mybike/pull/14`.
+- Merge commit on `main`: `dd8b247f2102e9810d941b8daaa7b56451410485`.
+- Merge method: squash merge.
+- GitHub/Linear attachments:
+  - Commit attachment:
+    `https://github.com/kefapps/mybike/commit/dd8b247f2102e9810d941b8daaa7b56451410485`.
+  - PR attachment: `https://github.com/kefapps/mybike/pull/14`.
+- Closure evidence:
+  - PR #14 was `MERGEABLE` before merge after rebasing onto `origin/main`.
+  - `main` is updated to `dd8b247`.
+  - MYB-96 delivers the Blender MCP asset pack in the canonical Unity project
+    with validation, manifest, prefabs, yard scene and capture evidence.
