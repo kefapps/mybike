@@ -4473,3 +4473,765 @@ Synced on 2026-06-11:
   - The flow proves Unity import, animation clips, scene composition and
     capture, but the tested free assets are not sufficient alone to carry the
     `Stylise Premium` V1 direction.
+
+## MYB-95 Meshy Custom Asset POC Preflight
+
+Synced on 2026-06-11:
+
+- Issue: `MYB-95`
+- Status returned by Linear: `In Progress`
+- Preflight comment ID: `6ec3468d-b390-4ef4-b3b3-5c395ddff42b`
+- MCP-auth update comment ID: `69344588-1545-4632-bcea-fd4afe5f2a72`
+- Preview 1 comment ID: `822a53da-3e5a-487f-a80d-5211142fff24`
+- Refine 1 comment ID: `28a46ee9-75d7-4615-8a75-fc2915a089eb`
+- Blender MCP setup comment ID: `6f9b7cf5-991a-495b-85f9-b478ef358abf`
+- Blender optimization pass 1 comment ID: `1a4d7d27-4d5f-4076-b4a1-4290508178b9`
+- Meshy remesh comparison 1 comment ID: `23c0458f-0f43-42e4-b81f-e1cc708af683`
+- Unity import pass 1 comment ID: `ad2ad74f-351f-43ac-81bf-dcd222720c04`
+- Model 2 reference selection comment ID: `97bbf3aa-59bd-4492-9f30-18b22358faa1`
+- Model 2 Meshy text-to-image attempt comment ID: `1ef5717f-7b00-4f8e-b13f-4c2472c6e38a`
+- Meshy API 1Password placeholder comment ID: `9b7b1e14-0d33-4216-8609-44891f9e55d0`
+- Model 2 candidate_120k rigging comment ID: `ce643be8-23c9-4543-9a27-94dbf3b20bc6`
+- Model 2 Unity import comparison comment ID: `9a427062-55e2-4b91-a3e0-2348b131d784`
+- Local branch: `myb-95-meshy-preflight`
+- Local report:
+  `_bmad-output/implementation-artifacts/myb-95-meshy-preflight.md`
+- Unity validation report:
+  `_bmad-output/unity-test-results/myb-95-meshy-lantern-unity-import.txt`
+- Character direct import validation report:
+  `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import.txt`
+- Credits:
+  - Meshy credits consumed: 94 total.
+  - Preview 1: 20 credits, balance `1490 -> 1470`.
+  - Refine 1: 10 credits, balance `1470 -> 1460`.
+  - Remesh comparison 1: 5 credits, balance `1460 -> 1455`.
+  - Model 2 Meshy text-to-image comparison: 9 credits, balance `1455 -> 1446`.
+  - Model 2 image-to-3D comparison: 45 credits, balance `1446 -> 1401`.
+  - Model 2 candidate_120k rigging: 5 credits, balance `1401 -> 1396`.
+  - `MESHY_API_KEY` and `OPENAI_API_KEY` were not present in the current
+    environment; authenticated Meshy MCP remained the active generation path.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS
+  - `assets-refresh`: PASS
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline`: PASS
+  - `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS
+  - `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS
+- Preflight findings:
+  - Newly installed Meshy skills are present in `.agents/skills` and
+    `skills-lock.json`.
+  - The authenticated Meshy MCP is the selected generation path for MYB-95, so
+    the missing local `MESHY_API_KEY` only blocks local API scripts, not the
+    POC.
+  - The installed Unity Meshy plugin is a Bridge/import workflow, not a
+    replacement for measured API generation.
+  - The Bridge listens locally on port `5326` and imports to
+    `Assets/MeshyImports/`.
+  - The plugin declares `GPL-3.0`; do not version it until the license decision
+    is explicit.
+  - The plugin declares `com.unity.formats.fbx: 4.1.3`, but the dependency is
+    not in `Packages/manifest.json` or `packages-lock.json`; make this
+    reproducible if the plugin is committed.
+- Recommendation:
+  - Use Meshy MCP generation for MYB-95 measurements, output primary
+    `fbx`, import into a dedicated Unity sandbox, and keep explicit credit
+    confirmation before each paid step.
+
+### MYB-95 Preview 1: Borne-lanterne village pave
+
+Synced on 2026-06-11:
+
+- Tool: `meshy_text_to_3d`
+- Task ID: `019eb7af-0ff6-78b8-9109-02885cfb5537`
+- Model: `meshy-6`
+- Format: `fbx`
+- Cost confirmed before call: 20 credits
+- Balance: `1490 -> 1470`
+- Status: `SUCCEEDED`
+- Local FBX:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/preview.fbx`
+- Local thumbnail:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/thumbnail.png`
+- Blender inspection:
+  - FBX importable.
+  - 1 mesh object.
+  - 408,166 vertices.
+  - 816,457 faces / estimated triangles.
+  - 0 material in preview FBX.
+  - File size: 35,073,980 bytes.
+- Verdict:
+  - Silhouette is encouraging and reads as a lantern on a stone pedestal.
+  - The untextured preview cannot yet validate stone/brass/glass/rune/flame
+    material quality.
+  - Mesh density is high for a route-side prop; plan remesh/optimization if the
+    textured result is kept.
+  - No refine call was made without explicit user validation.
+
+### MYB-95 Refine 1: Borne-lanterne village pave
+
+Synced on 2026-06-11:
+
+- Tool: `meshy_text_to_3d_refine`
+- Preview task ID: `019eb7af-0ff6-78b8-9109-02885cfb5537`
+- Refine task ID: `019eb7b4-e8d8-7b20-8cd8-4725c8279863`
+- Model: `meshy-6`
+- Format: `fbx`
+- PBR: enabled
+- Cost confirmed before call: 10 credits
+- Balance: `1470 -> 1460`
+- Status: `SUCCEEDED`
+- Local FBX:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/refined.fbx`
+- Local textures:
+  - `refined_base_color.png`
+  - `refined_metallic.png`
+  - `refined_roughness.png`
+  - `refined_normal.png`
+  - `refined_emission.png`
+- Local capture:
+  `_bmad-output/meshy-captures/myb-95-lantern-refined.png`
+- Blender inspection:
+  - FBX importable.
+  - 1 mesh object.
+  - 270,672 vertices.
+  - 541,618 faces / estimated triangles.
+  - 1 material.
+  - 2048 x 2048 texture maps.
+  - File size: 28,941,692 bytes.
+- Verdict:
+  - Strong readable lantern silhouette, visible internal flame, convincing
+    brass/gold cage and detailed stone base.
+  - Base reads more as dark/red rocks than warm limestone blocks.
+  - Blue rune accent is not clearly visible in the generated capture.
+  - Too dense for repeated route-side use without optimization.
+  - Recommended next step: import in a MYB-95 Unity sandbox, add a real animated
+    `Point Light` / emissive flicker, then decide remesh/optimization.
+
+### MYB-95 Blender MCP Setup
+
+Synced on 2026-06-11:
+
+- Source: https://github.com/ahujasid/blender-mcp
+- Goal:
+  - Prepare a free Blender optimization path before spending Meshy remesh
+    credits.
+- Setup:
+  - `uvx` available at `/Users/jbodin/.local/bin/uvx`.
+  - `blender-mcp` verified with uv-managed Python 3.11.
+  - Codex MCP config updated with server `blender`, telemetry disabled, host
+    `localhost`, port `9876`.
+  - Blender addon updated from the official `addon.py`.
+  - Blender addon enabled and preferences saved for Blender 5.1.
+  - Blender GUI launched and addon server listening on `127.0.0.1:9876`.
+  - Socket smoke test `get_scene_info`: OK.
+- Backups:
+  - `/Users/jbodin/.codex/config.toml.backup-blender-mcp-20260611T174531Z`
+  - `/Users/jbodin/Library/Application Support/Blender/5.1/scripts/addons/blender_mcp_addon.py.backup-20260611T174640Z`
+- Notes:
+  - No Blender optimization operation was applied to the Meshy model.
+  - The newly configured MCP server may require a Codex restart/reload before
+    `mcp__blender` tools are exposed in the active session.
+
+### MYB-95 Blender Optimization Pass 1
+
+Synced on 2026-06-11:
+
+- Tooling:
+  - Blender MCP `execute_blender_code`
+  - Blender Decimate modifier (`COLLAPSE`)
+  - Weighted Normals
+- Source:
+  - `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/refined.fbx`
+  - 270,672 vertices
+  - 541,618 faces / estimated triangles
+  - 28,941,692 bytes
+- Output folder:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/blender_optimized/`
+- Variants:
+  - `myb95_lantern_lod0_30k.fbx`: 29,999 faces, 14,814 vertices,
+    1,371,484 bytes.
+  - `myb95_lantern_lod0_20k.fbx`: 19,999 faces, 9,810 vertices,
+    945,180 bytes.
+  - `myb95_lantern_lod1_12k.fbx`: 11,999 faces, 5,810 vertices,
+    595,196 bytes.
+  - `myb95_lantern_lod2_5k.fbx`: 10,823 faces, 5,222 vertices,
+    539,548 bytes. The 5k target bottomed out around 10.8k with this simple
+    decimate method.
+- Validation:
+  - Re-imported `myb95_lantern_lod0_20k.fbx` in Blender: OK.
+  - Imported FBX has 1 mesh, 9,810 vertices, 19,963 faces and material present.
+- Captures:
+  - `_bmad-output/meshy-captures/myb-95-lantern-blender-optimized-20k.png`
+  - `_bmad-output/meshy-captures/myb-95-lantern-blender-optimized-comparison.png`
+- Verdict:
+  - `LOD0 20k` is the recommended Unity sandbox candidate.
+  - `LOD0 30k` remains a fallback if Unity lighting exposes quality loss.
+  - `LOD1 12k` is a future distance LOD candidate.
+  - Original 542k refined FBX should remain high-poly reference only.
+
+### MYB-95 Meshy Remesh Comparison 1
+
+Synced on 2026-06-11:
+
+- Tool: `meshy_remesh`
+- Input/refine task ID: `019eb7b4-e8d8-7b20-8cd8-4725c8279863`
+- Remesh task ID: `019eb7d8-490e-75a8-9d3a-6846e0c31ea4`
+- Target polycount: 20,000
+- Topology: `triangle`
+- Format: `fbx`
+- Cost confirmed before call: 5 credits
+- Balance: `1460 -> 1455`
+- Status: `SUCCEEDED`
+- Local FBX:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/remeshed.fbx`
+- Local textures:
+  - `remeshed_base_color.png`
+  - `remeshed_metallic.png`
+  - `remeshed_roughness.png`
+  - `remeshed_normal.png`
+  - `remeshed_metallic_roughness.png`
+- Comparison metrics:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/blender_optimized/meshy_remesh_comparison_metrics.json`
+- Captures:
+  - `_bmad-output/meshy-captures/myb-95-lantern-blender-vs-meshy-remesh.png`
+  - `_bmad-output/meshy-captures/myb-95-lantern-meshy-remesh-20k.png`
+- Metrics:
+  - Meshy remesh: 18,487 faces, 9,214 vertices, 11,927,132 bytes.
+  - Blender 20k: 19,999 faces, 9,810 vertices, 945,180 bytes.
+- Verdict:
+  - Meshy remesh hit the numeric budget but produced unacceptable visual
+    artifacts in the Blender render.
+  - The output is much heavier than the Blender 20k result at a similar face
+    count.
+  - Keep Blender LOD0 20k as the recommended Unity sandbox candidate.
+  - Do not spend further Meshy remesh credits on this asset unless testing a
+    specific alternate configuration.
+
+### MYB-95 Unity Import Pass 1: Meshy Lantern Prefab
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `ad2ad74f-351f-43ac-81bf-dcd222720c04`
+- Source candidate:
+  `meshy_output/20260611_191606_single-premium-stylized-fantas_019eb7af/blender_optimized/myb95_lantern_lod0_20k.fbx`
+- Unity asset root:
+  `unity/Echapee4D/Assets/Echappee/Art/MYB95MeshyLantern/`
+- Runtime script:
+  `unity/Echapee4D/Assets/MYB95/Runtime/MYB95LanternFlicker.cs`
+- Editor builder/validator:
+  `unity/Echapee4D/Assets/MYB95/Editor/MYB95MeshyLanternUnityImporter.cs`
+- Prefab:
+  `unity/Echapee4D/Assets/Echappee/Art/MYB95MeshyLantern/Prefabs/MYB95_MeshyLantern.prefab`
+- Scene:
+  `unity/Echapee4D/Assets/Scenes/MYB95MeshyLanternPoc.unity`
+- Unity validation report:
+  `_bmad-output/unity-test-results/myb-95-meshy-lantern-unity-import.txt`
+- Unity validation capture:
+  `_bmad-output/unity-test-results/myb-95-meshy-lantern-unity-import.png`
+- Validation:
+  - `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS
+  - Model triangles: 19,999
+  - Prefab total triangles: 20,779
+  - Texture maps: 2048 x 2048
+  - Flicker intensity sample: `1.673 -> 1.733`
+  - Enabled build scene remains only `Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Verdict:
+  - Blender 20k import is usable as the current Unity sandbox proof.
+  - The prefab contains a real animated Unity `Point Light` and emissive glow
+    child for flame flicker.
+  - The blue rune is added as a small Unity-side child because the Meshy mesh did
+    not preserve it clearly.
+  - Remaining caveats: base still reads dark/red-rock more than warm limestone;
+    roughness map is imported but not packed into Unity metallic/smoothness yet;
+    repeated route-side use needs texture compression/atlasing/LOD policy.
+
+### MYB-95 Model 2 Reference: Humanoid Route Guardian
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `97bbf3aa-59bd-4492-9f30-18b22358faa1`
+- Step type: local image reference selection, no Meshy credits consumed.
+- Selected reference:
+  `_bmad-output/meshy-captures/myb-95-character-reference-option-2.png`
+- User decision:
+  - Option 2 accepted as the model 2 visual direction.
+- Concept:
+  - Premium stylized fantasy route-side guide / path guardian.
+  - Strict T-pose, front view, clean neutral background.
+  - Moss green hooded short cape, ochre scarf, cream tunic, leather belt,
+    satchel, boots, small brass lantern clipped to belt, cyan rune pendant.
+  - Intended fit: village/campagne pavee and foret claire.
+- Rationale:
+  - Cleaner rig-friendly humanoid silhouette than option 1.
+  - Lower cloth/animation risk than option 3.
+  - Good candidate for Meshy image-to-3D followed by rigging and Unity import.
+- Pending confirmation before paid Meshy call:
+  - Compare against Meshy text-to-image first, or directly use this local image
+    for Meshy image-to-3D.
+
+### MYB-95 Model 2 Meshy Text-To-Image Comparison Attempt
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `1ef5717f-7b00-4f8e-b13f-4c2472c6e38a`
+- Tool: `meshy_text_to_image`
+- Task ID: `019eb7f6-b539-7e2c-aecf-814dce6d70fd`
+- Model: `nano-banana-pro`
+- Pose: `t-pose`
+- Aspect ratio: `3:4`
+- Cost confirmed before call: up to 9 credits
+- Balance: `1455 -> 1446`
+- Status: `SUCCEEDED`
+- Result retrieval issue:
+  - `meshy_get_task_status` returned only status/progress.
+  - `meshy_list_tasks` confirms the succeeded task but exposes no image URL.
+  - `meshy_download_model` does not support text-to-image tasks.
+  - No corresponding image file was written under `meshy_output/`.
+- Impact:
+  - Meshy generated the image, but the active MCP response surface does not let
+    us retrieve it yet.
+  - Do not run image-to-3D from this Meshy image until the image URL/file is
+    recovered.
+  - The local option 2 remains the usable source for image-to-3D if we continue
+    immediately.
+
+### MYB-95 Meshy API Key 1Password Placeholder
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `9b7b1e14-0d33-4216-8609-44891f9e55d0`
+- 1Password vault: `Personal Ops`
+- 1Password item: `Meshy API`
+- 1Password item ID: `s43ubhxj5ebzjsfxzrdubp25mu`
+- Category: `ApiCredentials`
+- Concealed field: `MESHY_API_KEY`
+- Secret reference:
+  `op://Personal Ops/Meshy API/MESHY_API_KEY`
+- Purpose:
+  - Let the user add the real Meshy API key in 1Password.
+  - Enable direct Meshy API calls via 1Password `workspace_command_run`
+    environment injection when the Meshy MCP hides task image URLs.
+- Safety:
+  - Created as placeholder only; the user later filled the real key directly in
+    1Password.
+  - No real key is stored in repo, chat, or local docs.
+  - Use injected env refs, not plaintext reveal, for API calls.
+
+### MYB-95 Model 2 Meshy Image Recovered Through Direct API
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `345522e7-9aff-4211-a773-58235ba0d54b`
+- Task ID: `019eb7f6-b539-7e2c-aecf-814dce6d70fd`
+- Retrieval path:
+  - 1Password Connect item `Personal Ops / Meshy API / MESHY_API_KEY`
+    injected the key in memory only.
+  - Direct Meshy API checked `/openapi/v1/text-to-image/:id` and stream
+    endpoints.
+  - Retrieval consumed `0` Meshy credits.
+- Local image:
+  `_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png`
+- Sanitized API summary:
+  `_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image-summary.json`
+- Balance after retrieval: `1446` credits.
+- Local tooling note:
+  - `/Users/jbodin/.codex/config.toml` was updated to add the 1Password MCP
+    workspace trust manifest:
+    `/Users/jbodin/.onepassword-mcp/workspace-trust.json`.
+  - The active MCP process still needs restart before `workspace_command_run`
+    can use the new manifest; this retrieval used a local Connect-backed
+    wrapper without printing the secret.
+- Visual verdict:
+  - Positive: full-body stylized humanoid, neutral background, readable
+    hood/cape/scarf/tunic/belt/satchel/boots, lantern and cyan pendant present.
+  - Risks: pose is closer to relaxed T/A-pose than strict T-pose; hands may
+    create noisy image-to-3D geometry.
+- Next decision:
+  - User must explicitly choose whether to use this recovered Meshy image or the
+    local option 2 reference before any paid image-to-3D call.
+
+### MYB-95 Model 2 Image-To-3D Comparison: 15 vs 30 Credits
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `a94bcb42-9d0d-403e-8f57-c1bcca386bea`
+- Source image:
+  `_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png`
+- Script:
+  `_bmad-output/scripts/run_meshy_image_to_3d_comparison_via_1password_connect.py`
+- Balance: `1446 -> 1401`
+- Observed credit delta: `45`
+- Format: `fbx`
+- Texture/PBR: enabled.
+- Pose requested: `t-pose`.
+- Built-in remesh disabled for both variants to compare raw output before
+  Blender optimization.
+- 15-credit variant:
+  - Model: `meshy-5`
+  - Task ID: `019eb80f-b877-7718-bf99-91aa522054dd`
+  - Local folder:
+    `meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/`
+  - FBX size: `18,978,860` bytes.
+  - Blender: `199,579` vertices, `399,314` faces / estimated triangles.
+  - Textures: base color, metallic, roughness, normal.
+- 30-credit variant:
+  - Model: `meshy-6`
+  - Task ID: `019eb813-2566-77e5-84a6-11487589cffc`
+  - Local folder:
+    `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/`
+  - FBX size: `19,182,572` bytes.
+  - Blender: `177,142` vertices, `354,370` faces / estimated triangles.
+  - Textures: base color, metallic, roughness, normal, emission.
+- Comparison artifacts:
+  - `_bmad-output/meshy-captures/myb-95-character-image-to-3d-comparison-summary.json`
+  - `_bmad-output/meshy-captures/myb-95-character-image-to-3d-fbx-metrics.json`
+  - `_bmad-output/meshy-captures/myb-95-character-image-to-3d-15-vs-30-thumbnail-comparison.png`
+- Verdict:
+  - The 30-credit Meshy-6 output is visually better and technically slightly
+    lighter.
+  - Both outputs are too dense for direct rigging/import without optimization.
+  - Recommended candidate: 30-credit Meshy-6 output, then Blender optimization
+    before rigging or Unity import.
+
+### MYB-95 Model 2 Blender Optimization Pass
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `5d8abf0b-03b4-490f-a7c0-cd8b9c228526`
+- Source Meshy task ID: `019eb813-2566-77e5-84a6-11487589cffc`
+- Source FBX:
+  `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/model.fbx`
+- Source metrics:
+  - `177,142` vertices.
+  - `354,370` faces / estimated triangles.
+  - `19,182,572` bytes.
+- Script:
+  `_bmad-output/scripts/optimize_meshy_character_blender.py`
+- Output folder:
+  `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/`
+- Meshy credits consumed: `0`
+- Material handling:
+  - Rebuilt a clean Blender PBR material from downloaded Meshy texture maps.
+  - Exported FBX for Unity and GLB for possible Meshy/API rigging follow-up.
+- Variants:
+  - `rig_safe_250k`: `249,999` tris, `124,955` vertices, `8.4 MB` FBX,
+    `22.1 MB` GLB.
+  - `candidate_120k`: `119,999` tris, `59,955` vertices, `4.2 MB` FBX,
+    `18.4 MB` GLB.
+  - `candidate_80k`: `79,999` tris, `39,955` vertices, `2.8 MB` FBX,
+    `16.8 MB` GLB.
+  - `lod0_50k`: `49,999` tris, `24,955` vertices, `1.8 MB` FBX,
+    `16.1 MB` GLB.
+  - `lod1_30k`: `29,999` tris, `14,955` vertices, `1.1 MB` FBX,
+    `15.6 MB` GLB.
+- Captures:
+  - `_bmad-output/meshy-captures/myb-95-character-blender-optimized-contact-sheet.png`
+  - `_bmad-output/meshy-captures/myb-95-character-blender-optimized-comparison.png`
+  - `_bmad-output/meshy-captures/myb-95-character-blender-optimized-preview-manifest.json`
+- Verdict:
+  - `candidate_120k` is the safest current next candidate for rigging/import.
+  - `candidate_80k` is the best aggressive game-ready compromise.
+  - `lod0_50k` and `lod1_30k` are LOD candidates, not first rigging candidates.
+  - Do not rig the original 354k source directly; it exceeds Meshy's 300k face
+    limit.
+
+### MYB-95 Model 2 Candidate 120k Rigging
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `ce643be8-23c9-4543-9a27-94dbf3b20bc6`
+- Source GLB:
+  `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/myb95_character_candidate_120k.glb`
+- Source metrics:
+  - `119,999` tris.
+  - `59,955` vertices.
+  - `19,318,840` bytes GLB.
+- Script:
+  `_bmad-output/scripts/run_meshy_candidate_120k_rigging_via_1password_connect.py`
+- Secret source:
+  - 1Password Connect item `Personal Ops / Meshy API / MESHY_API_KEY`
+    injected the key in memory only.
+- Meshy rigging task ID: `019eb82f-f8ed-7b6d-85c1-4d99a5c3d553`
+- Height sent to Meshy: `1.75m`
+- Cost confirmed before call: `5` credits
+- Balance: `1401 -> 1396`
+- Status: `SUCCEEDED`
+- Output folder:
+  `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/`
+- Downloaded outputs:
+  - `rigged_character.glb`: `13,126,768` bytes.
+  - `rigged_character.fbx`: `15,074,332` bytes.
+  - `walking.glb`: `13,139,540` bytes.
+  - `walking.fbx`: `15,098,652` bytes.
+  - `walking_armature.glb`: `65,480` bytes.
+  - `running.glb`: `13,134,932` bytes.
+  - `running.fbx`: `15,090,508` bytes.
+  - `running_armature.glb`: `60,868` bytes.
+- Sanitized summary:
+  `_bmad-output/meshy-captures/myb-95-character-candidate-120k-rigging-summary.json`
+- Next validation:
+  - Import with the Meshy Unity plugin / Unity import flow.
+  - Validate avatar/rig, walking/running clips, material mapping, bounds/scale,
+    prefab creation and a short in-engine capture.
+
+### MYB-95 Model 2 Unity Import Comparison
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `9a427062-55e2-4b91-a3e0-2348b131d784`
+- Animation proof comment ID: `20c68f22-1700-4a10-8802-a57d6921b88d`
+- Meshy plugin bridge import folder:
+  `unity/Echapee4D/Assets/MeshyImports/Meshy_Model_20260611_215549/`
+- Plugin bridge imported files:
+  - `Meshy_AI__0611195544_texture.fbx`
+  - `Meshy_AI__0611195544_texture.png`
+  - `Material.001.mat`
+- Plugin bridge inspection:
+  - Unity refresh: PASS.
+  - Recent Unity errors: `0`.
+  - Recent Unity warnings during plugin import: `0`.
+  - Material shader: `Universal Render Pipeline/Lit`.
+  - Texture size: `2048x2048`.
+  - Mesh: `118,355` triangles, `76,381` vertices.
+  - `SkinnedMeshRenderer=0`, `Animator=0`, `clipCount=0`, `bindposes=0`,
+    `boneWeights=0`.
+  - Mesh bounds about `(0.02, 0.00, 0.02)`, tiny / almost flat.
+- Plugin bridge verdict:
+  - Works for static textured transfer.
+  - Did not preserve rig/animation for this model.
+
+Direct local import:
+
+- Source folder:
+  `meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/`
+- Unity output root:
+  `unity/Echapee4D/Assets/Echappee/Art/MYB95MeshyCharacter/`
+- Editor builder/validator:
+  `unity/Echapee4D/Assets/MYB95/Editor/MYB95MeshyCharacterDirectImporter.cs`
+- Generated assets:
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Rigged.fbx`
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Walking.fbx`
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Running.fbx`
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Materials/MYB95_RouteGuardian_PBR.mat`
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Animations/MYB95_RouteGuardian.controller`
+  - `Assets/Echappee/Art/MYB95MeshyCharacter/Prefabs/MYB95_RouteGuardian_Direct.prefab`
+  - `Assets/Scenes/MYB95MeshyCharacterDirectImportPoc.unity`
+- Validation:
+  - `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS.
+  - Recent Unity errors: `0`.
+  - Humanoid avatar valid: `True`.
+  - Humanoid avatar isHuman: `True`.
+  - `SkinnedMeshRenderer` count: `1`.
+  - Walking clip: `1.033s`.
+  - Running clip: `0.633s`.
+  - Scene preview samples Walking at `t=0.393s`.
+  - Prefab source triangles: `118,355`.
+  - Prefab source bounds: about `(1.825, 2.074, 0.91)`.
+  - Texture maps: `2048x2048`.
+- Artifacts:
+  - `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import.txt`
+  - `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import.png`
+  - `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import-frames/`
+  - `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import-walking-strip.png`
+  - `_bmad-output/unity-test-results/myb-95-meshy-character-direct-import-walking.mp4`
+- Animation preview:
+  - `12` Unity-rendered samples from the `1.033s` walking clip.
+  - MP4 preview generated from those samples: H.264, `640x360`, `12 fps`,
+    `48` frames, `4.0s`.
+- Verdict:
+  - Direct local FBX import is the viable path for the animated character POC.
+  - The Meshy plugin remains useful as an ergonomic/static bridge, but should
+    not be the validation path for animated assets until its animated workflow
+    is understood.
+
+### MYB-95 Model 3 Super Premium Relic-Fountain Plan
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `e7caac91-4687-44da-b7b9-4bbc852cea81`
+- Step type: local concept/reference planning, no Meshy credits consumed.
+- Local reference image:
+  `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-reference.png`
+- Concept generated locally in chat:
+  - Sacred roadside relic-fountain / small portal.
+  - Intended biomes: foret claire and village/campagne pavee.
+  - Visual ingredients: warm limestone, carved paving base, moss, brass trims,
+    blue crystal accents, suspended lantern beads, magical water/rune energy.
+- Recommended implementation split:
+  - Meshy generates the physical premium prop only: limestone arch, basin,
+    brass ornaments, carved details, moss, blue crystal sockets.
+  - Unity owns the fragile magical layer: animated blue rune rings, water
+    spiral, emissive flicker, point lights, particles and material tuning.
+- Reason:
+  - Transparent water/rune/VFX elements are likely high-risk if baked by Meshy
+    into mesh geometry; Unity-authored VFX is more controllable and tests the
+    actual integration path we need.
+- Next paid step, pending user confirmation:
+  - `meshy_text_to_3d` preview only.
+  - Target format: `fbx`.
+  - Prompt:
+    `Premium stylized fantasy Unity game prop, single physical object on neutral background: a sacred roadside relic fountain / small stone portal for a scenic cycling route. Warm aged limestone block arch, carved paved base, small stone basin, moss in cracks, polished brass bands and ornaments, small hanging lantern hooks, embedded blue crystal sockets and carved rune grooves prepared for later Unity glow/VFX. High detail handcrafted materials, readable silhouette, production-quality, not cheap, not placeholder. No characters, no text, no UI, no environment, no transparent water spiral, no floating rune rings, no particle effects baked into geometry.`
+  - Maximum cost to confirm: `20` Meshy credits.
+  - If preview is accepted later: refine for `10` credits.
+  - First optimization path remains Blender, not Meshy remesh by default.
+
+### MYB-95 Resume Validation / Repo Hygiene
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `a3f50ec9-64bb-4c7d-b70f-30b0429ac503`
+- Local branch: `myb-95-meshy-preflight`
+- No additional Meshy credits consumed.
+- Validation rerun:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS,
+    regenerated at `2026-06-11T21:28:27Z`; prefab total triangles `20,779`.
+  - `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS,
+    regenerated at `2026-06-11T21:28:39Z`; Humanoid avatar valid/isHuman
+    `True`; Walking `1.033s`; Running `0.633s`; prefab source triangles
+    `118,355`.
+  - `git diff --check`: PASS.
+- Repo hygiene:
+  - `meshy_output/` ignored as local source/intermediate storage; current size
+    about `624 MB`.
+  - `.onepassword-mcp.json` ignored as local tool configuration.
+  - `unity/Echapee4D/Assets/Packages/ai.meshy/` and
+    `unity/Echapee4D/Assets/MeshyImports/` ignored while the plugin GPL-3.0
+    versioning decision remains open and the bridge import path is not the
+    animated validation path.
+- Current gate:
+  - The third "super premium" relic-fountain case needs explicit user
+    confirmation before a paid Meshy preview call: `20` credits maximum,
+    preview only, target format `fbx`.
+
+### MYB-95 Model 3 Relic-Fountain Preview
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `299bffdb-cdbb-4c25-b59e-928a4774f95d`
+- Tool: `meshy_text_to_3d`
+- Task ID: `019eb899-d4c1-7cd1-be10-99d53450dfe5`
+- Model: `latest` / Meshy-6 preview
+- Target format: `fbx`
+- Cost confirmed before call: `20` credits maximum
+- Balance: `1396 -> 1376`
+- Observed credit delta: `20`
+- Status: `SUCCEEDED`
+- Wait time: `119s`
+- Local FBX:
+  `meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/preview.fbx`
+- BMAD thumbnail:
+  `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-preview-thumbnail.png`
+- BMAD metrics:
+  `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-preview-metrics.json`
+- Blender metrics:
+  - FBX size: `27,355,404` bytes.
+  - Mesh objects: `1`.
+  - Vertices: `372,469`.
+  - Faces / estimated triangles: `745,209`.
+  - Materials: `0` in the untextured preview FBX.
+  - Bounds: about `1.83m x 1.23m x 2.0m`.
+- Verdict:
+  - Strong sacred roadside portal/fountain silhouette with stone arch, hanging
+    lanterns, central basin, carved base and rune-like trim.
+  - Meshy respected the requested physical-prop split; no baked transparent
+    water/rune VFX geometry dominates the preview.
+  - Material direction still needs refine to validate warm limestone, moss,
+    brass and blue crystal.
+  - Mesh density is too high for direct Unity import; refine, if approved, must
+    be followed by Blender optimization/LOD.
+- Next paid step not executed:
+  - Refine for `10` credits only after explicit approval.
+
+### MYB-95 Model 3 Relic-Fountain Refine And Unity Import
+
+Synced on 2026-06-11:
+
+- Linear comment ID: `1423a45f-5121-4cc1-ad51-f03ff13a2200`
+- Step type: refine, Blender optimization, direct Unity import and validation.
+- Refine task ID: `019eb89e-7ed1-7dbf-b1d5-42f5d1931b44`
+- Cost confirmed before call: `10` credits.
+- Balance: `1376 -> 1366`.
+- Total MYB-95 Meshy credits documented so far: `124`.
+- Refined source:
+  - Local FBX:
+    `meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/refined.fbx`
+  - BMAD metrics:
+    `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-refined-metrics.json`
+  - Source triangles: `720,861`.
+  - Source vertices: `360,354`.
+  - FBX size: `33,613,340` bytes.
+  - Textures: base color, metallic, roughness, normal, emission, all 2K.
+- Blender optimization:
+  - Script:
+    `_bmad-output/scripts/optimize_meshy_relic_fountain_blender.py`
+  - Meshy credits consumed: `0`.
+  - BMAD metrics:
+    `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-blender-optimized-metrics.json`
+  - BMAD comparison capture:
+    `_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-blender-optimized-comparison.png`
+  - Variants:
+    - Hero 80k: `79,999` tris, `2.9 MB`.
+    - LOD0 50k: `50,000` tris, `1.8 MB`.
+    - LOD1 30k: `29,998` tris, `1.1 MB`.
+    - LOD2 15k: `14,998` tris, `615 KB`.
+- Unity direct import:
+  - Runtime pulse:
+    `Assets/MYB95/Runtime/MYB95RelicFountainPulse.cs`
+  - Builder/validator:
+    `Assets/MYB95/Editor/MYB95MeshyRelicFountainUnityImporter.cs`
+  - Prefab:
+    `Assets/Echappee/Art/MYB95MeshyRelicFountain/Prefabs/MYB95_RelicFountain.prefab`
+  - Scene:
+    `Assets/Scenes/MYB95MeshyRelicFountainPoc.unity`
+  - Report:
+    `_bmad-output/unity-test-results/myb-95-meshy-relic-fountain-unity-import.txt`
+  - Capture:
+    `_bmad-output/unity-test-results/myb-95-meshy-relic-fountain-unity-import.png`
+- Validation:
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB95MeshyRelicFountainUnityImporter.BuildAndValidateCli`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline`: PASS.
+  - Unity `6000.4.10f1`.
+  - LODGroup: `3` levels, `80k / 50k / 30k`.
+  - Prefab renderers: `13`.
+  - Prefab lights: `2`.
+  - Pulse intensity sample: `1.589 -> 1.235`.
+  - MYB-95 relic scene remains sandbox-only and is not in Build Settings.
+- Verdict:
+  - Strongest MYB-95 custom Meshy result so far: premium landmark read after
+    refine, viable Unity prefab after Blender decimation, and controllable
+    Unity-side VFX instead of baked Meshy magic.
+  - Caveat: raw Meshy refine is still too dense for Unity direct use; Blender
+    optimization/LOD remains mandatory for this asset class.
+  - Caveat: material workflow is still POC-grade because roughness is not packed
+    into Unity metallic/smoothness yet.
+
+### MYB-95 Final Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-95`.
+- Linear status: `In Review`.
+- Linear review comment ID: `1177fb9e-645c-4b6c-967c-c4eaa50cb829`.
+- Implementation commit: `36828c5` (`MYB-95 Meshy custom asset POC`).
+- Branch: `myb-95-meshy-preflight`.
+- Final documented Meshy credit usage: `124`.
+- Final verdict:
+  - Meshy is recommended as a punctual premium-asset tool for selected fantasy
+    landmarks or stylized custom props.
+  - Meshy is not recommended as an open-ended production asset pipeline for the
+    MVP.
+  - Raw high-detail Meshy outputs require Blender optimization/LOD before Unity
+    use.
+- Review validation evidence:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS.
+  - `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS.
+  - `MYB95MeshyRelicFountainUnityImporter.BuildAndValidateCli`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline`: PASS.
+  - `git diff --cached --check`: PASS before implementation commit.
+  - Targeted staged secret/path scan: PASS.
+- Scope note:
+  - Pre-existing unstaged `MYB53Validation/*.mat` Unity serialization changes
+    were intentionally left out of the MYB-95 commits.

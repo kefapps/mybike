@@ -2,7 +2,7 @@
 
 Date: 2026-06-11
 Ticket Linear: https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity
-Statut: backlog
+Statut: in review
 
 ## Objectif
 
@@ -110,3 +110,35 @@ Pour chaque cas, documenter:
 - `unity/Echapee4D` reste valide apres le POC.
 - La conclusion permet de decider si Meshy devient un outil ponctuel recommande
   pour certains assets premium.
+
+## Conclusion de review
+
+Date: 2026-06-12
+Statut: ready for review.
+
+MYB-95 a teste les trois niveaux demandes:
+
+- simple: borne-lanterne village pavee, optimisee en Blender puis importee en
+  prefab Unity avec lumiere/flicker;
+- moyen: route guardian humanoide, optimise, rigge, importe en Humanoid avec
+  clips Walking/Running;
+- super chiade: relic-fountain / portail de bord de route, refine, optimise en
+  LODGroup `80k / 50k / 30k`, importe en prefab Unity avec VFX/lumieres/pulse.
+
+Verdict: Meshy est utile comme outil ponctuel pour quelques landmarks premium
+cibles, pas comme pipeline de masse. La voie recommandee est Meshy
+preview/refine, optimisation Blender/LOD, import Unity direct depuis les outputs
+locaux, puis VFX/lumieres Unity-side. Les meshes raffines bruts sont trop denses
+pour Unity direct, et le bridge Unity Meshy ne doit pas devenir la voie de
+validation animee tant qu'il ne preserve pas les rigs/clips.
+
+Validation finale:
+
+- `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS.
+- `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS.
+- `MYB95MeshyRelicFountainUnityImporter.BuildAndValidateCli`: PASS.
+- `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline`: PASS.
+- `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+- `git diff --check`: PASS.
+- Secret scan cible: pas de cle exposee; seulement placeholders docs et
+  reference 1Password.

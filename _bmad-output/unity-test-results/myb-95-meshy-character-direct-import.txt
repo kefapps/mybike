@@ -1,0 +1,73 @@
+# MYB-95 Meshy Character Direct Unity Import
+GeneratedAt: 2026-06-12T00:16:48Z
+UnityVersion: 6000.4.10f1
+Project: unity/Echapee4D
+Scene: Assets/Scenes/MYB95MeshyCharacterDirectImportPoc.unity
+Prefab: Assets/Echappee/Art/MYB95MeshyCharacter/Prefabs/MYB95_RouteGuardian_Direct.prefab
+Status: PASS
+
+## Source files
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Rigged.fbx (14.4 MB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Walking.fbx (14.4 MB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Running.fbx (14.4 MB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_BaseColor.png (6.5 MB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Metallic.png (51.0 KB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Roughness.png (912.6 KB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Normal.png (6.5 MB)
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Emission.png (13.2 KB)
+
+## Import settings
+- Rigged model animation type: Human
+- Walking importer animation type: Human
+- Walking source avatar assigned: True
+- Running importer animation type: Human
+- Running source avatar assigned: True
+
+## Generated assets
+- Assets/Echappee/Art/MYB95MeshyCharacter/Materials/MYB95_RouteGuardian_PBR.mat
+- Assets/Echappee/Art/MYB95MeshyCharacter/Animations/MYB95_RouteGuardian.controller
+- Assets/Echappee/Art/MYB95MeshyCharacter/Prefabs/MYB95_RouteGuardian_Direct.prefab
+- Assets/Scenes/MYB95MeshyCharacterDirectImportPoc.unity
+
+## Animation clips
+- Walking: Walking length=1.033
+- Running: Running length=0.633
+- Scene preview samples Walking at t=0.393
+- Walking animation preview: 12 sampled frames over 1.033s
+
+## Model metrics
+- Humanoid avatar loaded: True
+- Humanoid avatar valid: True
+- Humanoid avatar isHuman: True
+- Rigged avatar exists: True
+- Final avatar valid: True
+- Final avatar isHuman: True
+- SkinnedMeshRenderer count: 1
+- MeshFilter count: 0
+- Estimated bone/root transform count: 0
+- Prefab source triangles: 118355
+- Prefab source bounds: (1.825, 2.074, 0.91)
+
+## Texture metrics
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_BaseColor.png 2048x2048
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Metallic.png 2048x2048
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Roughness.png 2048x2048
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Normal.png 2048x2048
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Emission.png 2048x2048
+
+## Scene objects
+- MYB95_RouteGuardian_Direct_SceneProof
+
+## Verdict
+- Direct FBX import is usable for the animated character POC: Unity sees a skinned mesh, an avatar and animation clips.
+- This path bypasses the Meshy Unity plugin and uses local downloaded outputs, so it is reproducible inside the repo.
+- Material workflow is still POC-grade: roughness is imported but not packed into Unity smoothness.
+
+## Failures
+- none
+
+## Notes
+- Roughness texture is imported but not packed into Unity metallic/smoothness yet.
+- Capture: _bmad-output/unity-test-results/myb-95-meshy-character-direct-import.png
+- Animation frames: _bmad-output/unity-test-results/myb-95-meshy-character-direct-import-frames
+- Animation strip: _bmad-output/unity-test-results/myb-95-meshy-character-direct-import-walking-strip.png

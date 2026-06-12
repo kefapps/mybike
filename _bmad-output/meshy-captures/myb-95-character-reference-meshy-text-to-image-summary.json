@@ -1,0 +1,107 @@
+{
+  "task_id": "019eb7f6-b539-7e2c-aecf-814dce6d70fd",
+  "balance": 1446,
+  "downloaded": {
+    "field_path": "$.image_urls[0]",
+    "bytes": 1120232,
+    "local_path": "_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png"
+  },
+  "checks": [
+    {
+      "endpoint": "/openapi/v1/text-to-image",
+      "status_code": 200,
+      "event_count": null,
+      "image_url_paths": [
+        "$.image_urls[0]"
+      ],
+      "payload": {
+        "id": "019eb7f6-b539-7e2c-aecf-814dce6d70fd",
+        "type": "text-to-image",
+        "ai_model": "nano-banana-pro",
+        "prompt": "Rig-friendly premium stylized fantasy route-side guide character for a Unity scenic cycling game. Adult humanoid path guardian in strict T-pose, clean neutral background, full body visible. Moss green hooded short cape, ochre scarf, warm cream tunic, brown leather belt and satchel, sturdy boots, small brass lantern clipped to belt, tiny cyan rune pendant. Clear optimized 3D game silhouette, friendly calm face, not childish, no weapon, no long cloak, no staff, no wings, no cropped limbs, no busy background.",
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "created_at": 1781202860926,
+        "started_at": 1781202860944,
+        "finished_at": 1781202884269,
+        "expires_at": 1781462084269,
+        "image_urls": [
+          "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/uploads/image_019eb7f6-b539-7e2c-aecf-814dce6d70fd_0.png?[redacted]"
+        ],
+        "consumed_credits": 9
+      }
+    },
+    {
+      "endpoint": "/openapi/v1/text-to-image/stream",
+      "status_code": 200,
+      "event_count": 1,
+      "image_url_paths": [
+        "$.image_urls[0]"
+      ],
+      "payload": {
+        "id": "019eb7f6-b539-7e2c-aecf-814dce6d70fd",
+        "type": "text-to-image",
+        "ai_model": "nano-banana-pro",
+        "prompt": "Rig-friendly premium stylized fantasy route-side guide character for a Unity scenic cycling game. Adult humanoid path guardian in strict T-pose, clean neutral background, full body visible. Moss green hooded short cape, ochre scarf, warm cream tunic, brown leather belt and satchel, sturdy boots, small brass lantern clipped to belt, tiny cyan rune pendant. Clear optimized 3D game silhouette, friendly calm face, not childish, no weapon, no long cloak, no staff, no wings, no cropped limbs, no busy background.",
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "created_at": 1781202860926,
+        "started_at": 1781202860944,
+        "finished_at": 1781202884269,
+        "expires_at": 1781462084269,
+        "image_urls": [
+          "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/uploads/image_019eb7f6-b539-7e2c-aecf-814dce6d70fd_0.png?[redacted]"
+        ],
+        "consumed_credits": 9
+      }
+    },
+    {
+      "endpoint": "/openapi/v1/image-to-image",
+      "status_code": 200,
+      "event_count": null,
+      "image_url_paths": [
+        "$.image_urls[0]"
+      ],
+      "payload": {
+        "id": "019eb7f6-b539-7e2c-aecf-814dce6d70fd",
+        "type": "text-to-image",
+        "ai_model": "nano-banana-pro",
+        "prompt": "Rig-friendly premium stylized fantasy route-side guide character for a Unity scenic cycling game. Adult humanoid path guardian in strict T-pose, clean neutral background, full body visible. Moss green hooded short cape, ochre scarf, warm cream tunic, brown leather belt and satchel, sturdy boots, small brass lantern clipped to belt, tiny cyan rune pendant. Clear optimized 3D game silhouette, friendly calm face, not childish, no weapon, no long cloak, no staff, no wings, no cropped limbs, no busy background.",
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "created_at": 1781202860926,
+        "started_at": 1781202860944,
+        "finished_at": 1781202884269,
+        "expires_at": 1781462084269,
+        "image_urls": [
+          "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/uploads/image_019eb7f6-b539-7e2c-aecf-814dce6d70fd_0.png?[redacted]"
+        ],
+        "consumed_credits": 9
+      }
+    },
+    {
+      "endpoint": "/openapi/v1/image-to-image/stream",
+      "status_code": 200,
+      "event_count": 1,
+      "image_url_paths": [
+        "$.image_urls[0]"
+      ],
+      "payload": {
+        "id": "019eb7f6-b539-7e2c-aecf-814dce6d70fd",
+        "type": "text-to-image",
+        "ai_model": "nano-banana-pro",
+        "prompt": "Rig-friendly premium stylized fantasy route-side guide character for a Unity scenic cycling game. Adult humanoid path guardian in strict T-pose, clean neutral background, full body visible. Moss green hooded short cape, ochre scarf, warm cream tunic, brown leather belt and satchel, sturdy boots, small brass lantern clipped to belt, tiny cyan rune pendant. Clear optimized 3D game silhouette, friendly calm face, not childish, no weapon, no long cloak, no staff, no wings, no cropped limbs, no busy background.",
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "created_at": 1781202860926,
+        "started_at": 1781202860944,
+        "finished_at": 1781202884269,
+        "expires_at": 1781462084269,
+        "image_urls": [
+          "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/uploads/image_019eb7f6-b539-7e2c-aecf-814dce6d70fd_0.png?[redacted]"
+        ],
+        "consumed_credits": 9
+      }
+    }
+  ]
+}

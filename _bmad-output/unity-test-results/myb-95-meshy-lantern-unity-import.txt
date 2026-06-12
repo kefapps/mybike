@@ -1,0 +1,56 @@
+# MYB-95 Meshy Lantern Unity Import
+GeneratedAt: 2026-06-12T00:16:45Z
+UnityVersion: 6000.4.10f1
+Project: unity/Echapee4D
+Scene: Assets/Scenes/MYB95MeshyLanternPoc.unity
+Prefab: Assets/Echappee/Art/MYB95MeshyLantern/Prefabs/MYB95_MeshyLantern.prefab
+Status: PASS
+
+## Imported files
+- Assets/Echappee/Art/MYB95MeshyLantern/Models/MYB95_MeshyLantern_LOD0_20k.fbx (923.0 KB)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_base_color.png (8.2 MB)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_metallic.png (784.4 KB)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_roughness.png (1.4 MB)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_normal.png (8.8 MB)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_emission.png (94.2 KB)
+
+## Texture dimensions
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_base_color.png (2048x2048)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_metallic.png (2048x2048)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_roughness.png (2048x2048)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_normal.png (2048x2048)
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_emission.png (2048x2048)
+
+## Generated materials
+- Assets/Echappee/Art/MYB95MeshyLantern/Materials/MYB95_MeshyLantern_PBR.mat
+- Assets/Echappee/Art/MYB95MeshyLantern/Materials/MYB95_FlameGlow.mat
+- Assets/Echappee/Art/MYB95MeshyLantern/Materials/MYB95_BlueRuneGlow.mat
+
+## Generated prefabs
+- Assets/Echappee/Art/MYB95MeshyLantern/Prefabs/MYB95_MeshyLantern.prefab
+
+## Model metrics
+- Model triangles: 19999
+- Prefab renderers: 3
+- Prefab total triangles: 20779
+- Flicker intensity sample: 1.673 -> 1.733
+
+## Validation scene objects
+- MYB95_MeshyLantern_SceneProof
+- MYB95_MeshyLantern_DistanceCheck
+
+## Enabled build scenes
+- Assets/Scenes/MYB89UnityMcpProbe.unity
+
+## Verdict Artistique / Technique
+- Blender 20k import is the current preferred path: acceptable silhouette, compact FBX, real Unity Point Light flicker, and reusable prefab proof.
+- The generated asset still needs art direction cleanup before production: warm limestone and blue rune are supported by Unity-side materials/children, not fully solved by the Meshy mesh.
+- The roughness map is kept but not packed into Unity metallic/smoothness yet; production import should add texture packing or a custom material workflow.
+
+## Failures
+- none
+
+## Notes
+- Roughness map imported and kept next to the asset; Unity material uses a fixed smoothness until we pack metallic+smoothness for production.
+- MYB-95 scene is a sandbox proof and is intentionally not added to Build Settings.
+- Capture: _bmad-output/unity-test-results/myb-95-meshy-lantern-unity-import.png

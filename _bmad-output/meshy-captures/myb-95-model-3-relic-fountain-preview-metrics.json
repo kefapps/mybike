@@ -1,0 +1,26 @@
+[
+  {
+    "path": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/preview.fbx",
+    "bytes": 27355404,
+    "mesh_objects": 1,
+    "vertices": 372469,
+    "faces": 745209,
+    "estimated_triangles": 745209,
+    "materials": [],
+    "bounds_min": [
+      -0.913769006729126,
+      -0.6079999804496765,
+      -4.698876310271771e-08
+    ],
+    "bounds_max": [
+      0.9121109843254089,
+      0.6223852038383484,
+      2.0
+    ],
+    "dimensions": [
+      1.825879991054535,
+      1.230385184288025,
+      2.000000046988763
+    ]
+  }
+]

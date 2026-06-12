@@ -1,0 +1,106 @@
+{
+  "source_glb": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/myb95_character_candidate_120k.glb",
+  "output_dir": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k",
+  "height_meters": 1.75,
+  "expected_cost": 5,
+  "balance_before": 1401,
+  "balance_after": 1396,
+  "observed_credit_delta": 5,
+  "task_id": "019eb82f-f8ed-7b6d-85c1-4d99a5c3d553",
+  "created": true,
+  "task": {
+    "id": "019eb82f-f8ed-7b6d-85c1-4d99a5c3d553",
+    "status": "SUCCEEDED",
+    "created_at": 1781206648541,
+    "progress": 100,
+    "started_at": 1781206648569,
+    "finished_at": 1781206691530,
+    "task_error": null,
+    "result": {
+      "rigged_character_fbx_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Character_output.fbx?[redacted]",
+      "rigged_character_glb_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Character_output.glb?[redacted]",
+      "basic_animations": {
+        "walking_glb_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Walking_withSkin.glb?[redacted]",
+        "walking_fbx_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Walking_withSkin.fbx?[redacted]",
+        "walking_armature_glb_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Walking_withSkin_armature.glb?[redacted]",
+        "running_glb_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Running_withSkin.glb?[redacted]",
+        "running_fbx_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Running_withSkin.fbx?[redacted]",
+        "running_armature_glb_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb82f-f8ed-7b6d-85c1-4d99a5c3d553/output/Animation_Running_withSkin_armature.glb?[redacted]"
+      }
+    }
+  },
+  "polls": [
+    {
+      "elapsed_seconds": 0,
+      "status": "IN_PROGRESS",
+      "progress": 1
+    },
+    {
+      "elapsed_seconds": 5,
+      "status": "IN_PROGRESS",
+      "progress": 20
+    },
+    {
+      "elapsed_seconds": 12,
+      "status": "IN_PROGRESS",
+      "progress": 42
+    },
+    {
+      "elapsed_seconds": 22,
+      "status": "IN_PROGRESS",
+      "progress": 68
+    },
+    {
+      "elapsed_seconds": 37,
+      "status": "IN_PROGRESS",
+      "progress": 90
+    },
+    {
+      "elapsed_seconds": 60,
+      "status": "SUCCEEDED",
+      "progress": 100
+    }
+  ],
+  "files": [
+    {
+      "key": "rigged_character_glb_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/rigged_character.glb",
+      "bytes": 13126768
+    },
+    {
+      "key": "rigged_character_fbx_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/rigged_character.fbx",
+      "bytes": 15074332
+    },
+    {
+      "key": "basic_animations.walking_glb_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/walking.glb",
+      "bytes": 13139540
+    },
+    {
+      "key": "basic_animations.walking_fbx_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/walking.fbx",
+      "bytes": 15098652
+    },
+    {
+      "key": "basic_animations.walking_armature_glb_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/walking_armature.glb",
+      "bytes": 65480
+    },
+    {
+      "key": "basic_animations.running_glb_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/running.glb",
+      "bytes": 13134932
+    },
+    {
+      "key": "basic_animations.running_fbx_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/running.fbx",
+      "bytes": 15090508
+    },
+    {
+      "key": "basic_animations.running_armature_glb_url",
+      "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/blender_optimized/rigging_candidate_120k/running_armature.glb",
+      "bytes": 60868
+    }
+  ]
+}
