@@ -5637,11 +5637,14 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-83`.
-- Linear status target: `In Review`.
+- Linear status: `Done`.
 - Branch: `myb-83-local-ci`.
 - Pull request: `https://github.com/kefapps/mybike/pull/17`.
 - Implementation commit: `00ffb12` (`MYB-83 add local Unity CI validation`).
 - Linear review comment ID: `eb620294-19d1-4540-bb7e-02992dd25ecc`.
+- Linear closure comment ID: `e3294db6-8453-472b-a551-c97ffbae046d`.
+- Merge commit on `main`: `988d489973b2bd166cd6f63270a9c4f7e4276327`.
+- Merge method: squash merge.
 - Implementation report:
   `_bmad-output/implementation-artifacts/myb-83-local-ci.md`.
 - Local CI report:
@@ -5664,6 +5667,11 @@ Synced on 2026-06-12:
   - Added process timeouts, safer repo-root path resolution, and stricter
     option parsing for `--base` and `--report`.
   - Rebased PR #17 onto `origin/main` after MYB-96 landed.
+- Closure evidence:
+  - PR #17 was `CLEAN` before merge.
+  - MYB-83 was moved to `Done` after merge.
+  - The delivered validation remains local-only; no GitHub Actions workflow or
+    hosted runner was added.
 - Scope guard:
   - No GitHub Actions workflows.
   - No hosted runner, cloud secret, billing, release pipeline, full Unity build,

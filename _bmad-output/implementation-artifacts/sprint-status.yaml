@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-12T11:43:00+02:00
+# last_updated: 2026-06-12T13:47:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-12T11:43:00+02:00"
+last_updated: "2026-06-12T13:47:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -494,11 +494,13 @@ unity_platform_priority_url: "https://linear.app/kefjbo/issue/MYB-94/cadrer-plat
 unity_platform_priority_report: "_bmad-output/implementation-artifacts/myb-94-unity-macos-platform-decision.md"
 unity_platform_priority_summary: "Decision utilisateur: Unity macOS est la cible runtime prioritaire. WebGL devient une cible secondaire de validation/demo locale; Android reste candidat secondaire apres ticket dedie; macOS/CoreBluetooth/FTMS reste ticket-gated et doit etre prouve avec un peripherique reel avant implementation dependante."
 unity_platform_priority_linear_consistency_pass: "Project summary and remaining open Linear tickets aligned with Unity macOS-first on 2026-06-11: MYB-26, MYB-30, MYB-31, MYB-34, MYB-40, MYB-41, MYB-42, MYB-44, MYB-45, MYB-47, MYB-48, MYB-50, MYB-51, MYB-53, MYB-58, MYB-61, MYB-63, MYB-73, MYB-79, MYB-80, MYB-82, MYB-83, MYB-84, MYB-87, MYB-88. MYB-93 is Done and coherent."
-unity_local_ci_issue: "MYB-83 In Review"
+unity_local_ci_issue: "MYB-83 Done"
 unity_local_ci_url: "https://linear.app/kefjbo/issue/MYB-83/myb-074-ajouter-une-ci-locale-unity-macos-first"
 unity_local_ci_branch: "myb-83-local-ci"
 unity_local_ci_pr: "https://github.com/kefapps/mybike/pull/17"
 unity_local_ci_review_comment: "eb620294-19d1-4540-bb7e-02992dd25ecc"
+unity_local_ci_closure_comment: "e3294db6-8453-472b-a551-c97ffbae046d"
+unity_local_ci_merge_commit: "988d489973b2bd166cd6f63270a9c4f7e4276327"
 unity_local_ci_report: "_bmad-output/implementation-artifacts/myb-83-local-ci.md"
 unity_local_ci_validation_report: "_bmad-output/unity-test-results/myb-83-local-ci.txt"
 unity_local_ci_rescope: "CI locale reproductible pour unity/Echapee4D; GitHub Actions, hosted runners, cloud CI secrets/billing, and hosted macOS runner setup are out of scope."
