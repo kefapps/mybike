@@ -45,6 +45,23 @@ Do not version generated Unity folders such as `Library/`, `Temp/`, `Logs/`,
 From the repository root:
 
 ```bash
+npm run validate:local-ci
+```
+
+This is the MYB-83 local CI entrypoint. It runs repo hygiene checks, verifies
+the canonical Unity project boundary, calls Unity-MCP status, executes the
+MYB-91 canonical baseline validator, and writes:
+
+```text
+_bmad-output/unity-test-results/myb-83-local-ci.txt
+```
+
+The validation is intentionally local. It does not create GitHub Actions
+workflows, hosted runners, CI secrets, or WebGL/browser proof.
+
+For the narrower Unity-MCP reachability check:
+
+```bash
 unity-mcp-cli status unity/Echapee4D --timeout 10000
 ```
 

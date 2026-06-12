@@ -5631,3 +5631,40 @@ Synced on 2026-06-12:
   - `main` is updated to `dd8b247`.
   - MYB-96 delivers the Blender MCP asset pack in the canonical Unity project
     with validation, manifest, prefabs, yard scene and capture evidence.
+
+### MYB-83 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-83`.
+- Linear status target: `In Review`.
+- Branch: `myb-83-local-ci`.
+- Pull request: `https://github.com/kefapps/mybike/pull/17`.
+- Implementation commit: `00ffb12` (`MYB-83 add local Unity CI validation`).
+- Linear review comment ID: `eb620294-19d1-4540-bb7e-02992dd25ecc`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/myb-83-local-ci.md`.
+- Local CI report:
+  `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Implementation summary:
+  - Added `npm run validate:local-ci`.
+  - Added `scripts/validate-local-ci.mjs`.
+  - Added `scripts/validate-local-ci.test.mjs`.
+  - Documented the local validation in `unity/Echapee4D/README.md`.
+  - Re-ran the MYB-91 canonical baseline validator through the MYB-83 command.
+- Validation:
+  - `npm run test -- scripts/validate-local-ci.test.mjs`: PASS.
+  - `npm run validate:local-ci`: PASS.
+  - `git diff --check`: PASS.
+- Review fixes:
+  - Added staged and branch/worktree whitespace checks using the merge-base
+    against `main`.
+  - Removed trailing blank-line report generation that hid in committed branch
+    diffs.
+  - Added process timeouts, safer repo-root path resolution, and stricter
+    option parsing for `--base` and `--report`.
+  - Rebased PR #17 onto `origin/main` after MYB-96 landed.
+- Scope guard:
+  - No GitHub Actions workflows.
+  - No hosted runner, cloud secret, billing, release pipeline, full Unity build,
+    or WebGL/browser proof.
