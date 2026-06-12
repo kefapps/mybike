@@ -5763,9 +5763,12 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-57`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `4b0ca246-aace-4792-9597-ff46d852900c`.
+- Linear review comment ID: `179299ba-9d62-43a2-8d47-90601a52fc8d`.
 - Branch: `myb-57-effort-difficulty-simulator`.
+- Pull request: `https://github.com/kefapps/mybike/pull/18`.
+- Implementation commit: `1e8bb0b` (`MYB-57 add Unity mock effort simulator`).
 - Related hardware follow-up: `MYB-97`.
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`.
