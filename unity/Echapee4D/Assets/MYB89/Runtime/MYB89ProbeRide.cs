@@ -1,4 +1,5 @@
 using System;
+using MYB57;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,14 +26,23 @@ namespace MYB89
         public Text segmentLabel;
         public Text verdictLabel;
 
+        [Header("MYB-57 Mock Trainer")]
+        public bool useEffortSimulator = true;
+        public MYB57TrainerMode trainerMode = MYB57TrainerMode.Simulated;
+        public MYB57TrainerSourcePreset trainerSourcePreset = MYB57TrainerSourcePreset.PowerAvailable;
+        [Range(0f, 1f)]
+        public float fatigue01;
+
         [Header("Lighting")]
         public Light keyLight;
 
         private float[] segmentLengths = Array.Empty<float>();
         private float routeLength;
         private Vector3 cameraBaseLocalPosition;
+        private MYB57EffortSnapshot lastEffortSnapshot;
 
         public float RouteLength => routeLength;
+        public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
 
         private void Awake()
         {
@@ -71,7 +81,8 @@ namespace MYB89
 
             if (Application.isPlaying && autoplay)
             {
-                progressMeters += speedMetersPerSecond * Time.deltaTime;
+                var frameEffort = SampleEffort(Time.deltaTime, true);
+                progressMeters += frameEffort.SpeedMetersPerSecond * Time.deltaTime;
             }
 
             ApplyPose(progressMeters);
@@ -186,6 +197,8 @@ namespace MYB89
             var progress01 = Mathf.Clamp01(wrappedMeters / total);
             var percent = progress01 * 100f;
             var routeHud = SampleRouteHud(wrappedMeters, progress01);
+            var effort = SampleEffort(0f, false);
+            var displaySpeed = useEffortSimulator ? effort.SpeedMetersPerSecond : speedMetersPerSecond;
 
             if (distanceLabel != null)
             {
@@ -194,17 +207,21 @@ namespace MYB89
 
             if (speedLabel != null)
             {
-                speedLabel.text = $"{speedMetersPerSecond * 3.6f:00} km/h";
+                speedLabel.text = $"{displaySpeed * 3.6f:00} km/h";
             }
 
             if (difficultyLabel != null)
             {
-                difficultyLabel.text = $"Effort: {routeHud.DifficultyLabel}";
+                difficultyLabel.text = useEffortSimulator
+                    ? $"Effort: {effort.EffortLabel} {effort.PedalEffort01 * 100f:00}%"
+                    : $"Effort: {routeHud.DifficultyLabel}";
             }
 
             if (gradeLabel != null)
             {
-                gradeLabel.text = $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
+                gradeLabel.text = useEffortSimulator
+                    ? $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}% | Res: {effort.TargetResistanceLevel:00}"
+                    : $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
             }
 
             if (segmentLabel != null)
@@ -214,8 +231,38 @@ namespace MYB89
 
             if (verdictLabel != null)
             {
-                verdictLabel.text = $"Mock ride running | {percent:00}% | readable motion corridor";
+                verdictLabel.text = useEffortSimulator
+                    ? $"Mock trainer: {effort.SourceBadge} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
+                    : $"Mock ride running | {percent:00}% | readable motion corridor";
             }
+        }
+
+        private MYB57EffortSnapshot SampleEffort(float deltaTimeSeconds, bool updateFatigue)
+        {
+            if (!useEffortSimulator)
+            {
+                return lastEffortSnapshot;
+            }
+
+            var total = routeLength <= 0.01f ? 1f : routeLength;
+            var wrappedMeters = Mathf.Repeat(progressMeters, total);
+            var progress01 = Mathf.Clamp01(wrappedMeters / total);
+            var routeHud = SampleRouteHud(wrappedMeters, progress01);
+            var input = new MYB57EffortInput(
+                trainerMode,
+                trainerSourcePreset,
+                routeHud.RouteSegment,
+                routeHud.GradePercent,
+                fatigue01,
+                deltaTimeSeconds);
+
+            lastEffortSnapshot = MYB57EffortSimulator.EvaluateMock(input);
+            if (updateFatigue)
+            {
+                fatigue01 = lastEffortSnapshot.Fatigue01;
+            }
+
+            return lastEffortSnapshot;
         }
 
         private RouteHudSnapshot SampleRouteHud(float wrappedMeters, float progress01)
@@ -241,54 +288,42 @@ namespace MYB89
                 }
             }
 
-            var segmentLabel = SegmentLabelFor(progress01);
-            var difficultyLabel = DifficultyLabelFor(progress01, gradePercent);
-            return new RouteHudSnapshot(difficultyLabel, gradePercent, segmentLabel);
+            var routeSegment = MYB57EffortSimulator.SegmentForProgress(progress01);
+            var segmentLabel = SegmentLabelFor(routeSegment);
+            var difficultyLabel = DifficultyLabelFor(routeSegment, gradePercent);
+            return new RouteHudSnapshot(difficultyLabel, gradePercent, segmentLabel, routeSegment);
         }
 
-        private static string SegmentLabelFor(float progress01)
+        private static string SegmentLabelFor(MYB57RouteSegment routeSegment)
         {
-            if (progress01 < 0.26f)
+            switch (routeSegment)
             {
-                return "Warmup";
+                case MYB57RouteSegment.Warmup:
+                    return "Warmup";
+                case MYB57RouteSegment.Climb:
+                    return "Climb";
+                case MYB57RouteSegment.Sprint:
+                    return "Sprint";
+                case MYB57RouteSegment.Recovery:
+                    return "Recovery";
+                default:
+                    return "Warmup";
             }
-
-            if (progress01 < 0.56f)
-            {
-                return "Climb";
-            }
-
-            if (progress01 < 0.84f)
-            {
-                return "Sprint";
-            }
-
-            return "Recovery";
         }
 
-        private static string DifficultyLabelFor(float progress01, float gradePercent)
+        private static string DifficultyLabelFor(MYB57RouteSegment routeSegment, float gradePercent)
         {
-            if (progress01 < 0.26f)
-            {
-                return "Easy spin";
-            }
-
-            if (progress01 >= 0.84f)
-            {
-                return "Recovery";
-            }
-
-            if (progress01 >= 0.56f && progress01 < 0.84f)
-            {
-                return "Hard sprint";
-            }
-
-            if (gradePercent >= 0.25f || (progress01 >= 0.26f && progress01 < 0.56f))
+            if (gradePercent >= 0.25f || routeSegment == MYB57RouteSegment.Climb)
             {
                 return "Sustained climb";
             }
 
-            if (gradePercent < -0.25f)
+            if (routeSegment == MYB57RouteSegment.Sprint)
+            {
+                return "Hard sprint";
+            }
+
+            if (gradePercent < -0.25f || routeSegment == MYB57RouteSegment.Recovery)
             {
                 return "Recovery";
             }
@@ -298,16 +333,18 @@ namespace MYB89
 
         private readonly struct RouteHudSnapshot
         {
-            public RouteHudSnapshot(string difficultyLabel, float gradePercent, string segmentLabel)
+            public RouteHudSnapshot(string difficultyLabel, float gradePercent, string segmentLabel, MYB57RouteSegment routeSegment)
             {
                 DifficultyLabel = difficultyLabel;
                 GradePercent = gradePercent;
                 SegmentLabel = segmentLabel;
+                RouteSegment = routeSegment;
             }
 
             public string DifficultyLabel { get; }
             public float GradePercent { get; }
             public string SegmentLabel { get; }
+            public MYB57RouteSegment RouteSegment { get; }
         }
 
         private void AnimateKeyLight()

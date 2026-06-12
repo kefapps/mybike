@@ -1,0 +1,18 @@
+MYB-57 Effort Simulator validation
+Timestamp UTC: 2026-06-12T14:43:20.9805750Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Trainer modes modeled: simulated, readOnly, controllable
+Implemented mode: simulated
+Source priority: powerWatts -> cadenceRpm + resistanceLevel -> cadenceRpm
+Mock presets: PowerAvailable, CadenceResistance, CadenceOnly
+
+Notes:
+- Power preset climb: speed 8.25 m/s, resistance 98, effort 0.58.
+- Cad+Res climb: speed 7.42 m/s, source Cad+Res.
+- Cadence-only climb: speed 6.31 m/s, source Cadence.
+- Low/high cadence speed check: 3.53 -> 10.46 m/s.
+- Scene HUD difficulty: Effort: Sustained climb 58%
+- Scene HUD grade/resistance: Pente: -0.6% | Res: 61
+- Scene HUD source/fatigue: Mock trainer: Power | Fatigue 00% | 42%

@@ -64,6 +64,7 @@ Last sync: 2026-06-12
 - Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
+- Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 
 ## Linear Documents
 
@@ -104,6 +105,8 @@ Last sync: 2026-06-12
 | Blender MCP asset pack | `MYB-96` | Générer un pack d'assets Blender via MCP pour la vertical slice Unity | https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity |
 | Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
+| Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
+| ESP32 trainer modes spike | `MYB-97` | Spike ESP32-WROOM : modes trainer FTMS read-only et controllable | https://linear.app/kefjbo/issue/MYB-97/spike-esp32-wroom-modes-trainer-ftms-read-only-et-controllable |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -5754,3 +5757,48 @@ Synced on 2026-06-12:
   - PR #15 was `CLEAN` before merge.
   - MYB-51 was moved to `Done` after merge.
   - Linear has GitHub attachments for PR #15 and commit `45b9267`.
+
+### MYB-57 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-57`.
+- Linear status: `In Progress`.
+- Linear start comment ID: `4b0ca246-aace-4792-9597-ff46d852900c`.
+- Branch: `myb-57-effort-difficulty-simulator`.
+- Related hardware follow-up: `MYB-97`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`.
+- Implementation summary:
+  - Added `MYB57EffortSimulator` as a pure runtime, FTMS-friendly mock effort
+    model.
+  - Modeled trainer modes `Simulated`, `ReadOnly` and `Controllable`, while
+    implementing only `Simulated` for this ticket.
+  - Added mock presets `PowerAvailable`, `CadenceResistance` and `CadenceOnly`
+    to validate partial trainer data fallbacks.
+  - Kept source priority as `powerWatts`, then `cadenceRpm + resistanceLevel`,
+    then `cadenceRpm`.
+  - Converted route segment and grade into `targetResistance01` plus
+    `targetResistanceLevel` (`0..100`), then derived speed/fatigue from trainer
+    effort and target resistance.
+  - Updated `MYB89ProbeRide` HUD to show compact effort, target resistance,
+    trainer source and fatigue.
+  - Added `MYB57EffortSimulatorValidator` with pure model checks and scene/HUD
+    checks.
+- Scope guard:
+  - No BLE, CoreBluetooth, real FTMS, smart trainer control, ESP32 firmware,
+    hardware bridge or WebGL/React work.
+  - ESP32-WROOM read-only/controllable trainer exploration is tracked by
+    `MYB-97`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS.
+  - `MYB57EffortSimulatorValidator.ValidateEffortSimulatorCli()`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS.
+  - `npm run validate:local-ci`: PASS.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
