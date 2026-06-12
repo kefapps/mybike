@@ -537,6 +537,7 @@ unity_meshy_custom_models_poc_review_next_action: "closed-via-pr-9-and-select-ne
 unity_hud_difficulty_slope_segment_issue: "MYB-63 In Review"
 unity_hud_difficulty_slope_segment_url: "https://linear.app/kefjbo/issue/MYB-63/myb-037-refondre-le-hud-unity-difficulte-pente-et-segment-courant"
 unity_hud_difficulty_slope_segment_branch: "myb-63-hud-difficulty-slope-segment"
+unity_hud_difficulty_slope_segment_pr: "https://github.com/kefapps/mybike/pull/10"
 unity_hud_difficulty_slope_segment_scope: "Afficher effort/difficulte, pente ou segment courant dans le HUD Unity en gardant vitesse, distance, temps et etat session; mock mode obligatoire."
 unity_hud_difficulty_slope_segment_report: "_bmad-output/implementation-artifacts/myb-63-unity-hud-difficulty-slope-segment.md"
 unity_hud_difficulty_slope_segment_review_comment: "cb6b120c-316e-40e3-b3b9-eb7d6f6c37cd"

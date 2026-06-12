@@ -5284,6 +5284,8 @@ Synced on 2026-06-12:
 - Linear status: `In Review`.
 - Linear review comment ID: `cb6b120c-316e-40e3-b3b9-eb7d6f6c37cd`.
 - Branch: `myb-63-hud-difficulty-slope-segment`.
+- Pull request: `https://github.com/kefapps/mybike/pull/10`.
+- Implementation commit: `f9ad92f` (`MYB-63 add Unity HUD difficulty readouts`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-63-unity-hud-difficulty-slope-segment.md`.
 - Implementation summary:
