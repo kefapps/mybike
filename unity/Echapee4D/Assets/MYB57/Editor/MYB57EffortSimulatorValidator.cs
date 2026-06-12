@@ -92,10 +92,17 @@ namespace MYB57.Editor
                 failures.Add("Recovery/descent should reduce fatigue.");
             }
 
+            var fatiguingClimb = Snapshot(MYB57TrainerSourcePreset.PowerAvailable, MYB57RouteSegment.Climb, 4f, 0.25f, 1f);
+            if (fatiguingClimb.Fatigue01 <= 0.25f)
+            {
+                failures.Add("PowerAvailable climb should build fatigue from measured effort and target resistance.");
+            }
+
             notes.Add($"Power preset climb: speed {climbPower.SpeedMetersPerSecond:0.00} m/s, resistance {climbPower.TargetResistanceLevel}, effort {climbPower.PedalEffort01:0.00}.");
             notes.Add($"Cad+Res climb: speed {climbCadenceResistance.SpeedMetersPerSecond:0.00} m/s, source {climbCadenceResistance.SourceBadge}.");
             notes.Add($"Cadence-only climb: speed {climbCadenceOnly.SpeedMetersPerSecond:0.00} m/s, source {climbCadenceOnly.SourceBadge}.");
             notes.Add($"Low/high cadence speed check: {lowCadence.SpeedMetersPerSecond:0.00} -> {highCadence.SpeedMetersPerSecond:0.00} m/s.");
+            notes.Add($"Fatiguing climb check: {0.25f:0.00} -> {fatiguingClimb.Fatigue01:0.00}.");
         }
 
         private static void ValidateSceneHud(ICollection<string> failures, ICollection<string> notes)
@@ -153,9 +160,21 @@ namespace MYB57.Editor
                 failures.Add("HUD verdict label must include the mock trainer source badge.");
             }
 
-            notes.Add("Scene HUD difficulty: " + (ride.difficultyLabel == null ? string.Empty : ride.difficultyLabel.text));
-            notes.Add("Scene HUD grade/resistance: " + (ride.gradeLabel == null ? string.Empty : ride.gradeLabel.text));
-            notes.Add("Scene HUD source/fatigue: " + (ride.verdictLabel == null ? string.Empty : ride.verdictLabel.text));
+            var effortHudText = ride.difficultyLabel == null ? string.Empty : ride.difficultyLabel.text;
+            var gradeHudText = ride.gradeLabel == null ? string.Empty : ride.gradeLabel.text;
+            var sourceHudText = ride.verdictLabel == null ? string.Empty : ride.verdictLabel.text;
+
+            ride.useEffortSimulator = false;
+            ride.speedMetersPerSecond = 12.5f;
+            ride.SetPreviewProgress(ride.RouteLength * 0.42f);
+            if (ride.speedLabel == null || !ride.speedLabel.text.Contains("45 km/h"))
+            {
+                failures.Add("Legacy speed fallback must still drive HUD speed when the effort simulator is disabled.");
+            }
+
+            notes.Add("Scene HUD difficulty: " + effortHudText);
+            notes.Add("Scene HUD grade/resistance: " + gradeHudText);
+            notes.Add("Scene HUD source/fatigue: " + sourceHudText);
         }
 
         private static MYB57EffortSnapshot Snapshot(

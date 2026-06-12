@@ -1,6 +1,6 @@
 MYB-83 Local CI Validation
 
-Generated: 2026-06-12T14:43:28.425Z
+Generated: 2026-06-12T15:00:19.798Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Unity project: unity/Echapee4D
 Command: npm run validate:local-ci
@@ -17,13 +17,13 @@ Checks
 - PASS [required] JSON parses: unity/Echapee4D/Packages/manifest.json
 - PASS [required] JSON parses: unity/Echapee4D/Packages/packages-lock.json
 - PASS [required] working tree whitespace check
-  completed in 19ms
+  completed in 29ms
   command: git diff --check
 - PASS [required] staged whitespace check
-  completed in 14ms
+  completed in 22ms
   command: git diff --cached --check
 - PASS [required] branch/worktree whitespace check vs main
-  completed in 16ms
+  completed in 32ms
   command: git diff --check 26da012a9d66c58b4661f23789f2f6c7ceeb7cba
 - PASS [required] Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
@@ -35,10 +35,10 @@ Checks
   no generated Unity folders are tracked
   command: git ls-files -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
 - PASS [required] Unity-MCP status
-  completed in 898ms
+  completed in 943ms
   command: unity-mcp-cli status unity/Echapee4D --timeout 10000
 - PASS [required] MYB-91 canonical baseline validator
-  completed in 684ms
+  completed in 636ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunBaselineValidator","methodName":"Main","csharpCode":"using MYB91.Editor; public static class MYB83RunBaselineValidator { public static void Main() { MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli(); } }"} --timeout 180000
 
 PR Checklist Snippet

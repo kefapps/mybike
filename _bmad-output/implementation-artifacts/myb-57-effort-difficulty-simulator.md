@@ -51,6 +51,15 @@ Status: implemented
 - `npm run validate:local-ci`: PASS.
 - `git diff --check`: PASS.
 
+## Review Findings
+
+- [x] [Review][Patch] Preserve legacy speed fallback when
+  `useEffortSimulator` is disabled.
+- [x] [Review][Patch] Remove trailing whitespace from Unity `.meta` files and
+  keep branch/worktree whitespace validation green.
+- [x] [Review][Patch] Ensure the default climb preset builds fatigue under
+  sustained load.
+
 ## Evidence
 
 - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`

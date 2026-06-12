@@ -269,13 +269,16 @@ namespace MYB57
             var fatigue = input.PreviousFatigue01;
             var delta = input.DeltaTimeSeconds;
 
-            if (load01 > 0.62f)
+            const float fatigueBuildThreshold = 0.52f;
+            const float fatigueRecoverThreshold = 0.58f;
+
+            if (load01 > fatigueBuildThreshold)
             {
-                fatigue += (load01 - 0.62f) * 0.18f * delta;
+                fatigue += (load01 - fatigueBuildThreshold) * 0.18f * delta;
             }
             else
             {
-                fatigue -= (0.68f - load01) * 0.12f * delta;
+                fatigue -= (fatigueRecoverThreshold - load01) * 0.12f * delta;
             }
 
             if (input.RouteSegment == MYB57RouteSegment.Recovery || input.GradePercent < -0.25f)

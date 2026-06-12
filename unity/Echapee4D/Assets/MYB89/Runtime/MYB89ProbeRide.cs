@@ -81,8 +81,10 @@ namespace MYB89
 
             if (Application.isPlaying && autoplay)
             {
-                var frameEffort = SampleEffort(Time.deltaTime, true);
-                progressMeters += frameEffort.SpeedMetersPerSecond * Time.deltaTime;
+                var frameSpeed = useEffortSimulator
+                    ? SampleEffort(Time.deltaTime, true).SpeedMetersPerSecond
+                    : speedMetersPerSecond;
+                progressMeters += frameSpeed * Time.deltaTime;
             }
 
             ApplyPose(progressMeters);
