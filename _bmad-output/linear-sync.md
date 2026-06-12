@@ -5639,6 +5639,8 @@ Synced on 2026-06-12:
 - Linear issue: `MYB-83`.
 - Linear status target: `In Review`.
 - Branch: `myb-83-local-ci`.
+- Pull request: `https://github.com/kefapps/mybike/pull/17`.
+- Implementation commit: `00ffb12` (`MYB-83 add local Unity CI validation`).
 - Implementation report:
   `_bmad-output/implementation-artifacts/myb-83-local-ci.md`.
 - Local CI report:

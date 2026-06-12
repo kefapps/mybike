@@ -497,6 +497,7 @@ unity_platform_priority_linear_consistency_pass: "Project summary and remaining 
 unity_local_ci_issue: "MYB-83 In Review"
 unity_local_ci_url: "https://linear.app/kefjbo/issue/MYB-83/myb-074-ajouter-une-ci-locale-unity-macos-first"
 unity_local_ci_branch: "myb-83-local-ci"
+unity_local_ci_pr: "https://github.com/kefapps/mybike/pull/17"
 unity_local_ci_report: "_bmad-output/implementation-artifacts/myb-83-local-ci.md"
 unity_local_ci_validation_report: "_bmad-output/unity-test-results/myb-83-local-ci.txt"
 unity_local_ci_rescope: "CI locale reproductible pour unity/Echapee4D; GitHub Actions, hosted runners, cloud CI secrets/billing, and hosted macOS runner setup are out of scope."
