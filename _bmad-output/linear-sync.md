@@ -5428,3 +5428,43 @@ Synced on 2026-06-12:
   - Validation: Unity Editor/macOS local proof only; no WebGL proof.
 - Documentation update:
   - `CONTEXT.md` now defines `Scenic Corridor`.
+
+### MYB-44 Implementation Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-44`.
+- Linear status: `In Review`.
+- Linear review comment ID: `7eb3bc87-344e-4434-9bce-d3a261cf8d0c`.
+- Branch: `myb-44-scenic-corridor`.
+- Pull request: `https://github.com/kefapps/mybike/pull/12`.
+- Implementation commit: `fe5f899` (`MYB-44 add Unity scenic corridor`).
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-44-unity-scenic-corridor.md`.
+- Implementation summary:
+  - Added a playable Unity `Scenic Corridor` for `Village / campagne pavee` in
+    the canonical `MYB89UnityMcpProbe` scene.
+  - Reused already approved/imported CC0 assets plus Unity primitives for
+    roadside, mid-ground, background and horizon composition.
+  - Added warm paved shoulders, village verges, props/buildings, background
+    cottages, horizon trees/hills and one discreet warm relic signal.
+  - Preserved route, camera, HUD, mock mode and MYB-48 Route Difficulty Cues.
+  - Added `MYB44ScenicCorridorValidator` and extended MYB-89/MYB-91 reports
+    with scenic counters.
+- Final counters:
+  - Total scene renderers: 271.
+  - MYB44 scenic corridor renderers: 116.
+  - MYB44 horizon renderers: 43.
+  - Premium signal lights: 1.
+  - Route difficulty cues preserved: 11 total, Climb 4, Sprint 4, Recovery 3.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB89ProbeBuilder.BuildScene()`: PASS.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS.
+  - `MYB44ScenicCorridorValidator.ValidateScenicCorridor()`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`: PASS.
+  - `git diff --check`: PASS.
+  - Targeted forbidden path scan: PASS.
+  - Targeted secret scan: PASS; only historical env-var names in sync docs.
+- Visual evidence:
+  - `_bmad-output/unity-test-results/myb-44-scenic-corridor.png`.
