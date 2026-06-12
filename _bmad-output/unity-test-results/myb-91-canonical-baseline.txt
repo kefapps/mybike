@@ -1,5 +1,5 @@
 MYB-91 Unity canonical baseline validation
-Timestamp UTC: 2026-06-12T00:16:49.8569740Z
+Timestamp UTC: 2026-06-12T04:00:20.5060090Z
 Status: PASS
 Unity: 6000.4.10f1
 Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
@@ -20,6 +20,9 @@ Main camera: True
 Road mesh: True
 HUD canvas: True
 HUD labels wired: True
+HUD difficulty: Effort: Sustained climb
+HUD grade: Pente: -0.6%
+HUD segment: Segment: Climb
 Local generated roots present: Library, Logs, Temp, UserSettings
 
 Notes:

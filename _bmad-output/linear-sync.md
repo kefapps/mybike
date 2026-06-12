@@ -5255,3 +5255,52 @@ Synced on 2026-06-12:
   - `origin/main` updated to `9cd9ab8`.
   - MYB-95 remains sandbox-only in Unity; no Meshy asset was added to the main
     gameplay scene.
+
+### MYB-63 Start Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-63`.
+- Linear status: `In Progress`.
+- Linear start comment ID: `4d5cc46e-c139-4001-8955-0641bcf1be37`.
+- Assignee: Julien Bodin.
+- Branch: `myb-63-hud-difficulty-slope-segment`.
+- Reason selected next:
+  - `MYB-63` is the highest-priority open implementation ticket in the active
+    Unity vertical-slice project after MYB-95 closure.
+  - It builds directly on the existing route difficulty/elevation work and
+    keeps scope in `unity/Echapee4D`.
+- Scope reminder:
+  - Refactor Unity HUD to show difficulty/effort, slope or current segment when
+    available.
+  - Preserve mock mode and existing speed, distance, time and session state.
+  - No React HUD refactor and no hardware-bike connection work.
+
+### MYB-63 Implementation Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-63`.
+- Linear status: `In Review`.
+- Linear review comment ID: `cb6b120c-316e-40e3-b3b9-eb7d6f6c37cd`.
+- Branch: `myb-63-hud-difficulty-slope-segment`.
+- Pull request: `https://github.com/kefapps/mybike/pull/10`.
+- Implementation commit: `f9ad92f` (`MYB-63 add Unity HUD difficulty readouts`).
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-63-unity-hud-difficulty-slope-segment.md`.
+- Implementation summary:
+  - Added Unity HUD labels for effort/difficulty, slope and current segment.
+  - Preserved existing speed, distance, progress and mock ride state.
+  - Updated MYB-89 scene builder to create and wire the new HUD labels.
+  - Updated MYB-89 and MYB-91 validators to fail when HUD difficulty/slope or
+    segment readouts are missing.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB89ProbeBuilder.BuildScene()`: PASS.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`: PASS.
+  - `git diff --check`: PASS.
+  - Targeted secret/path scan: PASS.
+- Visual evidence:
+  - `_bmad-output/unity-test-results/myb-63-unity-hud-difficulty-slope-segment.png`.
