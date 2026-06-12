@@ -5827,10 +5827,12 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-59`.
-- Linear status: `In Review`.
+- Linear status: `Done`.
 - Linear implementation comment ID: `454fe58d-3a95-4da9-ad93-8a1d62a8bdeb`.
+- Linear closure comment ID: `92814139-eef7-47b3-85a8-074540bdabbc`.
 - Linear implementation comment updated: 2026-06-12T19:11:42.080Z.
 - Branch: `myb-59-resistance-controller`.
+- Merge commit on `main`: `1af4b69` (`MYB-59 add resistance controller boundary`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`.
 - Documentation updates:
@@ -5880,15 +5882,27 @@ Synced on 2026-06-12:
   - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
   - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Closure evidence:
+  - MYB-59 was cherry-picked linearly onto `main` as `1af4b69`.
+  - MYB-59 was moved to Linear `Done` after merge.
+  - `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`:
+    PASS via Unity batchmode on the `main` worktree.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    Unity batchmode on the `main` worktree.
+  - Unity-MCP local CI could not run in the `main` worktree because the active
+    Unity Editor was attached to `/Users/jbodin/personnel/apps/mybike`;
+    batchmode validation was used for closure proof.
 
 ### MYB-60 Implementation Sync
 
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-60`.
-- Linear status: `In Review`.
+- Linear status: `Done`.
 - Linear implementation comment ID: `dc893700-c34c-45bb-bb53-fb7f07a099d1`.
+- Linear closure comment ID: `9a80f296-ca41-43ce-89b6-c856a75cfb46`.
 - Branch: `myb-60-myb-034-mapper-pentedifficulte-unity-vers-resistance-mock`.
+- Merge commit on `main`: `67099d0` (`MYB-60 add smoothed resistance mapper`).
 - Base note:
   - MYB-60 is stacked on local MYB-59 commit `25b6f5c`
     (`MYB-59 add resistance controller boundary`) because MYB-60 consumes the
@@ -5940,3 +5954,16 @@ Synced on 2026-06-12:
   - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
   - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Closure evidence:
+  - MYB-60 was cherry-picked linearly onto `main` as `67099d0` after MYB-59.
+  - MYB-60 was moved to Linear `Done` after merge.
+  - `MYB60ResistanceMapperValidator.ValidateResistanceMapperCli()`: PASS via
+    Unity batchmode on the `main` worktree, including `Scene autoplay alignment:
+    Warmup->Climb`.
+  - `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`:
+    PASS via Unity batchmode on the `main` worktree.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    Unity batchmode on the `main` worktree.
+  - Unity-MCP local CI could not run in the `main` worktree because the active
+    Unity Editor was attached to `/Users/jbodin/personnel/apps/mybike`;
+    batchmode validation was used for closure proof.
