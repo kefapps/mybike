@@ -6082,3 +6082,28 @@ Closure synced on 2026-06-13:
 - Merge method: squash merge.
 - Branch `myb-73-route-preview-unity` was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-36 Competitive Benchmark Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-36`.
+- Linear status: `In Progress`.
+- Branch: `myb-36-benchmark-indoor-cycling`.
+- Research document: `docs/research/competitive-benchmark.md`.
+- Scope delivered:
+  - Compared Zwift, ROUVY, Kinomap, MyWhoosh, TrainingPeaks Virtual and FulGaz.
+  - Included publicly sourceable pricing variants with consultation date.
+  - Captured 3 useful ideas and 1 V1 trap per solution.
+  - Converted benchmark findings into 12 ticket-linked opportunities without
+    creating automatic new Linear tickets.
+  - Added a product recommendation section with now/later/avoid decisions and
+    next-ticket recommendation.
+- Scope guard:
+  - No production code, Unity scene, runtime, asset import or tests changed.
+  - No new Linear tickets created from the benchmark yet.
+  - Pricing is dated evidence, not a permanent business contract.
+- Validation:
+  - `git diff --check`: PASS.
+- Evidence:
+  - `docs/research/competitive-benchmark.md`.
