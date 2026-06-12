@@ -1,5 +1,5 @@
 MYB-89 Unity-MCP IvanMurzak probe validation
-Timestamp UTC: 2026-06-12T08:03:59.2158190Z
+Timestamp UTC: 2026-06-12T15:00:17.0639170Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
