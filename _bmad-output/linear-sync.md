@@ -5468,3 +5468,26 @@ Synced on 2026-06-12:
   - Targeted secret scan: PASS; only historical env-var names in sync docs.
 - Visual evidence:
   - `_bmad-output/unity-test-results/myb-44-scenic-corridor.png`.
+
+### MYB-44 Closure Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-44`.
+- Linear status: `Done`.
+- Linear closure comment ID: `554d3b02-afdd-4f6f-97c9-7dbcb75bb08b`.
+- Pull request: `https://github.com/kefapps/mybike/pull/12`.
+- Merge commit on `main`: `a376773` (`MYB-44 Unity scenic corridor`).
+- Merge method: squash merge.
+- GitHub/Linear attachments:
+  - Commit attachment:
+    `https://github.com/kefapps/mybike/commit/a376773`.
+  - PR attachment: `https://github.com/kefapps/mybike/pull/12`.
+- Closure evidence:
+  - PR #12 was `MERGEABLE` before merge.
+  - `origin/main` updated to `a376773`.
+  - The canonical Unity scene now contains the `Scenic Corridor` plus MYB-44,
+    MYB-89 and MYB-91 evidence.
+- Scope note:
+  - Route, camera, HUD, mock mode and MYB-48 Route Difficulty Cues are
+    preserved.

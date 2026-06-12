@@ -440,7 +440,7 @@ development_status:
 
   # MYB-44 - Remplacer les placeholders Unity par un premier scenic corridor jouable
   # Scenic Corridor village/campagne pavee dans la scene canonique, assets approuves + primitives, horizon inclus.
-  myb-44-unity-scenic-corridor: in_review
+  myb-44-unity-scenic-corridor: done
 
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
@@ -563,12 +563,14 @@ unity_route_difficulty_cues_merge_commit: "44ac388"
 unity_route_difficulty_cues_report: "_bmad-output/implementation-artifacts/myb-48-route-difficulty-cues.md"
 unity_route_difficulty_cues_scope: "Route Difficulty Cues fantasy sobres, primitives Unity generees par code, emissive et pulse leger, pour Climb/Sprint/Recovery; pas Meshy, pas asset tiers, pas hardware."
 unity_route_difficulty_cues_validation: "PASS: unity-mcp-cli status, assets-refresh, MYB89 BuildScene, MYB89 ValidateProbeScene, MYB48 route difficulty cue validator, MYB91 canonical baseline, git diff --check, targeted secret/path scan."
-unity_scenic_corridor_issue: "MYB-44 In Review"
+unity_scenic_corridor_issue: "MYB-44 Done"
 unity_scenic_corridor_url: "https://linear.app/kefjbo/issue/MYB-44/myb-012-remplacer-les-placeholders-unity-par-un-premier-scenic"
 unity_scenic_corridor_branch: "myb-44-scenic-corridor"
 unity_scenic_corridor_pr: "https://github.com/kefapps/mybike/pull/12"
 unity_scenic_corridor_start_comment: "9f743cd5-6fcf-43e5-b4f8-6ed0cb99894b"
 unity_scenic_corridor_review_comment: "7eb3bc87-344e-4434-9bce-d3a261cf8d0c"
+unity_scenic_corridor_closure_comment: "554d3b02-afdd-4f6f-97c9-7dbcb75bb08b"
+unity_scenic_corridor_merge_commit: "a376773"
 unity_scenic_corridor_report: "_bmad-output/implementation-artifacts/myb-44-unity-scenic-corridor.md"
 unity_scenic_corridor_visual_evidence: "_bmad-output/unity-test-results/myb-44-scenic-corridor.png"
 unity_scenic_corridor_scope: "Premier Scenic Corridor jouable village/campagne pavee dans MYB89UnityMcpProbe; assets tiers approuves existants + primitives Unity, un signal premium discret max, foreground/mid-ground/horizon, macOS Editor validation uniquement."
