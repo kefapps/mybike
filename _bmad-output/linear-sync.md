@@ -5763,12 +5763,16 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-57`.
-- Linear status: `In Review`.
+- Linear status: `Done`.
 - Linear start comment ID: `4b0ca246-aace-4792-9597-ff46d852900c`.
 - Linear review comment ID: `179299ba-9d62-43a2-8d47-90601a52fc8d`.
+- Linear closure comment ID: `e32f3433-b1ad-42d6-88fd-4ba811d77572`.
 - Branch: `myb-57-effort-difficulty-simulator`.
 - Pull request: `https://github.com/kefapps/mybike/pull/18`.
 - Implementation commit: `1e8bb0b` (`MYB-57 add Unity mock effort simulator`).
+- Review fix commit: `139bad2` (`MYB-57 address review findings`).
+- Merge commit on `main`: `322e68c9d06a7be0901137f88240432b7f50c3c3`.
+- Merge method: squash merge.
 - Related hardware follow-up: `MYB-97`.
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`.
@@ -5800,8 +5804,18 @@ Synced on 2026-06-12:
   - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS.
   - `npm run validate:local-ci`: PASS.
   - `git diff --check`: PASS.
+- Review fixes:
+  - Preserved legacy `speedMetersPerSecond` progression when
+    `useEffortSimulator` is disabled.
+  - Removed trailing whitespace from Unity `.meta` files.
+  - Lowered the fatigue build threshold and added validator coverage so the
+    default climb preset builds fatigue under sustained load.
 - Evidence:
   - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
   - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
   - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Closure evidence:
+  - PR #18 was `CLEAN` before merge.
+  - MYB-57 was moved to `Done` after merge.
+  - Linear has GitHub attachments for PR #18 and commit `322e68c`.
