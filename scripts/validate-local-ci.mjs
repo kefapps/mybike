@@ -334,6 +334,15 @@ function unityMyb60Input() {
   });
 }
 
+function unityMyb64Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb64Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB64.Editor; public static class MYB83RunMyb64Validator { public static void Main() { MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -353,7 +362,8 @@ async function runLocalCi(options) {
       skipCheck("Unity-MCP status", "--skip-unity was provided"),
       skipCheck("MYB-91 canonical baseline validator", "--skip-unity was provided"),
       skipCheck("MYB-59 resistance controller validator", "--skip-unity was provided"),
-      skipCheck("MYB-60 resistance mapper validator", "--skip-unity was provided")
+      skipCheck("MYB-60 resistance mapper validator", "--skip-unity was provided"),
+      skipCheck("MYB-64 no-trainer fallback validator", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -388,6 +398,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityMyb60Input(),
+        "--timeout",
+        "180000"
+      ], {
+        timeoutMs: 240_000
+      }),
+      runCommand("MYB-64 no-trainer fallback validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb64Input(),
         "--timeout",
         "180000"
       ], {

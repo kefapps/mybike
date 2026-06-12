@@ -1,6 +1,6 @@
 MYB-83 Local CI Validation
 
-Generated: 2026-06-12T20:03:13.425Z
+Generated: 2026-06-12T20:28:38.717Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Unity project: unity/Echapee4D
 Command: npm run validate:local-ci
@@ -17,14 +17,14 @@ Checks
 - PASS [required] JSON parses: unity/Echapee4D/Packages/manifest.json
 - PASS [required] JSON parses: unity/Echapee4D/Packages/packages-lock.json
 - PASS [required] working tree whitespace check
-  completed in 23ms
+  completed in 21ms
   command: git diff --check
 - PASS [required] staged whitespace check
-  completed in 15ms
+  completed in 14ms
   command: git diff --cached --check
 - PASS [required] branch/worktree whitespace check vs main
-  completed in 44ms
-  command: git diff --check 26da012a9d66c58b4661f23789f2f6c7ceeb7cba
+  completed in 29ms
+  command: git diff --check a47b83bdfd274dddd05a1a8d7d59ea328e2913e8
 - PASS [required] Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
   command: git status --porcelain -- unity/Echapee4D/Packages unity/Echapee4D/ProjectSettings
@@ -35,17 +35,20 @@ Checks
   no generated Unity folders are tracked
   command: git ls-files -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
 - PASS [required] Unity-MCP status
-  completed in 2673ms
+  completed in 917ms
   command: unity-mcp-cli status unity/Echapee4D --timeout 10000
 - PASS [required] MYB-91 canonical baseline validator
-  completed in 731ms
+  completed in 1240ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunBaselineValidator","methodName":"Main","csharpCode":"using MYB91.Editor; public static class MYB83RunBaselineValidator { public static void Main() { MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli(); } }"} --timeout 180000
 - PASS [required] MYB-59 resistance controller validator
-  completed in 589ms
+  completed in 727ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb59Validator","methodName":"Main","csharpCode":"using MYB59.Editor; public static class MYB83RunMyb59Validator { public static void Main() { MYB59ResistanceControllerValidator.ValidateResistanceControllerCli(); } }"} --timeout 180000
 - PASS [required] MYB-60 resistance mapper validator
-  completed in 668ms
+  completed in 691ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb60Validator","methodName":"Main","csharpCode":"using MYB60.Editor; public static class MYB83RunMyb60Validator { public static void Main() { MYB60ResistanceMapperValidator.ValidateResistanceMapperCli(); } }"} --timeout 180000
+- PASS [required] MYB-64 no-trainer fallback validator
+  completed in 736ms
+  command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb64Validator","methodName":"Main","csharpCode":"using MYB64.Editor; public static class MYB83RunMyb64Validator { public static void Main() { MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli(); } }"} --timeout 180000
 - PASS [required] post-Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
   command: git status --porcelain -- unity/Echapee4D/Packages unity/Echapee4D/ProjectSettings

@@ -1,5 +1,5 @@
 MYB-60 Resistance Mapper validation
-Timestamp UTC: 2026-06-12T20:12:23.1295610Z
+Timestamp UTC: 2026-06-12T20:28:37.9390830Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
@@ -15,7 +15,7 @@ Notes:
 - Scene mapping: raw 61, smooth 61, applied 61, status Stable.
 - Scene HUD grade: Pente: +0.4% | Res: 27~27->27
 - Scene HUD verdict: Mock trainer: Power | Map Stable 27 | Ctrl Applied 27 | Fatigue 00% | 26%
-- Scene smoothing probe: 55->64 (Ramping).
+- Scene smoothing probe: 40->49 (Ramping).
 - Scene ride ramp demand: raw 61, smooth 35, demand 35.
 - Scene ride limit demand: raw 61, limited 40, demand 40.
 - Scene autoplay alignment: Warmup->Climb at 28%.

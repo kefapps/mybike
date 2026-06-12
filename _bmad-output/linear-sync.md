@@ -67,6 +67,7 @@ Last sync: 2026-06-12
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
 - Unity resistance mapper MYB-60: `_bmad-output/implementation-artifacts/myb-60-resistance-mapper.md`
+- Unity no-trainer fallback MYB-64: `_bmad-output/implementation-artifacts/myb-64-no-trainer-fallback.md`
 
 ## Linear Documents
 
@@ -5967,3 +5968,47 @@ Synced on 2026-06-12:
   - Unity-MCP local CI could not run in the `main` worktree because the active
     Unity Editor was attached to `/Users/jbodin/personnel/apps/mybike`;
     batchmode validation was used for closure proof.
+
+### MYB-64 Start And Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-64`.
+- Linear status: `In Review`.
+- Linear start comment ID: `939e8360-b5da-4442-9efc-2f6489ca018c`.
+- Linear implementation comment ID: `d69c0267-e140-4af0-b63a-ff9c38a942b0`.
+- Branch: `myb-64-myb-038-fallback-unity-sans-smart-trainer`.
+- Implementation commit: `0e5aa40` (`MYB-64 add Unity no-trainer fallback`).
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-64-no-trainer-fallback.md`.
+- Implementation summary:
+  - Added `MYB57TrainerSourcePreset.ManualFallback`.
+  - Added estimated manual-effort trainer samples to `MYB57EffortSimulator`.
+  - Added `useNoTrainerFallback` and `manualFallbackEffort01` to
+    `MYB89ProbeRide`.
+  - Treats the public `ManualFallback` trainer source preset as the same
+    no-trainer fallback path as the explicit toggle, so inspector selection uses
+    the configured manual effort and no-trainer HUD labels.
+  - Updated the Unity HUD to show `No trainer: Manual` and `Effort: Manual
+    fallback`.
+  - Kept the MYB-59 resistance controller boundary active; unavailable
+    controller mode continues through the existing local fallback.
+  - Added `MYB64NoTrainerFallbackValidator`.
+  - Added MYB-64 to `npm run validate:local-ci`.
+- Review fixes:
+  - Patched the direct `ManualFallback` preset path so it cannot silently use a
+    fixed mock effort while bypassing the no-trainer HUD.
+  - Added validator coverage for the direct preset path.
+- Scope guard:
+  - No BLE, FTMS, CoreBluetooth, pairing or required smart trainer.
+  - No React, WebGL, firmware or hardware bridge work.
+  - Existing mock trainer presets remain available for the default demo path.
+- Validation:
+  - `MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli()`: PASS via
+    Unity-MCP script execution, including explicit toggle and direct
+    `ManualFallback` preset paths.
+  - `npm run validate:local-ci`: PASS, including MYB-64 no-trainer fallback.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-64-no-trainer-fallback.txt`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.

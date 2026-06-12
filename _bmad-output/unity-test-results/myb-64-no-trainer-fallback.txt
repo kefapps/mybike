@@ -1,0 +1,14 @@
+MYB-64 No-Trainer Fallback validation
+Timestamp UTC: 2026-06-12T20:28:38.6751730Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Contract: manual effort keeps Unity playable without trainer hardware
+Hardware: no BLE, FTMS, CoreBluetooth, pairing, or required smart trainer
+
+Notes:
+- Manual model: effort 62%, speed 31 km/h, source Manual.
+- Scene fallback: effort 62%, speed 37 km/h, controller Fallback 20.
+- Scene HUD difficulty: Effort: Manual fallback 62%
+- Scene HUD verdict: No trainer: Manual | Map Stable 61 | Ctrl Fallback 20 | Fatigue 00% | 42%
+- Preset fallback: effort 37%, source Manual.

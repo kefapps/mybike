@@ -35,6 +35,11 @@ namespace MYB89
         [Range(0f, 1f)]
         public float fatigue01;
 
+        [Header("MYB-64 No-Trainer Fallback")]
+        public bool useNoTrainerFallback;
+        [Range(0f, 1f)]
+        public float manualFallbackEffort01 = 0.45f;
+
         [Header("MYB-59 Resistance Controller")]
         public MYB59ResistanceController resistanceController;
 
@@ -58,6 +63,8 @@ namespace MYB89
         public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
         public MYB59ResistanceSnapshot LastResistanceSnapshot => lastResistanceSnapshot;
         public MYB60ResistanceMappingSnapshot LastResistanceMappingSnapshot => lastResistanceMappingSnapshot;
+        public bool IsNoTrainerFallbackActive =>
+            useEffortSimulator && (useNoTrainerFallback || trainerSourcePreset == MYB57TrainerSourcePreset.ManualFallback);
 
         private void Awake()
         {
@@ -84,6 +91,7 @@ namespace MYB89
             speedMetersPerSecond = Mathf.Max(0.1f, speedMetersPerSecond);
             cameraBobMeters = Mathf.Max(0f, cameraBobMeters);
             cameraBobFrequency = Mathf.Max(0.1f, cameraBobFrequency);
+            manualFallbackEffort01 = Mathf.Clamp01(manualFallbackEffort01);
         }
 
         private void Update()
@@ -253,7 +261,7 @@ namespace MYB89
             if (difficultyLabel != null)
             {
                 difficultyLabel.text = useEffortSimulator
-                    ? $"Effort: {effort.EffortLabel} {effort.PedalEffort01 * 100f:00}%"
+                    ? $"Effort: {EffortHudLabel(effort)} {effort.PedalEffort01 * 100f:00}%"
                     : $"Effort: {routeHud.DifficultyLabel}";
             }
 
@@ -272,7 +280,7 @@ namespace MYB89
             if (verdictLabel != null)
             {
                 verdictLabel.text = useEffortSimulator
-                    ? $"Mock trainer: {effort.SourceBadge} | Map {lastResistanceMappingSnapshot.StatusLabel} {lastResistanceMappingSnapshot.SmoothedResistanceLevel:00} | Ctrl {resistance.StatusLabel} {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
+                    ? $"{TrainerModeHudLabel(effort)} | Map {lastResistanceMappingSnapshot.StatusLabel} {lastResistanceMappingSnapshot.SmoothedResistanceLevel:00} | Ctrl {resistance.StatusLabel} {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
                     : $"Mock ride running | {percent:00}% | readable motion corridor";
             }
         }
@@ -288,15 +296,20 @@ namespace MYB89
             var wrappedMeters = Mathf.Repeat(progressMeters, total);
             var progress01 = Mathf.Clamp01(wrappedMeters / total);
             var routeHud = SampleRouteHud(wrappedMeters, progress01);
+            var sourcePreset = IsNoTrainerFallbackActive
+                ? MYB57TrainerSourcePreset.ManualFallback
+                : trainerSourcePreset;
             var input = new MYB57EffortInput(
                 trainerMode,
-                trainerSourcePreset,
+                sourcePreset,
                 routeHud.RouteSegment,
                 routeHud.GradePercent,
                 fatigue01,
                 deltaTimeSeconds);
 
-            lastEffortSnapshot = MYB57EffortSimulator.EvaluateMock(input);
+            lastEffortSnapshot = IsNoTrainerFallbackActive
+                ? MYB57EffortSimulator.EvaluateManualFallback(input, manualFallbackEffort01)
+                : MYB57EffortSimulator.EvaluateMock(input);
             lastResistanceSnapshot = ApplyResistance(lastEffortSnapshot, routeHud, deltaTimeSeconds);
             hasEffortSnapshot = true;
             if (updateFatigue)
@@ -305,6 +318,18 @@ namespace MYB89
             }
 
             return lastEffortSnapshot;
+        }
+
+        private string EffortHudLabel(MYB57EffortSnapshot effort)
+        {
+            return IsNoTrainerFallbackActive ? "Manual fallback" : effort.EffortLabel;
+        }
+
+        private string TrainerModeHudLabel(MYB57EffortSnapshot effort)
+        {
+            return IsNoTrainerFallbackActive
+                ? $"No trainer: {effort.SourceBadge}"
+                : $"Mock trainer: {effort.SourceBadge}";
         }
 
         private void CacheResistanceController()
