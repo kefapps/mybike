@@ -163,13 +163,26 @@ namespace MYB91.Editor
             var road = GameObject.Find("MYB89_RouteRoad");
             var hud = GameObject.Find("MYB89_HUD");
             var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
+            var scenicCorridor = GameObject.Find("MYB44_ScenicCorridor");
+            var horizon = GameObject.Find("MYB44_Horizon");
+            var premiumSignal = GameObject.Find("MYB44_PremiumSignal_RelicLantern");
             var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude);
+            var scenicRenderers = scenicCorridor == null
+                ? Array.Empty<Renderer>()
+                : scenicCorridor.GetComponentsInChildren<Renderer>(false);
+            var horizonRenderers = horizon == null
+                ? Array.Empty<Renderer>()
+                : horizon.GetComponentsInChildren<Renderer>(false);
 
             report.RendererCount = renderers.Length;
             report.HasMainCamera = camera != null;
             report.HasRoad = road != null;
             report.HasHud = hud != null;
             report.HasRouteDifficultyCues = difficultyCues != null;
+            report.HasScenicCorridor = scenicCorridor != null;
+            report.ScenicCorridorRendererCount = scenicRenderers.Length;
+            report.HorizonRendererCount = horizonRenderers.Length;
+            report.HasPremiumSignal = premiumSignal != null;
             report.RouteDifficultyCueCount = difficultyCues == null ? 0 : difficultyCues.GeneratedCueCount;
             report.ClimbCueCount = difficultyCues == null ? 0 : difficultyCues.ClimbCueCount;
             report.SprintCueCount = difficultyCues == null ? 0 : difficultyCues.SprintCueCount;
@@ -256,6 +269,26 @@ namespace MYB91.Editor
                 failures.Add("Route difficulty cues are incomplete.");
             }
 
+            if (!report.HasScenicCorridor)
+            {
+                failures.Add("Missing MYB44 scenic corridor.");
+            }
+
+            if (report.ScenicCorridorRendererCount < 45)
+            {
+                failures.Add("MYB44 scenic corridor has too few renderers: " + report.ScenicCorridorRendererCount + ".");
+            }
+
+            if (report.HorizonRendererCount < 10)
+            {
+                failures.Add("MYB44 horizon has too few renderers: " + report.HorizonRendererCount + ".");
+            }
+
+            if (!report.HasPremiumSignal)
+            {
+                failures.Add("Missing MYB44 premium signal.");
+            }
+
             if (report.RendererCount < 55)
             {
                 failures.Add("Scene has too few renderers for readable motion: " + report.RendererCount + ".");
@@ -324,6 +357,10 @@ namespace MYB91.Editor
                 writer.WriteLine("Route length: " + report.RouteLengthMeters.ToString("0.0") + " m");
                 writer.WriteLine("Speed: " + report.SpeedMetersPerSecond.ToString("0.0") + " m/s");
                 writer.WriteLine("Renderer count: " + report.RendererCount);
+                writer.WriteLine("MYB44 scenic corridor: " + report.HasScenicCorridor);
+                writer.WriteLine("MYB44 scenic renderers: " + report.ScenicCorridorRendererCount);
+                writer.WriteLine("MYB44 horizon renderers: " + report.HorizonRendererCount);
+                writer.WriteLine("MYB44 premium signal: " + report.HasPremiumSignal);
                 writer.WriteLine("Main camera: " + report.HasMainCamera);
                 writer.WriteLine("Road mesh: " + report.HasRoad);
                 writer.WriteLine("HUD canvas: " + report.HasHud);
@@ -400,6 +437,10 @@ namespace MYB91.Editor
             public float RouteLengthMeters;
             public float SpeedMetersPerSecond;
             public int RendererCount;
+            public bool HasScenicCorridor;
+            public int ScenicCorridorRendererCount;
+            public int HorizonRendererCount;
+            public bool HasPremiumSignal;
             public bool HasMainCamera;
             public bool HasRoad;
             public bool HasHud;
