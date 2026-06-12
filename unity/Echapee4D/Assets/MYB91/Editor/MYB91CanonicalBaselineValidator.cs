@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using MYB89;
+using MYB48;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -161,12 +162,18 @@ namespace MYB91.Editor
             var camera = Camera.main;
             var road = GameObject.Find("MYB89_RouteRoad");
             var hud = GameObject.Find("MYB89_HUD");
+            var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
             var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude);
 
             report.RendererCount = renderers.Length;
             report.HasMainCamera = camera != null;
             report.HasRoad = road != null;
             report.HasHud = hud != null;
+            report.HasRouteDifficultyCues = difficultyCues != null;
+            report.RouteDifficultyCueCount = difficultyCues == null ? 0 : difficultyCues.GeneratedCueCount;
+            report.ClimbCueCount = difficultyCues == null ? 0 : difficultyCues.ClimbCueCount;
+            report.SprintCueCount = difficultyCues == null ? 0 : difficultyCues.SprintCueCount;
+            report.RecoveryCueCount = difficultyCues == null ? 0 : difficultyCues.RecoveryCueCount;
 
             if (ride == null)
             {
@@ -237,6 +244,16 @@ namespace MYB91.Editor
             if (!report.HasHud)
             {
                 failures.Add("Missing MYB89_HUD canvas.");
+            }
+
+            if (!report.HasRouteDifficultyCues)
+            {
+                failures.Add("Missing MYB48 route difficulty cue controller.");
+            }
+
+            if (report.RouteDifficultyCueCount < 11 || report.ClimbCueCount < 4 || report.SprintCueCount < 4 || report.RecoveryCueCount < 3)
+            {
+                failures.Add("Route difficulty cues are incomplete.");
             }
 
             if (report.RendererCount < 55)
@@ -314,6 +331,10 @@ namespace MYB91.Editor
                 writer.WriteLine("HUD difficulty: " + EmptyAsMissing(report.HudDifficultyText));
                 writer.WriteLine("HUD grade: " + EmptyAsMissing(report.HudGradeText));
                 writer.WriteLine("HUD segment: " + EmptyAsMissing(report.HudSegmentText));
+                writer.WriteLine("Route difficulty cues: " + report.RouteDifficultyCueCount);
+                writer.WriteLine("Climb cues: " + report.ClimbCueCount);
+                writer.WriteLine("Sprint cues: " + report.SprintCueCount);
+                writer.WriteLine("Recovery cues: " + report.RecoveryCueCount);
                 writer.WriteLine("Local generated roots present: " + (report.LocalGeneratedRoots.Length == 0 ? "none" : string.Join(", ", report.LocalGeneratedRoots)));
 
                 if (notes.Count > 0)
@@ -383,6 +404,11 @@ namespace MYB91.Editor
             public bool HasRoad;
             public bool HasHud;
             public bool HudLabelsWired;
+            public bool HasRouteDifficultyCues;
+            public int RouteDifficultyCueCount;
+            public int ClimbCueCount;
+            public int SprintCueCount;
+            public int RecoveryCueCount;
             public string HudDifficultyText = string.Empty;
             public string HudGradeText = string.Empty;
             public string HudSegmentText = string.Empty;

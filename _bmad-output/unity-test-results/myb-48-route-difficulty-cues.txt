@@ -1,0 +1,14 @@
+MYB-48 Route Difficulty Cue validation
+Timestamp UTC: 2026-06-12T04:31:19.9397660Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Controller present: True
+Generated cues: 11
+Climb cues: 4
+Sprint cues: 4
+Recovery cues: 3
+Cue renderers: 25
+Cue lights: 3
+Pulse amplitude: 0.22
+Pulse frequency: 0.85
