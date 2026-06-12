@@ -6088,8 +6088,10 @@ Closure synced on 2026-06-13:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-36`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `3dca2e88-bdf7-4975-8577-ddef0098048b`.
 - Branch: `myb-36-benchmark-indoor-cycling`.
+- Implementation commit: `cd50fad` (`MYB-36 add indoor cycling benchmark`).
 - Research document: `docs/research/competitive-benchmark.md`.
 - Scope delivered:
   - Compared Zwift, ROUVY, Kinomap, MyWhoosh, TrainingPeaks Virtual and FulGaz.
