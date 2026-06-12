@@ -98,6 +98,7 @@ Last sync: 2026-06-11
 | Unity free asset license policy | `MYB-38` | [MYB-004] Etablir une politique de licences pour assets Unity gratuits | https://linear.app/kefjbo/issue/MYB-38/myb-004-etablir-une-politique-de-licences-pour-assets-unity-gratuits |
 | Unity free asset shortlist | `MYB-41` | [MYB-007] Shortlister les modeles 3D gratuits V1 compatibles Unity | https://linear.app/kefjbo/issue/MYB-41/myb-007-shortlister-les-modeles-3d-gratuits-v1-compatibles-unity |
 | Meshy custom models POC | `MYB-95` | POC Meshy : modèles 3D animés custom et effort d’intégration Unity | https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity |
+| Blender MCP asset pack | `MYB-96` | Générer un pack d'assets Blender via MCP pour la vertical slice Unity | https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -158,6 +159,9 @@ continuation, engine migration, backend, BLE/FTMS or new broad backlog.
   canonical Unity baseline before gameplay, assets, HUD, CI or performance work.
 - `MYB-92` follows and is blocked by `MYB-91`; it removes the legacy
   `unity/Echappee3D` project after the canonical baseline is reviewed.
+- `MYB-96` follows the Unity asset shortlist direction in `MYB-41`; it creates
+  a bounded Blender MCP-generated asset pack for `unity/Echapee4D`, without
+  Meshy, paid services, gameplay scope, or a full level-art pass.
 
 ## Readiness Caveats Synced
 
@@ -5491,3 +5495,20 @@ Synced on 2026-06-12:
 - Scope note:
   - Route, camera, HUD, mock mode and MYB-48 Route Difficulty Cues are
     preserved.
+
+### MYB-96 Blender MCP Asset Pack Ticket Created
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-96`.
+- Linear status: `Backlog`.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity
+- Linear labels: `unity`, `implement`.
+- Linear relation: related to `MYB-41`.
+- Scope summary:
+  - Generate 3 to 6 original Blender MCP assets for `unity/Echapee4D`.
+  - Import them as reusable Unity assets/prefabs with visible materials and
+    provenance.
+  - Keep scope bounded: no Meshy, paid external service, gameplay changes,
+    hardware-bike dependency or full level-art pass.
