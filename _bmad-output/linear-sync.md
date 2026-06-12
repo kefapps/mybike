@@ -5974,12 +5974,16 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-64`.
-- Linear status: `In Review`.
+- Linear status: `Done`.
 - Linear start comment ID: `939e8360-b5da-4442-9efc-2f6489ca018c`.
 - Linear implementation comment ID: `d69c0267-e140-4af0-b63a-ff9c38a942b0`.
 - Linear review comment ID: `0e6bd3d3-bfd9-410b-92c4-0dd844cc43b0`.
+- Linear closure comment ID: `530c39f8-553e-43e7-af9c-24550c568166`.
 - Branch: `myb-64-myb-038-fallback-unity-sans-smart-trainer`.
-- Implementation commit: `859fbeb` (`MYB-64 add Unity no-trainer fallback`).
+- Main commits:
+  - `1220335` (`MYB-64 add Unity no-trainer fallback`).
+  - `c817061` (`MYB-64 sync review evidence`).
+  - `4061612` (`MYB-64 record review sync`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-64-no-trainer-fallback.md`.
 - Implementation summary:
@@ -6013,3 +6017,8 @@ Synced on 2026-06-12:
 - Evidence:
   - `_bmad-output/unity-test-results/myb-64-no-trainer-fallback.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Closure evidence:
+  - MYB-64 was cherry-picked linearly onto `main` because repository rules block
+    merge commits on `main`.
+  - `origin/main` was pushed from `a47b83b` to `4061612`.
+  - MYB-64 was moved from Linear `In Review` to `Done` after merge.
