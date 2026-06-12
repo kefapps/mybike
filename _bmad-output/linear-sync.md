@@ -5206,3 +5206,32 @@ Synced on 2026-06-11:
     optimization/LOD remains mandatory for this asset class.
   - Caveat: material workflow is still POC-grade because roughness is not packed
     into Unity metallic/smoothness yet.
+
+### MYB-95 Final Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-95`.
+- Linear status: `In Review`.
+- Linear review comment ID: `1177fb9e-645c-4b6c-967c-c4eaa50cb829`.
+- Implementation commit: `36828c5` (`MYB-95 Meshy custom asset POC`).
+- Branch: `myb-95-meshy-preflight`.
+- Final documented Meshy credit usage: `124`.
+- Final verdict:
+  - Meshy is recommended as a punctual premium-asset tool for selected fantasy
+    landmarks or stylized custom props.
+  - Meshy is not recommended as an open-ended production asset pipeline for the
+    MVP.
+  - Raw high-detail Meshy outputs require Blender optimization/LOD before Unity
+    use.
+- Review validation evidence:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB95MeshyLanternUnityImporter.BuildAndValidateCli`: PASS.
+  - `MYB95MeshyCharacterDirectImporter.BuildAndValidateCli`: PASS.
+  - `MYB95MeshyRelicFountainUnityImporter.BuildAndValidateCli`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline`: PASS.
+  - `git diff --cached --check`: PASS before implementation commit.
+  - Targeted staged secret/path scan: PASS.
+- Scope note:
+  - Pre-existing unstaged `MYB53Validation/*.mat` Unity serialization changes
+    were intentionally left out of the MYB-95 commits.
