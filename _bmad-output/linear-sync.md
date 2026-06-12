@@ -5520,9 +5520,12 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-88`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `83b84ae7-fe4b-4cfa-9ba1-3e449d0badf3`.
+- Linear review comment ID: `c6b2bb41-2afa-4fc2-ad37-6a2740038984`.
 - Branch: `myb-88-unity-pr-checklist`.
+- Pull request: `https://github.com/kefapps/mybike/pull/16`.
+- Implementation commit: `1dd7aed` (`MYB-88 add Unity PR checklist`).
 - Grill-with-docs decisions:
   - Primary artifact is `.github/PULL_REQUEST_TEMPLATE.md`.
   - Use one general template with a conditional Unity macOS-first block.
