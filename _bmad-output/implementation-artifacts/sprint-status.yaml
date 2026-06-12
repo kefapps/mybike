@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-11T16:06:20+02:00
+# last_updated: 2026-06-12T11:17:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-11T16:06:20+02:00"
+last_updated: "2026-06-12T11:17:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -575,3 +575,9 @@ unity_scenic_corridor_report: "_bmad-output/implementation-artifacts/myb-44-unit
 unity_scenic_corridor_visual_evidence: "_bmad-output/unity-test-results/myb-44-scenic-corridor.png"
 unity_scenic_corridor_scope: "Premier Scenic Corridor jouable village/campagne pavee dans MYB89UnityMcpProbe; assets tiers approuves existants + primitives Unity, un signal premium discret max, foreground/mid-ground/horizon, macOS Editor validation uniquement."
 unity_scenic_corridor_validation: "PASS: unity-mcp-cli status, MYB89 BuildScene, MYB89 ValidateProbeScene, MYB44 Scenic Corridor validator, MYB91 canonical baseline, git diff --check."
+unity_pr_checklist_issue: "MYB-88 In Progress"
+unity_pr_checklist_url: "https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity"
+unity_pr_checklist_branch: "myb-88-unity-pr-checklist"
+unity_pr_checklist_report: "_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md"
+unity_pr_checklist_scope: "GitHub PR template with compact Unity macOS-first guardrails for Linear tracking, scope, asset provenance, performance/budget impact, validation, generated Unity file review, and repo hygiene."
+unity_pr_checklist_validation: "PASS: git diff --check; targeted secret/path scan found only historical anti-secret scan text in sync artifacts."
