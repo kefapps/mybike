@@ -5688,12 +5688,15 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-51`.
-- Linear status: `In Progress`.
+- Linear status: `Done`.
 - Linear start comment ID: `45babdb0-9aa2-46f1-83f1-a8e138f6b810`.
 - Linear review comment ID: `17ef9a48-aee0-4479-a12a-80e6f3a72a29`.
+- Linear closure comment ID: `b1347652-a319-4367-b59f-32a5d23dc747`.
 - Branch: `myb-51-unity-macos-performance-budgets`.
 - Pull request: `https://github.com/kefapps/mybike/pull/15`.
 - Implementation commit: `a6fb715` (`MYB-51 add Unity performance baseline`).
+- Merge commit on `main`: `45b92675b231ae56cc19ca63d8a664849a1443c6`.
+- Merge method: squash merge.
 - Grill-with-docs decisions:
   - `Budget performance` thresholds are soft decision signals in MYB-51.
   - Red budget status is not blocking by default.
@@ -5742,3 +5745,12 @@ Synced on 2026-06-12:
   - `git diff --cached --check`: PASS.
   - Targeted staged secret scan: PASS; only historical env-var names in sync
     docs matched.
+- Closure validation after rebase:
+  - `npm run validate:local-ci`: PASS.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB51PerformanceBudgetValidator.ValidatePerformanceBaselineCli`: PASS via
+    Unity-MCP `script-execute`.
+- Closure evidence:
+  - PR #15 was `CLEAN` before merge.
+  - MYB-51 was moved to `Done` after merge.
+  - Linear has GitHub attachments for PR #15 and commit `45b9267`.

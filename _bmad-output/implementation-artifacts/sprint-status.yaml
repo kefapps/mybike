@@ -1,5 +1,5 @@
 # generated: 2026-06-06T14:11:53+02:00
-# last_updated: 2026-06-12T13:47:00+02:00
+# last_updated: 2026-06-12T14:06:00+02:00
 # project: mybike
 # project_key: NOKEY
 # tracking_system: file-system
@@ -33,7 +33,7 @@
 # - Readiness caveats are already synced in Linear and reflected in linear-sync.md.
 
 generated: "2026-06-06T14:11:53+02:00"
-last_updated: "2026-06-12T13:47:00+02:00"
+last_updated: "2026-06-12T14:06:00+02:00"
 project: "mybike"
 project_key: "NOKEY"
 tracking_system: "file-system"
@@ -596,11 +596,13 @@ unity_pr_checklist_merge_commit: "3f2ece1"
 unity_pr_checklist_report: "_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md"
 unity_pr_checklist_scope: "GitHub PR template with compact Unity macOS-first guardrails for Linear tracking, scope, asset provenance, performance/budget impact, validation, generated Unity file review, and repo hygiene."
 unity_pr_checklist_validation: "PASS: git diff --check; targeted secret/path scan found only historical anti-secret scan text in sync artifacts."
-unity_performance_budgets_issue: "MYB-51 In Review"
+unity_performance_budgets_issue: "MYB-51 Done"
 unity_performance_budgets_url: "https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first"
 unity_performance_budgets_branch: "myb-51-unity-macos-performance-budgets"
 unity_performance_budgets_pr: "https://github.com/kefapps/mybike/pull/15"
 unity_performance_budgets_review_comment: "17ef9a48-aee0-4479-a12a-80e6f3a72a29"
+unity_performance_budgets_closure_comment: "b1347652-a319-4367-b59f-32a5d23dc747"
+unity_performance_budgets_merge_commit: "45b92675b231ae56cc19ca63d8a664849a1443c6"
 unity_performance_budgets_report: "_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md"
 unity_performance_budgets_json: "_bmad-output/unity-test-results/myb-51-performance-baseline.json"
 unity_performance_budgets_text: "_bmad-output/unity-test-results/myb-51-performance-baseline.txt"
