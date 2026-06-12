@@ -1,5 +1,5 @@
 MYB-89 Unity-MCP IvanMurzak probe validation
-Timestamp UTC: 2026-06-12T15:00:17.0639170Z
+Timestamp UTC: 2026-06-12T19:10:30.3053940Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
@@ -8,9 +8,12 @@ Route length: 245.0 m
 Renderer count: 271
 MYB44 scenic renderers: 116
 MYB44 horizon renderers: 43
-HUD difficulty: Effort: Sustained climb
-HUD grade: Pente: -0.6%
+HUD difficulty: Effort: Sustained climb 58%
+HUD grade: Pente: -0.6% | Res: 61->61
 HUD segment: Segment: Climb
+HUD verdict: Mock trainer: Power | Ctrl Applied 61 | Fatigue 00% | 42%
+Resistance controller: Applied
+Resistance demand/applied: 61->61
 Route difficulty cues: 11
 Climb cues: 4
 Sprint cues: 4

@@ -5819,3 +5819,62 @@ Synced on 2026-06-12:
   - PR #18 was `CLEAN` before merge.
   - MYB-57 was moved to `Done` after merge.
   - Linear has GitHub attachments for PR #18 and commit `322e68c`.
+
+### MYB-59 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-59`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `454fe58d-3a95-4da9-ad93-8a1d62a8bdeb`.
+- Linear implementation comment updated: 2026-06-12T19:11:42.080Z.
+- Branch: `myb-59-resistance-controller`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`.
+- Documentation updates:
+  - `CONTEXT-MAP.md` now maps visual direction and Unity ride runtime contexts.
+  - `unity/Echapee4D/CONTEXT.md` defines `Demande de Resistance`,
+    `Resistance Appliquee` and `Resistance Mesuree`.
+  - `unity/Echapee4D/docs/adr/0001-resistance-controller-boundary.md` records
+    the resistance-controller boundary decision.
+- Implementation summary:
+  - Added `Assets/MYB59/Runtime/MYB59ResistanceController.cs`.
+  - Added demand/snapshot value objects with canonical `0..1` resistance and
+    derived `0..100` level.
+  - Added controller statuses `Applied`, `Fallback` and `Unavailable`.
+  - Integrated MYB-59 into `MYB89ProbeRide` so the MYB-57 target resistance is
+    sent as a demand while MYB-57 still owns speed/fatigue equations.
+  - Updated the probe HUD/report to show target-to-applied resistance and
+    controller status.
+  - Added `MYB59ResistanceControllerValidator` with pure and scene/HUD checks.
+- Review fixes:
+  - Reused the autoplay effort/resistance snapshot for HUD rendering so the mock
+    controller is applied once per frame.
+  - Made the scene validator fail if `MYB89ProbeRide` is not already wired to
+    the scene `MYB59ResistanceController`.
+  - Added `MYB59ResistanceControllerValidator` to `npm run validate:local-ci`.
+  - Normalized local missing-controller fallback resistance to the same default
+    as the mock controller fallback.
+- Scope guard:
+  - No BLE, FTMS, CoreBluetooth, real trainer control, firmware, WebGL or React
+    work.
+  - MYB-59 does not change MYB-57 speed/fatigue equations.
+- Validation:
+  - `MYB89ProbeBuilder.BuildScene()`: PASS via Unity batchmode.
+  - `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`:
+    PASS via Unity batchmode.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity batchmode.
+  - `MYB57EffortSimulatorValidator.ValidateEffortSimulatorCli()`: PASS via
+    Unity batchmode.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    Unity batchmode.
+  - `git diff --check`: PASS.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `npm run validate:local-ci`: PASS, including the MYB-59 resistance
+    controller validator.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-59-resistance-controller.txt`.
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.

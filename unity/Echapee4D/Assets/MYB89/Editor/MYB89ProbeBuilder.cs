@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using MYB89;
 using MYB48;
+using MYB59;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -73,6 +74,7 @@ namespace MYB89.Editor
             var road = GameObject.Find("MYB89_RouteRoad");
             var hud = GameObject.Find("MYB89_HUD");
             var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
+            var resistanceController = UnityEngine.Object.FindAnyObjectByType<MYB59ResistanceController>();
             var scenicCorridor = GameObject.Find("MYB44_ScenicCorridor");
             var scenicRenderers = scenicCorridor == null
                 ? Array.Empty<Renderer>()
@@ -123,6 +125,21 @@ namespace MYB89.Editor
                     failures.Add("HUD grade label is missing the slope readout.");
                 }
 
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("->"))
+                {
+                    failures.Add("HUD grade label is missing applied resistance.");
+                }
+
+                if (ride.LastResistanceSnapshot.Status != MYB59ResistanceControllerStatus.Applied)
+                {
+                    failures.Add("MYB59 resistance controller should apply the climb preview demand.");
+                }
+
+                if (ride.LastResistanceSnapshot.AppliedResistanceLevel < 45)
+                {
+                    failures.Add("MYB59 applied resistance should reflect climb difficulty.");
+                }
+
                 if (ride.segmentLabel == null || !ride.segmentLabel.text.Contains("Segment: Climb"))
                 {
                     failures.Add("HUD segment label does not report the current climb segment.");
@@ -169,6 +186,11 @@ namespace MYB89.Editor
                 {
                     failures.Add("Missing recovery route difficulty cues.");
                 }
+            }
+
+            if (resistanceController == null)
+            {
+                failures.Add("Missing MYB59ResistanceController.");
             }
 
             if (scenicCorridor == null)
@@ -947,6 +969,7 @@ namespace MYB89.Editor
             ride.verdictLabel = verdictLabel;
             ride.keyLight = keyLight;
             ride.speedMetersPerSecond = 12.5f;
+            ride.resistanceController = rig.AddComponent<MYB59ResistanceController>();
             ride.SetPreviewProgress(0f);
 
             hud.name = "MYB89_HUD";
@@ -988,9 +1011,9 @@ namespace MYB89.Editor
             distanceLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Distance", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -22f), new Vector2(330f, 48f), TextAnchor.UpperLeft, 28);
             speedLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Speed", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-26f, -22f), new Vector2(220f, 48f), TextAnchor.UpperRight, 30);
             difficultyLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Difficulty", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(26f, -66f), new Vector2(390f, 38f), TextAnchor.UpperLeft, 22);
-            gradeLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Grade", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-26f, -66f), new Vector2(280f, 38f), TextAnchor.UpperRight, 22);
+            gradeLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Grade", new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-26f, -66f), new Vector2(360f, 38f), TextAnchor.UpperRight, 22);
             segmentLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Segment", new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -24f), new Vector2(400f, 42f), TextAnchor.UpperCenter, 24);
-            verdictLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Verdict", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 28f), new Vector2(680f, 42f), TextAnchor.LowerCenter, 22);
+            verdictLabel = CreateHudText(canvasObject.transform, "MYB89_HUD_Verdict", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 28f), new Vector2(760f, 42f), TextAnchor.LowerCenter, 22);
 
             return canvasObject;
         }
@@ -1185,6 +1208,9 @@ namespace MYB89.Editor
                 writer.WriteLine("HUD difficulty: " + (ride == null || ride.difficultyLabel == null ? "missing" : ride.difficultyLabel.text));
                 writer.WriteLine("HUD grade: " + (ride == null || ride.gradeLabel == null ? "missing" : ride.gradeLabel.text));
                 writer.WriteLine("HUD segment: " + (ride == null || ride.segmentLabel == null ? "missing" : ride.segmentLabel.text));
+                writer.WriteLine("HUD verdict: " + (ride == null || ride.verdictLabel == null ? "missing" : ride.verdictLabel.text));
+                writer.WriteLine("Resistance controller: " + (ride == null ? "missing" : ride.LastResistanceSnapshot.StatusLabel));
+                writer.WriteLine("Resistance demand/applied: " + (ride == null ? "0->0" : ride.LastResistanceSnapshot.Demand.ResistanceLevel + "->" + ride.LastResistanceSnapshot.AppliedResistanceLevel));
                 writer.WriteLine("Route difficulty cues: " + (difficultyCues == null ? 0 : difficultyCues.GeneratedCueCount));
                 writer.WriteLine("Climb cues: " + (difficultyCues == null ? 0 : difficultyCues.ClimbCueCount));
                 writer.WriteLine("Sprint cues: " + (difficultyCues == null ? 0 : difficultyCues.SprintCueCount));

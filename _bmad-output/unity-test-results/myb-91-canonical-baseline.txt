@@ -1,12 +1,12 @@
 MYB-91 Unity canonical baseline validation
-Timestamp UTC: 2026-06-12T15:00:19.7824640Z
+Timestamp UTC: 2026-06-12T19:09:53.4872620Z
 Status: PASS
 Unity: 6000.4.10f1
 Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Active scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Build settings scenes: Assets/Scenes/MYB89UnityMcpProbe.unity
-Unity-MCP package: 0.80.0
+Unity-MCP package: 0.81.0
 URP package: 17.4.0
 WebGL supported: True
 WebGL builder: MYB90.Editor.MYB90WebGLReadinessBuilder
@@ -24,8 +24,8 @@ Main camera: True
 Road mesh: True
 HUD canvas: True
 HUD labels wired: True
-HUD difficulty: Effort: Sustained climb
-HUD grade: Pente: -0.6%
+HUD difficulty: Effort: Sustained climb 58%
+HUD grade: Pente: -0.6% | Res: 61->61
 HUD segment: Segment: Climb
 Route difficulty cues: 11
 Climb cues: 4

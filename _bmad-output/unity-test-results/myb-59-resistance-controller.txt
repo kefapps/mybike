@@ -1,0 +1,16 @@
+MYB-59 Resistance Controller validation
+Timestamp UTC: 2026-06-12T19:09:58.5789630Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Contract: demand 0..1 canonical, level 0..100 derived
+Statuses: Applied, Fallback, Unavailable
+Hardware: no BLE, FTMS, CoreBluetooth, or trainer control
+
+Notes:
+- Pure controller applied: demand 66, applied 66, status Applied.
+- Pure controller fallback: demand 66, applied 18, status Fallback.
+- Pure controller unavailable: demand 66, applied 0, status Unavailable.
+- Scene demand/applied: 61->61 (Applied).
+- Scene HUD applied: Mock trainer: Power | Ctrl Applied 61 | Fatigue 00% | 42%
+- Scene HUD fallback: Mock trainer: Power | Ctrl Fallback 18 | Fatigue 00% | 42%

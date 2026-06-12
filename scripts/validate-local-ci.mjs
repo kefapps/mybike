@@ -316,6 +316,15 @@ function unityBaselineInput() {
   });
 }
 
+function unityMyb59Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb59Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB59.Editor; public static class MYB83RunMyb59Validator { public static void Main() { MYB59ResistanceControllerValidator.ValidateResistanceControllerCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -333,7 +342,8 @@ async function runLocalCi(options) {
   if (options.skipUnity) {
     checks.push(
       skipCheck("Unity-MCP status", "--skip-unity was provided"),
-      skipCheck("MYB-91 canonical baseline validator", "--skip-unity was provided")
+      skipCheck("MYB-91 canonical baseline validator", "--skip-unity was provided"),
+      skipCheck("MYB-59 resistance controller validator", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -346,6 +356,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityBaselineInput(),
+        "--timeout",
+        "180000"
+      ], {
+        timeoutMs: 240_000
+      }),
+      runCommand("MYB-59 resistance controller validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb59Input(),
         "--timeout",
         "180000"
       ], {

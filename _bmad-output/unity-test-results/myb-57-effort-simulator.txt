@@ -1,5 +1,5 @@
 MYB-57 Effort Simulator validation
-Timestamp UTC: 2026-06-12T15:00:16.2929960Z
+Timestamp UTC: 2026-06-12T19:10:36.6159930Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
@@ -15,5 +15,5 @@ Notes:
 - Low/high cadence speed check: 3.53 -> 10.42 m/s.
 - Fatiguing climb check: 0.25 -> 0.26.
 - Scene HUD difficulty: Effort: Sustained climb 58%
-- Scene HUD grade/resistance: Pente: -0.6% | Res: 61
-- Scene HUD source/fatigue: Mock trainer: Power | Fatigue 00% | 42%
+- Scene HUD grade/resistance: Pente: -0.6% | Res: 61->61
+- Scene HUD source/fatigue: Mock trainer: Power | Ctrl Applied 61 | Fatigue 00% | 42%
