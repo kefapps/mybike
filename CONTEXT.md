@@ -309,6 +309,23 @@ Non-examples:
 - Effects or props that are visually expensive without being a main signal,
   create discomfort, or promise gameplay that does not exist yet.
 
+### Route Difficulty Cue
+
+Definition: A lightweight in-world visual cue that helps the rider anticipate
+or understand a difficult route segment, such as a climb, sprint, descent, or
+recovery. It belongs beside or above the route and must preserve route, HUD, and
+effort-feedback readability.
+
+Relationships:
+
+- A `Route Difficulty Cue` is tied to route difficulty or segment data.
+- It is gameplay feedback, not a `Signal Fantasy Premium`; it should be
+  readable and repeatable, not a dominant landmark.
+- It complements the HUD effort/slope/segment readouts instead of replacing
+  them.
+
+Aliases: indice visuel de difficulte, route difficulty marker, segment cue.
+
 ### Biome
 
 Definition: A route region with a coherent identity, surface language,

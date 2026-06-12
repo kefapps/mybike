@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using MYB89;
+using MYB48;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -35,17 +36,21 @@ namespace MYB89.Editor
             EnsureFolder("Assets/Scenes");
             EnsureFolder("Assets/MYB89");
             EnsureFolder("Assets/MYB89/Materials");
+            EnsureFolder("Assets/MYB48");
+            EnsureFolder("Assets/MYB48/Materials");
 
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             scene.name = "MYB89UnityMcpProbe";
 
             var materials = CreateMaterials();
+            var cueMaterials = CreateDifficultyCueMaterials();
             var root = new GameObject("MYB89_ProbeRoot");
 
             ConfigureRenderSettings();
             CreateTerrain(root.transform, materials);
             var routeMarkers = CreateRoute(root.transform, materials);
             CreateRoadsideRhythm(root.transform, materials);
+            CreateRouteDifficultyCues(root.transform, routeMarkers, cueMaterials);
             var keyLight = CreateLighting(root.transform);
             CreateCameraRig(root.transform, routeMarkers, keyLight, materials);
 
@@ -66,6 +71,7 @@ namespace MYB89.Editor
             var camera = Camera.main;
             var road = GameObject.Find("MYB89_RouteRoad");
             var hud = GameObject.Find("MYB89_HUD");
+            var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
             var renderers = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude);
 
             if (ride == null)
@@ -128,12 +134,39 @@ namespace MYB89.Editor
                 failures.Add("Missing MYB89_HUD canvas.");
             }
 
+            if (difficultyCues == null)
+            {
+                failures.Add("Missing MYB48RouteDifficultyCueController.");
+            }
+            else
+            {
+                if (difficultyCues.GeneratedCueCount < 11)
+                {
+                    failures.Add($"Route difficulty cues are incomplete: {difficultyCues.GeneratedCueCount}.");
+                }
+
+                if (difficultyCues.ClimbCueCount < 4)
+                {
+                    failures.Add("Missing climb route difficulty cues.");
+                }
+
+                if (difficultyCues.SprintCueCount < 4)
+                {
+                    failures.Add("Missing sprint route difficulty cues.");
+                }
+
+                if (difficultyCues.RecoveryCueCount < 3)
+                {
+                    failures.Add("Missing recovery route difficulty cues.");
+                }
+            }
+
             if (renderers.Length < 55)
             {
                 failures.Add($"Scene has too few renderers for readable motion: {renderers.Length}.");
             }
 
-            var report = WriteValidationReport(failures, ride, renderers.Length);
+            var report = WriteValidationReport(failures, ride, difficultyCues, renderers.Length);
             if (failures.Count > 0)
             {
                 throw new InvalidOperationException("MYB-89 probe validation failed. See " + report);
@@ -233,6 +266,51 @@ namespace MYB89.Editor
                 material.SetFloat("_Smoothness", smoothness);
             }
 
+            EditorUtility.SetDirty(material);
+            return material;
+        }
+
+        private static Dictionary<string, Material> CreateDifficultyCueMaterials()
+        {
+            return new Dictionary<string, Material>
+            {
+                { "climbCue", EmissiveMaterialAt("Assets/MYB48/Materials/MYB48_ClimbCue.mat", new Color(1f, 0.58f, 0.24f), 1.85f) },
+                { "sprintCue", EmissiveMaterialAt("Assets/MYB48/Materials/MYB48_SprintCue.mat", new Color(1f, 0.18f, 0.16f), 2.35f) },
+                { "recoveryCue", EmissiveMaterialAt("Assets/MYB48/Materials/MYB48_RecoveryCue.mat", new Color(0.28f, 0.78f, 1f), 1.35f) }
+            };
+        }
+
+        private static Material EmissiveMaterialAt(string assetPath, Color color, float emissionIntensity)
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(assetPath);
+            if (material == null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard") ?? Shader.Find("Unlit/Color");
+                material = new Material(shader);
+                AssetDatabase.CreateAsset(material, assetPath);
+            }
+
+            if (material.HasProperty("_BaseColor"))
+            {
+                material.SetColor("_BaseColor", color);
+            }
+
+            if (material.HasProperty("_Color"))
+            {
+                material.SetColor("_Color", color);
+            }
+
+            if (material.HasProperty("_EmissionColor"))
+            {
+                material.SetColor("_EmissionColor", color * emissionIntensity);
+            }
+
+            if (material.HasProperty("_Smoothness"))
+            {
+                material.SetFloat("_Smoothness", 0.42f);
+            }
+
+            material.EnableKeyword("_EMISSION");
             EditorUtility.SetDirty(material);
             return material;
         }
@@ -388,6 +466,29 @@ namespace MYB89.Editor
                 var offset = right * side * (RoadWidth * 0.5f + 5f + (i % 3) * 1.7f);
                 CreateTree($"MYB89_Tree_{i:00}", parent, position + offset, materials["treeTrunk"], materials["treeLeaf"]);
             }
+        }
+
+        private static void CreateRouteDifficultyCues(Transform parent, IReadOnlyList<Transform> routeMarkers, IReadOnlyDictionary<string, Material> materials)
+        {
+            var cueRoot = new GameObject("MYB48_RouteDifficultyCues");
+            cueRoot.transform.SetParent(parent);
+
+            var controller = cueRoot.AddComponent<MYB48RouteDifficultyCueController>();
+            controller.routeMarkers = new Transform[routeMarkers.Count];
+            for (var i = 0; i < routeMarkers.Count; i++)
+            {
+                controller.routeMarkers[i] = routeMarkers[i];
+            }
+
+            controller.climbMaterial = materials["climbCue"];
+            controller.sprintMaterial = materials["sprintCue"];
+            controller.recoveryMaterial = materials["recoveryCue"];
+            controller.lateralOffsetMeters = 5.4f;
+            controller.entryHeightMeters = 2.8f;
+            controller.secondaryHeightMeters = 1.25f;
+            controller.pulseAmplitude = 0.22f;
+            controller.pulseFrequency = 0.85f;
+            controller.RebuildCues();
         }
 
         private static void CreateMarkerPair(Transform parent, float distance, int index, Material postMaterial, Material capMaterial)
@@ -712,7 +813,7 @@ namespace MYB89.Editor
             }
         }
 
-        private static string WriteValidationReport(IReadOnlyList<string> failures, MYB89ProbeRide ride, int rendererCount)
+        private static string WriteValidationReport(IReadOnlyList<string> failures, MYB89ProbeRide ride, MYB48RouteDifficultyCueController difficultyCues, int rendererCount)
         {
             var repoRoot = GetRepoRoot();
             var reportDir = Path.Combine(repoRoot, "_bmad-output", "unity-test-results");
@@ -732,6 +833,10 @@ namespace MYB89.Editor
                 writer.WriteLine("HUD difficulty: " + (ride == null || ride.difficultyLabel == null ? "missing" : ride.difficultyLabel.text));
                 writer.WriteLine("HUD grade: " + (ride == null || ride.gradeLabel == null ? "missing" : ride.gradeLabel.text));
                 writer.WriteLine("HUD segment: " + (ride == null || ride.segmentLabel == null ? "missing" : ride.segmentLabel.text));
+                writer.WriteLine("Route difficulty cues: " + (difficultyCues == null ? 0 : difficultyCues.GeneratedCueCount));
+                writer.WriteLine("Climb cues: " + (difficultyCues == null ? 0 : difficultyCues.ClimbCueCount));
+                writer.WriteLine("Sprint cues: " + (difficultyCues == null ? 0 : difficultyCues.SprintCueCount));
+                writer.WriteLine("Recovery cues: " + (difficultyCues == null ? 0 : difficultyCues.RecoveryCueCount));
 
                 if (failures.Count > 0)
                 {
