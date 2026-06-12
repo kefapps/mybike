@@ -5255,3 +5255,23 @@ Synced on 2026-06-12:
   - `origin/main` updated to `9cd9ab8`.
   - MYB-95 remains sandbox-only in Unity; no Meshy asset was added to the main
     gameplay scene.
+
+### MYB-63 Start Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-63`.
+- Linear status: `In Progress`.
+- Linear start comment ID: `4d5cc46e-c139-4001-8955-0641bcf1be37`.
+- Assignee: Julien Bodin.
+- Branch: `myb-63-hud-difficulty-slope-segment`.
+- Reason selected next:
+  - `MYB-63` is the highest-priority open implementation ticket in the active
+    Unity vertical-slice project after MYB-95 closure.
+  - It builds directly on the existing route difficulty/elevation work and
+    keeps scope in `unity/Echapee4D`.
+- Scope reminder:
+  - Refactor Unity HUD to show difficulty/effort, slope or current segment when
+    available.
+  - Preserve mock mode and existing speed, distance, time and session state.
+  - No React HUD refactor and no hardware-bike connection work.

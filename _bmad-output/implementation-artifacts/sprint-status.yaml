@@ -430,6 +430,10 @@ development_status:
   # POC cree pour tester credits Meshy sur 3 niveaux de complexite et mesurer l'effort Unity reel.
   myb-95-meshy-custom-models-poc: done
 
+  # MYB-63 - Refondre le HUD Unity : difficulte, pente et segment courant
+  # Prochain ticket actif apres MYB-95, base sur les donnees RouteProfile/difficulty deja creees.
+  myb-63-unity-hud-difficulty-slope-segment: in_progress
+
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
 unity_canonical_decision: "User decision after MYB-90 video moved active work to Unity; MYB-94 refines the platform priority to Unity macOS first, with WebGL secondary and Three.js parked as historical prototype/reference."
@@ -530,3 +534,7 @@ unity_meshy_custom_models_poc_credits: "124 Meshy credits consumed with explicit
 unity_meshy_custom_models_poc_validation: "PASS: lantern prefab validator, route guardian direct import validator, relic-fountain LOD prefab validator, MYB91 canonical baseline, unity-mcp-cli status, git diff --check, targeted secret scan."
 unity_meshy_custom_models_poc_verdict: "adopt ponctuel/premium: useful for 1-2 targeted hero landmarks after Blender optimization/LOD and direct Unity import; not a bulk asset pipeline; raw refined meshes too dense; Meshy Unity bridge not adopted for animated validation."
 unity_meshy_custom_models_poc_review_next_action: "closed-via-pr-9-and-select-next-Unity-ticket"
+unity_hud_difficulty_slope_segment_issue: "MYB-63 In Progress"
+unity_hud_difficulty_slope_segment_url: "https://linear.app/kefjbo/issue/MYB-63/myb-037-refondre-le-hud-unity-difficulte-pente-et-segment-courant"
+unity_hud_difficulty_slope_segment_branch: "myb-63-hud-difficulty-slope-segment"
+unity_hud_difficulty_slope_segment_scope: "Afficher effort/difficulte, pente ou segment courant dans le HUD Unity en gardant vitesse, distance, temps et etat session; mock mode obligatoire."
