@@ -1,0 +1,104 @@
+{
+    "Ticket": "MYB-96",
+    "Status": "pass",
+    "ScenePath": "Assets/Scenes/MYB96BlenderAssetYard.unity",
+    "CapturePath": "_bmad-output/unity-test-results/myb-96-blender-asset-yard.png",
+    "CanonicalSceneUnchanged": true,
+    "TotalTriangles": 6224,
+    "MaterialRemaps": 0,
+    "Materials": [
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_WeatheredStone.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_DarkInsetStone.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_WarmAlpineWood.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_DarkWoodGrain.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_OffWhitePaint.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_MutedRouteRed.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_AlpineOchre.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_PineGreen.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_NewLeafGreen.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_RoadsideGrass.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_WildflowerAccent.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_DullIron.mat",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Materials/MYB96_SoftMarkerGlow.mat"
+    ],
+    "Prefabs": [
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_KilometerMarker.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_SummitArchMarker.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadReflectorPair.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_CairnStack.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadsideRockCluster.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageBench.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_MarketCrateStack.prefab",
+        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageWellMarker.prefab"
+    ],
+    "AssetTriangleCounts": [
+        {
+            "AssetId": "MYB96_ColDirectionSign",
+            "Triangles": 1156
+        },
+        {
+            "AssetId": "MYB96_KilometerMarker",
+            "Triangles": 608
+        },
+        {
+            "AssetId": "MYB96_HairpinChevronSign",
+            "Triangles": 292
+        },
+        {
+            "AssetId": "MYB96_SummitArchMarker",
+            "Triangles": 1072
+        },
+        {
+            "AssetId": "MYB96_RoadReflectorPair",
+            "Triangles": 404
+        },
+        {
+            "AssetId": "MYB96_AlpinePineSmall",
+            "Triangles": 184
+        },
+        {
+            "AssetId": "MYB96_AlpinePineTall",
+            "Triangles": 220
+        },
+        {
+            "AssetId": "MYB96_CairnStack",
+            "Triangles": 100
+        },
+        {
+            "AssetId": "MYB96_RoadsideRockCluster",
+            "Triangles": 124
+        },
+        {
+            "AssetId": "MYB96_WildflowerGrassPatch",
+            "Triangles": 348
+        },
+        {
+            "AssetId": "MYB96_StoneFlowerPlanter",
+            "Triangles": 264
+        },
+        {
+            "AssetId": "MYB96_WoodFenceSegment",
+            "Triangles": 256
+        },
+        {
+            "AssetId": "MYB96_VillageBench",
+            "Triangles": 308
+        },
+        {
+            "AssetId": "MYB96_MarketCrateStack",
+            "Triangles": 416
+        },
+        {
+            "AssetId": "MYB96_VillageWellMarker",
+            "Triangles": 472
+        }
+    ],
+    "Failures": []
+}

@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "project": "mybike / Echappee 3D",
+  "ticket": "MYB-96",
+  "generatedAt": "2026-06-12",
+  "generator": {
+    "tool": "Blender MCP",
+    "method": "execute_blender_code",
+    "source": "local procedural generation",
+    "externalServices": []
+  },
+  "sourceBlend": "Assets/Echappee/Art/MYB96BlenderGenerated/Source/MYB96_BlenderGeneratedAssetPack.blend",
+  "unityRoot": "Assets/Echappee/Art/MYB96BlenderGenerated",
+  "budgets": {
+    "assetTriangleLimit": 5000,
+    "packTriangleLimit": 35000,
+    "texturePolicy": "No bitmap textures; Unity materials only."
+  },
+  "families": [
+    "route-signage",
+    "natural-roadside",
+    "village-countryside"
+  ],
+  "assets": [
+    {
+      "id": "MYB96_ColDirectionSign",
+      "family": "route-signage",
+      "role": "Alpine direction board for road identity and summit context.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_ColDirectionSign.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab",
+      "triangleCount": 1156
+    },
+    {
+      "id": "MYB96_KilometerMarker",
+      "family": "route-signage",
+      "role": "Stone kilometer marker for roadside rhythm.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_KilometerMarker.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_KilometerMarker.prefab",
+      "triangleCount": 608
+    },
+    {
+      "id": "MYB96_HairpinChevronSign",
+      "family": "route-signage",
+      "role": "Muted chevron warning marker for bends and grade changes.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_HairpinChevronSign.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab",
+      "triangleCount": 292
+    },
+    {
+      "id": "MYB96_SummitArchMarker",
+      "family": "route-signage",
+      "role": "Small summit marker arch for premium route moments.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_SummitArchMarker.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_SummitArchMarker.prefab",
+      "triangleCount": 1072
+    },
+    {
+      "id": "MYB96_RoadReflectorPair",
+      "family": "route-signage",
+      "role": "Paired reflector posts for road edge readability.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadReflectorPair.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadReflectorPair.prefab",
+      "triangleCount": 404
+    },
+    {
+      "id": "MYB96_AlpinePineSmall",
+      "family": "natural-roadside",
+      "role": "Small stylized pine for near-road clusters.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineSmall.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab",
+      "triangleCount": 184
+    },
+    {
+      "id": "MYB96_AlpinePineTall",
+      "family": "natural-roadside",
+      "role": "Tall stylized pine for silhouette variation.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineTall.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab",
+      "triangleCount": 220
+    },
+    {
+      "id": "MYB96_CairnStack",
+      "family": "natural-roadside",
+      "role": "Stone cairn for scenic trail-edge detail.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_CairnStack.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_CairnStack.prefab",
+      "triangleCount": 100
+    },
+    {
+      "id": "MYB96_RoadsideRockCluster",
+      "family": "natural-roadside",
+      "role": "Low rock cluster for grounded road edges.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadsideRockCluster.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadsideRockCluster.prefab",
+      "triangleCount": 124
+    },
+    {
+      "id": "MYB96_WildflowerGrassPatch",
+      "family": "natural-roadside",
+      "role": "Small grass and flower patch for warm scenic accents.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WildflowerGrassPatch.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab",
+      "triangleCount": 348
+    },
+    {
+      "id": "MYB96_StoneFlowerPlanter",
+      "family": "village-countryside",
+      "role": "Village planter for calm roadside life.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_StoneFlowerPlanter.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab",
+      "triangleCount": 264
+    },
+    {
+      "id": "MYB96_WoodFenceSegment",
+      "family": "village-countryside",
+      "role": "Reusable fence segment for countryside edges.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WoodFenceSegment.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab",
+      "triangleCount": 256
+    },
+    {
+      "id": "MYB96_VillageBench",
+      "family": "village-countryside",
+      "role": "Small bench for village punctuation.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageBench.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageBench.prefab",
+      "triangleCount": 308
+    },
+    {
+      "id": "MYB96_MarketCrateStack",
+      "family": "village-countryside",
+      "role": "Crate stack for market and farm-side texture.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_MarketCrateStack.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_MarketCrateStack.prefab",
+      "triangleCount": 416
+    },
+    {
+      "id": "MYB96_VillageWellMarker",
+      "family": "village-countryside",
+      "role": "Compact village well marker for scenic identity.",
+      "model": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageWellMarker.fbx",
+      "prefab": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageWellMarker.prefab",
+      "triangleCount": 472
+    }
+  ]
+}
