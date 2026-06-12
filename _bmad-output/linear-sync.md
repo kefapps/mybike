@@ -5631,3 +5631,29 @@ Synced on 2026-06-12:
   - `main` is updated to `dd8b247`.
   - MYB-96 delivers the Blender MCP asset pack in the canonical Unity project
     with validation, manifest, prefabs, yard scene and capture evidence.
+
+### MYB-83 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-83`.
+- Linear status target: `In Review`.
+- Branch: `myb-83-local-ci`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/myb-83-local-ci.md`.
+- Local CI report:
+  `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Implementation summary:
+  - Added `npm run validate:local-ci`.
+  - Added `scripts/validate-local-ci.mjs`.
+  - Added `scripts/validate-local-ci.test.mjs`.
+  - Documented the local validation in `unity/Echapee4D/README.md`.
+  - Re-ran the MYB-91 canonical baseline validator through the MYB-83 command.
+- Validation:
+  - `npm run test -- scripts/validate-local-ci.test.mjs`: PASS.
+  - `npm run validate:local-ci`: PASS.
+  - `git diff --check`: PASS.
+- Scope guard:
+  - No GitHub Actions workflows.
+  - No hosted runner, cloud secret, billing, release pipeline, full Unity build,
+    or WebGL/browser proof.
