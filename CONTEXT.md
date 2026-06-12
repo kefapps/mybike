@@ -395,3 +395,56 @@ Non-examples:
 
 - A surface that blends into the ground or implies a precise implemented
   mechanic that the current build does not actually have.
+
+### Baseline performance
+
+Definition: A dated performance measurement for the Unity macOS-first vertical
+slice on a named local machine and Unity version.
+
+Relationships:
+
+- A `Baseline performance` records what the project currently does; it is not a
+  promise that every supported Mac will match it.
+- It can be compared against a `Budget performance` in later visual, HUD, asset,
+  or delivery work.
+
+Examples:
+
+- A MYB-51 Editor measurement on MacBook Pro Mac14,9 / M2 Pro / macOS 26.5.1 /
+  Unity 6000.4.10f1.
+
+### Budget performance
+
+Definition: A target, warning, or red threshold used to evaluate whether the
+Unity macOS-first vertical slice is staying healthy as visuals and assets grow.
+
+Relationships:
+
+- A `Budget performance` is a decision aid, not an automatic blocker unless a
+  specific issue or validator explicitly makes it blocking.
+- A red result means "needs review before relying on this direction", not
+  "must fail the ticket" by default.
+- WebGL budgets are secondary and apply only when a ticket explicitly asks for a
+  browser proof.
+
+Examples:
+
+- 60 fps target, warning below 45 fps, red below 30 fps.
+- macOS build size target <= 500 MB, warning above 750 MB, red above 1 GB.
+
+### Garde-fou performance
+
+Definition: A lightweight rule, report, or validator that helps catch obvious
+performance drift without becoming a full profiling or optimization pipeline.
+
+Relationships:
+
+- A `Garde-fou performance` can reference a `Baseline performance` and a
+  `Budget performance`.
+- It should preserve mock mode and Unity macOS-first delivery while keeping
+  WebGL secondary unless explicitly scoped.
+
+Examples:
+
+- A report that counts renderers, estimated triangles, active lights, materials,
+  console errors or warnings, and measured fps bands for the current Unity scene.

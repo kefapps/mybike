@@ -1,0 +1,84 @@
+{
+    "Ticket": "MYB-51",
+    "Title": "Unity macOS-first performance baseline",
+    "TimestampUtc": "2026-06-12T08:52:54.8020710Z",
+    "UnityVersion": "6000.4.10f1",
+    "ProjectPath": "/Users/jbodin/personnel/apps/mybike/unity/Echapee4D",
+    "ScenePath": "Assets/Scenes/MYB89UnityMcpProbe.unity",
+    "ActiveScenePath": "Assets/Scenes/MYB89UnityMcpProbe.unity",
+    "BaselineHardware": "MacBook Pro Mac14,9 / Apple M2 Pro / macOS 26.5.1",
+    "BaselineUnity": "Unity 6000.4.10f1",
+    "WebGlScope": "Secondary; not measured unless a ticket explicitly asks for browser proof.",
+    "Status": "PASS",
+    "OverallSoftStatus": "not-measured",
+    "JsonReportPath": "/Users/jbodin/personnel/apps/mybike/_bmad-output/unity-test-results/myb-51-performance-baseline.json",
+    "TextReportPath": "/Users/jbodin/personnel/apps/mybike/_bmad-output/unity-test-results/myb-51-performance-baseline.txt",
+    "Budgets": [
+        {
+            "Metric": "editor_fps",
+            "Unit": "frames_per_second",
+            "Target": "60 fps",
+            "Warning": "below 45 fps",
+            "Red": "below 30 fps",
+            "RedBlocking": false
+        },
+        {
+            "Metric": "macos_build_size",
+            "Unit": "bytes",
+            "Target": "<= 524288000",
+            "Warning": "> 786432000",
+            "Red": "> 1073741824",
+            "RedBlocking": false
+        },
+        {
+            "Metric": "local_launch_time",
+            "Unit": "seconds",
+            "Target": "<= 10",
+            "Warning": "> 20",
+            "Red": "> 30",
+            "RedBlocking": false
+        }
+    ],
+    "Measurements": {
+        "MeasurementMode": "Unity Editor static scene baseline",
+        "MeasurementSeconds": 0.0070341,
+        "FpsMeasured": false,
+        "FpsAverage": 0.0,
+        "FpsStatus": "not-measured",
+        "BuildSizeMeasured": false,
+        "BuildSizeBytes": 0,
+        "BuildSizeStatus": "not-measured",
+        "LaunchTimeMeasured": false,
+        "LaunchTimeSeconds": 0.0,
+        "LaunchTimeStatus": "not-measured",
+        "ActiveRendererCount": 271,
+        "MeshFilterCount": 270,
+        "SkinnedMeshRendererCount": 1,
+        "EstimatedTriangleCount": 58611,
+        "ActiveLightCount": 6,
+        "UniqueMaterialCount": 34,
+        "UniqueTextureCount": 3,
+        "MaxTextureDimension": 1024,
+        "EstimatedTextureBytes": 5595440,
+        "EstimatedTextureMiB": 5.3362274169921879,
+        "HasMainCamera": true,
+        "HasRouteRoad": true,
+        "QualityLevel": "PC",
+        "VSyncCount": 0,
+        "ApplicationTargetFrameRate": -1,
+        "ActiveBuildTarget": "WebGL",
+        "StandaloneOsxBuildSupported": true
+    },
+    "HardFailures": [],
+    "SoftSignals": [
+        "Editor rendering FPS is not sampled by this synchronous validator; use manual Play Mode or profiler capture if a future issue makes FPS blocking.",
+        "macOS build size and launch time are recorded as not measured unless a local build is produced during the ticket.",
+        "Active Unity build target is WebGL; MYB-51 records this without switching targets to avoid import churn."
+    ],
+    "Notes": [
+        "Budget red statuses are decision signals, not automatic blockers in MYB-51.",
+        "Editor macOS validation is mandatory for this baseline.",
+        "macOS build size and launch time are opportunistic measurements and may be unmeasured in this ticket.",
+        "This is a lightweight guardrail, not an exhaustive profiler or optimization pipeline."
+    ]
+}
