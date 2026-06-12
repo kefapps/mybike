@@ -5345,3 +5345,39 @@ Synced on 2026-06-12:
   - Excluded: Meshy, third-party assets, hardware-bike work and Three.js work.
 - Documentation update:
   - `CONTEXT.md` now defines `Route Difficulty Cue`.
+
+### MYB-48 Implementation Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-48`.
+- Linear status: `In Review`.
+- Linear review comment ID: `2103876e-bb00-4ba7-a244-1b9cfdf8bc2e`.
+- Branch: `myb-48-route-difficulty-cues`.
+- Pull request: `https://github.com/kefapps/mybike/pull/11`.
+- Implementation commit: `be0427e` (`MYB-48 add route difficulty cues`).
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-48-route-difficulty-cues.md`.
+- Implementation summary:
+  - Added generated Unity `Route Difficulty Cue` primitives for `Climb`,
+    `Sprint` and `Recovery` route segments.
+  - Implemented sober fantasy-diegetic cues with emissive materials, entry
+    lights and bounded pulse animation.
+  - Generated 11 cues total: Climb 4, Sprint 4, Recovery 3; no dedicated
+    Warmup cue.
+  - Updated MYB-89 scene generation plus MYB-89, MYB-48 and MYB-91 validation
+    coverage.
+  - Kept scope Unity-only: no Meshy, no third-party assets, no hardware-bike
+    work and no Three.js changes.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB89ProbeBuilder.BuildScene()`: PASS.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS.
+  - `MYB48RouteDifficultyCueValidator.ValidateRouteDifficultyCuesCli()`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaseline()`: PASS.
+  - `git diff --check`: PASS.
+  - Targeted forbidden path scan: PASS.
+  - Targeted secret scan: PASS.
+- Visual evidence:
+  - `_bmad-output/unity-test-results/myb-48-route-difficulty-cues.png`.

@@ -436,7 +436,7 @@ development_status:
 
   # MYB-48 - Ajouter des indices visuels Unity pour les passages difficiles
   # Route Difficulty Cues fantasy sobres: primitives emissive + pulse liees aux segments Climb/Sprint/Recovery.
-  myb-48-unity-route-difficulty-cues: in_progress
+  myb-48-unity-route-difficulty-cues: in_review
 
 # Correct-course 2026-06-11 - Unity canonical
 unity_canonical_decision_date: "2026-06-11"
@@ -548,9 +548,12 @@ unity_hud_difficulty_slope_segment_review_comment: "cb6b120c-316e-40e3-b3b9-eb7d
 unity_hud_difficulty_slope_segment_closure_comment: "52c12f9c-0c01-4741-900e-ea9604b23523"
 unity_hud_difficulty_slope_segment_merge_commit: "7cbd9b8d25e698496594ca3d3168a8687b714914"
 unity_hud_difficulty_slope_segment_validation: "PASS: unity-mcp-cli status, assets-refresh, MYB89 BuildScene, MYB89 ValidateProbeScene, MYB91 canonical baseline, git diff --check, targeted secret/path scan."
-unity_route_difficulty_cues_issue: "MYB-48 In Progress"
+unity_route_difficulty_cues_issue: "MYB-48 In Review"
 unity_route_difficulty_cues_url: "https://linear.app/kefjbo/issue/MYB-48/myb-016-ajouter-des-indices-visuels-unity-pour-les-passages-difficiles"
 unity_route_difficulty_cues_branch: "myb-48-route-difficulty-cues"
+unity_route_difficulty_cues_pr: "https://github.com/kefapps/mybike/pull/11"
 unity_route_difficulty_cues_start_comment: "ee164c92-c321-4c9c-8f5a-f071792e4a38"
+unity_route_difficulty_cues_review_comment: "2103876e-bb00-4ba7-a244-1b9cfdf8bc2e"
 unity_route_difficulty_cues_report: "_bmad-output/implementation-artifacts/myb-48-route-difficulty-cues.md"
 unity_route_difficulty_cues_scope: "Route Difficulty Cues fantasy sobres, primitives Unity generees par code, emissive et pulse leger, pour Climb/Sprint/Recovery; pas Meshy, pas asset tiers, pas hardware."
+unity_route_difficulty_cues_validation: "PASS: unity-mcp-cli status, assets-refresh, MYB89 BuildScene, MYB89 ValidateProbeScene, MYB48 route difficulty cue validator, MYB91 canonical baseline, git diff --check, targeted secret/path scan."
