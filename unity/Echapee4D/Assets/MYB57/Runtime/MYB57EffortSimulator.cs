@@ -14,7 +14,8 @@ namespace MYB57
     {
         PowerAvailable,
         CadenceResistance,
-        CadenceOnly
+        CadenceOnly,
+        ManualFallback
     }
 
     public enum MYB57RouteSegment
@@ -60,7 +61,9 @@ namespace MYB57
             float cadenceRpm,
             bool hasResistanceLevel,
             float resistanceLevel,
-            float elapsedTimeSeconds)
+            float elapsedTimeSeconds,
+            bool isEstimated = false,
+            float estimatedEffort01 = 0f)
         {
             HasPowerWatts = hasPowerWatts;
             PowerWatts = Mathf.Max(0f, powerWatts);
@@ -69,6 +72,8 @@ namespace MYB57
             HasResistanceLevel = hasResistanceLevel;
             ResistanceLevel = Mathf.Clamp(resistanceLevel, 0f, 100f);
             ElapsedTimeSeconds = Mathf.Max(0f, elapsedTimeSeconds);
+            IsEstimated = isEstimated;
+            EstimatedEffort01 = Mathf.Clamp01(estimatedEffort01);
         }
 
         public bool HasPowerWatts { get; }
@@ -78,6 +83,8 @@ namespace MYB57
         public bool HasResistanceLevel { get; }
         public float ResistanceLevel { get; }
         public float ElapsedTimeSeconds { get; }
+        public bool IsEstimated { get; }
+        public float EstimatedEffort01 { get; }
     }
 
     public readonly struct MYB57EffortSnapshot
@@ -153,6 +160,23 @@ namespace MYB57
             var targetResistance01 = TargetResistanceFor(input.RouteSegment, input.GradePercent);
             var targetResistanceLevel = ResistanceLevel(targetResistance01);
             var sample = MockTrainerSample(input.SourcePreset, input.RouteSegment, targetResistanceLevel, input.DeltaTimeSeconds);
+            return Evaluate(input, sample);
+        }
+
+        public static MYB57EffortSnapshot EvaluateManualFallback(MYB57EffortInput input, float manualEffort01)
+        {
+            var effort01 = Mathf.Clamp01(manualEffort01);
+            var cadenceRpm = Mathf.Lerp(54f, 106f, effort01);
+            var sample = new MYB57TrainerSample(
+                false,
+                0f,
+                true,
+                cadenceRpm,
+                false,
+                0f,
+                input.DeltaTimeSeconds,
+                true,
+                effort01);
             return Evaluate(input, sample);
         }
 
@@ -236,6 +260,8 @@ namespace MYB57
                     return new MYB57TrainerSample(false, 0f, true, cadenceRpm, true, targetResistanceLevel, elapsedTimeSeconds);
                 case MYB57TrainerSourcePreset.CadenceOnly:
                     return new MYB57TrainerSample(false, 0f, true, cadenceRpm, false, 0f, elapsedTimeSeconds);
+                case MYB57TrainerSourcePreset.ManualFallback:
+                    return new MYB57TrainerSample(false, 0f, true, 78f, false, 0f, elapsedTimeSeconds, true, 0.45f);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(preset), preset, null);
             }
@@ -243,6 +269,11 @@ namespace MYB57
 
         private static float MeasuredEffort(MYB57TrainerSample sample)
         {
+            if (sample.IsEstimated)
+            {
+                return sample.EstimatedEffort01;
+            }
+
             if (sample.HasPowerWatts)
             {
                 return Mathf.InverseLerp(55f, 340f, sample.PowerWatts);
@@ -310,6 +341,11 @@ namespace MYB57
 
         private static string SourceBadge(MYB57TrainerSample sample)
         {
+            if (sample.IsEstimated)
+            {
+                return "Manual";
+            }
+
             if (sample.HasPowerWatts)
             {
                 return "Power";

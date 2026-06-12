@@ -1,8 +1,8 @@
 MYB-91 Unity canonical baseline validation
-Timestamp UTC: 2026-06-12T20:14:53.3951820Z
+Timestamp UTC: 2026-06-12T20:28:36.5135630Z
 Status: PASS
 Unity: 6000.4.10f1
-Project: /Users/jbodin/personnel/apps/mybike-myb-96-blender-mcp-assets/unity/Echapee4D
+Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Active scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Build settings scenes: Assets/Scenes/MYB89UnityMcpProbe.unity
