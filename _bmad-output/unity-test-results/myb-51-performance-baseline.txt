@@ -1,0 +1,45 @@
+MYB-51 Unity macOS-first performance baseline
+Timestamp UTC: 2026-06-12T12:04:24.3154660Z
+Unity: 6000.4.10f1
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Status: PASS
+Overall soft status: not-measured
+Baseline hardware: MacBook Pro Mac14,9 / Apple M2 Pro / macOS 26.5.1
+WebGL scope: Secondary; not measured unless a ticket explicitly asks for browser proof.
+
+Budgets:
+- editor_fps: target 60 fps, warning below 45 fps, red below 30 fps, redBlocking=False
+- macos_build_size: target <= 524288000, warning > 786432000, red > 1073741824, redBlocking=False
+- local_launch_time: target <= 10, warning > 20, red > 30, redBlocking=False
+
+Measurements:
+- mode: Unity Editor static scene baseline
+- measurement seconds: 0.316
+- fps status: not-measured measured=False
+- build size status: not-measured measured=False
+- launch time status: not-measured measured=False
+- active renderers: 271
+- mesh filters: 270
+- skinned mesh renderers: 1
+- estimated triangles: 58611
+- active lights: 6
+- unique materials: 34
+- unique textures: 3
+- max texture dimension: 1024
+- estimated texture MiB: 5.34
+- quality level: PC
+- vSync count: 0
+- application target frame rate: -1
+- active build target: WebGL
+- standalone macOS build supported: True
+
+Soft signals:
+- Editor rendering FPS is not sampled by this synchronous validator; use manual Play Mode or profiler capture if a future issue makes FPS blocking.
+- macOS build size and launch time are recorded as not measured unless a local build is produced during the ticket.
+- Active Unity build target is WebGL; MYB-51 records this without switching targets to avoid import churn.
+
+Notes:
+- Budget red statuses are decision signals, not automatic blockers in MYB-51.
+- Editor macOS validation is mandatory for this baseline.
+- macOS build size and launch time are opportunistic measurements and may be unmeasured in this ticket.
+- This is a lightweight guardrail, not an exhaustive profiler or optimization pipeline.

@@ -63,6 +63,7 @@ Last sync: 2026-06-12
 - Meshy custom models POC MYB-95: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
 - Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
+- Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 
 ## Linear Documents
 
@@ -102,6 +103,7 @@ Last sync: 2026-06-12
 | Meshy custom models POC | `MYB-95` | POC Meshy : modèles 3D animés custom et effort d’intégration Unity | https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity |
 | Blender MCP asset pack | `MYB-96` | Générer un pack d'assets Blender via MCP pour la vertical slice Unity | https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity |
 | Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
+| Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -165,6 +167,10 @@ continuation, engine migration, backend, BLE/FTMS or new broad backlog.
 - `MYB-96` follows the Unity asset shortlist direction in `MYB-41`; it creates
   a bounded Blender MCP-generated asset pack for `unity/Echapee4D`, without
   Meshy, paid services, gameplay scope, or a full level-art pass.
+- `MYB-51` follows the Unity macOS-first platform decision in `MYB-94`; it
+  creates soft performance budgets and a lightweight baseline for
+  `unity/Echapee4D`, without making WebGL the main target or adding a full
+  profiling pipeline.
 
 ## Readiness Caveats Synced
 
@@ -5676,3 +5682,63 @@ Synced on 2026-06-12:
   - No GitHub Actions workflows.
   - No hosted runner, cloud secret, billing, release pipeline, full Unity build,
     or WebGL/browser proof.
+
+### MYB-51 Start And Implementation Review Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-51`.
+- Linear status: `In Progress`.
+- Linear start comment ID: `45babdb0-9aa2-46f1-83f1-a8e138f6b810`.
+- Linear review comment ID: `17ef9a48-aee0-4479-a12a-80e6f3a72a29`.
+- Branch: `myb-51-unity-macos-performance-budgets`.
+- Pull request: `https://github.com/kefapps/mybike/pull/15`.
+- Implementation commit: `a6fb715` (`MYB-51 add Unity performance baseline`).
+- Grill-with-docs decisions:
+  - `Budget performance` thresholds are soft decision signals in MYB-51.
+  - Red budget status is not blocking by default.
+  - Editor macOS baseline is mandatory; macOS build size and launch time are
+    opportunistic measurements.
+  - Baseline machine: MacBook Pro Mac14,9 / Apple M2 Pro / macOS 26.5.1 /
+    Unity 6000.4.10f1.
+  - FPS budget: 60 target, warning below 45, red below 30.
+  - macOS build budget: target <= 500 MB, warning > 750 MB, red > 1 GB.
+  - Local launch budget: target <= 10 s, warning > 20 s, red > 30 s.
+  - WebGL remains secondary and is not measured unless a ticket explicitly asks
+    for browser proof.
+- Documentation update:
+  - `CONTEXT.md` now defines `Baseline performance`, `Budget performance`, and
+    `Garde-fou performance`.
+- Implementation summary:
+  - Added `MYB51PerformanceBudgetValidator` as an Editor-only lightweight
+    performance guardrail.
+  - Validator writes human and machine-readable evidence:
+    `_bmad-output/unity-test-results/myb-51-performance-baseline.txt` and
+    `_bmad-output/unity-test-results/myb-51-performance-baseline.json`.
+  - No CI gate or hard failure is attached to soft red budgets.
+- Baseline result:
+  - Structural status: PASS.
+  - Overall soft status: `not-measured`.
+  - Active renderers: `271`.
+  - Estimated triangles: `58,611`.
+  - Active lights: `6`.
+  - Unique materials: `34`.
+  - Unique textures: `3`.
+  - Max texture dimension: `1024`.
+  - Estimated texture memory: `5.34 MiB`.
+  - Quality level: `PC`.
+  - Active build target: `WebGL`.
+  - Standalone macOS build supported: `true`.
+- Soft signals:
+  - Editor rendering FPS is not sampled by the synchronous validator.
+  - macOS build size and launch time were not measured in this pass.
+  - Active Unity build target is currently `WebGL`; MYB-51 records this without
+    switching targets to avoid import churn.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `assets-refresh` with `ForceSynchronousImport`: PASS.
+  - `MYB51PerformanceBudgetValidator.ValidatePerformanceBaselineCli`: PASS.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli`: PASS.
+  - `git diff --cached --check`: PASS.
+  - Targeted staged secret scan: PASS; only historical env-var names in sync
+    docs matched.
