@@ -5655,6 +5655,13 @@ Synced on 2026-06-12:
   - `npm run test -- scripts/validate-local-ci.test.mjs`: PASS.
   - `npm run validate:local-ci`: PASS.
   - `git diff --check`: PASS.
+- Review fixes:
+  - Added staged and branch/worktree whitespace checks using the merge-base
+    against `main`.
+  - Removed trailing blank-line report generation that hid in committed branch
+    diffs.
+  - Added process timeouts, safer repo-root path resolution, and stricter
+    option parsing for `--base` and `--report`.
 - Scope guard:
   - No GitHub Actions workflows.
   - No hosted runner, cloud secret, billing, release pipeline, full Unity build,

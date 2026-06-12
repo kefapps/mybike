@@ -45,12 +45,19 @@ describe("validate-local-ci", () => {
     expect(report).toContain("MYB-83 Local CI Validation");
     expect(report).toContain("Local CI: PASS");
     expect(report).toContain("no GitHub Actions or hosted runner");
+    expect(report.endsWith("\n\n")).toBe(false);
   });
 
   it("parses report and skip-unity arguments", () => {
-    expect(parseArgs(["--skip-unity", "--report", "tmp/report.txt"])).toEqual({
+    expect(parseArgs(["--skip-unity", "--base", "origin/main", "--report", "tmp/report.txt"])).toEqual({
+      base: "origin/main",
       reportPath: "tmp/report.txt",
       skipUnity: true
     });
+  });
+
+  it("rejects missing or flag-like option values", () => {
+    expect(() => parseArgs(["--base", "--skip-unity"])).toThrow("--base requires a git revision");
+    expect(() => parseArgs(["--report", "--skip-unity"])).toThrow("--report requires a path");
   });
 });

@@ -1,6 +1,6 @@
 MYB-83 Local CI Validation
 
-Generated: 2026-06-12T09:41:04.072Z
+Generated: 2026-06-12T09:56:20.865Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Unity project: unity/Echapee4D
 Command: npm run validate:local-ci
@@ -16,23 +16,29 @@ Checks
 - PASS [required] legacy path absent: unity/Echappee3D
 - PASS [required] JSON parses: unity/Echapee4D/Packages/manifest.json
 - PASS [required] JSON parses: unity/Echapee4D/Packages/packages-lock.json
-- PASS [required] git whitespace check
-  completed in 24ms
+- PASS [required] working tree whitespace check
+  completed in 20ms
   command: git diff --check
+- PASS [required] staged whitespace check
+  completed in 14ms
+  command: git diff --cached --check
+- PASS [required] branch/worktree whitespace check vs main
+  completed in 20ms
+  command: git diff --check e3d43efdfa4f7c36878ed5a8e4b37c2b2a0244c7
 - PASS [required] Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
   command: git status --porcelain -- unity/Echapee4D/Packages unity/Echapee4D/ProjectSettings
-- PASS [required] Unity generated folders status check
+- PASS [required] Unity generated folders untracked drift check
   no tracked or untracked drift
   command: git status --porcelain -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
 - PASS [required] Unity generated folders tracked-file check
   no generated Unity folders are tracked
   command: git ls-files -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
 - PASS [required] Unity-MCP status
-  completed in 659ms
+  completed in 1003ms
   command: unity-mcp-cli status unity/Echapee4D --timeout 10000
 - PASS [required] MYB-91 canonical baseline validator
-  completed in 1476ms
+  completed in 1247ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunBaselineValidator","methodName":"Main","csharpCode":"using MYB91.Editor; public static class MYB83RunBaselineValidator { public static void Main() { MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli(); } }"} --timeout 180000
 
 PR Checklist Snippet
@@ -44,4 +50,3 @@ Local Limits
 - This command is intentionally local and does not create `.github/workflows`.
 - Unity checks require the local Unity Editor and Unity-MCP server.
 - Full Unity builds remain out of scope for MYB-83 unless a later ticket asks for them.
-

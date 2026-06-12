@@ -6,7 +6,8 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 export const DEFAULT_REPORT_PATH = "_bmad-output/unity-test-results/myb-83-local-ci.txt";
 export const UNITY_PROJECT_PATH = "unity/Echapee4D";
 
-const repoRoot = resolve(new URL("..", import.meta.url).pathname);
+const repoRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
+const DEFAULT_COMMAND_TIMEOUT_MS = 120_000;
 
 const REQUIRED_PATHS = [
   "unity/Echapee4D/Assets",
@@ -39,6 +40,7 @@ const GENERATED_STATUS_PATHS = GENERATED_UNITY_PATHS;
 
 export function parseArgs(argv = process.argv.slice(2)) {
   const options = {
+    base: "main",
     reportPath: DEFAULT_REPORT_PATH,
     skipUnity: false
   };
@@ -47,9 +49,16 @@ export function parseArgs(argv = process.argv.slice(2)) {
     const arg = argv[index];
     if (arg === "--skip-unity") {
       options.skipUnity = true;
+    } else if (arg === "--base") {
+      const next = argv[index + 1];
+      if (!next || next.startsWith("-")) {
+        throw new Error("--base requires a git revision");
+      }
+      options.base = next;
+      index += 1;
     } else if (arg === "--report") {
       const next = argv[index + 1];
-      if (!next) {
+      if (!next || next.startsWith("-")) {
         throw new Error("--report requires a path");
       }
       options.reportPath = next;
@@ -114,8 +123,7 @@ export function formatLocalCiReport({ checks, generatedAt, projectRoot, reportPa
     "Local Limits",
     "- This command is intentionally local and does not create `.github/workflows`.",
     "- Unity checks require the local Unity Editor and Unity-MCP server.",
-    "- Full Unity builds remain out of scope for MYB-83 unless a later ticket asks for them.",
-    ""
+    "- Full Unity builds remain out of scope for MYB-83 unless a later ticket asks for them."
   );
 
   if (verdict.verdict !== "pass") {
@@ -130,7 +138,6 @@ export function formatLocalCiReport({ checks, generatedAt, projectRoot, reportPa
         }
       }
     }
-    lines.push("");
   }
 
   return `${lines.join("\n")}\n`;
@@ -156,12 +163,18 @@ function skipCheck(label, summary) {
   return { label, status: "skip", summary };
 }
 
-function runCommand(label, command, args, { required = true, timeoutSummary } = {}) {
+function runCommand(
+  label,
+  command,
+  args,
+  { required = true, timeoutMs = DEFAULT_COMMAND_TIMEOUT_MS, timeoutSummary } = {}
+) {
   const startedAt = Date.now();
   const result = spawnSync(command, args, {
     cwd: repoRoot,
     encoding: "utf8",
-    maxBuffer: 10 * 1024 * 1024
+    maxBuffer: 10 * 1024 * 1024,
+    timeout: timeoutMs
   });
   const durationMs = Date.now() - startedAt;
   const output = [result.stdout, result.stderr].filter(Boolean).join("\n");
@@ -175,7 +188,10 @@ function runCommand(label, command, args, { required = true, timeoutSummary } = 
       output,
       required,
       status: "fail",
-      summary: result.error.message
+      summary:
+        result.error.code === "ETIMEDOUT"
+          ? timeoutSummary ?? `timed out after ${timeoutMs}ms`
+          : result.error.message
     };
   }
 
@@ -228,6 +244,29 @@ function checkJsonFile(path) {
   } catch (error) {
     return failCheck(`JSON parses: ${path}`, error.message);
   }
+}
+
+function runBranchWhitespaceCheck(base) {
+  const verifyBase = runCommand("branch diff base resolves", "git", ["rev-parse", "--verify", base]);
+  if (verifyBase.status !== "pass") {
+    return {
+      ...verifyBase,
+      label: `branch whitespace check vs ${base}`,
+      summary: `base revision does not resolve: ${base}`
+    };
+  }
+
+  const mergeBase = runCommand("branch diff merge-base resolves", "git", ["merge-base", "HEAD", base]);
+  if (mergeBase.status !== "pass") {
+    return {
+      ...mergeBase,
+      label: `branch whitespace check vs ${base}`,
+      summary: `could not resolve merge-base with ${base}`
+    };
+  }
+
+  const mergeBaseSha = mergeBase.output.trim();
+  return runCommand(`branch/worktree whitespace check vs ${base}`, "git", ["diff", "--check", mergeBaseSha]);
 }
 
 function runGitStatusCheck(label, paths) {
@@ -283,9 +322,11 @@ async function runLocalCi(options) {
     ...checkLegacyForbiddenPaths(),
     checkJsonFile("unity/Echapee4D/Packages/manifest.json"),
     checkJsonFile("unity/Echapee4D/Packages/packages-lock.json"),
-    runCommand("git whitespace check", "git", ["diff", "--check"]),
+    runCommand("working tree whitespace check", "git", ["diff", "--check"]),
+    runCommand("staged whitespace check", "git", ["diff", "--cached", "--check"]),
+    runBranchWhitespaceCheck(options.base),
     runGitStatusCheck("Unity Packages/ProjectSettings drift check", CRITICAL_UNITY_STATUS_PATHS),
-    runGitStatusCheck("Unity generated folders status check", GENERATED_STATUS_PATHS),
+    runGitStatusCheck("Unity generated folders untracked drift check", GENERATED_STATUS_PATHS),
     runGitTrackedGeneratedFoldersCheck()
   ];
 
@@ -296,7 +337,9 @@ async function runLocalCi(options) {
     );
   } else {
     checks.push(
-      runCommand("Unity-MCP status", "unity-mcp-cli", ["status", UNITY_PROJECT_PATH, "--timeout", "10000"]),
+      runCommand("Unity-MCP status", "unity-mcp-cli", ["status", UNITY_PROJECT_PATH, "--timeout", "10000"], {
+        timeoutMs: 30_000
+      }),
       runCommand("MYB-91 canonical baseline validator", "unity-mcp-cli", [
         "run-tool",
         "script-execute",
@@ -305,7 +348,9 @@ async function runLocalCi(options) {
         unityBaselineInput(),
         "--timeout",
         "180000"
-      ])
+      ], {
+        timeoutMs: 240_000
+      })
     );
   }
 
@@ -336,11 +381,12 @@ async function runLocalCi(options) {
 }
 
 function printHelp() {
-  console.log(`Usage: npm run validate:local-ci -- [--skip-unity] [--report <path>]
+  console.log(`Usage: npm run validate:local-ci -- [--base <revision>] [--skip-unity] [--report <path>]
 
 Runs the MYB-83 local Unity macOS-first validation.
 
 Options:
+  --base <revision>  Git revision for the branch diff whitespace check. Defaults to main.
   --skip-unity       Run repo hygiene checks only and mark Unity checks as skipped.
   --report <path>    Write the report to a custom path.
 `);

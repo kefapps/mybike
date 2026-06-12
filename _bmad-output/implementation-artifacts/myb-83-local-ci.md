@@ -20,9 +20,11 @@ ticket.
 The local CI command covers:
 
 - required canonical Unity paths under `unity/Echapee4D`;
-- absence of the legacy `unity/Echappee3D` project and generated Unity folders;
+- absence of the legacy `unity/Echappee3D` project;
+- generated Unity folders remain untracked and show no untracked drift in the
+  validation path;
 - JSON parsing for `Packages/manifest.json` and `Packages/packages-lock.json`;
-- `git diff --check`;
+- working tree, staged, and branch-diff whitespace checks;
 - drift checks for `Packages/` and `ProjectSettings/`;
 - Unity-MCP reachability;
 - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`.
