@@ -5978,7 +5978,7 @@ Synced on 2026-06-12:
 - Linear start comment ID: `939e8360-b5da-4442-9efc-2f6489ca018c`.
 - Linear implementation comment ID: `d69c0267-e140-4af0-b63a-ff9c38a942b0`.
 - Branch: `myb-64-myb-038-fallback-unity-sans-smart-trainer`.
-- Implementation commit: `0e5aa40` (`MYB-64 add Unity no-trainer fallback`).
+- Implementation commit: `859fbeb` (`MYB-64 add Unity no-trainer fallback`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-64-no-trainer-fallback.md`.
 - Implementation summary:
