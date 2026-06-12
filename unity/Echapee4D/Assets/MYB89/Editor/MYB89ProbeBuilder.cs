@@ -4,6 +4,7 @@ using System.IO;
 using MYB89;
 using MYB48;
 using MYB59;
+using MYB60;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -75,6 +76,7 @@ namespace MYB89.Editor
             var hud = GameObject.Find("MYB89_HUD");
             var difficultyCues = UnityEngine.Object.FindAnyObjectByType<MYB48RouteDifficultyCueController>();
             var resistanceController = UnityEngine.Object.FindAnyObjectByType<MYB59ResistanceController>();
+            var resistanceMapper = UnityEngine.Object.FindAnyObjectByType<MYB60ResistanceMapper>();
             var scenicCorridor = GameObject.Find("MYB44_ScenicCorridor");
             var scenicRenderers = scenicCorridor == null
                 ? Array.Empty<Renderer>()
@@ -128,6 +130,16 @@ namespace MYB89.Editor
                 if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("->"))
                 {
                     failures.Add("HUD grade label is missing applied resistance.");
+                }
+
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("~"))
+                {
+                    failures.Add("HUD grade label is missing smoothed resistance.");
+                }
+
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Map "))
+                {
+                    failures.Add("HUD verdict label is missing MYB60 mapping status.");
                 }
 
                 if (ride.LastResistanceSnapshot.Status != MYB59ResistanceControllerStatus.Applied)
@@ -191,6 +203,11 @@ namespace MYB89.Editor
             if (resistanceController == null)
             {
                 failures.Add("Missing MYB59ResistanceController.");
+            }
+
+            if (resistanceMapper == null)
+            {
+                failures.Add("Missing MYB60ResistanceMapper.");
             }
 
             if (scenicCorridor == null)
@@ -969,6 +986,7 @@ namespace MYB89.Editor
             ride.verdictLabel = verdictLabel;
             ride.keyLight = keyLight;
             ride.speedMetersPerSecond = 12.5f;
+            ride.resistanceMapper = rig.AddComponent<MYB60ResistanceMapper>();
             ride.resistanceController = rig.AddComponent<MYB59ResistanceController>();
             ride.SetPreviewProgress(0f);
 
@@ -1209,6 +1227,8 @@ namespace MYB89.Editor
                 writer.WriteLine("HUD grade: " + (ride == null || ride.gradeLabel == null ? "missing" : ride.gradeLabel.text));
                 writer.WriteLine("HUD segment: " + (ride == null || ride.segmentLabel == null ? "missing" : ride.segmentLabel.text));
                 writer.WriteLine("HUD verdict: " + (ride == null || ride.verdictLabel == null ? "missing" : ride.verdictLabel.text));
+                writer.WriteLine("Resistance mapper: " + (ride == null ? "missing" : ride.LastResistanceMappingSnapshot.StatusLabel));
+                writer.WriteLine("Resistance raw/smoothed: " + (ride == null ? "0~0" : ride.LastResistanceMappingSnapshot.Input.TargetResistanceLevel + "~" + ride.LastResistanceMappingSnapshot.SmoothedResistanceLevel));
                 writer.WriteLine("Resistance controller: " + (ride == null ? "missing" : ride.LastResistanceSnapshot.StatusLabel));
                 writer.WriteLine("Resistance demand/applied: " + (ride == null ? "0->0" : ride.LastResistanceSnapshot.Demand.ResistanceLevel + "->" + ride.LastResistanceSnapshot.AppliedResistanceLevel));
                 writer.WriteLine("Route difficulty cues: " + (difficultyCues == null ? 0 : difficultyCues.GeneratedCueCount));

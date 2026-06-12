@@ -325,6 +325,15 @@ function unityMyb59Input() {
   });
 }
 
+function unityMyb60Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb60Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB60.Editor; public static class MYB83RunMyb60Validator { public static void Main() { MYB60ResistanceMapperValidator.ValidateResistanceMapperCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -343,7 +352,8 @@ async function runLocalCi(options) {
     checks.push(
       skipCheck("Unity-MCP status", "--skip-unity was provided"),
       skipCheck("MYB-91 canonical baseline validator", "--skip-unity was provided"),
-      skipCheck("MYB-59 resistance controller validator", "--skip-unity was provided")
+      skipCheck("MYB-59 resistance controller validator", "--skip-unity was provided"),
+      skipCheck("MYB-60 resistance mapper validator", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -371,7 +381,20 @@ async function runLocalCi(options) {
         "180000"
       ], {
         timeoutMs: 240_000
-      })
+      }),
+      runCommand("MYB-60 resistance mapper validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb60Input(),
+        "--timeout",
+        "180000"
+      ], {
+        timeoutMs: 240_000
+      }),
+      runGitStatusCheck("post-Unity Packages/ProjectSettings drift check", CRITICAL_UNITY_STATUS_PATHS),
+      runGitStatusCheck("post-Unity generated folders untracked drift check", GENERATED_STATUS_PATHS)
     );
   }
 

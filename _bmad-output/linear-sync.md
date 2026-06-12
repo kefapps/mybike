@@ -65,6 +65,8 @@ Last sync: 2026-06-12
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
+- Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
+- Unity resistance mapper MYB-60: `_bmad-output/implementation-artifacts/myb-60-resistance-mapper.md`
 
 ## Linear Documents
 
@@ -5877,4 +5879,64 @@ Synced on 2026-06-12:
   - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
   - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
   - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+
+### MYB-60 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-60`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `dc893700-c34c-45bb-bb53-fb7f07a099d1`.
+- Branch: `myb-60-myb-034-mapper-pentedifficulte-unity-vers-resistance-mock`.
+- Base note:
+  - MYB-60 is stacked on local MYB-59 commit `25b6f5c`
+    (`MYB-59 add resistance controller boundary`) because MYB-60 consumes the
+    MYB-59 controller boundary.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-60-resistance-mapper.md`.
+- Implementation summary:
+  - Added `Assets/MYB60/Runtime/MYB60ResistanceMapper.cs`.
+  - Added raw target, comfort-limited and smoothed resistance snapshots with
+    `Stable`, `Ramping` and `Limited` statuses.
+  - Integrated MYB-60 into `MYB89ProbeRide` before MYB-59 receives a demand.
+  - Updated the probe HUD to show `raw~smoothed->applied` resistance and mapping
+    status.
+  - Added `MYB60ResistanceMapperValidator` with pure model, scene wiring, HUD
+    and smoothing checks.
+  - Added MYB-60 to `npm run validate:local-ci`.
+- Scope guard:
+  - MYB-57 still owns speed, effort and fatigue equations.
+  - MYB-59 still owns controller apply/fallback/unavailable status.
+  - No BLE, FTMS, CoreBluetooth, real trainer writes, WebGL or React work.
+- Review fixes:
+  - Enforced segment comfort caps on the previous smoothed resistance before
+    ramp-down, so recovery/warmup caps remain hard caps on applied mock demand.
+  - Preserved the previous smoothed resistance when sampling with zero delta
+    time, avoiding HUD/editor refresh snaps to the raw target.
+  - Strengthened the MYB-60 validator to prove smoothed and comfort-limited ride
+    path demands reach the MYB-59 controller.
+  - Added a scene wiring assertion for the MYB-59 controller reference before
+    the validator mutates scene objects.
+  - Aligned autoplay sampling so effort/resistance, pose and HUD use the same
+    advanced route position within a frame.
+  - Added post-Unity drift checks to `npm run validate:local-ci`.
+- Validation:
+  - `MYB89ProbeBuilder.BuildScene()`: PASS via Unity-MCP script execution.
+  - `MYB60ResistanceMapperValidator.ValidateResistanceMapperCli()`: PASS via
+    Unity-MCP script execution.
+  - `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`: PASS
+    via Unity-MCP script execution.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity-MCP script
+    execution.
+  - `MYB57EffortSimulatorValidator.ValidateEffortSimulatorCli()`: PASS via
+    Unity-MCP script execution.
+  - `git diff --check`: PASS.
+  - `npm run validate:local-ci`: PASS, including the MYB-60 resistance mapper
+    validator and post-Unity drift checks.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-60-resistance-mapper.txt`.
+  - `_bmad-output/unity-test-results/myb-59-resistance-controller.txt`.
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.

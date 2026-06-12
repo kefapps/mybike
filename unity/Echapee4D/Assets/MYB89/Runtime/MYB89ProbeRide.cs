@@ -1,6 +1,7 @@
 using System;
 using MYB57;
 using MYB59;
+using MYB60;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +38,9 @@ namespace MYB89
         [Header("MYB-59 Resistance Controller")]
         public MYB59ResistanceController resistanceController;
 
+        [Header("MYB-60 Resistance Mapper")]
+        public MYB60ResistanceMapper resistanceMapper;
+
         [Header("Lighting")]
         public Light keyLight;
 
@@ -45,16 +49,20 @@ namespace MYB89
         private Vector3 cameraBaseLocalPosition;
         private MYB57EffortSnapshot lastEffortSnapshot;
         private MYB59ResistanceSnapshot lastResistanceSnapshot;
+        private MYB60ResistanceMappingSnapshot lastResistanceMappingSnapshot;
         private bool hasEffortSnapshot;
+        private bool hasResistanceMappingSnapshot;
         private bool reuseEffortSnapshotForHud;
 
         public float RouteLength => routeLength;
         public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
         public MYB59ResistanceSnapshot LastResistanceSnapshot => lastResistanceSnapshot;
+        public MYB60ResistanceMappingSnapshot LastResistanceMappingSnapshot => lastResistanceMappingSnapshot;
 
         private void Awake()
         {
             CacheResistanceController();
+            CacheResistanceMapper();
             RebuildRouteCache();
             CacheCameraBasePosition();
             ApplyPose(progressMeters);
@@ -64,6 +72,7 @@ namespace MYB89
         private void Start()
         {
             CacheResistanceController();
+            CacheResistanceMapper();
             RebuildRouteCache();
             CacheCameraBasePosition();
             ApplyPose(progressMeters);
@@ -91,16 +100,25 @@ namespace MYB89
 
             if (Application.isPlaying && autoplay)
             {
-                var frameSpeed = useEffortSimulator
-                    ? SampleEffort(Time.deltaTime, true).SpeedMetersPerSecond
-                    : speedMetersPerSecond;
-                progressMeters += frameSpeed * Time.deltaTime;
-                reuseEffortSnapshotForHud = useEffortSimulator;
+                AdvanceAutoplayFrame(Time.deltaTime);
             }
 
             ApplyPose(progressMeters);
             UpdateHud();
             AnimateKeyLight();
+        }
+
+        private void AdvanceAutoplayFrame(float deltaTimeSeconds)
+        {
+            var frameSpeed = useEffortSimulator && hasEffortSnapshot
+                ? lastEffortSnapshot.SpeedMetersPerSecond
+                : speedMetersPerSecond;
+            progressMeters += frameSpeed * Mathf.Max(0f, deltaTimeSeconds);
+            if (useEffortSimulator)
+            {
+                SampleEffort(deltaTimeSeconds, true);
+                reuseEffortSnapshotForHud = true;
+            }
         }
 
         public void SetPreviewProgress(float meters)
@@ -109,7 +127,10 @@ namespace MYB89
             CacheCameraBasePosition();
             progressMeters = meters;
             hasEffortSnapshot = false;
+            hasResistanceMappingSnapshot = false;
             reuseEffortSnapshotForHud = false;
+            CacheResistanceMapper();
+            resistanceMapper?.ResetSmoothing();
             ApplyPose(progressMeters);
             UpdateHud();
         }
@@ -239,7 +260,7 @@ namespace MYB89
             if (gradeLabel != null)
             {
                 gradeLabel.text = useEffortSimulator
-                    ? $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}% | Res: {effort.TargetResistanceLevel:00}->{resistance.AppliedResistanceLevel:00}"
+                    ? $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}% | Res: {effort.TargetResistanceLevel:00}~{lastResistanceMappingSnapshot.SmoothedResistanceLevel:00}->{resistance.AppliedResistanceLevel:00}"
                     : $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
             }
 
@@ -251,7 +272,7 @@ namespace MYB89
             if (verdictLabel != null)
             {
                 verdictLabel.text = useEffortSimulator
-                    ? $"Mock trainer: {effort.SourceBadge} | Ctrl {resistance.StatusLabel} {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
+                    ? $"Mock trainer: {effort.SourceBadge} | Map {lastResistanceMappingSnapshot.StatusLabel} {lastResistanceMappingSnapshot.SmoothedResistanceLevel:00} | Ctrl {resistance.StatusLabel} {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
                     : $"Mock ride running | {percent:00}% | readable motion corridor";
             }
         }
@@ -276,7 +297,7 @@ namespace MYB89
                 deltaTimeSeconds);
 
             lastEffortSnapshot = MYB57EffortSimulator.EvaluateMock(input);
-            lastResistanceSnapshot = ApplyResistance(lastEffortSnapshot, deltaTimeSeconds);
+            lastResistanceSnapshot = ApplyResistance(lastEffortSnapshot, routeHud, deltaTimeSeconds);
             hasEffortSnapshot = true;
             if (updateFatigue)
             {
@@ -294,9 +315,35 @@ namespace MYB89
             }
         }
 
-        private MYB59ResistanceSnapshot ApplyResistance(MYB57EffortSnapshot effortSnapshot, float deltaTimeSeconds)
+        private void CacheResistanceMapper()
         {
-            var demand = new MYB59ResistanceDemand(effortSnapshot.TargetResistance01, "MYB-57 route difficulty");
+            if (resistanceMapper == null)
+            {
+                resistanceMapper = GetComponent<MYB60ResistanceMapper>();
+            }
+        }
+
+        private MYB59ResistanceSnapshot ApplyResistance(MYB57EffortSnapshot effortSnapshot, RouteHudSnapshot routeHud, float deltaTimeSeconds)
+        {
+            var mappingInput = new MYB60ResistanceMappingInput(
+                routeHud.RouteSegment,
+                routeHud.GradePercent,
+                effortSnapshot.TargetResistance01,
+                deltaTimeSeconds);
+            CacheResistanceMapper();
+            lastResistanceMappingSnapshot = resistanceMapper == null
+                ? MYB60ResistanceMapper.LocalFallback(
+                    mappingInput,
+                    hasResistanceMappingSnapshot
+                        ? lastResistanceMappingSnapshot.SmoothedResistance01
+                        : mappingInput.TargetResistance01,
+                    hasResistanceMappingSnapshot)
+                : resistanceMapper.MapResistance(mappingInput);
+            hasResistanceMappingSnapshot = true;
+
+            var demand = new MYB59ResistanceDemand(
+                lastResistanceMappingSnapshot.SmoothedResistance01,
+                "MYB-60 smoothed route difficulty");
             CacheResistanceController();
             return resistanceController == null
                 ? MYB59ResistanceController.LocalFallback(demand)

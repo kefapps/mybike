@@ -55,4 +55,3 @@ sharing one overloaded meaning of resistance.
   trainer control may reject, delay, or fail to confirm resistance changes.
 - Feed applied resistance back into speed and fatigue during MYB-59 -- rejected
   because MYB-59 is an abstraction boundary, not a gameplay-model refactor.
-

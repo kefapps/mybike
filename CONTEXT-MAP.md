@@ -21,4 +21,3 @@ File: `unity/Echapee4D/CONTEXT.md`
 
 Owns the ride-loop language used by the Unity mock experience: effort,
 resistance demand, applied resistance, and measured resistance.
-

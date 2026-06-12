@@ -77,4 +77,3 @@ Non-examples:
 
 - The resistance target requested by route difficulty.
 - The value most recently accepted by the runtime controller.
-
