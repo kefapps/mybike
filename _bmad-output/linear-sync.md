@@ -4264,7 +4264,8 @@ Synced on 2026-06-11:
   - `MYB-51`: change performance budgets from WebGL-first to platform budgets,
     macOS first and WebGL secondary.
   - `MYB-83`: change CI/validation framing from WebGL build first to Unity
-    macOS-first validation with optional WebGL proof.
+    macOS-first validation with optional WebGL proof; later re-scoped to local
+    reproducible CI instead of GitHub Actions.
   - `MYB-40`, `MYB-58`, `MYB-61`: requalify around macOS/CoreBluetooth/FTMS
     before Web Bluetooth.
 - Linear consistency pass for remaining open tickets:
@@ -5548,3 +5549,27 @@ Synced on 2026-06-12:
   - `git diff --check`: PASS.
   - Targeted secret/path scan: PASS; only historical `anti-secret scan` text in
     sync artifacts matched.
+
+### MYB-83 Local CI Rescope
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-83`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-83/myb-074-ajouter-une-ci-locale-unity-macos-first`.
+- Linear status: `Backlog`.
+- Linear updated at: `2026-06-12T09:34:56.164Z`.
+- Rescope decision: keep a CI-style validation track, but make it local and
+  reproducible rather than GitHub Actions.
+- Updated title target: `[MYB-074] Ajouter une CI locale Unity macOS-first`.
+- Scope:
+  - Add one local validation entrypoint for `unity/Echapee4D`.
+  - Run repo hygiene, Unity project sanity, critical generated-file checks, and
+    existing validators where available.
+  - Produce a short local report/output that can be pasted into PRs.
+  - Keep WebGL optional and secondary only when a future ticket explicitly asks
+    for browser proof.
+- Out of scope:
+  - GitHub Actions workflows or hosted runners.
+  - Cloud CI secrets, billing, or macOS runner setup.
+  - Full Unity build automation if the local editor/build support is missing.
