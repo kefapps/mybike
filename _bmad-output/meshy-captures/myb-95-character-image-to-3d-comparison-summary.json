@@ -1,0 +1,316 @@
+{
+  "source_image": "_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png",
+  "balance_before": 1446,
+  "balance_after": 1401,
+  "expected_total_cost": 45,
+  "observed_credit_delta": 45,
+  "results": [
+    {
+      "label": "15-credit-meshy-5-textured",
+      "expected_cost": 15,
+      "ai_model": "meshy-5",
+      "task_id": "019eb80f-b877-7718-bf99-91aa522054dd",
+      "created": true,
+      "source_image": "_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png",
+      "project_dir": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f",
+      "payload_without_image": {
+        "ai_model": "meshy-5",
+        "model_type": "standard",
+        "should_texture": true,
+        "enable_pbr": true,
+        "should_remesh": false,
+        "pose_mode": "t-pose",
+        "symmetry_mode": "auto",
+        "target_formats": [
+          "fbx"
+        ],
+        "auto_size": true,
+        "origin_at": "bottom"
+      },
+      "task": {
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "face_count": null,
+        "created_at": 1781204502878,
+        "started_at": 1781204502907,
+        "finished_at": 1781204703365,
+        "model_url_formats": [
+          "fbx"
+        ],
+        "texture_url_groups": [
+          [
+            "base_color",
+            "metallic",
+            "normal",
+            "roughness"
+          ]
+        ],
+        "thumbnail_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb80f-b877-7718-bf99-91aa522054dd/output/preview.png?[redacted]",
+        "task_error": null
+      },
+      "polls": [
+        {
+          "elapsed_seconds": 0,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 5,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 12,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 22,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 37,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 60,
+          "status": "IN_PROGRESS",
+          "progress": 20
+        },
+        {
+          "elapsed_seconds": 90,
+          "status": "IN_PROGRESS",
+          "progress": 49
+        },
+        {
+          "elapsed_seconds": 120,
+          "status": "IN_PROGRESS",
+          "progress": 49
+        },
+        {
+          "elapsed_seconds": 150,
+          "status": "IN_PROGRESS",
+          "progress": 49
+        },
+        {
+          "elapsed_seconds": 180,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 195,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 211,
+          "status": "SUCCEEDED",
+          "progress": 100
+        }
+      ],
+      "files": [
+        {
+          "kind": "model",
+          "format": "fbx",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/model.fbx",
+          "bytes": 18978860
+        },
+        {
+          "kind": "thumbnail",
+          "format": "png",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/thumbnail.png",
+          "bytes": 80796
+        },
+        {
+          "kind": "texture",
+          "format": "base_color",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/texture_0_base_color.png",
+          "bytes": 5178415
+        },
+        {
+          "kind": "texture",
+          "format": "metallic",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/texture_0_metallic.png",
+          "bytes": 12294
+        },
+        {
+          "kind": "texture",
+          "format": "roughness",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/texture_0_roughness.png",
+          "bytes": 719316
+        },
+        {
+          "kind": "texture",
+          "format": "normal",
+          "path": "meshy_output/20260611_210143_15-credit-meshy-5-textured_019eb80f/texture_0_normal.png",
+          "bytes": 4200196
+        }
+      ]
+    },
+    {
+      "label": "30-credit-meshy-6-textured",
+      "expected_cost": 30,
+      "ai_model": "meshy-6",
+      "task_id": "019eb813-2566-77e5-84a6-11487589cffc",
+      "created": true,
+      "source_image": "_bmad-output/meshy-captures/myb-95-character-reference-meshy-text-to-image.png",
+      "project_dir": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813",
+      "payload_without_image": {
+        "ai_model": "meshy-6",
+        "model_type": "standard",
+        "should_texture": true,
+        "enable_pbr": true,
+        "should_remesh": false,
+        "pose_mode": "t-pose",
+        "symmetry_mode": "auto",
+        "target_formats": [
+          "fbx"
+        ],
+        "auto_size": true,
+        "origin_at": "bottom",
+        "image_enhancement": true,
+        "remove_lighting": true
+      },
+      "task": {
+        "status": "SUCCEEDED",
+        "progress": 100,
+        "face_count": null,
+        "created_at": 1781204727882,
+        "started_at": 1781204727904,
+        "finished_at": 1781204954033,
+        "model_url_formats": [
+          "fbx"
+        ],
+        "texture_url_groups": [
+          [
+            "base_color",
+            "emission",
+            "metallic",
+            "normal",
+            "roughness"
+          ]
+        ],
+        "thumbnail_url": "https://assets.meshy.ai/d209503a-a3aa-4034-89a5-37bfd8c3b200/tasks/019eb813-2566-77e5-84a6-11487589cffc/output/preview.png?[redacted]",
+        "task_error": null
+      },
+      "polls": [
+        {
+          "elapsed_seconds": 0,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 5,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 12,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 22,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 37,
+          "status": "IN_PROGRESS",
+          "progress": 1
+        },
+        {
+          "elapsed_seconds": 60,
+          "status": "IN_PROGRESS",
+          "progress": 7
+        },
+        {
+          "elapsed_seconds": 90,
+          "status": "IN_PROGRESS",
+          "progress": 51
+        },
+        {
+          "elapsed_seconds": 120,
+          "status": "IN_PROGRESS",
+          "progress": 93
+        },
+        {
+          "elapsed_seconds": 150,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 165,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 181,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 196,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 211,
+          "status": "IN_PROGRESS",
+          "progress": 99
+        },
+        {
+          "elapsed_seconds": 226,
+          "status": "SUCCEEDED",
+          "progress": 100
+        }
+      ],
+      "files": [
+        {
+          "kind": "model",
+          "format": "fbx",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/model.fbx",
+          "bytes": 19182572
+        },
+        {
+          "kind": "thumbnail",
+          "format": "png",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/thumbnail.png",
+          "bytes": 78575
+        },
+        {
+          "kind": "texture",
+          "format": "base_color",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/texture_0_base_color.png",
+          "bytes": 6804231
+        },
+        {
+          "kind": "texture",
+          "format": "metallic",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/texture_0_metallic.png",
+          "bytes": 52220
+        },
+        {
+          "kind": "texture",
+          "format": "roughness",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/texture_0_roughness.png",
+          "bytes": 934525
+        },
+        {
+          "kind": "texture",
+          "format": "normal",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/texture_0_normal.png",
+          "bytes": 6849219
+        },
+        {
+          "kind": "texture",
+          "format": "emission",
+          "path": "meshy_output/20260611_210528_30-credit-meshy-6-textured_019eb813/texture_0_emission.png",
+          "bytes": 13539
+        }
+      ]
+    }
+  ]
+}

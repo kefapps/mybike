@@ -1,0 +1,74 @@
+{
+  "source": {
+    "path": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/refined.fbx",
+    "bytes": 33613340,
+    "vertices": 360354,
+    "faces": 720861,
+    "estimated_triangles": 720861,
+    "materials": [
+      "MYB95_RelicFountain_PBR"
+    ]
+  },
+  "variants": [
+    {
+      "name": "hero_80k",
+      "target_faces": 80000,
+      "fbx": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/myb95_relic_fountain_hero_80k.fbx",
+      "fbx_bytes": 2995932,
+      "vertices": 39921,
+      "faces": 79999,
+      "estimated_triangles": 79999,
+      "face_reduction_percent": 88.9,
+      "materials": [
+        "MYB95_RelicFountain_PBR"
+      ]
+    },
+    {
+      "name": "lod0_50k",
+      "target_faces": 50000,
+      "fbx": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/myb95_relic_fountain_lod0_50k.fbx",
+      "fbx_bytes": 1917596,
+      "vertices": 24920,
+      "faces": 50000,
+      "estimated_triangles": 50000,
+      "face_reduction_percent": 93.06,
+      "materials": [
+        "MYB95_RelicFountain_PBR"
+      ]
+    },
+    {
+      "name": "lod1_30k",
+      "target_faces": 30000,
+      "fbx": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/myb95_relic_fountain_lod1_30k.fbx",
+      "fbx_bytes": 1187564,
+      "vertices": 14918,
+      "faces": 29998,
+      "estimated_triangles": 29998,
+      "face_reduction_percent": 95.84,
+      "materials": [
+        "MYB95_RelicFountain_PBR"
+      ]
+    },
+    {
+      "name": "lod2_15k",
+      "target_faces": 15000,
+      "fbx": "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/myb95_relic_fountain_lod2_15k.fbx",
+      "fbx_bytes": 630172,
+      "vertices": 7418,
+      "faces": 14998,
+      "estimated_triangles": 14998,
+      "face_reduction_percent": 97.92,
+      "materials": [
+        "MYB95_RelicFountain_PBR"
+      ]
+    }
+  ],
+  "copied_textures": [
+    "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/refined_base_color.png",
+    "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/refined_metallic.png",
+    "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/refined_roughness.png",
+    "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/refined_normal.png",
+    "meshy_output/20260611_233231_premium-stylized-fantasy-unity_019eb899/blender_optimized/refined_emission.png"
+  ],
+  "comparison_capture": "_bmad-output/meshy-captures/myb-95-model-3-relic-fountain-blender-optimized-comparison.png"
+}

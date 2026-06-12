@@ -28,6 +28,17 @@ _bmad/config.user.toml
 _bmad/**/*.user.toml
 _bmad-output/video-captures/
 _bmad-output/unity-webgl-builds/
+_bmad-output/scripts/__pycache__/
+
+# Local tool/runtime state
+meshy_output/
+.onepassword-mcp.json
+
+# Local Meshy Unity bridge/plugin state; GPL/versioning decision pending.
+unity/Echapee4D/Assets/Packages.meta
+unity/Echapee4D/Assets/Packages/
+unity/Echapee4D/Assets/MeshyImports.meta
+unity/Echapee4D/Assets/MeshyImports/
 
 # Unity generated files
 unity/Echapee4D/Library/
