@@ -1,0 +1,221 @@
+{
+  "ticket": "MYB-96",
+  "generatedAt": "2026-06-12",
+  "tool": "Blender MCP execute_blender_code",
+  "sourceBlendPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Source/MYB96_BlenderGeneratedAssetPack.blend",
+  "assetCount": 15,
+  "totalTriangleCount": 6224,
+  "maxTrianglesPerAsset": 1156,
+  "budgets": {
+    "assetTriangleLimit": 5000,
+    "packTriangleLimit": 35000
+  },
+  "assets": [
+    {
+      "name": "MYB96_ColDirectionSign",
+      "family": "route-signage",
+      "triangleCount": 1156,
+      "meshObjectCount": 6,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_DarkWoodGrain",
+        "MYB96_MutedRouteRed",
+        "MYB96_OffWhitePaint",
+        "MYB96_WarmAlpineWood"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_ColDirectionSign.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab"
+    },
+    {
+      "name": "MYB96_KilometerMarker",
+      "family": "route-signage",
+      "triangleCount": 608,
+      "meshObjectCount": 4,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_OffWhitePaint",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_KilometerMarker.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_KilometerMarker.prefab"
+    },
+    {
+      "name": "MYB96_HairpinChevronSign",
+      "family": "route-signage",
+      "triangleCount": 292,
+      "meshObjectCount": 5,
+      "materials": [
+        "MYB96_DullIron",
+        "MYB96_MutedRouteRed",
+        "MYB96_OffWhitePaint",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_HairpinChevronSign.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab"
+    },
+    {
+      "name": "MYB96_SummitArchMarker",
+      "family": "route-signage",
+      "triangleCount": 1072,
+      "meshObjectCount": 7,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_DullIron",
+        "MYB96_OffWhitePaint",
+        "MYB96_WarmAlpineWood",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_SummitArchMarker.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_SummitArchMarker.prefab"
+    },
+    {
+      "name": "MYB96_RoadReflectorPair",
+      "family": "route-signage",
+      "triangleCount": 404,
+      "meshObjectCount": 7,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_DarkWoodGrain",
+        "MYB96_OffWhitePaint",
+        "MYB96_SoftMarkerGlow"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadReflectorPair.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadReflectorPair.prefab"
+    },
+    {
+      "name": "MYB96_AlpinePineSmall",
+      "family": "natural-roadside",
+      "triangleCount": 184,
+      "meshObjectCount": 4,
+      "materials": [
+        "MYB96_DarkWoodGrain",
+        "MYB96_NewLeafGreen",
+        "MYB96_PineGreen"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineSmall.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab"
+    },
+    {
+      "name": "MYB96_AlpinePineTall",
+      "family": "natural-roadside",
+      "triangleCount": 220,
+      "meshObjectCount": 5,
+      "materials": [
+        "MYB96_DarkWoodGrain",
+        "MYB96_NewLeafGreen",
+        "MYB96_PineGreen"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineTall.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab"
+    },
+    {
+      "name": "MYB96_CairnStack",
+      "family": "natural-roadside",
+      "triangleCount": 100,
+      "meshObjectCount": 5,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_CairnStack.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_CairnStack.prefab"
+    },
+    {
+      "name": "MYB96_RoadsideRockCluster",
+      "family": "natural-roadside",
+      "triangleCount": 124,
+      "meshObjectCount": 5,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_RoadsideGrass",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadsideRockCluster.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadsideRockCluster.prefab"
+    },
+    {
+      "name": "MYB96_WildflowerGrassPatch",
+      "family": "natural-roadside",
+      "triangleCount": 348,
+      "meshObjectCount": 17,
+      "materials": [
+        "MYB96_AlpineOchre",
+        "MYB96_NewLeafGreen",
+        "MYB96_PineGreen",
+        "MYB96_RoadsideGrass",
+        "MYB96_WildflowerAccent"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WildflowerGrassPatch.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab"
+    },
+    {
+      "name": "MYB96_StoneFlowerPlanter",
+      "family": "village-countryside",
+      "triangleCount": 264,
+      "meshObjectCount": 10,
+      "materials": [
+        "MYB96_AlpineOchre",
+        "MYB96_DarkInsetStone",
+        "MYB96_NewLeafGreen",
+        "MYB96_WeatheredStone",
+        "MYB96_WildflowerAccent"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_StoneFlowerPlanter.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab"
+    },
+    {
+      "name": "MYB96_WoodFenceSegment",
+      "family": "village-countryside",
+      "triangleCount": 256,
+      "meshObjectCount": 8,
+      "materials": [
+        "MYB96_DarkWoodGrain",
+        "MYB96_WarmAlpineWood"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WoodFenceSegment.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab"
+    },
+    {
+      "name": "MYB96_VillageBench",
+      "family": "village-countryside",
+      "triangleCount": 308,
+      "meshObjectCount": 7,
+      "materials": [
+        "MYB96_DarkWoodGrain",
+        "MYB96_WarmAlpineWood",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageBench.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageBench.prefab"
+    },
+    {
+      "name": "MYB96_MarketCrateStack",
+      "family": "village-countryside",
+      "triangleCount": 416,
+      "meshObjectCount": 10,
+      "materials": [
+        "MYB96_DarkWoodGrain",
+        "MYB96_MutedRouteRed",
+        "MYB96_WarmAlpineWood"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_MarketCrateStack.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_MarketCrateStack.prefab"
+    },
+    {
+      "name": "MYB96_VillageWellMarker",
+      "family": "village-countryside",
+      "triangleCount": 472,
+      "meshObjectCount": 8,
+      "materials": [
+        "MYB96_DarkInsetStone",
+        "MYB96_DarkWoodGrain",
+        "MYB96_DullIron",
+        "MYB96_MutedRouteRed",
+        "MYB96_WarmAlpineWood",
+        "MYB96_WeatheredStone"
+      ],
+      "modelPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageWellMarker.fbx",
+      "prefabPath": "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageWellMarker.prefab"
+    }
+  ]
+}

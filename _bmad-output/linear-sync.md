@@ -62,6 +62,7 @@ Last sync: 2026-06-12
 - Unity free asset shortlist MYB-41: `_bmad-output/implementation-artifacts/myb-41-unity-free-asset-shortlist.md`
 - Meshy custom models POC MYB-95: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
 - Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
+- Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 
 ## Linear Documents
 
@@ -5268,7 +5269,7 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-63`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `4d5cc46e-c139-4001-8955-0641bcf1be37`.
 - Assignee: Julien Bodin.
 - Branch: `myb-63-hud-difficulty-slope-segment`.
@@ -5573,3 +5574,41 @@ Synced on 2026-06-12:
   - GitHub Actions workflows or hosted runners.
   - Cloud CI secrets, billing, or macOS runner setup.
   - Full Unity build automation if the local editor/build support is missing.
+
+### MYB-96 Blender MCP Asset Pack Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-96`.
+- Linear status: `In Review`.
+- Branch: `myb-96-blender-mcp-assets`.
+- Pull request: `https://github.com/kefapps/mybike/pull/14`.
+- Worktree:
+  `/Users/jbodin/personnel/apps/mybike-myb-96-blender-mcp-assets`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`.
+- Implementation summary:
+  - Generated 15 local Blender MCP assets: 5 route/signage, 5 natural roadside,
+    and 5 village/countryside assets.
+  - Exported FBX models plus a Blender source file under
+    `Assets/Echappee/Art/MYB96BlenderGenerated`.
+  - Created 13 Unity materials, 15 prefabs, an internal generated-assets
+    manifest and `Assets/Scenes/MYB96BlenderAssetYard.unity`.
+  - Added `MYB96BlenderAssetPackBuilder` for repeatable build, material remap,
+    scene capture and budget validation.
+  - Kept scope local and bounded: no Meshy, no external generation service, no
+    third-party model download, no gameplay/HUD/BLE/WebGL/React changes.
+- Validation:
+  - Blender MCP generation: PASS, 15 FBX files.
+  - Blender metrics: PASS, `6224` total triangles, max asset `1156`.
+  - Unity MYB-96 builder: PASS, 15 prefabs, 13 materials, no failures.
+  - Material remap pass: PASS, 56 FBX material remaps persisted on first remap.
+  - `git diff --check`: PASS.
+  - Targeted forbidden path scan: PASS.
+  - Targeted MYB-96 secret scan: PASS.
+- Validation caveat:
+  - Final Unity runs wrote `pass` MYB-96 reports and captures, but some
+    batchmode processes exited non-zero after the report when the IvanMurzak
+    Unity-MCP plugin logged token/handshake failures during shutdown.
+- Visual evidence:
+  - `_bmad-output/unity-test-results/myb-96-blender-asset-yard.png`.
