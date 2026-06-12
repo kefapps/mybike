@@ -1,5 +1,5 @@
 MYB-51 Unity macOS-first performance baseline
-Timestamp UTC: 2026-06-12T08:52:54.8020710Z
+Timestamp UTC: 2026-06-12T12:04:24.3154660Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
@@ -14,7 +14,7 @@ Budgets:
 
 Measurements:
 - mode: Unity Editor static scene baseline
-- measurement seconds: 0.007
+- measurement seconds: 0.316
 - fps status: not-measured measured=False
 - build size status: not-measured measured=False
 - launch time status: not-measured measured=False

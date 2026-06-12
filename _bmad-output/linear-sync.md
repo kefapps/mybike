@@ -5690,7 +5690,10 @@ Synced on 2026-06-12:
 - Linear issue: `MYB-51`.
 - Linear status: `In Progress`.
 - Linear start comment ID: `45babdb0-9aa2-46f1-83f1-a8e138f6b810`.
+- Linear review comment ID: `17ef9a48-aee0-4479-a12a-80e6f3a72a29`.
 - Branch: `myb-51-unity-macos-performance-budgets`.
+- Pull request: `https://github.com/kefapps/mybike/pull/15`.
+- Implementation commit: `a6fb715` (`MYB-51 add Unity performance baseline`).
 - Grill-with-docs decisions:
   - `Budget performance` thresholds are soft decision signals in MYB-51.
   - Red budget status is not blocking by default.

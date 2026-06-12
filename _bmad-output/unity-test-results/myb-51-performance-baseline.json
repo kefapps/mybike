@@ -1,7 +1,7 @@
 {
     "Ticket": "MYB-51",
     "Title": "Unity macOS-first performance baseline",
-    "TimestampUtc": "2026-06-12T08:52:54.8020710Z",
+    "TimestampUtc": "2026-06-12T12:04:24.3154660Z",
     "UnityVersion": "6000.4.10f1",
     "ProjectPath": "/Users/jbodin/personnel/apps/mybike/unity/Echapee4D",
     "ScenePath": "Assets/Scenes/MYB89UnityMcpProbe.unity",
@@ -41,7 +41,7 @@
     ],
     "Measurements": {
         "MeasurementMode": "Unity Editor static scene baseline",
-        "MeasurementSeconds": 0.0070341,
+        "MeasurementSeconds": 0.3159035,
         "FpsMeasured": false,
         "FpsAverage": 0.0,
         "FpsStatus": "not-measured",
