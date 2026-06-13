@@ -6022,3 +6022,54 @@ Synced on 2026-06-12:
     merge commits on `main`.
   - `origin/main` was pushed from `a47b83b` to `4061612`.
   - MYB-64 was moved from Linear `In Review` to `Done` after merge.
+
+### MYB-73 Implementation Sync
+
+Synced on 2026-06-12:
+
+- Linear issue: `MYB-73`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `3c0d36bb-a169-4ef9-896e-a6409c1f0cb8`.
+- Branch: `myb-73-route-preview-unity`.
+- Commit:
+  - `6604e76` (`MYB-73 add Unity route preview`).
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-73-route-preview.md`.
+- Implementation summary:
+  - Added a dedicated `MYB73RoutePreviewPanel` Unity component for the
+    pre-ride `Fiche Route`.
+  - Extended `MYB89ProbeRide` with a preview gate: autoplay is paused at route
+    start before launch, then resumes after the CTA.
+  - Updated `MYB89ProbeBuilder` so the canonical Unity scene builds
+    `MYB73_RoutePreview`, a launch button, and an EventSystem.
+  - Added `MYB73RoutePreviewValidator` and integrated it into
+    `npm run validate:local-ci`.
+- Scope guard:
+  - No route selection, no React StartScreen, no WebGL proof, no connected-bike
+    telemetry.
+  - The fiche uses calculated Unity route stats plus local editorial labels for
+    biomes, difficulty, and three moments cles.
+- Validation:
+  - `MYB73RoutePreviewValidator.ValidateRoutePreviewCli()`: PASS via Unity-MCP
+    script execution; route `245.0 m`, estimated duration `111.4 s`, preview
+    hidden after launch, ride autoplay resumed.
+  - `npm run validate:local-ci`: PASS, including MYB-91, MYB-59, MYB-60,
+    MYB-64, and MYB-73 validators.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-73-route-preview-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-73-route-preview.png`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+
+Review synced on 2026-06-13:
+
+- Linear review comment ID: `a1a3d1e9-7c53-4c60-b1d8-6effc97524de`.
+- Review verdict: Approved after local fix.
+- Review fix commit:
+  - `416c97e` (`MYB-73 fix Unity meta whitespace`).
+- Finding resolved:
+  - New Unity `Assets/MYB73*` folder `.meta` files had trailing whitespace that
+    made `git diff --check main...HEAD` fail.
+- Validation after fix:
+  - `npm run validate:local-ci`: PASS.
+  - `git diff --check main...HEAD`: PASS.

@@ -1,0 +1,13 @@
+MYB-73 Unity route preview validation
+Timestamp UTC: 2026-06-12T22:12:11.2929030Z
+Unity: 6000.4.10f1
+Status: PASS
+Screenshot: _bmad-output/unity-test-results/myb-73-route-preview.png
+Route length: 245.0 m
+Estimated duration: 111.4 s
+Difficulty: Moderee
+Biomes: Foret claire | Village pave | Cote lumineuse
+Moments cles: Echauffement doux | Montee lisible | Sprint court
+Moment cle count: 3
+Preview visible after launch: False
+Ride autoplay after launch: True

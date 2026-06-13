@@ -15,6 +15,9 @@ namespace MYB89
         public float progressMeters;
         public bool autoplay = true;
 
+        [Header("MYB-73 Route Preview")]
+        public bool waitForRoutePreview;
+
         [Header("View")]
         public Transform cameraPivot;
         public float cameraBobMeters = 0.045f;
@@ -58,11 +61,13 @@ namespace MYB89
         private bool hasEffortSnapshot;
         private bool hasResistanceMappingSnapshot;
         private bool reuseEffortSnapshotForHud;
+        private bool routePreviewLaunched;
 
         public float RouteLength => routeLength;
         public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
         public MYB59ResistanceSnapshot LastResistanceSnapshot => lastResistanceSnapshot;
         public MYB60ResistanceMappingSnapshot LastResistanceMappingSnapshot => lastResistanceMappingSnapshot;
+        public bool IsRoutePreviewWaiting => waitForRoutePreview && !routePreviewLaunched;
         public bool IsNoTrainerFallbackActive =>
             useEffortSimulator && (useNoTrainerFallback || trainerSourcePreset == MYB57TrainerSourcePreset.ManualFallback);
 
@@ -72,6 +77,7 @@ namespace MYB89
             CacheResistanceMapper();
             RebuildRouteCache();
             CacheCameraBasePosition();
+            ApplyRoutePreviewGate();
             ApplyPose(progressMeters);
             UpdateHud();
         }
@@ -82,6 +88,7 @@ namespace MYB89
             CacheResistanceMapper();
             RebuildRouteCache();
             CacheCameraBasePosition();
+            ApplyRoutePreviewGate();
             ApplyPose(progressMeters);
             UpdateHud();
         }
@@ -106,7 +113,7 @@ namespace MYB89
                 RebuildRouteCache();
             }
 
-            if (Application.isPlaying && autoplay)
+            if (Application.isPlaying && autoplay && !IsRoutePreviewWaiting)
             {
                 AdvanceAutoplayFrame(Time.deltaTime);
             }
@@ -143,6 +150,21 @@ namespace MYB89
             UpdateHud();
         }
 
+        public void PrepareRoutePreview()
+        {
+            waitForRoutePreview = true;
+            routePreviewLaunched = false;
+            autoplay = false;
+            SetPreviewProgress(0f);
+        }
+
+        public void LaunchRoutePreviewRide()
+        {
+            routePreviewLaunched = true;
+            autoplay = true;
+            UpdateHud();
+        }
+
         public void RebuildRouteCache()
         {
             if (routeMarkers == null || routeMarkers.Length < 2)
@@ -171,6 +193,17 @@ namespace MYB89
             {
                 cameraBaseLocalPosition = cameraPivot.localPosition;
             }
+        }
+
+        private void ApplyRoutePreviewGate()
+        {
+            if (!waitForRoutePreview || routePreviewLaunched)
+            {
+                return;
+            }
+
+            autoplay = false;
+            progressMeters = 0f;
         }
 
         private void ApplyPose(float meters)
