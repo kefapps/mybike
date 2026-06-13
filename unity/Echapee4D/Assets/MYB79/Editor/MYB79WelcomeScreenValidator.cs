@@ -1,21 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using MYB73;
 using MYB89;
 using MYB89.Editor;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MYB73.Editor
+namespace MYB79.Editor
 {
-    public static class MYB73RoutePreviewValidator
+    public static class MYB79WelcomeScreenValidator
     {
-        private const string ScreenshotRelativePath = "_bmad-output/unity-test-results/myb-73-route-preview.png";
-        private const string ReportRelativePath = "_bmad-output/unity-test-results/myb-73-route-preview-validator.txt";
+        private const string ScreenshotRelativePath = "_bmad-output/unity-test-results/myb-79-welcome-screen.png";
+        private const string ReportRelativePath = "_bmad-output/unity-test-results/myb-79-welcome-screen-validator.txt";
 
-        [MenuItem("Tools/MYB-73/Validate Route Preview")]
-        public static string ValidateRoutePreviewCli()
+        [MenuItem("Tools/MYB-79/Validate Welcome Screen")]
+        public static string ValidateWelcomeScreenCli()
         {
             MYB89ProbeBuilder.BuildScene();
 
@@ -25,6 +26,9 @@ namespace MYB73.Editor
             var camera = Camera.main;
 
             MYB73RoutePreviewSnapshot snapshot = default;
+            string visibleCopy = string.Empty;
+            string ctaCopy = string.Empty;
+
             if (ride == null)
             {
                 failures.Add("Missing MYB89ProbeRide.");
@@ -37,7 +41,7 @@ namespace MYB73.Editor
 
             if (camera == null)
             {
-                failures.Add("Missing Main Camera for route preview proof.");
+                failures.Add("Missing Main Camera for welcome screen proof.");
             }
 
             if (preview != null)
@@ -45,74 +49,63 @@ namespace MYB73.Editor
                 preview.ShowPreview();
                 Canvas.ForceUpdateCanvases();
                 snapshot = preview.CaptureSnapshot();
+                visibleCopy = CollectSceneVisibleCopy();
+                ctaCopy = CollectButtonCopy(preview.launchButton);
 
                 if (!preview.IsVisible)
                 {
-                    failures.Add("Route preview should be visible before launch.");
-                }
-
-                if (preview.launchButton == null)
-                {
-                    failures.Add("Route preview launch button is not wired.");
+                    failures.Add("Welcome screen should be visible before launch.");
                 }
 
                 if (preview.titleLabel == null || !preview.titleLabel.text.Contains("Echappee"))
                 {
-                    failures.Add("Route preview title should expose the balade title.");
+                    failures.Add("Welcome screen should sell the balade with an Echappee title.");
+                }
+
+                if (preview.subtitleLabel == null || !preview.subtitleLabel.text.Contains("balade"))
+                {
+                    failures.Add("Welcome screen subtitle should present the balade, not a debug state.");
                 }
 
                 if (preview.statsLabel == null
+                    || !preview.statsLabel.text.Contains("m")
                     || !preview.statsLabel.text.Contains("env.")
                     || !preview.statsLabel.text.Contains("difficulte"))
                 {
-                    failures.Add("Route preview stats should show compact distance, approximate duration, and difficulty.");
-                }
-
-                if (snapshot.RouteLengthMeters < 200f)
-                {
-                    failures.Add($"Route preview distance is too short: {snapshot.RouteLengthMeters:0.0} m.");
-                }
-
-                if (snapshot.EstimatedDurationSeconds < 60f || snapshot.EstimatedDurationSeconds > 180f)
-                {
-                    failures.Add($"Route preview estimated duration is outside MVP bounds: {snapshot.EstimatedDurationSeconds:0.0} s.");
-                }
-
-                if (string.IsNullOrWhiteSpace(snapshot.OverallDifficulty))
-                {
-                    failures.Add("Route preview difficulty is missing.");
-                }
-
-                if (string.IsNullOrWhiteSpace(snapshot.BiomesText) || !snapshot.BiomesText.Contains("Foret"))
-                {
-                    failures.Add("Route preview biomes are missing or not editorially useful.");
-                }
-
-                if (snapshot.PassageCount <= 0 || snapshot.PassageCount > 3)
-                {
-                    failures.Add($"Route preview should expose 1 to 3 passages, got {snapshot.PassageCount}.");
+                    failures.Add("Welcome screen stats should show compact distance, estimated duration, and difficulty.");
                 }
 
                 if (preview.passagesLabel == null || !preview.passagesLabel.text.Contains("Passages"))
                 {
-                    failures.Add("Route preview passages label is not populated.");
+                    failures.Add("Welcome screen should expose Passages.");
                 }
 
-                var visibleCopy = string.Join(
-                    " ",
-                    preview.titleLabel == null ? string.Empty : preview.titleLabel.text,
-                    preview.subtitleLabel == null ? string.Empty : preview.subtitleLabel.text,
-                    preview.statsLabel == null ? string.Empty : preview.statsLabel.text,
-                    preview.difficultyLabel == null ? string.Empty : preview.difficultyLabel.text,
-                    preview.biomesLabel == null ? string.Empty : preview.biomesLabel.text,
-                    preview.passagesLabel == null ? string.Empty : preview.passagesLabel.text).ToLowerInvariant();
-                if (visibleCopy.Contains("mock")
-                    || visibleCopy.Contains("unity")
-                    || visibleCopy.Contains("debug")
-                    || visibleCopy.Contains("prototype")
-                    || visibleCopy.Contains("moments cles"))
+                if (snapshot.PassageCount != 3)
                 {
-                    failures.Add("Route preview visible copy should not expose debug, mock, Unity, prototype, or old moments cles wording.");
+                    failures.Add($"Welcome screen should expose exactly 3 Passages, got {snapshot.PassageCount}.");
+                }
+
+                if (!snapshot.PassagesText.Contains("Foret")
+                    || !snapshot.PassagesText.Contains("Montee")
+                    || !snapshot.PassagesText.Contains("Sprint"))
+                {
+                    failures.Add("Welcome screen Passages should mix scenic language and light effort hints.");
+                }
+
+                if (!string.Equals(ctaCopy.Trim(), "Commencer la balade", StringComparison.Ordinal))
+                {
+                    failures.Add("Welcome screen CTA should be 'Commencer la balade'.");
+                }
+
+                var visibleCopyLower = visibleCopy.ToLowerInvariant();
+                if (visibleCopyLower.Contains("mock")
+                    || visibleCopyLower.Contains("unity")
+                    || visibleCopyLower.Contains("debug")
+                    || visibleCopyLower.Contains("prototype")
+                    || visibleCopyLower.Contains("moments cles")
+                    || visibleCopyLower.Contains("lancer le ride"))
+                {
+                    failures.Add("Welcome screen visible copy should not expose debug/mock/Unity/prototype or old wording.");
                 }
             }
 
@@ -120,12 +113,12 @@ namespace MYB73.Editor
             {
                 if (!ride.IsRoutePreviewWaiting)
                 {
-                    failures.Add("Ride should wait on the route preview before launch.");
+                    failures.Add("Ride should wait on the welcome screen before launch.");
                 }
 
                 if (ride.autoplay)
                 {
-                    failures.Add("Ride autoplay should be disabled while the route preview is visible.");
+                    failures.Add("Ride autoplay should be disabled while the welcome screen is visible.");
                 }
             }
 
@@ -150,35 +143,63 @@ namespace MYB73.Editor
 
             if (preview != null && preview.IsVisible)
             {
-                failures.Add("Route preview should hide after launch.");
+                failures.Add("Welcome screen should hide after launch.");
             }
 
             if (ride != null)
             {
                 if (ride.IsRoutePreviewWaiting)
                 {
-                    failures.Add("Ride should stop waiting after route preview launch.");
+                    failures.Add("Ride should stop waiting after welcome screen launch.");
                 }
 
                 if (!ride.autoplay)
                 {
-                    failures.Add("Ride autoplay should resume after route preview launch.");
+                    failures.Add("Ride autoplay should resume after welcome screen launch.");
                 }
             }
 
-            var report = WriteReport(failures, snapshot, preview, ride);
+            var report = WriteReport(failures, snapshot, visibleCopy, ctaCopy, preview, ride);
             if (failures.Count > 0)
             {
-                throw new InvalidOperationException("MYB-73 route preview validation failed. See " + report);
+                throw new InvalidOperationException("MYB-79 welcome screen validation failed. See " + report);
             }
 
-            Debug.Log("MYB-73 route preview validation passed. Report: " + report);
+            Debug.Log("MYB-79 welcome screen validation passed. Report: " + report);
             return report;
+        }
+
+        private static string CollectSceneVisibleCopy()
+        {
+            var labels = UnityEngine.Object.FindObjectsByType<Text>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            var lines = new List<string>();
+            foreach (var label in labels)
+            {
+                if (label != null && !string.IsNullOrWhiteSpace(label.text))
+                {
+                    lines.Add(label.text.Trim());
+                }
+            }
+
+            return string.Join(" ", lines);
+        }
+
+        private static string CollectButtonCopy(Button button)
+        {
+            if (button == null)
+            {
+                return string.Empty;
+            }
+
+            var label = button.GetComponentInChildren<Text>(true);
+            return label == null ? string.Empty : label.text;
         }
 
         private static string WriteReport(
             IReadOnlyList<string> failures,
             MYB73RoutePreviewSnapshot snapshot,
+            string visibleCopy,
+            string ctaCopy,
             MYB73RoutePreviewPanel preview,
             MYB89ProbeRide ride)
         {
@@ -188,7 +209,7 @@ namespace MYB73.Editor
 
             using (var writer = new StreamWriter(reportPath, false))
             {
-                writer.WriteLine("MYB-73 Unity route preview validation");
+                writer.WriteLine("MYB-79 Unity welcome screen validation");
                 writer.WriteLine("Timestamp UTC: " + DateTime.UtcNow.ToString("O"));
                 writer.WriteLine("Unity: " + Application.unityVersion);
                 writer.WriteLine("Status: " + (failures.Count == 0 ? "PASS" : "FAIL"));
@@ -199,6 +220,8 @@ namespace MYB73.Editor
                 writer.WriteLine("Biomes: " + snapshot.BiomesText);
                 writer.WriteLine("Passages: " + snapshot.PassagesText);
                 writer.WriteLine("Passage count: " + snapshot.PassageCount);
+                writer.WriteLine("CTA: " + ctaCopy);
+                writer.WriteLine("Visible copy: " + visibleCopy);
                 writer.WriteLine("Preview visible after launch: " + (preview != null && preview.IsVisible));
                 writer.WriteLine("Ride autoplay after launch: " + (ride != null && ride.autoplay));
 

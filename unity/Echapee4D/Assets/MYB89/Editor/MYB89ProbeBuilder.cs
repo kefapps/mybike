@@ -1059,21 +1059,21 @@ namespace MYB89.Editor
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.anchoredPosition = new Vector2(0f, -10f);
-            panelRect.sizeDelta = new Vector2(760f, 390f);
+            panelRect.anchoredPosition = new Vector2(0f, -18f);
+            panelRect.sizeDelta = new Vector2(820f, 420f);
 
             var image = panelObject.AddComponent<Image>();
-            image.color = new Color(0.055f, 0.07f, 0.06f, 0.9f);
+            image.color = new Color(0.05f, 0.06f, 0.055f, 0.72f);
 
             var preview = panelObject.AddComponent<MYB73RoutePreviewPanel>();
             preview.panelRoot = panelObject;
             preview.ride = ride;
-            preview.titleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Title", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -22f), new Vector2(600f, 48f), TextAnchor.UpperLeft, 34);
-            preview.subtitleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Subtitle", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -76f), new Vector2(690f, 62f), TextAnchor.UpperLeft, 20);
-            preview.statsLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Stats", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -146f), new Vector2(690f, 36f), TextAnchor.UpperLeft, 24);
-            preview.difficultyLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Difficulty", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -192f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 22);
-            preview.biomesLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Biomes", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -236f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 20);
-            preview.momentsLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Moments", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(28f, -278f), new Vector2(690f, 34f), TextAnchor.UpperLeft, 20);
+            preview.titleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Title", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -26f), new Vector2(650f, 52f), TextAnchor.UpperLeft, 36);
+            preview.subtitleLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Subtitle", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -86f), new Vector2(728f, 60f), TextAnchor.UpperLeft, 20);
+            preview.statsLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Stats", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -154f), new Vector2(728f, 38f), TextAnchor.UpperLeft, 24);
+            preview.difficultyLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Difficulty", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -206f), new Vector2(728f, 34f), TextAnchor.UpperLeft, 22);
+            preview.biomesLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Biomes", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -250f), new Vector2(728f, 34f), TextAnchor.UpperLeft, 20);
+            preview.passagesLabel = CreateHudText(panelObject.transform, "MYB73_RoutePreview_Passages", new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(32f, -292f), new Vector2(728f, 42f), TextAnchor.UpperLeft, 20);
             preview.launchButton = CreateRoutePreviewButton(panelObject.transform);
             preview.Refresh();
 
@@ -1089,8 +1089,8 @@ namespace MYB89.Editor
             rect.anchorMin = new Vector2(1f, 0f);
             rect.anchorMax = new Vector2(1f, 0f);
             rect.pivot = new Vector2(1f, 0f);
-            rect.anchoredPosition = new Vector2(-28f, 24f);
-            rect.sizeDelta = new Vector2(220f, 52f);
+            rect.anchoredPosition = new Vector2(-32f, 28f);
+            rect.sizeDelta = new Vector2(250f, 54f);
 
             var image = buttonObject.AddComponent<Image>();
             image.color = new Color(0.97f, 0.74f, 0.24f, 0.95f);
@@ -1103,8 +1103,8 @@ namespace MYB89.Editor
             colors.selectedColor = colors.highlightedColor;
             button.colors = colors;
 
-            var label = CreateHudText(buttonObject.transform, "MYB73_RoutePreview_LaunchLabel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(200f, 42f), TextAnchor.MiddleCenter, 22);
-            label.text = "Lancer le ride";
+            var label = CreateHudText(buttonObject.transform, "MYB73_RoutePreview_LaunchLabel", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(230f, 42f), TextAnchor.MiddleCenter, 22);
+            label.text = "Commencer la balade";
             label.color = new Color(0.06f, 0.07f, 0.05f, 1f);
 
             return button;

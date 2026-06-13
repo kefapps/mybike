@@ -72,6 +72,7 @@ Last sync: 2026-06-13
 - Unity natural route turn navigation MYB-98: `_bmad-output/implementation-artifacts/myb-98-natural-route-turn-navigation.md`
 - Unity natural turn capture MYB-98:
   `_bmad-output/video-captures/myb-98-natural-turns-20260613-093900/myb-98-natural-turns-720p-muted.mp4`
+- Unity welcome screen MYB-79: `_bmad-output/implementation-artifacts/myb-79-unity-welcome-screen.md`
 
 ## Linear Documents
 
@@ -113,6 +114,7 @@ Last sync: 2026-06-13
 | Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
+| Unity welcome screen | `MYB-79` | [MYB-070] Refondre l’écran d’accueil Unity pour vendre la balade | https://linear.app/kefjbo/issue/MYB-79/myb-070-refondre-lecran-daccueil-unity-pour-vendre-la-balade |
 | ESP32 trainer modes spike | `MYB-97` | Spike ESP32-WROOM : modes trainer FTMS read-only et controllable | https://linear.app/kefjbo/issue/MYB-97/spike-esp32-wroom-modes-trainer-ftms-read-only-et-controllable |
 | Unity route turn feel polish | `MYB-98` | Rendre les virages et la navigation en courbe plus naturels | https://linear.app/kefjbo/issue/MYB-98/rendre-les-virages-et-la-navigation-en-courbe-plus-naturels |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
@@ -6215,3 +6217,52 @@ Closure synced on 2026-06-13:
 - Branch `MYB-98-natural-route-turn-navigation` was deleted on origin after
   merge.
 - Linear status moved to `Done`.
+
+### MYB-79 Unity Welcome Screen Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-79`.
+- Linear status: `In Progress`.
+- Branch: `MYB-79-unity-welcome-screen`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-79-unity-welcome-screen.md`.
+- Implementation summary:
+  - Refactored the existing MYB-73 `Fiche Route` into a product-facing Unity
+    welcome screen instead of adding a separate start/menu state.
+  - Replaced canonical `Moment Cle` wording with `Passage` in the visual
+    direction glossary.
+  - Updated visible copy to sell the balade first: `L'Echappee des lumieres`,
+    compact route stats, three scenic-first `Passages`, and CTA
+    `Commencer la balade`.
+  - Hid ride HUD labels while the welcome screen is visible so debug/mock readouts
+    do not appear behind the product entry.
+  - Added `MYB79WelcomeScreenValidator` with a 1280x720 PNG proof and all-active
+    scene text scan for forbidden debug/mock/prototype wording.
+  - Added the MYB-79 validator to `npm run validate:local-ci`.
+- Scope guard:
+  - No React `StartScreen` refactor.
+  - No route browser or multi-route menu.
+  - No WebGL proof, connected-bike telemetry, FTMS, firmware, or hardware scope.
+- Validation:
+  - `MYB79WelcomeScreenValidator.ValidateWelcomeScreenCli()`: PASS via direct
+    Unity-MCP script execution.
+  - `MYB73RoutePreviewValidator.ValidateRoutePreviewCli()`: PASS via direct
+    Unity-MCP script execution.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via direct Unity-MCP script
+    execution.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    direct Unity-MCP script execution.
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `git diff --check`: PASS.
+  - `npm run validate:local-ci`: FAIL because local `unity-mcp-cli` cannot resolve
+    `/Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js`
+    (`ERR_MODULE_NOT_FOUND`). Repo hygiene checks in that report passed; Unity
+    validators passed through direct Unity-MCP tools.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-79-welcome-screen-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-79-welcome-screen.png`.
+  - `_bmad-output/unity-test-results/myb-73-route-preview-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.

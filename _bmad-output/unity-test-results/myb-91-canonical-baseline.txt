@@ -1,5 +1,5 @@
 MYB-91 Unity canonical baseline validation
-Timestamp UTC: 2026-06-12T22:12:07.7843030Z
+Timestamp UTC: 2026-06-13T11:28:18.0656720Z
 Status: PASS
 Unity: 6000.4.10f1
 Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
@@ -13,7 +13,7 @@ WebGL builder: MYB90.Editor.MYB90WebGLReadinessBuilder
 Previous MYB-90 WebGL report exists: True
 Previous MYB-90 WebGL build status: Succeeded
 Route markers: 9
-Route length: 245.0 m
+Route length: 245.2 m
 Speed: 12.5 m/s
 Renderer count: 271
 MYB44 scenic corridor: True
@@ -25,7 +25,7 @@ Road mesh: True
 HUD canvas: True
 HUD labels wired: True
 HUD difficulty: Effort: Sustained climb 58%
-HUD grade: Pente: -0.6% | Res: 61~61->61
+HUD grade: Pente: -0.7% | Res: 60~60->60
 HUD segment: Segment: Climb
 Route difficulty cues: 11
 Climb cues: 4
