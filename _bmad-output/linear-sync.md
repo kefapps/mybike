@@ -6205,3 +6205,13 @@ Review synced on 2026-06-13:
 - Residual risk:
   - None identified after adding dedicated `MYB89RideTrajectory` unit validator
     coverage.
+
+Closure synced on 2026-06-13:
+
+- Linear closure comment ID: `fe45ddec-059f-40df-aa5e-161d7e6733f9`.
+- Pull request: `https://github.com/kefapps/mybike/pull/21`.
+- Merge commit on `main`: `033e35cc8d481559959ae0eaa852e98e74836cfe`.
+- Merge method: squash merge.
+- Branch `MYB-98-natural-route-turn-navigation` was deleted on origin after
+  merge.
+- Linear status moved to `Done`.
