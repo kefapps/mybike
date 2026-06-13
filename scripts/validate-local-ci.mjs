@@ -388,6 +388,15 @@ function unityMyb100Input() {
   });
 }
 
+function unityMyb104Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb104Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB104.Editor; public static class MYB83RunMyb104Validator { public static void Main() { MYB104SceneComposer.ApplyAndValidateCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -413,7 +422,8 @@ async function runLocalCi(options) {
       skipCheck("MYB-79 welcome screen validator", "--skip-unity was provided"),
       skipCheck("MYB-80 HUD cadence validator", "--skip-unity was provided"),
       skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided"),
-      skipCheck("MYB-100 imported asset adjustment validator", "--skip-unity was provided")
+      skipCheck("MYB-100 imported asset adjustment validator", "--skip-unity was provided"),
+      skipCheck("MYB-104 production passages composer", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -514,6 +524,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityMyb100Input(),
+        "--timeout",
+        "240000"
+      ], {
+        timeoutMs: 300_000
+      }),
+      runCommand("MYB-104 production passages composer", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb104Input(),
         "--timeout",
         "240000"
       ], {
