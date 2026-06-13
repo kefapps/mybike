@@ -6267,3 +6267,12 @@ Synced on 2026-06-13:
   - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
   - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+
+Closure synced on 2026-06-13:
+
+- Linear closure comment ID: `5180b5d8-a164-490a-8db4-978ff30ad9f0`.
+- Pull request: `https://github.com/kefapps/mybike/pull/22`.
+- Merge commit on `main`: `d7bb59ce798a64d8da17f51a0e2107ed0379503d`.
+- Merge method: squash merge.
+- Branch `MYB-79-unity-welcome-screen` was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
