@@ -63,6 +63,7 @@ Last sync: 2026-06-13
 - Meshy custom models POC MYB-95: `_bmad-output/implementation-artifacts/myb-95-meshy-custom-models-poc.md`
 - Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
+- Unity asset optimization pipeline MYB-50: `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -114,6 +115,8 @@ Last sync: 2026-06-13
 | Meshy custom models POC | `MYB-95` | POC Meshy : modèles 3D animés custom et effort d’intégration Unity | https://linear.app/kefjbo/issue/MYB-95/poc-meshy-modeles-3d-animes-custom-et-effort-dintegration-unity |
 | Blender MCP asset pack | `MYB-96` | Générer un pack d'assets Blender via MCP pour la vertical slice Unity | https://linear.app/kefjbo/issue/MYB-96/generer-un-pack-dassets-blender-via-mcp-pour-la-vertical-slice-unity |
 | Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
+| Unity asset optimization pipeline | `MYB-50` | [MYB-018] Définir le pipeline d’optimisation assets Unity macOS-first | https://linear.app/kefjbo/issue/MYB-50/myb-018-definir-le-pipeline-doptimisation-assets-unity-macos-first |
+| Unity imported asset adjustment follow-up | `MYB-100` | Ajuster les assets Unity importés après pipeline MYB-50 | https://linear.app/kefjbo/issue/MYB-100/ajuster-les-assets-unity-importes-apres-pipeline-myb-50 |
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
 | Unity welcome screen | `MYB-79` | [MYB-070] Refondre l’écran d’accueil Unity pour vendre la balade | https://linear.app/kefjbo/issue/MYB-79/myb-070-refondre-lecran-daccueil-unity-pour-vendre-la-balade |
@@ -187,6 +190,9 @@ continuation, engine migration, backend, BLE/FTMS or new broad backlog.
   creates soft performance budgets and a lightweight baseline for
   `unity/Echapee4D`, without making WebGL the main target or adding a full
   profiling pipeline.
+- `MYB-100` follows `MYB-50`; it applies the documented asset optimization
+  pipeline to assets already imported by `MYB-42`, `MYB-53`, `MYB-95`, and
+  `MYB-96`, without new mass imports or biome expansion.
 
 ## Readiness Caveats Synced
 
@@ -6379,3 +6385,40 @@ Closure synced on 2026-06-13:
 - Branch `myb-84-myb-075-creer-un-readme-public-oriente-produit-dev-unity` was
   deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-50 Unity Asset Optimization Pipeline Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-50`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-50/myb-018-definir-le-pipeline-doptimisation-assets-unity-macos-first`.
+- Linear status: `In Progress`.
+- Branch: `myb-50-myb-018-definir-le-pipeline-doptimisation-assets-unity-macos`.
+- Follow-up created: `MYB-100`
+  `https://linear.app/kefjbo/issue/MYB-100/ajuster-les-assets-unity-importes-apres-pipeline-myb-50`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`.
+- Implementation summary:
+  - Defined a concrete macOS-first Unity asset optimization pipeline.
+  - Kept MYB-50 documentation-only: no new asset import, no prefab/material/scene
+    adjustment, no WebGL-first work.
+  - Added `Pipeline Asset Unity` and `Asset Optimise Unity` to `CONTEXT.md`.
+  - Split provenance rules between third-party free assets and custom/generated
+    assets.
+  - Defined `ok / warning / reject` bands by asset family: surface/material,
+    light prop, animated actor, premium signal, and biome kit.
+  - Preserved existing asset folder layout and standardized recommended
+    subfolders.
+  - Added `scripts/validate-myb-50-docs.mjs` as a lightweight documentation
+    validation check.
+- Scope guard:
+  - No changes under `src/**`.
+  - No recreation of `unity/Echappee3D/**`.
+  - No Unity asset, scene, prefab, model, material, texture, animation, or import
+    setting changes.
+- Validation:
+  - `jq empty unity/Echapee4D/Assets/Echappee/Art/ThirdPartyAssets.assetmanifest.json`: PASS.
+  - `node --check scripts/validate-myb-50-docs.mjs`: PASS.
+  - `node scripts/validate-myb-50-docs.mjs`: PASS.
+  - `git diff --check`: PASS.
