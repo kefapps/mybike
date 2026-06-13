@@ -6657,3 +6657,21 @@ Synced on 2026-06-13:
     execution.
   - `git diff --check`: PASS after normalizing Unity scene trailing whitespace.
   - Guard check for `src/**` and `unity/Echappee3D/**`: PASS.
+
+Review sync on 2026-06-14:
+
+- Review verdict: OK after a review fix.
+- Review fix commit: `bbfc7e5` (`MYB-104 fix local CI scene order`).
+- GitHub review comment:
+  `https://github.com/kefapps/mybike/pull/29#issuecomment-4700119627`.
+- Linear review comment ID: `c2a349b4-117a-4682-91b8-788ad66720a8`.
+- Finding fixed:
+  - `scripts/validate-local-ci.mjs` ran MYB-100 as the final Unity validator,
+    which could leave the canonical scene in the pre-MYB-104 visual state after
+    local CI. The fix runs `MYB104SceneComposer.ApplyAndValidateCli()` after
+    MYB-100 so the local CI final Unity state matches the active scene ticket.
+- Review validation:
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `git diff --check`: PASS.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - Targeted Unity sequence MYB-100 then MYB-104: PASS.
