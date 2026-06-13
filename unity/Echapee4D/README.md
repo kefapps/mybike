@@ -9,7 +9,7 @@ explicitly targets it.
 ## Current Baseline
 
 - Unity editor: `6000.4.10f1`
-- Unity-MCP package: `com.ivanmurzak.unity.mcp` `0.80.0`
+- Unity-MCP package: `com.ivanmurzak.unity.mcp` `0.81.0`
 - Canonical scene: `Assets/Scenes/MYB89UnityMcpProbe.unity`
 - WebGL build helper, secondary proof: `Tools/MYB-90/Build WebGL Readiness Probe`
 - Baseline validator: `Tools/MYB-91/Validate Canonical Unity Baseline`
