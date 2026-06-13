@@ -6496,3 +6496,47 @@ Closure synced on 2026-06-13:
 - Linear status moved from `In Progress` to `Done`.
 - Branch `myb-100-ajuster-assets-unity-importes` was deleted on origin after
   merge.
+
+### MYB-103 Scene Visual Audit Scope Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-103`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-103/auditer-et-recadrer-la-scene-unity-canonique-avant-nouvelle-passe`.
+- Linear status: `Backlog`.
+- Priority: `High`.
+- Related issues: `MYB-101`, `MYB-102`, `MYB-37`.
+- Local scope artifact:
+  `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`.
+- Context:
+  - MYB-101 produced three visual variants, but product review rejected all
+    three as visually poor.
+  - Quick Unity scene audit reported 337 renderers, 34 visible materials, 11
+    lights, 1 shadow-casting light, 1 post-process Volume, 0 reflection probes,
+    and 0 light probe groups.
+  - Unity documentation review points to a structural scene-lighting problem,
+    not a post-processing preset problem.
+- Scope guard:
+  - Do not merge the current MYB-101 visuals as final.
+  - Keep global URP defaults in the separate MYB-102 spike.
+  - No `src/**`, no `unity/Echappee3D/**`, no new mass asset import, and no
+    Meshy credit usage.
+
+Grill-with-docs update on 2026-06-13:
+
+- MYB-103 remains audit/cadrage only; no canonical Unity scene change in this
+  ticket except inspection, captures, or audit evidence.
+- Target sequence: three successive one-minute Passages in the canonical ride:
+  foret claire, village / route de col, then panorama / signal fantasy.
+- Main rejection criterion: `Lecture Prototype`, meaning the scene shows
+  temporary construction instead of an intentional place.
+- Each Passage must have its own audit grid.
+- Each grid item must receive `prototype`, `limite`, or
+  `production low-poly`, with a short visible-evidence justification.
+- Unity documentation is used as support for visual criteria, not as a mandatory
+  URP feature checklist.
+- MYB-103 prepares the next visual implementation issue content, but that issue
+  is created only after the audit is reviewed.
+- Linear comment ID:
+  `3b395130-6e82-47d9-86b1-b1f5c9f50a87`.

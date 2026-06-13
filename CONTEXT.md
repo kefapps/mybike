@@ -311,6 +311,35 @@ Non-examples:
 - Blockout meshes, flat unlit primitives, noisy decimated assets, low-detail
   props that feel empty, or any asset that reads as "cheap low-poly".
 
+### Lecture Prototype
+
+Definition: A negative visual verdict for a scene or Passage that shows its
+temporary construction instead of reading as an intentional place. It can come
+from visible primitives, opportunistic prop placement, flat lighting, raw
+materials, weak camera composition, missing grounding, or absent place identity.
+
+Relationships:
+
+- `Lecture Prototype` is the main rejection signal for `Low-poly de Production`.
+- Each audit item must justify why it reads as `prototype`, `limite`, or
+  `production low-poly` from visible capture or video evidence.
+- A simple low-poly scene does not automatically have `Lecture Prototype` if it
+  still feels composed, lit, grounded, readable, and intentional.
+
+Examples:
+
+- A road segment with no foreground/midground/background structure, props
+  dropped beside the road, no useful shadows, and flat material colors.
+- A Passage where bloom, fog, or color grading tries to compensate for an empty
+  or poorly staged scene.
+
+Non-examples:
+
+- Economical geometry with deliberate silhouettes, strong light direction,
+  coherent material separation, anchored props, and a readable scenic identity.
+- A sparse scene that still feels authored because the camera view is composed
+  around depth, horizon, shadow shapes, and one memorable premium signal.
+
 ### Premium Aventure
 
 Definition: A quality bar where the scene first sells adventure, place, and
