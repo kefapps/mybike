@@ -6285,8 +6285,11 @@ Synced on 2026-06-13:
 - Linear issue: `MYB-80`.
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-80/myb-071-stabiliser-la-cadence-hud-unity-et-accessibilite-macos-first`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `1537fe2a-3e47-4ef6-ba04-30741b7d6262`.
+- Pull request: `https://github.com/kefapps/mybike/pull/23`.
 - Branch: `MYB-80-hud-cadence-accessibility`.
+- Implementation commit: `52da95e` (`MYB-80 stabilize Unity HUD cadence`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-80-hud-cadence-accessibility.md`.
 - Implementation summary:
