@@ -5368,7 +5368,7 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-48`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `ee164c92-c321-4c9c-8f5a-f071792e4a38`.
 - Branch: `myb-48-route-difficulty-cues`.
 - Grill-with-docs decisions:
@@ -6394,7 +6394,12 @@ Synced on 2026-06-13:
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-50/myb-018-definir-le-pipeline-doptimisation-assets-unity-macos-first`.
 - Linear status: `In Progress`.
+- Linear implementation document:
+  `https://linear.app/kefjbo/document/implementation-notes-myb-50-unity-asset-optimization-pipeline-aec24cf69af5`.
+- Linear implementation document ID: `0cd73843-24cd-4906-be78-f73ff96367de`.
+- Pull request: `https://github.com/kefapps/mybike/pull/26`.
 - Branch: `myb-50-myb-018-definir-le-pipeline-doptimisation-assets-unity-macos`.
+- Implementation commit: `6a4e2a6` (`MYB-50 define Unity asset optimization pipeline`).
 - Follow-up created: `MYB-100`
   `https://linear.app/kefjbo/issue/MYB-100/ajuster-les-assets-unity-importes-apres-pipeline-myb-50`.
 - Local implementation report:
