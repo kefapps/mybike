@@ -379,6 +379,15 @@ function unityMyb98Input() {
   });
 }
 
+function unityMyb100Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb100Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB100.Editor; public static class MYB83RunMyb100Validator { public static void Main() { MYB100ImportedAssetOptimizer.ApplyAndValidateCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -403,7 +412,8 @@ async function runLocalCi(options) {
       skipCheck("MYB-73 route preview validator", "--skip-unity was provided"),
       skipCheck("MYB-79 welcome screen validator", "--skip-unity was provided"),
       skipCheck("MYB-80 HUD cadence validator", "--skip-unity was provided"),
-      skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided")
+      skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided"),
+      skipCheck("MYB-100 imported asset adjustment validator", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -497,6 +507,17 @@ async function runLocalCi(options) {
         "180000"
       ], {
         timeoutMs: 240_000
+      }),
+      runCommand("MYB-100 imported asset adjustment validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb100Input(),
+        "--timeout",
+        "240000"
+      ], {
+        timeoutMs: 300_000
       }),
       runGitStatusCheck("post-Unity Packages/ProjectSettings drift check", CRITICAL_UNITY_STATUS_PATHS),
       runGitStatusCheck("post-Unity generated folders untracked drift check", GENERATED_STATUS_PATHS)

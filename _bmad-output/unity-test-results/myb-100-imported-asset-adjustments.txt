@@ -1,0 +1,96 @@
+# MYB-100 Imported Asset Adjustments
+
+Status: pass
+Generated at: 2026-06-13T17:12:42Z
+Scope: apply MYB-50 import policy to existing MYB-42, MYB-53, MYB-95 and MYB-96 Unity assets.
+Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+PNG proof: _bmad-output/unity-test-results/myb-100-canonical-assets.png
+
+## Texture adjustments
+- none
+
+## Texture settings already valid
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_BaseColor.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Emission.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Metallic.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Normal.png -> NormalMap, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyCharacter/Textures/MYB95_RouteGuardian_Roughness.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_base_color.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_emission.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_metallic.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_normal.png -> NormalMap, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyLantern/Textures/refined_roughness.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures/refined_base_color.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures/refined_emission.png -> Default, sRGB=True, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures/refined_metallic.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures/refined_normal.png -> NormalMap, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures/refined_roughness.png -> Default, sRGB=False, max=2048, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Textures/hexagons_medieval.png -> Default, sRGB=True, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_diff_1k.jpg -> Default, sRGB=True, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_nor_gl_1k.jpg -> NormalMap, sRGB=False, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/PolyHaven/ForestGround03/Textures/forrest_ground_03_rough_1k.jpg -> Default, sRGB=False, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Color.jpg -> Default, sRGB=True, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_NormalGL.jpg -> NormalMap, sRGB=False, max=1024, mipmaps, CompressedHQ
+- Assets/Echappee/Art/ThirdParty/ambientCG/PavingStones141/Textures/PavingStones141_1K-JPG_Roughness.jpg -> Default, sRGB=False, max=1024, mipmaps, CompressedHQ
+
+## Model adjustments
+- none
+
+## Model settings already valid
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Rigged.fbx -> animation kept
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Running.fbx -> animation kept
+- Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Walking.fbx -> animation kept
+- Assets/Echappee/Art/MYB95MeshyLantern/Models/MYB95_MeshyLantern_LOD0_20k.fbx -> static import
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Models/MYB95_RelicFountain_Hero_80k.fbx -> static import
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Models/MYB95_RelicFountain_LOD0_50k.fbx -> static import
+- Assets/Echappee/Art/MYB95MeshyRelicFountain/Models/MYB95_RelicFountain_LOD1_30k.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineSmall.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_AlpinePineTall.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_CairnStack.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_ColDirectionSign.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_HairpinChevronSign.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_KilometerMarker.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_MarketCrateStack.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadReflectorPair.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_RoadsideRockCluster.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_StoneFlowerPlanter.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_SummitArchMarker.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageBench.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_VillageWellMarker.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WildflowerGrassPatch.fbx -> static import
+- Assets/Echappee/Art/MYB96BlenderGenerated/Models/MYB96_WoodFenceSegment.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/barrel.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_home_A_yellow.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_market_yellow.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/building_well_yellow.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/KayKit/MedievalHexagonPack/Models/fence_stone_straight.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/Models/road.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/Kenney/FantasyTownKit/Models/wall-window-stone.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/rock_smallA.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/Kenney/NatureKit/Models/tree_tall.fbx -> static import
+- Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated/Models/horse_animated.fbx -> animation kept
+
+## Generated asset manifests
+- Wrote generated-asset provenance manifest: Assets/Echappee/Art/MYB95GeneratedAssets.assetmanifest.json
+
+## Canonical scene placements
+- MYB100_HairpinChevronSign <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab
+- MYB100_RoadReflectorPair <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadReflectorPair.prefab
+- MYB100_MeshyLanternSignal <- Assets/Echappee/Art/MYB95MeshyLantern/Prefabs/MYB95_MeshyLantern.prefab
+- MYB100_MeshyRelicFountainSignal <- Assets/Echappee/Art/MYB95MeshyRelicFountain/Prefabs/MYB95_RelicFountain.prefab
+- MYB100_ColDirectionSign <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab
+- MYB100_RouteGuardianLifeAccent <- Assets/Echappee/Art/MYB95MeshyCharacter/Prefabs/MYB95_RouteGuardian_Direct.prefab
+- MYB100_WildflowerGrassPatch <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB100_AlpinePineTall <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB100_RoadsideRockCluster <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_RoadsideRockCluster.prefab
+- MYB100_SummitArchMarker <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_SummitArchMarker.prefab
+
+## Scene notes
+- Replaced primitive premium signal geometry.
+- Kept canonical premium signal anchor for MYB-91 baseline compatibility.
+- Captured canonical asset proof: _bmad-output/unity-test-results/myb-100-canonical-assets.png
+- Normalized serialized whitespace: Assets/Scenes/MYB89UnityMcpProbe.unity
+- Normalized serialized whitespace: Assets/Echappee/Art/ThirdParty/Quaternius/HorseAnimated/Models/horse_animated.fbx.meta
+
+## Failures
+- none

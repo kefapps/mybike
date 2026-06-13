@@ -1,5 +1,5 @@
 MYB-60 Resistance Mapper validation
-Timestamp UTC: 2026-06-13T13:31:44.5680050Z
+Timestamp UTC: 2026-06-13T17:12:34.0872660Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS

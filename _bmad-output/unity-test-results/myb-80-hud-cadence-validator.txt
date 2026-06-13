@@ -1,5 +1,5 @@
 MYB-80 Unity HUD cadence validation
-Timestamp UTC: 2026-06-13T13:33:27.1906780Z
+Timestamp UTC: 2026-06-13T17:12:38.6260530Z
 Unity: 6000.4.10f1
 Status: PASS
 Simulated frames: 60

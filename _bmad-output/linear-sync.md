@@ -64,6 +64,7 @@ Last sync: 2026-06-13
 - Unity PR checklist MYB-88: `_bmad-output/implementation-artifacts/myb-88-unity-pr-checklist.md`
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 - Unity asset optimization pipeline MYB-50: `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`
+- Unity imported asset adjustments MYB-100: `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -6439,3 +6440,46 @@ Closure synced on 2026-06-13:
 - Branch `myb-50-myb-018-definir-le-pipeline-doptimisation-assets-unity-macos`
   was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-100 Imported Unity Asset Adjustments Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-100`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-100/ajuster-les-assets-unity-importes-apres-pipeline-myb-50`.
+- Linear status: `In Progress`.
+- Branch: `myb-100-ajuster-assets-unity-importes`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`.
+- Implementation summary:
+  - Added `MYB100ImportedAssetOptimizer`.
+  - Applied MYB-50 importer policy to existing MYB-42, MYB-53, MYB-95 and MYB-96
+    Unity assets under `Assets/Echappee/Art`.
+  - Kept `ThirdPartyAssets.assetmanifest.json` scoped to third-party assets.
+  - Added `MYB95GeneratedAssets.assetmanifest.json` for Meshy-generated asset
+    provenance and texture budget policy.
+  - Rebuilt the canonical `MYB89UnityMcpProbe` ride scene with ten visible
+    `MYB100_` optimized imported asset placements.
+  - Replaced the primitive premium signal placeholder with imported MYB-95 /
+    MYB-96 assets.
+  - Added MYB-100 to `npm run validate:local-ci`.
+- Scope guard:
+  - No new mass import, Meshy credit usage, new biome, full corridor rewrite,
+    React/WebGL prototype work, or `unity/Echappee3D/**` recreation.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB100ImportedAssetOptimizer.ApplyAndValidateCli()`: PASS via Unity-MCP
+    script execution.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    Unity-MCP script execution after preserving the canonical premium signal
+    anchor.
+  - `npm run validate:local-ci`: PASS, including Unity-MCP status and MYB-91,
+    MYB-59, MYB-60, MYB-64, MYB-73, MYB-79, MYB-80, MYB-98 and MYB-100
+    validators.
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-100-imported-asset-adjustments.txt`.
+  - `_bmad-output/unity-test-results/myb-100-canonical-assets.png`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.

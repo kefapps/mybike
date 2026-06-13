@@ -1,5 +1,5 @@
 MYB-64 No-Trainer Fallback validation
-Timestamp UTC: 2026-06-13T13:32:42.3480470Z
+Timestamp UTC: 2026-06-13T17:12:34.8062590Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
