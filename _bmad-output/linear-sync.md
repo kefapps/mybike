@@ -6326,3 +6326,12 @@ Synced on 2026-06-13:
   - `_bmad-output/unity-test-results/myb-59-resistance-controller.txt`.
   - `_bmad-output/unity-test-results/myb-60-resistance-mapper.txt`.
   - `_bmad-output/unity-test-results/myb-64-no-trainer-fallback.txt`.
+
+Closure synced on 2026-06-13:
+
+- Linear closure comment ID: `ec8641cf-1300-42ca-9488-1c91ce0fcd78`.
+- Pull request: `https://github.com/kefapps/mybike/pull/23`.
+- Merge commit on `main`: `34293370ec3f273bbc0a95752a9fa80125da9142`.
+- Merge method: squash merge.
+- Branch `MYB-80-hud-cadence-accessibility` was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
