@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "project": "mybike / Echappee 3D",
+  "ticket": "MYB-95",
+  "reviewedBy": "MYB-100",
+  "reviewedAt": "2026-06-13",
+  "generator": {
+    "tool": "Meshy",
+    "source": "generated during approved MYB-95 POC",
+    "externalServices": ["Meshy"]
+  },
+  "unityRoots": [
+    "Assets/Echappee/Art/MYB95MeshyLantern",
+    "Assets/Echappee/Art/MYB95MeshyRelicFountain",
+    "Assets/Echappee/Art/MYB95MeshyCharacter"
+  ],
+  "budgets": {
+    "maxTextureSize": 2048,
+    "texturePolicy": "2K cap for Meshy POC premium signal and animated actor textures; compressed HQ with mip maps."
+  },
+  "assets": [
+    {
+      "id": "MYB95_MeshyLantern",
+      "family": "signal-premium",
+      "prefab": "Assets/Echappee/Art/MYB95MeshyLantern/Prefabs/MYB95_MeshyLantern.prefab",
+      "model": "Assets/Echappee/Art/MYB95MeshyLantern/Models/MYB95_MeshyLantern_LOD0_20k.fbx",
+      "textureRoot": "Assets/Echappee/Art/MYB95MeshyLantern/Textures"
+    },
+    {
+      "id": "MYB95_MeshyRelicFountain",
+      "family": "signal-premium",
+      "prefab": "Assets/Echappee/Art/MYB95MeshyRelicFountain/Prefabs/MYB95_RelicFountain.prefab",
+      "model": "Assets/Echappee/Art/MYB95MeshyRelicFountain/Models/MYB95_RelicFountain_LOD0_50k.fbx",
+      "textureRoot": "Assets/Echappee/Art/MYB95MeshyRelicFountain/Textures"
+    },
+    {
+      "id": "MYB95_RouteGuardian",
+      "family": "animated-actor",
+      "prefab": "Assets/Echappee/Art/MYB95MeshyCharacter/Prefabs/MYB95_RouteGuardian_Direct.prefab",
+      "models": [
+        "Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Rigged.fbx",
+        "Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Walking.fbx",
+        "Assets/Echappee/Art/MYB95MeshyCharacter/Models/MYB95_RouteGuardian_Running.fbx"
+      ],
+      "textureRoot": "Assets/Echappee/Art/MYB95MeshyCharacter/Textures"
+    }
+  ]
+}

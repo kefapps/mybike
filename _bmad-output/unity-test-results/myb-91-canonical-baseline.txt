@@ -1,5 +1,5 @@
 MYB-91 Unity canonical baseline validation
-Timestamp UTC: 2026-06-13T14:27:07.9793840Z
+Timestamp UTC: 2026-06-13T17:12:32.5818920Z
 Status: PASS
 Unity: 6000.4.10f1
 Project: /Users/jbodin/personnel/apps/mybike/unity/Echapee4D
@@ -15,9 +15,9 @@ Previous MYB-90 WebGL build status: Succeeded
 Route markers: 9
 Route length: 245.2 m
 Speed: 12.5 m/s
-Renderer count: 271
+Renderer count: 337
 MYB44 scenic corridor: True
-MYB44 scenic renderers: 116
+MYB44 scenic renderers: 113
 MYB44 horizon renderers: 43
 MYB44 premium signal: True
 Main camera: True

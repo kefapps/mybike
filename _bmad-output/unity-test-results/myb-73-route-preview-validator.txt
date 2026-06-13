@@ -1,5 +1,5 @@
 MYB-73 Unity route preview validation
-Timestamp UTC: 2026-06-13T12:24:10.7972820Z
+Timestamp UTC: 2026-06-13T17:12:36.2398070Z
 Unity: 6000.4.10f1
 Status: PASS
 Screenshot: _bmad-output/unity-test-results/myb-73-route-preview.png

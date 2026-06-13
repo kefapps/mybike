@@ -1,5 +1,5 @@
 MYB-79 Unity welcome screen validation
-Timestamp UTC: 2026-06-13T12:24:11.9160890Z
+Timestamp UTC: 2026-06-13T17:12:37.5042440Z
 Unity: 6000.4.10f1
 Status: PASS
 Screenshot: _bmad-output/unity-test-results/myb-79-welcome-screen.png
@@ -10,6 +10,6 @@ Biomes: Foret claire | Village pave | Cote lumineuse
 Passages: Foret d'echauffement | Montee lumineuse | Sprint vers le village
 Passage count: 3
 CTA: Commencer la balade
-Visible copy: Commencer la balade Passages: Foret d'echauffement | Montee lumineuse | Sprint vers le village L'Echappee des lumieres 245 m | env. 1 min 51 s | difficulte moderee Foret claire, village pave et cote lumineuse pour une premiere balade premium. Decors: Foret claire | Village pave | Cote lumineuse Balade scenique, effort lisible
+Visible copy: Decors: Foret claire | Village pave | Cote lumineuse 245 m | env. 1 min 51 s | difficulte moderee Balade scenique, effort lisible Passages: Foret d'echauffement | Montee lumineuse | Sprint vers le village L'Echappee des lumieres Foret claire, village pave et cote lumineuse pour une premiere balade premium. Commencer la balade
 Preview visible after launch: False
 Ride autoplay after launch: True
