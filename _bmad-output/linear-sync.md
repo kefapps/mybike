@@ -6483,3 +6483,16 @@ Synced on 2026-06-13:
   - `_bmad-output/unity-test-results/myb-100-imported-asset-adjustments.txt`.
   - `_bmad-output/unity-test-results/myb-100-canonical-assets.png`.
   - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+
+Closure synced on 2026-06-13:
+
+- PR #27 merged into `main`:
+  `https://github.com/kefapps/mybike/pull/27`.
+- Squash merge commit: `d2c5d89`.
+- Implementation Linear comment:
+  `f3bb6245-fa48-42ee-a2a6-37490d717298`.
+- Closure Linear comment:
+  `64037619-a989-4303-b240-9fcb72302169`.
+- Linear status moved from `In Progress` to `Done`.
+- Branch `myb-100-ajuster-assets-unity-importes` was deleted on origin after
+  merge.
