@@ -6223,8 +6223,11 @@ Closure synced on 2026-06-13:
 Synced on 2026-06-13:
 
 - Linear issue: `MYB-79`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `1d1acb8a-178f-4158-93bf-71ba4376d609`.
+- Pull request: `https://github.com/kefapps/mybike/pull/22`.
 - Branch: `MYB-79-unity-welcome-screen`.
+- Implementation commit: `ed5a839` (`MYB-79 refactor Unity welcome screen`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-79-unity-welcome-screen.md`.
 - Implementation summary:
