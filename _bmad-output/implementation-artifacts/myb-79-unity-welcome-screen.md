@@ -40,10 +40,8 @@ Local validation on 2026-06-13:
   direct Unity-MCP script execution.
 - `node --check scripts/validate-local-ci.mjs`: PASS.
 - `git diff --check`: PASS.
-- `npm run validate:local-ci`: FAIL because the local `unity-mcp-cli` wrapper
-  cannot resolve `/Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js`
-  (`ERR_MODULE_NOT_FOUND`). Repo hygiene checks in that report passed; Unity
-  validators passed through the direct Unity-MCP tools.
+- `npm run validate:local-ci`: PASS after restoring the local `unity-mcp-cli`
+  wrapper.
 
 Proof paths:
 

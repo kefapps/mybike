@@ -1,11 +1,11 @@
 MYB-83 Local CI Validation
 
-Generated: 2026-06-13T11:28:02.366Z
+Generated: 2026-06-13T12:24:12.645Z
 Project root: /Users/jbodin/personnel/apps/mybike
 Unity project: unity/Echapee4D
 Command: npm run validate:local-ci
 Report path: _bmad-output/unity-test-results/myb-83-local-ci.txt
-Verdict: fail
+Verdict: pass
 
 Checks
 - PASS [required] required path exists: unity/Echapee4D/Assets
@@ -17,13 +17,13 @@ Checks
 - PASS [required] JSON parses: unity/Echapee4D/Packages/manifest.json
 - PASS [required] JSON parses: unity/Echapee4D/Packages/packages-lock.json
 - PASS [required] working tree whitespace check
-  completed in 57ms
+  completed in 22ms
   command: git diff --check
 - PASS [required] staged whitespace check
-  completed in 22ms
+  completed in 16ms
   command: git diff --cached --check
 - PASS [required] branch/worktree whitespace check vs main
-  completed in 47ms
+  completed in 57ms
   command: git diff --check 1c734dbb3cb630cc4002222cd87fe12ea27d90a1
 - PASS [required] Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
@@ -34,29 +34,29 @@ Checks
 - PASS [required] Unity generated folders tracked-file check
   no generated Unity folders are tracked
   command: git ls-files -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
-- FAIL [required] Unity-MCP status
-  exit 1
+- PASS [required] Unity-MCP status
+  completed in 3442ms
   command: unity-mcp-cli status unity/Echapee4D --timeout 10000
-- FAIL [required] MYB-91 canonical baseline validator
-  exit 1
+- PASS [required] MYB-91 canonical baseline validator
+  completed in 1384ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunBaselineValidator","methodName":"Main","csharpCode":"using MYB91.Editor; public static class MYB83RunBaselineValidator { public static void Main() { MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli(); } }"} --timeout 180000
-- FAIL [required] MYB-59 resistance controller validator
-  exit 1
+- PASS [required] MYB-59 resistance controller validator
+  completed in 1136ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb59Validator","methodName":"Main","csharpCode":"using MYB59.Editor; public static class MYB83RunMyb59Validator { public static void Main() { MYB59ResistanceControllerValidator.ValidateResistanceControllerCli(); } }"} --timeout 180000
-- FAIL [required] MYB-60 resistance mapper validator
-  exit 1
+- PASS [required] MYB-60 resistance mapper validator
+  completed in 1323ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb60Validator","methodName":"Main","csharpCode":"using MYB60.Editor; public static class MYB83RunMyb60Validator { public static void Main() { MYB60ResistanceMapperValidator.ValidateResistanceMapperCli(); } }"} --timeout 180000
-- FAIL [required] MYB-64 no-trainer fallback validator
-  exit 1
+- PASS [required] MYB-64 no-trainer fallback validator
+  completed in 1026ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb64Validator","methodName":"Main","csharpCode":"using MYB64.Editor; public static class MYB83RunMyb64Validator { public static void Main() { MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli(); } }"} --timeout 180000
-- FAIL [required] MYB-73 route preview validator
-  exit 1
+- PASS [required] MYB-73 route preview validator
+  completed in 2019ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb73Validator","methodName":"Main","csharpCode":"using MYB73.Editor; public static class MYB83RunMyb73Validator { public static void Main() { MYB73RoutePreviewValidator.ValidateRoutePreviewCli(); } }"} --timeout 180000
-- FAIL [required] MYB-79 welcome screen validator
-  exit 1
+- PASS [required] MYB-79 welcome screen validator
+  completed in 1110ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb79Validator","methodName":"Main","csharpCode":"using MYB79.Editor; public static class MYB83RunMyb79Validator { public static void Main() { MYB79WelcomeScreenValidator.ValidateWelcomeScreenCli(); } }"} --timeout 180000
-- FAIL [required] MYB-98 ride trajectory unit validator
-  exit 1
+- PASS [required] MYB-98 ride trajectory unit validator
+  completed in 673ms
   command: unity-mcp-cli run-tool script-execute unity/Echapee4D --input {"className":"MYB83RunMyb98Validator","methodName":"Main","csharpCode":"using MYB98.Editor; public static class MYB83RunMyb98Validator { public static void Main() { MYB98RideTrajectoryValidator.ValidateRideTrajectoryCli(); } }"} --timeout 180000
 - PASS [required] post-Unity Packages/ProjectSettings drift check
   no tracked or untracked drift
@@ -66,7 +66,7 @@ Checks
   command: git status --porcelain -- unity/Echapee4D/Library unity/Echapee4D/Temp unity/Echapee4D/Logs unity/Echapee4D/UserSettings unity/Echapee4D/Obj unity/Echapee4D/Build unity/Echapee4D/Builds unity/Echapee4D/MemoryCaptures unity/Echapee4D/Recordings
 
 PR Checklist Snippet
-- Local CI: FAIL (_bmad-output/unity-test-results/myb-83-local-ci.txt)
+- Local CI: PASS (_bmad-output/unity-test-results/myb-83-local-ci.txt)
 - Scope: local Unity macOS-first validation only; no GitHub Actions or hosted runner.
 - WebGL: not run; secondary proof only when a ticket explicitly asks for it.
 
@@ -74,116 +74,3 @@ Local Limits
 - This command is intentionally local and does not create `.github/workflows`.
 - Unity checks require the local Unity Editor and Unity-MCP server.
 - Full Unity builds remain out of scope for MYB-83 unless a later ticket asks for them.
-Failure Output
-- Unity-MCP status: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-91 canonical baseline validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-59 resistance controller validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-60 resistance mapper validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-64 no-trainer fallback validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-73 route preview validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-79 welcome screen validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
-- MYB-98 ride trajectory unit validator: exit 1
-  output:
-      at defaultResolve (node:internal/modules/esm/resolve:988:11)
-      at #cachedDefaultResolve (node:internal/modules/esm/loader:697:20)
-      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:714:38)
-      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:746:52)
-      at #resolve (node:internal/modules/esm/loader:679:17)
-      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:599:35)
-      at ModuleJob.syncLink (node:internal/modules/esm/module_job:160:33)
-      at ModuleJob.link (node:internal/modules/esm/module_job:245:17) {
-    code: 'ERR_MODULE_NOT_FOUND',
-    url: 'file:///Users/jbodin/personnel/apps/Unity-MCP/cli/dist/index.js'
-  }
-  Node.js v25.8.2
