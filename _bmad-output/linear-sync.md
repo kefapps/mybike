@@ -6546,6 +6546,8 @@ Audit execution synced on 2026-06-13:
 
 - Added MYB-103 Unity Editor audit capture tool:
   `unity/Echapee4D/Assets/MYB103/Editor/MYB103SceneVisualAudit.cs`.
+- Pull request:
+  `https://github.com/kefapps/mybike/pull/28`.
 - Capture report:
   `_bmad-output/unity-test-results/myb-103/myb-103-scene-visual-audit.txt`.
 - PNG evidence:
@@ -6567,3 +6569,5 @@ Audit execution synced on 2026-06-13:
     script execution.
 - Linear audit execution comment ID:
   `708afb63-6df5-47b6-bf63-e70c4e846590`.
+- Linear PR comment ID:
+  `98a78a35-8c6e-4a90-a388-b08b6d3cfd1c`.
