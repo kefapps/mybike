@@ -6128,3 +6128,31 @@ Closure synced on 2026-06-13:
 - Merge method: squash merge.
 - Branch `myb-36-benchmark-indoor-cycling` was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-97 Grill With Docs Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-97`.
+- Linear status: `Backlog`.
+- Linear grill-with-docs comment ID: `fa47885f-ae27-4fc4-bcfb-b9a682e3f63a`.
+- Branch: `MYB-97-grill-trainer-telemetry-source`.
+- Documentation updates:
+  - `unity/Echapee4D/CONTEXT.md` now defines `Trainer ReadOnly`,
+    `Trainer Telemetry Source`, and `Trainer Controllable`.
+  - `unity/Echapee4D/docs/adr/0002-trainer-telemetry-source-boundary.md`
+    records the telemetry-source boundary decision.
+- Decisions:
+  - MYB-97 prioritizes an ESP32-WROOM read-only FTMS-like proof.
+  - `TrainerTelemetrySource` owns trainer telemetry ingestion and remains
+    separate from `ResistanceController`.
+  - Minimum ESP32 proof is cadence plus elapsed time; power and speed may be
+    estimated, measured resistance is optional.
+  - `Trainer Controllable` is documented as a future command path, without BLE
+    writes or real hardware control in MYB-97.
+  - Loss of telemetry during a trainer-backed read-only session pauses the game.
+  - Resume is allowed by reconnection or by explicit user choice to continue
+    without trainer via `ManualFallback`; fallback is never silent.
+- Scope guard:
+  - No runtime implementation, firmware, Unity BLE/CoreBluetooth integration, or
+    production tests were added.
