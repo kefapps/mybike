@@ -6619,8 +6619,11 @@ Synced on 2026-06-13:
 - Linear issue: `MYB-104`.
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear implementation comment ID: `c36a7271-e613-4846-9b7a-6ca5270e7d96`.
+- Linear PR comment ID: `dad34c12-b6d0-45a1-b307-ce49064e9eac`.
+- Pull request: `https://github.com/kefapps/mybike/pull/29`.
+- Implementation commit: `ab47396` (`MYB-104 recompose Unity production passages`).
 - Branch: `myb-104-recomposer-la-scene-canonique-en-trois-passages-low-poly-de`.
 - Local implementation artifact:
   `_bmad-output/implementation-artifacts/myb-104-production-passages.md`.
