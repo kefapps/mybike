@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MYB89;
 using UnityEngine;
 
 namespace MYB48
@@ -25,6 +26,7 @@ namespace MYB48
         public float lateralOffsetMeters = 5.4f;
         public float entryHeightMeters = 2.8f;
         public float secondaryHeightMeters = 1.25f;
+        public int trajectorySamplesPerSegment = MYB89RideTrajectory.DefaultSamplesPerSegment;
 
         [Header("Pulse")]
         public float pulseAmplitude = 0.22f;
@@ -54,6 +56,7 @@ namespace MYB48
             lateralOffsetMeters = Mathf.Max(3.8f, lateralOffsetMeters);
             entryHeightMeters = Mathf.Clamp(entryHeightMeters, 1.8f, 4.2f);
             secondaryHeightMeters = Mathf.Clamp(secondaryHeightMeters, 0.7f, 2.2f);
+            trajectorySamplesPerSegment = Mathf.Clamp(trajectorySamplesPerSegment, 2, 24);
             pulseAmplitude = Mathf.Clamp(pulseAmplitude, 0f, 0.45f);
             pulseFrequency = Mathf.Clamp(pulseFrequency, 0.1f, 2.5f);
         }
@@ -357,25 +360,7 @@ namespace MYB48
 
         private float RouteLength()
         {
-            if (routeMarkers == null || routeMarkers.Length < 2)
-            {
-                return 0f;
-            }
-
-            var length = 0f;
-            for (var i = 0; i < routeMarkers.Length - 1; i++)
-            {
-                var a = routeMarkers[i];
-                var b = routeMarkers[i + 1];
-                if (a == null || b == null)
-                {
-                    continue;
-                }
-
-                length += Vector3.Distance(a.position, b.position);
-            }
-
-            return length;
+            return MYB89RideTrajectory.Length(SmoothedRoutePoints());
         }
 
         private bool TrySampleRoute(float meters, out Vector3 position, out Vector3 forward, out Vector3 right)
@@ -384,45 +369,20 @@ namespace MYB48
             forward = Vector3.forward;
             right = Vector3.right;
 
-            var routeLength = RouteLength();
-            if (routeMarkers == null || routeMarkers.Length < 2 || routeLength <= 0.01f)
+            if (!MYB89RideTrajectory.TrySample(SmoothedRoutePoints(), meters, false, out var sample))
             {
                 return false;
             }
 
-            var wrappedMeters = Mathf.Clamp(meters, 0f, routeLength);
-            var cursor = 0f;
+            position = sample.Position;
+            forward = sample.Forward;
+            right = sample.Right;
+            return true;
+        }
 
-            for (var i = 0; i < routeMarkers.Length - 1; i++)
-            {
-                var aTransform = routeMarkers[i];
-                var bTransform = routeMarkers[i + 1];
-                if (aTransform == null || bTransform == null)
-                {
-                    continue;
-                }
-
-                var a = aTransform.position;
-                var b = bTransform.position;
-                var segmentLength = Vector3.Distance(a, b);
-                if (segmentLength <= 0.01f)
-                {
-                    continue;
-                }
-
-                if (wrappedMeters <= cursor + segmentLength || i == routeMarkers.Length - 2)
-                {
-                    var t = Mathf.InverseLerp(cursor, cursor + segmentLength, wrappedMeters);
-                    position = Vector3.Lerp(a, b, Mathf.SmoothStep(0f, 1f, t));
-                    forward = (b - a).normalized;
-                    right = Vector3.Cross(Vector3.up, forward).normalized;
-                    return true;
-                }
-
-                cursor += segmentLength;
-            }
-
-            return false;
+        private Vector3[] SmoothedRoutePoints()
+        {
+            return MYB89RideTrajectory.BuildSmoothedPoints(routeMarkers, trajectorySamplesPerSegment);
         }
 
         private void ClearGeneratedChildren()

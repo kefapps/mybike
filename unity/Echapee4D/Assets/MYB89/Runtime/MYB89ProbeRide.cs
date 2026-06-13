@@ -22,6 +22,10 @@ namespace MYB89
         public Transform cameraPivot;
         public float cameraBobMeters = 0.045f;
         public float cameraBobFrequency = 1.8f;
+        public int trajectorySamplesPerSegment = MYB89RideTrajectory.DefaultSamplesPerSegment;
+        public float turnLookAheadMeters = 8f;
+        public float orientationSmoothing = 7f;
+        public float cameraTurnLeanMaxDegrees = 2.2f;
 
         [Header("HUD")]
         public Text distanceLabel;
@@ -55,6 +59,7 @@ namespace MYB89
         private float[] segmentLengths = Array.Empty<float>();
         private float routeLength;
         private Vector3 cameraBaseLocalPosition;
+        private Quaternion cameraBaseLocalRotation;
         private MYB57EffortSnapshot lastEffortSnapshot;
         private MYB59ResistanceSnapshot lastResistanceSnapshot;
         private MYB60ResistanceMappingSnapshot lastResistanceMappingSnapshot;
@@ -62,12 +67,16 @@ namespace MYB89
         private bool hasResistanceMappingSnapshot;
         private bool reuseEffortSnapshotForHud;
         private bool routePreviewLaunched;
+        private Vector3[] smoothedRoutePoints = Array.Empty<Vector3>();
+        private bool hasPoseRotation;
+        private bool hasCameraBasePose;
 
         public float RouteLength => routeLength;
         public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
         public MYB59ResistanceSnapshot LastResistanceSnapshot => lastResistanceSnapshot;
         public MYB60ResistanceMappingSnapshot LastResistanceMappingSnapshot => lastResistanceMappingSnapshot;
         public bool IsRoutePreviewWaiting => waitForRoutePreview && !routePreviewLaunched;
+        public int TrajectorySampleCount => smoothedRoutePoints == null ? 0 : smoothedRoutePoints.Length;
         public bool IsNoTrainerFallbackActive =>
             useEffortSimulator && (useNoTrainerFallback || trainerSourcePreset == MYB57TrainerSourcePreset.ManualFallback);
 
@@ -98,6 +107,10 @@ namespace MYB89
             speedMetersPerSecond = Mathf.Max(0.1f, speedMetersPerSecond);
             cameraBobMeters = Mathf.Max(0f, cameraBobMeters);
             cameraBobFrequency = Mathf.Max(0.1f, cameraBobFrequency);
+            trajectorySamplesPerSegment = Mathf.Clamp(trajectorySamplesPerSegment, 2, 24);
+            turnLookAheadMeters = Mathf.Clamp(turnLookAheadMeters, 0f, 24f);
+            orientationSmoothing = Mathf.Clamp(orientationSmoothing, 0f, 24f);
+            cameraTurnLeanMaxDegrees = Mathf.Clamp(cameraTurnLeanMaxDegrees, 0f, 6f);
             manualFallbackEffort01 = Mathf.Clamp01(manualFallbackEffort01);
         }
 
@@ -144,6 +157,7 @@ namespace MYB89
             hasEffortSnapshot = false;
             hasResistanceMappingSnapshot = false;
             reuseEffortSnapshotForHud = false;
+            hasPoseRotation = false;
             CacheResistanceMapper();
             resistanceMapper?.ResetSmoothing();
             ApplyPose(progressMeters);
@@ -170,6 +184,7 @@ namespace MYB89
             if (routeMarkers == null || routeMarkers.Length < 2)
             {
                 segmentLengths = Array.Empty<float>();
+                smoothedRoutePoints = Array.Empty<Vector3>();
                 routeLength = 0f;
                 return;
             }
@@ -185,13 +200,18 @@ namespace MYB89
                 segmentLengths[i] = segmentLength;
                 routeLength += segmentLength;
             }
+
+            smoothedRoutePoints = MYB89RideTrajectory.BuildSmoothedPoints(routeMarkers, trajectorySamplesPerSegment);
+            routeLength = MYB89RideTrajectory.Length(smoothedRoutePoints);
         }
 
         private void CacheCameraBasePosition()
         {
-            if (cameraPivot != null)
+            if (cameraPivot != null && !hasCameraBasePose)
             {
                 cameraBaseLocalPosition = cameraPivot.localPosition;
+                cameraBaseLocalRotation = cameraPivot.localRotation;
+                hasCameraBasePose = true;
             }
         }
 
@@ -213,12 +233,39 @@ namespace MYB89
                 return;
             }
 
-            transform.SetPositionAndRotation(position, Quaternion.LookRotation(forward, Vector3.up));
+            var turnLeanDegrees = 0f;
+            if (turnLookAheadMeters > 0.01f && TrySampleRoute(meters + turnLookAheadMeters, out _, out var lookAheadForward))
+            {
+                var blendedForward = Vector3.Slerp(forward, lookAheadForward, 0.65f).normalized;
+                if (blendedForward.sqrMagnitude > 0.01f)
+                {
+                    forward = blendedForward;
+                }
+
+                turnLeanDegrees = Mathf.Clamp(
+                    -Vector3.SignedAngle(forward, lookAheadForward, Vector3.up) * 0.12f,
+                    -cameraTurnLeanMaxDegrees,
+                    cameraTurnLeanMaxDegrees);
+            }
+
+            var targetRotation = Quaternion.LookRotation(forward, Vector3.up);
+            if (!hasPoseRotation || orientationSmoothing <= 0.01f || !Application.isPlaying)
+            {
+                transform.SetPositionAndRotation(position, targetRotation);
+                hasPoseRotation = true;
+            }
+            else
+            {
+                var smoothing01 = 1f - Mathf.Exp(-orientationSmoothing * Time.deltaTime);
+                transform.position = position;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothing01);
+            }
 
             if (cameraPivot != null)
             {
                 var bob = Mathf.Sin((meters / Mathf.Max(1f, speedMetersPerSecond)) * Mathf.PI * 2f * cameraBobFrequency) * cameraBobMeters;
                 cameraPivot.localPosition = cameraBaseLocalPosition + new Vector3(0f, bob, 0f);
+                cameraPivot.localRotation = cameraBaseLocalRotation * Quaternion.Euler(0f, 0f, turnLeanDegrees);
             }
         }
 
@@ -233,38 +280,20 @@ namespace MYB89
             forward = Vector3.forward;
             routeSegmentIndex = -1;
 
-            if (routeMarkers == null || routeMarkers.Length < 2 || routeLength <= 0.01f)
+            if (smoothedRoutePoints == null || smoothedRoutePoints.Length < 2 || routeLength <= 0.01f)
             {
                 return false;
             }
 
-            var wrappedMeters = Mathf.Repeat(meters, routeLength);
-            var cursor = 0f;
-
-            for (var i = 0; i < segmentLengths.Length; i++)
+            if (!MYB89RideTrajectory.TrySample(smoothedRoutePoints, meters, true, out var sample))
             {
-                var segmentLength = segmentLengths[i];
-                if (segmentLength <= 0.01f)
-                {
-                    continue;
-                }
-
-                if (wrappedMeters <= cursor + segmentLength || i == segmentLengths.Length - 1)
-                {
-                    var a = routeMarkers[i].position;
-                    var b = routeMarkers[i + 1].position;
-                    var t = Mathf.InverseLerp(cursor, cursor + segmentLength, wrappedMeters);
-
-                    position = Vector3.Lerp(a, b, Mathf.SmoothStep(0f, 1f, t));
-                    forward = (b - a).normalized;
-                    routeSegmentIndex = i;
-                    return true;
-                }
-
-                cursor += segmentLength;
+                return false;
             }
 
-            return false;
+            position = sample.Position;
+            forward = sample.Forward;
+            routeSegmentIndex = sample.SegmentIndex;
+            return true;
         }
 
         private void UpdateHud()
@@ -413,21 +442,12 @@ namespace MYB89
             var gradePercent = 0f;
             var segmentIndex = -1;
 
-            if (TrySampleRoute(wrappedMeters, out _, out _, out segmentIndex)
-                && routeMarkers != null
-                && segmentIndex >= 0
-                && segmentIndex < routeMarkers.Length - 1)
+            if (TrySampleRoute(wrappedMeters, out _, out var forward, out segmentIndex))
             {
-                var a = routeMarkers[segmentIndex];
-                var b = routeMarkers[segmentIndex + 1];
-                if (a != null && b != null)
+                var horizontalMeters = new Vector2(forward.x, forward.z).magnitude;
+                if (horizontalMeters > 0.01f)
                 {
-                    var delta = b.position - a.position;
-                    var horizontalMeters = new Vector2(delta.x, delta.z).magnitude;
-                    if (horizontalMeters > 0.01f)
-                    {
-                        gradePercent = delta.y / horizontalMeters * 100f;
-                    }
+                    gradePercent = forward.y / horizontalMeters * 100f;
                 }
             }
 

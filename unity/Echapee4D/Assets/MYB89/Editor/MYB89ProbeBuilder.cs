@@ -122,6 +122,21 @@ namespace MYB89.Editor
                     failures.Add($"Route length too short: {ride.RouteLength:0.0} m.");
                 }
 
+                if (ride.TrajectorySampleCount < ride.routeMarkers.Length * 4)
+                {
+                    failures.Add($"Smoothed ride trajectory has too few samples: {ride.TrajectorySampleCount}.");
+                }
+
+                if (ride.turnLookAheadMeters <= 0.01f)
+                {
+                    failures.Add("Ride turn look-ahead must be enabled for natural curve navigation.");
+                }
+
+                if (ride.cameraTurnLeanMaxDegrees <= 0.01f || ride.cameraTurnLeanMaxDegrees > 3f)
+                {
+                    failures.Add($"Camera turn lean should stay subtle and enabled: {ride.cameraTurnLeanMaxDegrees:0.0} degrees.");
+                }
+
                 if (ride.distanceLabel == null
                     || ride.speedLabel == null
                     || ride.difficultyLabel == null
@@ -182,6 +197,15 @@ namespace MYB89.Editor
             if (road == null)
             {
                 failures.Add("Missing MYB89_RouteRoad mesh.");
+            }
+            else
+            {
+                var roadMesh = road.GetComponent<MeshFilter>()?.sharedMesh;
+                var minimumSmoothedVertices = ride == null ? RoutePoints.Length * 4 : ride.TrajectorySampleCount * 2;
+                if (roadMesh == null || roadMesh.vertexCount < minimumSmoothedVertices)
+                {
+                    failures.Add($"MYB89_RouteRoad mesh is not built from the smoothed route: {roadMesh?.vertexCount ?? 0} vertices.");
+                }
             }
 
             if (hud == null)
@@ -758,9 +782,10 @@ namespace MYB89.Editor
                 markers.Add(marker.transform);
             }
 
-            CreateStripMesh("MYB89_RouteRoad", parent, RoutePoints, 0f, RoadWidth, 0.03f, materials["road"]);
-            CreateStripMesh("MYB89_LeftEdgeLine", parent, RoutePoints, -RoadWidth * 0.5f + 0.16f, 0.12f, 0.07f, materials["edge"]);
-            CreateStripMesh("MYB89_RightEdgeLine", parent, RoutePoints, RoadWidth * 0.5f - 0.16f, 0.12f, 0.07f, materials["edge"]);
+            var smoothedRoutePoints = SmoothedRoutePoints();
+            CreateStripMesh("MYB89_RouteRoad", parent, smoothedRoutePoints, 0f, RoadWidth, 0.03f, materials["road"]);
+            CreateStripMesh("MYB89_LeftEdgeLine", parent, smoothedRoutePoints, -RoadWidth * 0.5f + 0.16f, 0.12f, 0.07f, materials["edge"]);
+            CreateStripMesh("MYB89_RightEdgeLine", parent, smoothedRoutePoints, RoadWidth * 0.5f - 0.16f, 0.12f, 0.07f, materials["edge"]);
 
             for (var distance = 8f; distance < RouteLength() - 10f; distance += 13f)
             {
@@ -1002,6 +1027,10 @@ namespace MYB89.Editor
             ride.verdictLabel = verdictLabel;
             ride.keyLight = keyLight;
             ride.speedMetersPerSecond = 12.5f;
+            ride.trajectorySamplesPerSegment = MYB89RideTrajectory.DefaultSamplesPerSegment;
+            ride.turnLookAheadMeters = 8f;
+            ride.orientationSmoothing = 7f;
+            ride.cameraTurnLeanMaxDegrees = 2.2f;
             ride.waitForRoutePreview = true;
             ride.autoplay = false;
             ride.resistanceMapper = rig.AddComponent<MYB60ResistanceMapper>();
@@ -1201,26 +1230,12 @@ namespace MYB89.Editor
 
         private static bool SampleRoute(float meters, out Vector3 position, out Vector3 forward, out Vector3 right)
         {
-            var routeLength = RouteLength();
-            var wrappedMeters = Mathf.Repeat(meters, routeLength);
-            var cursor = 0f;
-
-            for (var i = 0; i < RoutePoints.Length - 1; i++)
+            if (MYB89RideTrajectory.TrySample(SmoothedRoutePoints(), meters, true, out var sample))
             {
-                var a = RoutePoints[i];
-                var b = RoutePoints[i + 1];
-                var segmentLength = Vector3.Distance(a, b);
-
-                if (wrappedMeters <= cursor + segmentLength || i == RoutePoints.Length - 2)
-                {
-                    var t = Mathf.InverseLerp(cursor, cursor + segmentLength, wrappedMeters);
-                    position = Vector3.Lerp(a, b, Mathf.SmoothStep(0f, 1f, t));
-                    forward = (b - a).normalized;
-                    right = Vector3.Cross(Vector3.up, forward).normalized;
-                    return true;
-                }
-
-                cursor += segmentLength;
+                position = sample.Position;
+                forward = sample.Forward;
+                right = sample.Right;
+                return true;
             }
 
             position = RoutePoints[0];
@@ -1231,13 +1246,12 @@ namespace MYB89.Editor
 
         private static float RouteLength()
         {
-            var length = 0f;
-            for (var i = 0; i < RoutePoints.Length - 1; i++)
-            {
-                length += Vector3.Distance(RoutePoints[i], RoutePoints[i + 1]);
-            }
+            return MYB89RideTrajectory.Length(SmoothedRoutePoints());
+        }
 
-            return length;
+        private static Vector3[] SmoothedRoutePoints()
+        {
+            return MYB89RideTrajectory.BuildSmoothedPoints(RoutePoints, MYB89RideTrajectory.DefaultSamplesPerSegment);
         }
 
         private static void SetCanvasCamera(Camera camera)
@@ -1314,6 +1328,9 @@ namespace MYB89.Editor
                 writer.WriteLine("Status: " + (failures.Count == 0 ? "PASS" : "FAIL"));
                 writer.WriteLine("Route markers: " + (ride == null || ride.routeMarkers == null ? 0 : ride.routeMarkers.Length));
                 writer.WriteLine("Route length: " + (ride == null ? 0f : ride.RouteLength).ToString("0.0") + " m");
+                writer.WriteLine("Smoothed trajectory samples: " + (ride == null ? 0 : ride.TrajectorySampleCount));
+                writer.WriteLine("Turn look-ahead: " + (ride == null ? 0f : ride.turnLookAheadMeters).ToString("0.0") + " m");
+                writer.WriteLine("Camera turn lean max: " + (ride == null ? 0f : ride.cameraTurnLeanMaxDegrees).ToString("0.0") + " deg");
                 writer.WriteLine("Renderer count: " + rendererCount);
                 writer.WriteLine("MYB44 scenic renderers: " + scenicRendererCount);
                 writer.WriteLine("MYB44 horizon renderers: " + horizonRendererCount);

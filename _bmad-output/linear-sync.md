@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-12
+Last sync: 2026-06-13
 
 ## Workspace
 
@@ -68,6 +68,10 @@ Last sync: 2026-06-12
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
 - Unity resistance mapper MYB-60: `_bmad-output/implementation-artifacts/myb-60-resistance-mapper.md`
 - Unity no-trainer fallback MYB-64: `_bmad-output/implementation-artifacts/myb-64-no-trainer-fallback.md`
+- Unity demo video capture feedback MYB-98: `_bmad-output/video-captures/unity-game-demo-20260613-100449/`
+- Unity natural route turn navigation MYB-98: `_bmad-output/implementation-artifacts/myb-98-natural-route-turn-navigation.md`
+- Unity natural turn capture MYB-98:
+  `_bmad-output/video-captures/myb-98-natural-turns-20260613-093900/myb-98-natural-turns-720p-muted.mp4`
 
 ## Linear Documents
 
@@ -110,6 +114,7 @@ Last sync: 2026-06-12
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
 | ESP32 trainer modes spike | `MYB-97` | Spike ESP32-WROOM : modes trainer FTMS read-only et controllable | https://linear.app/kefjbo/issue/MYB-97/spike-esp32-wroom-modes-trainer-ftms-read-only-et-controllable |
+| Unity route turn feel polish | `MYB-98` | Rendre les virages et la navigation en courbe plus naturels | https://linear.app/kefjbo/issue/MYB-98/rendre-les-virages-et-la-navigation-en-courbe-plus-naturels |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
 | Unity-MCP IvanMurzak probe | `MYB-89` | [MYB-006] Spike Unity-MCP IvanMurzak : projet Unity vierge et preuve de démo acceptable | https://linear.app/kefjbo/issue/MYB-89/myb-006-spike-unity-mcp-ivanmurzak-projet-unity-vierge-et-preuve-de |
 | Unity WebGL readiness spike | `MYB-90` | [MYB-007] Spike Unity WebGL readiness depuis scène Unity-MCP propre | https://linear.app/kefjbo/issue/MYB-90/myb-007-spike-unity-webgl-readiness-depuis-scene-unity-mcp-propre |
@@ -6128,3 +6133,75 @@ Closure synced on 2026-06-13:
 - Merge method: squash merge.
 - Branch `myb-36-benchmark-indoor-cycling` was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-98 Natural Route Turn Navigation Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-98`.
+- Linear status: `In Progress`.
+- Linear implementation comment ID: `1d9ac548-fc04-4b96-ab2d-66e536fd5ffe`.
+- Branch: `MYB-98-natural-route-turn-navigation`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-98-natural-route-turn-navigation.md`.
+- Implementation summary:
+  - Added `MYB89RideTrajectory`, a shared bounded smoothing sampler built from
+    existing route control markers.
+  - Updated `MYB89ProbeRide` so rider/camera navigation follows the smoothed
+    route with configurable turn look-ahead, orientation smoothing, and subtle
+    camera lean.
+  - Updated `MYB89ProbeBuilder` so road mesh, edge lines, center dashes,
+    route-bound markers, arches, and roadside rhythm use the smoothed route.
+  - Updated `MYB48RouteDifficultyCueController` so difficulty cue placement uses
+    the same smoothed route as the ride and visible road.
+  - Added `MYB98RideTrajectoryValidator` for deterministic pure sampler unit
+    coverage.
+  - Added the MYB-98 unit validator to `npm run validate:local-ci`.
+  - Added Unity context terms for `Trajectoire de Ride` and `Virage Lisible`.
+- Scope guard:
+  - No WebGL or React prototype changes.
+  - No connected-bike, BLE, FTMS, firmware, route selection, or multi-route
+    system.
+  - No wide scenic-corridor rewrite beyond route-bound placement alignment.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS before scene
+    rebuild and validation.
+  - `MYB89ProbeBuilder.BuildScene()`: PASS via Unity-MCP script execution.
+  - `MYB98RideTrajectoryValidator.ValidateRideTrajectoryCli()`: PASS via
+    Unity-MCP script execution.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity-MCP script
+    execution.
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `git diff --check`: PASS.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`
+    records route length `245.2 m`, `65` smoothed trajectory samples, `8.0 m`
+    turn look-ahead, `2.2 deg` max camera lean, and complete route difficulty
+    cues.
+  - `_bmad-output/unity-test-results/myb-98-ride-trajectory-validator.txt`
+    records pure sampler coverage for empty/single routes, straight route
+    sampling, curved route length/deviation, wrap/clamp sampling, and null
+    transform marker filtering.
+- Capture:
+  - `_bmad-output/video-captures/myb-98-natural-turns-20260613-093900/myb-98-natural-turns-720p-muted.mp4`
+    is a 6-second H.264 capture at 1280x720, 24 fps, with no audio stream.
+  - Capture source frames were rendered from the Unity scene with canvases
+    disabled, so no extra text overlay is added.
+
+Review synced on 2026-06-13:
+
+- Linear review comment ID: `113abcb1-d07b-45ca-a3cf-c10a597aa6ec`.
+- Review verdict: Approved, no blocking findings.
+- Validation during review:
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity-MCP script
+    execution.
+  - `git diff --check`: PASS.
+  - New untracked file whitespace checks: PASS.
+  - `MYB98RideTrajectoryValidator.ValidateRideTrajectoryCli()`: PASS via
+    Unity-MCP script execution.
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - MYB-98 video ffprobe: H.264, 1280x720, 24 fps, 6.0 seconds, no audio
+    stream.
+- Residual risk:
+  - None identified after adding dedicated `MYB89RideTrajectory` unit validator
+    coverage.
