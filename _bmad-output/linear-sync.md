@@ -74,6 +74,7 @@ Last sync: 2026-06-13
   `_bmad-output/video-captures/myb-98-natural-turns-20260613-093900/myb-98-natural-turns-720p-muted.mp4`
 - Unity welcome screen MYB-79: `_bmad-output/implementation-artifacts/myb-79-unity-welcome-screen.md`
 - Unity HUD cadence/readability MYB-80: `_bmad-output/implementation-artifacts/myb-80-hud-cadence-accessibility.md`
+- Public README Unity guide MYB-84: `_bmad-output/implementation-artifacts/myb-84-readme-public-unity.md`
 
 ## Linear Documents
 
@@ -116,6 +117,7 @@ Last sync: 2026-06-13
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
 | Unity welcome screen | `MYB-79` | [MYB-070] Refondre l’écran d’accueil Unity pour vendre la balade | https://linear.app/kefjbo/issue/MYB-79/myb-070-refondre-lecran-daccueil-unity-pour-vendre-la-balade |
+| Public README Unity guide | `MYB-84` | [MYB-075] Créer un README public orienté produit + dev Unity | https://linear.app/kefjbo/issue/MYB-84/myb-075-creer-un-readme-public-oriente-produit-dev-unity |
 | ESP32 trainer modes spike | `MYB-97` | Spike ESP32-WROOM : modes trainer FTMS read-only et controllable | https://linear.app/kefjbo/issue/MYB-97/spike-esp32-wroom-modes-trainer-ftms-read-only-et-controllable |
 | Unity route turn feel polish | `MYB-98` | Rendre les virages et la navigation en courbe plus naturels | https://linear.app/kefjbo/issue/MYB-98/rendre-les-virages-et-la-navigation-en-courbe-plus-naturels |
 | Engine ADR final | `MYB-39` | [MYB-005] ADR moteur final : Unity WebGL devient la cible active | https://linear.app/kefjbo/issue/MYB-39/myb-005-adr-moteur-final-unity-webgl-devient-la-cible-active |
@@ -6335,3 +6337,28 @@ Closure synced on 2026-06-13:
 - Merge method: squash merge.
 - Branch `MYB-80-hud-cadence-accessibility` was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-84 Public README Unity Guide Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-84`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-84/myb-075-creer-un-readme-public-oriente-produit-dev-unity`.
+- Linear status: `In Progress`.
+- Branch: `myb-84-myb-075-creer-un-readme-public-oriente-produit-dev-unity`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-84-readme-public-unity.md`.
+- Implementation summary:
+  - Added a root `README.md` in French for `MyBike - Échappée 3D`.
+  - Presented `unity/Echapee4D` as the canonical Unity macOS-first project.
+  - Documented local launch and validation commands without duplicating the
+    Unity project README.
+  - Marked WebGL as secondary, `src/**` as historical reference, and
+    `unity/Echappee3D/**` as removed by `MYB-92`.
+  - Added stable `Sources de vérité` links instead of a volatile feature list.
+- Scope guard:
+  - No Unity runtime, scene, validator, WebGL, FTMS, ESP32, or `src/**` changes.
+- Validation:
+  - `git diff --check`: PASS.
+  - Local README and MYB-84 scope review: PASS.
