@@ -8,7 +8,7 @@ namespace MYB73
 {
     public sealed class MYB73RoutePreviewPanel : MonoBehaviour
     {
-        private const int MaxMomentCleCount = 3;
+        private const int MaxPassageCount = 3;
 
         [Header("Bindings")]
         public GameObject panelRoot;
@@ -18,23 +18,23 @@ namespace MYB73
         public Text statsLabel;
         public Text difficultyLabel;
         public Text biomesLabel;
-        public Text momentsLabel;
+        public Text passagesLabel;
         public Button launchButton;
 
         [Header("Editorial Route Metadata")]
-        public string routeTitle = "Apercu de l'echappee";
+        public string routeTitle = "L'Echappee des lumieres";
         [TextArea]
-        public string routeSubtitle = "Foret claire, village pave et cote courte pour lancer le ride mock.";
+        public string routeSubtitle = "Foret claire, village pave et cote lumineuse pour une premiere balade premium.";
         public string overallDifficulty = "Moderee";
         public string[] biomes = { "Foret claire", "Village pave", "Cote lumineuse" };
-        public string[] momentsCles = { "Echauffement doux", "Montee lisible", "Sprint court" };
+        public string[] passages = { "Foret d'echauffement", "Montee lumineuse", "Sprint vers le village" };
 
         [Header("Calculated Stats")]
         public float referenceSpeedMetersPerSecond = 2.2f;
 
         public bool IsVisible => Root.activeSelf;
 
-        public int MomentCleCount => CountEntries(momentsCles, MaxMomentCleCount);
+        public int PassageCount => CountEntries(passages, MaxPassageCount);
 
         public float RouteLengthMeters
         {
@@ -74,6 +74,7 @@ namespace MYB73
         {
             WireLaunchButton();
             ride?.PrepareRoutePreview();
+            SetRideHudVisible(false);
             Root.SetActive(true);
             Refresh();
         }
@@ -81,6 +82,7 @@ namespace MYB73
         public void LaunchRide()
         {
             ride?.LaunchRoutePreviewRide();
+            SetRideHudVisible(true);
             Root.SetActive(false);
         }
 
@@ -91,8 +93,8 @@ namespace MYB73
                 EstimatedDurationSeconds,
                 overallDifficulty,
                 JoinEntries(biomes, 0),
-                JoinEntries(momentsCles, MaxMomentCleCount),
-                MomentCleCount);
+                JoinEntries(passages, MaxPassageCount),
+                PassageCount);
         }
 
         public void Refresh()
@@ -101,7 +103,7 @@ namespace MYB73
 
             if (titleLabel != null)
             {
-                titleLabel.text = Clean(routeTitle, "Apercu de l'echappee");
+                titleLabel.text = Clean(routeTitle, "L'Echappee des lumieres");
             }
 
             if (subtitleLabel != null)
@@ -111,22 +113,22 @@ namespace MYB73
 
             if (statsLabel != null)
             {
-                statsLabel.text = $"{snapshot.RouteLengthMeters:0} m | env. {FormatDuration(snapshot.EstimatedDurationSeconds)} | mock Unity";
+                statsLabel.text = $"{snapshot.RouteLengthMeters:0} m | env. {FormatDuration(snapshot.EstimatedDurationSeconds)} | difficulte {Clean(snapshot.OverallDifficulty, "Moderee").ToLowerInvariant()}";
             }
 
             if (difficultyLabel != null)
             {
-                difficultyLabel.text = "Difficulte: " + Clean(snapshot.OverallDifficulty, "Moderee");
+                difficultyLabel.text = "Balade scenique, effort lisible";
             }
 
             if (biomesLabel != null)
             {
-                biomesLabel.text = "Biomes: " + Clean(snapshot.BiomesText, "Foret claire");
+                biomesLabel.text = "Decors: " + Clean(snapshot.BiomesText, "Foret claire");
             }
 
-            if (momentsLabel != null)
+            if (passagesLabel != null)
             {
-                momentsLabel.text = "Moments cles: " + Clean(snapshot.MomentsClesText, "Echauffement doux");
+                passagesLabel.text = "Passages: " + Clean(snapshot.PassagesText, "Foret d'echauffement");
             }
         }
 
@@ -139,6 +141,29 @@ namespace MYB73
 
             launchButton.onClick.RemoveListener(LaunchRide);
             launchButton.onClick.AddListener(LaunchRide);
+        }
+
+        private void SetRideHudVisible(bool visible)
+        {
+            if (ride == null)
+            {
+                return;
+            }
+
+            SetLabelVisible(ride.distanceLabel, visible);
+            SetLabelVisible(ride.speedLabel, visible);
+            SetLabelVisible(ride.difficultyLabel, visible);
+            SetLabelVisible(ride.gradeLabel, visible);
+            SetLabelVisible(ride.segmentLabel, visible);
+            SetLabelVisible(ride.verdictLabel, visible);
+        }
+
+        private static void SetLabelVisible(Text label, bool visible)
+        {
+            if (label != null)
+            {
+                label.gameObject.SetActive(visible);
+            }
         }
 
         private static string FormatDuration(float seconds)
@@ -227,22 +252,24 @@ namespace MYB73
             float estimatedDurationSeconds,
             string overallDifficulty,
             string biomesText,
-            string momentsClesText,
-            int momentCleCount)
+            string passagesText,
+            int passageCount)
         {
             RouteLengthMeters = routeLengthMeters;
             EstimatedDurationSeconds = estimatedDurationSeconds;
             OverallDifficulty = overallDifficulty;
             BiomesText = biomesText;
-            MomentsClesText = momentsClesText;
-            MomentCleCount = momentCleCount;
+            PassagesText = passagesText;
+            PassageCount = passageCount;
         }
 
         public float RouteLengthMeters { get; }
         public float EstimatedDurationSeconds { get; }
         public string OverallDifficulty { get; }
         public string BiomesText { get; }
-        public string MomentsClesText { get; }
-        public int MomentCleCount { get; }
+        public string PassagesText { get; }
+        public int PassageCount { get; }
+        public string MomentsClesText => PassagesText;
+        public int MomentCleCount => PassageCount;
     }
 }

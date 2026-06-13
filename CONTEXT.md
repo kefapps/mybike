@@ -342,18 +342,18 @@ Relationships:
 
 Aliases: apercu de l'echappee, route preview, pre-ride route card.
 
-### Moment Cle
+### Passage
 
-Definition: A short pre-ride promise for a memorable or mechanically relevant
-part of the route, such as the warmup, the main climb, or the short sprint.
+Definition: A short pre-ride label for a notable step of the balade, such as
+the warmup, the main climb, or the short sprint.
 
 Relationships:
 
-- A `Moment Cle` can reference `Route Difficulty Cue`, `Biome`, or effort
-  pacing, but it remains descriptive rather than a quest objective.
-- A `Fiche Route` should surface at most three `Moment Cle` entries for the MVP.
+- A `Passage` can reference `Route Difficulty Cue`, `Biome`, or effort pacing,
+  but it remains descriptive rather than a quest objective.
+- A `Fiche Route` should surface at most three `Passage` entries for the MVP.
 
-Aliases: moment cle, route highlight, key moment.
+Aliases: etape de la balade, old name: moment cle, route highlight, key moment.
 
 ### Biome
 

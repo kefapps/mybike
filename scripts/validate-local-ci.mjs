@@ -352,6 +352,15 @@ function unityMyb73Input() {
   });
 }
 
+function unityMyb79Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb79Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB79.Editor; public static class MYB83RunMyb79Validator { public static void Main() { MYB79WelcomeScreenValidator.ValidateWelcomeScreenCli(); } }"
+  });
+}
+
 function unityMyb98Input() {
   return JSON.stringify({
     className: "MYB83RunMyb98Validator",
@@ -383,6 +392,7 @@ async function runLocalCi(options) {
       skipCheck("MYB-60 resistance mapper validator", "--skip-unity was provided"),
       skipCheck("MYB-64 no-trainer fallback validator", "--skip-unity was provided"),
       skipCheck("MYB-73 route preview validator", "--skip-unity was provided"),
+      skipCheck("MYB-79 welcome screen validator", "--skip-unity was provided"),
       skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided")
     );
   } else {
@@ -440,6 +450,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityMyb73Input(),
+        "--timeout",
+        "180000"
+      ], {
+        timeoutMs: 240_000
+      }),
+      runCommand("MYB-79 welcome screen validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb79Input(),
         "--timeout",
         "180000"
       ], {
