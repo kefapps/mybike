@@ -6073,3 +6073,12 @@ Review synced on 2026-06-13:
 - Validation after fix:
   - `npm run validate:local-ci`: PASS.
   - `git diff --check main...HEAD`: PASS.
+
+Closure synced on 2026-06-13:
+
+- Linear closure comment ID: `5427457b-a5a3-455a-9337-4c41e9c05c5b`.
+- Pull request: `https://github.com/kefapps/mybike/pull/19`.
+- Merge commit on `main`: `394cc84f197f75a297193635d0b32af15843b8f2`.
+- Merge method: squash merge.
+- Branch `myb-73-route-preview-unity` was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
