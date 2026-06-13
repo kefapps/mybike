@@ -57,6 +57,58 @@ Non-examples:
   with unclear commercial/build rights; a model copied too directly from a
   MYB-37 inspiration reference.
 
+### Pipeline Asset Unity
+
+Definition: The concrete preparation flow used before an asset can be adopted
+or adjusted in `unity/Echapee4D`: provenance check, asset family classification,
+technical bands, Unity import settings, folder convention, manifest traceability,
+and validation evidence.
+
+Relationships:
+
+- `Pipeline Asset Unity` applies to both third-party free assets and custom or
+  generated assets, but their provenance rules stay separate.
+- It turns `Budget performance` and `Garde-fou performance` into asset-level
+  decisions without replacing `Verdict Artistique V1`.
+- It produces `Asset Optimise Unity` candidates for later scene or biome work.
+
+Examples:
+
+- Classifying a horse as `acteur anime`, applying texture and triangle warning
+  bands, recording its conversion path, and validating it before MYB-100 adjusts
+  its Unity import settings.
+
+Non-examples:
+
+- Importing an entire asset pack because it is free.
+- Treating a legal manifest approval as proof that an asset is visually premium.
+
+### Asset Optimise Unity
+
+Definition: An asset that has passed the `Pipeline Asset Unity` checks with an
+`ok` result or a documented `warning`, and whose Unity import settings, source
+metadata, folder placement, materials, prefabs, and validation evidence are
+ready for controlled use in a macOS-first scene.
+
+Relationships:
+
+- `Asset Optimise Unity` can be an `Asset Tiers Approuve`, a custom Blender MCP
+  asset, or a Meshy-generated asset.
+- It remains separate from `Verdict Artistique V1`: an optimized asset can still
+  be `support/fallback` rather than `adoptable-v1`.
+- A `reject` technical band blocks optimization unless a ticket documents an
+  explicit exception.
+
+Examples:
+
+- A CC0 prop with 1K textures, one shared material, a prefab under `Prefabs`,
+  complete manifest metadata, and passing validation.
+
+Non-examples:
+
+- A raw source archive, a full downloaded pack, an unreviewed generated model,
+  or a prefab with missing provenance.
+
 ### Verdict Artistique V1
 
 Definition: The art-direction verdict for an imported or inspected asset after
