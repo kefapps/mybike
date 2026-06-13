@@ -42,37 +42,16 @@ full HUD redesign.
 
 Local validation on 2026-06-13:
 
-- `MYB80HudCadenceValidator.ValidateHudCadenceCli()`: PASS via Unity batchmode.
-- `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
-  Unity batchmode.
-- `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity batchmode.
-- `MYB57EffortSimulatorValidator.ValidateEffortSimulatorCli()`: PASS via Unity
-  batchmode.
-- `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`: PASS
-  via Unity batchmode.
-- `MYB60ResistanceMapperValidator.ValidateResistanceMapperCli()`: PASS via Unity
-  batchmode.
-- `MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli()`: PASS via
-  Unity batchmode.
-- `MYB73RoutePreviewValidator.ValidateRoutePreviewCli()`: PASS via Unity
-  batchmode.
-- `MYB79WelcomeScreenValidator.ValidateWelcomeScreenCli()`: PASS via Unity
-  batchmode.
-- `MYB98RideTrajectoryValidator.ValidateRideTrajectoryCli()`: PASS via Unity
-  batchmode.
-- `node --check scripts/validate-local-ci.mjs`: PASS.
+- `unity-mcp-cli run-tool script-execute ...`: PASS after MYB-99 upgraded the
+  Unity-MCP package to `0.81.0`.
+- `npm run validate:local-ci`: PASS, including Unity-MCP status and MYB-91,
+  MYB-59, MYB-60, MYB-64, MYB-73, MYB-79, MYB-80, and MYB-98 validators via
+  Unity-MCP script execution.
 - `git diff --check`: PASS.
-
-Known local tooling note:
-
-- `unity-mcp-cli status unity/Echapee4D --timeout 60000`: PASS after restarting
-  Unity.
-- `unity-mcp-cli run-tool script-execute ...`: still returns exit code 1 with no
-  output in this local session, and direct MCP Unity tools return `Response data
-  is null`. Unity batchmode was used for validation evidence.
 
 Proof paths:
 
+- `_bmad-output/unity-test-results/myb-83-local-ci.txt`
 - `_bmad-output/unity-test-results/myb-80-hud-cadence-validator.txt`
 - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`
 - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`
