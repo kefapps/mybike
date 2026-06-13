@@ -6119,3 +6119,12 @@ Review synced on 2026-06-13:
   - `git diff --check origin/main...HEAD`: PASS.
   - Acceptance audit: 6 competitor sections, 6 "Trois bonnes idees" sections,
     6 "Piege a eviter" sections, 12 ticket-linked opportunities, 49 source URLs.
+
+Closure synced on 2026-06-13:
+
+- Linear closure comment ID: `626ac048-1979-427d-80ae-046ad5df0e59`.
+- Pull request: `https://github.com/kefapps/mybike/pull/20`.
+- Merge commit on `main`: `f6ff9f1ebdfaf262aaf520d06baa3c7c1c949e7b`.
+- Merge method: squash merge.
+- Branch `myb-36-benchmark-indoor-cycling` was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
