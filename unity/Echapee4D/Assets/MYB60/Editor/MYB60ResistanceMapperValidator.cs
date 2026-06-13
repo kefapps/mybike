@@ -161,14 +161,19 @@ namespace MYB60.Editor
                     failures.Add("Scene resistance controller must apply the MYB-60 mapped demand.");
                 }
 
-                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("~") || !ride.gradeLabel.text.Contains("->"))
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Resistance"))
                 {
-                    failures.Add("Scene HUD grade label must expose raw-to-smoothed-to-applied resistance.");
+                    failures.Add("Scene HUD grade label must show readable mapped resistance.");
                 }
 
-                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Map "))
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Source: Power"))
                 {
-                    failures.Add("Scene HUD verdict label must expose MYB-60 mapping status.");
+                    failures.Add("Scene HUD verdict label must show the trainer source without mapping debug wording.");
+                }
+
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Fatigue"))
+                {
+                    failures.Add("Scene HUD verdict label must show readable fatigue.");
                 }
 
                 var first = mapper.MapResistance(new MYB60ResistanceMappingInput(MYB57RouteSegment.Warmup, 0f, 0.24f, 0f));

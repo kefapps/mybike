@@ -1,0 +1,14 @@
+MYB-80 Unity HUD cadence validation
+Timestamp UTC: 2026-06-13T13:33:27.1906780Z
+Unity: 6000.4.10f1
+Status: PASS
+Simulated frames: 60
+Simulated duration: 1.000 s
+Fast interval: 0.250 s
+Slow interval: 0.500 s
+Fast refresh count: 4
+Slow refresh count: 2
+Fast text mutations: 4
+Slow text mutations: 1
+Progress after simulation: 7.9 m
+Visible HUD copy: 008 m / 245 m | 03% 28 km/h Effort: Recovery 32% Pente: +0.1% | Resistance 25 Segment: Warmup Source: Power | Resistance 25 | Fatigue 00%

@@ -1,5 +1,5 @@
 MYB-59 Resistance Controller validation
-Timestamp UTC: 2026-06-13T12:24:06.4356640Z
+Timestamp UTC: 2026-06-13T13:30:45.8684560Z
 Unity: 6000.4.10f1
 Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Status: PASS
@@ -12,5 +12,5 @@ Notes:
 - Pure controller fallback: demand 66, applied 18, status Fallback.
 - Pure controller unavailable: demand 66, applied 0, status Unavailable.
 - Scene demand/applied: 60->60 (Applied).
-- Scene HUD applied: Mock trainer: Power | Map Stable 60 | Ctrl Applied 60 | Fatigue 00% | 42%
-- Scene HUD fallback: Mock trainer: Power | Map Stable 60 | Ctrl Fallback 18 | Fatigue 00% | 42%
+- Scene HUD applied: Source: Power | Resistance 60 | Fatigue 00%
+- Scene HUD fallback: Source: Power | Resistance 18 | Fatigue 00%

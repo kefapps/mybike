@@ -144,14 +144,19 @@ namespace MYB59.Editor
                     failures.Add("Scene applied resistance should reflect climb difficulty.");
                 }
 
-                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("->"))
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Resistance"))
                 {
-                    failures.Add("Scene HUD grade label must show target-to-applied resistance.");
+                    failures.Add("Scene HUD grade label must show readable applied resistance.");
                 }
 
-                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Ctrl Applied"))
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Source: Power"))
                 {
-                    failures.Add("Scene HUD verdict label must show controller status.");
+                    failures.Add("Scene HUD verdict label must show the trainer source without controller debug wording.");
+                }
+
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Fatigue"))
+                {
+                    failures.Add("Scene HUD verdict label must show readable fatigue.");
                 }
 
                 var appliedHudText = ride.verdictLabel == null ? string.Empty : ride.verdictLabel.text;
@@ -166,9 +171,9 @@ namespace MYB59.Editor
                 }
 
                 var fallbackHudText = ride.verdictLabel == null ? string.Empty : ride.verdictLabel.text;
-                if (!fallbackHudText.Contains("Ctrl Fallback"))
+                if (!fallbackHudText.Contains("Resistance 18"))
                 {
-                    failures.Add("Scene HUD verdict label must expose fallback status.");
+                    failures.Add("Scene HUD verdict label must show fallback applied resistance without controller debug wording.");
                 }
 
                 controller.ControllerAvailable = true;

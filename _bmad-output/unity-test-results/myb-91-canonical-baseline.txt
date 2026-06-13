@@ -25,7 +25,7 @@ Road mesh: True
 HUD canvas: True
 HUD labels wired: True
 HUD difficulty: Effort: Sustained climb 58%
-HUD grade: Pente: -0.7% | Res: 60~60->60
+HUD grade: Pente: -0.7% | Resistance 60
 HUD segment: Segment: Climb
 Route difficulty cues: 11
 Climb cues: 4
