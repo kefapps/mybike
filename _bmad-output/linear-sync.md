@@ -6600,3 +6600,14 @@ Follow-up creation synced on 2026-06-13:
   - keep MYB-102 separate for global URP defaults/probes;
   - no `src/**`, no `unity/Echappee3D/**`, no mass asset import, and no Meshy
     spend without explicit approval.
+
+Closure synced on 2026-06-13:
+
+- Pull request: `https://github.com/kefapps/mybike/pull/28`.
+- Squash merge commit on `main`:
+  `19a675b2d5b941cf987d1dd3ddd3066a18185de6`.
+- Merge method: squash merge.
+- Branch `myb-103-scene-visual-audit` was deleted on origin after merge.
+- Linear status moved from `Backlog` / `In Progress` to `Done`.
+- Closure evidence recorded in the MYB-103 Linear description.
+- Follow-up remains open in Backlog: `MYB-104`.
