@@ -65,6 +65,8 @@ Last sync: 2026-06-13
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 - Unity asset optimization pipeline MYB-50: `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`
 - Unity imported asset adjustments MYB-100: `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`
+- Unity scene visual audit MYB-103: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
+- Unity scene recomposition follow-up MYB-104: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -118,6 +120,7 @@ Last sync: 2026-06-13
 | Unity PR checklist | `MYB-88` | [MYB-079] Ajouter une checklist PR pour assets et features Unity | https://linear.app/kefjbo/issue/MYB-88/myb-079-ajouter-une-checklist-pr-pour-assets-et-features-unity |
 | Unity asset optimization pipeline | `MYB-50` | [MYB-018] Définir le pipeline d’optimisation assets Unity macOS-first | https://linear.app/kefjbo/issue/MYB-50/myb-018-definir-le-pipeline-doptimisation-assets-unity-macos-first |
 | Unity imported asset adjustment follow-up | `MYB-100` | Ajuster les assets Unity importés après pipeline MYB-50 | https://linear.app/kefjbo/issue/MYB-100/ajuster-les-assets-unity-importes-apres-pipeline-myb-50 |
+| Unity scene recomposition follow-up | `MYB-104` | Recomposer la scène canonique en trois Passages low-poly de production | https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production |
 | Unity macOS performance budgets | `MYB-51` | [MYB-019] Définir et mesurer les budgets performance Unity macOS-first | https://linear.app/kefjbo/issue/MYB-51/myb-019-definir-et-mesurer-les-budgets-performance-unity-macos-first |
 | Unity mock effort/difficulty simulator | `MYB-57` | [MYB-031] Implémenter un simulateur d’effort/difficulté Unity en mode mock | https://linear.app/kefjbo/issue/MYB-57/myb-031-implementer-un-simulateur-deffortdifficulte-unity-en-mode-mock |
 | Unity welcome screen | `MYB-79` | [MYB-070] Refondre l’écran d’accueil Unity pour vendre la balade | https://linear.app/kefjbo/issue/MYB-79/myb-070-refondre-lecran-daccueil-unity-pour-vendre-la-balade |
@@ -194,6 +197,10 @@ continuation, engine migration, backend, BLE/FTMS or new broad backlog.
 - `MYB-100` follows `MYB-50`; it applies the documented asset optimization
   pipeline to assets already imported by `MYB-42`, `MYB-53`, `MYB-95`, and
   `MYB-96`, without new mass imports or biome expansion.
+- `MYB-104` follows and is blocked by `MYB-103`; it turns the visual audit into
+  a bounded scene recomposition pass for three one-minute Passages, without
+  changing the ride loop, `src/**`, `unity/Echappee3D/**`, or global URP
+  defaults.
 
 ## Readiness Caveats Synced
 
@@ -6496,3 +6503,100 @@ Closure synced on 2026-06-13:
 - Linear status moved from `In Progress` to `Done`.
 - Branch `myb-100-ajuster-assets-unity-importes` was deleted on origin after
   merge.
+
+### MYB-103 Scene Visual Audit Scope Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-103`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-103/auditer-et-recadrer-la-scene-unity-canonique-avant-nouvelle-passe`.
+- Linear status: `Backlog`.
+- Priority: `High`.
+- Related issues: `MYB-101`, `MYB-102`, `MYB-37`.
+- Local scope artifact:
+  `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`.
+- Context:
+  - MYB-101 produced three visual variants, but product review rejected all
+    three as visually poor.
+  - Quick Unity scene audit reported 337 renderers, 34 visible materials, 11
+    lights, 1 shadow-casting light, 1 post-process Volume, 0 reflection probes,
+    and 0 light probe groups.
+  - Unity documentation review points to a structural scene-lighting problem,
+    not a post-processing preset problem.
+- Scope guard:
+  - Do not merge the current MYB-101 visuals as final.
+  - Keep global URP defaults in the separate MYB-102 spike.
+  - No `src/**`, no `unity/Echappee3D/**`, no new mass asset import, and no
+    Meshy credit usage.
+
+Grill-with-docs update on 2026-06-13:
+
+- MYB-103 remains audit/cadrage only; no canonical Unity scene change in this
+  ticket except inspection, captures, or audit evidence.
+- Target sequence: three successive one-minute Passages in the canonical ride:
+  foret claire, village / route de col, then panorama / signal fantasy.
+- Main rejection criterion: `Lecture Prototype`, meaning the scene shows
+  temporary construction instead of an intentional place.
+- Each Passage must have its own audit grid.
+- Each grid item must receive `prototype`, `limite`, or
+  `production low-poly`, with a short visible-evidence justification.
+- Unity documentation is used as support for visual criteria, not as a mandatory
+  URP feature checklist.
+- MYB-103 prepares the next visual implementation issue content, but that issue
+  is created only after the audit is reviewed.
+- Linear comment ID:
+  `3b395130-6e82-47d9-86b1-b1f5c9f50a87`.
+
+Audit execution synced on 2026-06-13:
+
+- Added MYB-103 Unity Editor audit capture tool:
+  `unity/Echapee4D/Assets/MYB103/Editor/MYB103SceneVisualAudit.cs`.
+- Pull request:
+  `https://github.com/kefapps/mybike/pull/28`.
+- Capture report:
+  `_bmad-output/unity-test-results/myb-103/myb-103-scene-visual-audit.txt`.
+- PNG evidence:
+  - `_bmad-output/unity-test-results/myb-103/passage-01-foret-claire.png`.
+  - `_bmad-output/unity-test-results/myb-103/passage-02-village-route-de-col.png`.
+  - `_bmad-output/unity-test-results/myb-103/passage-03-panorama-signal-fantasy.png`.
+- Current scene metrics from the audit tool: 337 renderers, 30 visible material
+  names, 7 lights, 1 shadow-casting light, 0 Volumes, 0 Reflection Probes, and
+  0 Light Probe Groups.
+- Product verdict: structural `Lecture Prototype` confirmed on all three
+  Passages. Ride readability is acceptable, but composition, place identity,
+  grounding, lighting, material hierarchy, and premium signal are not at
+  `Low-poly de Production`.
+- Follow-up created: `MYB-104`
+  `https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB103SceneVisualAudit.CaptureSceneVisualAuditCli()`: PASS via Unity-MCP
+    script execution.
+- Linear audit execution comment ID:
+  `708afb63-6df5-47b6-bf63-e70c4e846590`.
+- Linear PR comment ID:
+  `98a78a35-8c6e-4a90-a388-b08b6d3cfd1c`.
+
+Follow-up creation synced on 2026-06-13:
+
+- Created Linear issue: `MYB-104`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production`.
+- Linear title:
+  `Recomposer la scène canonique en trois Passages low-poly de production`.
+- Linear status: `Backlog`.
+- Priority: `High`.
+- Blocked by: `MYB-103`.
+- Related issues: `MYB-102`, `MYB-37`, `MYB-101`.
+- Attached link: PR #28, `https://github.com/kefapps/mybike/pull/28`.
+- Scope:
+  - preserve the canonical ride loop, mock mode, HUD behavior, and route
+    navigation;
+  - recompose foreground, midground, background and horizon for each Passage;
+  - replace debug-like gates/posts with authored scenic or fantasy signals;
+  - improve grounding, density, lighting direction, shadows, material hierarchy
+    and depth cues;
+  - keep MYB-102 separate for global URP defaults/probes;
+  - no `src/**`, no `unity/Echappee3D/**`, no mass asset import, and no Meshy
+    spend without explicit approval.
