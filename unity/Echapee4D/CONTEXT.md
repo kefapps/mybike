@@ -8,6 +8,27 @@ separate without depending on connected-bike hardware.
 
 ## Terms
 
+### Cadence HUD
+
+Definition: The frequency at which visible HUD text is refreshed during the
+ride. It is a readability concern, not the simulation tick.
+
+Relationships:
+
+- `Cadence HUD` can be slower than the ride loop, camera pose, effort
+  simulation, and resistance controller updates.
+- It protects the HUD from visual noise while preserving responsive ride feel.
+
+Examples:
+
+- Updating distance and speed text four times per second while refreshing
+  segment and resistance status twice per second.
+
+Non-examples:
+
+- Slowing the rider trajectory, camera motion, or resistance calculations.
+- A full HUD redesign or native macOS accessibility layer.
+
 ### Trajectoire de Ride
 
 Definition: The continuous path followed by the rider and camera during the

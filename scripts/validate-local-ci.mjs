@@ -361,6 +361,15 @@ function unityMyb79Input() {
   });
 }
 
+function unityMyb80Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb80Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB80.Editor; public static class MYB83RunMyb80Validator { public static void Main() { MYB80HudCadenceValidator.ValidateHudCadenceCli(); } }"
+  });
+}
+
 function unityMyb98Input() {
   return JSON.stringify({
     className: "MYB83RunMyb98Validator",
@@ -393,6 +402,7 @@ async function runLocalCi(options) {
       skipCheck("MYB-64 no-trainer fallback validator", "--skip-unity was provided"),
       skipCheck("MYB-73 route preview validator", "--skip-unity was provided"),
       skipCheck("MYB-79 welcome screen validator", "--skip-unity was provided"),
+      skipCheck("MYB-80 HUD cadence validator", "--skip-unity was provided"),
       skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided")
     );
   } else {
@@ -461,6 +471,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityMyb79Input(),
+        "--timeout",
+        "180000"
+      ], {
+        timeoutMs: 240_000
+      }),
+      runCommand("MYB-80 HUD cadence validator", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb80Input(),
         "--timeout",
         "180000"
       ], {

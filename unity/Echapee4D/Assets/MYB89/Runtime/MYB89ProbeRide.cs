@@ -34,6 +34,8 @@ namespace MYB89
         public Text gradeLabel;
         public Text segmentLabel;
         public Text verdictLabel;
+        public float hudFastRefreshHz = 4f;
+        public float hudSlowRefreshHz = 2f;
 
         [Header("MYB-57 Mock Trainer")]
         public bool useEffortSimulator = true;
@@ -70,6 +72,11 @@ namespace MYB89
         private Vector3[] smoothedRoutePoints = Array.Empty<Vector3>();
         private bool hasPoseRotation;
         private bool hasCameraBasePose;
+        private bool hasHudSchedule;
+        private float nextHudFastRefreshTime;
+        private float nextHudSlowRefreshTime;
+        private int hudFastTextUpdateCount;
+        private int hudSlowTextUpdateCount;
 
         public float RouteLength => routeLength;
         public MYB57EffortSnapshot LastEffortSnapshot => lastEffortSnapshot;
@@ -77,6 +84,10 @@ namespace MYB89
         public MYB60ResistanceMappingSnapshot LastResistanceMappingSnapshot => lastResistanceMappingSnapshot;
         public bool IsRoutePreviewWaiting => waitForRoutePreview && !routePreviewLaunched;
         public int TrajectorySampleCount => smoothedRoutePoints == null ? 0 : smoothedRoutePoints.Length;
+        public float HudFastRefreshIntervalSeconds => 1f / Mathf.Max(0.1f, hudFastRefreshHz);
+        public float HudSlowRefreshIntervalSeconds => 1f / Mathf.Max(0.1f, hudSlowRefreshHz);
+        public int HudFastTextUpdateCount => hudFastTextUpdateCount;
+        public int HudSlowTextUpdateCount => hudSlowTextUpdateCount;
         public bool IsNoTrainerFallbackActive =>
             useEffortSimulator && (useNoTrainerFallback || trainerSourcePreset == MYB57TrainerSourcePreset.ManualFallback);
 
@@ -88,7 +99,7 @@ namespace MYB89
             CacheCameraBasePosition();
             ApplyRoutePreviewGate();
             ApplyPose(progressMeters);
-            UpdateHud();
+            ForceRefreshHud();
         }
 
         private void Start()
@@ -99,7 +110,7 @@ namespace MYB89
             CacheCameraBasePosition();
             ApplyRoutePreviewGate();
             ApplyPose(progressMeters);
-            UpdateHud();
+            ForceRefreshHud();
         }
 
         private void OnValidate()
@@ -112,6 +123,8 @@ namespace MYB89
             orientationSmoothing = Mathf.Clamp(orientationSmoothing, 0f, 24f);
             cameraTurnLeanMaxDegrees = Mathf.Clamp(cameraTurnLeanMaxDegrees, 0f, 6f);
             manualFallbackEffort01 = Mathf.Clamp01(manualFallbackEffort01);
+            hudFastRefreshHz = Mathf.Clamp(hudFastRefreshHz, 0.5f, 12f);
+            hudSlowRefreshHz = Mathf.Clamp(hudSlowRefreshHz, 0.25f, 8f);
         }
 
         private void Update()
@@ -161,7 +174,7 @@ namespace MYB89
             CacheResistanceMapper();
             resistanceMapper?.ResetSmoothing();
             ApplyPose(progressMeters);
-            UpdateHud();
+            ForceRefreshHud();
         }
 
         public void PrepareRoutePreview()
@@ -176,7 +189,35 @@ namespace MYB89
         {
             routePreviewLaunched = true;
             autoplay = true;
-            UpdateHud();
+            ForceRefreshHud();
+        }
+
+        public void ResetHudCadenceCounters(float hudTimeSeconds = 0f)
+        {
+            hudFastTextUpdateCount = 0;
+            hudSlowTextUpdateCount = 0;
+            ScheduleNextHudRefresh(hudTimeSeconds);
+        }
+
+        public void TickHudCadenceForValidation(float deltaTimeSeconds, float hudTimeSeconds)
+        {
+            if (routeMarkers == null || routeMarkers.Length < 2)
+            {
+                return;
+            }
+
+            if (segmentLengths.Length != routeMarkers.Length - 1)
+            {
+                RebuildRouteCache();
+            }
+
+            if (autoplay && !IsRoutePreviewWaiting)
+            {
+                AdvanceAutoplayFrame(deltaTimeSeconds);
+            }
+
+            ApplyPose(progressMeters);
+            UpdateHudAt(hudTimeSeconds, false);
         }
 
         public void RebuildRouteCache()
@@ -298,6 +339,28 @@ namespace MYB89
 
         private void UpdateHud()
         {
+            UpdateHudAt(Application.isPlaying ? Time.time : Time.realtimeSinceStartup, false);
+        }
+
+        private void ForceRefreshHud()
+        {
+            UpdateHudAt(Application.isPlaying ? Time.time : Time.realtimeSinceStartup, true);
+        }
+
+        private void UpdateHudAt(float hudTimeSeconds, bool force)
+        {
+            if (!hasHudSchedule)
+            {
+                ScheduleNextHudRefresh(hudTimeSeconds - Mathf.Max(HudFastRefreshIntervalSeconds, HudSlowRefreshIntervalSeconds));
+            }
+
+            var updateFast = force || hudTimeSeconds + 0.0001f >= nextHudFastRefreshTime;
+            var updateSlow = force || hudTimeSeconds + 0.0001f >= nextHudSlowRefreshTime;
+            if (!updateFast && !updateSlow)
+            {
+                return;
+            }
+
             var total = routeLength <= 0.01f ? 1f : routeLength;
             var wrappedMeters = Mathf.Repeat(progressMeters, total);
             var progress01 = Mathf.Clamp01(wrappedMeters / total);
@@ -310,41 +373,60 @@ namespace MYB89
             var resistance = lastResistanceSnapshot;
             var displaySpeed = useEffortSimulator ? effort.SpeedMetersPerSecond : speedMetersPerSecond;
 
-            if (distanceLabel != null)
+            if (updateFast)
             {
-                distanceLabel.text = $"{wrappedMeters:000} m / {routeLength:000} m";
+                if (distanceLabel != null)
+                {
+                    distanceLabel.text = $"{wrappedMeters:000} m / {routeLength:000} m | {percent:00}%";
+                }
+
+                if (speedLabel != null)
+                {
+                    speedLabel.text = $"{displaySpeed * 3.6f:00} km/h";
+                }
+
+                hudFastTextUpdateCount++;
+                nextHudFastRefreshTime = hudTimeSeconds + HudFastRefreshIntervalSeconds;
             }
 
-            if (speedLabel != null)
+            if (updateSlow)
             {
-                speedLabel.text = $"{displaySpeed * 3.6f:00} km/h";
-            }
+                if (difficultyLabel != null)
+                {
+                    difficultyLabel.text = useEffortSimulator
+                        ? $"Effort: {EffortHudLabel(effort)} {effort.PedalEffort01 * 100f:00}%"
+                        : $"Effort: {routeHud.DifficultyLabel}";
+                }
 
-            if (difficultyLabel != null)
-            {
-                difficultyLabel.text = useEffortSimulator
-                    ? $"Effort: {EffortHudLabel(effort)} {effort.PedalEffort01 * 100f:00}%"
-                    : $"Effort: {routeHud.DifficultyLabel}";
-            }
+                if (gradeLabel != null)
+                {
+                    gradeLabel.text = useEffortSimulator
+                        ? $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}% | Resistance {resistance.AppliedResistanceLevel:00}"
+                        : $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
+                }
 
-            if (gradeLabel != null)
-            {
-                gradeLabel.text = useEffortSimulator
-                    ? $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}% | Res: {effort.TargetResistanceLevel:00}~{lastResistanceMappingSnapshot.SmoothedResistanceLevel:00}->{resistance.AppliedResistanceLevel:00}"
-                    : $"Pente: {routeHud.GradePercent:+0.0;-0.0;0.0}%";
-            }
+                if (segmentLabel != null)
+                {
+                    segmentLabel.text = $"Segment: {routeHud.SegmentLabel}";
+                }
 
-            if (segmentLabel != null)
-            {
-                segmentLabel.text = $"Segment: {routeHud.SegmentLabel}";
-            }
+                if (verdictLabel != null)
+                {
+                    verdictLabel.text = useEffortSimulator
+                        ? $"{TrainerModeHudLabel(effort)} | Resistance {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}%"
+                        : "Balade stable | corridor lisible";
+                }
 
-            if (verdictLabel != null)
-            {
-                verdictLabel.text = useEffortSimulator
-                    ? $"{TrainerModeHudLabel(effort)} | Map {lastResistanceMappingSnapshot.StatusLabel} {lastResistanceMappingSnapshot.SmoothedResistanceLevel:00} | Ctrl {resistance.StatusLabel} {resistance.AppliedResistanceLevel:00} | Fatigue {effort.Fatigue01 * 100f:00}% | {percent:00}%"
-                    : $"Mock ride running | {percent:00}% | readable motion corridor";
+                hudSlowTextUpdateCount++;
+                nextHudSlowRefreshTime = hudTimeSeconds + HudSlowRefreshIntervalSeconds;
             }
+        }
+
+        private void ScheduleNextHudRefresh(float hudTimeSeconds)
+        {
+            nextHudFastRefreshTime = hudTimeSeconds + HudFastRefreshIntervalSeconds;
+            nextHudSlowRefreshTime = hudTimeSeconds + HudSlowRefreshIntervalSeconds;
+            hasHudSchedule = true;
         }
 
         private MYB57EffortSnapshot SampleEffort(float deltaTimeSeconds, bool updateFatigue)
@@ -390,8 +472,8 @@ namespace MYB89
         private string TrainerModeHudLabel(MYB57EffortSnapshot effort)
         {
             return IsNoTrainerFallbackActive
-                ? $"No trainer: {effort.SourceBadge}"
-                : $"Mock trainer: {effort.SourceBadge}";
+                ? $"Sans capteur: {effort.SourceBadge}"
+                : $"Source: {effort.SourceBadge}";
         }
 
         private void CacheResistanceController()

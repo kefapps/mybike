@@ -150,14 +150,19 @@ namespace MYB57.Editor
                 failures.Add("HUD difficulty label must include effort text.");
             }
 
-            if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Res:"))
+            if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Resistance"))
             {
-                failures.Add("HUD grade label must include target resistance.");
+                failures.Add("HUD grade label must include readable resistance.");
             }
 
-            if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Mock trainer: Power"))
+            if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Source: Power"))
             {
-                failures.Add("HUD verdict label must include the mock trainer source badge.");
+                failures.Add("HUD verdict label must include the trainer source badge without debug wording.");
+            }
+
+            if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Fatigue"))
+            {
+                failures.Add("HUD verdict label must include readable fatigue.");
             }
 
             var effortHudText = ride.difficultyLabel == null ? string.Empty : ride.difficultyLabel.text;

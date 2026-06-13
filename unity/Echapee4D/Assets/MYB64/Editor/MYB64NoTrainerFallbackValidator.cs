@@ -153,10 +153,11 @@ namespace MYB64.Editor
                 }
 
                 if (ride.verdictLabel == null
-                    || !ride.verdictLabel.text.Contains("No trainer: Manual")
-                    || !ride.verdictLabel.text.Contains("Ctrl Fallback"))
+                    || !ride.verdictLabel.text.Contains("Sans capteur: Manual")
+                    || !ride.verdictLabel.text.Contains("Resistance")
+                    || !ride.verdictLabel.text.Contains("Fatigue"))
                 {
-                    failures.Add("HUD verdict label must explain no-trainer mode and controller fallback.");
+                    failures.Add("HUD verdict label must explain no-trainer mode without controller debug wording.");
                 }
 
                 notes.Add($"Scene fallback: effort {effort.PedalEffort01 * 100f:00}%, speed {effort.SpeedMetersPerSecond * 3.6f:00} km/h, controller {resistance.StatusLabel} {resistance.AppliedResistanceLevel}.");
@@ -183,7 +184,7 @@ namespace MYB64.Editor
                     failures.Add("ManualFallback source preset must use the configured manual effort path.");
                 }
 
-                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("No trainer: Manual"))
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Sans capteur: Manual"))
                 {
                     failures.Add("ManualFallback source preset must show the no-trainer HUD label.");
                 }

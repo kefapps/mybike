@@ -158,19 +158,37 @@ namespace MYB89.Editor
                     failures.Add("HUD grade label is missing the slope readout.");
                 }
 
-                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("->"))
+                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("Resistance"))
                 {
-                    failures.Add("HUD grade label is missing applied resistance.");
+                    failures.Add("HUD grade label is missing readable resistance.");
                 }
 
-                if (ride.gradeLabel == null || !ride.gradeLabel.text.Contains("~"))
+                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Fatigue"))
                 {
-                    failures.Add("HUD grade label is missing smoothed resistance.");
+                    failures.Add("HUD verdict label is missing readable fatigue.");
                 }
 
-                if (ride.verdictLabel == null || !ride.verdictLabel.text.Contains("Map "))
+                if (ride.HudFastRefreshIntervalSeconds < 0.24f || ride.HudFastRefreshIntervalSeconds > 0.26f)
                 {
-                    failures.Add("HUD verdict label is missing MYB60 mapping status.");
+                    failures.Add($"HUD fast cadence should be 4 Hz, got interval {ride.HudFastRefreshIntervalSeconds:0.000}s.");
+                }
+
+                if (ride.HudSlowRefreshIntervalSeconds < 0.49f || ride.HudSlowRefreshIntervalSeconds > 0.51f)
+                {
+                    failures.Add($"HUD slow cadence should be 2 Hz, got interval {ride.HudSlowRefreshIntervalSeconds:0.000}s.");
+                }
+
+                var hudCopy = string.Join(
+                    " ",
+                    ride.distanceLabel == null ? string.Empty : ride.distanceLabel.text,
+                    ride.speedLabel == null ? string.Empty : ride.speedLabel.text,
+                    ride.difficultyLabel == null ? string.Empty : ride.difficultyLabel.text,
+                    ride.gradeLabel == null ? string.Empty : ride.gradeLabel.text,
+                    ride.segmentLabel == null ? string.Empty : ride.segmentLabel.text,
+                    ride.verdictLabel == null ? string.Empty : ride.verdictLabel.text);
+                if (ContainsForbiddenHudDebugCopy(hudCopy))
+                {
+                    failures.Add("HUD visible copy should not expose Mock, Map, Ctrl, running, or raw resistance arrows.");
                 }
 
                 if (ride.LastResistanceSnapshot.Status != MYB59ResistanceControllerStatus.Applied)
@@ -1031,6 +1049,8 @@ namespace MYB89.Editor
             ride.turnLookAheadMeters = 8f;
             ride.orientationSmoothing = 7f;
             ride.cameraTurnLeanMaxDegrees = 2.2f;
+            ride.hudFastRefreshHz = 4f;
+            ride.hudSlowRefreshHz = 2f;
             ride.waitForRoutePreview = true;
             ride.autoplay = false;
             ride.resistanceMapper = rig.AddComponent<MYB60ResistanceMapper>();
@@ -1304,6 +1324,22 @@ namespace MYB89.Editor
             {
                 EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
             }
+        }
+
+        private static bool ContainsForbiddenHudDebugCopy(string copy)
+        {
+            if (string.IsNullOrWhiteSpace(copy))
+            {
+                return false;
+            }
+
+            var normalized = copy.ToLowerInvariant();
+            return normalized.Contains("mock")
+                || normalized.Contains("map ")
+                || normalized.Contains("ctrl")
+                || normalized.Contains("running")
+                || normalized.Contains("->")
+                || normalized.Contains("~");
         }
 
         private static string WriteValidationReport(

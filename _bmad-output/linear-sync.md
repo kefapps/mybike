@@ -73,6 +73,7 @@ Last sync: 2026-06-13
 - Unity natural turn capture MYB-98:
   `_bmad-output/video-captures/myb-98-natural-turns-20260613-093900/myb-98-natural-turns-720p-muted.mp4`
 - Unity welcome screen MYB-79: `_bmad-output/implementation-artifacts/myb-79-unity-welcome-screen.md`
+- Unity HUD cadence/readability MYB-80: `_bmad-output/implementation-artifacts/myb-80-hud-cadence-accessibility.md`
 
 ## Linear Documents
 
@@ -6276,3 +6277,68 @@ Closure synced on 2026-06-13:
 - Merge method: squash merge.
 - Branch `MYB-79-unity-welcome-screen` was deleted on origin after merge.
 - Linear status moved from `In Review` to `Done`.
+
+### MYB-80 Unity HUD Cadence And Readability Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-80`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-80/myb-071-stabiliser-la-cadence-hud-unity-et-accessibilite-macos-first`.
+- Linear status: `In Progress`.
+- Branch: `MYB-80-hud-cadence-accessibility`.
+- Local implementation report:
+  `_bmad-output/implementation-artifacts/myb-80-hud-cadence-accessibility.md`.
+- Implementation summary:
+  - Added `Cadence HUD` to the Unity ride runtime glossary.
+  - Decoupled visible HUD text refresh from the ride simulation loop.
+  - Added fast HUD labels at 4 Hz and slower context/state labels at 2 Hz.
+  - Removed user-visible technical HUD wording: `Mock`, `Map`, `Ctrl`,
+    `running`, `->`, and `~`.
+  - Kept readable ride feedback for progress, speed, effort, slope,
+    resistance, source, and fatigue.
+  - Added `MYB80HudCadenceValidator` and wired it into
+    `scripts/validate-local-ci.mjs`.
+  - Updated MYB-57, MYB-59, MYB-60, MYB-64, MYB-89, and MYB-91 validation
+    expectations for the new readable HUD copy.
+- Scope guard:
+  - No React/WebGL prototype work.
+  - No native macOS VoiceOver or keyboard-navigation layer.
+  - No connected-bike telemetry, BLE, FTMS, or hardware control scope.
+  - No full HUD redesign.
+- Validation:
+  - `MYB80HudCadenceValidator.ValidateHudCadenceCli()`: PASS via Unity
+    batchmode.
+  - `MYB91CanonicalBaselineValidator.ValidateCanonicalBaselineCli()`: PASS via
+    Unity batchmode.
+  - `MYB89ProbeBuilder.ValidateProbeScene()`: PASS via Unity batchmode.
+  - `MYB57EffortSimulatorValidator.ValidateEffortSimulatorCli()`: PASS via
+    Unity batchmode.
+  - `MYB59ResistanceControllerValidator.ValidateResistanceControllerCli()`:
+    PASS via Unity batchmode.
+  - `MYB60ResistanceMapperValidator.ValidateResistanceMapperCli()`: PASS via
+    Unity batchmode.
+  - `MYB64NoTrainerFallbackValidator.ValidateNoTrainerFallbackCli()`: PASS via
+    Unity batchmode.
+  - `MYB73RoutePreviewValidator.ValidateRoutePreviewCli()`: PASS via Unity
+    batchmode.
+  - `MYB79WelcomeScreenValidator.ValidateWelcomeScreenCli()`: PASS via Unity
+    batchmode.
+  - `MYB98RideTrajectoryValidator.ValidateRideTrajectoryCli()`: PASS via Unity
+    batchmode.
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `git diff --check`: PASS.
+- Local tooling note:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 60000`: PASS after Unity
+    restart.
+  - `unity-mcp-cli run-tool script-execute ...`: exit 1 with no stdout/stderr in
+    this local session; direct Unity MCP tools returned `Response data is null`.
+    Validation was therefore captured through Unity batchmode.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-80-hud-cadence-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-91-canonical-baseline.txt`.
+  - `_bmad-output/unity-test-results/myb-89-unity-mcp-probe-validator.txt`.
+  - `_bmad-output/unity-test-results/myb-57-effort-simulator.txt`.
+  - `_bmad-output/unity-test-results/myb-59-resistance-controller.txt`.
+  - `_bmad-output/unity-test-results/myb-60-resistance-mapper.txt`.
+  - `_bmad-output/unity-test-results/myb-64-no-trainer-fallback.txt`.
