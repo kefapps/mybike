@@ -214,6 +214,10 @@ intentional place.
 Title:
 `Recomposer la scene canonique en trois Passages low-poly de production`.
 
+Linear:
+`MYB-104` -
+`https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production`.
+
 Intent:
 turn the MYB-103 audit into a visible scene pass that replaces the current
 prototype read with three authored one-minute Passages: foret claire,
