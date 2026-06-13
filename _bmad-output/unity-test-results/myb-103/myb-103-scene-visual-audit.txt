@@ -1,0 +1,47 @@
+# MYB-103 Scene Visual Audit Capture
+
+Status: PASS
+Generated at UTC: 2026-06-13T19:47:57.2533070Z
+Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Capture size: 1280x720
+HUD/canvases: disabled for visual audit captures
+Passage sampling: current route thirds used as audit proxies for the future three one-minute target sequence.
+
+## Scene metrics
+- Renderers: 337
+- Visible material names: 30
+- Sample material names: Lit, MYB48_ClimbCue, MYB48_RecoveryCue, MYB48_SprintCue, MYB53_PavingStones141_Stylized, MYB53_SoftVillageGrass, MYB53_WarmRoadEdge, MYB89_Banner, MYB89_Cockpit, MYB89_EdgeLine, MYB89_Grass, MYB89_Hill, MYB89_HorizonHill, MYB89_HorizonVillage, MYB89_LanePaint, MYB89_PostBlue, MYB89_PostCoral, MYB89_PostWhite, MYB89_TreeLeaf, MYB89_TreeTrunk
+- Lights: 7
+- Shadow-casting lights: 1
+- Volumes: 0
+- Reflection probes: 0
+- Light probe groups: 0
+- Scene bounds: (216.0, 12.0, 335.0)
+
+## Passage captures
+### Foret claire
+- Slug: passage-01-foret-claire
+- Capture: _bmad-output/unity-test-results/myb-103/passage-01-foret-claire.png
+- Route position: 39.2 m / 245.2 m
+- Camera position: (-0.4, 1.7, 37.1)
+- Camera forward: (-0.2, -0.1, 1.0)
+- Frustum renderer count: 309
+- Closest visible objects: MYB89_Stem, MYB89_Handlebar_Left, MYB89_Handlebar_Right, MYB89_CenterDash, MYB89_Tree_03_Trunk, MYB89_Tree_03_Crown, MYB89_PostCap_02_R, MYB89_PostCap_02_L, MYB89_ClosePost_02_R, MYB89_ClosePost_02_L, MYB44_StoneFence_01, MYB44_LowWall_02, MYB44_WoodCrate_02, MYB89_Tree_04_Trunk, MYB89_Tree_04_Crown, MYB89_CenterDash
+
+### Village / route de col
+- Slug: passage-02-village-route-de-col
+- Capture: _bmad-output/unity-test-results/myb-103/passage-02-village-route-de-col.png
+- Route position: 122.6 m / 245.2 m
+- Camera position: (-0.7, 1.7, 119.4)
+- Camera forward: (0.2, -0.1, 1.0)
+- Frustum renderer count: 210
+- Closest visible objects: MYB89_Stem, MYB89_RouteRoad, MYB89_GroundPlane, MYB89_Handlebar_Left, MYB89_Handlebar_Right, MYB89_LeftEdgeLine, MYB89_RightEdgeLine, MYB89_CenterDash, MYB44_LeftWarmShoulder, MYB44_RightWarmShoulder, MYB44_LeftVillageVerge, MYB44_RightVillageVerge, MYB89_PostCap_07_L, MYB89_PostCap_07_R, MYB89_ClosePost_07_L, MYB89_ClosePost_07_R
+
+### Panorama / signal fantasy
+- Slug: passage-03-panorama-signal-fantasy
+- Capture: _bmad-output/unity-test-results/myb-103/passage-03-panorama-signal-fantasy.png
+- Route position: 206.0 m / 245.2 m
+- Camera position: (-0.6, 1.8, 201.4)
+- Camera forward: (-0.2, -0.1, 1.0)
+- Frustum renderer count: 74
+- Closest visible objects: MYB89_Stem, MYB48_Cue_Recovery_Entry_TopRune, MYB89_Handlebar_Right, MYB89_Handlebar_Left, MYB44_StoneFence_10, MYB89_CenterDash, MYB44_RoadsideBarrel_08, MYB89_PostCap_12_R, MYB89_ClosePost_12_R, roadside_rock_3, roadside_rock_2, ground_shadow, roadside_rock_1, MYB48_Cue_Recovery_Beacon_01_GlowCap, MYB48_Cue_Recovery_Beacon_01, roadside_rock_0

@@ -65,6 +65,7 @@ Last sync: 2026-06-13
 - Blender MCP asset pack MYB-96: `_bmad-output/implementation-artifacts/myb-96-blender-mcp-asset-pack.md`
 - Unity asset optimization pipeline MYB-50: `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`
 - Unity imported asset adjustments MYB-100: `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`
+- Unity scene visual audit MYB-103: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -6540,3 +6541,29 @@ Grill-with-docs update on 2026-06-13:
   is created only after the audit is reviewed.
 - Linear comment ID:
   `3b395130-6e82-47d9-86b1-b1f5c9f50a87`.
+
+Audit execution synced on 2026-06-13:
+
+- Added MYB-103 Unity Editor audit capture tool:
+  `unity/Echapee4D/Assets/MYB103/Editor/MYB103SceneVisualAudit.cs`.
+- Capture report:
+  `_bmad-output/unity-test-results/myb-103/myb-103-scene-visual-audit.txt`.
+- PNG evidence:
+  - `_bmad-output/unity-test-results/myb-103/passage-01-foret-claire.png`.
+  - `_bmad-output/unity-test-results/myb-103/passage-02-village-route-de-col.png`.
+  - `_bmad-output/unity-test-results/myb-103/passage-03-panorama-signal-fantasy.png`.
+- Current scene metrics from the audit tool: 337 renderers, 30 visible material
+  names, 7 lights, 1 shadow-casting light, 0 Volumes, 0 Reflection Probes, and
+  0 Light Probe Groups.
+- Product verdict: structural `Lecture Prototype` confirmed on all three
+  Passages. Ride readability is acceptable, but composition, place identity,
+  grounding, lighting, material hierarchy, and premium signal are not at
+  `Low-poly de Production`.
+- Follow-up content prepared locally, but no new Linear issue created yet:
+  `Recomposer la scene canonique en trois Passages low-poly de production`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB103SceneVisualAudit.CaptureSceneVisualAuditCli()`: PASS via Unity-MCP
+    script execution.
+- Linear audit execution comment ID:
+  `708afb63-6df5-47b6-bf63-e70c4e846590`.
