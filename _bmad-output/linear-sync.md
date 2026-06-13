@@ -6367,3 +6367,15 @@ Synced on 2026-06-13:
 - Validation:
   - `git diff --check`: PASS.
   - Local README and MYB-84 scope review: PASS.
+
+Closure synced on 2026-06-13:
+
+- Linear closure document:
+  `https://linear.app/kefjbo/document/closure-notes-myb-84-public-readme-unity-guide-e92cb22427ef`.
+- Linear closure document ID: `98d7dfe9-3cfc-4cb0-80b6-71500fe91ab8`.
+- Pull request: `https://github.com/kefapps/mybike/pull/25`.
+- Merge commit on `main`: `e7c2c88`.
+- Merge method: squash merge.
+- Branch `myb-84-myb-075-creer-un-readme-public-oriente-produit-dev-unity` was
+  deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
