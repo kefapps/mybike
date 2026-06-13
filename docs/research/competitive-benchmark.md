@@ -452,10 +452,9 @@ ce document.
 
 ### Prochain ticket recommande
 
-`MYB-73` est le prochain ticket recommande si on veut convertir la recherche en
-valeur demo: il relie directement le benchmark ROUVY/FulGaz/Kinomap a la
-vertical slice Unity sans ouvrir de gros chantier. `MYB-79` peut suivre juste
-apres pour mettre l'accueil au meme niveau.
+`MYB-73` a deja converti cette recherche en valeur demo avec la fiche route
+Unity. Le prochain ticket recommande est donc `MYB-79`, pour mettre l'accueil
+au meme niveau et vendre l'echappee avant meme le lancement de la session.
 
 ## Impacts performance, accessibilite, licence
 

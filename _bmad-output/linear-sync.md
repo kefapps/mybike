@@ -6109,3 +6109,13 @@ Synced on 2026-06-12:
   - `git diff --check`: PASS.
 - Evidence:
   - `docs/research/competitive-benchmark.md`.
+
+Review synced on 2026-06-13:
+
+- Review finding resolved:
+  - Updated the next-ticket recommendation after MYB-73 was merged and closed:
+    `MYB-79` is now the next recommended conversion step.
+- Validation after review:
+  - `git diff --check origin/main...HEAD`: PASS.
+  - Acceptance audit: 6 competitor sections, 6 "Trois bonnes idees" sections,
+    6 "Piege a eviter" sections, 12 ticket-linked opportunities, 49 source URLs.
