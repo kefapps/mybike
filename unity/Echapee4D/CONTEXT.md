@@ -8,6 +8,57 @@ separate without depending on connected-bike hardware.
 
 ## Terms
 
+### Trajectoire de Ride
+
+Definition: The continuous path followed by the rider and camera during the
+mock ride. It describes navigation and view comfort, not only the visible road
+mesh.
+
+Aliases: ride trajectory, camera/rider path.
+
+Relationships:
+
+- `Trajectoire de Ride` should stay aligned with the visible `Surface de Route`
+  and route difficulty cues.
+- It can be smoothed from route control points, but it should remain close
+  enough to preserve route readability and HUD/effort coherence.
+
+Examples:
+
+- A gently anticipated curve where the rider and camera rotate progressively
+  before the visible bend.
+
+Non-examples:
+
+- Decorative roadside placement.
+- A disconnected cinematic camera path that no longer feels like cycling on the
+  route.
+
+### Virage Lisible
+
+Definition: A curved route passage where trajectory, camera orientation,
+visible road surface, and route-bound cues remain comfortable and
+understandable.
+
+Aliases: readable turn, natural curve.
+
+Relationships:
+
+- A `Virage Lisible` depends on both `Trajectoire de Ride` and `Surface de
+  Route`.
+- It favors bounded smoothing over perfect spline fluidity when stronger
+  smoothing would desync road visuals, cues, HUD progression, or rider comfort.
+
+Examples:
+
+- A stylized bend with rounded road edges, aligned center dashes, and a rider
+  view that anticipates the curve without sudden snapping.
+
+Non-examples:
+
+- A sharp segment-to-segment camera snap.
+- A smooth camera line that cuts across the road or misses difficulty cues.
+
 ### Demande de Resistance
 
 Definition: The resistance target requested by route difficulty or ride logic.

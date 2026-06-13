@@ -1,0 +1,14 @@
+MYB-98 Ride Trajectory unit validation
+Timestamp UTC: 2026-06-13T10:43:24.9200950Z
+Unity: 6000.4.10f1
+Status: PASS
+Default samples per segment: 8
+Scope: pure trajectory sampler, no BLE, FTMS, Unity scene dependency, or camera rendering
+
+Notes:
+- Empty and single-point route handling validated.
+- Straight route samples: 9, length 20.00 m.
+- Curved route raw/smoothed length: 81.11/81.48 m.
+- Curved route max polyline deviation: 0.79 m.
+- Wrap/clamp sampling validated on 20.00 m route.
+- Transform marker route filtering validated.
