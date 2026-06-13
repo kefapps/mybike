@@ -6427,3 +6427,15 @@ Synced on 2026-06-13:
   - `node --check scripts/validate-myb-50-docs.mjs`: PASS.
   - `node scripts/validate-myb-50-docs.mjs`: PASS.
   - `git diff --check`: PASS.
+
+Closure synced on 2026-06-13:
+
+- Linear closure document:
+  `https://linear.app/kefjbo/document/closure-notes-myb-50-unity-asset-optimization-pipeline-0b8b2af70f79`.
+- Linear closure document ID: `dcd4cbd3-efd4-4809-bb78-350d80d075ec`.
+- Pull request: `https://github.com/kefapps/mybike/pull/26`.
+- Merge commit on `main`: `2ba0f34775dd5d539e832f2c8b3e447a07fa4f8b`.
+- Merge method: squash merge.
+- Branch `myb-50-myb-018-definir-le-pipeline-doptimisation-assets-unity-macos`
+  was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
