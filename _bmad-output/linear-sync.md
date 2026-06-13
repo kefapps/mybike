@@ -66,7 +66,7 @@ Last sync: 2026-06-13
 - Unity asset optimization pipeline MYB-50: `_bmad-output/implementation-artifacts/myb-50-unity-asset-optimization-pipeline.md`
 - Unity imported asset adjustments MYB-100: `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`
 - Unity scene visual audit MYB-103: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
-- Unity scene recomposition follow-up MYB-104: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
+- Unity scene recomposition follow-up MYB-104: `_bmad-output/implementation-artifacts/myb-104-production-passages.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -6611,3 +6611,46 @@ Closure synced on 2026-06-13:
 - Linear status moved from `Backlog` / `In Progress` to `Done`.
 - Closure evidence recorded in the MYB-103 Linear description.
 - Follow-up remains open in Backlog: `MYB-104`.
+
+### MYB-104 Production Passages Scene Recomposition Sync
+
+Synced on 2026-06-13:
+
+- Linear issue: `MYB-104`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-104/recomposer-la-scene-canonique-en-trois-passages-low-poly-de-production`.
+- Linear status: `In Progress`.
+- Linear implementation comment ID: `c36a7271-e613-4846-9b7a-6ca5270e7d96`.
+- Branch: `myb-104-recomposer-la-scene-canonique-en-trois-passages-low-poly-de`.
+- Local implementation artifact:
+  `_bmad-output/implementation-artifacts/myb-104-production-passages.md`.
+- Unity report:
+  `_bmad-output/unity-test-results/myb-104/myb-104-production-passages-report.txt`.
+- PNG evidence:
+  - `_bmad-output/unity-test-results/myb-104/passage-01-foret-claire.png`.
+  - `_bmad-output/unity-test-results/myb-104/passage-02-village-route-de-col.png`.
+  - `_bmad-output/unity-test-results/myb-104/passage-03-panorama-signal-fantasy.png`.
+- Implementation summary:
+  - Added `MYB104SceneComposer`, a Unity Editor composer/validator for the
+    canonical `MYB89UnityMcpProbe` scene.
+  - Added `MYB104_ProductionPassages` with three authored Passage groups:
+    `Foret claire`, `Village / route de col`, and
+    `Panorama / signal fantasy`.
+  - Reused existing MYB-95 and MYB-96 assets without new asset import or Meshy
+    spend.
+  - Removed legacy debug-like gates/posts and disabled inherited prototype
+    corridor/cue renderers for the MYB-104 visual proof path.
+  - Preserved the canonical ride loop, mock mode, HUD wiring, route markers, and
+    route navigation.
+- Scope guard:
+  - No `src/**` changes.
+  - No `unity/Echappee3D/**` recreation or changes.
+  - No FTMS/BLE/hardware work.
+  - No global URP defaults, probes, or project renderer strategy changes; those
+    remain in MYB-102.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB104SceneComposer.ApplyAndValidateCli()`: PASS via Unity-MCP script
+    execution.
+  - `git diff --check`: PASS after normalizing Unity scene trailing whitespace.
+  - Guard check for `src/**` and `unity/Echappee3D/**`: PASS.
