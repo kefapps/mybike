@@ -6345,8 +6345,13 @@ Synced on 2026-06-13:
 - Linear issue: `MYB-84`.
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-84/myb-075-creer-un-readme-public-oriente-produit-dev-unity`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
+- Linear implementation document:
+  `https://linear.app/kefjbo/document/implementation-notes-myb-84-public-readme-unity-guide-734c89f4dfc6`.
+- Linear implementation document ID: `9025c49c-7a98-4694-9cde-76c926061164`.
+- Pull request: `https://github.com/kefapps/mybike/pull/25`.
 - Branch: `myb-84-myb-075-creer-un-readme-public-oriente-produit-dev-unity`.
+- Implementation commit: `283570e` (`MYB-84 add public Unity README`).
 - Local implementation report:
   `_bmad-output/implementation-artifacts/myb-84-readme-public-unity.md`.
 - Implementation summary:
