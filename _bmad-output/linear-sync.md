@@ -5454,7 +5454,7 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-44`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `9f743cd5-6fcf-43e5-b4f8-6ed0cb99894b`.
 - Branch: `myb-44-scenic-corridor`.
 - Grill-with-docs decisions:
@@ -6704,6 +6704,7 @@ Synced on 2026-06-14:
 - Linear status: `In Progress`.
 - Grill-with-docs comment ID: `fe2c3564-d38e-4f41-b43b-b1ee2d500bf7`.
 - Implementation comment ID: `4fe934ae-a587-4eac-8c88-262a326aaf98`.
+- Pull request: `https://github.com/kefapps/mybike/pull/30`.
 - Branch: `myb-102-urp-global-rendering-spike-grill`.
 - Local implementation artifact:
   `_bmad-output/implementation-artifacts/myb-102-urp-global-rendering-spike.md`.
