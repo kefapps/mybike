@@ -167,6 +167,75 @@
       "linearIssue": "MYB-112"
     },
     {
+      "id": "polyhaven-brown-mud-leaves-01-1k-jpg-myb107",
+      "assetName": "Brown Mud Leaves 01 - 1K JPG subset",
+      "author": "Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/brown_mud_leaves_01",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-14",
+      "category": "Texture material",
+      "intendedUse": "Stylized route ground / forest floor material source for MYB-107.",
+      "modifications": "Subset download only: diffuse, NormalGL and ARM 1K JPG maps; Unity material tinting, compressed import settings and reduced normal intensity.",
+      "attributionText": "none-required (CC0; courtesy credit: Brown Mud Leaves 01 from Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/MYB107PolyHavenStylized",
+      "importedFiles": [
+        "Textures/brown_mud_leaves_01_diff_1k.jpg",
+        "Textures/brown_mud_leaves_01_nor_gl_1k.jpg",
+        "Textures/brown_mud_leaves_01_arm_1k.jpg",
+        "Source/brown_mud_leaves_01.files.json"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-107 stylized material lookdev. Texture is used as source detail under strong Unity tinting, not as raw photoreal ground.",
+      "linearIssue": "MYB-107"
+    },
+    {
+      "id": "polyhaven-dry-riverbed-rock-1k-jpg-myb107",
+      "assetName": "Dry Riverbed Rock - 1K JPG subset",
+      "author": "Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/dry_riverbed_rock",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-14",
+      "category": "Texture material",
+      "intendedUse": "Stylized stone / rock material source for MYB-107.",
+      "modifications": "Subset download only: diffuse, NormalGL and ARM 1K JPG maps; Unity material tinting, compressed import settings and reduced normal intensity.",
+      "attributionText": "none-required (CC0; courtesy credit: Dry Riverbed Rock from Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/MYB107PolyHavenStylized",
+      "importedFiles": [
+        "Textures/dry_riverbed_rock_diff_1k.jpg",
+        "Textures/dry_riverbed_rock_nor_gl_1k.jpg",
+        "Textures/dry_riverbed_rock_arm_1k.jpg",
+        "Source/dry_riverbed_rock.files.json"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-107 stylized material lookdev. Texture is used as cool-tinted rock detail, not as raw photoreal terrain.",
+      "linearIssue": "MYB-107"
+    },
+    {
+      "id": "polyhaven-bark-brown-01-1k-jpg-myb107",
+      "assetName": "Bark Brown 01 - 1K JPG subset",
+      "author": "Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/bark_brown_01",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-14",
+      "category": "Texture material",
+      "intendedUse": "Stylized wood / trunk material source for MYB-107.",
+      "modifications": "Subset download only: diffuse, NormalGL and ARM 1K JPG maps; Unity material tinting, compressed import settings and reduced normal intensity.",
+      "attributionText": "none-required (CC0; courtesy credit: Bark Brown 01 from Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/MYB107PolyHavenStylized",
+      "importedFiles": [
+        "Textures/bark_brown_01_diff_1k.jpg",
+        "Textures/bark_brown_01_nor_gl_1k.jpg",
+        "Textures/bark_brown_01_arm_1k.jpg",
+        "Source/bark_brown_01.files.json"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-107 stylized material lookdev. Texture is used as warm-tinted bark/wood detail.",
+      "linearIssue": "MYB-107"
+    },
+    {
       "id": "kaykit-medieval-hexagon-pack-myb53-subset",
       "assetName": "KayKit Medieval Hexagon Pack - MYB-53 subset",
       "author": "Kay Lousberg / KayKit",

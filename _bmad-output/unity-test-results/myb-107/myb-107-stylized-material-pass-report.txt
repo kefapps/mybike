@@ -1,0 +1,55 @@
+# MYB-107 Stylized Material Pass Report
+
+Status: PASS
+Generated UTC: 2026-06-14T15:22:33.2277100Z
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Texture policy: Poly Haven 1K JPG maps only; stylized tint/normal/roughness in Unity materials.
+
+## Material Families
+- routeGround: Poly Haven brown_mud_leaves_01 diffuse/normal/ARM, dark warm tint, reduced normal intensity.
+- forestVegetation: authored flat stylized vegetation, no photo texture, low smoothness.
+- stone: Poly Haven dry_riverbed_rock diffuse/normal/ARM, cool desaturated tint.
+- wood: Poly Haven bark_brown_01 diffuse/normal/ARM, warm stylized tint.
+- fantasySignal: tested as a diagnostic only, rejected for MYB-107 because broad fantasy matching over-applied to large atmosphere planes.
+
+## Applied Renderer Counts
+- fantasySignalRejected: 144
+- forestVegetation: 1368
+- routeGround: 174
+- stone: 64
+- wood: 637
+
+## Verdicts
+- routeGround: adoptable with iteration: material reads more authored while keeping URP Lit compatibility. Renderer count 174.
+- forestVegetation: adoptable with iteration: material reads more authored while keeping URP Lit compatibility. Renderer count 1368.
+- stone: adoptable with iteration: material reads more authored while keeping URP Lit compatibility. Renderer count 64.
+- wood: adoptable with iteration: material reads more authored while keeping URP Lit compatibility. Renderer count 637.
+- fantasySignal: no-go for MYB-107. Diagnostic count 144; broad matching hits large atmosphere planes and makes the scene read like a material bug. Defer to a dedicated fantasy accent/atmosphere split.
+
+## Captures
+- before Passage 01 forest material read: `_bmad-output/unity-test-results/myb-107/before-forest-720p.png`
+- after Passage 01 forest material read: `_bmad-output/unity-test-results/myb-107/after-forest-720p.png`
+
+## Textures
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/bark_brown_01_arm_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/bark_brown_01_diff_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/bark_brown_01_nor_gl_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/brown_mud_leaves_01_arm_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/brown_mud_leaves_01_diff_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/brown_mud_leaves_01_nor_gl_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/dry_riverbed_rock_arm_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/dry_riverbed_rock_diff_1k.jpg
+- Assets/Echappee/Art/MYB107PolyHavenStylized/Textures/dry_riverbed_rock_nor_gl_1k.jpg
+
+## Materials
+- Assets/MYB107/Materials/MYB107_StylizedRouteGround.mat
+- Assets/MYB107/Materials/MYB107_StylizedForestVegetation.mat
+- Assets/MYB107/Materials/MYB107_StylizedCoolStone.mat
+- Assets/MYB107/Materials/MYB107_StylizedWarmWood.mat
+
+## Scene Notes
+- Applied MYB-107 material families to the forest-focused MYB104/MYB106 controlled scene composition.
+- Left fantasy signal/atmosphere renderers untouched after the diagnostic pass proved too broad and visually regressive.
+
+## Failures
+- None.
