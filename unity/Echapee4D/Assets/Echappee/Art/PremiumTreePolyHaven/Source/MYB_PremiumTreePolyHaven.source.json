@@ -1,0 +1,123 @@
+{
+  "asset": "MYB Premium Non-Low-Poly Tree Poly Haven Materials",
+  "base_asset": "/Users/jbodin/personnel/apps/mybike/_bmad-output/blender-assets/premium-non-low-poly-tree-optimized/myb-premium-non-low-poly-tree-optimized.blend",
+  "polyhaven_used": true,
+  "polyhaven_scope": "materials and preview ground only; no Poly Haven model geometry",
+  "style_decision": [
+    "Bark and moss use Poly Haven PBR maps with stylized tinting.",
+    "Foliage remains stylized flat material to avoid a photoreal/stylized mismatch.",
+    "Forest floor material is preview-only and excluded from runtime exports."
+  ],
+  "runtime": {
+    "mesh_object_count": 3,
+    "vertices_estimate": 15779,
+    "faces_estimate": 30498,
+    "material_slot_count": 3,
+    "blend": "/Users/jbodin/personnel/apps/mybike/_bmad-output/blender-assets/premium-non-low-poly-tree-polyhaven/myb-premium-non-low-poly-tree-polyhaven.blend",
+    "fbx": "/Users/jbodin/personnel/apps/mybike/_bmad-output/blender-assets/premium-non-low-poly-tree-polyhaven/myb-premium-non-low-poly-tree-polyhaven.fbx",
+    "glb": "/Users/jbodin/personnel/apps/mybike/_bmad-output/blender-assets/premium-non-low-poly-tree-polyhaven/myb-premium-non-low-poly-tree-polyhaven.glb"
+  },
+  "preview_png": "/Users/jbodin/personnel/apps/mybike/_bmad-output/blender-assets/premium-non-low-poly-tree-polyhaven/myb-premium-non-low-poly-tree-polyhaven-preview.png",
+  "source_assets": [
+    {
+      "asset": "pine_bark",
+      "polyhaven_page": "https://polyhaven.com/a/pine_bark",
+      "license": "CC0",
+      "used_maps": [
+        {
+          "map": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pine_bark/pine_bark_diff_1k.jpg",
+          "md5": "7bb38cccfc647aeaf2f5b6488c815e75",
+          "size": 837641
+        },
+        {
+          "map": "nor_gl",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pine_bark/pine_bark_nor_gl_1k.jpg",
+          "md5": "7b971070fc986e517b5d2795cec0f4e0",
+          "size": 1178440
+        },
+        {
+          "map": "arm",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pine_bark/pine_bark_arm_1k.jpg",
+          "md5": "8f47278dc2643509cd1f9d9268214097",
+          "size": 810100
+        }
+      ]
+    },
+    {
+      "asset": "moss_wood",
+      "polyhaven_page": "https://polyhaven.com/a/moss_wood",
+      "license": "CC0",
+      "used_maps": [
+        {
+          "map": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/moss_wood/moss_wood_diff_1k.jpg",
+          "md5": "3de94c0b72a86b272335c3726dfc705b",
+          "size": 915794
+        },
+        {
+          "map": "nor_gl",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/moss_wood/moss_wood_nor_gl_1k.jpg",
+          "md5": "194a920f2dacf9d2a09342a32bd0dd0b",
+          "size": 1098945
+        },
+        {
+          "map": "arm",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/moss_wood/moss_wood_arm_1k.jpg",
+          "md5": "f9e4955aea3512a6132ef1882c8d6e11",
+          "size": 150280
+        }
+      ]
+    },
+    {
+      "asset": "forest_floor",
+      "polyhaven_page": "https://polyhaven.com/a/forest_floor",
+      "license": "CC0",
+      "used_maps": [
+        {
+          "map": "Diffuse",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_diff_1k.jpg",
+          "md5": "d67f308e4b8be6a65989e8dc76ec40fe",
+          "size": 1329853
+        },
+        {
+          "map": "nor_gl",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_nor_gl_1k.jpg",
+          "md5": "7cb480d082527766acdf3b6c8cba50f4",
+          "size": 1380104
+        },
+        {
+          "map": "arm",
+          "resolution": "1k",
+          "format": "jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/forest_floor/forest_floor_arm_1k.jpg",
+          "md5": "85b0c5f36a11f981dc7e6256bc23161a",
+          "size": 931479
+        }
+      ]
+    }
+  ],
+  "file_sizes_bytes": {
+    "myb-premium-non-low-poly-tree-polyhaven.blend": 1066220,
+    "myb-premium-non-low-poly-tree-polyhaven.fbx": 3233980,
+    "myb-premium-non-low-poly-tree-polyhaven.glb": 6478580,
+    "myb-premium-non-low-poly-tree-polyhaven-preview.png": 2084099
+  },
+  "unity_import_status": "not_imported"
+}

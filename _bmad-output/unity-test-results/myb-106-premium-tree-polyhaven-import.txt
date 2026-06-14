@@ -1,0 +1,25 @@
+﻿MYB-106 Premium Tree Poly Haven Import
+Generated: 2026-06-14T09:22:14.9336400Z
+Status: PASS
+
+Prefab:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB_PremiumTreePolyHaven.prefab
+
+Textures:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_diff_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_nor_gl_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_arm_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_diff_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_nor_gl_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_arm_1k.jpg
+
+Materials:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_BarkPolyHaven.mat
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_MossPolyHaven.mat
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_StylizedFoliage.mat
+
+Notes:
+- Configured FBX importer with imported normals, calculated tangents and no embedded material import.
+- Prefab renderers: 3
+- Prefab triangles: 15394
+- Prefab materials: MYB_PremiumTree_BarkPolyHaven, MYB_PremiumTree_MossPolyHaven, MYB_PremiumTree_StylizedFoliage

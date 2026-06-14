@@ -123,7 +123,8 @@ namespace MYB106.Editor
                 { "deepNeedle", MaterialAt("Assets/MYB106/Materials/MYB106_DeepNeedle.mat", new Color(0.095f, 0.19f, 0.16f), 0.03f) },
                 { "coolTrunk", MaterialAt("Assets/MYB106/Materials/MYB106_CoolTrunk.mat", new Color(0.22f, 0.17f, 0.12f), 0.08f) },
                 { "blueShadow", MaterialAt("Assets/MYB106/Materials/MYB106_BlueShadow.mat", new Color(0.12f, 0.16f, 0.2f), 0.02f) },
-                { "amberMoss", MaterialAt("Assets/MYB106/Materials/MYB106_AmberMoss.mat", new Color(0.52f, 0.33f, 0.13f), 0.08f) }
+                { "amberMoss", MaterialAt("Assets/MYB106/Materials/MYB106_AmberMoss.mat", new Color(0.52f, 0.33f, 0.13f), 0.08f) },
+                { "leafLitter", MaterialAt("Assets/MYB106/Materials/MYB106_LeafLitter.mat", new Color(0.24f, 0.15f, 0.08f), 0.05f) }
             };
         }
 
@@ -229,38 +230,133 @@ namespace MYB106.Editor
             IReadOnlyDictionary<string, Material> materials,
             ValidationReport report)
         {
-            CreateRibbon("MYB106_LeftBlueShadowEdge", root, route, 18f, 70f, -4.7f, 2.6f, 0.16f, materials["blueShadow"]);
-            CreateRibbon("MYB106_RightBlueShadowEdge", root, route, 22f, 74f, 4.7f, 2.4f, 0.16f, materials["blueShadow"]);
+            CreateRibbon("MYB106_LeftBlueShadowEdge", root, route, 16f, 74f, -4.7f, 2.8f, 0.16f, materials["blueShadow"]);
+            CreateRibbon("MYB106_RightBlueShadowEdge", root, route, 20f, 78f, 4.7f, 2.65f, 0.16f, materials["blueShadow"]);
+            CreateRibbon("MYB106_LeftDeepForestMat", root, route, 12f, 80f, -9.2f, 5.2f, 0.18f, materials["deepNeedle"]);
+            CreateRibbon("MYB106_RightDeepForestMat", root, route, 14f, 82f, 9.4f, 5.0f, 0.18f, materials["deepNeedle"]);
+            CreateRibbon("MYB106_LeftInnerForestMat", root, route, 10f, 82f, -5.9f, 2.9f, 0.2f, materials["deepNeedle"]);
+            CreateRibbon("MYB106_RightInnerForestMat", root, route, 12f, 82f, 6.0f, 2.8f, 0.2f, materials["deepNeedle"]);
+            CreateRibbon("MYB106_LeftSoftRootEdge", root, route, 12f, 82f, -4.05f, 0.85f, 0.22f, materials["coolUndergrowth"]);
+            CreateRibbon("MYB106_RightSoftRootEdge", root, route, 14f, 82f, 4.05f, 0.8f, 0.22f, materials["coolUndergrowth"]);
 
-            var treeMeters = new[] { 18f, 24f, 31f, 38f, 46f, 55f, 64f };
+            var treeMeters = new[] { 12f, 16f, 21f, 26f, 32f, 38f, 45f, 53f, 62f, 73f };
             for (var i = 0; i < treeMeters.Length; i++)
             {
                 PlacePine(
                     "MYB106_DeepPine_L_" + i.ToString("00", CultureInfo.InvariantCulture),
+                    i,
                     root,
                     route,
                     treeMeters[i],
                     -1f,
-                    5.3f + (i % 3) * 0.6f,
-                    5.7f + (i % 2) * 0.6f,
+                    4.75f + (i % 3) * 0.45f,
+                    5.85f + (i % 2) * 0.65f,
                     materials["deepNeedle"],
                     report);
                 PlacePine(
                     "MYB106_DeepPine_R_" + i.ToString("00", CultureInfo.InvariantCulture),
+                    i + treeMeters.Length,
                     root,
                     route,
                     treeMeters[i] + 2.5f,
                     1f,
-                    5.5f + (i % 2) * 0.7f,
-                    5.3f + (i % 3) * 0.45f,
+                    4.9f + (i % 2) * 0.55f,
+                    5.45f + (i % 3) * 0.5f,
                     materials["deepNeedle"],
                     report);
             }
 
-            for (var i = 0; i < 7; i++)
+            var innerTreeMeters = new[] { 15f, 20f, 26f, 33f, 41f, 50f, 60f, 71f };
+            for (var i = 0; i < innerTreeMeters.Length; i++)
             {
-                var meters = 22f + i * 6.4f;
-                CreateMossAccent("MYB106_AmberMoss_" + i.ToString("00", CultureInfo.InvariantCulture), root, route, meters, i % 2 == 0 ? -1f : 1f, 1.55f, materials["amberMoss"]);
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePine(
+                        "MYB106_InnerCanopyPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        i + (side < 0f ? 82 : 96),
+                        root,
+                        route,
+                        innerTreeMeters[i] + (side > 0f ? 1.5f : 0f),
+                        side,
+                        3.95f + (i % 3) * 0.35f,
+                        4.4f + (i % 2) * 0.45f,
+                        materials["deepNeedle"],
+                        report);
+                }
+            }
+
+            var midTreeMeters = new[] { 14f, 19f, 25f, 31f, 38f, 46f, 55f, 65f, 76f };
+            for (var i = 0; i < midTreeMeters.Length; i++)
+            {
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePine(
+                        "MYB106_MidForestPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        i + (side < 0f ? 31 : 43),
+                        root,
+                        route,
+                        midTreeMeters[i] + (side > 0f ? 2.2f : 0f),
+                        side,
+                        7.7f + (i % 3) * 0.75f,
+                        3.95f + (i % 2) * 0.45f,
+                        materials["deepNeedle"],
+                        report);
+                }
+            }
+
+            var backTreeMeters = new[] { 18f, 28f, 39f, 51f, 64f, 78f };
+            for (var i = 0; i < backTreeMeters.Length; i++)
+            {
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePine(
+                        "MYB106_BackForestPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        i + (side < 0f ? 57 : 68),
+                        root,
+                        route,
+                        backTreeMeters[i] + (side > 0f ? 3.5f : 0.8f),
+                        side,
+                        11.7f + (i % 3) * 1.05f,
+                        3.15f + (i % 2) * 0.35f,
+                        materials["deepNeedle"],
+                        report);
+                }
+            }
+
+            for (var i = 0; i < 16; i++)
+            {
+                var meters = 15f + i * 4.2f;
+                CreateMossAccent("MYB106_AmberMoss_" + i.ToString("00", CultureInfo.InvariantCulture), root, route, meters, i % 2 == 0 ? -1f : 1f, 1.45f + (i % 3) * 0.35f, materials["amberMoss"]);
+            }
+
+            for (var i = 0; i < 18; i++)
+            {
+                var meters = 12f + i * 3.9f;
+                var side = i % 2 == 0 ? -1f : 1f;
+                CreateUndergrowthCluster(
+                    "MYB106_UndergrowthCluster_" + i.ToString("00", CultureInfo.InvariantCulture),
+                    root,
+                    route,
+                    meters,
+                    side,
+                    1.15f + (i % 4) * 0.45f,
+                    materials["coolUndergrowth"],
+                    materials["deepNeedle"]);
+            }
+
+            for (var i = 0; i < 10; i++)
+            {
+                var meters = 15f + i * 6.6f;
+                var side = i % 2 == 0 ? -1f : 1f;
+                CreateFallenBranch(
+                    "MYB106_FallenBranch_" + i.ToString("00", CultureInfo.InvariantCulture),
+                    root,
+                    route,
+                    meters,
+                    side,
+                    0.95f + (i % 3) * 0.55f,
+                    materials["coolTrunk"],
+                    materials["leafLitter"]);
             }
 
             AddSpotLight("MYB106_LowSunWarmSpot", root, SamplePosition(route, 40f, -7.2f, 4.5f), SamplePosition(route, 48f, -0.2f, 1.0f), new Color(1f, 0.53f, 0.24f), 2.4f, 30f, 44f, true);
@@ -271,11 +367,12 @@ namespace MYB106.Editor
             AddReflectionProbe("MYB106_LocalReflectionProbe_B", root, SamplePosition(route, 57f, 0f, 2.5f), new Vector3(23f, 11f, 30f));
             AddLightProbeGroup("MYB106_Passage01LightProbeGroup", root, route);
 
-            report.SceneNotes.Add("Built dramatic undergrowth overlay: dense near pines, dark edge shadow accents, amber moss, local lights and probes.");
+            report.SceneNotes.Add("Built dramatic undergrowth overlay: dense near/mid/background pines, canopy masses, road-edge leaf litter, low clusters, fallen branches, local lights and probes.");
         }
 
         private static void PlacePine(
             string name,
+            int variantIndex,
             Transform parent,
             IReadOnlyList<Vector3> route,
             float meters,
@@ -291,13 +388,11 @@ namespace MYB106.Editor
                 return;
             }
 
-            var prefabPath = targetHeight > 6.4f
-                ? "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab"
-                : "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab";
+            var prefabPath = MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(variantIndex);
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
             if (prefab == null)
             {
-                report.Failures.Add("Missing MYB-106 pine prefab: " + prefabPath);
+                report.Failures.Add("Missing MYB-112 premium tree variant prefab: " + prefabPath);
                 return;
             }
 
@@ -311,7 +406,6 @@ namespace MYB106.Editor
             DisableColliders(instance);
             foreach (var renderer in instance.GetComponentsInChildren<Renderer>(true))
             {
-                AssignAllMaterials(renderer, leafMaterial);
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                 renderer.receiveShadows = true;
             }
@@ -336,6 +430,49 @@ namespace MYB106.Editor
             var position = sample.Position + sample.Right * side * (RoadWidth * 0.5f + lateralOffset) + Vector3.up * 0.18f;
             var rotation = Quaternion.LookRotation(sample.Forward, Vector3.up) * Quaternion.Euler(0f, side * 12f, 0f);
             CreateCube(name, parent, position, new Vector3(1.15f, 0.18f, 0.6f), rotation, material);
+        }
+
+        private static void CreateUndergrowthCluster(
+            string name,
+            Transform parent,
+            IReadOnlyList<Vector3> route,
+            float meters,
+            float side,
+            float lateralOffset,
+            Material lowMaterial,
+            Material needleMaterial)
+        {
+            if (!MYB89RideTrajectory.TrySample(route, meters, false, out var sample))
+            {
+                return;
+            }
+
+            var basePosition = sample.Position + sample.Right * side * (RoadWidth * 0.5f + lateralOffset);
+            var baseRotation = Quaternion.LookRotation(sample.Forward, Vector3.up) * Quaternion.Euler(0f, side * 12f, 0f);
+            CreateCube(name + "_LowMass", parent, basePosition + Vector3.up * 0.32f, new Vector3(1.35f, 0.42f, 0.85f), baseRotation, lowMaterial);
+            CreateCube(name + "_FernA", parent, basePosition + sample.Right * side * 0.54f + Vector3.up * 0.5f, new Vector3(0.28f, 0.78f, 0.72f), baseRotation * Quaternion.Euler(0f, 0f, side * -14f), needleMaterial);
+            CreateCube(name + "_FernB", parent, basePosition - sample.Right * side * 0.38f + Vector3.up * 0.44f, new Vector3(0.24f, 0.66f, 0.62f), baseRotation * Quaternion.Euler(0f, 0f, side * 18f), needleMaterial);
+        }
+
+        private static void CreateFallenBranch(
+            string name,
+            Transform parent,
+            IReadOnlyList<Vector3> route,
+            float meters,
+            float side,
+            float lateralOffset,
+            Material branchMaterial,
+            Material litterMaterial)
+        {
+            if (!MYB89RideTrajectory.TrySample(route, meters, false, out var sample))
+            {
+                return;
+            }
+
+            var position = sample.Position + sample.Right * side * (RoadWidth * 0.5f + lateralOffset) + Vector3.up * 0.18f;
+            var rotation = Quaternion.LookRotation((sample.Forward * 0.6f + sample.Right * side * 0.4f).normalized, Vector3.up) * Quaternion.Euler(0f, side * 9f, side * 3f);
+            CreateCube(name + "_Wood", parent, position + Vector3.up * 0.14f, new Vector3(0.22f, 0.22f, 2.2f), rotation, branchMaterial);
+            CreateCube(name + "_LeafShadow", parent, position + sample.Right * side * 0.2f + Vector3.up * 0.06f, new Vector3(1.2f, 0.08f, 0.72f), rotation, litterMaterial);
         }
 
         private static void CreateLightShaft(string name, Transform parent, IReadOnlyList<Vector3> route, float meters, float lateralOffset, float height, Material material)
