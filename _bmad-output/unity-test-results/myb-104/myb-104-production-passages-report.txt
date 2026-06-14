@@ -1,0 +1,143 @@
+# MYB-104 Production Passages Report
+
+Status: PASS
+Generated at UTC: 2026-06-13T20:51:26.0212900Z
+Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Capture size: 1280x720
+HUD/canvases: disabled for visual proof captures
+
+## Scene changes
+- Re-aimed existing MYB89 key sun for readable authored shadows.
+- Removed debug-like gate/post renderers: 0
+- Disabled inherited prototype corridor/cue renderers: 0
+- Applied muted MYB-104 route material so scenery hierarchy is no longer dominated by cobblestone texture.
+- Saved canonical scene with MYB104_ProductionPassages root.
+- Replaced MYB89 debug-like gate/post markers with authored stones, chevrons, col signage, fences, lanterns and scenic landmarks.
+- Disabled inherited prototype corridor/cue renderers so the captures evaluate the MYB-104 authored composition instead of old blockout scenery.
+- Preserved MYB89ProbeRide, mock mode, HUD wiring, route markers and ride navigation.
+
+## Asset placements
+- MYB104_ForestTallPine_L_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestTallPine_L_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestTallPine_L_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestTallPine_L_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestTallPine_L_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestTallPine_L_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestTallPine_L_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestTallPine_L_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestTallPine_L_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
+- MYB104_ForestPine_R_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_00_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_00_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_01_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_01_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_02_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_02_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_03_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_03_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_04_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_04_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_05_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_05_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_06_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_06_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_07_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestNearPine_07_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB104_ForestLightPatch_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_ForestLightPatch_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
+- MYB104_VillageWell <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageWellMarker.prefab
+- MYB104_ColDirectionSign <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab
+- MYB104_HairpinChevronSign_A <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab
+- MYB104_HairpinChevronSign_B <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab
+- MYB104_VillageBench <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageBench.prefab
+- MYB104_MarketCrateStack <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_MarketCrateStack.prefab
+- MYB104_StoneFlowerPlanter_A <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab
+- MYB104_StoneFlowerPlanter_B <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab
+- MYB104_VillageFence_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- MYB104_VillageFence_09 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
+- ... 25 additional authored placements
+
+## Passage captures
+### Foret claire
+- Slug: passage-01-foret-claire
+- Capture: _bmad-output/unity-test-results/myb-104/passage-01-foret-claire.png
+- Route position: 42.0 m
+- Camera position: (-1.0, 1.8, 39.9)
+- Camera forward: (-0.2, -0.1, 1.0)
+- Closest MYB-104 visible objects: MYB104_Forest_RoadShadowLace_L, MYB104_ForestStoneGuide_04_L, MYB104_ForestStoneGuide_04_R, MYB104_Forest_RightLightFloor, MYB104_Forest_RoadShadowLace_R, lower_bough, upper_bough, tip, grass_blade_0, flower_0, stem_0, flower_1, grass_blade_1, stem_1, flower_2, stem_2, flower_3, grass_clump_base, stem_3, grass_blade_2
+
+### Village / route de col
+- Slug: passage-02-village-route-de-col
+- Capture: _bmad-output/unity-test-results/myb-104/passage-02-village-route-de-col.png
+- Route position: 124.0 m
+- Camera position: (-0.4, 1.7, 120.7)
+- Camera forward: (0.2, -0.1, 1.0)
+- Closest MYB-104 visible objects: MYB104_Village_InnerStoneEdge_R, MYB104_Village_InnerStoneEdge_L, MYB104_Village_TerraceLeft, MYB104_Village_TerraceRight, post_cap_-0.46, post_-0.46, post_cap_0, rail_high, post_0, rail_low, post_cap_0.46, post_0.46, rear_leg_0.32, back, front_leg_0.32, seat, stone_footing, rear_leg_-0.32, front_leg_-0.32, post_cap_0.46
+
+### Panorama / signal fantasy
+- Slug: passage-03-panorama-signal-fantasy
+- Capture: _bmad-output/unity-test-results/myb-104/passage-03-panorama-signal-fantasy.png
+- Route position: 207.0 m
+- Camera position: (-0.8, 1.8, 202.4)
+- Camera forward: (-0.2, -0.1, 1.0)
+- Closest MYB-104 visible objects: MYB104_Panorama_GuideStone_L, MYB104_Panorama_GuideStone_R, MYB104_Panorama_OverlookLeft, roadside_rock_1, ground_shadow, roadside_rock_2, roadside_rock_0, roadside_rock_3, MYB104_FantasySignalObelisk, MYB104_FantasySignalBase, MYB104_FantasySignalHalo, MYB95_RelicFountain_LOD50k, MYB95_RelicFountain_Hero80k, MYB95_RelicFountain_LOD30k, MYB104_Panorama_OverlookRight, roadside_rock_0, roadside_rock_1, ground_shadow, roadside_rock_3, MYB95_BlueRuneGlow
+
+## Audit verdicts
+### Foret claire
+| Item | Verdict | Justification |
+| --- | --- | --- |
+| Composition camera | `production low-poly` | Foreground stone guides and dappled road-shadow ribbons frame the route while pine masses create midground depth and a readable forest opening. |
+| Place identity | `production low-poly` | Dense pines, forest floor ribbons, wildflower patches and cooler green hierarchy clearly read as a light forest road. |
+| Grounding and placement | `production low-poly` | Trees and props are placed from route sampling with lateral offsets, repeated contact bands and edge stones instead of isolated object drops. |
+| Lighting and shadows | `production low-poly` | The key sun is re-aimed for visible side shadows and the passage has a soft green fill that supports the forest mood without replacing geometry. |
+| Materials and color hierarchy | `production low-poly` | Road, shadow lace, forest floor, light grass, pine and edge stones use distinct material families. |
+| Premium signal | `production low-poly` | The forest opening is staged as a calm scenic reveal with authored foreground texture rather than debug gates. |
+| Ride readability | `production low-poly` | Edge stones and shoulder contrast keep the route legible after removing the debug posts. |
+| Post-process dependency | `production low-poly` | The structure reads through geometry, placement and material contrast; fog only adds depth. |
+
+### Village / route de col
+| Item | Verdict | Justification |
+| --- | --- | --- |
+| Composition camera | `production low-poly` | Terraces, houses, fences and col signage build foreground/midground/background around the road curve. |
+| Place identity | `production low-poly` | Primitive alpine houses, well, benches, crates, planters, chevrons and col sign read as a village climb. |
+| Grounding and placement | `production low-poly` | Props are attached to sampled road positions and sit on terrace ribbons, so the village reads embedded in the route. |
+| Lighting and shadows | `production low-poly` | Warm window glow supports the village layer while the main sun keeps a consistent readable direction. |
+| Materials and color hierarchy | `production low-poly` | Warm stone, roof red, alpine wood, grass and edge guide materials separate building, road and verge roles. |
+| Premium signal | `production low-poly` | The col sign, chevrons and clustered village props replace utility gates with authored climb identity. |
+| Ride readability | `production low-poly` | Inner stone edges and chevrons preserve navigation without dominating the frame as debug markers. |
+| Post-process dependency | `production low-poly` | The passage is carried by authored massing, not by color grading. |
+
+### Panorama / signal fantasy
+| Item | Verdict | Justification |
+| --- | --- | --- |
+| Composition camera | `production low-poly` | Near overlook ribbons, cairns, rock clusters, mountain layers and a summit arch create a deliberate reveal. |
+| Place identity | `production low-poly` | The far ridges and overlook props clearly shift the route into panorama / summit territory. |
+| Grounding and placement | `production low-poly` | Rock clusters, cairns and guide stones build believable ground contact around the camera corridor. |
+| Lighting and shadows | `production low-poly` | The key sun, fog depth and blue signal light separate foreground, hero signal and far mountains. |
+| Materials and color hierarchy | `production low-poly` | Near and far mountains, stones, grass and emissive fantasy materials have distinct visual jobs. |
+| Premium signal | `production low-poly` | Summit arch, relic fountain, lanterns, guardian and floating signal provide a memorable fantasy landmark. |
+| Ride readability | `production low-poly` | Guide stones and open overlook composition keep the ride direction clear through the reveal. |
+| Post-process dependency | `production low-poly` | The fantasy moment is built from hero objects, scale and depth before any post-process polish. |
+
