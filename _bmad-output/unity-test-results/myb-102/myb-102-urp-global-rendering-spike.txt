@@ -1,0 +1,148 @@
+# MYB-102 URP Global Rendering Spike
+
+Status: PASS
+Generated at UTC: 2026-06-14T03:30:33.8635740Z
+Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Capture size: 1280x720
+Scope: baseline plus temporary variants; project rendering assets are restored before completion.
+Restoration status: PASS
+
+## Official documentation consulted
+- Unity URP Asset: https://docs.unity3d.com/Manual/urp/universalrp-asset.html
+- Unity URP Renderer Features: https://docs.unity3d.com/Manual/urp/urp-renderer-feature.html
+- Unity post-processing and volumes: https://docs.unity3d.com/Manual/urp/volumes-landing.html
+- Unity reflection probes: https://docs.unity3d.com/Manual/class-ReflectionProbe.html
+
+## Initial Socle de Rendu Projet
+- PC_RPAsset: Assets/Settings/PC_RPAsset.asset
+- PC_Renderer: Assets/Settings/PC_Renderer.asset
+- MSAA: 1
+- Render scale: 1
+- Shadow distance: 50
+- Shadow cascades: 4
+- Main light shadowmap resolution: 2048
+- Reflection probe blending: true
+- Reflection probe box projection: true
+- Renderer mode: 2
+- SSAO intensity: 0.4
+- SSAO radius: 0.3
+- SSAO samples: 1
+
+## Decision rubric
+- Recommend a global change only when at least two global families show a visible reusable gain across the three Passages without obvious performance or ride-readability debt.
+- Otherwise keep global defaults stable and push improvements into scene, asset, or local-volume tickets.
+- MYB-102 does not persist global rendering changes; it produces evidence for a follow-up decision.
+
+## Variants
+### Baseline actuelle
+- Slug: baseline
+- Family: Baseline
+- Description: Current Socle de Rendu Projet, without temporary overrides.
+- Renderers: 886
+- Lights: 14
+- Shadow-casting lights: 2
+- Volumes: 0
+- Reflection probes: 0
+- Light probe groups: 0
+- Foret claire: `_bmad-output/unity-test-results/myb-102/baseline/passage-01-foret-claire.png`
+  - Route position: 39.2 m / 245.2 m
+  - Camera position: (-0.4, 1.7, 37.1)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 471
+  - Image metrics: avg luma 0.212, contrast 0.190, dark 9.7%, bright 2.3%
+- Village / route de col: `_bmad-output/unity-test-results/myb-102/baseline/passage-02-village-route-de-col.png`
+  - Route position: 122.6 m / 245.2 m
+  - Camera position: (-0.7, 1.7, 119.4)
+  - Camera forward: (0.2, -0.1, 1.0)
+  - Frustum renderers: 232
+  - Image metrics: avg luma 0.233, contrast 0.198, dark 10.3%, bright 1.4%
+- Panorama / signal fantasy: `_bmad-output/unity-test-results/myb-102/baseline/passage-03-panorama-signal-fantasy.png`
+  - Route position: 206.0 m / 245.2 m
+  - Camera position: (-0.6, 1.8, 201.4)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 68
+  - Image metrics: avg luma 0.224, contrast 0.198, dark 10.1%, bright 1.7%
+### Project Depth
+- Slug: project-depth
+- Family: Project defaults
+- Description: Temporary project-depth pass: stronger shadow range, MSAA, and SSAO depth separation.
+- Renderers: 886
+- Lights: 14
+- Shadow-casting lights: 2
+- Volumes: 0
+- Reflection probes: 0
+- Light probe groups: 0
+- Foret claire: `_bmad-output/unity-test-results/myb-102/project-depth/passage-01-foret-claire.png`
+  - Route position: 39.2 m / 245.2 m
+  - Camera position: (-0.4, 1.7, 37.1)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 471
+  - Image metrics: avg luma 0.212, contrast 0.190, dark 10.2%, bright 2.4%
+- Village / route de col: `_bmad-output/unity-test-results/myb-102/project-depth/passage-02-village-route-de-col.png`
+  - Route position: 122.6 m / 245.2 m
+  - Camera position: (-0.7, 1.7, 119.4)
+  - Camera forward: (0.2, -0.1, 1.0)
+  - Frustum renderers: 232
+  - Image metrics: avg luma 0.232, contrast 0.198, dark 10.7%, bright 1.5%
+- Panorama / signal fantasy: `_bmad-output/unity-test-results/myb-102/project-depth/passage-03-panorama-signal-fantasy.png`
+  - Route position: 206.0 m / 245.2 m
+  - Camera position: (-0.6, 1.8, 201.4)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 68
+  - Image metrics: avg luma 0.224, contrast 0.198, dark 10.5%, bright 1.8%
+### Polish Volume
+- Slug: polish-volume
+- Family: Post-process baseline
+- Description: Temporary global volume using the existing sample tone/bloom/vignette profile.
+- Renderers: 886
+- Lights: 14
+- Shadow-casting lights: 2
+- Volumes: 1
+- Reflection probes: 0
+- Light probe groups: 0
+- Foret claire: `_bmad-output/unity-test-results/myb-102/polish-volume/passage-01-foret-claire.png`
+  - Route position: 39.2 m / 245.2 m
+  - Camera position: (-0.4, 1.7, 37.1)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 471
+  - Image metrics: avg luma 0.212, contrast 0.190, dark 9.7%, bright 2.3%
+- Village / route de col: `_bmad-output/unity-test-results/myb-102/polish-volume/passage-02-village-route-de-col.png`
+  - Route position: 122.6 m / 245.2 m
+  - Camera position: (-0.7, 1.7, 119.4)
+  - Camera forward: (0.2, -0.1, 1.0)
+  - Frustum renderers: 232
+  - Image metrics: avg luma 0.233, contrast 0.198, dark 10.3%, bright 1.4%
+- Panorama / signal fantasy: `_bmad-output/unity-test-results/myb-102/polish-volume/passage-03-panorama-signal-fantasy.png`
+  - Route position: 206.0 m / 245.2 m
+  - Camera position: (-0.6, 1.8, 201.4)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 68
+  - Image metrics: avg luma 0.224, contrast 0.198, dark 10.1%, bright 1.7%
+### Probe/Ambient
+- Slug: probe-ambient
+- Family: Probe strategy
+- Description: Temporary ambient/probe pass: warmer trilight ambient, light fog depth, and local reflection probes.
+- Renderers: 886
+- Lights: 14
+- Shadow-casting lights: 2
+- Volumes: 0
+- Reflection probes: 3
+- Light probe groups: 0
+- Foret claire: `_bmad-output/unity-test-results/myb-102/probe-ambient/passage-01-foret-claire.png`
+  - Route position: 39.2 m / 245.2 m
+  - Camera position: (-0.4, 1.7, 37.1)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 471
+  - Image metrics: avg luma 0.219, contrast 0.190, dark 8.4%, bright 2.4%
+- Village / route de col: `_bmad-output/unity-test-results/myb-102/probe-ambient/passage-02-village-route-de-col.png`
+  - Route position: 122.6 m / 245.2 m
+  - Camera position: (-0.7, 1.7, 119.4)
+  - Camera forward: (0.2, -0.1, 1.0)
+  - Frustum renderers: 232
+  - Image metrics: avg luma 0.241, contrast 0.200, dark 8.9%, bright 2.2%
+- Panorama / signal fantasy: `_bmad-output/unity-test-results/myb-102/probe-ambient/passage-03-panorama-signal-fantasy.png`
+  - Route position: 206.0 m / 245.2 m
+  - Camera position: (-0.6, 1.8, 201.4)
+  - Camera forward: (-0.2, -0.1, 1.0)
+  - Frustum renderers: 68
+  - Image metrics: avg luma 0.232, contrast 0.198, dark 8.7%, bright 1.9%
