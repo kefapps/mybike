@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-13
+Last sync: 2026-06-14
 
 ## Workspace
 
@@ -67,6 +67,7 @@ Last sync: 2026-06-13
 - Unity imported asset adjustments MYB-100: `_bmad-output/implementation-artifacts/myb-100-imported-asset-adjustments.md`
 - Unity scene visual audit MYB-103: `_bmad-output/implementation-artifacts/myb-103-scene-visual-audit-scope.md`
 - Unity scene recomposition follow-up MYB-104: `_bmad-output/implementation-artifacts/myb-104-production-passages.md`
+- Unity global rendering spike MYB-102: `_bmad-output/implementation-artifacts/myb-102-urp-global-rendering-spike.md`
 - Unity macOS performance budgets MYB-51: `_bmad-output/implementation-artifacts/myb-51-unity-macos-performance-budgets.md`
 - Unity mock effort/difficulty simulator MYB-57: `_bmad-output/implementation-artifacts/myb-57-effort-difficulty-simulator.md`
 - Unity resistance controller boundary MYB-59: `_bmad-output/implementation-artifacts/myb-59-resistance-controller.md`
@@ -5453,7 +5454,7 @@ Synced on 2026-06-12:
 Synced on 2026-06-12:
 
 - Linear issue: `MYB-44`.
-- Linear status: `In Progress`.
+- Linear status: `In Review`.
 - Linear start comment ID: `9f743cd5-6fcf-43e5-b4f8-6ed0cb99894b`.
 - Branch: `myb-44-scenic-corridor`.
 - Grill-with-docs decisions:
@@ -6692,3 +6693,82 @@ Closure synced on 2026-06-14:
   - Reason: MYB-104 intentionally kept global URP defaults, probes, and project
     renderer strategy out of scope; MYB-102 is the dedicated decision spike for
     that global rendering layer.
+
+### MYB-102 URP Global Rendering Spike Sync
+
+Synced on 2026-06-14:
+
+- Linear issue: `MYB-102`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-102/spike-rendu-urp-global-decider-si-les-defaults-projet-doivent-changer`.
+- Linear status: `In Progress`.
+- Grill-with-docs comment ID: `fe2c3564-d38e-4f41-b43b-b1ee2d500bf7`.
+- Implementation comment ID: `4fe934ae-a587-4eac-8c88-262a326aaf98`.
+- Pull request: `https://github.com/kefapps/mybike/pull/30`.
+- Branch: `myb-102-urp-global-rendering-spike-grill`.
+- Local implementation artifact:
+  `_bmad-output/implementation-artifacts/myb-102-urp-global-rendering-spike.md`.
+- Unity report:
+  `_bmad-output/unity-test-results/myb-102/myb-102-urp-global-rendering-spike.txt`.
+- Contact sheet:
+  `_bmad-output/unity-test-results/myb-102/myb-102-contact-sheet.png`.
+- Implementation summary:
+  - Added `Socle de Rendu Projet` to `CONTEXT.md`.
+  - Added `MYB102UrpGlobalRenderingSpike`, a Unity Editor spike tool that
+    captures baseline plus three temporary variants across the three canonical
+    Passages.
+  - Variants tested: `Project Depth`, `Polish Volume`, and `Probe/Ambient`.
+  - Restores project rendering assets and scene-level temporary objects before
+    completion.
+  - Verdict: do not modify global URP/project defaults now; only
+    `Probe/Ambient` produced a modest positive signal, below the two-family
+    threshold agreed during the grill.
+- Scope guard:
+  - No persisted changes to `PC_RPAsset`, `PC_Renderer`, `QualitySettings`, or
+    `GraphicsSettings`.
+  - No `src/**` changes.
+  - No `unity/Echappee3D/**` recreation or changes.
+  - No new asset import, Meshy spend, FTMS/BLE, or hardware scope.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
+  - `MYB102UrpGlobalRenderingSpike.CaptureUrpGlobalRenderingSpikeCli()`: PASS
+    via Unity-MCP script execution.
+  - Generated baseline plus three temporary variants across three Passages.
+  - Restoration status in generated report: PASS.
+  - No persisted diff in `Assets/Settings/PC_RPAsset.asset` or
+    `Assets/Settings/PC_Renderer.asset`.
+  - `git diff --check`: PASS.
+
+Follow-up visual program created on 2026-06-14:
+
+- Parent issue: `MYB-105` — `Programme rendu premium Unity : passer du
+  prototype au look final`.
+  `https://linear.app/kefjbo/issue/MYB-105/programme-rendu-premium-unity-passer-du-prototype-au-look-final`.
+- Context:
+  - MYB-102 proved that changing global URP defaults alone is not enough.
+  - The next rendering improvements should be concrete art direction work:
+    local lookdev, stylized materials, stronger assets, playable hero-shot
+    composition, controlled atmosphere, and a separate URP style-renderer spike.
+- Children:
+  - `MYB-106` — `LookDev local Passage 01 : art pass lighting, probes et
+    palette`.
+    `https://linear.app/kefjbo/issue/MYB-106/lookdev-local-passage-01-art-pass-lighting-probes-et-palette`.
+  - `MYB-107` — `Matériaux stylisés URP : shader/material pass Low-poly de
+    Production`.
+    `https://linear.app/kefjbo/issue/MYB-107/materiaux-stylises-urp-shadermaterial-pass-low-poly-de-production`.
+  - `MYB-108` — `Remplacer les assets qui lisent cheap dans la scène
+    canonique`.
+    `https://linear.app/kefjbo/issue/MYB-108/remplacer-les-assets-qui-lisent-cheap-dans-la-scene-canonique`.
+  - `MYB-109` — `Composer un hero shot jouable : une vue premium cible dans la
+    ride`.
+    `https://linear.app/kefjbo/issue/MYB-109/composer-un-hero-shot-jouable-une-vue-premium-cible-dans-la-ride`.
+  - `MYB-110` — `Couche atmosphérique locale : fog, sky, haze et lights motivées
+    par Passage`.
+    `https://linear.app/kefjbo/issue/MYB-110/couche-atmospherique-locale-fog-sky-haze-et-lights-motivees-par`.
+  - `MYB-111` — `Spike style renderer URP maison : shader/look cible sans
+    bascule HDRP`.
+    `https://linear.app/kefjbo/issue/MYB-111/spike-style-renderer-urp-maison-shaderlook-cible-sans-bascule-hdrp`.
+- Recommended first child:
+  - `MYB-106`, because it tests the most direct hypothesis first: one local
+    Passage art pass can create a visibly better target without global renderer
+    churn.
