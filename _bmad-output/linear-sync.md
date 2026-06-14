@@ -6843,3 +6843,31 @@ MYB-106 implementation synced on 2026-06-14:
   - This is a concrete local Passage 01 improvement, but not the final visual
     answer. Stronger material/shader work and asset replacement remain in
     MYB-107 and MYB-108.
+
+MYB-108 forest asset review breakdown synced on 2026-06-14:
+
+- Linear parent issue: `MYB-108`.
+- Local review artifact:
+  `_bmad-output/unity-test-results/myb-108/forest-asset-review.md`.
+- Decision:
+  - MYB-108 remains the parent inventory/review ticket.
+  - Forest remake work is split into one child ticket per visual family, with
+    sub-tickets per concrete asset or generated element group.
+  - Return to MYB-108 only after the family tickets are complete, for final
+    integration review and global forest comparison.
+- Family tickets:
+  - `MYB-113` - Refaire les surfaces et rubans de sol forêt.
+    - Sub-tickets: `MYB-114`, `MYB-115`, `MYB-116`, `MYB-117`.
+  - `MYB-118` - Remplacer le rideau d’arbres mid/background forêt.
+    - Sub-tickets: `MYB-119`, `MYB-120`, `MYB-121`.
+  - `MYB-122` - Remplacer les clusters bas de sous-bois forêt.
+    - Sub-tickets: `MYB-123`, `MYB-124`.
+  - `MYB-125` - Refaire mousses, branches et accents au sol forêt.
+    - Sub-tickets: `MYB-126`, `MYB-127`, `MYB-128`.
+  - `MYB-129` - Remplacer les pierres de guidage forêt.
+    - Sub-ticket: `MYB-130`.
+  - `MYB-131` - Conserver et ajuster les arbres proches forêt.
+    - Sub-tickets: `MYB-132`, `MYB-133`, `MYB-134`.
+- Linear comments:
+  - Phase A review comment: `9080724e-2413-435b-93a2-336281d31c9d`.
+  - Breakdown decision comment: `c11415c9-142b-4dd8-b27a-56b4606397ae`.
