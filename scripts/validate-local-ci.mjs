@@ -397,6 +397,15 @@ function unityMyb104Input() {
   });
 }
 
+function unityMyb106Input() {
+  return JSON.stringify({
+    className: "MYB83RunMyb106Validator",
+    methodName: "Main",
+    csharpCode:
+      "using MYB106.Editor; public static class MYB83RunMyb106Validator { public static void Main() { MYB106Passage01LookDev.ApplyAndValidateCli(); } }"
+  });
+}
+
 async function runLocalCi(options) {
   const checks = [
     ...checkRequiredPaths(),
@@ -423,7 +432,8 @@ async function runLocalCi(options) {
       skipCheck("MYB-80 HUD cadence validator", "--skip-unity was provided"),
       skipCheck("MYB-98 ride trajectory unit validator", "--skip-unity was provided"),
       skipCheck("MYB-100 imported asset adjustment validator", "--skip-unity was provided"),
-      skipCheck("MYB-104 production passages composer", "--skip-unity was provided")
+      skipCheck("MYB-104 production passages composer", "--skip-unity was provided"),
+      skipCheck("MYB-106 Passage 01 LookDev overlay", "--skip-unity was provided")
     );
   } else {
     checks.push(
@@ -535,6 +545,17 @@ async function runLocalCi(options) {
         UNITY_PROJECT_PATH,
         "--input",
         unityMyb104Input(),
+        "--timeout",
+        "240000"
+      ], {
+        timeoutMs: 300_000
+      }),
+      runCommand("MYB-106 Passage 01 LookDev overlay", "unity-mcp-cli", [
+        "run-tool",
+        "script-execute",
+        UNITY_PROJECT_PATH,
+        "--input",
+        unityMyb106Input(),
         "--timeout",
         "240000"
       ], {

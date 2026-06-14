@@ -1,0 +1,18 @@
+MYB-112 macOS build FPS comparison
+Generated UTC: 2026-06-14T13:02:15Z
+Scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Resolution: 1280x720
+Mode: compiled macOS build; Unity Editor is pre-check only.
+Launch method: macOS app bundle launched with `open -n ... --args`; direct executable launch exits before the Unity player loop runs.
+Video FPS: not used for performance validation.
+Budget: target 60 fps, warning below 45 fps, red blocking below 30 fps.
+Average FPS delta after-baseline: 25.6
+
+Runs:
+- baseline: status target, avg 69.1, 1% low 46.1, min 0.5, report `_bmad-output/unity-test-results/myb-112/myb-112-runtime-fps-baseline.txt`
+- after: status target, avg 94.7, 1% low 62.1, min 0.5, report `_bmad-output/unity-test-results/myb-112/myb-112-runtime-fps-after.txt`
+
+Notes:
+- `level0 is corrupted` no longer reproduces after repairing MYB48 cue tag serialization.
+- The runtime probe disables legacy StandaloneInputModule during FPS validation to avoid Input System player exceptions.
+- Player logs still contain Unity shutdown warnings about GraphicsBuffer/ComputeBuffer disposal and JobTempAlloc; these occur after the FPS report is written and should be tracked separately if they persist outside the validation runner.

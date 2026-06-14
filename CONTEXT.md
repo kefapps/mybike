@@ -436,6 +436,33 @@ Relationships:
 
 Aliases: etape de la balade, old name: moment cle, route highlight, key moment.
 
+### Vue Cible
+
+Definition: A playable visual reference frame inside a specific `Passage` used
+to judge whether local composition, lighting, atmosphere, material hierarchy,
+and scenic identity escape `Lecture Prototype` and reach the intended
+`Stylise Premium` direction.
+
+Relationships:
+
+- A `Vue Cible` is local lookdev evidence, not a project-wide rendering
+  decision.
+- It can guide local art passes for composition, lights, probes, fog, palette,
+  and asset hierarchy inside one `Passage`.
+- It remains separate from `Socle de Rendu Projet`, which owns global Unity
+  rendering defaults.
+
+Examples:
+
+- A dramatic stylized premium undergrowth view in Passage 01 with cool dense
+  sides, warm low-angle light on the ride axis, subtle haze, readable road, and
+  stronger foreground/midground/background separation.
+
+Non-examples:
+
+- A global URP preset, a marketing screenshot detached from the playable ride,
+  or a post-process-only mask over an unchanged prototype composition.
+
 ### Biome
 
 Definition: A route region with a coherent identity, surface language,
@@ -558,3 +585,31 @@ Examples:
 
 - A report that counts renderers, estimated triangles, active lights, materials,
   console errors or warnings, and measured fps bands for the current Unity scene.
+
+### Socle de Rendu Projet
+
+Definition: The project-level Unity rendering foundation that influences the
+whole active vertical slice before any Passage-specific polish. It covers global
+rendering defaults, quality tier choices, renderer features, lighting baseline,
+probe strategy, and post-process baseline.
+
+Aliases: project rendering foundation, global rendering baseline, URP defaults.
+
+Relationships:
+
+- `Socle de Rendu Projet` supports `Stylise Premium` and `Low-poly de
+  Production` by making the whole Unity scene read more intentional.
+- It remains separate from Passage composition, asset placement, and local
+  scene dressing.
+- It is evaluated with `Garde-fou performance`; a better look is not enough if
+  it creates unclear performance or readability risk.
+
+Examples:
+
+- A project-wide rendering decision that changes shadow quality, renderer
+  features, ambient lighting, probe use, or the default post-process baseline.
+
+Non-examples:
+
+- Repositioning trees for one Passage.
+- Hiding a weak scene behind heavy bloom, fog, vignette, or color grading.

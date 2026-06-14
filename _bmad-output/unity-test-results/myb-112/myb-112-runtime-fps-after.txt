@@ -1,0 +1,17 @@
+MYB-112 runtime FPS probe
+Generated UTC: 2026-06-14T13:02:04.1057450Z
+Label: after
+Status: target
+Resolution: 1280x720
+Quality: PC
+Target FPS: 60
+Warning below FPS: 45
+Red below FPS: 30
+Warmup seconds: 2.00
+Measurement seconds: 14.01
+Frames measured: 1326
+Average FPS: 94.7
+1 percent low FPS: 62.1
+Minimum FPS: 0.5
+Sequence meters: 18.0 -> 72.0
+Video FPS: not measured here; video proof is separate.

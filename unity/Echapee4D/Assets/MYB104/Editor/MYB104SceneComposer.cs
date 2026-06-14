@@ -248,12 +248,14 @@ namespace MYB104.Editor
             CreateRibbon("MYB104_Forest_RightLightFloor", root.transform, route, 0f, 84f, 10.2f, 15f, 0.05f, materials["forestLight"]);
             CreateRibbon("MYB104_Forest_RoadShadowLace_L", root.transform, route, 15f, 70f, -4.7f, 1.6f, 0.075f, materials["roadShadow"]);
             CreateRibbon("MYB104_Forest_RoadShadowLace_R", root.transform, route, 20f, 78f, 4.9f, 1.45f, 0.078f, materials["roadShadow"]);
+            CreateRibbon("MYB104_Forest_InnerTreeMass_L", root.transform, route, 8f, 82f, -6.2f, 3.4f, 0.12f, materials["forestFloor"]);
+            CreateRibbon("MYB104_Forest_InnerTreeMass_R", root.transform, route, 10f, 82f, 6.3f, 3.2f, 0.12f, materials["forestFloor"]);
 
-            var distances = new[] { 10f, 17f, 24f, 31f, 39f, 47f, 56f, 65f, 75f };
+            var distances = new[] { 8f, 13f, 18f, 24f, 30f, 36f, 43f, 50f, 58f, 66f, 75f };
             for (var i = 0; i < distances.Length; i++)
             {
                 PlacePrefabOrTree(
-                    "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab",
+                    MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i),
                     "MYB104_ForestTallPine_L_" + i.ToString("00", CultureInfo.InvariantCulture),
                     root.transform,
                     route,
@@ -265,9 +267,7 @@ namespace MYB104.Editor
                     materials["pineDark"],
                     report);
                 PlacePrefabOrTree(
-                    i % 2 == 0
-                        ? "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab"
-                        : "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab",
+                    MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i + distances.Length),
                     "MYB104_ForestPine_R_" + i.ToString("00", CultureInfo.InvariantCulture),
                     root.transform,
                     route,
@@ -280,13 +280,13 @@ namespace MYB104.Editor
                     report);
             }
 
-            var closeDistances = new[] { 5f, 12f, 19f, 27f, 35f, 43f, 51f, 60f };
+            var closeDistances = new[] { 5f, 10f, 15f, 21f, 27f, 34f, 41f, 49f, 57f, 66f };
             for (var i = 0; i < closeDistances.Length; i++)
             {
                 foreach (var side in new[] { -1f, 1f })
                 {
                     PlacePrefabOrTree(
-                        "Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab",
+                        MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i * 2 + (side < 0f ? 0 : 1)),
                         "MYB104_ForestNearPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
                         root.transform,
                         route,
@@ -300,7 +300,67 @@ namespace MYB104.Editor
                 }
             }
 
-            for (var i = 0; i < 8; i++)
+            var innerCanopyDistances = new[] { 8f, 14f, 20f, 27f, 35f, 44f, 54f, 65f, 77f };
+            for (var i = 0; i < innerCanopyDistances.Length; i++)
+            {
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePrefabOrTree(
+                        MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i + (side < 0f ? 73 : 84)),
+                        "MYB104_ForestInnerCanopy_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        root.transform,
+                        route,
+                        innerCanopyDistances[i] + (side > 0f ? 1.1f : 0f),
+                        side,
+                        4.55f + (i % 3) * 0.45f,
+                        4.45f + (i % 2) * 0.5f,
+                        materials["trunk"],
+                        materials["pineDark"],
+                        report);
+                }
+            }
+
+            var midForestDistances = new[] { 11f, 16f, 22f, 28f, 34f, 41f, 48f, 55f, 63f, 72f };
+            for (var i = 0; i < midForestDistances.Length; i++)
+            {
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePrefabOrTree(
+                        MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i + (side < 0f ? 24 : 37)),
+                        "MYB104_ForestMidPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        root.transform,
+                        route,
+                        midForestDistances[i] + (side > 0f ? 1.8f : 0.3f),
+                        side,
+                        8.7f + (i % 4) * 0.85f,
+                        3.65f + (i % 3) * 0.5f,
+                        materials["trunk"],
+                        materials["pineDark"],
+                        report);
+                }
+            }
+
+            var backgroundDistances = new[] { 14f, 22f, 30f, 39f, 49f, 60f, 72f };
+            for (var i = 0; i < backgroundDistances.Length; i++)
+            {
+                foreach (var side in new[] { -1f, 1f })
+                {
+                    PlacePrefabOrTree(
+                        MYB112.Editor.MYB112PremiumTreeRuntimeSet.GetVariantPrefabPath(i + (side < 0f ? 52 : 61)),
+                        "MYB104_ForestBackPine_" + i.ToString("00", CultureInfo.InvariantCulture) + (side < 0f ? "_L" : "_R"),
+                        root.transform,
+                        route,
+                        backgroundDistances[i] + (side > 0f ? 3.2f : 0f),
+                        side,
+                        13.5f + (i % 3) * 1.35f,
+                        3.05f + (i % 2) * 0.45f,
+                        materials["trunk"],
+                        materials["pineDark"],
+                        report);
+                }
+            }
+
+            for (var i = 0; i < 12; i++)
             {
                 var side = i % 2 == 0 ? -1f : 1f;
                 PlacePrefab(
@@ -308,17 +368,17 @@ namespace MYB104.Editor
                     "MYB104_ForestLightPatch_" + i.ToString("00", CultureInfo.InvariantCulture),
                     root.transform,
                     route,
-                    14f + i * 8.5f,
+                    10f + i * 5.8f,
                     side,
-                    4.1f + (i % 3) * 1.2f,
+                    4.0f + (i % 4) * 0.95f,
                     0.42f,
                     Quaternion.Euler(0f, i * 22f, 0f),
                     report);
             }
 
-            CreateScenicStonePairs(root.transform, route, 14f, 76f, 9, materials["edgeGuide"]);
+            CreateScenicStonePairs(root.transform, route, 12f, 78f, 12, materials["edgeGuide"]);
             AddPassageLight("MYB104_ForestDappledFill", root.transform, SamplePosition(route, 44f, -5.5f, 4.8f), new Color(0.72f, 0.9f, 0.62f), 1.05f, 15f, false);
-            report.PassageNotes.Add("Foret claire: dense side tree masses, light floor ribbons, dappled road shadows, wildflower foreground and stone edge guides.");
+            report.PassageNotes.Add("Foret claire: layered side tree masses, mid/background forest curtains, light floor ribbons, dappled road shadows, wildflower foreground and stone edge guides.");
         }
 
         private static void BuildVillageColPassage(

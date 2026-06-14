@@ -123,6 +123,50 @@
       "linearIssue": "MYB-42"
     },
     {
+      "id": "polyhaven-pine-bark-1k-jpg-myb112",
+      "assetName": "Pine Bark - 1K JPG subset",
+      "author": "Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/pine_bark",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-14",
+      "category": "Texture material",
+      "intendedUse": "Premium runtime tree bark material for MYB-112 tree variants.",
+      "modifications": "Subset download only: diffuse, NormalGL and ARM 1K JPG maps; Unity material tinting, mipmaps and compressed import settings.",
+      "attributionText": "none-required (CC0; courtesy credit: Pine Bark from Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/PremiumTreePolyHaven",
+      "importedFiles": [
+        "Textures/pine_bark_diff_1k.jpg",
+        "Textures/pine_bark_nor_gl_1k.jpg",
+        "Textures/pine_bark_arm_1k.jpg"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-112 runtime tree material use. No Poly Haven model geometry is imported.",
+      "linearIssue": "MYB-112"
+    },
+    {
+      "id": "polyhaven-moss-wood-1k-jpg-myb112",
+      "assetName": "Moss Wood - 1K JPG subset",
+      "author": "Poly Haven",
+      "sourceUrl": "https://polyhaven.com/a/moss_wood",
+      "license": "CC0",
+      "licenseUrl": "https://polyhaven.com/license",
+      "retrievedAt": "2026-06-14",
+      "category": "Texture material",
+      "intendedUse": "Premium runtime tree moss material for MYB-112 tree variants.",
+      "modifications": "Subset download only: diffuse, NormalGL and ARM 1K JPG maps; Unity material tinting, mipmaps and compressed import settings.",
+      "attributionText": "none-required (CC0; courtesy credit: Moss Wood from Poly Haven)",
+      "localPath": "unity/Echapee4D/Assets/Echappee/Art/PremiumTreePolyHaven",
+      "importedFiles": [
+        "Textures/moss_wood_diff_1k.jpg",
+        "Textures/moss_wood_nor_gl_1k.jpg",
+        "Textures/moss_wood_arm_1k.jpg"
+      ],
+      "status": "approved",
+      "reviewNotes": "Approved for MYB-112 runtime tree material use. No Poly Haven model geometry is imported.",
+      "linearIssue": "MYB-112"
+    },
+    {
       "id": "kaykit-medieval-hexagon-pack-myb53-subset",
       "assetName": "KayKit Medieval Hexagon Pack - MYB-53 subset",
       "author": "Kay Lousberg / KayKit",

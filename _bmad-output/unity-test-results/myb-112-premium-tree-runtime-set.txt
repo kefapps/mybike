@@ -1,0 +1,42 @@
+﻿MYB-112 Premium Tree Runtime Set
+Generated: 2026-06-14T13:41:29.4123520Z
+Status: PASS
+Variant count: 5
+LOD policy: LOD0 premium source model, LOD1 stylized proxy, LOD2 distant silhouette.
+Performance rule: 5 variants are fixed; density, LOD, shadows, foliage and texture cost are tuning levers.
+
+Prefabs:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+
+Textures:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_diff_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_nor_gl_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/pine_bark_arm_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_diff_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_nor_gl_1k.jpg
+- Assets/Echappee/Art/PremiumTreePolyHaven/Textures/moss_wood_arm_1k.jpg
+
+Materials:
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_BarkPolyHaven.mat
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_MossPolyHaven.mat
+- Assets/Echappee/Art/PremiumTreePolyHaven/Materials/MYB_PremiumTree_StylizedFoliage.mat
+
+Notes:
+- Configured source FBX without embedded materials; runtime variants share Poly Haven bark/moss materials and stylized foliage.
+- Variant A: height 5.6m, width scale 1.00, LODGroup 0.48/0.18/0.04.
+- Variant B: height 6.1m, width scale 0.82, LODGroup 0.48/0.18/0.04.
+- Variant C: height 5.1m, width scale 1.16, LODGroup 0.48/0.18/0.04.
+- Variant D: height 6.5m, width scale 0.92, LODGroup 0.48/0.18/0.04.
+- Variant E: height 5.4m, width scale 1.28, LODGroup 0.48/0.18/0.04.
+- MYB112_PremiumTree_A total stored triangles across LODs: 15954
+- MYB112_PremiumTree_B total stored triangles across LODs: 15954
+- MYB112_PremiumTree_C total stored triangles across LODs: 15954
+- MYB112_PremiumTree_D total stored triangles across LODs: 15954
+- MYB112_PremiumTree_E total stored triangles across LODs: 15954
+
+Failures:
+- None.

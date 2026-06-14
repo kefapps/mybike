@@ -1,7 +1,7 @@
 # MYB-104 Production Passages Report
 
 Status: PASS
-Generated at UTC: 2026-06-13T20:51:26.0212900Z
+Generated at UTC: 2026-06-14T12:59:58.9552050Z
 Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
 Capture size: 1280x720
 HUD/canvases: disabled for visual proof captures
@@ -17,82 +17,82 @@ HUD/canvases: disabled for visual proof captures
 - Preserved MYB89ProbeRide, mock mode, HUD wiring, route markers and ride navigation.
 
 ## Asset placements
-- MYB104_ForestTallPine_L_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestTallPine_L_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestTallPine_L_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestTallPine_L_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestTallPine_L_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestTallPine_L_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestTallPine_L_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestTallPine_L_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestTallPine_L_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineTall.prefab
-- MYB104_ForestPine_R_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_00_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_00_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_01_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_01_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_02_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_02_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_03_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_03_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_04_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_04_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_05_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_05_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_06_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_06_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_07_L <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestNearPine_07_R <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
-- MYB104_ForestLightPatch_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_ForestLightPatch_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WildflowerGrassPatch.prefab
-- MYB104_VillageWell <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageWellMarker.prefab
-- MYB104_ColDirectionSign <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_ColDirectionSign.prefab
-- MYB104_HairpinChevronSign_A <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab
-- MYB104_HairpinChevronSign_B <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_HairpinChevronSign.prefab
-- MYB104_VillageBench <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_VillageBench.prefab
-- MYB104_MarketCrateStack <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_MarketCrateStack.prefab
-- MYB104_StoneFlowerPlanter_A <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab
-- MYB104_StoneFlowerPlanter_B <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_StoneFlowerPlanter.prefab
-- MYB104_VillageFence_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_07 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_08 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- MYB104_VillageFence_09 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_WoodFenceSegment.prefab
-- ... 25 additional authored placements
+- MYB104_ForestTallPine_L_00 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestPine_R_00 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestTallPine_L_01 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestPine_R_01 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestTallPine_L_02 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestPine_R_02 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestTallPine_L_03 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestPine_R_03 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestTallPine_L_04 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestPine_R_04 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestTallPine_L_05 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestPine_R_05 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestTallPine_L_06 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestPine_R_06 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestTallPine_L_07 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestPine_R_07 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestTallPine_L_08 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestPine_R_08 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestTallPine_L_09 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestPine_R_09 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestTallPine_L_10 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestPine_R_10 <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestNearPine_00_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestNearPine_00_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestNearPine_01_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestNearPine_01_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestNearPine_02_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestNearPine_02_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestNearPine_03_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestNearPine_03_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestNearPine_04_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestNearPine_04_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestNearPine_05_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestNearPine_05_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestNearPine_06_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestNearPine_06_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestNearPine_07_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestNearPine_07_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestNearPine_08_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestNearPine_08_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestNearPine_09_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestNearPine_09_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestInnerCanopy_00_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestInnerCanopy_00_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestInnerCanopy_01_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestInnerCanopy_01_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestInnerCanopy_02_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestInnerCanopy_02_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestInnerCanopy_03_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestInnerCanopy_03_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestInnerCanopy_04_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- MYB104_ForestInnerCanopy_04_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestInnerCanopy_05_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_D.prefab
+- MYB104_ForestInnerCanopy_05_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestInnerCanopy_06_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_E.prefab
+- MYB104_ForestInnerCanopy_06_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestInnerCanopy_07_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_A.prefab
+- MYB104_ForestInnerCanopy_07_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestInnerCanopy_08_L <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_B.prefab
+- MYB104_ForestInnerCanopy_08_R <- Assets/Echappee/Art/PremiumTreePolyHaven/Prefabs/MYB112_PremiumTree_C.prefab
+- ... 89 additional authored placements
 
 ## Passage captures
 ### Foret claire
 - Slug: passage-01-foret-claire
 - Capture: _bmad-output/unity-test-results/myb-104/passage-01-foret-claire.png
 - Route position: 42.0 m
-- Camera position: (-1.0, 1.8, 39.9)
+- Camera position: (-1.0, 2.4, 39.9)
 - Camera forward: (-0.2, -0.1, 1.0)
-- Closest MYB-104 visible objects: MYB104_Forest_RoadShadowLace_L, MYB104_ForestStoneGuide_04_L, MYB104_ForestStoneGuide_04_R, MYB104_Forest_RightLightFloor, MYB104_Forest_RoadShadowLace_R, lower_bough, upper_bough, tip, grass_blade_0, flower_0, stem_0, flower_1, grass_blade_1, stem_1, flower_2, stem_2, flower_3, grass_clump_base, stem_3, grass_blade_2
+- Closest MYB-104 visible objects: MYB104_Forest_RoadShadowLace_L, MYB104_Forest_InnerTreeMass_R, MYB_PremiumNonLowPolyTree_LOD1_foliage, MYB104_Forest_RightLightFloor, MYB104_Forest_InnerTreeMass_L, MYB104_ForestStoneGuide_06_L, MYB104_ForestStoneGuide_06_R, MYB104_Forest_RoadShadowLace_R, MYB_PremiumNonLowPolyTree_LOD1_foliage, MYB_PremiumNonLowPolyTree_LOD1_wood, MYB_PremiumNonLowPolyTree_LOD1_foliage, MYB_PremiumNonLowPolyTree_LOD1_wood, MYB_PremiumNonLowPolyTree_LOD1_moss, MYB_PremiumNonLowPolyTree_LOD1_foliage, LOD1_StylizedProxy_Crown_02, LOD1_StylizedProxy_Crown_01, LOD1_StylizedProxy_Crown_00, LOD2_DistantSilhouette_Crown_01, LOD2_DistantSilhouette_Crown_00, LOD1_StylizedProxy_Trunk
 
 ### Village / route de col
 - Slug: passage-02-village-route-de-col
 - Capture: _bmad-output/unity-test-results/myb-104/passage-02-village-route-de-col.png
 - Route position: 124.0 m
-- Camera position: (-0.4, 1.7, 120.7)
+- Camera position: (-0.4, 2.4, 120.7)
 - Camera forward: (0.2, -0.1, 1.0)
 - Closest MYB-104 visible objects: MYB104_Village_InnerStoneEdge_R, MYB104_Village_InnerStoneEdge_L, MYB104_Village_TerraceLeft, MYB104_Village_TerraceRight, post_cap_-0.46, post_-0.46, post_cap_0, rail_high, post_0, rail_low, post_cap_0.46, post_0.46, rear_leg_0.32, back, front_leg_0.32, seat, stone_footing, rear_leg_-0.32, front_leg_-0.32, post_cap_0.46
 
@@ -100,9 +100,9 @@ HUD/canvases: disabled for visual proof captures
 - Slug: passage-03-panorama-signal-fantasy
 - Capture: _bmad-output/unity-test-results/myb-104/passage-03-panorama-signal-fantasy.png
 - Route position: 207.0 m
-- Camera position: (-0.8, 1.8, 202.4)
+- Camera position: (-0.8, 2.4, 202.4)
 - Camera forward: (-0.2, -0.1, 1.0)
-- Closest MYB-104 visible objects: MYB104_Panorama_GuideStone_L, MYB104_Panorama_GuideStone_R, MYB104_Panorama_OverlookLeft, roadside_rock_1, ground_shadow, roadside_rock_2, roadside_rock_0, roadside_rock_3, MYB104_FantasySignalObelisk, MYB104_FantasySignalBase, MYB104_FantasySignalHalo, MYB95_RelicFountain_LOD50k, MYB95_RelicFountain_Hero80k, MYB95_RelicFountain_LOD30k, MYB104_Panorama_OverlookRight, roadside_rock_0, roadside_rock_1, ground_shadow, roadside_rock_3, MYB95_BlueRuneGlow
+- Closest MYB-104 visible objects: MYB104_Panorama_GuideStone_L, MYB104_Panorama_GuideStone_R, MYB104_Panorama_OverlookLeft, roadside_rock_1, ground_shadow, roadside_rock_2, roadside_rock_0, roadside_rock_3, MYB104_FantasySignalObelisk, MYB104_FantasySignalBase, MYB104_FantasySignalHalo, MYB95_RelicFountain_Hero80k, MYB95_RelicFountain_LOD50k, MYB95_RelicFountain_LOD30k, MYB104_Panorama_OverlookRight, roadside_rock_0, roadside_rock_1, ground_shadow, roadside_rock_3, MYB95_BlueRuneGlow
 
 ## Audit verdicts
 ### Foret claire
