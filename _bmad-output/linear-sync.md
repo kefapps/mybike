@@ -6801,6 +6801,9 @@ MYB-106 grill-with-docs synced on 2026-06-14:
 MYB-106 implementation synced on 2026-06-14:
 
 - Linear issue: `MYB-106`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `60233191-c14c-42c6-980b-416ac26d53c4`.
+- Pull request: `https://github.com/kefapps/mybike/pull/31`.
 - Branch: `myb-106-lookdev-passage-01`.
 - Local implementation artifact:
   `_bmad-output/implementation-artifacts/myb-106-passage-01-lookdev.md`.
