@@ -6871,3 +6871,14 @@ MYB-108 forest asset review breakdown synced on 2026-06-14:
 - Linear comments:
   - Phase A review comment: `9080724e-2413-435b-93a2-336281d31c9d`.
   - Breakdown decision comment: `c11415c9-142b-4dd8-b27a-56b4606397ae`.
+
+MYB-108 checkpoint closure synced on 2026-06-14:
+
+- Pull request: `https://github.com/kefapps/mybike/pull/34`.
+- Main commit: `d44343e`.
+- Linear status: `Done`.
+- Linear closure comment: `f60c6bfb-bfbe-4338-a4a1-eb963ff34faf`.
+- Scope closure:
+  - MYB-108 is closed as the forest asset inventory/review checkpoint.
+  - Replacement work continues through child family tickets `MYB-113` through
+    `MYB-134`, starting with `MYB-113`.
