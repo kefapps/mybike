@@ -6675,3 +6675,20 @@ Review sync on 2026-06-14:
   - `git diff --check`: PASS.
   - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS.
   - Targeted Unity sequence MYB-100 then MYB-104: PASS.
+
+Closure synced on 2026-06-14:
+
+- Pull request: `https://github.com/kefapps/mybike/pull/29`.
+- Squash merge commit on `main`:
+  `314a9fc3ebbf18a2c4d0aa1f4980e241ee535230`.
+- Merge method: squash merge.
+- Branch `myb-104-recomposer-la-scene-canonique-en-trois-passages-low-poly-de`
+  was deleted on origin after merge.
+- Linear status moved from `In Review` to `Done`.
+- Closure Linear comment ID: `0e77d02a-08f5-4107-90f1-15a8611a4b2d`.
+- Next recommended issue:
+  - `MYB-102` — `Spike rendu URP global: décider si les defaults projet
+    doivent changer`.
+  - Reason: MYB-104 intentionally kept global URP defaults, probes, and project
+    renderer strategy out of scope; MYB-102 is the dedicated decision spike for
+    that global rendering layer.
