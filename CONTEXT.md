@@ -558,3 +558,31 @@ Examples:
 
 - A report that counts renderers, estimated triangles, active lights, materials,
   console errors or warnings, and measured fps bands for the current Unity scene.
+
+### Socle de Rendu Projet
+
+Definition: The project-level Unity rendering foundation that influences the
+whole active vertical slice before any Passage-specific polish. It covers global
+rendering defaults, quality tier choices, renderer features, lighting baseline,
+probe strategy, and post-process baseline.
+
+Aliases: project rendering foundation, global rendering baseline, URP defaults.
+
+Relationships:
+
+- `Socle de Rendu Projet` supports `Stylise Premium` and `Low-poly de
+  Production` by making the whole Unity scene read more intentional.
+- It remains separate from Passage composition, asset placement, and local
+  scene dressing.
+- It is evaluated with `Garde-fou performance`; a better look is not enough if
+  it creates unclear performance or readability risk.
+
+Examples:
+
+- A project-wide rendering decision that changes shadow quality, renderer
+  features, ambient lighting, probe use, or the default post-process baseline.
+
+Non-examples:
+
+- Repositioning trees for one Passage.
+- Hiding a weak scene behind heavy bloom, fog, vignette, or color grading.
