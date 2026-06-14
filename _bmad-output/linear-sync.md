@@ -6738,3 +6738,37 @@ Synced on 2026-06-14:
   - No persisted diff in `Assets/Settings/PC_RPAsset.asset` or
     `Assets/Settings/PC_Renderer.asset`.
   - `git diff --check`: PASS.
+
+Follow-up visual program created on 2026-06-14:
+
+- Parent issue: `MYB-105` — `Programme rendu premium Unity : passer du
+  prototype au look final`.
+  `https://linear.app/kefjbo/issue/MYB-105/programme-rendu-premium-unity-passer-du-prototype-au-look-final`.
+- Context:
+  - MYB-102 proved that changing global URP defaults alone is not enough.
+  - The next rendering improvements should be concrete art direction work:
+    local lookdev, stylized materials, stronger assets, playable hero-shot
+    composition, controlled atmosphere, and a separate URP style-renderer spike.
+- Children:
+  - `MYB-106` — `LookDev local Passage 01 : art pass lighting, probes et
+    palette`.
+    `https://linear.app/kefjbo/issue/MYB-106/lookdev-local-passage-01-art-pass-lighting-probes-et-palette`.
+  - `MYB-107` — `Matériaux stylisés URP : shader/material pass Low-poly de
+    Production`.
+    `https://linear.app/kefjbo/issue/MYB-107/materiaux-stylises-urp-shadermaterial-pass-low-poly-de-production`.
+  - `MYB-108` — `Remplacer les assets qui lisent cheap dans la scène
+    canonique`.
+    `https://linear.app/kefjbo/issue/MYB-108/remplacer-les-assets-qui-lisent-cheap-dans-la-scene-canonique`.
+  - `MYB-109` — `Composer un hero shot jouable : une vue premium cible dans la
+    ride`.
+    `https://linear.app/kefjbo/issue/MYB-109/composer-un-hero-shot-jouable-une-vue-premium-cible-dans-la-ride`.
+  - `MYB-110` — `Couche atmosphérique locale : fog, sky, haze et lights motivées
+    par Passage`.
+    `https://linear.app/kefjbo/issue/MYB-110/couche-atmospherique-locale-fog-sky-haze-et-lights-motivees-par`.
+  - `MYB-111` — `Spike style renderer URP maison : shader/look cible sans
+    bascule HDRP`.
+    `https://linear.app/kefjbo/issue/MYB-111/spike-style-renderer-urp-maison-shaderlook-cible-sans-bascule-hdrp`.
+- Recommended first child:
+  - `MYB-106`, because it tests the most direct hypothesis first: one local
+    Passage art pass can create a visibly better target without global renderer
+    churn.
