@@ -71,6 +71,9 @@ Relationships:
 - It turns `Budget performance` and `Garde-fou performance` into asset-level
   decisions without replacing `Verdict Artistique V1`.
 - It produces `Asset Optimise Unity` candidates for later scene or biome work.
+- For a family of custom assets, sub-tickets should record asset-level pressure
+  such as mesh, material, texture, and visual evidence, while the parent family
+  ticket validates the integrated scene against the 60 fps target.
 
 Examples:
 
@@ -285,15 +288,15 @@ Non-examples:
 
 Definition: The canonical visual direction for MyBike: a stylized scenic
 cycling world with generous fantasy moments, memorable silhouettes, strong
-material choices, and a visible premium finish. The low-poly baseline is an
-optimization and art-direction constraint, not a permission to look crude.
+material choices, and a visible premium finish. Performance is a measured
+constraint, not a visual target or a reason to make the world look crude.
 
 Aliases: scenic fantasy lisible, premium scenic fantasy.
 
 Relationships:
 
 - `Stylise Premium` guides `Biome`, `Signal Fantasy Premium`, `Surface de
-  Route`, and `Low-poly de Production`.
+  Route`, and `Stylise Premium de Production`.
 - It favors adventure and wonder first, while keeping enough orientation for an
   automatic on-rail ride.
 
@@ -304,9 +307,9 @@ Examples:
 
 Non-examples:
 
-- Placeholder-looking low-poly, faceted objects with no composition, raw asset
-  packs dropped into the scene, or cheap simplified meshes used as a final
-  quality bar.
+- Placeholder-looking simplified geometry, faceted objects with no composition,
+  raw asset packs dropped into the scene, or cheap simplified meshes used as a
+  final quality bar.
 
 ### Scenic Fantasy Lisible
 
@@ -333,32 +336,38 @@ Non-examples:
   or breaks the player's sense of forward motion.
 - A realistic cycling simulator with no sense of adventure.
 
-### Low-poly de Production
+### Stylise Premium de Production
 
-Definition: A stylized optimization baseline that uses economical geometry,
-clean silhouettes, controlled detail density, strong lighting/materials, and
-careful composition. It must look intentional and finished, not like a
-placeholder.
+Definition: The production quality bar for finished stylized assets and scenes:
+deliberate silhouettes, richer geometry when it improves the image, material
+depth, controlled detail density, strong lighting, grounding, and careful
+composition. Performance is handled through `Budget performance` and
+`Garde-fou performance`, not by making low-poly the visual direction.
 
-Aliases: optimized stylized geometry, production low-poly.
+Aliases: production stylise premium, optimized stylized production art.
+
+Forbidden/legacy aliases: Low-poly de Production, production low-poly, low-poly
+premium.
 
 Relationships:
 
-- `Low-poly de Production` sits under `Stylise Premium`.
+- `Stylise Premium de Production` sits under `Stylise Premium`.
 - `Signal Fantasy Premium` elements may exceed this baseline when intentionally
   budgeted as hero moments.
-- It is evaluated by perceived quality first, then polygon budget.
+- It is evaluated by perceived quality first, then by measured performance
+  guardrails.
 
 Examples:
 
-- Simplified trees with elegant silhouettes and good materials, stylized rocks
-  with readable planes and believable grounding, village buildings with clean
-  proportions and a strong composition.
+- Stylized trees with strong silhouettes, layered forms, and good materials;
+  forest ground surfaces with modeled relief and believable grounding; rocks or
+  route edges that feel intentional from the ride camera.
 
 Non-examples:
 
 - Blockout meshes, flat unlit primitives, noisy decimated assets, low-detail
-  props that feel empty, or any asset that reads as "cheap low-poly".
+  props that feel empty, using low-poly as the final quality bar, or spending
+  geometry without visible benefit or performance evidence.
 
 ### Lecture Prototype
 
@@ -369,11 +378,12 @@ materials, weak camera composition, missing grounding, or absent place identity.
 
 Relationships:
 
-- `Lecture Prototype` is the main rejection signal for `Low-poly de Production`.
+- `Lecture Prototype` is the main rejection signal for `Stylise Premium de
+  Production`.
 - Each audit item must justify why it reads as `prototype`, `limite`, or
-  `production low-poly` from visible capture or video evidence.
-- A simple low-poly scene does not automatically have `Lecture Prototype` if it
-  still feels composed, lit, grounded, readable, and intentional.
+  `stylise premium de production` from visible capture or video evidence.
+- A simplified scene does not automatically have `Lecture Prototype` if it still
+  feels composed, lit, grounded, readable, and intentional.
 
 Examples:
 
@@ -646,7 +656,7 @@ Aliases: project rendering foundation, global rendering baseline, URP defaults.
 
 Relationships:
 
-- `Socle de Rendu Projet` supports `Stylise Premium` and `Low-poly de
+- `Socle de Rendu Projet` supports `Stylise Premium` and `Stylise Premium de
   Production` by making the whole Unity scene read more intentional.
 - It remains separate from Passage composition, asset placement, and local
   scene dressing.
