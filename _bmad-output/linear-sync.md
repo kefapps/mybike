@@ -6772,3 +6772,71 @@ Follow-up visual program created on 2026-06-14:
   - `MYB-106`, because it tests the most direct hypothesis first: one local
     Passage art pass can create a visibly better target without global renderer
     churn.
+
+MYB-106 grill-with-docs synced on 2026-06-14:
+
+- Linear issue: `MYB-106`.
+- Linear grill comment ID: `ca3bc97d-8d92-4c1f-a65c-bb416e7a240d`.
+- Context update:
+  - Added `Vue Cible` to `CONTEXT.md` as a playable visual reference frame
+    inside a specific `Passage`.
+- Decisions:
+  - MYB-106 targets one strong `Vue Cible` in Passage 01 plus a short playable
+    slice around it, not a uniform polish pass over the whole Passage.
+  - Passage 01 visual intent is now a dramatic stylized premium undergrowth.
+  - Allowed levers: local composition, lights, probes, fog, and palette.
+  - Direction: warm/cool late-day look, with denser cool sides, warm low-angle
+    light on the ride axis, subtle depth haze, and readable road.
+  - Implementation should be a reversible local overlay above MYB-104, for
+    example `MYB106_LookDevPassage01`.
+  - Existing assets may be hidden, attenuated, moved, reduced, or darkened when
+    they read cheap, but asset replacement remains owned by MYB-108.
+  - Validation should include before/after still capture of the `Vue Cible` and
+    a silent 15 to 30 second Passage 01 ride video with no added text.
+- Scope guard:
+  - No persisted `Socle de Rendu Projet` change.
+  - No global URP default change, new mass asset import, Meshy spend, `src/**`,
+    `unity/Echappee3D/**`, FTMS, BLE, or hardware scope.
+
+MYB-106 implementation synced on 2026-06-14:
+
+- Linear issue: `MYB-106`.
+- Branch: `myb-106-lookdev-passage-01`.
+- Local implementation artifact:
+  `_bmad-output/implementation-artifacts/myb-106-passage-01-lookdev.md`.
+- Unity report:
+  `_bmad-output/unity-test-results/myb-106/myb-106-passage-01-lookdev-report.txt`.
+- Evidence:
+  - `_bmad-output/unity-test-results/myb-106/before-vue-cible.png`.
+  - `_bmad-output/unity-test-results/myb-106/after-vue-cible.png`.
+  - `_bmad-output/unity-test-results/myb-106/passage-01-lookdev-15s-720p.mp4`.
+  - `_bmad-output/unity-test-results/myb-83-local-ci.txt`.
+- Implementation summary:
+  - Added `MYB106Passage01LookDev`, a Unity Editor composer/validator.
+  - Replays MYB-104, cleans any stale MYB-106 root, then applies the reversible
+    `MYB106_LookDevPassage01` overlay.
+  - Preserves MYB-104 scene ambient/fog/key sun and avoids any global URP or
+    ProjectSettings rendering default change.
+  - Locally attenuates MYB-104 forest patches, floor ribbons, and beige pine
+    tones for Passage 01.
+  - Adds dense local pines, dark edge shadow accents, amber moss accents, local
+    lights, two reflection probes, and one LightProbeGroup.
+  - Adds MYB-106 to `npm run validate:local-ci` after MYB-104 so the local CI
+    final scene state matches the active visual ticket.
+- Validation:
+  - `node --check scripts/validate-local-ci.mjs`: PASS.
+  - `unity-mcp-cli status unity/Echapee4D --timeout 30000`: PASS.
+  - `MYB106Passage01LookDev.ApplyAndValidateCli()`: PASS.
+  - `MYB106Passage01LookDev.CaptureProofCli()`: generated all 180 video frames;
+    Unity-MCP client timed out before returning, but the frames were complete.
+  - `ffmpeg` encoded the frames into silent 1280x720 MP4.
+  - `npm run validate:local-ci`: PASS, including MYB-106.
+  - `git diff --check`: PASS after normalizing Unity scene YAML whitespace.
+- Scope guard:
+  - No `PC_RPAsset`, `PC_Renderer`, `QualitySettings`, `GraphicsSettings`,
+    `src/**`, `unity/Echappee3D/**`, FTMS, BLE, hardware, new mass asset import,
+    or Meshy spend.
+- Remaining visual limit:
+  - This is a concrete local Passage 01 improvement, but not the final visual
+    answer. Stronger material/shader work and asset replacement remain in
+    MYB-107 and MYB-108.

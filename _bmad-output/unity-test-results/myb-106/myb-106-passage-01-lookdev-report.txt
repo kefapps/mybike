@@ -1,0 +1,56 @@
+# MYB-106 Passage 01 LookDev Report
+
+Status: PASS
+Generated at UTC: 2026-06-14T08:16:29.3825030Z
+Canonical scene: Assets/Scenes/MYB89UnityMcpProbe.unity
+Intent: dramatic stylized premium undergrowth Vue Cible for Passage 01.
+Capture size: 1280x720
+Video frame rate: 12 fps
+
+## Scope guard
+- Replays MYB-104, then applies reversible `MYB106_LookDevPassage01` overlay.
+- No PC_RPAsset, PC_Renderer, QualitySettings, GraphicsSettings, src/**, unity/Echappee3D/**, FTMS/BLE or hardware scope.
+- Existing MYB-104 assets can be attenuated locally; replacement remains MYB-108.
+
+## Scene changes
+- Preserved MYB104 scene ambient/fog/key sun; MYB106 keeps the warm/cool look in local overlay lights and material palette.
+- Attenuated MYB104 forest patches, floor ribbons and cheap beige pine tones for a darker undergrowth hierarchy: 153
+- Built dramatic undergrowth overlay: dense near pines, dark edge shadow accents, amber moss, local lights and probes.
+- MYB106 overlay root applied above MYB104 without changing project URP assets.
+
+## Overlay metrics
+- MYB106 renderers: 65
+- MYB106 local lights: 3
+- MYB106 reflection probes: 2
+- MYB106 light probe groups: 1
+- MYB106 named overlay objects: 30
+
+## Captures
+- Before Vue Cible: `_bmad-output/unity-test-results/myb-106/before-vue-cible.png` at 42.0 m; avg luma 0.219, contrast 0.194, dark 9.1%, bright 2.5%
+  camera: (-1.0, 1.8, 39.9) forward (-0.2, -0.1, 1.0)
+- After Vue Cible: `_bmad-output/unity-test-results/myb-106/after-vue-cible.png` at 42.0 m; avg luma 0.179, contrast 0.196, dark 29.2%, bright 1.8%
+  camera: (-1.0, 1.8, 39.9) forward (-0.2, -0.1, 1.0)
+
+## Video proof
+- MP4: `_bmad-output/unity-test-results/myb-106/passage-01-lookdev-15s-720p.mp4`
+- Silent 1280x720 proof, encoded from transient frame captures.
+- Encode command: `ffmpeg -y -framerate 12 -i _bmad-output/unity-test-results/myb-106/video-frames/frame_%03d.png -c:v libx264 -pix_fmt yuv420p -an _bmad-output/unity-test-results/myb-106/passage-01-lookdev-15s-720p.mp4`
+
+## Placements
+- MYB106_DeepPine_L_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_00 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_01 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_02 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_03 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_04 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_05 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_L_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+- MYB106_DeepPine_R_06 <- Assets/Echappee/Art/MYB96BlenderGenerated/Prefabs/MYB96_AlpinePineSmall.prefab
+
+## Failures
+- None.
