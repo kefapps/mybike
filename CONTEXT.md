@@ -137,6 +137,55 @@ Non-examples:
 - Keeping an asset because it is legally free while it still looks cheap in the
   scene.
 
+### Famille Visuelle
+
+Definition: A review grouping for assets or surface elements that read as the
+same visual type in a scene, even when they have multiple instances, variants,
+materials, or generated placements.
+
+Relationships:
+
+- A `Famille Visuelle` can include placed 3D props, vegetation, surfaces,
+  materials, or repeated composition elements.
+- It is reviewed with representative isolated and in-context captures when the
+  team needs an art-direction decision without judging every scene instance
+  individually.
+
+Examples:
+
+- Forest trees, undergrowth ribbons, road-edge rocks, forest floor material, or
+  small accent props inside one Passage.
+
+Non-examples:
+
+- A single placed instance that only fails because of a one-off transform bug.
+- A legal asset source or manifest entry; those belong to asset provenance.
+
+### Verdict de Revue Asset
+
+Definition: A short art-direction decision applied to a `Famille Visuelle` or
+asset candidate after visible review evidence. The standard choices are
+`supprimer`, `refaire/remplacer`, or `garder mais ajuster`.
+
+Relationships:
+
+- `Verdict de Revue Asset` refines `Verdict Artistique V1` for scene cleanup
+  work where the team must decide what to do with already visible elements.
+- `garder mais ajuster` must name concrete adjustment areas, such as material,
+  color, scale, density, placement, grounding, or lighting integration.
+
+Examples:
+
+- A tree family marked `refaire/remplacer` because its silhouette reads too
+  crude in the ride camera.
+- A ground material marked `garder mais ajuster` because the texture is usable
+  but the color and tiling break the forest palette.
+
+Non-examples:
+
+- A vague "looks fine" or "looks cheap" note without visible evidence.
+- A performance-only verdict with no art-direction decision.
+
 ### Attribution Asset
 
 Definition: The credit text and metadata required by a third-party asset
