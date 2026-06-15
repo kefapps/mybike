@@ -18,6 +18,22 @@ Production` is legacy language, not the visual quality bar.
 
 Related ADR: `docs/adr/0001-art-rescue-visual-governance.md`.
 
+Forest corridor art bible:
+
+- `docs/art-direction/mybike-forest-art-bible-v0.md`
+
+This is the canonical product art bible for the Art Rescue forest corridor. It
+inherits global visual governance from `CONTEXT.md`, `AGENTS.md`, and applicable
+ADR decisions. It must not be treated as the final art bible for every future
+biome.
+
+Imported Art Rescue source material:
+
+- `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/`
+
+If imported Art Rescue docs conflict with the canonical forest corridor art
+bible, `docs/art-direction/mybike-forest-art-bible-v0.md` wins.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`

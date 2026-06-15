@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-14
+Last sync: 2026-06-16
 
 ## Workspace
 
@@ -6952,3 +6952,43 @@ Art Rescue forest corridor import synced on 2026-06-15:
   - Existing Linear labels only were used: `unity`, `workflow`, `performance`.
   - MYB-137 remains `In Progress` and must not be closed without explicit user
     visual validation.
+
+MYB-141 art bible governance synced on 2026-06-16:
+
+- Linear issue: `MYB-141` - Verrouiller l'art bible forêt premium.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `a613f757-8c12-447c-8b2b-a00a78a43c3b`.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-141/verrouiller-lart-bible-foret-premium`.
+- Branch: `MYB-141-forest-art-bible-governance`.
+- Scope:
+  - doc-only governance ticket;
+  - no Unity scene changes;
+  - no asset generation;
+  - no Blender, Meshy, Tripo, import, or production visual output.
+- Canonical art bible:
+  `docs/art-direction/mybike-forest-art-bible-v0.md`.
+- Imported source material remains non-canonical:
+  `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/`.
+- Updated local pointers:
+  - `AGENTS.md`;
+  - `CONTEXT.md`;
+  - `CONTEXT-MAP.md`.
+- Updated imported copies with non-canonical banners:
+  - `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/docs/art-direction/02-art-bible-v0.md`;
+  - `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/docs/art-direction/mybike-forest-art-bible-v0.md`.
+- Updated local ticket source with Q1-Q8 decisions and review checklist:
+  `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/tickets/MYB-141-art-bible-forest-premium.md`.
+- Required content covered:
+  - `Stylisé Premium de Production`;
+  - `Fantasy Scenic Premium Lisible`;
+  - five non-negotiable principles;
+  - seven forest corridor asset families;
+  - `Premium target`;
+  - `Checkpoint insuffisant`;
+  - `Surface Canonique de Validation Visuelle`;
+  - measured visual ambition / performance guardrail;
+  - explicit rejection of cheap/prototype visuals.
+- Closure rule:
+  - MYB-141 should remain `In Review` until Julien validates the canonical art
+    bible as the current visual governance source.
