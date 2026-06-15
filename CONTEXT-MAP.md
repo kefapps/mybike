@@ -12,8 +12,11 @@ planning artifacts or runtime behavior.
 File: `CONTEXT.md`
 
 Owns the shared visual language for the active Unity vertical slice, including
-the relationship between `Stylise Premium`, `Socle Low-Poly de Production`,
-and `Scenic Fantasy Lisible`.
+the relationship between `Stylisé Premium de Production`, `Stylise Premium`,
+`Scenic Fantasy Lisible`, and `Lecture Prototype`. `Socle Low-Poly de
+Production` is legacy language, not the visual quality bar.
+
+Related ADR: `docs/adr/0001-art-rescue-visual-governance.md`.
 
 ### Unity Ride Runtime
 

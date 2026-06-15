@@ -6882,3 +6882,73 @@ MYB-108 checkpoint closure synced on 2026-06-14:
   - MYB-108 is closed as the forest asset inventory/review checkpoint.
   - Replacement work continues through child family tickets `MYB-113` through
     `MYB-134`, starting with `MYB-113`.
+
+MYB-114 forest richness child tickets synced on 2026-06-15:
+
+- Linear parent issue: `MYB-114` - Spike composition immersive du bord de forêt.
+- Local ticket index:
+  `_bmad-output/implementation-artifacts/myb-114-art-directions/myb-114-forest-richness-child-tickets.md`.
+- Context:
+  - MYB-114 V4 validates the route-first forest corridor direction.
+  - The result is still visually poor and needs targeted production follow-ups.
+  - The follow-ups address density, variation, vertical volume, material
+    richness, lighting/fog, and strong silhouettes.
+- Child tickets:
+  - `MYB-135` - MYB-114A Densifier le premier plan du corridor forêt.
+  - `MYB-136` - MYB-114B Créer des variantes de modules bas de forêt.
+  - `MYB-137` - MYB-114C Ajouter du volume vertical aux bords de forêt.
+  - `MYB-138` - MYB-114D Améliorer la matière du sol forestier.
+  - `MYB-139` - MYB-114E Revoir lumière, fog et ambiance du corridor forêt.
+  - `MYB-140` - MYB-114F Ajouter des silhouettes fortes au corridor forêt.
+
+MYB-137 visual checkpoint synced on 2026-06-15:
+
+- Linear issue: `MYB-137` - MYB-114C Ajouter du volume vertical aux bords de forêt.
+- Linear status: `In Progress`.
+- Branch: `myb-137-volume-vertical-bords-foret`.
+- Closure rule:
+  - Do not close MYB-137 until the user explicitly validates the before/after.
+- Local report:
+  `_bmad-output/implementation-artifacts/myb-137-volume-vertical/myb-137-volume-vertical-report.md`.
+- Before/after evidence:
+  - `_bmad-output/implementation-artifacts/myb-137-volume-vertical/myb-137-before-after-route.png`.
+  - `_bmad-output/implementation-artifacts/myb-137-volume-vertical/myb-137-before-after-overview.png`.
+- Unity evidence:
+  - `MYB114ForestRouteCorridorV4PreviewBuilder.BuildAndCapturePreview`: PASS for refreshed before capture.
+  - `MYB137VerticalVolumePreviewBuilder.BuildAndCapturePreview`: PASS for after capture.
+  - No MYB-137 compile/runtime errors found in `/tmp/myb137-vertical-volume-unity.log`.
+
+Art Rescue forest corridor import synced on 2026-06-15:
+
+- Source archive:
+  `/Users/jbodin/Downloads/mybike-art-rescue-linear-docs-pack.zip`.
+- Local imported docs:
+  `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/`.
+- Local import report:
+  `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/linear-import-report.md`.
+- Linear project created:
+  - `Art Rescue — Forest Corridor Vertical Slice`.
+  - Project ID: `b21e2f79-022e-49ed-a9e8-f23b3e0fcd4c`.
+  - Team: `MyBike`.
+  - Status: `Planned`.
+  - Priority: `High`.
+- Created Linear issues:
+  - `MYB-141` - Verrouiller l'art bible forêt premium.
+  - `MYB-142` - Audit visuel MYB-137 + grille de validation.
+  - `MYB-143` - Manifest tiers/IA et politique d'asset intake.
+  - `MYB-144` - Validator Unity des assets artistiques.
+  - `MYB-145` - Workflow captures avant/après + régression visuelle.
+  - `MYB-146` - Playbook Codex + Unity/Blender MCP.
+  - `MYB-147` - Générer un kit procédural Blender forêt v0.
+  - `MYB-148` - Scatter route-first contrôlé par bandes.
+  - `MYB-149` - Pass matière sol forestier.
+  - `MYB-150` - Silhouettes fortes et setpieces forêt.
+  - `MYB-151` - Pass lumière, fog et ambiance.
+  - `MYB-152` - POC Meshy/Tripo en quarantaine.
+  - `MYB-153` - Budgets performance, LOD et collision.
+- Import note:
+  - Local art rescue documentation now uses the real Linear IDs directly; see
+    the local import report for the canonical issue list.
+  - Existing Linear labels only were used: `unity`, `workflow`, `performance`.
+  - MYB-137 remains `In Progress` and must not be closed without explicit user
+    visual validation.

@@ -296,7 +296,7 @@ Aliases: scenic fantasy lisible, premium scenic fantasy.
 Relationships:
 
 - `Stylise Premium` guides `Biome`, `Signal Fantasy Premium`, `Surface de
-  Route`, and `Stylise Premium de Production`.
+  Route`, and `Stylisé Premium de Production`.
 - It favors adventure and wonder first, while keeping enough orientation for an
   automatic on-rail ride.
 
@@ -336,26 +336,32 @@ Non-examples:
   or breaks the player's sense of forward motion.
 - A realistic cycling simulator with no sense of adventure.
 
-### Stylise Premium de Production
+### Stylisé Premium de Production
 
-Definition: The production quality bar for finished stylized assets and scenes:
-deliberate silhouettes, richer geometry when it improves the image, material
-depth, controlled detail density, strong lighting, grounding, and careful
-composition. Performance is handled through `Budget performance` and
-`Garde-fou performance`, not by making low-poly the visual direction.
+Definition: The canonical visual direction for MyBike production art. It means
+a stylized, readable, performant, and controlled image: strong silhouettes,
+clear route, camera-first composition, coherent lighting/fog, credible
+materials, and controlled density. The target is not cheaper-looking art.
+Performance is handled through `Budget performance`, `Garde-fou performance`,
+and geometry constraints that serve the visual direction instead of replacing
+it.
 
-Aliases: production stylise premium, optimized stylized production art.
+Aliases: Stylise Premium de Production, production stylise premium, optimized
+stylized production art.
 
-Forbidden/legacy aliases: Low-poly de Production, production low-poly, low-poly
-premium.
+Forbidden/legacy aliases: Socle Low-Poly de Production, Low-poly de
+Production, production low-poly, low-poly premium.
 
 Relationships:
 
-- `Stylise Premium de Production` sits under `Stylise Premium`.
+- `Stylisé Premium de Production` sits under `Stylise Premium`.
 - `Signal Fantasy Premium` elements may exceed this baseline when intentionally
   budgeted as hero moments.
 - It is evaluated by perceived quality first, then by measured performance
   guardrails.
+- `Low-poly` may remain only as a local technical qualifier for geometry budget
+  or modeling method. It must never be used as the canonical art direction,
+  final aesthetic target, or quality bar in project governance.
 
 Examples:
 
@@ -398,6 +404,98 @@ Non-examples:
   coherent material separation, anchored props, and a readable scenic identity.
 - A sparse scene that still feels authored because the camera view is composed
   around depth, horizon, shadow shapes, and one memorable premium signal.
+
+### Checkpoint Insuffisant
+
+Definition: A documented visual checkpoint where an Art Rescue ticket produced
+an observable improvement, comparable route and overview captures, and a filled
+rubric, but did not reach `Premium target`.
+
+Relationships:
+
+- `Checkpoint Insuffisant` preserves useful evidence without lowering the
+  `Stylisé Premium de Production` closure bar.
+- It cannot close a visible Art Rescue ticket as `Done` unless Julien explicitly
+  accepts a documented exception.
+- It must lead to a targeted corrective sub-ticket, a documented exception, or
+  rollback/rework when the change moves the scene in the wrong direction.
+
+Examples:
+
+- Silhouettes improve but still score below 4.
+- Lighting is more coherent but the mood remains weak.
+- Route readability improves while composition stays too flat.
+
+Non-examples:
+
+- A ticket that reaches `Premium target` and has human visual validation.
+- A technical-only ticket that does not change visible rendering.
+- A vague "better but not enough" note without captures, rubric, blocker, and
+  next action.
+
+### Surface Canonique de Validation Visuelle
+
+Definition: The player-facing validation surface for Art Rescue production
+quality: a route screenshot taken in the canonical ride corridor from the
+canonical ride camera.
+
+Relationships:
+
+- `Surface Canonique de Validation Visuelle` is required to validate
+  `Premium target` for visible Art Rescue work.
+- The overview screenshot is required for context, density, and global
+  coherence, but it is secondary. Overview explains; route decides.
+- Preview scenes, Blender renders, Meshy/Tripo previews, quarantine scenes,
+  turntables, and isolated asset screenshots are intermediate evidence only.
+  They cannot close a production visual ticket.
+
+Examples:
+
+- A route-camera screenshot from `unity/Echapee4D` in the canonical ride
+  corridor, with the same scene state also captured in overview.
+- An integrated asset that improves the actual ride-camera composition,
+  lighting, density, and scale in context.
+
+Non-examples:
+
+- A beautiful Blender turntable, Meshy/Tripo preview, isolated asset screenshot,
+  sandbox scene, quarantine scene, hero shot, or overview-only capture.
+- An asset that looks good alone but reads wrong at ride-camera distance,
+  speed, scale, lighting, or density.
+
+### Ambition Visuelle Mesurée
+
+Definition: The Art Rescue arbitration rule that MyBike aims for `Stylisé
+Premium de Production` first, then measures performance. Performance is a
+guardrail, not an aesthetic target.
+
+Relationships:
+
+- `Ambition Visuelle Mesurée` allows richer geometry, materials, density, and
+  composition when the gain is visible from the `Surface Canonique de Validation
+  Visuelle`.
+- The default Art Rescue target is 60 FPS unless a ticket defines another
+  target.
+- If FPS falls below target or a blocking validator `ERROR` appears, reduce
+  cost in this order: unnecessary collisions, oversized textures/material
+  excess, density outside the route camera, LOD/culling/distance, non-essential
+  near-route density, premium route-camera-visible elements last.
+- No visible premium downgrade is allowed without measurement.
+
+Examples:
+
+- Spending more triangles on near-route tree silhouettes that improve the route
+  capture while the scene still reaches 60 FPS.
+- Removing decorative colliders or off-camera scatter before simplifying a
+  validated hero silhouette.
+
+Non-examples:
+
+- Optimizing the scene into sparse, cheap visuals because a budget exists.
+- Adding expensive detail only visible in editor overview or an isolated asset
+  preview.
+- Downgrading route-camera-visible premium elements without FPS or validator
+  evidence.
 
 ### Premium Aventure
 
