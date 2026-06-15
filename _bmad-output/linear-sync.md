@@ -6960,6 +6960,8 @@ MYB-141 art bible governance synced on 2026-06-16:
 - Linear implementation comment ID: `a613f757-8c12-447c-8b2b-a00a78a43c3b`.
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-141/verrouiller-lart-bible-foret-premium`.
+- Pull request:
+  `https://github.com/kefapps/mybike/pull/35`.
 - Branch: `MYB-141-forest-art-bible-governance`.
 - Scope:
   - doc-only governance ticket;
