@@ -70,6 +70,8 @@ Use these paths consistently:
 - BMAD implementation artifacts: `_bmad-output/implementation-artifacts/`
 - Unity validation output: `_bmad-output/unity-test-results/`
 - Linear sync ledger: `_bmad-output/linear-sync.md`
+- Canonical forest corridor art bible:
+  `docs/art-direction/mybike-forest-art-bible-v0.md`
 - Art rescue docs, when imported locally:
   `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/`
 
@@ -97,8 +99,17 @@ route-first: author the ride corridor from the route camera first, then layer
 near-ground material, berms, roots, trunks, silhouettes, fog, and lighting
 around that readable ride path.
 
-When present, use the imported art-rescue pack as the active visual production
-reference:
+Canonical forest corridor art bible:
+
+- `docs/art-direction/mybike-forest-art-bible-v0.md`
+
+This file is the source of truth for Art Rescue forest corridor visual
+production. It is specific to the forest ride corridor and inherits global
+MyBike visual governance from `CONTEXT.md`, this file, and applicable ADR
+decisions. It does not define every future MyBike biome.
+
+Use the imported art-rescue pack as source material, implementation evidence,
+and historical reference:
 
 - `docs/adr/0001-art-rescue-visual-governance.md`
 - `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/README.md`
@@ -119,6 +130,11 @@ reference:
 - `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/docs/validators/third-party-asset-manifest-validator-spec.md`
 - `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/docs/validators/performance-budget-validator-spec.md`
 
+If imported Art Rescue docs conflict with
+`docs/art-direction/mybike-forest-art-bible-v0.md`, the canonical art bible wins.
+For forest corridor tickets, apply both global MyBike visual rules and the
+forest-specific art bible rules.
+
 If the imported art-rescue docs are missing, do not invent their contents. Use
 the current Linear issue, existing MYB-114/MYB-137 reports, and this file, then
 write down the missing reference in the implementation notes.
@@ -127,6 +143,11 @@ write down the missing reference in the implementation notes.
 
 The canonical visual direction term for MyBike is `Stylisé Premium de
 Production`.
+
+For Art Rescue forest corridor work, the canonical product art bible is
+`docs/art-direction/mybike-forest-art-bible-v0.md`. It defines the local
+`Fantasy Scenic Premium Lisible` target, the five non-negotiable visual
+principles, and the seven forest corridor asset families.
 
 `Socle Low-Poly de Production` is legacy language. `Low-poly` must not be used
 as the final aesthetic target or quality bar in project governance. The target

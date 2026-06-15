@@ -1,3 +1,10 @@
+> Non-canonical imported Art Rescue source material.
+>
+> The canonical product art bible lives at:
+> `docs/art-direction/mybike-forest-art-bible-v0.md`
+>
+> If this file conflicts with the canonical art bible, the canonical art bible wins.
+
 # MyBike Forest Corridor — Art Bible v0
 
 ## Intention

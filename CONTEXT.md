@@ -5,6 +5,26 @@
 This context owns the shared visual language for MyBike's active Unity
 macOS-first work. It is a glossary, not an implementation plan.
 
+## Art Direction Scope
+
+The global MyBike visual direction lives in this document, `AGENTS.md`, and
+applicable ADRs.
+
+The forest corridor has a dedicated product art bible:
+
+`docs/art-direction/mybike-forest-art-bible-v0.md`
+
+That file is specific to the Art Rescue forest corridor. It inherits global
+visual rules such as `Stylisé Premium de Production`, route-camera-first
+validation, `Premium target`, `Surface Canonique de Validation Visuelle`,
+`Checkpoint insuffisant`, and `Ambition Visuelle Mesurée`.
+
+It must not be treated as the final art bible for every future MyBike biome.
+Imported Art Rescue docs under
+`_bmad-output/implementation-artifacts/art-rescue-forest-corridor/` are source
+material and implementation evidence only. If they conflict with the canonical
+forest art bible, the canonical art bible wins.
+
 ## Terms
 
 ### Licence Verifiee
