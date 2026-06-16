@@ -135,6 +135,21 @@ If imported Art Rescue docs conflict with
 For forest corridor tickets, apply both global MyBike visual rules and the
 forest-specific art bible rules.
 
+MYB-142 visual audit and rubric outputs:
+
+- `docs/art-direction/myb-137-visual-diagnosis.md`
+  - dated diagnostic and calibration audit for MYB-137;
+  - not reusable as the generic rubric;
+  - not `Premium target` evidence.
+- `docs/validation/forest-corridor-shot-rubric.md`
+  - reusable canonical rubric for future Art Rescue forest corridor visual
+    reviews;
+  - defines the 9 criteria, thresholds, validation surfaces, and review
+    templates.
+
+MYB-137 calibrates the rubric. The canonical route camera validates production
+quality.
+
 If the imported art-rescue docs are missing, do not invent their contents. Use
 the current Linear issue, existing MYB-114/MYB-137 reports, and this file, then
 write down the missing reference in the implementation notes.
@@ -187,6 +202,12 @@ Avoid these failure modes:
 Visual tickets are not Done merely because a scene compiles. They need route and
 overview captures, a short visual verdict, validation output, and human visual
 approval when the ticket is subjective or art-directional.
+
+For Art Rescue forest corridor reviews, use the reusable shot rubric at
+`docs/validation/forest-corridor-shot-rubric.md`. It defines 9 visual criteria,
+with blocking criteria for route readability, silhouette quality, lighting mood,
+and material coherence. Use `docs/art-direction/myb-137-visual-diagnosis.md` as
+MYB-137 calibration evidence only, not as final production validation.
 
 For visible Art Rescue tickets, useful progress is evidence, not closure. If the
 route capture does not reach `Premium target`, the ticket cannot be closed as

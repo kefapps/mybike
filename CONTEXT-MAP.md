@@ -34,6 +34,23 @@ Imported Art Rescue source material:
 If imported Art Rescue docs conflict with the canonical forest corridor art
 bible, `docs/art-direction/mybike-forest-art-bible-v0.md` wins.
 
+MYB-142 outputs:
+
+- `docs/art-direction/myb-137-visual-diagnosis.md`
+  - MYB-137 dated diagnostic and calibration baseline;
+  - `Diagnostic Surface`, not final `Premium target` evidence.
+- `docs/validation/forest-corridor-shot-rubric.md`
+  - reusable 9-criterion rubric for future Art Rescue forest corridor visual
+    reviews;
+  - canonical scoring mechanics and review templates.
+
+Relationship:
+
+- The MYB-137 diagnosis applies the rubric to a historical checkpoint.
+- The forest corridor shot rubric is reusable for future visual tickets.
+- The forest art bible wins for art direction; the shot rubric wins for scoring
+  mechanics.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`

@@ -25,7 +25,56 @@ Imported Art Rescue docs under
 material and implementation evidence only. If they conflict with the canonical
 forest art bible, the canonical art bible wins.
 
+## Art Rescue Visual Validation
+
+MYB-142 separates diagnostic evidence from reusable validation rules.
+
+Diagnostic:
+
+- `docs/art-direction/myb-137-visual-diagnosis.md`
+
+Reusable rubric:
+
+- `docs/validation/forest-corridor-shot-rubric.md`
+
+The MYB-137 diagnosis is a dated calibration baseline. It is a `Diagnostic
+Surface`, not final production validation.
+
+The forest corridor shot rubric is the canonical review tool for future Art
+Rescue visual tickets. It defines the 9 criteria, blocking/contributive split,
+thresholds, review templates, and validation surfaces.
+
+MYB-137 calibrates the rubric. The canonical route camera validates production
+quality.
+
 ## Terms
+
+### Diagnostic Surface
+
+Definition: Evidence used to audit, calibrate, compare, and learn from a visual
+state without treating that state as final production validation.
+
+Relationships:
+
+- `Diagnostic Surface` can support scoring, problem discovery, before/after
+  explanation, and follow-up routing.
+- It cannot prove `Premium target`, close a visible production ticket, or promote
+  an asset.
+- `docs/art-direction/myb-137-visual-diagnosis.md` treats MYB-137 as a
+  `Diagnostic Surface`.
+- The reusable scoring rules live in
+  `docs/validation/forest-corridor-shot-rubric.md`.
+
+Examples:
+
+- MYB-137 route and overview captures used to calibrate the visual rubric.
+- A proof-of-volume scene used as a counter-example and follow-up map.
+
+Non-examples:
+
+- A canonical ride-corridor route screenshot used to close a production visual
+  ticket after `Premium target` and human validation.
+- An isolated asset preview used as a substitute for route-camera validation.
 
 ### Licence Verifiee
 
