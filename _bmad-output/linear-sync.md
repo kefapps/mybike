@@ -7300,3 +7300,155 @@ MYB-145 reviewed and merged on 2026-06-16:
     included in the merge.
 - Next recommended Art Rescue ticket:
   `MYB-147` - kit procédural / familles candidates.
+
+MYB-147 procedural forest kit v0 synced on 2026-06-16:
+
+- Linear issue: `MYB-147` - Générer un kit procédural Blender forêt v0.
+- Linear status during implementation: `In Progress`.
+- Linear status after implementation: `In Review`, not `Done`, until Julien
+  validates the candidate kit.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/10`.
+- Implementation commit:
+  `b89c9bd MYB-147 procedural forest kit v0`.
+- Linear implementation comment ID:
+  `7a1fff2b-3edc-49ab-8e0f-ea37c5bd9e60`.
+- Branch: `MYB-147-blender-procedural-forest-kit-v0`.
+- Scope:
+  - procedural forest candidate kit;
+  - no canonical corridor scatter;
+  - no canonical ride scene change;
+  - no production promotion;
+  - no Meshy, Tripo, external text-to-3D, or external asset source.
+- Kit name:
+  `MYB_ForestKit_V0`.
+- Unity candidate path:
+  `unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/`.
+- Blender/procedural source:
+  `_bmad-output/implementation-artifacts/MYB-147/generate_myb_forest_kit_v0.py`.
+- Blender source file:
+  `_bmad-output/implementation-artifacts/MYB-147/MYB_ForestKit_V0.blend`.
+- Local kit manifests:
+  - `_bmad-output/implementation-artifacts/MYB-147/myb-forest-kit-v0-manifest.json`;
+  - `_bmad-output/implementation-artifacts/MYB-147/myb-forest-kit-v0-manifest.md`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-147/myb-147-implementation-report.md`.
+- Visual checkpoint output:
+  `_bmad-output/visual-checkpoints/MYB-147/`.
+- Preview contact sheet:
+  `_bmad-output/visual-checkpoints/MYB-147/2026-06-16T12-11-01Z-kit-contact-sheet.png`.
+- Capture report:
+  `_bmad-output/visual-checkpoints/MYB-147/2026-06-16T12-11-01Z-capture-report.md`.
+- Canonical manifest:
+  `docs/manifests/art-rescue-asset-manifest.json`.
+- Manifest entries:
+  - 21 MYB-147 assets;
+  - `sourceType: internal`;
+  - `provider: Blender MCP / procedural`;
+  - `intakeStatus: approved`;
+  - `promotionStatus: candidate`;
+  - no `promotionStatus: promoted`;
+  - no `reviewStatus`;
+  - no `example:true`.
+- MYB-144 validation:
+  - command:
+    `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -batchmode -quit -projectPath unity/Echapee4D -executeMethod MYB144ArtAssetValidator.RunBatch -logFile _bmad-output/unity-test-results/myb-147-myb144-validator.log`;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`;
+  - verdict: `PASS_WITH_WARNINGS`;
+  - errors: 0;
+  - warnings: 211 historical / cross-root `ASSET_CANDIDATE_UNMANIFESTED`
+    warnings;
+  - no warning or error references `MYB_ForestKit_V0` or `myb_forest_`.
+- Evidence rule:
+  - isolated kit previews are intermediate evidence only;
+  - MYB-147 does not claim `Premium target`;
+  - route-camera validation is deferred to MYB-148 / MYB-150 / MYB-151.
+
+MYB-147 candidate kit v0 final human review synced on 2026-06-16:
+
+- Human visual review verdict:
+  `Accept as candidate kit v0 with warnings`.
+- Human decision:
+  - accept the current `MYB_ForestKit_V0` as a candidate kit v0;
+  - allow use as a candidate base for MYB-148 / MYB-150 route-camera testing;
+  - do not keep polishing Blender assets unless MYB-144 reports an ERROR;
+  - keep MYB-147 `In Review`, not `Done`, because the kit is not production
+    promoted and isolated previews are not `Premium target` evidence.
+- Human warnings:
+  - canopy masses still read as generic green blobs;
+  - rocks remain usable but generic;
+  - trunk material language is still simple;
+  - root clusters may need better ground integration during scatter;
+  - isolated preview does not validate route-camera quality.
+- Rework scope:
+  - no new families;
+  - no canonical corridor scatter;
+  - no canonical ride scene change;
+  - no Meshy, Tripo, external text-to-3D, or external asset source;
+  - no production promotion.
+- Rework changes:
+  - trunks: wider bases, asymmetry, buttress roots, bark ridges, knots and
+    stronger broken silhouette language;
+  - root clusters: multi-segment tapered curves, stronger ground contact and a
+    clearer `root_arch_a` scenic threshold;
+  - ferns / moss mats: larger silhouettes, organic edges and slight height
+    variation;
+  - canopy masses: varied lobes and shelf planes to reduce blob read;
+  - rocks: stronger asymmetry, moss placement and marker identity.
+- Updated source/procedure:
+  `_bmad-output/implementation-artifacts/MYB-147/generate_myb_forest_kit_v0.py`.
+- Updated local kit manifests:
+  - `_bmad-output/implementation-artifacts/MYB-147/myb-forest-kit-v0-manifest.json`;
+  - `_bmad-output/implementation-artifacts/MYB-147/myb-forest-kit-v0-manifest.md`.
+- Updated implementation report:
+  `_bmad-output/implementation-artifacts/MYB-147/myb-147-implementation-report.md`.
+- Updated governance review:
+  `_bmad-output/implementation-artifacts/MYB-147/myb-147-governance-review.md`.
+- Updated visual checkpoint:
+  `_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png`.
+- Updated capture report:
+  `_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-capture-report.md`.
+- Updated local review page:
+  `_bmad-output/visual-checkpoints/MYB-147/myb-147-review.html`.
+- Revised kit metrics:
+  - assets: 21;
+  - total triangles: 6704;
+  - maximum triangle count: 852;
+  - maximum material count: 2;
+  - assets over V0 triangle budget: 0;
+  - assets over 2 materials: 0.
+- Canonical manifest:
+  - 21 MYB-147 assets;
+  - `sourceType: internal`;
+  - `provider: Blender MCP / procedural`;
+  - `intakeStatus: approved`;
+  - `promotionStatus: candidate`;
+  - no `promotionStatus: promoted`;
+  - no `reviewStatus`;
+  - no `example:true`.
+- MYB-144 validation after rework:
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`;
+  - verdict: `PASS_WITH_WARNINGS`;
+  - errors: 0;
+  - warnings: 211 historical / cross-root `ASSET_CANDIDATE_UNMANIFESTED`
+    warnings;
+  - no warning or error references `MYB_ForestKit_V0` or `myb_forest_`.
+- Rework commit:
+  `831952cd9b0621c814697ce197d9e0d0ac94833e`.
+- Finalization commit:
+  `b223e77 MYB-147 finalize candidate kit v0`.
+- Gitea PR rework comment:
+  `http://localhost:3000/kefapps/mybike/pulls/10#issuecomment-486`.
+- Gitea PR finalization comment:
+  `http://localhost:3000/kefapps/mybike/pulls/10#issuecomment-501`.
+- Linear rework comment ID:
+  `f47c6ea7-6093-4767-98d2-ee20c2983878`.
+- Linear finalization comment ID:
+  `95b0e7e2-43cd-4c0c-98ef-b79dc5b8a3a8`.
+- Final status:
+  - MYB-147 remains `In Review`, not `Done`.
+  - No production promotion, no canonical corridor scatter, no Meshy/Tripo, no
+    external text-to-3D, and no `Premium target` claim.
+  - Route-camera validation is deferred to MYB-148 / MYB-150.

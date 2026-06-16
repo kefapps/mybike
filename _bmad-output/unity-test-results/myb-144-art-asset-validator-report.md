@@ -15,7 +15,7 @@ Manifest:
 - path: `docs/manifests/art-rescue-asset-manifest.json`
 - schemaVersion: 1
 - updatedAt: 2026-06-16
-- asset count: 0
+- asset count: 21
 - schema reference: `docs/schemas/third-party-asset-manifest.md`
 
 Report:
@@ -74,7 +74,7 @@ Thresholds:
 | Root | Exists | Assets found | Notes |
 |---|---:|---:|---|
 | `Assets/Echappee/ArtRescue` | No | 0 | Missing scan root. This is INFO in V1. |
-| `Assets/Echappee/Art` | Yes | 132 | Scanned. |
+| `Assets/Echappee/Art` | Yes | 153 | Scanned. |
 | `Assets/MYB100` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB102` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB103` | Yes | 0 | No V1 asset candidates found. |
@@ -85,6 +85,7 @@ Thresholds:
 | `Assets/MYB112` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB114` | Yes | 32 | Scanned. |
 | `Assets/MYB144` | Yes | 0 | No V1 asset candidates found. |
+| `Assets/MYB145` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB42` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB44` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB48` | Yes | 3 | Scanned. |
@@ -108,7 +109,7 @@ Thresholds:
 
 | intakeStatus / promotionStatus | Count |
 |---|---:|
-| (none) | 0 |
+| `approved / candidate` | 21 |
 
 ## ERROR
 
@@ -336,7 +337,6 @@ Thresholds:
 
 | Code | Message |
 |---|---|
-| `MANIFEST_VALID_EMPTY` | The manifest is valid and currently contains no real asset entries. |
 | `UNITY_SCAN_ROOT_MISSING` | Assets/Echappee/ArtRescue is absent. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB100 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB102 exists but contains no V1 asset candidates. |
@@ -344,6 +344,7 @@ Thresholds:
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB108 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB112 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB144 exists but contains no V1 asset candidates. |
+| `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB145 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB42 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB44 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB51 exists but contains no V1 asset candidates. |

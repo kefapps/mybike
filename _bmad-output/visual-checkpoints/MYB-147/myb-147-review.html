@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MYB-147 Review - Forest Kit V0</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2522;
+      --muted: #61706a;
+      --line: #d7ded9;
+      --surface: #f7f9f6;
+      --panel: #ffffff;
+      --accent: #2f6f55;
+      --warn: #9a651d;
+      --fail: #9b2d2d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    header {
+      padding: 28px clamp(18px, 4vw, 56px) 20px;
+      background: #e9efe9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    main {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 24px clamp(18px, 4vw, 56px) 48px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 650;
+      color: var(--ink);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: 22px;
+      align-items: start;
+    }
+
+    section {
+      margin-bottom: 22px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    .contact-sheet {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f0f3ef;
+    }
+
+    .image-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 650;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      border-color: #9dad9f;
+      background: #f7faf7;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .warning {
+      border-left: 4px solid var(--warn);
+      background: #fff8ed;
+    }
+
+    .decision {
+      border-left: 4px solid var(--accent);
+    }
+
+    .checklist {
+      display: grid;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    label.check {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 8px;
+      align-items: start;
+      font-size: 14px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+    }
+
+    .radio-group {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    textarea,
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #31423b;
+      background: #eef4ef;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.94em;
+      background: #eef2ef;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      header,
+      main {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .button {
+        display: none;
+      }
+
+      .panel {
+        break-inside: avoid;
+      }
+
+      .print-only {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MYB-147 Forest Kit V0 Review</h1>
+    <p class="subtitle">
+      Page de review humaine pour inspecter la contact sheet reworkee du kit candidat
+      <strong>MYB_ForestKit_V0</strong>. Verdict humain courant :
+      <strong>Accept as candidate kit v0 with warnings</strong>.
+    </p>
+    <div class="status-row" aria-label="Review status">
+      <span class="pill">Ticket: MYB-147</span>
+      <span class="pill">Status attendu: In Review</span>
+      <span class="pill">Accepted candidate v0 with warnings</span>
+      <span class="pill">Evidence: preview only</span>
+      <span class="pill">Not Premium target evidence</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <div>
+        <section class="panel">
+          <div class="image-toolbar">
+            <div>
+              <h2>Contact Sheet</h2>
+              <p class="note">
+                Inspecter les silhouettes, les familles, la lisibilite des variantes et les
+                signes de cheap/prototype visibles.
+              </p>
+            </div>
+            <a class="button" href="2026-06-16T14-16-29Z-kit-contact-sheet.png" target="_blank" rel="noopener">Ouvrir l'image</a>
+          </div>
+          <img
+            class="contact-sheet"
+            src="2026-06-16T14-16-29Z-kit-contact-sheet.png"
+            alt="MYB-147 isolated contact sheet showing all MYB_ForestKit_V0 asset families">
+        </section>
+
+        <section class="panel">
+          <h2>Kit Coverage</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Famille</th>
+                <th>Attendu</th>
+                <th>Present</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Troncs irreguliers</td><td>4</td><td>4</td></tr>
+              <tr><td>Root clusters / arche</td><td>3</td><td>3</td></tr>
+              <tr><td>Rochers / pierres moussues</td><td>3</td><td>3</td></tr>
+              <tr><td>Fougeres / clumps vegetaux</td><td>3</td><td>3</td></tr>
+              <tr><td>Leaf / moss mats</td><td>3</td><td>3</td></tr>
+              <tr><td>Branches mortes</td><td>2</td><td>2</td></tr>
+              <tr><td>Masses de canopee stylisees</td><td>2</td><td>2</td></tr>
+              <tr><td>Fallen log</td><td>1</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="panel warning">
+          <h2>Garde-fous de review</h2>
+          <p>
+            Cette capture est une preuve intermediaire. Elle ne valide pas le
+            corridor depuis la route camera et ne peut pas fermer un ticket visuel
+            comme <code>Premium target</code>.
+          </p>
+          <p>
+            La validation route-camera reste differee vers MYB-148 / MYB-150 /
+            MYB-151 selon l'usage du kit.
+          </p>
+        </section>
+
+        <section class="panel">
+          <h2>Rework cible</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Priorite</th>
+                <th>Ce qui doit etre inspecte</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>P0</td><td>Troncs: bases plus larges, asymetrie, racines, ridges, formes cassees, caractere ancien.</td></tr>
+              <tr><td>P0</td><td>Root clusters: formes moins droites, courbure organique, contact au sol, <code>root_arch_a</code> plus scenic.</td></tr>
+              <tr><td>P1</td><td>Fougeres et mats: silhouettes plus lisibles, bords organiques, moins d'effet plat.</td></tr>
+              <tr><td>P1</td><td>Canopy masses: moins blob, plus de variation intentionnelle.</td></tr>
+              <tr><td>P2</td><td>Rochers: asymetrie, placement mousse et identite ancienne subtile.</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+
+      <aside>
+        <section class="panel decision">
+          <h2>Decision Julien</h2>
+          <p class="note">
+            La decision actuelle accepte le kit comme candidate v0 avec warnings. Les champs restent utiles pour generer une note de trace.
+          </p>
+
+          <h3>Inspection</h3>
+          <div class="checklist">
+            <label class="check">
+              <input id="inspected" type="checkbox">
+              <span>Julien inspected revised isolated captures / contact sheet.</span>
+            </label>
+            <label class="check">
+              <input id="previewOnly" type="checkbox">
+              <span>Je confirme que cette page est une preview isolee, pas une preuve <code>Premium target</code>.</span>
+            </label>
+            <label class="check">
+              <input id="routeDeferred" type="checkbox">
+              <span>Je confirme que la validation route-camera est differee vers MYB-148 / MYB-150 / MYB-151.</span>
+            </label>
+          </div>
+
+          <h3>Verdict candidat</h3>
+          <div class="radio-group">
+            <label class="check">
+              <input name="decision" type="radio" value="accepted" checked>
+              <span>Accept candidate kit for MYB-148 / MYB-150 usage.</span>
+            </label>
+            <label class="check">
+              <input name="decision" type="radio" value="accepted_with_notes">
+              <span>Accept with notes / targeted follow-up.</span>
+            </label>
+            <label class="check">
+              <input name="decision" type="radio" value="changes_requested">
+              <span>Request changes before candidate usage.</span>
+            </label>
+          </div>
+
+          <label for="reviewer"><strong>Reviewer</strong></label>
+          <input id="reviewer" type="text" value="Julien">
+
+          <h3>Notes</h3>
+          <textarea id="notes" placeholder="Ce qui passe, ce qui bloque, ou les corrections demandees..."></textarea>
+
+          <div class="footer-actions">
+            <button class="button primary" type="button" onclick="buildReviewNote()">Generer la note</button>
+            <button class="button" type="button" onclick="window.print()">Imprimer</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Note generee</h2>
+          <textarea id="reviewNote" readonly placeholder="La note apparaitra ici apres generation."></textarea>
+          <div class="footer-actions">
+            <button class="button" type="button" onclick="copyReviewNote()">Copier</button>
+          </div>
+          <p class="note" id="copyStatus"></p>
+        </section>
+
+        <section class="panel">
+          <h2>Liens locaux</h2>
+          <p><a href="../../implementation-artifacts/MYB-147/myb-147-governance-review.md">Governance review</a></p>
+          <p><a href="../../implementation-artifacts/MYB-147/myb-147-implementation-report.md">Implementation report</a></p>
+          <p><a href="2026-06-16T14-16-29Z-capture-report.md">Capture report</a></p>
+          <p><a href="../../implementation-artifacts/MYB-147/myb-forest-kit-v0-manifest.md">Local manifest</a></p>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const fields = ["inspected", "previewOnly", "routeDeferred", "reviewer", "notes", "reviewNote"];
+
+    function decisionValue() {
+      const selected = document.querySelector("input[name='decision']:checked");
+      return selected ? selected.value : "not_selected";
+    }
+
+    function decisionLabel(value) {
+      switch (value) {
+        case "accepted":
+          return "Accepted candidate kit v0 with warnings for MYB-148 / MYB-150 route-camera testing";
+        case "accepted_with_notes":
+          return "Accepted with notes / targeted follow-up";
+        case "changes_requested":
+          return "Changes requested before candidate usage";
+        default:
+          return "Not selected";
+      }
+    }
+
+    function saveState() {
+      const state = {};
+      for (const id of fields) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        state[id] = el.type === "checkbox" ? el.checked : el.value;
+      }
+      state.decision = decisionValue();
+      localStorage.setItem("myb147ReviewState", JSON.stringify(state));
+    }
+
+    function restoreState() {
+      const raw = localStorage.getItem("myb147ReviewState");
+      if (!raw) return;
+      try {
+        const state = JSON.parse(raw);
+        for (const id of fields) {
+          const el = document.getElementById(id);
+          if (!el || !(id in state)) continue;
+          if (el.type === "checkbox") el.checked = !!state[id];
+          else el.value = state[id] || "";
+        }
+        if (state.decision) {
+          const radio = document.querySelector(`input[name='decision'][value='${state.decision}']`);
+          if (radio) radio.checked = true;
+        }
+      } catch (error) {
+        console.warn("Could not restore MYB-147 review state", error);
+      }
+    }
+
+    function buildReviewNote() {
+      const reviewer = document.getElementById("reviewer").value.trim() || "Julien";
+      const notes = document.getElementById("notes").value.trim() || "-";
+      const decision = decisionLabel(decisionValue());
+      const inspected = document.getElementById("inspected").checked ? "Yes" : "No";
+      const previewOnly = document.getElementById("previewOnly").checked ? "Yes" : "No";
+      const routeDeferred = document.getElementById("routeDeferred").checked ? "Yes" : "No";
+      const today = new Date().toISOString().slice(0, 10);
+
+      const body = [
+        "## MYB-147 Human Visual Review",
+        "",
+        `Reviewer: ${reviewer}`,
+        `Date: ${today}`,
+        "",
+        "Evidence inspected:",
+        "- `_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png`",
+        "",
+        `Julien inspected revised isolated captures / contact sheet: ${inspected}`,
+        `Preview evidence only acknowledged: ${previewOnly}`,
+        `Route-camera validation deferred: ${routeDeferred}`,
+        "",
+        `Decision: ${decision}`,
+        "",
+        "Notes:",
+        notes,
+        "",
+        "Reminder:",
+        "- MYB-147 assets remain candidate kit pieces.",
+        "- No production promotion is implied by this review.",
+        "- Premium target validation remains deferred to route-camera tickets.",
+        "- Final ticket status remains In Review, not Done."
+      ].join("\\n");
+
+      document.getElementById("reviewNote").value = body;
+      saveState();
+    }
+
+    async function copyReviewNote() {
+      const note = document.getElementById("reviewNote").value;
+      if (!note) {
+        document.getElementById("copyStatus").textContent = "Genere d'abord la note.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(note);
+        document.getElementById("copyStatus").textContent = "Note copiee.";
+      } catch {
+        document.getElementById("copyStatus").textContent = "Copie automatique indisponible. Selectionne le texte manuellement.";
+      }
+    }
+
+    document.addEventListener("input", saveState);
+    document.addEventListener("change", saveState);
+    restoreState();
+  </script>
+</body>
+</html>

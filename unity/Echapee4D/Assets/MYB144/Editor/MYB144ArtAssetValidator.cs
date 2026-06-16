@@ -69,6 +69,7 @@ public static class MYB144ArtAssetValidator
         "third_party",
         "ai_generated",
         "ai_assisted",
+        "internal",
         "blender_mcp",
         "in_house_authored",
         "unity_builtin_or_procedural",

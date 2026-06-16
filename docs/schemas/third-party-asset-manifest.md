@@ -106,6 +106,7 @@ Allowed `sourceType` values:
 - `third_party`
 - `ai_generated`
 - `ai_assisted`
+- `internal`
 - `blender_mcp`
 - `in_house_authored`
 - `unity_builtin_or_procedural`
@@ -114,6 +115,10 @@ Allowed `sourceType` values:
 
 `unknown` is allowed only before production promotion. It must not appear on a
 `candidate` or `promoted` asset.
+
+`internal` is for project-owned, non-external assets authored or generated
+inside the project pipeline, including procedural Blender kit assets. It can use
+`provider` to record the tool path, for example `Blender MCP / procedural`.
 
 ## Intake Status
 

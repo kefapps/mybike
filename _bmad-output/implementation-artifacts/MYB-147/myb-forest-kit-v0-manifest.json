@@ -1,0 +1,504 @@
+{
+  "kit": "MYB_ForestKit_V0",
+  "generatedAt": "2026-06-16T14:16:30.115104+00:00",
+  "generator": "_bmad-output/implementation-artifacts/MYB-147/generate_myb_forest_kit_v0.py",
+  "unityDirectory": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0",
+  "humanReview": {
+    "date": "2026-06-16",
+    "verdict": "Accept as candidate kit v0 with warnings",
+    "status": "In Review",
+    "warnings": [
+      "Canopy masses still read as generic green blobs.",
+      "Rocks remain usable but generic.",
+      "Trunk material language is still simple.",
+      "Root clusters may need better ground integration during scatter.",
+      "Isolated preview does not validate route-camera quality."
+    ],
+    "decision": "Acceptable as a candidate kit for MYB-148 / MYB-150 route-camera testing. Do not keep polishing in Blender unless required by validator ERROR."
+  },
+  "assets": [
+    {
+      "id": "myb_forest_trunk_ancient_a",
+      "name": "MYB Forest Trunk Ancient A",
+      "family": "trunks",
+      "variant": "ancient_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_ancient_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.615,
+        "y": 2.309,
+        "z": 3.4
+      },
+      "triangleCount": 580,
+      "triangleBudgetV0": 1200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_warm",
+        "myb_bark_dark"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_trunk_broken_a",
+      "name": "MYB Forest Trunk Broken A",
+      "family": "trunks",
+      "variant": "broken_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_broken_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.576,
+        "y": 2.269,
+        "z": 2.623
+      },
+      "triangleCount": 532,
+      "triangleBudgetV0": 1200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_warm",
+        "myb_bark_dark"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_trunk_leaning_a",
+      "name": "MYB Forest Trunk Leaning A",
+      "family": "trunks",
+      "variant": "leaning_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_leaning_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.538,
+        "y": 2.229,
+        "z": 3.1
+      },
+      "triangleCount": 532,
+      "triangleBudgetV0": 1200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_warm",
+        "myb_bark_dark"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_trunk_knotted_a",
+      "name": "MYB Forest Trunk Knotted A",
+      "family": "trunks",
+      "variant": "knotted_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_knotted_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.845,
+        "y": 2.546,
+        "z": 3.021
+      },
+      "triangleCount": 628,
+      "triangleBudgetV0": 1200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_warm",
+        "myb_bark_dark"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_root_cluster_lateral_a",
+      "name": "MYB Forest Root Cluster Lateral A",
+      "family": "roots",
+      "variant": "lateral_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_cluster_lateral_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.403,
+        "y": 1.265,
+        "z": 0.417
+      },
+      "triangleCount": 712,
+      "triangleBudgetV0": 900,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_dark",
+        "myb_root_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_root_cluster_ground_a",
+      "name": "MYB Forest Root Cluster Ground A",
+      "family": "roots",
+      "variant": "ground_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_cluster_ground_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.53,
+        "y": 2.073,
+        "z": 0.419
+      },
+      "triangleCount": 808,
+      "triangleBudgetV0": 900,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_dark",
+        "myb_root_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_root_arch_a",
+      "name": "MYB Forest Root Arch A",
+      "family": "roots",
+      "variant": "arch_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_arch_a.fbx",
+      "dimensionsMeters": {
+        "x": 3.28,
+        "y": 1.451,
+        "z": 1.502
+      },
+      "triangleCount": 852,
+      "triangleBudgetV0": 900,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_dark",
+        "myb_root_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_rock_mossy_a",
+      "name": "MYB Forest Rock Mossy A",
+      "family": "rocks",
+      "variant": "mossy_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_mossy_a.fbx",
+      "dimensionsMeters": {
+        "x": 1.928,
+        "y": 1.276,
+        "z": 1.0
+      },
+      "triangleCount": 120,
+      "triangleBudgetV0": 700,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_rock_cool",
+        "myb_rock_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_rock_mossy_b",
+      "name": "MYB Forest Rock Mossy B",
+      "family": "rocks",
+      "variant": "mossy_b",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_mossy_b.fbx",
+      "dimensionsMeters": {
+        "x": 1.504,
+        "y": 1.467,
+        "z": 1.0
+      },
+      "triangleCount": 120,
+      "triangleBudgetV0": 700,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_rock_cool",
+        "myb_rock_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_rock_marker_a",
+      "name": "MYB Forest Rock Marker A",
+      "family": "rocks",
+      "variant": "marker_a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_marker_a.fbx",
+      "dimensionsMeters": {
+        "x": 1.549,
+        "y": 1.389,
+        "z": 2.049
+      },
+      "triangleCount": 136,
+      "triangleBudgetV0": 700,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_rock_cool",
+        "myb_rock_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_fern_a",
+      "name": "MYB Forest Fern A",
+      "family": "ferns",
+      "variant": "a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_a.fbx",
+      "dimensionsMeters": {
+        "x": 0.617,
+        "y": 0.823,
+        "z": 0.844
+      },
+      "triangleCount": 68,
+      "triangleBudgetV0": 600,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_fern_deep",
+        "myb_fern_lit"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_fern_b",
+      "name": "MYB Forest Fern B",
+      "family": "ferns",
+      "variant": "b",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_b.fbx",
+      "dimensionsMeters": {
+        "x": 0.538,
+        "y": 0.675,
+        "z": 0.689
+      },
+      "triangleCount": 68,
+      "triangleBudgetV0": 600,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_fern_deep",
+        "myb_fern_lit"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_fern_c",
+      "name": "MYB Forest Fern C",
+      "family": "ferns",
+      "variant": "c",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_c.fbx",
+      "dimensionsMeters": {
+        "x": 0.669,
+        "y": 0.922,
+        "z": 0.947
+      },
+      "triangleCount": 68,
+      "triangleBudgetV0": 600,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_fern_deep",
+        "myb_fern_lit"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_a",
+      "name": "MYB Forest Leaf Moss Mat A",
+      "family": "floor_mats",
+      "variant": "a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_a.fbx",
+      "dimensionsMeters": {
+        "x": 1.845,
+        "y": 1.103,
+        "z": 0.122
+      },
+      "triangleCount": 88,
+      "triangleBudgetV0": 200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_leaf_floor",
+        "myb_moss_floor"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_b",
+      "name": "MYB Forest Leaf Moss Mat B",
+      "family": "floor_mats",
+      "variant": "b",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_b.fbx",
+      "dimensionsMeters": {
+        "x": 1.664,
+        "y": 1.238,
+        "z": 0.122
+      },
+      "triangleCount": 88,
+      "triangleBudgetV0": 200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_leaf_floor",
+        "myb_moss_floor"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_c",
+      "name": "MYB Forest Leaf Moss Mat C",
+      "family": "floor_mats",
+      "variant": "c",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_c.fbx",
+      "dimensionsMeters": {
+        "x": 2.27,
+        "y": 0.891,
+        "z": 0.122
+      },
+      "triangleCount": 88,
+      "triangleBudgetV0": 200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_leaf_floor",
+        "myb_moss_floor"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_dead_branch_a",
+      "name": "MYB Forest Dead Branch A",
+      "family": "branches",
+      "variant": "a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_dead_branch_a.fbx",
+      "dimensionsMeters": {
+        "x": 1.31,
+        "y": 0.758,
+        "z": 0.241
+      },
+      "triangleCount": 64,
+      "triangleBudgetV0": 400,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_dark",
+        "myb_bark_warm"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_dead_branch_b",
+      "name": "MYB Forest Dead Branch B",
+      "family": "branches",
+      "variant": "b",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_dead_branch_b.fbx",
+      "dimensionsMeters": {
+        "x": 1.31,
+        "y": 0.756,
+        "z": 0.241
+      },
+      "triangleCount": 64,
+      "triangleBudgetV0": 400,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_dark",
+        "myb_bark_warm"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_canopy_mass_a",
+      "name": "MYB Forest Canopy Mass A",
+      "family": "canopy",
+      "variant": "a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_canopy_mass_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.766,
+        "y": 1.708,
+        "z": 1.05
+      },
+      "triangleCount": 486,
+      "triangleBudgetV0": 1000,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_canopy_deep",
+        "myb_canopy_lit"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_canopy_mass_b",
+      "name": "MYB Forest Canopy Mass B",
+      "family": "canopy",
+      "variant": "b",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_canopy_mass_b.fbx",
+      "dimensionsMeters": {
+        "x": 2.784,
+        "y": 1.804,
+        "z": 1.05
+      },
+      "triangleCount": 486,
+      "triangleBudgetV0": 1000,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_canopy_deep",
+        "myb_canopy_lit"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    },
+    {
+      "id": "myb_forest_fallen_log_a",
+      "name": "MYB Forest Fallen Log A",
+      "family": "logs",
+      "variant": "a",
+      "unityPath": "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fallen_log_a.fbx",
+      "dimensionsMeters": {
+        "x": 2.737,
+        "y": 0.846,
+        "z": 0.809
+      },
+      "triangleCount": 116,
+      "triangleBudgetV0": 1200,
+      "materialCount": 2,
+      "materialNames": [
+        "myb_bark_warm",
+        "myb_root_moss"
+      ],
+      "pivotOriginNote": "Origin at ground/base center, Unity scale 1 unit = 1 meter.",
+      "boundsNote": "Bounds generated from procedural mesh; base intended to sit on ground plane.",
+      "exportFormat": "FBX",
+      "knownWarnings": []
+    }
+  ]
+}

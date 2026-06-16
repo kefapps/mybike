@@ -1,5 +1,636 @@
 {
   "schemaVersion": 1,
   "updatedAt": "2026-06-16",
-  "assets": []
+  "assets": [
+    {
+      "id": "myb_forest_canopy_mass_a",
+      "name": "MYB Forest Canopy Mass A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_canopy_mass_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.766 x 1.708 x 1.05; triangles: 486; materials: 2."
+    },
+    {
+      "id": "myb_forest_canopy_mass_b",
+      "name": "MYB Forest Canopy Mass B",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_canopy_mass_b.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.784 x 1.804 x 1.05; triangles: 486; materials: 2."
+    },
+    {
+      "id": "myb_forest_dead_branch_a",
+      "name": "MYB Forest Dead Branch A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_dead_branch_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.31 x 0.758 x 0.241; triangles: 64; materials: 2."
+    },
+    {
+      "id": "myb_forest_dead_branch_b",
+      "name": "MYB Forest Dead Branch B",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_dead_branch_b.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.31 x 0.756 x 0.241; triangles: 64; materials: 2."
+    },
+    {
+      "id": "myb_forest_fallen_log_a",
+      "name": "MYB Forest Fallen Log A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fallen_log_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.737 x 0.846 x 0.809; triangles: 116; materials: 2."
+    },
+    {
+      "id": "myb_forest_fern_a",
+      "name": "MYB Forest Fern A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 0.617 x 0.823 x 0.844; triangles: 68; materials: 2."
+    },
+    {
+      "id": "myb_forest_fern_b",
+      "name": "MYB Forest Fern B",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_b.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 0.538 x 0.675 x 0.689; triangles: 68; materials: 2."
+    },
+    {
+      "id": "myb_forest_fern_c",
+      "name": "MYB Forest Fern C",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_fern_c.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 0.669 x 0.922 x 0.947; triangles: 68; materials: 2."
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_a",
+      "name": "MYB Forest Leaf Moss Mat A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.845 x 1.103 x 0.122; triangles: 88; materials: 2."
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_b",
+      "name": "MYB Forest Leaf Moss Mat B",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_b.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.664 x 1.238 x 0.122; triangles: 88; materials: 2."
+    },
+    {
+      "id": "myb_forest_leaf_moss_mat_c",
+      "name": "MYB Forest Leaf Moss Mat C",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_leaf_moss_mat_c.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.27 x 0.891 x 0.122; triangles: 88; materials: 2."
+    },
+    {
+      "id": "myb_forest_rock_marker_a",
+      "name": "MYB Forest Rock Marker A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_marker_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.549 x 1.389 x 2.049; triangles: 136; materials: 2."
+    },
+    {
+      "id": "myb_forest_rock_mossy_a",
+      "name": "MYB Forest Rock Mossy A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_mossy_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.928 x 1.276 x 1.0; triangles: 120; materials: 2."
+    },
+    {
+      "id": "myb_forest_rock_mossy_b",
+      "name": "MYB Forest Rock Mossy B",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_rock_mossy_b.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 1.504 x 1.467 x 1.0; triangles: 120; materials: 2."
+    },
+    {
+      "id": "myb_forest_root_arch_a",
+      "name": "MYB Forest Root Arch A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_arch_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 3.28 x 1.451 x 1.502; triangles: 852; materials: 2."
+    },
+    {
+      "id": "myb_forest_root_cluster_ground_a",
+      "name": "MYB Forest Root Cluster Ground A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_cluster_ground_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.53 x 2.073 x 0.419; triangles: 808; materials: 2."
+    },
+    {
+      "id": "myb_forest_root_cluster_lateral_a",
+      "name": "MYB Forest Root Cluster Lateral A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_root_cluster_lateral_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.403 x 1.265 x 0.417; triangles: 712; materials: 2."
+    },
+    {
+      "id": "myb_forest_trunk_ancient_a",
+      "name": "MYB Forest Trunk Ancient A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_ancient_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.615 x 2.309 x 3.4; triangles: 580; materials: 2."
+    },
+    {
+      "id": "myb_forest_trunk_broken_a",
+      "name": "MYB Forest Trunk Broken A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_broken_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.576 x 2.269 x 2.623; triangles: 532; materials: 2."
+    },
+    {
+      "id": "myb_forest_trunk_knotted_a",
+      "name": "MYB Forest Trunk Knotted A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_knotted_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.845 x 2.546 x 3.021; triangles: 628; materials: 2."
+    },
+    {
+      "id": "myb_forest_trunk_leaning_a",
+      "name": "MYB Forest Trunk Leaning A",
+      "sourceType": "internal",
+      "provider": "Blender MCP / procedural",
+      "sourceUrl": "",
+      "license": "Project-owned",
+      "licenseUrl": "",
+      "author": "Kefapps / procedural Blender MCP",
+      "acquiredAt": "2026-06-16",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/myb_forest_trunk_leaning_a.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": false,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [],
+      "overviewEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-147/2026-06-16T14-16-29Z-kit-contact-sheet.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.538 x 2.229 x 3.1; triangles: 532; materials: 2."
+    }
+  ]
 }
