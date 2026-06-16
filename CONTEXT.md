@@ -103,9 +103,9 @@ Non-examples:
 ### Asset Tiers Approuve
 
 Definition: A free third-party resource that has a verified source, an accepted
-license, complete metadata, and status `approved` in the Unity asset manifest.
-This approves legal and technical import/use for a POC; it does not mean the
-asset is adopted as final V1 art direction.
+license, complete metadata, and `Intake Status` `approved` in the Unity asset
+manifest. This approves legal and technical import/use for a POC; it does not
+mean the asset is adopted as final V1 art direction or promoted to production.
 
 Relationships:
 
@@ -125,6 +125,160 @@ Non-examples:
 - An attractive model under `NC`, `ND`, or `SA` terms; an AI-generated pack
   with unclear commercial/build rights; a model copied too directly from a
   MYB-37 inspiration reference.
+
+### Intake Status
+
+Definition: The manifest status that describes whether an asset has enough
+traceability, provenance, license, cleanup, and review evidence to continue
+through the asset intake pipeline.
+
+Relationships:
+
+- `Intake Status` is separate from `Promotion Status`.
+- `approved` means the asset intake record is acceptable; it does not mean the
+  asset belongs in production scenery.
+- MYB-143 uses `quarantine`, `review`, `approved`, `rejected`, and `deprecated`
+  as intake statuses.
+- `reviewStatus` is not a canonical manifest field. If it appears in the real
+  manifest, MYB-144 should treat it as an error.
+
+Examples:
+
+- A Tripo prop with provider job id, prompt summary, license note, local
+  quarantine path, reviewer, cleanup notes, and validator evidence can move from
+  `quarantine` to `review`, then to `approved`.
+
+Non-examples:
+
+- Treating an `approved` manifest as permission to place the asset directly in
+  the canonical ride corridor.
+- Using one `reviewStatus` field to mix provenance trust and production
+  promotion.
+
+### Asset Manifest Source Type
+
+Definition: The source category recorded in the asset manifest so the intake
+pipeline can apply the right provenance, license, cleanup, and validation rules
+without changing the promotion gate.
+
+Relationships:
+
+- MYB-143 covers every Art Rescue asset candidate that may be promoted, not only
+  Meshy/Tripo or third-party assets.
+- The same manifest can track `third_party`, `ai_generated`, `blender_mcp`,
+  `in_house_authored`, and `unity_builtin_or_procedural` candidates.
+- Source-specific evidence differs, but `Promotion Status` still requires
+  controlled review before production use.
+
+Examples:
+
+- A Poly Haven model is `third_party`.
+- A Tripo output is `ai_generated`.
+- A reusable root arch authored through Blender MCP is `blender_mcp`.
+- A hand-authored local prop is `in_house_authored`.
+- A Unity primitive or generated mesh used as a controlled candidate is
+  `unity_builtin_or_procedural`.
+
+Non-examples:
+
+- Exempting Blender MCP or in-house assets from the manifest because they were
+  not downloaded from a marketplace.
+
+### Art Rescue Asset Manifest
+
+Definition: The versioned, machine-readable manifest that records intake and
+promotion evidence for Art Rescue asset candidates.
+
+Relationships:
+
+- The canonical schema documentation lives at
+  `docs/schemas/third-party-asset-manifest.md`.
+- The canonical manifest data lives at
+  `docs/manifests/art-rescue-asset-manifest.json`.
+- MYB-144 validators should read the canonical manifest data, not scrape
+  Markdown examples.
+- The manifest covers all Art Rescue asset candidates that may be promoted,
+  regardless of `Asset Manifest Source Type`.
+- The real manifest is a versioned object with `schemaVersion`, `updatedAt`,
+  and `assets`; it is not a flat asset list.
+- Documentation examples live in `docs/schemas/third-party-asset-manifest.md`,
+  not in the production manifest data.
+- `example: true` is allowed in documentation or clearly named fixtures only. It
+  is forbidden in the real manifest.
+
+Examples:
+
+- A Blender MCP root arch candidate has one manifest entry with source type,
+  local paths, cleanup status, validator evidence, `Intake Status`, and
+  `Promotion Status`.
+- The initial real manifest can be:
+  `{"schemaVersion":1,"updatedAt":"2026-06-16","assets":[]}`.
+
+Non-examples:
+
+- A Markdown-only example that cannot be used by validators.
+- A production manifest that contains a fake example asset.
+
+### Art Rescue Asset Zones
+
+Definition: The canonical Unity folder zones that separate raw, reviewable, and
+production-promoted Art Rescue asset files.
+
+Relationships:
+
+- The canonical Unity project root is `unity/Echapee4D`.
+- The manifest stores Unity-relative `Assets/...` paths.
+- `Assets/Echappee/Art/Quarantine/...` holds raw or untrusted candidates.
+- `Assets/Echappee/Art/Review/...` holds cleaned candidates that can be tested
+  in controlled previews or candidate scenes.
+- `Assets/Echappee/Art/Production/...` holds explicitly promoted assets only.
+- MYB-144 should block visible production assets that bypass these zones or
+  appear in `Production` without `Promotion Status` `promoted`.
+
+Examples:
+
+- `Assets/Echappee/Art/Quarantine/AI/tripo/myb_root_arch_a/`
+- `Assets/Echappee/Art/Review/BlenderMCP/roots/myb_root_arch_a/`
+- `Assets/Echappee/Art/Production/Forest/Roots/myb_root_arch_a/`
+
+Non-examples:
+
+- Importing a generated prop directly into a random scene-owned folder.
+- Placing an unreviewed AI asset directly under `Production`.
+
+### Promotion Status
+
+Definition: The production-use status that describes whether an asset is still
+outside production, under consideration as a scene candidate, or explicitly
+promoted for controlled production use.
+
+Relationships:
+
+- `Promotion Status` is gated by manifest intake, validators, and visual review.
+- `promoted` is stronger than `approved`: it means the asset has an accepted
+  production use, not only valid provenance.
+- MYB-143 uses `not_promoted`, `candidate`, and `promoted` as promotion
+  statuses.
+- `candidate` and `promoted` require `Intake Status` `approved`.
+- `quarantine`, `review`, `rejected`, and `deprecated` assets must remain
+  `not_promoted`.
+- A visible asset cannot become `promoted` from manifest and technical validator
+  evidence alone; it needs canonical route-camera evidence or a documented
+  visual-surface exception.
+- An invisible or purely technical asset may be promoted without route capture
+  only when `visualImpact` is `none` and the exception is documented.
+
+Examples:
+
+- A cleaned Blender candidate can be `approved` for intake but remain
+  `not_promoted` until it works in Unity validation and route-camera review.
+
+Non-examples:
+
+- Promoting an asset because it looks good in a Meshy, Tripo, Blender, or
+  isolated preview.
+- Promoting a visible prop because its provenance and import settings are clean
+  while it has no route-camera evidence.
 
 ### Pipeline Asset Unity
 

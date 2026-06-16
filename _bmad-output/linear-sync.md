@@ -7107,3 +7107,45 @@ Closure synced on 2026-06-16:
 - Merge method: `fast-forward-only`.
 - Final merged head: `4233d27287570fc055c28242560bafcdc1a336c7`.
 - Linear closure comment ID: `f8b229e1-482e-4e33-85ad-575993227a0e`.
+
+MYB-143 asset manifest and intake policy synced on 2026-06-16:
+
+- Linear issue: `MYB-143` - Manifest tiers/IA et politique d'asset intake.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-143/manifest-tiersia-et-politique-dasset-intake`.
+- Linear status: `In Progress` during implementation; expected final status is
+  `In Review` until Julien validates the manifest gate.
+- Branch: `MYB-143-asset-manifest-intake-policy`.
+- Scope:
+  - doc/schema/manifest governance ticket;
+  - no Unity scene changes;
+  - no real asset generation or import;
+  - no Blender, Meshy, Tripo, image, or production visual output.
+- Canonical schema documentation:
+  `docs/schemas/third-party-asset-manifest.md`.
+- Canonical machine-readable manifest:
+  `docs/manifests/art-rescue-asset-manifest.json`.
+- Canonical intake workflow:
+  `docs/workflows/meshy-tripo-quarantine-workflow.md`.
+- Updated local pointers:
+  - `AGENTS.md`;
+  - `CONTEXT.md`;
+  - `CONTEXT-MAP.md`.
+- Grill decisions:
+  - separate `intakeStatus` and `promotionStatus`;
+  - manifest covers all Art Rescue asset candidates, not only Meshy/Tripo or
+    third-party assets;
+  - real manifest is a versioned object with `schemaVersion`, `updatedAt`, and
+    `assets`;
+  - examples live in schema docs, not production manifest data;
+  - `reviewStatus` is not canonical and should be an error in the real manifest;
+  - visible `promoted` assets require route-camera evidence or documented
+    exception;
+  - Unity asset zones are `Assets/Echappee/Art/Quarantine`,
+    `Assets/Echappee/Art/Review`, and `Assets/Echappee/Art/Production`.
+- Validation:
+  - `jq . docs/manifests/art-rescue-asset-manifest.json`: PASS;
+  - `git diff --check`: PASS;
+  - required MYB-143 text checks: PASS;
+  - tracked diff contains no Unity scene, asset, image, Blender, Meshy, or Tripo
+    output.

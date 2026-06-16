@@ -150,6 +150,24 @@ MYB-142 visual audit and rubric outputs:
 MYB-137 calibrates the rubric. The canonical route camera validates production
 quality.
 
+MYB-143 asset intake and promotion outputs:
+
+- `docs/schemas/third-party-asset-manifest.md`
+  - canonical schema documentation for Art Rescue asset intake;
+  - defines `intakeStatus`, `promotionStatus`, source types, usage scopes, and
+    MYB-144 validation rules.
+- `docs/manifests/art-rescue-asset-manifest.json`
+  - canonical machine-readable manifest data for Art Rescue asset candidates;
+  - versioned root object with `schemaVersion`, `updatedAt`, and `assets`.
+- `docs/workflows/meshy-tripo-quarantine-workflow.md`
+  - quarantine-first intake workflow for Meshy, Tripo, external, Blender MCP,
+    in-house, and procedural asset candidates.
+
+An asset with `intakeStatus: approved` is not automatically production content.
+Visible assets need `promotionStatus: promoted`, validator evidence, and
+route-camera evidence before they can be treated as production-valid in the
+forest corridor.
+
 If the imported art-rescue docs are missing, do not invent their contents. Use
 the current Linear issue, existing MYB-114/MYB-137 reports, and this file, then
 write down the missing reference in the implementation notes.

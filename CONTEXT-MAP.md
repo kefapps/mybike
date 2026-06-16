@@ -51,6 +51,30 @@ Relationship:
 - The forest art bible wins for art direction; the shot rubric wins for scoring
   mechanics.
 
+MYB-143 outputs:
+
+- `docs/schemas/third-party-asset-manifest.md`
+  - canonical schema documentation for Art Rescue asset intake and promotion;
+  - defines `Intake Status`, `Promotion Status`, source types, usage scopes, and
+    MYB-144 validator expectations.
+- `docs/manifests/art-rescue-asset-manifest.json`
+  - canonical machine-readable Art Rescue asset manifest;
+  - versioned object, initially allowed to have an empty `assets` array.
+- `docs/workflows/meshy-tripo-quarantine-workflow.md`
+  - quarantine-first workflow for Meshy, Tripo, external, Blender MCP,
+    in-house, and procedural Art Rescue asset candidates.
+
+Relationship:
+
+- `docs/schemas/third-party-asset-manifest.md` defines the manifest shape.
+- `docs/manifests/art-rescue-asset-manifest.json` is the data MYB-144 should
+  validate.
+- `docs/workflows/meshy-tripo-quarantine-workflow.md` defines how candidates
+  move from quarantine to review, candidate, promotion, rejection, or
+  deprecation.
+- Existing Unity ticket-local manifests under `unity/Echapee4D/Assets/...`
+  remain historical or ticket-specific evidence unless explicitly migrated.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`
