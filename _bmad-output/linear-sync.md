@@ -7026,9 +7026,11 @@ MYB-142 visual diagnosis and shot rubric synced on 2026-06-16:
 - Linear issue: `MYB-142` - Audit visuel MYB-137 + grille de validation.
 - Linear URL:
   `https://linear.app/kefjbo/issue/MYB-142/audit-visuel-myb-137-grille-de-validation`.
-- Linear status: `In Review`.
+- Linear status: `Done`.
 - Linear implementation comment ID: `21caaac5-028d-46f7-836f-22b70230a8e9`.
-- Pull request: `https://github.com/kefapps/mybike/pull/36`.
+- Gitea pull request: `https://gitea.kefapps.wtf/kefapps/mybike/pulls/1`.
+- Gitea main sync pull request:
+  `https://gitea.kefapps.wtf/kefapps/mybike/pulls/2`.
 - Branch: `MYB-142-visual-diagnosis-shot-rubric`.
 - Implementation commit:
   `7a22a9b3db2c7c77d85d8d53652aa6693d902d6c`.
@@ -7073,20 +7075,20 @@ MYB-142 visual diagnosis and shot rubric synced on 2026-06-16:
   - required MYB-142 text checks: PASS;
   - `git diff --cached --check`: PASS;
   - staged Unity/assets/generated-output check: PASS.
-- Closure rule:
-  - MYB-142 must remain `In Review` until Julien explicitly validates both the
-    MYB-137 diagnostic and the reusable forest corridor shot rubric.
+- Closure:
+  - Julien explicitly requested merge after review.
+  - MYB-142 was merged in Gitea with fast-forward-only merge.
+  - Linear moved to `Done`.
 
 Review synced on 2026-06-16:
 
 - Review verdict: clean review, no blocking findings.
-- GitHub review comment:
-  `https://github.com/kefapps/mybike/pull/36#issuecomment-4716351256`.
+- Gitea review comment:
+  `https://gitea.kefapps.wtf/kefapps/mybike/pulls/1#issuecomment-409`.
 - Linear review comment ID: `fd28147a-5bdf-4d74-ad00-e668ec669745`.
-- GitHub approval note:
-  - GitHub refused formal approval because the review was submitted by the PR
-    author identity.
-  - The verdict was recorded as a PR comment instead.
+- Gitea note:
+  - Formal review comment recorded on the Gitea PR.
+  - GitHub is no longer the active hosting/review workflow for this repository.
 - Reviewed checks:
   - MYB-142 Q1-Q8 decisions: PASS.
   - Doc-only scope: PASS.
@@ -7094,8 +7096,14 @@ Review synced on 2026-06-16:
   - `git diff --check origin/main...HEAD`: PASS.
   - High-confidence secret scan on PR diff: PASS.
   - PR merge state: CLEAN.
-  - GitHub checks: none reported.
-- Remaining rule:
-  - This review does not move MYB-142 to `Done`.
-  - MYB-142 remains `In Review` until Julien explicitly validates both the
-    diagnostic and reusable rubric.
+  - Gitea PR mergeability: CLEAN.
+
+Closure synced on 2026-06-16:
+
+- Gitea sync PR #2 merged first to align protected `main` with local canonical
+  `main`.
+- Gitea MYB-142 PR #1 merged after the diff reduced to the scoped MYB-142
+  changes.
+- Merge method: `fast-forward-only`.
+- Final merged head: `4233d27287570fc055c28242560bafcdc1a336c7`.
+- Linear closure comment ID: `f8b229e1-482e-4e33-85ad-575993227a0e`.
