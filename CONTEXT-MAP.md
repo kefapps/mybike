@@ -60,15 +60,28 @@ MYB-143 outputs:
 - `docs/manifests/art-rescue-asset-manifest.json`
   - canonical machine-readable Art Rescue asset manifest;
   - versioned object, initially allowed to have an empty `assets` array.
+- `docs/validators/unity-art-asset-validator-spec.md`
+  - canonical Unity validator specification;
+  - defines bounded scan roots, candidate extensions, severity policy, batch
+    behavior, and report format.
 - `docs/workflows/meshy-tripo-quarantine-workflow.md`
   - quarantine-first workflow for Meshy, Tripo, external, Blender MCP,
     in-house, and procedural Art Rescue asset candidates.
+
+MYB-144 outputs:
+
+- `unity/Echapee4D/Assets/MYB144/Editor/MYB144ArtAssetValidator.cs`
+  - ticket-local Unity Editor validator V1.
+- `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`
+  - generated validation report path.
 
 Relationship:
 
 - `docs/schemas/third-party-asset-manifest.md` defines the manifest shape.
 - `docs/manifests/art-rescue-asset-manifest.json` is the data MYB-144 should
   validate.
+- `docs/validators/unity-art-asset-validator-spec.md` defines how MYB-144
+  validates the manifest and bounded Unity asset roots.
 - `docs/workflows/meshy-tripo-quarantine-workflow.md` defines how candidates
   move from quarantine to review, candidate, promotion, rejection, or
   deprecation.

@@ -195,6 +195,8 @@ Relationships:
   `docs/schemas/third-party-asset-manifest.md`.
 - The canonical manifest data lives at
   `docs/manifests/art-rescue-asset-manifest.json`.
+- The canonical MYB-144 Unity validator specification lives at
+  `docs/validators/unity-art-asset-validator-spec.md`.
 - MYB-144 validators should read the canonical manifest data, not scrape
   Markdown examples.
 - The manifest covers all Art Rescue asset candidates that may be promoted,
@@ -218,6 +220,36 @@ Non-examples:
 
 - A Markdown-only example that cannot be used by validators.
 - A production manifest that contains a fake example asset.
+
+### MYB-144 Art Asset Validator
+
+Definition: The bounded Unity Editor validator that enforces the MYB-143 Art
+Rescue asset manifest gate and runs safe technical checks for asset promotion.
+
+Relationships:
+
+- The V1 code lives at
+  `unity/Echapee4D/Assets/MYB144/Editor/MYB144ArtAssetValidator.cs`.
+- The Unity menu entry is
+  `Tools/MyBike/Validation/MYB-144 Art Asset Validator`.
+- The report path is
+  `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- The canonical spec lives at
+  `docs/validators/unity-art-asset-validator-spec.md`.
+- The validator reads `docs/manifests/art-rescue-asset-manifest.json`.
+
+Examples:
+
+- Manifest schema errors are `ERROR`.
+- A missing material on a `promotionStatus: promoted` asset is `ERROR`.
+- A texture above the V1 warning threshold is `WARNING`.
+- Missing Art Rescue scan roots are `INFO`.
+
+Non-examples:
+
+- A subjective `Premium target` visual review.
+- A broad scan of every Unity asset in the project.
+- An auto-repair tool that edits assets, materials, scenes, or the manifest.
 
 ### Art Rescue Asset Zones
 

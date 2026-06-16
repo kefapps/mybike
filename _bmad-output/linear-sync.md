@@ -7160,3 +7160,47 @@ MYB-143 closure synced on 2026-06-16:
   `6470d71699b4afb4d6484233ac56a979caca2965`.
 - Linear moved to `Done`.
 - Linear closure comment ID: `36153b79-edce-414a-8aba-d2dacba3b37d`.
+
+MYB-144 Unity art asset validator synced on 2026-06-16:
+
+- Linear issue: `MYB-144` - Validator Unity des assets artistiques.
+- Branch: `MYB-144-unity-art-asset-validator`.
+- Scope:
+  - bounded Unity Editor validator V1;
+  - manifest gate for `docs/manifests/art-rescue-asset-manifest.json`;
+  - safe Unity AssetDatabase checks only;
+  - no scene changes;
+  - no asset import, generation, movement, or auto-repair;
+  - no Blender, Meshy, or Tripo calls.
+- Validator code:
+  `unity/Echapee4D/Assets/MYB144/Editor/MYB144ArtAssetValidator.cs`.
+- Canonical validator spec:
+  `docs/validators/unity-art-asset-validator-spec.md`.
+- Report:
+  `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Menu:
+  `Tools/MyBike/Validation/MYB-144 Art Asset Validator`.
+- Batch method:
+  `MYB144ArtAssetValidator.RunBatch`.
+- Grill decisions implemented:
+  - Unity validator V1, bounded and deterministic;
+  - ticket-local code path with durable menu/report;
+  - `RunValidation()` shared result, menu non-destructive, batch exit `1` only
+    when `ERROR >= 1`;
+  - bounded scan roots: `Assets/Echappee/Art`, `Assets/Echappee/ArtRescue`,
+    and `Assets/MYB*`;
+  - explicit art-asset extension allowlist;
+  - manifest errors are always `ERROR`;
+  - Unity technical `ERROR`s apply only to `promotionStatus: promoted` assets;
+  - warning-only results pass batch in V1.
+- Validation:
+  - `jq . docs/manifests/art-rescue-asset-manifest.json`: PASS;
+  - `git diff --check`: PASS;
+  - Unity batch:
+    `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -batchmode -quit -projectPath unity/Echapee4D -executeMethod MYB144ArtAssetValidator.RunBatch -logFile _bmad-output/unity-test-results/myb-144-unity-batch.log`: PASS;
+  - validator report verdict: `PASS_WITH_WARNINGS`;
+  - validator report summary: 0 errors, 211 warnings, 24 info;
+  - warnings are expected V1 inventory warnings for existing unmanifested asset
+    candidates and do not fail batch.
+- Expected Linear status after implementation: `In Review`, not `Done`, until
+  Julien validates the gate behavior/report.

@@ -296,3 +296,8 @@ MYB-144 must be able to validate:
 - visible promoted assets have route and overview evidence or a documented
   exception;
 - AI promoted assets have explicit provenance and review notes.
+
+The canonical Unity validator behavior, scan roots, severity model, thresholds,
+batch behavior, and report format are defined in:
+
+`docs/validators/unity-art-asset-validator-spec.md`

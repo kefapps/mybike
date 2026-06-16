@@ -159,9 +159,24 @@ MYB-143 asset intake and promotion outputs:
 - `docs/manifests/art-rescue-asset-manifest.json`
   - canonical machine-readable manifest data for Art Rescue asset candidates;
   - versioned root object with `schemaVersion`, `updatedAt`, and `assets`.
+- `docs/validators/unity-art-asset-validator-spec.md`
+  - canonical MYB-144 Unity validator behavior for manifest enforcement,
+    bounded scan roots, severity policy, batch behavior, and report format.
 - `docs/workflows/meshy-tripo-quarantine-workflow.md`
   - quarantine-first intake workflow for Meshy, Tripo, external, Blender MCP,
     in-house, and procedural asset candidates.
+
+MYB-144 V1 lives in a ticket-local Unity Editor folder:
+
+- `unity/Echapee4D/Assets/MYB144/Editor/MYB144ArtAssetValidator.cs`
+
+It exposes a durable Unity menu entry:
+
+- `Tools/MyBike/Validation/MYB-144 Art Asset Validator`
+
+It writes the validation report to:
+
+- `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`
 
 An asset with `intakeStatus: approved` is not automatically production content.
 Visible assets need `promotionStatus: promoted`, validator evidence, and
