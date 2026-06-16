@@ -7579,3 +7579,42 @@ MYB-148 closure synced on 2026-06-16:
     no external text-to-3D, and no production asset promotion.
 - Next recommended ticket:
   `MYB-149` - forest floor / materials / shoulders / route-ground coherence.
+
+MYB-154 MYB-144 legacy/prototype inventory hardening synced on 2026-06-16:
+
+- Linear issue:
+  `MYB-154` - MYB-144B — Classer les assets historiques non manifestés en INFO.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-154/myb-144b-classer-les-assets-historiques-non-manifestes-en-info`.
+- Branch:
+  `MYB-154-myb144-legacy-inventory-info`.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/16`.
+- Linear status after implementation:
+  `In Review`.
+- Linear implementation comment ID:
+  `692be70f-9236-4819-bb93-bec340a7d8f3`.
+- Scope:
+  - MYB-144 validator hardening only;
+  - no canonical manifest mass-fill;
+  - no Unity scene changes;
+  - no asset movement, import, generation, or promotion.
+- Validator change:
+  - active unmanifested candidates under `Assets/Echappee/Art/Candidates/...`
+    and `Assets/Echappee/Art/Production/...` remain `WARNING`;
+  - legacy/prototype inventory under `Assets/MYB*`,
+    `Assets/Echappee/Art/MYB*`, `Assets/Echappee/Art/ThirdParty/...`, and
+    `Assets/Echappee/Art/PremiumTreePolyHaven/...` is reported as aggregate
+    `INFO`;
+  - manifest schema issues and promoted asset issues remain strict `ERROR`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-154/myb-154-implementation-report.md`.
+- MYB-144 validation:
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - info: 25;
+  - legacy/prototype unmanifested inventory: 179 assets reported as aggregate
+    INFO.

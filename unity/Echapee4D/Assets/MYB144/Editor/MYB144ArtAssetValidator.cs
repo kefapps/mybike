@@ -596,8 +596,11 @@ public static class MYB144ArtAssetValidator
                 var entry = FindManifestEntryForPath(manifestByPath, assetPath);
                 if (entry == null)
                 {
-                    AddUnmanifestedCandidate(result, assetPath);
-                    ValidateUnityCandidate(result, assetPath, null);
+                    if (AddUnmanifestedCandidate(result, assetPath))
+                    {
+                        ValidateUnityCandidate(result, assetPath, null);
+                    }
+
                     continue;
                 }
 
@@ -713,14 +716,20 @@ public static class MYB144ArtAssetValidator
                string.IsNullOrEmpty(Path.GetExtension(manifestPath));
     }
 
-    private static void AddUnmanifestedCandidate(ValidationResult result, string assetPath)
+    private static bool AddUnmanifestedCandidate(ValidationResult result, string assetPath)
     {
         if (assetPath.IndexOf("/Quarantine/", StringComparison.OrdinalIgnoreCase) >= 0)
         {
             result.AddInfo(
                 "ASSET_QUARANTINE_UNMANIFESTED_INFO",
                 "Quarantine asset candidate is not listed in the manifest yet: `" + assetPath + "`.");
-            return;
+            return false;
+        }
+
+        if (IsLegacyPrototypeInventoryAsset(assetPath))
+        {
+            result.AddLegacyPrototypeInventory(assetPath);
+            return false;
         }
 
         var code = assetPath.IndexOf("/Production/", StringComparison.OrdinalIgnoreCase) >= 0
@@ -732,6 +741,61 @@ public static class MYB144ArtAssetValidator
             assetPath,
             "Asset candidate is present in a scanned Art Rescue root but is not listed in the manifest.",
             "Add a manifest entry if this candidate should enter review or production.");
+        return true;
+    }
+
+    private static bool IsLegacyPrototypeInventoryAsset(string assetPath)
+    {
+        if (IsActiveArtCandidatePath(assetPath))
+        {
+            return false;
+        }
+
+        if (Regex.IsMatch(assetPath, "^Assets/MYB\\d+/", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            return true;
+        }
+
+        var legacyPrefixes = new[]
+        {
+            "Assets/Echappee/Art/ThirdParty/",
+            "Assets/Echappee/Art/PremiumTreePolyHaven/",
+            "Assets/Echappee/Art/MYB95",
+            "Assets/Echappee/Art/MYB96",
+            "Assets/Echappee/Art/MYB107"
+        };
+
+        if (legacyPrefixes.Any(prefix => assetPath.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)))
+        {
+            return true;
+        }
+
+        return Regex.IsMatch(
+            assetPath,
+            "^Assets/Echappee/Art/MYB\\d+[^/]*/",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+    }
+
+    private static bool IsActiveArtCandidatePath(string assetPath)
+    {
+        return assetPath.IndexOf("/Candidates/", StringComparison.OrdinalIgnoreCase) >= 0 ||
+               assetPath.IndexOf("/Production/", StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
+    private static string LegacyPrototypeInventoryBucket(string assetPath)
+    {
+        var parts = assetPath.Split('/');
+        if (parts.Length >= 4 && parts[0] == "Assets" && parts[1] == "Echappee" && parts[2] == "Art")
+        {
+            return string.Join("/", parts.Take(4));
+        }
+
+        if (parts.Length >= 2 && parts[0] == "Assets" && parts[1].StartsWith("MYB", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Join("/", parts.Take(2));
+        }
+
+        return parts.Length >= 2 ? string.Join("/", parts.Take(2)) : assetPath;
     }
 
     private static void ValidateUnityCandidate(ValidationResult result, string assetPath, AssetEntry entry)
@@ -1089,6 +1153,7 @@ public static class MYB144ArtAssetValidator
         private readonly List<InfoFinding> infos = new List<InfoFinding>();
         private readonly List<ScanRootSummary> scanRoots = new List<ScanRootSummary>();
         private readonly Dictionary<string, int> statusCounts = new Dictionary<string, int>(StringComparer.Ordinal);
+        private readonly Dictionary<string, int> legacyPrototypeInventoryCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
         public int ErrorCount => errors.Count;
         public int WarningCount => warnings.Count;
@@ -1108,6 +1173,17 @@ public static class MYB144ArtAssetValidator
         public void AddInfo(string code, string message)
         {
             infos.Add(new InfoFinding(code, message));
+        }
+
+        public void AddLegacyPrototypeInventory(string assetPath)
+        {
+            var bucket = LegacyPrototypeInventoryBucket(assetPath);
+            if (!legacyPrototypeInventoryCounts.ContainsKey(bucket))
+            {
+                legacyPrototypeInventoryCounts[bucket] = 0;
+            }
+
+            legacyPrototypeInventoryCounts[bucket]++;
         }
 
         public void AddScanRoot(string root, bool exists, int assetsFound, string notes)
@@ -1162,8 +1238,10 @@ public static class MYB144ArtAssetValidator
             builder.AppendLine();
             AppendCandidateExtensionPolicy(builder);
             AppendSeverityPolicy(builder);
+            AppendUnmanifestedClassificationPolicy(builder);
             AppendScanRoots(builder);
             AppendStatusSummary(builder);
+            AppendLegacyPrototypeInventory(builder);
             AppendFindings(builder, "ERROR", errors);
             AppendFindings(builder, "WARNING", warnings);
             AppendInfos(builder);
@@ -1204,7 +1282,9 @@ public static class MYB144ArtAssetValidator
             builder.AppendLine();
             builder.AppendLine("Unity technical checks are ERROR only for `promotionStatus: promoted` assets.");
             builder.AppendLine();
-            builder.AppendLine("For candidate, review, quarantine, non-manifested or ambiguous assets, technical issues are WARNING or INFO in V1.");
+            builder.AppendLine("For active candidate, review, non-manifested or ambiguous assets, technical issues are WARNING or INFO in V1.");
+            builder.AppendLine();
+            builder.AppendLine("Legacy/prototype unmanifested inventory is INFO, aggregated by folder, and is not treated as active candidate debt.");
             builder.AppendLine();
             builder.AppendLine("Thresholds:");
             builder.AppendLine("- texture max dimension > 2048 => WARNING");
@@ -1214,6 +1294,27 @@ public static class MYB144ArtAssetValidator
             builder.AppendLine("- complex MeshCollider on non-promoted asset => WARNING");
             builder.AppendLine("- material count > 4 => WARNING");
             builder.AppendLine("- triangle count and suspicious bounds => WARNING only in V1");
+            builder.AppendLine();
+        }
+
+        private static void AppendUnmanifestedClassificationPolicy(StringBuilder builder)
+        {
+            builder.AppendLine("## Unmanifested Asset Classification Policy");
+            builder.AppendLine();
+            builder.AppendLine("Active unmanifested candidate assets remain WARNING.");
+            builder.AppendLine("Legacy/prototype unmanifested inventory is reported as INFO in aggregate.");
+            builder.AppendLine();
+            builder.AppendLine("Active candidate paths include:");
+            builder.AppendLine("- `Assets/Echappee/Art/Candidates/...`");
+            builder.AppendLine("- `Assets/Echappee/Art/Production/...`");
+            builder.AppendLine();
+            builder.AppendLine("Legacy/prototype inventory paths include:");
+            builder.AppendLine("- `Assets/MYB*` ticket-local historical roots;");
+            builder.AppendLine("- `Assets/Echappee/Art/MYB*` historical/prototype roots;");
+            builder.AppendLine("- `Assets/Echappee/Art/ThirdParty/...`;");
+            builder.AppendLine("- `Assets/Echappee/Art/PremiumTreePolyHaven/...`.");
+            builder.AppendLine();
+            builder.AppendLine("Promoted assets and manifest schema issues remain strict ERROR regardless of this classification.");
             builder.AppendLine();
         }
 
@@ -1247,6 +1348,29 @@ public static class MYB144ArtAssetValidator
                 {
                     builder.AppendLine("| `" + pair.Key + "` | " + pair.Value + " |");
                 }
+            }
+
+            builder.AppendLine();
+        }
+
+        private void AppendLegacyPrototypeInventory(StringBuilder builder)
+        {
+            builder.AppendLine("## Legacy / Prototype Inventory Info");
+            builder.AppendLine();
+            builder.AppendLine("| Folder | Unmanifested asset candidates |");
+            builder.AppendLine("|---|---:|");
+            if (legacyPrototypeInventoryCounts.Count == 0)
+            {
+                builder.AppendLine("| - | 0 |");
+            }
+            else
+            {
+                foreach (var pair in legacyPrototypeInventoryCounts.OrderByDescending(pair => pair.Value).ThenBy(pair => pair.Key, StringComparer.Ordinal))
+                {
+                    builder.AppendLine("| `" + Escape(pair.Key) + "` | " + pair.Value + " |");
+                }
+
+                builder.AppendLine("| **Total legacy/prototype inventory** | **" + legacyPrototypeInventoryCounts.Values.Sum() + "** |");
             }
 
             builder.AppendLine();
