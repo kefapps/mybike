@@ -7618,3 +7618,24 @@ MYB-154 MYB-144 legacy/prototype inventory hardening synced on 2026-06-16:
   - info: 25;
   - legacy/prototype unmanifested inventory: 179 assets reported as aggregate
     INFO.
+
+MYB-154 closure synced on 2026-06-16:
+
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/16`.
+- Merge method:
+  squash.
+- Merge commit:
+  `555fc718899a917b8fd6af9d0723628383070d48`.
+- Linear status moved to:
+  `Done`.
+- Linear closure comment ID:
+  `981c0783-6d2c-426c-8aca-8efb9b6768ef`.
+- Closure interpretation:
+  - historical/prototype unmanifested asset inventory no longer pollutes every
+    Art Rescue ticket as active warnings;
+  - active candidate leaks under `Candidates` / `Production` still report as
+    `WARNING`;
+  - manifest and promoted asset issues remain strict `ERROR`;
+  - no manifest mass-fill, scene change, asset movement, asset import, or asset
+    promotion was performed.
