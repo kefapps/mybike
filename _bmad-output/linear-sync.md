@@ -7215,3 +7215,63 @@ MYB-144 Unity art asset validator synced on 2026-06-16:
     candidates and do not fail batch.
 - Expected Linear status after implementation: `In Review`, not `Done`, until
   Julien validates the gate behavior/report.
+
+MYB-145 visual checkpoint workflow synced on 2026-06-16:
+
+- Linear issue: `MYB-145` - Workflow captures avant/après + régression visuelle.
+- Linear status: `In Progress` during implementation; expected final status is
+  `In Review`, not `Done`, until Julien validates the workflow and example.
+- Branch: `MYB-145-visual-checkpoint-workflow`.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/8`.
+- Implementation commit:
+  `bdeb724 MYB-145 visual checkpoint workflow`.
+- Linear status after implementation:
+  `In Review`, not `Done`, until Julien validates the workflow and example
+  visual evidence.
+- Linear implementation comment ID:
+  `0ee7a9a4-f97a-4764-9b2d-9fe12fe8a8c9`.
+- Scope:
+  - Unity Editor capture workflow V1;
+  - ticket-local helper;
+  - no visual polish;
+  - no gameplay, lighting, fog, material, route, scatter, or asset changes;
+  - no Blender, Meshy, Tripo, import, or asset generation.
+- Helper code:
+  `unity/Echapee4D/Assets/MYB145/Editor/MYB145CaptureRigHelper.cs`.
+- Menus:
+  - `Tools/MyBike/Capture/MYB-145 Setup Capture Cameras`;
+  - `Tools/MyBike/Capture/MYB-145 Validate Capture Cameras`;
+  - `Tools/MyBike/Capture/MYB-145 Capture Route + Overview`.
+- Batch methods:
+  - `MYB145CaptureRigHelper.RunBatchValidate`;
+  - `MYB145CaptureRigHelper.RunBatchCapture`;
+  - `MYB145CaptureRigHelper.RunBatchExample` for the MYB-145 proof run only.
+- Canonical docs:
+  - `docs/workflows/visual-checkpoint-workflow.md`;
+  - `docs/templates/art-checkpoint-report-template.md`.
+- Canonical output convention:
+  `_bmad-output/visual-checkpoints/<ticket-id>/`.
+- Example output:
+  `_bmad-output/visual-checkpoints/MYB-145/2026-06-16T11-23-42Z-current-route.png`.
+- Example overview:
+  `_bmad-output/visual-checkpoints/MYB-145/2026-06-16T11-23-42Z-current-overview.png`.
+- Example report:
+  `_bmad-output/visual-checkpoints/MYB-145/2026-06-16T11-23-42Z-capture-report.md`.
+- Example metadata:
+  `_bmad-output/visual-checkpoints/MYB-145/2026-06-16T11-23-42Z-capture-metadata.json`.
+- Grill decisions implemented:
+  - capture + camera rig helper;
+  - explicit `current`, `before`, and `after` states;
+  - no automatic baseline selection;
+  - Markdown report plus JSON metadata;
+  - warnings-only batch results exit `0`;
+  - route camera is blocking, overview is secondary;
+  - `visual-checkpoints` wins for comparable visual evidence.
+- Validation:
+  - `git diff --check`: PASS;
+  - `jq . _bmad-output/visual-checkpoints/MYB-145/*-capture-metadata.json`: PASS;
+  - Unity batch example:
+    `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -batchmode -quit -projectPath unity/Echapee4D -executeMethod MYB145CaptureRigHelper.RunBatchExample -myb145Scene Assets/Scenes/MYB89UnityMcpProbe.unity -myb145Ticket MYB-145 -myb145State current -logFile _bmad-output/unity-test-results/myb-145-unity-batch.log`: PASS;
+  - example report verdict: `PASS`;
+  - example metadata: 2 captures, 0 errors, 0 warnings.

@@ -718,6 +718,39 @@ Non-examples:
 - An asset that looks good alone but reads wrong at ride-camera distance,
   speed, scale, lighting, or density.
 
+### Visual Checkpoint Evidence
+
+Definition: Comparable capture evidence produced by the MYB-145 workflow for
+Art Rescue visual reviews.
+
+Canonical path:
+
+- `_bmad-output/visual-checkpoints/<ticket-id>/`
+
+Relationships:
+
+- `Visual Checkpoint Evidence` contains route screenshots, overview screenshots,
+  before/after sheets, capture reports, and capture metadata JSON.
+- It is the standard output location for MYB-145 and future MYB-147+ visual
+  tickets.
+- `_bmad-output/implementation-artifacts/` remains valid for general
+  implementation artifacts, imported docs, ticket notes, and historical reports.
+- Visual checkpoint evidence provides comparable proof for review. It does not
+  by itself declare `Premium target`.
+
+Examples:
+
+- `_bmad-output/visual-checkpoints/MYB-150/2026-06-16-after-route.png`
+- `_bmad-output/visual-checkpoints/MYB-150/2026-06-16-route-before-after.png`
+- `_bmad-output/visual-checkpoints/MYB-150/2026-06-16-capture-report.md`
+- `_bmad-output/visual-checkpoints/MYB-150/2026-06-16-capture-metadata.json`
+
+Non-examples:
+
+- Imported Art Rescue source docs under `_bmad-output/implementation-artifacts/`.
+- Unity batch logs under `_bmad-output/unity-test-results/`.
+- A screenshot without scene, camera, state, or baseline metadata.
+
 ### Ambition Visuelle Mesurée
 
 Definition: The Art Rescue arbitration rule that MyBike aims for `Stylisé

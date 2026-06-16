@@ -88,6 +88,26 @@ Relationship:
 - Existing Unity ticket-local manifests under `unity/Echapee4D/Assets/...`
   remain historical or ticket-specific evidence unless explicitly migrated.
 
+MYB-145 outputs:
+
+- `docs/workflows/visual-checkpoint-workflow.md`
+  - canonical workflow for route/overview visual checkpoint captures;
+  - defines explicit `current`, `before`, and `after` states.
+- `docs/templates/art-checkpoint-report-template.md`
+  - reusable human-readable capture report template.
+- `unity/Echapee4D/Assets/MYB145/Editor/MYB145CaptureRigHelper.cs`
+  - ticket-local Unity Editor helper for setup, validation, and capture.
+- `_bmad-output/visual-checkpoints/<ticket-id>/`
+  - canonical output path for comparable visual evidence.
+
+Relationship:
+
+- MYB-142 defines how visual evidence is judged.
+- MYB-145 defines where and how comparable visual evidence is produced.
+- `_bmad-output/implementation-artifacts/` remains for general artifacts and
+  history; `visual-checkpoints` wins for standardized route/overview captures,
+  before/after sheets, reports, and metadata.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`

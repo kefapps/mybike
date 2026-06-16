@@ -68,6 +68,8 @@ Use these paths consistently:
   convention, for example `unity/Echapee4D/Assets/MYB###/Editor/`
 - BMAD planning artifacts: `_bmad-output/planning-artifacts/`
 - BMAD implementation artifacts: `_bmad-output/implementation-artifacts/`
+- Comparable visual checkpoint evidence:
+  `_bmad-output/visual-checkpoints/<ticket-id>/`
 - Unity validation output: `_bmad-output/unity-test-results/`
 - Linear sync ledger: `_bmad-output/linear-sync.md`
 - Canonical forest corridor art bible:
@@ -478,9 +480,13 @@ For any visual Unity ticket, produce at least:
 - a clear note saying whether the result is final art, production candidate,
   prototype evidence, or rejected experiment.
 
-For forest-corridor tickets, put captures and reports in a ticket-specific
-folder under `_bmad-output/implementation-artifacts/`, unless the current issue
-explicitly says to use the art-rescue import root.
+For MYB-145 and future comparable Art Rescue visual evidence, put route captures,
+overview captures, before/after sheets, capture reports, and capture metadata
+under `_bmad-output/visual-checkpoints/<ticket-id>/`.
+
+`_bmad-output/implementation-artifacts/` remains valid for general
+implementation artifacts, imported docs, ticket notes, and historical material.
+For standardized MYB-145 / MYB-147+ visual evidence, `visual-checkpoints` wins.
 
 Do not close an art-direction ticket with only an overview screenshot. The ride
 camera is the product view.
