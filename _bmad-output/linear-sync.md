@@ -7275,3 +7275,28 @@ MYB-145 visual checkpoint workflow synced on 2026-06-16:
     `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -batchmode -quit -projectPath unity/Echapee4D -executeMethod MYB145CaptureRigHelper.RunBatchExample -myb145Scene Assets/Scenes/MYB89UnityMcpProbe.unity -myb145Ticket MYB-145 -myb145State current -logFile _bmad-output/unity-test-results/myb-145-unity-batch.log`: PASS;
   - example report verdict: `PASS`;
   - example metadata: 2 captures, 0 errors, 0 warnings.
+
+MYB-145 reviewed and merged on 2026-06-16:
+
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/8`.
+- Review result:
+  no blocking findings.
+- Gitea review comment:
+  `http://localhost:3000/kefapps/mybike/pulls/8#issuecomment-450`.
+- Merge method:
+  squash.
+- Merge commit:
+  `c034b6a MYB-145 Visual checkpoint capture workflow V1 (#8)`.
+- Linear moved to `Done` after Julien requested review and merge.
+- Review validation:
+  - PR metadata/files/reviews checked via Gitea;
+  - `git diff --check origin/main...origin/MYB-145-visual-checkpoint-workflow`: PASS;
+  - high-confidence secret scan on PR diff: PASS;
+  - metadata JSON validated with `jq`: PASS;
+  - no scene, MYB114, or MYB137 files in PR diff;
+  - Unity batch example rerun with `MYB145CaptureRigHelper.RunBatchExample`: PASS;
+  - temporary Unity MYB107 material serialization churn was restored and not
+    included in the merge.
+- Next recommended Art Rescue ticket:
+  `MYB-147` - kit procédural / familles candidates.
