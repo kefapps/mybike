@@ -7193,6 +7193,17 @@ MYB-144 Unity art asset validator synced on 2026-06-16:
   - manifest errors are always `ERROR`;
   - Unity technical `ERROR`s apply only to `promotionStatus: promoted` assets;
   - warning-only results pass batch in V1.
+- Review fix commit:
+  `222e9fea0fdf8131d8320cda9fe6f4f3606ad2f4`.
+- Gitea PR:
+  `https://gitea.kefapps.wtf/kefapps/mybike/pulls/6`.
+- Merge method: squash.
+- Merge commit:
+  `5ca343a MYB-144 Unity art asset validator V1 (#6)`.
+- Linear moved to `Done` after Julien requested merge.
+- Linear closure comment ID: `517f4faa-eaf1-44f2-a10d-03d5ebcb98ca`.
+- Next recommended Art Rescue ticket:
+  `MYB-145` - Workflow captures avant/après + régression visuelle.
 - Validation:
   - `jq . docs/manifests/art-rescue-asset-manifest.json`: PASS;
   - `git diff --check`: PASS;
