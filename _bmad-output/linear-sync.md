@@ -7480,3 +7480,18 @@ MYB-147 merge synced on 2026-06-16:
   - No production promotion, no canonical corridor scatter, no Meshy/Tripo, no
     external text-to-3D, and no `Premium target` claim.
   - Route-camera validation is deferred to MYB-148 / MYB-150.
+
+MYB-147 closure synced on 2026-06-16:
+
+- Julien requested `Done` after merge.
+- Linear status moved to:
+  `Done`.
+- Linear closure comment ID:
+  `10a31fe2-0cb5-4d63-ac80-8f8b3cd666b6`.
+- Closure interpretation:
+  - MYB-147 is Done as a reusable candidate kit v0;
+  - it remains candidate-only, not production-promoted;
+  - it is not `Premium target` evidence;
+  - route-camera production validation is still deferred to MYB-148 / MYB-150.
+- Next recommended ticket:
+  `MYB-148` - Scatter route-first contrôlé par bandes.
