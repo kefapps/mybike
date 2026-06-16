@@ -7495,3 +7495,65 @@ MYB-147 closure synced on 2026-06-16:
   - route-camera production validation is still deferred to MYB-148 / MYB-150.
 - Next recommended ticket:
   `MYB-148` - Scatter route-first contrôlé par bandes.
+
+MYB-148 route-first scatter preview synced on 2026-06-16:
+
+- Linear issue: `MYB-148` - Scatter route-first contrôlé par bandes.
+- Linear status after implementation:
+  `In Review`.
+- Linear implementation comment ID:
+  `2fcbbc57-3982-4c95-b896-e68c07d1dc7d`.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/13`.
+- Branch:
+  `MYB-148-scatter-route-first-controle-par-bandes`.
+- Implementation commit:
+  `f2c275d MYB-148 route-first scatter preview`.
+- Scope:
+  - ticket-local Unity builder;
+  - dedicated preview scene only;
+  - no canonical ride scene overwrite;
+  - no gameplay change;
+  - no Meshy, Tripo, external text-to-3D, or new external asset source;
+  - no production asset promotion.
+- Builder:
+  `unity/Echapee4D/Assets/MYB148/Editor/MYB148RouteFirstScatterBuilder.cs`.
+- Preview scene:
+  `unity/Echapee4D/Assets/Scenes/MYB148RouteFirstScatterPreview.unity`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-148/myb-148-implementation-report.md`.
+- Metrics:
+  `_bmad-output/implementation-artifacts/MYB-148/myb-148-scatter-metrics.json`.
+- Visual checkpoint output:
+  `_bmad-output/visual-checkpoints/MYB-148/`.
+- Route comparison:
+  `_bmad-output/visual-checkpoints/MYB-148/2026-06-16T15-33-50Z-route-before-after.png`.
+- Overview comparison:
+  `_bmad-output/visual-checkpoints/MYB-148/2026-06-16T15-33-50Z-overview-before-after.png`.
+- Capture report:
+  `_bmad-output/visual-checkpoints/MYB-148/2026-06-16T15-33-51Z-capture-report.md`.
+- Metrics summary:
+  - scatter placements: 60;
+  - renderers: 75;
+  - mesh filters: 75;
+  - approximate scene triangles: 20,098;
+  - minimum route clearance: 3.45 m.
+- Validation:
+  - Unity batch build + capture: PASS, exit 0;
+  - MYB-144 validator: `PASS_WITH_WARNINGS`;
+  - MYB-144 errors: 0;
+  - MYB-144 warnings: 211 existing unmanifested candidate assets in scanned Art
+    Rescue roots;
+  - `git diff --cached --check`: PASS before commit.
+- Visual verdict:
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - preview evidence only, not final `Premium target` evidence.
+- Human review reporting fix:
+  - no further scatter rework requested in MYB-148;
+  - implementation report now separates build/capture warnings from MYB-144
+    validator warnings;
+  - build/capture warnings: none;
+  - validator warnings: 211 existing unmanifested candidate assets in scanned
+    Art Rescue roots;
+  - blocking errors: 0.
