@@ -7149,3 +7149,14 @@ MYB-143 asset manifest and intake policy synced on 2026-06-16:
   - required MYB-143 text checks: PASS;
   - tracked diff contains no Unity scene, asset, image, Blender, Meshy, or Tripo
     output.
+
+MYB-143 closure synced on 2026-06-16:
+
+- Julien explicitly requested merge after review.
+- Gitea PR #4 merged:
+  `https://gitea.kefapps.wtf/kefapps/mybike/pulls/4`.
+- Merge method: squash.
+- Merge commit:
+  `6470d71699b4afb4d6484233ac56a979caca2965`.
+- Linear moved to `Done`.
+- Linear closure comment ID: `36153b79-edce-414a-8aba-d2dacba3b37d`.
