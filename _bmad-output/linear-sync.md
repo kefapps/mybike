@@ -7557,3 +7557,25 @@ MYB-148 route-first scatter preview synced on 2026-06-16:
   - validator warnings: 211 existing unmanifested candidate assets in scanned
     Art Rescue roots;
   - blocking errors: 0.
+
+MYB-148 closure synced on 2026-06-16:
+
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/13`.
+- Merge method:
+  squash.
+- Merge commit:
+  `bd6570d6b4bd2f954294fe9d99faa5441ae25d37`.
+- Linear status moved to:
+  `Done`.
+- Linear closure comment ID:
+  `9da2bc0f-27b9-48ab-86c2-14a81ec9adaa`.
+- Closure interpretation:
+  - MYB-148 is Done as a route-first scatter checkpoint;
+  - it is not `Premium target` evidence;
+  - final visual status remains `Checkpoint insuffisant`;
+  - route readability was preserved and route clearance minimum was 3.45 m;
+  - no canonical ride scene overwrite, no gameplay change, no Meshy/Tripo,
+    no external text-to-3D, and no production asset promotion.
+- Next recommended ticket:
+  `MYB-149` - forest floor / materials / shoulders / route-ground coherence.
