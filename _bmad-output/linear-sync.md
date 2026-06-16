@@ -7452,3 +7452,31 @@ MYB-147 candidate kit v0 final human review synced on 2026-06-16:
   - No production promotion, no canonical corridor scatter, no Meshy/Tripo, no
     external text-to-3D, and no `Premium target` claim.
   - Route-camera validation is deferred to MYB-148 / MYB-150.
+
+MYB-147 merge synced on 2026-06-16:
+
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/10`.
+- Merge method:
+  squash.
+- Merge commit:
+  `1ed2afa90cb307c374bf66faf56dd0786af3d89e`.
+- Linear merge comment ID:
+  `e4deb9a4-a55f-420f-8e5f-7c454b06890c`.
+- Merged scope:
+  - `MYB_ForestKit_V0` candidate kit v0;
+  - 21 candidate assets under
+    `unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB_ForestKit_V0/`;
+  - canonical manifest entries with `sourceType: internal`,
+    `provider: Blender MCP / procedural`, `intakeStatus: approved`, and
+    `promotionStatus: candidate`.
+- Merge validation:
+  - PR mergeability was clean before merge;
+  - `git diff --check origin/main...HEAD`: PASS before merge;
+  - MYB-144 report before merge: `PASS_WITH_WARNINGS`;
+  - MYB-144 errors: 0.
+- Final status:
+  - MYB-147 remains `In Review`, not `Done`, per final human review decision.
+  - No production promotion, no canonical corridor scatter, no Meshy/Tripo, no
+    external text-to-3D, and no `Premium target` claim.
+  - Route-camera validation is deferred to MYB-148 / MYB-150.
