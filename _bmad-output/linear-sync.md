@@ -7028,6 +7028,7 @@ MYB-142 visual diagnosis and shot rubric synced on 2026-06-16:
   `https://linear.app/kefjbo/issue/MYB-142/audit-visuel-myb-137-grille-de-validation`.
 - Linear status: `In Review`.
 - Linear implementation comment ID: `21caaac5-028d-46f7-836f-22b70230a8e9`.
+- Pull request: `https://github.com/kefapps/mybike/pull/36`.
 - Branch: `MYB-142-visual-diagnosis-shot-rubric`.
 - Implementation commit:
   `7a22a9b3db2c7c77d85d8d53652aa6693d902d6c`.
