@@ -341,6 +341,21 @@ Historical web MVP tracker:
 Prefer Linear issue IDs in branch names, summaries, generated reports, capture
 folders, implementation notes, and PR descriptions.
 
+## Git Hosting
+
+Gitea is the active Git hosting and review system for this repository.
+
+- Do not use GitHub for new remotes, pushes, pull requests, reviews, or merges.
+- Do not recreate a GitHub remote. If a GitHub remote exists locally, remove it.
+- Historical GitHub links in old artifacts remain reference evidence only; they
+  are not the active workflow.
+- Use Gitea for branch publication, pull requests, review comments, and merge
+  operations.
+- If no Gitea remote is configured, ask for the canonical Gitea remote URL
+  before pushing.
+- Linear remains the product tracking system; Git hosting/review happens in
+  Gitea.
+
 ## Branch And Completion Workflow
 
 - Each Linear ticket must be implemented on a dedicated branch whose name starts
