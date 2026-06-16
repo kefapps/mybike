@@ -7020,3 +7020,58 @@ Closure synced on 2026-06-16:
 - Closure note:
   - Julien's request to review and merge if OK was treated as human closure
     validation for this doc-only governance ticket.
+
+MYB-142 visual diagnosis and shot rubric synced on 2026-06-16:
+
+- Linear issue: `MYB-142` - Audit visuel MYB-137 + grille de validation.
+- Linear URL:
+  `https://linear.app/kefjbo/issue/MYB-142/audit-visuel-myb-137-grille-de-validation`.
+- Linear status: `In Review`.
+- Linear implementation comment ID: `21caaac5-028d-46f7-836f-22b70230a8e9`.
+- Branch: `MYB-142-visual-diagnosis-shot-rubric`.
+- Implementation commit:
+  `7a22a9b3db2c7c77d85d8d53652aa6693d902d6c`.
+- Scope:
+  - doc-only audit/rubric ticket;
+  - no Unity scene changes;
+  - no asset generation or import;
+  - no Blender, Meshy, Tripo, or production visual output.
+- Canonical MYB-137 diagnostic:
+  `docs/art-direction/myb-137-visual-diagnosis.md`.
+- Reusable forest corridor shot rubric:
+  `docs/validation/forest-corridor-shot-rubric.md`.
+- Updated local pointers:
+  - `AGENTS.md`;
+  - `CONTEXT.md`;
+  - `CONTEXT-MAP.md`.
+- MYB-137 scoring:
+  - validation surface: `Diagnostic Surface`;
+  - scored state: MYB-137 after only;
+  - before state: qualitative before/after delta only;
+  - average score: `2.22`;
+  - `Premium target reached: No`;
+  - verdict: `Checkpoint insuffisant`.
+- Rubric summary:
+  - 9 criteria;
+  - blocking criteria: route readability, silhouette quality, lighting mood,
+    material coherence;
+  - contributive criteria: foreground richness, midground density, background
+    depth, scale credibility, composition rhythm;
+  - `Premium target` requires average >= 4 and all blocking criteria >= 4.
+- Issue-to-action routing:
+  - comparable captures / visual workflow -> `MYB-145`;
+  - asset manifest / provenance -> `MYB-143`;
+  - Unity validators -> `MYB-144`;
+  - procedural kit / candidate families -> `MYB-147`;
+  - route-first scatter -> `MYB-148`;
+  - forest floor / material work -> `MYB-149`;
+  - strong silhouettes / landmarks -> `MYB-150`;
+  - lighting / fog / mood -> `MYB-151`;
+  - performance / LOD / collisions -> `MYB-153`.
+- Validation:
+  - required MYB-142 text checks: PASS;
+  - `git diff --cached --check`: PASS;
+  - staged Unity/assets/generated-output check: PASS.
+- Closure rule:
+  - MYB-142 must remain `In Review` until Julien explicitly validates both the
+    MYB-137 diagnostic and the reusable forest corridor shot rubric.
