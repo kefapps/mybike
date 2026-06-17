@@ -8487,6 +8487,12 @@ MYB-162 productionization planning synced on 2026-06-18:
   `MYB-162-forest-golden-slice-productionization-plan`.
 - Planning artifact:
   `_bmad-output/planning-artifacts/MYB-162-forest-golden-slice-productionization-plan.md`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/24
+- Gitea merge/head SHA:
+  `a44e4fbdaa9b8f18fffdef3c75238ea77b4e277e`.
+- Linear closure comment:
+  `fd13c2a8-aad7-4f13-bda2-74989d354f7e`.
 - Baseline:
   MYB-159 / MYB-160 / MYB-161 learning loop, with Julien validation of the
   revised MYB-161 checkpoint on 2026-06-18.
@@ -8503,6 +8509,8 @@ MYB-162 productionization planning synced on 2026-06-18:
   `MYB-163` - Canonical Forest Passage Integration From Validated Golden Slice
   Direction.
 - Recommended MYB-162 status after sync:
+  `Done`.
+- Linear status after closure:
   `Done`.
 
 MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
