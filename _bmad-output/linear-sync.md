@@ -8215,6 +8215,10 @@ MYB-159 golden forest slice synced on 2026-06-17:
   https://linear.app/kefjbo/issue/MYB-159/golden-slice-foret-authored-route-camera-avec-usage-meshy-controle-si
 - Branch:
   `MYB-159-golden-forest-slice-authored`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/21
+- Local commit:
+  `8954b69` - MYB-159 golden forest slice preview.
 - Base:
   stacked on `MYB-158-premium-route-camera-forest-corridor-pass` because
   MYB-158 after is the required before baseline for MYB-159.
