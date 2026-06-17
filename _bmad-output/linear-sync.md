@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-17
+Last sync: 2026-06-18
 
 ## Workspace
 
@@ -8474,6 +8474,35 @@ MYB-160 downstream validation and closure synced on 2026-06-18:
 - Recommended Linear status after validation:
   `Done`.
 - Linear status after closure:
+  `Done`.
+
+MYB-162 productionization planning synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-162` - Forest Golden Slice Productionization Plan / Canonical Integration
+  Readiness.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-162/forest-golden-slice-productionization-plan-canonical-integration
+- Branch:
+  `MYB-162-forest-golden-slice-productionization-plan`.
+- Planning artifact:
+  `_bmad-output/planning-artifacts/MYB-162-forest-golden-slice-productionization-plan.md`.
+- Baseline:
+  MYB-159 / MYB-160 / MYB-161 learning loop, with Julien validation of the
+  revised MYB-161 checkpoint on 2026-06-18.
+- Scope:
+  - planning/readiness only;
+  - no Unity scene changes;
+  - no gameplay, route, collider, HUD, or telemetry changes;
+  - no new Meshy generation;
+  - no asset production promotion.
+- Key decision:
+  the next useful implementation move is a constrained canonical integration
+  pass, not a broad new asset generation pass.
+- Recommended follow-up ticket:
+  `MYB-163` - Canonical Forest Passage Integration From Validated Golden Slice
+  Direction.
+- Recommended MYB-162 status after sync:
   `Done`.
 
 MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
