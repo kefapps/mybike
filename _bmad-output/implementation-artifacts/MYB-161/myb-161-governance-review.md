@@ -25,7 +25,12 @@
 | thumbnail forest read | pass |
 | hero beat read | pass |
 | Premium target reached | No |
-| Recommended Linear status | In Review |
+| Julien human validation | Validated on 2026-06-18 |
+| Recommended Linear status | Done |
 
 Final auto-review:
 - PASS_WITH_WARNINGS
+
+Closure note:
+- Julien validated the revised checkpoint on 2026-06-18.
+- Premium target remains No; this is accepted checkpoint evidence, not final premium production art.

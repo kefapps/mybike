@@ -7,6 +7,9 @@ MYB-161 is an art-directed composition pass, not a new global generation pass. M
 Human preference note:
 Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.
 
+Human validation note:
+Julien validated this revised MYB-161 checkpoint on 2026-06-18. The validation accepts the revised direction as a checkpoint despite `Premium target reached: No`; it does not promote the result as final premium production art.
+
 ## Baseline
 
 - before = MYB-160 after
@@ -106,7 +109,7 @@ Julien prefers the previous left/baseline mood over the first MYB-161 after. Thi
 
 ## Visual Rubric Estimate
 
-Scores are implementation estimates pending Julien human visual review.
+Scores are implementation estimates retained as context after Julien human validation. Julien validated the revised direction, not a final Premium target score.
 
 | Criterion | Estimate | Notes |
 |---|---:|---|
@@ -129,6 +132,7 @@ Scores are implementation estimates pending Julien human visual review.
 ### MYB-161 Visual Warnings
 
 - Premium target intentionally not claimed; MYB-161 is an art-directed composition checkpoint pending Julien visual review.
+- Julien validated the revised checkpoint on 2026-06-18; Premium target remains intentionally not claimed.
 - Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.
 - MYB-161 revision keeps the human-preferred MYB-159/MYB-160 canopy enclosure active and uses MYB-161 as a restrained structural overlay.
 - Blob canopy dominance remains a known risk because the preferred baseline relies on generous canopy masses; this revision avoids optimizing toward the sparse first after image.
@@ -160,5 +164,5 @@ Scores are implementation estimates pending Julien human visual review.
 ## Verdict
 
 - Premium target reached: No
-- Checkpoint insuffisant, but visually stronger pending Julien human review
-- Recommended Linear status: In Review
+- Checkpoint insuffisant, visually accepted by Julien on 2026-06-18
+- Recommended Linear status: Done
