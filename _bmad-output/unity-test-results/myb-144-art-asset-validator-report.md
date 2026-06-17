@@ -3,7 +3,7 @@
 Verdict: PASS
 
 Execution:
-- Mode: MYB-161-BuildCaptureValidate
+- Mode: MYB-163-BuildCaptureValidate
 - Batch exit code: 0 when run through RunBatch
 
 Summary:
@@ -111,6 +111,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB159` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB160` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB161` | Yes | 0 | No V1 asset candidates found. |
+| `Assets/MYB163` | Yes | 13 | Scanned. |
 | `Assets/MYB42` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB44` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB48` | Yes | 3 | Scanned. |
@@ -147,6 +148,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB104` | 16 |
 | `Assets/Echappee/Art/MYB95MeshyRelicFountain` | 15 |
 | `Assets/Echappee/Art/MYB95MeshyLantern` | 13 |
+| `Assets/MYB163` | 13 |
 | `Assets/Echappee/Art/MYB95MeshyCharacter` | 12 |
 | `Assets/Echappee/Art/MYB107PolyHavenStylized` | 9 |
 | `Assets/MYB106` | 6 |
@@ -154,7 +156,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB107` | 4 |
 | `Assets/MYB48` | 3 |
 | `Assets/Echappee/Art/MYB42Validation` | 2 |
-| **Total legacy/prototype inventory** | **179** |
+| **Total legacy/prototype inventory** | **192** |
 
 ## ERROR
 

@@ -8476,6 +8476,90 @@ MYB-160 downstream validation and closure synced on 2026-06-18:
 - Linear status after closure:
   `Done`.
 
+MYB-163 canonical forest passage integration synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-163` - Canonical Forest Passage Integration From Validated Golden Slice
+  Direction.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-163/canonical-forest-passage-integration-from-validated-golden-slice
+- Linear implementation comment:
+  `5f8fb692-e0ff-4ac1-8ede-ef2ca8b7a306`.
+- Branch:
+  `MYB-163-canonical-forest-passage-integration`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/25
+- Linear PR comment:
+  `00e31d4a-cdbc-4c41-8f89-b78108a8347a`.
+- Linear validation comment:
+  `bb9cb414-6d0e-4ad9-84c9-e015a0f2a52a`.
+- Canonical scene:
+  `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Builder:
+  `unity/Echapee4D/Assets/MYB163/Editor/MYB163CanonicalForestPassageIntegrator.cs`.
+- Generated root:
+  `MYB163_CanonicalForestPassageRoot`.
+- Reports:
+  - implementation:
+    `_bmad-output/implementation-artifacts/MYB-163/myb-163-implementation-report.md`;
+  - governance:
+    `_bmad-output/implementation-artifacts/MYB-163/myb-163-governance-review.md`;
+  - metrics:
+    `_bmad-output/implementation-artifacts/MYB-163/myb-163-canonical-forest-passage-metrics.json`.
+- Final visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-23Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-23Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-overview-before-after.png`.
+- Metrics:
+  - treeAssemblyCount: 3;
+  - routeVisibleTreeAssemblyCount: 3;
+  - heroBeatCount: 1;
+  - backWallMassCount: 8;
+  - foregroundFrameCount: 1;
+  - sideBankPatchCount: 8;
+  - routeVisibleCanopyCount: 40;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - floatingAssetCount: 0;
+  - routeVisibleFloatingAssetCount: 0;
+  - routeOverlapCount: 0;
+  - minimumRouteClearanceMeters: 3.9;
+  - approximateTriangles: 13784;
+  - meshyAssetUsedCount: 0;
+  - newMeshyGenerationCount: 0;
+  - thumbnailForestRead: `pass`;
+  - heroBeatRead: `pass`;
+  - emptySkyOrFlatBackgroundRisk: `low`;
+  - routeReadabilityRegression: false.
+- MYB-144 validation:
+  - final mode: `MYB-163-BuildCaptureValidate`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Scope confirmations:
+  - canonical scene changed only through the MYB-163 generated root and capture
+    normalization;
+  - no gameplay, route trajectory, route collider, HUD, or telemetry change;
+  - no new Meshy generation;
+  - no Meshy or third-party production promotion.
+- Visual verdict:
+  - `Premium target reached`: No;
+  - `Checkpoint insuffisant`;
+  - Julien validated the MYB-163 canonical route-camera checkpoint on 2026-06-18;
+  - recommended Linear status after validation is `Done`.
+- Linear status after implementation sync:
+  `In Review`.
+
 MYB-162 productionization planning synced on 2026-06-18:
 
 - Linear issue:
