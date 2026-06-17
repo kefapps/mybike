@@ -8338,6 +8338,10 @@ MYB-160 implementation evidence synced on 2026-06-17:
   https://linear.app/kefjbo/issue/MYB-160/meshy-hero-forest-candidates-pour-golden-slice
 - Branch:
   `MYB-160-meshy-hero-forest-candidates`.
+- Gitea pull request:
+  `#22` - http://localhost:3000/kefapps/mybike/pulls/22
+- Gitea PR base:
+  `MYB-159-golden-forest-slice-authored`.
 - Recommended Linear status:
   `In Review`, not `Done`, until Julien validates route-camera value.
 - Linear status after implementation:
