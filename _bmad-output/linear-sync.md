@@ -7854,3 +7854,27 @@ MYB-149 human visual acceptance synced on 2026-06-16:
 - Updated local artifacts:
   - `_bmad-output/implementation-artifacts/MYB-149/myb-149-implementation-report.md`;
   - `_bmad-output/implementation-artifacts/MYB-149/myb-149-governance-review.md`.
+
+MYB-149 closure synced on 2026-06-17:
+
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/15`.
+- Merge method:
+  squash.
+- Merge commit:
+  `3573ed6197ebc1ad3a0f8ac3424d04b84ade3e10`.
+- Linear status moved to:
+  `Done`.
+- Linear closure comment ID:
+  `24611475-17dd-494f-ab32-bd5b6c1c8693`.
+- Closure interpretation:
+  - MYB-149 is accepted as a ground/material checkpoint with reservations;
+  - final MYB-149 verdict remains `PASS_WITH_WARNINGS`;
+  - MYB-144 validation after MYB-154 hardening is `PASS`, errors 0,
+    warnings 0;
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - human reservations are preserved: the result is not very beautiful yet,
+    and some tree-like objects appear to float in the sky;
+  - the floating tree/object issue must be addressed by follow-up
+    visual/scatter cleanup before any production-quality claim.
