@@ -1,0 +1,34 @@
+{
+  "name": "myb160_meshy_root_arch_a",
+  "inputPath": "unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB160/Meshy/myb160_meshy_root_arch_a_preview.fbx",
+  "rawInputRetainedInGit": false,
+  "outputPath": "unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_root_arch_a_cleaned.fbx",
+  "previewPath": "_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_root_arch_a_cleaned_preview.png",
+  "targetFaces": 25000,
+  "raw": {
+    "meshObjects": 1,
+    "vertices": 503172,
+    "faces": 1006495,
+    "materials": 0,
+    "dimensions": [
+      3.3816,
+      2.4607,
+      2.5
+    ]
+  },
+  "cleaned": {
+    "meshObjects": 1,
+    "vertices": 12424,
+    "faces": 24999,
+    "materials": 3,
+    "dimensions": [
+      3.3826,
+      2.4633,
+      2.498
+    ],
+    "bottomAtOriginZ": 0.00039
+  },
+  "removedFragments": [],
+  "decimateRatio": 0.02484,
+  "facesBeforeDecimate": 1006495
+}

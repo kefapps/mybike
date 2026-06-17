@@ -3,19 +3,19 @@
 Verdict: PASS
 
 Execution:
-- Mode: MYB-159-BuildCaptureValidate
+- Mode: MYB-160-FinalManifestValidation
 - Batch exit code: 0 when run through RunBatch
 
 Summary:
 - Errors: 0
 - Warnings: 0
-- Info: 29
+- Info: 30
 
 Manifest:
 - path: `docs/manifests/art-rescue-asset-manifest.json`
 - schemaVersion: 1
-- updatedAt: 2026-06-16
-- asset count: 21
+- updatedAt: 2026-06-17
+- asset count: 23
 - schema reference: `docs/schemas/third-party-asset-manifest.md`
 
 Report:
@@ -93,7 +93,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | Root | Exists | Assets found | Notes |
 |---|---:|---:|---|
 | `Assets/Echappee/ArtRescue` | No | 0 | Missing scan root. This is INFO in V1. |
-| `Assets/Echappee/Art` | Yes | 153 | Scanned. |
+| `Assets/Echappee/Art` | Yes | 155 | Scanned. |
 | `Assets/MYB100` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB102` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB103` | Yes | 0 | No V1 asset candidates found. |
@@ -109,6 +109,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB156` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB158` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB159` | Yes | 0 | No V1 asset candidates found. |
+| `Assets/MYB160` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB42` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB44` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB48` | Yes | 3 | Scanned. |
@@ -132,7 +133,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 
 | intakeStatus / promotionStatus | Count |
 |---|---:|
-| `approved / candidate` | 21 |
+| `approved / candidate` | 23 |
 
 ## Legacy / Prototype Inventory Info
 
@@ -183,6 +184,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB156 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB158 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB159 exists but contains no V1 asset candidates. |
+| `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB160 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB42 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB44 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB51 exists but contains no V1 asset candidates. |

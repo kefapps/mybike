@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-16",
+  "updatedAt": "2026-06-17",
   "assets": [
     {
       "id": "myb_forest_canopy_mass_a",
@@ -631,6 +631,72 @@
         "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
       ],
       "notes": "Generated procedurally for MYB-147 as part of MYB_ForestKit_V0. No external text-to-3D, Meshy, Tripo, or third-party asset source used. Candidate kit piece only; not promoted production. Route-camera validation deferred to MYB-148/MYB-150/MYB-151. Dimensions meters: 2.538 x 2.229 x 3.1; triangles: 532; materials: 2."
+    },
+    {
+      "id": "myb160_meshy_tree_ancient_a",
+      "name": "MYB160 Meshy Ancient Tree A",
+      "sourceType": "ai_generated",
+      "provider": "Meshy",
+      "sourceUrl": "meshy-task:019ed672-6ca2-7c48-803d-fcc6e62fa15d",
+      "license": "Provider terms pending project review",
+      "licenseUrl": "",
+      "author": "AI-generated via Meshy",
+      "acquiredAt": "2026-06-17",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_tree_ancient_a_cleaned.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": true,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-route.png"
+      ],
+      "overviewEvidence": [
+        "_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_tree_ancient_a_cleaned_preview.png",
+        "_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-overview.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "MYB-160 controlled Meshy candidate. Meshy-6 text-to-3D preview, 20 credits, no refine/remesh/retexture Meshy call. Raw Meshy preview was downloaded locally for Blender cleanup but is not retained in Git; provenance is the Meshy task id. Blender cleanup applied transforms, bottom-origin grounding, simple bark/leaf/moss materials, and decimation from 1323784 raw faces to 30000 cleaned faces. Candidate only; not promoted production. License/terms pending project review."
+    },
+    {
+      "id": "myb160_meshy_root_arch_a",
+      "name": "MYB160 Meshy Root Arch A",
+      "sourceType": "ai_generated",
+      "provider": "Meshy",
+      "sourceUrl": "meshy-task:019ed672-73fb-7f12-a508-9884b5cdadb2",
+      "license": "Provider terms pending project review",
+      "licenseUrl": "",
+      "author": "AI-generated via Meshy",
+      "acquiredAt": "2026-06-17",
+      "intakeStatus": "approved",
+      "promotionStatus": "candidate",
+      "usageScope": "forest_corridor",
+      "assetPaths": [
+        "Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_root_arch_a_cleaned.fbx"
+      ],
+      "derivedFrom": [],
+      "aiGenerated": true,
+      "requiresAttribution": false,
+      "attributionText": "",
+      "visualImpact": "visible",
+      "routeEvidence": [
+        "_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-route.png"
+      ],
+      "overviewEvidence": [
+        "_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_root_arch_a_cleaned_preview.png",
+        "_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-overview.png"
+      ],
+      "validatorEvidence": [
+        "_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md"
+      ],
+      "notes": "MYB-160 controlled Meshy candidate. Meshy-6 text-to-3D preview, 20 credits, no refine/remesh/retexture Meshy call. Raw Meshy preview was downloaded locally for Blender cleanup but is not retained in Git; provenance is the Meshy task id. Blender cleanup applied transforms, bottom-origin grounding, simple bark/root/moss materials, and decimation from 1006495 raw faces to 24999 cleaned faces. Candidate only; not promoted production. License/terms pending project review."
     }
   ]
 }

@@ -8329,3 +8329,118 @@ MYB-160 Meshy hero forest candidates preflight synced on 2026-06-17:
   - 2 `meshy_text_to_3d` previews using `meshy-6/latest`;
   - output format `fbx`;
   - estimated cost 20 credits each, 40 credits total.
+
+MYB-160 implementation evidence synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-160` - Meshy hero forest candidates pour Golden Slice.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-160/meshy-hero-forest-candidates-pour-golden-slice
+- Branch:
+  `MYB-160-meshy-hero-forest-candidates`.
+- Recommended Linear status:
+  `In Review`, not `Done`, until Julien validates route-camera value.
+- Linear status after implementation:
+  `In Review`.
+- Linear implementation comment:
+  `3d8aaecc-a2d4-4374-bf65-67251f5b4674`.
+- Meshy usage:
+  - used: Yes;
+  - model: `meshy-6`;
+  - generated count: 2;
+  - selected count: 2;
+  - rejected count: 0;
+  - total credits: 40;
+  - no refine/remesh/retexture or extra paid Meshy call.
+- Meshy task ids:
+  - ancient tree assembly: `019ed672-6ca2-7c48-803d-fcc6e62fa15d`;
+  - root arch threshold: `019ed672-73fb-7f12-a508-9884b5cdadb2`.
+- Candidate assets retained:
+  - `unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_tree_ancient_a_cleaned.fbx`;
+  - `unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_root_arch_a_cleaned.fbx`.
+- Raw Meshy preview FBX files:
+  - downloaded locally for Blender cleanup;
+  - not retained in Git to avoid storing unclean 34M/40M candidate source;
+  - provenance retained via task ids and source records.
+- Blender cleanup evidence:
+  - script:
+    `_bmad-output/implementation-artifacts/MYB-160/blender/myb160_clean_meshy_candidates.py`;
+  - tree metrics:
+    `_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_tree_ancient_a_blender_metrics.json`;
+  - root arch metrics:
+    `_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_root_arch_a_blender_metrics.json`;
+  - previews:
+    `_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_tree_ancient_a_cleaned_preview.png`;
+    `_bmad-output/implementation-artifacts/MYB-160/blender/myb160_meshy_root_arch_a_cleaned_preview.png`.
+- Manifest:
+  - `docs/manifests/art-rescue-asset-manifest.json` updated;
+  - entries added: `myb160_meshy_tree_ancient_a`, `myb160_meshy_root_arch_a`;
+  - intakeStatus: `approved`;
+  - promotionStatus: `candidate`;
+  - license: `Provider terms pending project review`;
+  - no `reviewStatus`, no `example:true`, no production promotion.
+- Builder:
+  `unity/Echapee4D/Assets/MYB160/Editor/MYB160MeshyHeroCandidateBuilder.cs`.
+- Preview scene:
+  `unity/Echapee4D/Assets/Scenes/MYB160MeshyHeroCandidatePreview.unity`.
+- Generated root:
+  `MYB160_MeshyHeroCandidateRoot`.
+- Baseline:
+  `Assets/Scenes/MYB159GoldenForestSlicePreview.unity`.
+- Reports:
+  - implementation:
+    `_bmad-output/implementation-artifacts/MYB-160/myb-160-meshy-hero-candidate-report.md`;
+  - governance:
+    `_bmad-output/implementation-artifacts/MYB-160/myb-160-governance-review.md`;
+  - source records:
+    `_bmad-output/implementation-artifacts/MYB-160/meshy-source-records/myb160-meshy-generation-records.md`;
+  - metrics:
+    `_bmad-output/implementation-artifacts/MYB-160/myb-160-meshy-candidate-metrics.json`.
+- Final visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-54Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-54Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-160/2026-06-17T17-09-56Z-overview-before-after.png`.
+- Metrics:
+  - treeAssemblyCount: 1;
+  - routeVisibleTreeAssemblyCount: 1;
+  - heroBeatCount: 1;
+  - routeVisibleCanopyCount: 1;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - floatingAssetCount: 0;
+  - routeVisibleFloatingAssetCount: 0;
+  - routeOverlapCount: 0;
+  - minimumRouteClearanceMeters: 2.95;
+  - approximateTriangles: 55035;
+  - meshyGeneratedCount: 2;
+  - meshyUsedInPreviewCount: 2;
+  - manifestEntriesAdded: 2;
+  - thumbnailForestRead: `warning`.
+- MYB-144 validation:
+  - final mode: `MYB-160-FinalManifestValidation`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Governance:
+  - no canonical scene modified;
+  - no MYB-159 source scene modified;
+  - no gameplay modified;
+  - no route trajectory/collider modified;
+  - no Poly Haven;
+  - no production promotion.
+- Visual verdict:
+  - `Premium target reached`: No;
+  - `Checkpoint insuffisant`;
+  - route-camera impact is directionally better but modest;
+  - candidate materials are scene-local preview remaps because Unity did not
+    preserve Blender material colors reliably.
