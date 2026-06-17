@@ -8465,9 +8465,15 @@ MYB-160 downstream validation and closure synced on 2026-06-18:
   - `_bmad-output/implementation-artifacts/MYB-160/myb-160-governance-review.md`
     records the support-pass closure and recommends `Done`.
 - Gitea PR:
-  `#22` remains the MYB-160 stacked PR, now including the merged MYB-161
-  validated direction.
+  `#22` included the merged MYB-161 validated direction and was merged
+  fast-forward-only into `MYB-159-golden-forest-slice-authored`.
+- Gitea merge/head SHA:
+  `9fc798f4df328bb675889c8242eecbe8f0473f7e`.
+- Linear closure comment:
+  `df9ed4d2-3e11-4777-8e46-9fcd3e3fd46a`.
 - Recommended Linear status after validation:
+  `Done`.
+- Linear status after closure:
   `Done`.
 
 MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
