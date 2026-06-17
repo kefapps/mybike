@@ -8142,6 +8142,10 @@ MYB-158 route-camera forest corridor pass synced on 2026-06-17:
   https://linear.app/kefjbo/issue/MYB-158/premium-route-camera-forest-corridor-pass
 - Branch:
   `MYB-158-premium-route-camera-forest-corridor-pass`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/20
+- Local commit:
+  `c9c82f8` - MYB-158 premium route camera forest pass.
 - Linear status after implementation:
   `In Review`, not `Done`, until Julien validates the route-camera evidence.
 - Scope:
