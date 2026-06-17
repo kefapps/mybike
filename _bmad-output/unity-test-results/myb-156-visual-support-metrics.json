@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "ticket": "MYB-156",
-  "generatedAt": "2026-06-17T09:21:33.3321560Z",
+  "generatedAt": "2026-06-17T10:16:32.8687420Z",
   "scene": "Assets/Scenes/MYB149GroundMaterialPreview.unity",
   "verdict": "PASS",
   "visualSupportMethod": "Name-classified supportedAboveGround canopy assets require nearby trunk bounds support.",

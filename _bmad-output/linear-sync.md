@@ -8133,3 +8133,72 @@ MYB-157 closure and MYB-158 follow-up synced on 2026-06-17:
   massing, more credible trunk/canopy silhouettes, less flat ground-material
   presentation, richer forest-floor belonging, and better depth while preserving
   route readability and MYB-155/MYB-156 governance.
+
+MYB-158 route-camera forest corridor pass synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-158` - Premium route-camera forest corridor pass.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-158/premium-route-camera-forest-corridor-pass
+- Branch:
+  `MYB-158-premium-route-camera-forest-corridor-pass`.
+- Linear status after implementation:
+  `In Review`, not `Done`, until Julien validates the route-camera evidence.
+- Scope:
+  - dedicated MYB-158 preview scene derived from MYB-149;
+  - route-camera composition pass using existing MYB-147 kit accents and
+    scene-local procedural meshes;
+  - no gameplay, ride loop, HUD, or mock telemetry change;
+  - no external asset generation, Meshy, Tripo, Poly Haven, or Blender call.
+- Builder:
+  `unity/Echapee4D/Assets/MYB158/Editor/MYB158PremiumRouteCameraForestPassBuilder.cs`.
+- Generated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB158PremiumRouteCameraForestPass.unity`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-158/myb-158-premium-route-camera-pass-report.md`.
+- Metrics:
+  `_bmad-output/implementation-artifacts/MYB-158/myb-158-premium-route-camera-pass-metrics.json`.
+- Final visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-28Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-31Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-32Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-28Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-31Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-158/2026-06-17T10-16-32Z-overview-before-after.png`.
+- Ground placement / readability metrics:
+  - placementCount: 112;
+  - groundedVisualPlacementCount: 69;
+  - minimumRouteClearanceMeters: 2.868;
+  - routeOverlapCount: 0;
+  - floatingAssetCount: 0;
+  - maxFloatingClearance: 0m;
+  - sinkingAssetCount: 0;
+  - maxSinkingDepth: 0.035m;
+  - routeVisibleFloatingAssetCount: 0;
+  - groundPlacementMethod: combined renderer bounds min.y after rotation/scale
+    for kit assets and scene-local meshes;
+  - sinkMeters: 0.035.
+- MYB-156 validation after MYB-158:
+  - verdict: `PASS`;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - unsupportedCanopyCount: 0;
+  - floatingVisualRiskCount: 0.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS;
+  - `unity-mcp-cli run-tool assets-refresh ...`: PASS;
+  - `unity-mcp-cli run-tool script-execute ... MYB158PremiumRouteCameraForestPassBuilder.RunBatchBuildCaptureValidate`: PASS;
+  - `jq` accepted the MYB-158 metrics JSON;
+  - `git diff --check`: PASS;
+  - Unity console: no errors after final run, only pre-existing obsolete API
+    warnings.
+- Visual verdict:
+  - `Checkpoint insuffisant, improved`;
+  - `Premium target` is still not reached;
+  - the next likely blocker is higher-quality authored tree/canopy forms rather
+    than placement governance.

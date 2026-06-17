@@ -5,7 +5,7 @@ Status:
 - MYB-156 should stay In Review until Julien validates the visual-support wording and blocker policy.
 
 Generated at:
-- 2026-06-17T09:21:33.3321560Z
+- 2026-06-17T10:16:32.8687420Z
 
 Scope:
 - Validator/governance hardening for route-visible visual support.
