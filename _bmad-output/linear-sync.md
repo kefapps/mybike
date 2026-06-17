@@ -8641,3 +8641,7 @@ MYB-161 human validation and closure synced on 2026-06-18:
     records the validation and recommends `Done`.
 - Recommended Linear status after validation:
   `Done`.
+- Linear closure comment:
+  `054a3d70-f0f6-4c10-9162-ea186ebf7e04`.
+- Linear status after closure:
+  `Done`.
