@@ -8448,3 +8448,89 @@ MYB-160 implementation evidence synced on 2026-06-17:
   - route-camera impact is directionally better but modest;
   - candidate materials are scene-local preview remaps because Unity did not
     preserve Blender material colors reliably.
+
+MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-161` - Art-directed Golden Slice Forest Composition Pass.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-161/art-directed-golden-slice-forest-composition-pass
+- Branch:
+  `MYB-161-art-directed-golden-slice-composition`.
+- Recommended Linear status:
+  `In Review`, not `Done`, until Julien validates the route-camera evidence.
+- Linear status after implementation:
+  `In Review`.
+- Baseline:
+  `MYB-160 after`.
+- Scope:
+  - dedicated MYB-161 preview scene derived from MYB-160 after;
+  - art-directed five-plane route-camera composition pass;
+  - no gameplay, ride loop, HUD, telemetry, route trajectory, route colliders,
+    canonical ride scene, MYB-148, MYB-149, MYB-158, MYB-159, or MYB-160 scene
+    change;
+  - no new Meshy generations or credits spent;
+  - existing MYB-160 Meshy candidates used as preview/candidate assets only;
+  - no production promotion.
+- Builder:
+  `unity/Echapee4D/Assets/MYB161/Editor/MYB161ArtDirectedGoldenSliceBuilder.cs`.
+- Generated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity`.
+- Generated root:
+  `MYB161_ArtDirectedGoldenSliceRoot`.
+- Reports:
+  - implementation:
+    `_bmad-output/implementation-artifacts/MYB-161/myb-161-implementation-report.md`;
+  - governance:
+    `_bmad-output/implementation-artifacts/MYB-161/myb-161-governance-review.md`;
+  - metrics:
+    `_bmad-output/implementation-artifacts/MYB-161/myb-161-art-directed-golden-slice-metrics.json`.
+- Final visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-overview-before-after.png`.
+- Metrics:
+  - treeAssemblyCount: 4;
+  - routeVisibleTreeAssemblyCount: 4;
+  - heroBeatCount: 1;
+  - backWallMassCount: 10;
+  - foregroundFrameCount: 1;
+  - sideBankPatchCount: 9;
+  - routeVisibleCanopyCount: 35;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - floatingAssetCount: 0;
+  - routeVisibleFloatingAssetCount: 0;
+  - routeOverlapCount: 0;
+  - minimumRouteClearanceMeters: 2.75;
+  - approximateTriangles: 68625;
+  - meshyAssetUsedCount: 2;
+  - newMeshyGenerationCount: 0;
+  - thumbnailForestRead: `pass`;
+  - heroBeatRead: `pass`;
+  - blobCanopyDominanceRisk: `medium`;
+  - emptySkyOrFlatBackgroundRisk: `low`.
+- MYB-144 validation:
+  - final mode: `MYB-161-BuildCaptureValidate`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS;
+  - `unity-mcp-cli run-tool assets-refresh ...`: PASS;
+  - `unity-mcp-cli run-tool reflection-method-call ... MYB161ArtDirectedGoldenSliceBuilder.RunBatchBuildCaptureValidate`: PASS;
+  - `jq` accepted the MYB-161 metrics JSON.
+- Visual verdict:
+  - `Premium target reached`: No;
+  - `Checkpoint insuffisant, but visually stronger`;
+  - recommended Linear status is `In Review`.

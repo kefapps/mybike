@@ -1,0 +1,96 @@
+{
+  "ticket": "MYB-161",
+  "seed": 161001,
+  "baseline": "MYB-160 after",
+  "outputScene": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity",
+  "generatedRoot": "MYB161_ArtDirectedGoldenSliceRoot",
+  "treeAssemblyCount": 4,
+  "routeVisibleTreeAssemblyCount": 4,
+  "heroBeatCount": 1,
+  "backWallMassCount": 10,
+  "foregroundFrameCount": 1,
+  "sideBankPatchCount": 9,
+  "routeVisibleCanopyCount": 35,
+  "routeVisibleUnsupportedCanopyCount": 0,
+  "floatingAssetCount": 0,
+  "routeVisibleFloatingAssetCount": 0,
+  "maxFloatingClearance": 0,
+  "sinkingAssetCount": 0,
+  "maxSinkingDepth": 0.03,
+  "routeOverlapCount": 0,
+  "minimumRouteClearanceMeters": 2.75,
+  "approximateTriangles": 68625,
+  "rendererCount": 180,
+  "meshFilterCount": 180,
+  "sceneLocalMaterialCount": 14,
+  "meshyAssetUsedCount": 2,
+  "newMeshyGenerationCount": 0,
+  "groundPlacementMethod": "combined-renderer-bounds-min-y-after-transform",
+  "groundSource": "MYB-159/MYB-160 deterministic route and terrain sampling",
+  "sinkMeters": 0.03,
+  "thumbnailForestRead": "pass",
+  "heroBeatRead": "pass",
+  "blobCanopyDominanceRisk": "medium",
+  "emptySkyOrFlatBackgroundRisk": "low",
+  "routeReadabilityRegression": false,
+  "assemblies": [
+    {
+      "name": "MYB161_TreeAssembly_A",
+      "role": "Plan A foreground left ancient trunk frame",
+      "routeVisible": true,
+      "canopySupported": true,
+      "grounding": "combined renderer bounds min.y, sink 0.03m",
+      "notes": "Foreground left frame. Big asymmetrical trunk, roots and horizontal supported canopy lobes frame the route without closing it."
+    },
+    {
+      "name": "MYB161_TreeAssembly_B",
+      "role": "Plan B near left supporting side mass",
+      "routeVisible": true,
+      "canopySupported": true,
+      "grounding": "combined renderer bounds min.y, sink 0.03m",
+      "notes": "Near left support mass. Smaller than foreground frame, used to make the left side dense without repeating a straight row."
+    },
+    {
+      "name": "MYB161_TreeAssembly_C",
+      "role": "Plan B/C right mid support mass",
+      "routeVisible": true,
+      "canopySupported": true,
+      "grounding": "combined renderer bounds min.y, sink 0.03m",
+      "notes": "Right side support mass behind the foreground bank. It supports the hero tree area without becoming a second hero beat."
+    },
+    {
+      "name": "MYB161_HeroTreeAssembly",
+      "role": "Midground right hero ancient tree",
+      "routeVisible": true,
+      "canopySupported": true,
+      "grounding": "Meshy candidate grounded by combined renderer bounds min.y, sink 0.03m",
+      "notes": "Plan C. Existing MYB-160 Meshy ancient tree used as a right-side secondary focal mass, scaled down and placed farther from the route to avoid a mushroom/blob read."
+    }
+  ],
+  "meshyAssets": [
+    {
+      "manifestId": "myb160_meshy_tree_ancient_a",
+      "sceneName": "MYB161_HeroTreeAssembly",
+      "family": "Midground right hero ancient tree",
+      "assetPath": "Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_tree_ancient_a_cleaned.fbx",
+      "meshyTaskId": "019ed672-6ca2-7c48-803d-fcc6e62fa15d",
+      "usedInPreview": true,
+      "routeVisible": true,
+      "triangleCount": 30000,
+      "dimensions": {"x": 4.814, "y": 3.07, "z": 5.373},
+      "notes": "Plan C. Existing MYB-160 Meshy ancient tree used as a right-side secondary focal mass, scaled down and placed farther from the route to avoid a mushroom/blob read."
+    },
+    {
+      "manifestId": "myb160_meshy_root_arch_a",
+      "sceneName": "MYB161_HeroThreshold_RootArchNaturalGate",
+      "family": "Plan D hero root arch natural gate",
+      "assetPath": "Assets/Echappee/Art/Candidates/MYB160/Meshy/Cleaned/myb160_meshy_root_arch_a_cleaned.fbx",
+      "meshyTaskId": "019ed672-73fb-7f12-a508-9884b5cdadb2",
+      "usedInPreview": true,
+      "routeVisible": true,
+      "triangleCount": 24999,
+      "dimensions": {"x": 2.927, "y": 2.125, "z": 3.426},
+      "notes": "Plan D. Existing MYB-160 root arch placed diagonally as the single lateral natural threshold, reduced so it reads as a gate without becoming a noisy wall."
+    }
+  ]
+}
