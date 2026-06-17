@@ -8291,3 +8291,41 @@ MYB-159 golden forest slice synced on 2026-06-17:
   - `Checkpoint insuffisant, directionally improved`;
   - `Premium target` is still not reached;
   - recommended Linear status is `In Review`.
+
+MYB-160 Meshy hero forest candidates preflight synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-160` - Meshy hero forest candidates pour Golden Slice.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-160/meshy-hero-forest-candidates-pour-golden-slice
+- Duplicate cleanup:
+  - `MYB-161` was created by a retry after a temporary Linear 502;
+  - `MYB-161` is marked `Duplicate` of `MYB-160`;
+  - all work should track under `MYB-160`.
+- Branch:
+  `MYB-160-meshy-hero-forest-candidates`.
+- Baseline:
+  MYB-159 golden slice route-camera evidence.
+- Scope:
+  - controlled Meshy hero candidates only;
+  - candidate targets: ancient tree assembly, root arch/forest threshold, optional
+    stump/root/rock marker;
+  - no full Meshy forest, no global scatter, no production promotion, no
+    canonical scene modification, no gameplay/HUD/telemetry/route collider or
+    trajectory changes.
+- Preflight artifact:
+  `_bmad-output/implementation-artifacts/MYB-160/myb-160-meshy-preflight-plan.md`.
+- Candidate import root prepared:
+  `unity/Echapee4D/Assets/Echappee/Art/Candidates/MYB160/Meshy/`.
+- Credit gate:
+  no Meshy credit-costing call has been made;
+  every Meshy call requires explicit Julien confirmation first.
+- Recommended initial generation plan:
+  - 3 `meshy_text_to_3d` previews using `meshy-5`;
+  - output format `fbx`;
+  - estimated cost 5 credits each, 15 credits total;
+  - no refine/remesh/retexture until visual candidate quality is inspected.
+- Higher-quality alternative:
+  - 2 `meshy_text_to_3d` previews using `meshy-6/latest`;
+  - output format `fbx`;
+  - estimated cost 20 credits each, 40 credits total.
