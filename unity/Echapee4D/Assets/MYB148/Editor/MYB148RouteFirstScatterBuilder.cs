@@ -307,13 +307,15 @@ public static class MYB148RouteFirstScatterBuilder
 
             if (!IsBreathingWindow(meters) && Mathf.RoundToInt(meters) % 30 == 22)
             {
-                Place(kit, "myb_forest_canopy_mass_" + Variant(meters, "ab"), "Canopy", "back wall", side, meters, 12.8f + Jitter(meters, 1.3f), 1.16f, parent, result, yOffset: 5.5f);
+                var canopyDistance = 12.8f + Jitter(meters, 1.3f);
+                Place(kit, TrunkVariant(meters + 13f), "Trees / trunks", "back wall canopy support", side, meters, canopyDistance, 1.16f, parent, result);
+                Place(kit, "myb_forest_canopy_mass_" + Variant(meters, "ab"), "Canopy", "back wall", side, meters, canopyDistance, 1.16f, parent, result, yOffset: 2.0f);
             }
 
             if (Mathf.RoundToInt(meters) % 36 == 28)
             {
                 Place(kit, TrunkVariant(meters + 11f), "Trees / trunks", "silhouette line", -side, meters, 16.4f + Jitter(meters, 1.6f), 1.2f, parent, result);
-                Place(kit, "myb_forest_canopy_mass_" + Variant(meters + 6f, "ab"), "Canopy", "silhouette line", -side, meters + 3f, 17.6f, 1.25f, parent, result, yOffset: 6.1f);
+                Place(kit, "myb_forest_canopy_mass_" + Variant(meters + 6f, "ab"), "Canopy", "silhouette line", -side, meters + 3f, 17.6f, 1.25f, parent, result, yOffset: 2.5f);
             }
         }
 

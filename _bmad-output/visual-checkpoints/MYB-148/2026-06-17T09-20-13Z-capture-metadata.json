@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "ticketId": "MYB-148",
+  "generatedAt": "2026-06-17T09:20:13.4843890Z",
+  "mode": "capture",
+  "state": "after",
+  "scenePath": "Assets/Scenes/MYB148RouteFirstScatterPreview.unity",
+  "branch": "MYB-157-rework-route-visible-canopy-support",
+  "commit": "97a9e24",
+  "outputDirectory": "_bmad-output/visual-checkpoints/MYB-148",
+  "verdict": "PASS",
+  "cameras": [
+    { "name": "RouteCamera", "role": "blocking validation", "found": true, "position": "(1.934, 1.574, 7.5)", "rotation": "(0.541, 3.231, 0)", "fov": 50, "notes": "perspective" },
+    { "name": "OverviewCamera", "role": "secondary context", "found": true, "position": "(0, 86, 66)", "rotation": "(90, 0, 0)", "fov": 42, "notes": "orthographic" }
+  ],
+  "captures": [
+    { "state": "after", "type": "route", "path": "_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-after-route.png", "scene": "Assets/Scenes/MYB148RouteFirstScatterPreview.unity", "camera": "RouteCamera", "position": "(1.934, 1.574, 7.5)", "rotation": "(0.541, 3.231, 0)", "fov": 50, "resolution": "1600x900" },
+    { "state": "after", "type": "overview", "path": "_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-after-overview.png", "scene": "Assets/Scenes/MYB148RouteFirstScatterPreview.unity", "camera": "OverviewCamera", "position": "(0, 86, 66)", "rotation": "(90, 0, 0)", "fov": 42, "resolution": "1600x900" }
+  ],
+  "comparisons": [
+  ],
+  "explicitBaseline": {
+    "selectedBy": "",
+    "reason": "",
+    "source": ""
+  },
+  "errors": [
+  ],
+  "warnings": [
+  ],
+  "info": [
+    { "code": "CAPTURE_WRITTEN", "message": "route after capture written to `_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-after-route.png`." },
+    { "code": "CAPTURE_WRITTEN", "message": "overview after capture written to `_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-after-overview.png`." },
+    { "code": "COMPARISON_NOT_REQUESTED", "message": "route before/after comparison was not requested." },
+    { "code": "COMPARISON_NOT_REQUESTED", "message": "overview before/after comparison was not requested." }
+  ]
+}

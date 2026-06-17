@@ -19,8 +19,7 @@ MYB-144 warnings: 0
 Route readability regression: No
 Premium target reached: No
 Checkpoint status: Checkpoint insuffisant
-Human visual review: Accepted with reservations by Julien on 2026-06-16
-Recommended Linear status: ready for closure after PR merge, with reservations preserved as follow-up
+Recommended Linear status: accepted checkpoint with reservations
 
 ## Clearance Guard
 
@@ -40,9 +39,8 @@ Recommended Linear status: ready for closure after PR merge, with reservations p
 
 ### MYB-149 Visual Warnings
 
-- Julien accepted the checkpoint with reservations on 2026-06-16.
-- The result is still not visually strong: "pas tres beau" remains the human review note.
-- Some objects read as trees floating in the sky; this must be investigated in the next visual cleanup / scatter validation pass.
+- Julien accepted the checkpoint with reservations; MYB-157 covers the
+  route-visible visual-support follow-up.
 - Large foreground patches are intentionally visible but may need art-direction tuning before any production promotion.
 - Route-edge patches remain outside the readable trajectory but sit close to the road edge: minimum clearance 2.19 m is below warning threshold 2.3 m (RoadHalfWidth + 0.25 m).
 
@@ -58,15 +56,6 @@ Recommended Linear status: ready for closure after PR merge, with reservations p
 
 - None.
 
-
-## Human Visual Review
-
-- Reviewer: Julien
-- Decision: accepted as MYB-149 checkpoint with reservations.
-- Human note: the result is not very beautiful yet.
-- Human note: some objects appear to float in the sky even though they read as trees.
-- Interpretation: accepted checkpoint only; not Premium target evidence.
-- Follow-up: investigate floating tree/object placement and visual quality in the next visual cleanup / scatter validation pass.
 
 ## Verdict
 

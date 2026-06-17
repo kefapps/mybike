@@ -36,6 +36,8 @@ Diagnostic:
 Reusable rubric:
 
 - `docs/validation/forest-corridor-shot-rubric.md`
+- `docs/validation/unity-ground-placement-policy.md`
+- `docs/validation/unity-visual-support-policy.md`
 
 The MYB-137 diagnosis is a dated calibration baseline. It is a `Diagnostic
 Surface`, not final production validation.
@@ -43,6 +45,10 @@ Surface`, not final production validation.
 The forest corridor shot rubric is the canonical review tool for future Art
 Rescue visual tickets. It defines the 9 criteria, blocking/contributive split,
 thresholds, review templates, and validation surfaces.
+
+The Unity ground placement policy owns bottomClearance and visual-bottom
+grounding. The Unity visual support policy owns above-ground support coherence
+for route-visible canopies, elevated leaf masses, and overhead scenic elements.
 
 MYB-137 calibrates the rubric. The canonical route camera validates production
 quality.
@@ -75,6 +81,32 @@ Non-examples:
 - A canonical ride-corridor route screenshot used to close a production visual
   ticket after `Premium target` and human validation.
 - An isolated asset preview used as a substitute for route-camera validation.
+
+### Visual Support
+
+Definition: The route-camera-readable relationship between an elevated visual
+asset and the structure that makes it believable, usually a trunk, branch, arch,
+or other authored support.
+
+Relationships:
+
+- `Visual Support` complements `bottomClearance`; it detects assets that are not
+  ground-contact failures but still read as floating.
+- A route-visible canopy or elevated leaf mass without credible support blocks
+  visual checkpoint review unless Julien accepts a documented exception.
+- `docs/validation/unity-visual-support-policy.md` owns the policy and required
+  metrics.
+
+Examples:
+
+- A canopy whose bottom overlaps a tall trunk top from the route camera.
+- An elevated branch cluster visibly attached to an authored trunk or arch.
+
+Non-examples:
+
+- A leaf blob several meters above a short trunk with no visible connection.
+- A canopy that is close in top-down overview but disconnected in the route
+  screenshot.
 
 ### Licence Verifiee
 
@@ -250,6 +282,48 @@ Non-examples:
 - A subjective `Premium target` visual review.
 - A broad scan of every Unity asset in the project.
 - An auto-repair tool that edits assets, materials, scenes, or the manifest.
+
+### Unity Ground Placement Policy
+
+Definition: The canonical anti-floating placement rule for visible Art Rescue
+Unity assets. Assets are grounded by visual bottom: instantiate, apply rotation
+and scale, compute combined renderer bounds, then use `bounds.min.y` to compute
+the pivot-to-bottom correction before applying a small documented sink.
+
+Relationships:
+
+- The canonical policy lives at
+  `docs/validation/unity-ground-placement-policy.md`.
+- It protects `Scale credibility`, `Lecture Prototype`, `Surface Canonique de
+  Validation Visuelle`, and the forest art bible rule that assets must belong
+  to the forest floor.
+- `bottomClearance` is positive when the visual bottom floats above the ground
+  and negative when it sinks below the ground.
+- Target `bottomClearance` is -0.05m to +0.05m.
+- Floating is a warning above +0.05m and blocks route-visible assets above
+  +0.10m unless Julien explicitly accepts a documented exception.
+- Sinking is a warning below -0.10m and blocks route-visible assets below
+  -0.25m unless Julien explicitly accepts a documented exception.
+- Future placement builders should report `floatingAssetCount`,
+  `maxFloatingClearance`, `sinkingAssetCount`, `maxSinkingDepth`,
+  `routeVisibleFloatingAssetCount`, `groundPlacementMethod`,
+  `groundLayerMask` or `groundSource`, and `sinkMeters`.
+
+Examples:
+
+- A tree prefab is instantiated, rotated, scaled, measured by combined renderer
+  bounds, moved so `bounds.min.y` is 0.03m below the sampled ground, and
+  reported with `sinkMeters: 0.03`.
+- A raycast uses a terrain/ground mask, ignores triggers, and excludes generated
+  patches or props from valid ground hits.
+
+Non-examples:
+
+- Placing a tree at `groundY + bounds.extents.y`.
+- Placing a prop at `groundY + bounds.size.y / 2`.
+- Using a fixed half-height offset as the final Y placement policy.
+- Raycasting against already generated assets, patches, props, or the object
+  being placed.
 
 ### Art Rescue Asset Zones
 

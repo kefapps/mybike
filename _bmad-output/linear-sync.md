@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-16
+Last sync: 2026-06-17
 
 ## Workspace
 
@@ -7878,3 +7878,258 @@ MYB-149 closure synced on 2026-06-17:
     and some tree-like objects appear to float in the sky;
   - the floating tree/object issue must be addressed by follow-up
     visual/scatter cleanup before any production-quality claim.
+MYB-155 / requested MYB-154 ground placement governance synced on 2026-06-17:
+
+- Human request:
+  `Implement MYB-154 - Ground Placement / Anti-Float Governance`.
+- Linear identifier note:
+  `MYB-154` already exists as a completed different ticket
+  (`MYB-144B - Classer les assets historiques non manifestes en INFO`), so the
+  active Ground Placement / Anti-Float Governance tracker was created as
+  `MYB-155`.
+- Linear issue:
+  `MYB-155` - Ground Placement / Anti-Float Governance.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-155/ground-placement-anti-float-governance
+- Linear status during implementation:
+  `In Progress`.
+- Linear final status:
+  `In Review`, not `Done`, until Julien validates the governance wording.
+- Linear implementation comment ID:
+  `a709563d-63f0-4267-a5f9-50dd436199c8`.
+- Branch:
+  `MYB-155-ground-placement-anti-float-governance`.
+- Scope:
+  - documentation/governance hardening only;
+  - no Unity scene modification;
+  - no gameplay modification;
+  - no generated assets;
+  - no Blender, Meshy, Tripo, Poly Haven, or external asset call.
+- Canonical policy:
+  `docs/validation/unity-ground-placement-policy.md`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-154/myb-154-ground-placement-governance-report.md`.
+- Governance updates:
+  - `AGENTS.md` now instructs Codex/Unity MCP builders not to use
+    `bounds.extents.y`, `bounds.size.y / 2`, or fixed half-height offsets as the
+    final Y placement policy;
+  - `CONTEXT.md` defines the Unity Ground Placement Policy term and thresholds;
+  - `CONTEXT-MAP.md` points agents to the new canonical policy;
+  - `docs/art-direction/mybike-forest-art-bible-v0.md` states that grounded
+    assets are part of the visual target and must belong to the forest floor;
+  - `docs/validation/forest-corridor-shot-rubric.md` adds ground contact to
+    Scale credibility and makes route-visible floating above +0.10m a checkpoint
+    blocker unless Julien accepts a documented exception.
+- Thresholds:
+  - target bottomClearance: -0.05m to +0.05m;
+  - warning floating: > +0.05m;
+  - blocking floating for route-visible assets: > +0.10m;
+  - warning sinking: < -0.10m;
+  - blocking sinking for route-visible assets: < -0.25m.
+- Required future builder metrics:
+  - `floatingAssetCount`;
+  - `maxFloatingClearance`;
+  - `sinkingAssetCount`;
+  - `maxSinkingDepth`;
+  - `routeVisibleFloatingAssetCount`;
+  - `groundPlacementMethod`;
+  - `groundLayerMask` or `groundSource`;
+  - `sinkMeters`.
+- Follow-up recommendation:
+  MYB-148, MYB-149, and MYB-150 builders should adopt the metrics if they do not
+  already report them.
+
+MYB-156 visual support validator ticket created on 2026-06-17:
+
+- Linear issue:
+  `MYB-156` - Route-visible Visual Support Validator.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-156/route-visible-visual-support-validator
+- Linear status:
+  `Backlog`.
+- Priority:
+  `Medium`.
+- Related issue:
+  `MYB-155` - Ground Placement / Anti-Float Governance.
+- Trigger evidence:
+  - MYB-149 route before/after:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-30-40Z-route-before-after.png`;
+  - MYB-149 overview before/after:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-30-40Z-overview-before-after.png`.
+- Gap captured:
+  MYB-155 ground-contact metrics can report no floating grounded assets while
+  route-visible canopy masses still read as visually unsupported/floating.
+- Ticket scope:
+  - classify visible Art Rescue assets by visual role;
+  - detect route-visible canopies or elevated leaf masses without credible
+    trunk/support evidence;
+  - report visual-support metrics separately from bottomClearance metrics;
+  - block route-visible unsupported canopies unless Julien accepts a documented
+    exception.
+- Required future metrics:
+  - `unsupportedCanopyCount`;
+  - `routeVisibleUnsupportedCanopyCount`;
+  - `maxCanopySupportGap`;
+  - `canopyWithoutTrunkCount`;
+  - `floatingVisualRiskCount`;
+  - `documentedFloatingExceptionCount`;
+  - `routeVisibleFloatingExceptionCount`;
+  - `visualSupportMethod`;
+  - `routeCameraVisibilityMethod`;
+  - `supportSearchRadiusMeters`;
+  - `supportVerticalGapMeters`.
+
+MYB-156 implementation synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-156` - Route-visible Visual Support Validator.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-156/route-visible-visual-support-validator
+- Branch:
+  `MYB-156-route-visible-visual-support-validator`.
+- Linear status after implementation:
+  `In Review`, not `Done`, until Julien validates the visual-support blocker
+  wording.
+- Scope:
+  - route-visible visual-support validation for Art Rescue forest corridor;
+  - no gameplay change;
+  - no scene save;
+  - no generated or imported assets;
+  - no Blender, Meshy, Tripo, Poly Haven, or external asset call.
+- New canonical policy:
+  `docs/validation/unity-visual-support-policy.md`.
+- Updated governance docs:
+  - `AGENTS.md`;
+  - `CONTEXT.md`;
+  - `CONTEXT-MAP.md`;
+  - `docs/validation/unity-ground-placement-policy.md`;
+  - `docs/validation/forest-corridor-shot-rubric.md`.
+- Unity validator:
+  `unity/Echapee4D/Assets/MYB156/Editor/MYB156VisualSupportValidator.cs`.
+- Unity menu:
+  `Tools/MyBike/Validation/MYB-156 Visual Support Validator`.
+- Generated validation report:
+  `_bmad-output/unity-test-results/myb-156-visual-support-validator-report.md`.
+- Generated metrics:
+  `_bmad-output/unity-test-results/myb-156-visual-support-metrics.json`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-156/myb-156-visual-support-validator-report.md`.
+- Validation result on MYB-149:
+  - verdict: `FAIL` by design, because the validator now detects the known
+    visual support blocker;
+  - scene: `Assets/Scenes/MYB149GroundMaterialPreview.unity`;
+  - scene dirty after validation: No;
+  - assetCount: 60;
+  - groundedAssetCount: 53;
+  - supportedAboveGroundAssetCount: 7;
+  - unsupportedCanopyCount: 7;
+  - routeVisibleUnsupportedCanopyCount: 7;
+  - maxCanopySupportGap: 4.094m;
+  - canopyWithoutTrunkCount: 1;
+  - floatingVisualRiskCount: 7;
+  - documentedFloatingExceptionCount: 0;
+  - routeVisibleFloatingExceptionCount: 0.
+- Local validation:
+  - Unity MCP script execution of `MYB156VisualSupportValidator.RunValidation`
+    succeeded;
+  - `jq` accepted
+    `_bmad-output/unity-test-results/myb-156-visual-support-metrics.json`;
+  - `git diff --check`: PASS.
+
+MYB-156 human validation synced on 2026-06-17:
+
+- Julien validated the visual-support blocker wording:
+  route-visible unsupported canopies or elevated leaf masses block checkpoint
+  review unless Julien explicitly accepts a documented exception.
+- Linear status should move to:
+  `Done`.
+- Follow-up implementation ticket:
+  `MYB-157` - Rework route-visible canopy support in forest scatter.
+
+MYB-157 route-visible canopy support rework synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-157` - Rework route-visible canopy support in forest scatter.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-157/rework-route-visible-canopy-support-in-forest-scatter
+- Branch:
+  `MYB-157-rework-route-visible-canopy-support`.
+- Linear status after implementation:
+  `In Review`, not `Done`, until Julien validates the route/overview evidence.
+- Scope:
+  - corrected MYB-148 route-visible canopy support;
+  - regenerated MYB-148 and MYB-149 preview scenes through deterministic
+    builders;
+  - reran MYB-156 visual-support validation;
+  - no gameplay change;
+  - no canonical ride scene modification;
+  - no new reusable assets;
+  - no Blender, Meshy, Tripo, Poly Haven, or external asset call.
+- Builder changes:
+  - `unity/Echapee4D/Assets/MYB148/Editor/MYB148RouteFirstScatterBuilder.cs`;
+  - back-wall canopies now get a same-position trunk support;
+  - back-wall canopy `yOffset` changed from `5.5m` to `2.0m`;
+  - silhouette-line canopy `yOffset` changed from `6.1m` to `2.5m`.
+- Validator fix:
+  `unity/Echapee4D/Assets/MYB156/Editor/MYB156VisualSupportValidator.cs`
+  now classifies names containing `trunk` before `canopy`, so support trunks
+  with names like `back_wall_canopy_support` are not misclassified.
+- Regenerated scenes:
+  - `unity/Echapee4D/Assets/Scenes/MYB148RouteFirstScatterPreview.unity`;
+  - `unity/Echapee4D/Assets/Scenes/MYB149GroundMaterialPreview.unity`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-157/myb-157-canopy-support-rework-report.md`.
+- MYB-148 visual evidence:
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-route-before-after.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-148/2026-06-17T09-20-13Z-overview-before-after.png`.
+- MYB-149 visual evidence:
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-17T09-20-33Z-route-before-after.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-17T09-20-33Z-overview-before-after.png`.
+- MYB-156 validation after rework:
+  - verdict: `PASS`;
+  - assetCount: 63;
+  - groundedAssetCount: 56;
+  - supportedAboveGroundAssetCount: 7;
+  - unsupportedCanopyCount: 0;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - maxCanopySupportGap: 0.494m;
+  - canopyWithoutTrunkCount: 0;
+  - floatingVisualRiskCount: 0;
+  - documentedFloatingExceptionCount: 0;
+  - routeVisibleFloatingExceptionCount: 0.
+- Visual verdict:
+  - `Checkpoint insuffisant, improved`;
+  - the visual-support blocker is fixed;
+  - `Premium target` is still not reached.
+
+MYB-157 closure and MYB-158 follow-up synced on 2026-06-17:
+
+- MYB-157 Linear issue:
+  https://linear.app/kefjbo/issue/MYB-157/rework-route-visible-canopy-support-in-forest-scatter
+- MYB-157 final status:
+  `Done`.
+- MYB-157 closure evidence:
+  - Julien accepted closing the ticket as a targeted blocker fix;
+  - local commit: `4e6d7fb MYB-157 rework canopy support`;
+  - `MYB156VisualSupportValidator`: `PASS`;
+  - `routeVisibleUnsupportedCanopyCount`: 0;
+  - `unsupportedCanopyCount`: 0;
+  - final visual verdict remains `Checkpoint insuffisant, improved`.
+- Closure note:
+  MYB-157 fixed route-visible canopy support and did not attempt to solve the
+  broader premium visual target.
+- Follow-up Linear issue:
+  `MYB-158` - Premium route-camera forest corridor pass.
+- MYB-158 Linear URL:
+  https://linear.app/kefjbo/issue/MYB-158/premium-route-camera-forest-corridor-pass
+- MYB-158 initial status:
+  `Todo`.
+- MYB-158 scope:
+  route-camera Art Rescue premium visual pass targeting stronger side-corridor
+  massing, more credible trunk/canopy silhouettes, less flat ground-material
+  presentation, richer forest-floor belonging, and better depth while preserving
+  route readability and MYB-155/MYB-156 governance.

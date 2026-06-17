@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "ticket": "MYB-149",
-  "generatedAt": "2026-06-16T20:08:10.5392050Z",
+  "generatedAt": "2026-06-17T09:20:28.8685530Z",
   "seed": 149001,
   "sourceScene": "Assets/Scenes/MYB148RouteFirstScatterPreview.unity",
   "outputScene": "Assets/Scenes/MYB149GroundMaterialPreview.unity",
@@ -32,17 +32,20 @@
     "rockGroundingPatches": 16,
     "fernGroundingPatches": 8,
     "fallenLogGroundingPatches": 6,
-    "assetsConsidered": 37,
+    "assetsConsidered": 40,
     "assetsGrounded": 30,
-    "assetsSkipped": 7,
+    "assetsSkipped": 10,
     "skippedReasons": [
-      "MYB148_myb_forest_trunk_knotted_a_silhouette_line_11: low route-camera value or breathing window.",
-      "MYB148_myb_forest_trunk_ancient_a_mid_edge_13: low route-camera value or breathing window.",
-      "MYB148_myb_forest_trunk_leaning_a_silhouette_line_25: low route-camera value or breathing window.",
-      "MYB148_myb_forest_trunk_knotted_a_mid_edge_28: low route-camera value or breathing window.",
-      "MYB148_myb_forest_trunk_ancient_a_silhouette_line_38: low route-camera value or breathing window.",
-      "MYB148_myb_forest_rock_marker_a_mid_edge_landmark_57: low route-camera value or breathing window.",
-      "MYB148_myb_forest_trunk_knotted_a_silhouette_line_53: low route-camera value or breathing window."
+      "MYB148_myb_forest_trunk_leaning_a_back_wall_canopy_support_07: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_knotted_a_silhouette_line_12: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_ancient_a_mid_edge_14: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_ancient_a_back_wall_canopy_support_19: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_leaning_a_silhouette_line_27: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_knotted_a_mid_edge_30: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_ancient_a_silhouette_line_40: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_leaning_a_back_wall_canopy_support_47: low route-camera value or breathing window.",
+      "MYB148_myb_forest_rock_marker_a_mid_edge_landmark_60: low route-camera value or breathing window.",
+      "MYB148_myb_forest_trunk_knotted_a_silhouette_line_56: low route-camera value or breathing window."
     ]
   },
   "patches": [

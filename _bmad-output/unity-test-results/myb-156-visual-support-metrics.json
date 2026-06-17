@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "ticket": "MYB-156",
+  "generatedAt": "2026-06-17T09:21:33.3321560Z",
+  "scene": "Assets/Scenes/MYB149GroundMaterialPreview.unity",
+  "verdict": "PASS",
+  "visualSupportMethod": "Name-classified supportedAboveGround canopy assets require nearby trunk bounds support.",
+  "routeCameraVisibilityMethod": "GeometryUtility.TestPlanesAABB against RouteCamera frustum.",
+  "supportSearchRadiusMeters": 4,
+  "supportVerticalGapMeters": 0.75,
+  "assetCount": 63,
+  "groundedAssetCount": 56,
+  "supportedAboveGroundAssetCount": 7,
+  "unsupportedCanopyCount": 0,
+  "routeVisibleUnsupportedCanopyCount": 0,
+  "maxCanopySupportGap": 0.493992,
+  "canopyWithoutTrunkCount": 0,
+  "floatingVisualRiskCount": 0,
+  "documentedFloatingExceptionCount": 0,
+  "routeVisibleFloatingExceptionCount": 0,
+  "errors": 0,
+  "warnings": 0,
+  "aboveGroundAssets": [
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_a_back_wall_08",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_a_back_wall_08",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_leaning_a_back_wall_canopy_support_07",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0.064097,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_a_silhouette_line_28",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_a_silhouette_line_28",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_leaning_a_silhouette_line_27",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0.364327,
+      "supportVerticalGapMeters": 0.493992,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_b_back_wall_20",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_b_back_wall_20",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_ancient_a_back_wall_canopy_support_19",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_b_back_wall_48",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_b_back_wall_48",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_leaning_a_back_wall_canopy_support_47",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_b_silhouette_line_13",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_b_silhouette_line_13",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_knotted_a_silhouette_line_12",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0.232816,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_b_silhouette_line_41",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_b_silhouette_line_41",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_ancient_a_silhouette_line_40",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0.279868,
+      "documentedException": false
+    },
+    {
+      "assetName": "MYB148_myb_forest_canopy_mass_b_silhouette_line_57",
+      "assetPath": "MYB148_RouteFirstScatterPreview/MYB148_RouteFirstScatterAssets/MYB148_myb_forest_canopy_mass_b_silhouette_line_57",
+      "routeVisible": true,
+      "unsupported": false,
+      "nearestSupportName": "MYB148_myb_forest_trunk_knotted_a_silhouette_line_56",
+      "hasSupportWithinRadius": true,
+      "supportHorizontalGapMeters": 0,
+      "supportVerticalGapMeters": 0.216241,
+      "documentedException": false
+    }
+  ]
+}

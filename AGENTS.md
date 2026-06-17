@@ -74,6 +74,10 @@ Use these paths consistently:
 - Linear sync ledger: `_bmad-output/linear-sync.md`
 - Canonical forest corridor art bible:
   `docs/art-direction/mybike-forest-art-bible-v0.md`
+- Canonical Unity ground placement policy:
+  `docs/validation/unity-ground-placement-policy.md`
+- Canonical Unity visual support policy:
+  `docs/validation/unity-visual-support-policy.md`
 - Art rescue docs, when imported locally:
   `_bmad-output/implementation-artifacts/art-rescue-forest-corridor/`
 
@@ -185,6 +189,13 @@ Visible assets need `promotionStatus: promoted`, validator evidence, and
 route-camera evidence before they can be treated as production-valid in the
 forest corridor.
 
+MYB-155 / requested MYB-154 ground placement governance:
+
+- `docs/validation/unity-ground-placement-policy.md`
+  - canonical anti-floating policy for Art Rescue Unity builders;
+  - defines visual-bottom grounding, raycast rules, bottomClearance thresholds,
+    and required future builder metrics.
+
 If the imported art-rescue docs are missing, do not invent their contents. Use
 the current Linear issue, existing MYB-114/MYB-137 reports, and this file, then
 write down the missing reference in the implementation notes.
@@ -228,6 +239,10 @@ Avoid these failure modes:
 - flat decorative ribbons beside the road;
 - isolated road-side props that do not belong to the terrain;
 - tree trunks that read as simple posts;
+- route-visible assets, trees, roots, rocks, or patches floating above the
+  ground instead of belonging to the forest floor;
+- route-visible canopies, elevated leaf masses, or overhead scenic elements
+  without credible trunk/support evidence from the route camera;
 - symbolic cones, tufts, or placeholder blobs presented as final art;
 - dense clutter that hides the route or creates camera noise;
 - mixing photoreal, legacy low-poly aesthetic, AI-generated, and placeholder
@@ -299,6 +314,12 @@ A usable real-time asset should normally have:
 
 - plausible meter scale;
 - origin/pivot at the base or intentionally documented;
+- final Unity placement grounded by combined renderer bounds `min.y` after
+  transform, not by `bounds.extents.y`, `bounds.size.y / 2`, or a fixed
+  half-height offset;
+- documented bottomClearance when the asset is route-visible;
+- credible visual support for route-visible canopies or other above-ground
+  assets, with exceptions documented and accepted by Julien;
 - applied transforms;
 - clean bounds;
 - stable naming, for example `myb_forest_trunk_base_a`;
@@ -418,6 +439,18 @@ Gitea is the active Git hosting and review system for this repository.
   for Unity Editor work.
 - Keep Unity gameplay logic testable with C# validators or Unity tests where
   practical.
+- For Art Rescue placement builders, instantiate the asset, apply rotation and
+  scale, compute combined renderer bounds, and use `bounds.min.y` to compute
+  the pivot-to-visual-bottom offset. Do not use `bounds.extents.y`,
+  `bounds.size.y / 2`, or fixed half-height offsets as the final Y placement
+  policy.
+- When raycasting for Art Rescue placement, use an explicit ground layer mask or
+  documented ground source, ignore triggers, and avoid ray hits against
+  generated assets, patches, props, or the asset being placed.
+- Future Art Rescue builders that place visible assets should report
+  `floatingAssetCount`, `maxFloatingClearance`, `sinkingAssetCount`,
+  `maxSinkingDepth`, `routeVisibleFloatingAssetCount`, `groundPlacementMethod`,
+  `groundLayerMask` or `groundSource`, and `sinkMeters`.
 - Do not add heavy dependencies or external services without a clear issue.
 - Do not touch `src/**` unless the issue explicitly says to update the parked
   React/Vite/Three.js prototype.

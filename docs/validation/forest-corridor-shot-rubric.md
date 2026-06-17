@@ -95,8 +95,61 @@ contradiction in a contributive criterion can still block human validation.
 | 5 | Foreground richness | Contributive | Near-camera richness without visual noise: shoulders, roots, moss, leaves, stones, ground detail. | Contributes to average |
 | 6 | Midground density | Contributive | Forest corridor body, side massing, tree distribution, and controlled density. | Contributes to average |
 | 7 | Background depth | Contributive | Distant silhouettes, fog layers, atmospheric backdrop, horizon treatment, and forest depth. | Contributes to average |
-| 8 | Scale credibility | Contributive | Believable proportions across route, trees, roots, rocks, signs, camera height, and ride speed. | Contributes to average; no major contradiction |
+| 8 | Scale credibility | Contributive | Believable proportions and ground contact across route, trees, roots, rocks, signs, camera height, and ride speed. | Contributes to average; no major contradiction; route-visible ground contact blockers apply |
 | 9 | Composition rhythm | Contributive | Alternation of breathing room, density, landmarks, scenic cadence, and route-first guidance. | Contributes to average; no major contradiction |
+
+### Ground Contact Gate
+
+Scale credibility includes asset-to-ground contact. A route-visible asset that
+floats above the forest floor usually reads as prototype, regardless of its
+silhouette or material quality.
+
+Canonical policy:
+
+- Ground visible Art Rescue assets by combined renderer bounds `min.y` after
+  transform.
+- Do not use `bounds.extents.y`, `bounds.size.y / 2`, or fixed half-height
+  offsets as the final vertical placement policy.
+- Apply a documented sink, usually 0.02m to 0.05m.
+- If raycasting, use an explicit ground layer mask or documented ground source,
+  ignore triggers, and avoid generated assets, patches, or props as ground hits.
+
+bottomClearance thresholds:
+
+- target: -0.05m to +0.05m;
+- warning floating: > +0.05m;
+- blocking floating for route-visible assets: > +0.10m;
+- warning sinking: < -0.10m;
+- blocking sinking for route-visible assets: < -0.25m.
+
+Rule:
+
+```txt
+Route-visible floating assets above +0.10m block checkpoint review unless
+Julien explicitly accepts a documented exception.
+```
+
+### Visual Support Gate
+
+Scale credibility also includes visible support for elevated assets. Canopies,
+leaf masses, hanging forms, and overhead scenic elements can pass bottomClearance
+logic while still reading as floating from the route camera.
+
+Canonical policy:
+
+- Use `docs/validation/unity-visual-support-policy.md` for above-ground visual
+  support checks.
+- Classify elevated canopies and leaf masses as `supportedAboveGround`, not as
+  silently exempt.
+- Require credible trunk/support evidence from the route camera, or a documented
+  Julien-accepted exception.
+
+Rule:
+
+```txt
+Route-visible unsupported canopies or elevated leaf masses block checkpoint
+review unless Julien explicitly accepts a documented exception.
+```
 
 ## 5. Score Scale
 
@@ -169,6 +222,7 @@ Required condition:
 - Lighting mood >= 4;
 - Material coherence >= 4;
 - no major contradiction in contributive criteria;
+- no route-visible ground contact blocker;
 - human validation when the judgment is subjective.
 
 Usage:
@@ -184,6 +238,8 @@ the route-camera result.
 Examples:
 
 - Scale credibility = 2 because trees, rocks, or signs feel like toy props.
+- Scale credibility is blocked because route-visible assets float more than
+  +0.10m above the ground or sink below -0.25m without a documented exception.
 - Composition rhythm = 2 because the corridor is uniform wallpaper with no
   scenic cadence.
 - Background depth = 1 because the horizon is empty, broken, or visually flat.
@@ -229,6 +285,16 @@ Evidence:
 - Camera:
 - Date:
 
+Ground placement metrics:
+- floatingAssetCount:
+- maxFloatingClearance:
+- sinkingAssetCount:
+- maxSinkingDepth:
+- routeVisibleFloatingAssetCount:
+- groundPlacementMethod:
+- groundLayerMask / groundSource:
+- sinkMeters:
+
 | # | Criterion | Type | Score 1-5 | Notes |
 |---|---|---|---:|---|
 | 1 | Route readability | Blocking |  |  |
@@ -247,6 +313,9 @@ Blocking criteria all >= 4:
 - Yes / No
 
 Contributive contradiction:
+- Yes / No
+
+Ground contact blocker:
 - Yes / No
 
 Premium target reached:
@@ -359,6 +428,7 @@ the canonical `Premium target` bar.
 - [ ] Average is calculated.
 - [ ] Blocking criteria all >= 4 is marked Yes/No.
 - [ ] Contributive contradiction is marked Yes/No.
+- [ ] Ground contact blocker is marked Yes/No for route-visible assets.
 - [ ] Verdict is explicit.
 
 ### Premium Target
@@ -369,6 +439,8 @@ the canonical `Premium target` bar.
 - [ ] Lighting mood >= 4.
 - [ ] Material coherence >= 4.
 - [ ] No major contributive contradiction exists.
+- [ ] No route-visible asset floats above +0.10m or sinks below -0.25m unless
+      Julien accepted a documented exception.
 - [ ] Human validation is complete when subjective.
 
 ### Closure Rule

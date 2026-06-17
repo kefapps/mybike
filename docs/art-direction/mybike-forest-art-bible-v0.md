@@ -27,6 +27,10 @@ canonical art bible wins unless a later ADR explicitly resolves the conflict.
   canonical ride corridor from the canonical ride camera.
 - `Checkpoint insuffisant` preserves useful progress without allowing `Done`.
 - `Ambition Visuelle Mesurée` means aim premium first, then measure performance.
+- Grounded assets are part of the visual target. Visible trees, roots, rocks,
+  patches, and props must belong to the forest floor, not float above it.
+- Unity placement must follow
+  `docs/validation/unity-ground-placement-policy.md`.
 - Cheap, prototype-looking, preview-only, or generic forest output is rejected.
 
 `Low-poly` may remain only as a local technical qualifier for a proxy, LOD,
@@ -265,6 +269,40 @@ Intermediate evidence only:
 
 Asset preview proves the asset exists. Route camera proves it belongs.
 
+## Ground Contact / Anti-Float
+
+Ground contact is part of `Fantasy Scenic Premium Lisible`.
+
+Visible forest assets must feel rooted in the terrain. Trees, trunk bases, root
+clusters, rocks, moss mats, leaf patches, signs, and waypoints should visually
+belong to the forest floor. Floating assets immediately break scale,
+material credibility, and route-camera premium quality.
+
+Canonical Unity placement policy:
+
+- ground visible assets by visual bottom;
+- instantiate, apply rotation and scale, compute combined renderer bounds, then
+  use `bounds.min.y` to compute the pivot-to-bottom correction;
+- do not use `bounds.extents.y`, `bounds.size.y / 2`, or fixed half-height
+  offsets as the final vertical placement policy;
+- apply a small documented sink, usually 0.02m to 0.05m, so assets visually
+  settle into soil, moss, or leaf litter;
+- when raycasting, use an explicit ground layer mask or documented ground
+  source, ignore triggers, and avoid hits against generated assets, patches, or
+  props;
+- report bottomClearance metrics for route-visible assets.
+
+Thresholds:
+
+- target bottomClearance: -0.05m to +0.05m;
+- warning floating: > +0.05m;
+- blocking floating for route-visible assets: > +0.10m;
+- warning sinking: < -0.10m;
+- blocking sinking for route-visible assets: < -0.25m.
+
+Route-visible floating assets above +0.10m block checkpoint review unless Julien
+explicitly accepts a documented exception.
+
 ## Premium Target and Checkpoint Insuffisant
 
 Visible Art Rescue production is closable only when `Premium target` is reached
@@ -276,6 +314,7 @@ or when Julien explicitly accepts a documented exception.
 - `Silhouette quality >= 4`;
 - `Lighting mood >= 4`;
 - `Material coherence >= 4`;
+- no route-visible asset violates the blocking ground contact thresholds;
 - human validation recorded when the judgment is subjective.
 
 `Acceptable vertical slice` may be an intermediate checkpoint. It is not enough
@@ -523,6 +562,8 @@ complexity that makes the style less coherent.
 
 - source/provenance/license unclear;
 - looks cheap, generic, or prototype-like in route camera;
+- route-visible asset floats above the ground or sinks enough to break scale
+  credibility;
 - validates only in preview, turntable, or overview;
 - hides the road or competes with the ride;
 - breaks `Fantasy Scenic Premium Lisible`;

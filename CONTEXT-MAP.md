@@ -108,6 +108,44 @@ Relationship:
   history; `visual-checkpoints` wins for standardized route/overview captures,
   before/after sheets, reports, and metadata.
 
+MYB-155 / requested MYB-154 output:
+
+- `docs/validation/unity-ground-placement-policy.md`
+  - canonical Art Rescue anti-floating and ground contact policy;
+  - defines visual-bottom grounding by combined renderer bounds `min.y`;
+  - forbids final offsets based on `bounds.extents.y`, `bounds.size.y / 2`, or
+    fixed half-height placement;
+  - defines `bottomClearance` thresholds and future builder metrics.
+- `_bmad-output/implementation-artifacts/MYB-154/myb-154-ground-placement-governance-report.md`
+  - doc-only implementation report for the requested MYB-154 governance label.
+
+Relationship:
+
+- The forest art bible owns the visual target: assets must belong to the forest
+  floor.
+- The shot rubric owns review gating: route-visible floating above +0.10m blocks
+  checkpoint review unless Julien accepts a documented exception.
+- The ground placement policy owns technical placement mechanics and metrics.
+
+MYB-156 output:
+
+- `docs/validation/unity-visual-support-policy.md`
+  - canonical Art Rescue visual-support policy for elevated route-visible
+    assets;
+  - defines `supportedAboveGround`, support evidence, blocker policy, and
+    visual-support metrics.
+- `unity/Echapee4D/Assets/MYB156/Editor/MYB156VisualSupportValidator.cs`
+  - ticket-local Unity Editor validator for MYB-148/MYB-149 style scenes.
+- `_bmad-output/unity-test-results/myb-156-visual-support-validator-report.md`
+  - generated validation report path.
+
+Relationship:
+
+- MYB-155 catches ground-contact errors via bottomClearance.
+- MYB-156 catches route-visible elevated assets that read as unsupported or
+  floating even when MYB-155 ground-contact metrics do not flag them.
+- The shot rubric uses both policies when judging Scale credibility.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`
