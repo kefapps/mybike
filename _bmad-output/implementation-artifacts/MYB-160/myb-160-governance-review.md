@@ -31,7 +31,12 @@
 | Unsupported route-visible canopies | 0 |
 | Premium target reached | No |
 | Checkpoint status | Checkpoint insuffisant |
-| Recommended Linear status | In Review |
+| Downstream human validation | MYB-161 revised checkpoint validated by Julien on 2026-06-18 |
+| Recommended Linear status | Done |
 
 Final auto-review verdict:
 - PASS_WITH_WARNINGS
+
+Closure note:
+- MYB-160 is accepted as controlled Meshy candidate/support evidence for the validated MYB-161 direction.
+- Meshy assets remain candidate/preview-only and are not production-promoted.

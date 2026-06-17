@@ -8449,6 +8449,27 @@ MYB-160 implementation evidence synced on 2026-06-17:
   - candidate materials are scene-local preview remaps because Unity did not
     preserve Blender material colors reliably.
 
+MYB-160 downstream validation and closure synced on 2026-06-18:
+
+- Downstream validation:
+  MYB-161 revised checkpoint was validated by Julien on 2026-06-18.
+- MYB-160 interpretation:
+  - accepted as controlled Meshy candidate/support evidence for the validated
+    MYB-161 direction;
+  - not standalone Premium target evidence;
+  - Meshy assets remain candidate/preview-only;
+  - no production promotion introduced.
+- Local report updates:
+  - `_bmad-output/implementation-artifacts/MYB-160/myb-160-meshy-hero-candidate-report.md`
+    records the downstream validation note;
+  - `_bmad-output/implementation-artifacts/MYB-160/myb-160-governance-review.md`
+    records the support-pass closure and recommends `Done`.
+- Gitea PR:
+  `#22` remains the MYB-160 stacked PR, now including the merged MYB-161
+  validated direction.
+- Recommended Linear status after validation:
+  `Done`.
+
 MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
 
 - Linear issue:

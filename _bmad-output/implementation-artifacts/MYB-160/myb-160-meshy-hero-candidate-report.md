@@ -4,6 +4,9 @@
 
 MYB-160 creates controlled Meshy hero candidates for the MYB-159 golden slice. The goal is not to generate a forest; it is to test whether one stronger tree assembly and one root arch threshold improve the route-camera silhouette problem that remained after MYB-158 and MYB-159.
 
+Closure note:
+Julien validated the downstream MYB-161 revised checkpoint on 2026-06-18. MYB-160 is accepted as a controlled candidate/support pass for that validated direction. The Meshy assets remain candidate/preview-only and are not production-promoted.
+
 ## Scope
 
 - 2 Meshy-6 preview generations authorized by Julien.
@@ -130,7 +133,7 @@ MYB-160 creates controlled Meshy hero candidates for the MYB-159 golden slice. T
 
 ## Visual Rubric Estimate
 
-Visual scores are implementation estimates pending Julien human visual review.
+Visual scores are implementation estimates retained as context after the downstream MYB-161 human validation. MYB-160 is accepted as a support pass, not as standalone Premium target evidence.
 
 | Criterion | Estimate | Notes |
 |---|---:|---|
@@ -153,7 +156,7 @@ Visual scores are implementation estimates pending Julien human visual review.
 ### MYB-160 Visual Warnings
 
 - Premium target intentionally not claimed; MYB-160 only tests controlled Meshy candidates inside the MYB-159 golden slice.
-- Checkpoint remains insuffisant until Julien validates whether the Meshy silhouettes improve the route-camera read.
+- Julien validated the downstream MYB-161 revised checkpoint on 2026-06-18; MYB-160 is accepted as a support pass for that direction.
 - Route-camera impact is directionally better but still modest; candidates need Julien review plus a later lighting/material composition pass before any production claim.
 
 ### MYB-160 Asset / Manifest Warnings
@@ -185,5 +188,5 @@ Visual scores are implementation estimates pending Julien human visual review.
 ## Verdict
 
 - Premium target reached: No
-- Checkpoint insuffisant, Meshy candidates directionally tested pending Julien human review
-- Recommended Linear status: In Review
+- Checkpoint insuffisant, Meshy candidates accepted as support for the MYB-161 validated direction
+- Recommended Linear status: Done
