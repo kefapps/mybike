@@ -7580,6 +7580,140 @@ MYB-148 closure synced on 2026-06-16:
 - Next recommended ticket:
   `MYB-149` - forest floor / materials / shoulders / route-ground coherence.
 
+MYB-149 implementation checkpoint synced on 2026-06-16:
+
+- Linear issue:
+  `MYB-149` - Pass matière sol forestier.
+- Linear implementation comment ID:
+  `2d94204d-2626-44b3-b793-eeb161f54646`.
+- Recommended Linear status:
+  `In Review`, pending Julien visual validation.
+- Branch:
+  `MYB-149-ground-material-preview`.
+- Scope:
+  - dedicated MYB-149 preview scene derived from MYB-148 after;
+  - deterministic ticket-local Unity Editor builder as source of truth;
+  - scene-local ground/material/route-edge/asset-grounding patches only;
+  - no MYB-148 preview scene modification;
+  - no canonical ride scene modification;
+  - no gameplay, route trajectory, route collider, or shared production material change;
+  - no Meshy, Tripo, external text-to-3D, Poly Haven, or new third-party asset source;
+  - no reusable MYB-149 art assets created by default;
+  - no manifest change required.
+- Builder:
+  `unity/Echapee4D/Assets/MYB149/Editor/MYB149GroundMaterialPreviewBuilder.cs`.
+- Preview scene:
+  `unity/Echapee4D/Assets/Scenes/MYB149GroundMaterialPreview.unity`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-149/myb-149-implementation-report.md`.
+- Metrics:
+  `_bmad-output/implementation-artifacts/MYB-149/myb-149-ground-material-metrics.json`.
+- Visual checkpoint output:
+  `_bmad-output/visual-checkpoints/MYB-149/`.
+- Route comparison:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-00-23Z-route-before-after.png`.
+- Overview comparison:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-00-23Z-overview-before-after.png`.
+- Capture report:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-00-24Z-before-after-capture-report.md`.
+- Metrics summary:
+  - seed: 149001;
+  - total scene-local ground patches: 110;
+  - route edge patches: 28;
+  - shoulder transition patches: 30;
+  - asset grounding patches: 52;
+  - assets grounded: 30;
+  - renderers: 110;
+  - mesh filters: 110;
+  - approximate generated triangles: 1,674;
+  - minimum route clearance: 2.08 m;
+  - potential route overlaps: 0.
+- Validation:
+  - MYB-144 validator: `PASS_WITH_WARNINGS`;
+  - MYB-144 errors: 0;
+  - MYB-144 warnings: 211 existing Art Rescue validator warnings documented
+    separately as non-blocking and not introduced by MYB-149;
+  - manifest diff: none;
+  - MYB-148 scene diff: none;
+  - reusable MYB-149 asset files under `Assets/MYB149`: none.
+- Visual verdict:
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - preview evidence only, pending Julien visual validation.
+
+MYB-149 review cleanup synced on 2026-06-16:
+
+- Linear issue:
+  `MYB-149` - Pass matière sol forestier.
+- Linear cleanup comment ID:
+  `12eec93c-7186-4c20-9fc1-caa2ed352751`.
+- Linear PR comment ID:
+  `b52cc86b-eb70-4ce6-bdfe-039d52a6dd19`.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/15`.
+- Implementation commit:
+  `408e07d MYB-149 ground material cleanup checkpoint`.
+- Scope:
+  - applied review corrections without widening MYB-149;
+  - no Premium target claim;
+  - no MYB-148 scene modification;
+  - no canonical ride scene modification;
+  - no gameplay, route trajectory, route collider, or shared production material change;
+  - no reusable MYB-149 asset files created by default;
+  - no manifest change required.
+- Builder:
+  `unity/Echapee4D/Assets/MYB149/Editor/MYB149GroundMaterialPreviewBuilder.cs`.
+- Preview scene:
+  `unity/Echapee4D/Assets/Scenes/MYB149GroundMaterialPreview.unity`.
+- Added route clearance guard:
+  - RoadHalfWidth: 2.05 m;
+  - warning threshold: 2.30 m (`RoadHalfWidth + 0.25 m`);
+  - minimum route clearance: 2.19 m;
+  - route overlaps: 0;
+  - warning is non-blocking because patches remain outside the readable trajectory.
+- Light patch tuning:
+  - softened route-edge scene-local materials;
+  - reduced some route-edge/grounding patch sizes;
+  - preserved deterministic seed `149001`.
+- Updated artifacts:
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-implementation-report.md`;
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-ground-material-metrics.json`;
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-governance-review.md`.
+- Visual checkpoint output:
+  `_bmad-output/visual-checkpoints/MYB-149/`.
+- Route comparison:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-30-40Z-route-before-after.png`.
+- Overview comparison:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-30-40Z-overview-before-after.png`.
+- Capture report:
+  `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T19-30-41Z-before-after-capture-report.md`.
+- Metrics summary:
+  - seed: 149001;
+  - total scene-local ground patches: 110;
+  - route edge patches: 8;
+  - shoulder transition patches: 27;
+  - asset grounding patches: 52;
+  - renderers: 110;
+  - mesh filters: 110;
+  - approximate generated triangles: 1,647;
+  - minimum route clearance: 2.19 m;
+  - potential route overlaps: 0.
+- Validation:
+  - MYB-144 validator: `PASS_WITH_WARNINGS`;
+  - MYB-144 errors: 0;
+  - MYB-144 warnings: 211 existing Art Rescue validator warnings documented
+    separately as non-blocking and not introduced by MYB-149;
+  - metrics JSON: valid;
+  - manifest diff: none;
+  - MYB-148 scene diff: none;
+  - reusable MYB-149 asset files under `Assets/MYB149`: none.
+- Final recommendation:
+  - `PASS_WITH_WARNINGS`;
+  - Linear status `In Review`;
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - not Done until Julien validates visually.
+
 MYB-154 MYB-144 legacy/prototype inventory hardening synced on 2026-06-16:
 
 - Linear issue:
@@ -7639,3 +7773,84 @@ MYB-154 closure synced on 2026-06-16:
   - manifest and promoted asset issues remain strict `ERROR`;
   - no manifest mass-fill, scene change, asset movement, asset import, or asset
     promotion was performed.
+
+MYB-149 post-MYB-154 rerun synced on 2026-06-16:
+
+- Linear issue:
+  `MYB-149` - Pass matière sol forestier / ground-material preview pass.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/15`.
+- Branch:
+  `MYB-149-ground-material-preview`.
+- Linear status:
+  `In Review`.
+- Linear rerun comment ID:
+  `180cef65-9842-4c43-a5ad-2fd2dd617f85`.
+- Rerun reason:
+  - MYB-154 changed MYB-144 legacy/prototype unmanifested asset inventory from
+    recurring WARNING noise to aggregate INFO;
+  - MYB-149 evidence was regenerated and revalidated against the hardened
+    validator.
+- Updated reports:
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-implementation-report.md`;
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-ground-material-metrics.json`;
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-governance-review.md`;
+  - `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Updated visual evidence:
+  - route before/after:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T20-08-16Z-route-before-after.png`;
+  - overview before/after:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T20-08-16Z-overview-before-after.png`;
+  - capture report:
+    `_bmad-output/visual-checkpoints/MYB-149/2026-06-16T20-08-17Z-before-after-capture-report.md`.
+- MYB-144 validation after rerun:
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - info: 26.
+- Remaining non-blocking MYB-149 warning:
+  - minimum route clearance is 2.19 m, below the conservative 2.30 m warning
+    threshold;
+  - route overlap count is 0;
+  - documented as close scene-local edge feathering near the route, not a
+    gameplay, route trajectory, or collider change.
+- Governance:
+  - no MYB-148 scene modification;
+  - no canonical ride scene modification;
+  - no gameplay, route trajectory, or route collider change;
+  - no shared production material change;
+  - no reusable MYB-149 asset files created;
+  - no manifest change required;
+  - no Meshy, Tripo, external text-to-3D, Poly Haven, or third-party intake.
+- Final recommendation:
+  - `PASS_WITH_WARNINGS`;
+  - Linear status `In Review`;
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - not Done until Julien validates visually.
+
+MYB-149 human visual acceptance synced on 2026-06-16:
+
+- Linear issue:
+  `MYB-149` - Pass matière sol forestier / ground-material preview pass.
+- Gitea PR:
+  `http://localhost:3000/kefapps/mybike/pulls/15`.
+- Human reviewer:
+  Julien.
+- Human decision:
+  accepted as checkpoint with reservations.
+- Linear human review comment ID:
+  `f33fe615-ad46-4a85-938e-358a01a7be49`.
+- Human reservations:
+  - the result is accepted, but it is not very beautiful yet;
+  - some objects appear to float in the sky even though they read as trees.
+- Interpretation:
+  - MYB-149 is accepted as a ground/material checkpoint only;
+  - this is not `Premium target` evidence;
+  - `Premium target reached: No`;
+  - `Checkpoint insuffisant`;
+  - the floating tree/object issue must be investigated in a follow-up visual
+    cleanup / scatter validation pass before any production-quality claim.
+- Updated local artifacts:
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-implementation-report.md`;
+  - `_bmad-output/implementation-artifacts/MYB-149/myb-149-governance-review.md`.
