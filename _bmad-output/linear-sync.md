@@ -8457,6 +8457,10 @@ MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
   https://linear.app/kefjbo/issue/MYB-161/art-directed-golden-slice-forest-composition-pass
 - Branch:
   `MYB-161-art-directed-golden-slice-composition`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/23
+- Local commit:
+  `a562da9` - MYB-161 art directed golden slice composition.
 - Recommended Linear status:
   `In Review`, not `Done`, until Julien validates the route-camera evidence.
 - Linear status after implementation:
