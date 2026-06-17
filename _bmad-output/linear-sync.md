@@ -8206,3 +8206,84 @@ MYB-158 route-camera forest corridor pass synced on 2026-06-17:
   - `Premium target` is still not reached;
   - the next likely blocker is higher-quality authored tree/canopy forms rather
     than placement governance.
+
+MYB-159 golden forest slice synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-159` - Golden Slice foret authored route-camera avec usage Meshy controle si necessaire.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-159/golden-slice-foret-authored-route-camera-avec-usage-meshy-controle-si
+- Branch:
+  `MYB-159-golden-forest-slice-authored`.
+- Base:
+  stacked on `MYB-158-premium-route-camera-forest-corridor-pass` because
+  MYB-158 after is the required before baseline for MYB-159.
+- Linear status after implementation:
+  `In Review`, not `Done`, until Julien validates the route-camera evidence.
+- Scope:
+  - dedicated MYB-159 preview scene derived from MYB-158 after;
+  - 20-40m route-camera-first authored golden slice;
+  - scene-local authored tree assemblies, side banks, supported canopies, hero
+    threshold, and back wall forest masses;
+  - no gameplay, ride loop, HUD, telemetry, route trajectory, route colliders,
+    canonical ride scene, MYB-148 scene, MYB-149 scene, or MYB-158 scene change;
+  - no Meshy, Tripo, Blender, Poly Haven, or silent third-party asset use;
+  - no manifest change and no asset promotion.
+- Builder:
+  `unity/Echapee4D/Assets/MYB159/Editor/MYB159GoldenForestSliceBuilder.cs`.
+- Generated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB159GoldenForestSlicePreview.unity`.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-159/myb-159-implementation-report.md`.
+- Governance review:
+  `_bmad-output/implementation-artifacts/MYB-159/myb-159-governance-review.md`.
+- Metrics:
+  `_bmad-output/implementation-artifacts/MYB-159/myb-159-golden-slice-metrics.json`.
+- Final visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-49Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-52Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-52Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-49Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-52Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-159/2026-06-17T12-33-53Z-overview-before-after.png`.
+- Golden slice metrics:
+  - treeAssemblyCount: 5;
+  - routeVisibleTreeAssemblyCount: 5;
+  - heroBeatCount: 1;
+  - backWallMassCount: 24;
+  - sideBankPatchCount: 8;
+  - routeVisibleCanopyCount: 30;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - floatingAssetCount: 0;
+  - routeVisibleFloatingAssetCount: 0;
+  - routeOverlapCount: 0;
+  - minimumRouteClearanceMeters: 2.33;
+  - approximateTriangles: 25556;
+  - thumbnailForestRead: `pass`;
+  - emptySkyOrFlatBackgroundRisk: `low`;
+  - meshyGeneratedCount: 0;
+  - meshyUsedInPreviewCount: 0;
+  - manifestEntriesAdded: 0.
+- MYB-144 validation:
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS;
+  - `unity-mcp-cli run-tool assets-refresh ...`: PASS;
+  - `unity-mcp-cli run-tool script-execute ... MYB159GoldenForestSliceBuilder.RunBatchBuildCaptureValidate`: PASS;
+  - `jq` accepted the MYB-159 metrics JSON;
+  - `git diff --check`: PASS;
+  - Unity console after clear/import: no logs.
+- Visual verdict:
+  - `Checkpoint insuffisant, directionally improved`;
+  - `Premium target` is still not reached;
+  - recommended Linear status is `In Review`.
