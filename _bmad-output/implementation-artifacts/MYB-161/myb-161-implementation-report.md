@@ -2,14 +2,17 @@
 
 ## Summary
 
-MYB-161 is an art-directed composition pass, not a new global generation pass. MYB-160 proved Meshy can provide stronger isolated candidates, but the route-camera image stayed weak when the slice remained mostly object placement. MYB-161 rebuilds the preview as a five-plane route-camera composition.
+MYB-161 is an art-directed composition pass, not a new global generation pass. MYB-160 proved Meshy can provide stronger isolated candidates. Julien then rejected the first sparse MYB-161 after direction in favor of the previous left/baseline mood. This revision preserves the baseline forest enclosure while keeping controlled route readability improvements.
+
+Human preference note:
+Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.
 
 ## Baseline
 
 - before = MYB-160 after
 - before scene: `Assets/Scenes/MYB160MeshyHeroCandidatePreview.unity`
-- before route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-route.png`
-- before overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-overview.png`
+- before route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-route.png`
+- before overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-overview.png`
 
 ## Builder
 
@@ -21,19 +24,20 @@ MYB-161 is an art-directed composition pass, not a new global generation pass. M
 
 ## Art Direction Recipe
 
-- foreground frame: large left ancient trunk assembly at 0-8/near meters, plus low right root/moss bank.
-- near side mass: supporting side tree assemblies and root clusters from 8-18m.
-- hero threshold: existing MYB-160 Meshy hero tree plus lateral root arch, treated as one natural gate moment.
-- back wall: taller desaturated side masses at 30-45m.
-- background atmosphere: low-cost distant silhouettes beyond 45m with fog/desaturation.
+- baseline enclosure: MYB-159/MYB-160 generated art roots stay active to preserve lush near-camera canopy mass and softer forest mood.
+- foreground frame: left ancient trunk assembly reinforces the preferred canopy enclosure without replacing it.
+- near side mass: left-biased supporting tree assemblies and root clusters enrich the ride edge without random scatter.
+- hero threshold: one restrained root/wood landmark idea remains, while the extra MYB-161 right-side Meshy tree clutter is removed.
+- back wall: fewer grouped forest masses replace thin pole/picket silhouettes.
+- background atmosphere: a small number of grouped silhouettes adds depth without a technical preview look.
 
 ## Layout Decisions
 
-- foreground left ancient trunk: `MYB161_TreeAssembly_A`, X/offset approximately -6.1m, Z/meters 10.5.
+- foreground left ancient trunk: `MYB161_TreeAssembly_A`, X/offset approximately -6.7m, Z/meters 10.5.
 - foreground right low root bank: `MYB161_ForegroundRight_LowRootMossBank`, offset +4.8m, meters 11.5.
-- mid right hero tree: `MYB161_HeroTreeAssembly`, offset +9.55m, meters 23.2, using the cleaned MYB-160 Meshy tree as a restrained candidate mass.
+- mid-left enclosure mass: `MYB161_TreeAssembly_C`, offset approximately -9.6m, meters 24.5, reinforcing forest ride enclosure.
 - hero threshold: `MYB161_HeroThreshold_RootArchNaturalGate`, offset -6.25m, meters 29.5, using the cleaned MYB-160 Meshy root arch diagonally.
-- back wall: 10 side masses at offsets roughly +/-9m to +/-14m.
+- back wall: 6 grouped side masses at offsets roughly +/-10m to +/-15m.
 
 ## Tree Assemblies
 
@@ -43,35 +47,27 @@ MYB-161 is an art-directed composition pass, not a new global generation pass. M
 - visible from route: Yes
 - canopy supported: Yes
 - grounding: combined renderer bounds min.y, sink 0.03m
-- notes: Foreground left frame. Big asymmetrical trunk, roots and horizontal supported canopy lobes frame the route without closing it.
+- notes: Foreground left frame. Big asymmetrical trunk, wider roots and grouped supported canopy lobes preserve the lush near-camera enclosure without closing the route.
 
 ### MYB161_TreeAssembly_B
 
-- role: Plan B near left supporting side mass
+- role: Plan B near left canopy reinforcement
 - visible from route: Yes
 - canopy supported: Yes
 - grounding: combined renderer bounds min.y, sink 0.03m
-- notes: Near left support mass. Smaller than foreground frame, used to make the left side dense without repeating a straight row.
+- notes: Near left support mass. Keeps the baseline green tunnel feeling by adding supported canopy grouping instead of another isolated prop.
 
 ### MYB161_TreeAssembly_C
 
-- role: Plan B/C right mid support mass
+- role: Plan C mid-left forest enclosure mass
 - visible from route: Yes
 - canopy supported: Yes
 - grounding: combined renderer bounds min.y, sink 0.03m
-- notes: Right side support mass behind the foreground bank. It supports the hero tree area without becoming a second hero beat.
-
-### MYB161_HeroTreeAssembly
-
-- role: Midground right hero ancient tree
-- visible from route: Yes
-- canopy supported: Yes
-- grounding: Meshy candidate grounded by combined renderer bounds min.y, sink 0.03m
-- notes: Plan C. Existing MYB-160 Meshy ancient tree used as a right-side secondary focal mass, scaled down and placed farther from the route to avoid a mushroom/blob read.
+- notes: Mid-left enclosure mass. Restores the feeling of riding through a forest while staying outside the readable route corridor.
 
 ## Meshy Usage
 
-- Used existing MYB-160 Meshy assets: Yes
+- Used existing MYB-160 Meshy assets: Yes, via the preserved baseline scene and one restrained root arch candidate overlay.
 - New Meshy generations: 0
 - Manifest status: existing MYB-160 entries are `intakeStatus: approved`, `promotionStatus: candidate`, `license: Provider terms pending project review`.
 - No production promotion.
@@ -93,13 +89,13 @@ MYB-161 is an art-directed composition pass, not a new global generation pass. M
 
 ## Visual Evidence
 
-- before route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-route.png`
-- before overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-45Z-before-overview.png`
-- after route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png`
-- after overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png`
-- route comparison: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-route-before-after.png`
-- overview comparison: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-overview-before-after.png`
-- capture report: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-before-after-capture-report.md`
+- before route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-route.png`
+- before overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-overview.png`
+- after route: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-route.png`
+- after overview: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-overview.png`
+- route comparison: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-route-before-after.png`
+- overview comparison: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-13Z-overview-before-after.png`
+- capture report: `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-13Z-before-after-capture-report.md`
 
 ## MYB-144 Validation
 
@@ -115,14 +111,14 @@ Scores are implementation estimates pending Julien human visual review.
 | Criterion | Estimate | Notes |
 |---|---:|---|
 | Route readability | 4 | Route is kept open, with no overlap and minimum clearance 2.75m. |
-| Silhouette quality | 3 | Foreground and hero silhouettes are more directed, but still use simple procedural and candidate materials. |
-| Lighting mood | 3 | Slightly deeper fog and warmer break light improve depth without hiding the road. |
+| Silhouette quality | 3 | Baseline canopy enclosure is preserved and extra pole/picket silhouettes are reduced, but the project still lacks final bespoke forest forms. |
+| Lighting mood | 3 | Softer baseline mood is preserved with only light scene-local support. |
 | Material coherence | 3 | Scene-local palette is coherent enough for preview, not final art. |
-| Foreground richness | 4 | Left frame and right root bank make the first 8-14m less empty and less prop-like. |
-| Midground density | 4 | Hero tree, threshold and side masses improve corridor body. |
-| Background depth | 4 | Back wall and distant silhouettes reduce empty sky/flat background risk. |
+| Foreground richness | 4 | Preferred lush near-camera canopy mass is retained, with restrained grounding support. |
+| Midground density | 4 | Left enclosure and route edge masses keep the ride feeling like a forest instead of an asset preview. |
+| Background depth | 3 | Grouped masses add depth, but remain preview-quality. |
 | Scale credibility | 4 | Grounding, support and clearance metrics pass. |
-| Composition rhythm | 4 | Five-plane layout replaces uniform scatter with foreground, side mass, hero threshold and depth. |
+| Composition rhythm | 3 | Revision favors the preferred baseline mood over the sparse first after; composition is safer but still not Premium. |
 
 ## Warning Categories
 
@@ -133,8 +129,9 @@ Scores are implementation estimates pending Julien human visual review.
 ### MYB-161 Visual Warnings
 
 - Premium target intentionally not claimed; MYB-161 is an art-directed composition checkpoint pending Julien visual review.
-- MYB-161 reduces isolated prop placement by disabling MYB-159/MYB-160 generated art roots in the preview output and rebuilding the slice with five explicit route-camera planes.
-- Blob canopy dominance is reduced but still not eliminated; the source project still lacks final bespoke forest canopy assets.
+- Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.
+- MYB-161 revision keeps the human-preferred MYB-159/MYB-160 canopy enclosure active and uses MYB-161 as a restrained structural overlay.
+- Blob canopy dominance remains a known risk because the preferred baseline relies on generous canopy masses; this revision avoids optimizing toward the sparse first after image.
 
 ### MYB-161 Asset / Manifest Warnings
 

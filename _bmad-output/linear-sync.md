@@ -8538,3 +8538,89 @@ MYB-161 art-directed golden slice composition pass synced on 2026-06-17:
   - `Premium target reached`: No;
   - `Checkpoint insuffisant, but visually stronger`;
   - recommended Linear status is `In Review`.
+
+MYB-161 human preference revision synced on 2026-06-17:
+
+- Linear issue:
+  `MYB-161` - Art-directed Golden Slice Forest Composition Pass.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-161/art-directed-golden-slice-forest-composition-pass
+- Linear revision comment:
+  `1956e91d-d4f3-4cbb-adb0-592c6db902d4`.
+- Branch:
+  `MYB-161-art-directed-golden-slice-composition`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/23
+- Human review note:
+  Julien prefers the previous left/baseline mood over the first MYB-161 after.
+  This revision preserves the baseline forest enclosure while keeping route
+  readability improvements.
+- Revision direction:
+  - preserve MYB-159/MYB-160 baseline roots instead of disabling them;
+  - restore lush near-camera canopy mass, especially upper-left and mid-left;
+  - remove the extra right-side MYB-161 Meshy tree overlay that made the image
+    read too sparse and asset-preview-like;
+  - reduce thin background picket silhouettes by replacing them with fewer,
+    grouped forest masses;
+  - keep the route center readable with 2.75 m minimum clearance;
+  - keep one root-arch/wood landmark idea as a restrained preview-only hero
+    beat.
+- Builder:
+  `unity/Echapee4D/Assets/MYB161/Editor/MYB161ArtDirectedGoldenSliceBuilder.cs`.
+- Generated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity`.
+- Reports:
+  - implementation:
+    `_bmad-output/implementation-artifacts/MYB-161/myb-161-implementation-report.md`;
+  - metrics:
+    `_bmad-output/implementation-artifacts/MYB-161/myb-161-art-directed-golden-slice-metrics.json`.
+- Revised visual evidence:
+  - before route:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-route.png`;
+  - after route:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-route.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-route-before-after.png`;
+  - before overview:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-overview.png`;
+  - after overview:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-overview.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-13Z-overview-before-after.png`.
+- Revised metrics:
+  - treeAssemblyCount: 3;
+  - routeVisibleTreeAssemblyCount: 3;
+  - heroBeatCount: 1;
+  - backWallMassCount: 6;
+  - foregroundFrameCount: 1;
+  - sideBankPatchCount: 7;
+  - routeVisibleCanopyCount: 28;
+  - routeVisibleUnsupportedCanopyCount: 0;
+  - floatingAssetCount: 0;
+  - routeVisibleFloatingAssetCount: 0;
+  - routeOverlapCount: 0;
+  - minimumRouteClearanceMeters: 2.75;
+  - approximateTriangles: 35267;
+  - meshyAssetUsedCount: 1;
+  - newMeshyGenerationCount: 0;
+  - thumbnailForestRead: `pass`;
+  - heroBeatRead: `pass`;
+  - blobCanopyDominanceRisk: `medium`;
+  - emptySkyOrFlatBackgroundRisk: `low`;
+  - routeReadabilityRegression: false.
+- MYB-144 validation:
+  - final mode: `MYB-161-BuildCaptureValidate`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Validation:
+  - `unity-mcp-cli status unity/Echapee4D --timeout 10000`: PASS;
+  - `unity-mcp-cli run-tool assets-refresh ...`: PASS;
+  - `unity-mcp-cli run-tool reflection-method-call ... MYB161ArtDirectedGoldenSliceBuilder.RunBatchBuildCaptureValidate`: PASS;
+  - `git diff --check`: PASS.
+- Visual verdict:
+  - `Premium target reached`: No;
+  - `Checkpoint insuffisant`;
+  - recommended Linear status is `In Review`.

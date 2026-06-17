@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "ticketId": "MYB-161",
-  "generatedAt": "2026-06-17T18:58:47.4233350Z",
+  "generatedAt": "2026-06-17T19:26:12.7659230Z",
   "mode": "capture",
   "state": "after",
   "scenePath": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity",
   "branch": "MYB-161-art-directed-golden-slice-composition",
-  "commit": "a689aca",
+  "commit": "6f84123",
   "outputDirectory": "_bmad-output/visual-checkpoints/MYB-161",
   "verdict": "PASS",
   "cameras": [
@@ -14,8 +14,8 @@
     { "name": "OverviewCamera", "role": "secondary context", "found": true, "position": "(0, 86, 66)", "rotation": "(90, 0, 0)", "fov": 42, "notes": "orthographic" }
   ],
   "captures": [
-    { "state": "after", "type": "route", "path": "_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png", "scene": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity", "camera": "RouteCamera", "position": "(1.934, 1.574, 7.5)", "rotation": "(0.541, 3.231, 0)", "fov": 50, "resolution": "1600x900" },
-    { "state": "after", "type": "overview", "path": "_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png", "scene": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity", "camera": "OverviewCamera", "position": "(0, 86, 66)", "rotation": "(90, 0, 0)", "fov": 42, "resolution": "1600x900" }
+    { "state": "after", "type": "route", "path": "_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-route.png", "scene": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity", "camera": "RouteCamera", "position": "(1.934, 1.574, 7.5)", "rotation": "(0.541, 3.231, 0)", "fov": 50, "resolution": "1600x900" },
+    { "state": "after", "type": "overview", "path": "_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-overview.png", "scene": "Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity", "camera": "OverviewCamera", "position": "(0, 86, 66)", "rotation": "(90, 0, 0)", "fov": 42, "resolution": "1600x900" }
   ],
   "comparisons": [
   ],
@@ -29,8 +29,8 @@
   "warnings": [
   ],
   "info": [
-    { "code": "CAPTURE_WRITTEN", "message": "route after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png`." },
-    { "code": "CAPTURE_WRITTEN", "message": "overview after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png`." },
+    { "code": "CAPTURE_WRITTEN", "message": "route after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-route.png`." },
+    { "code": "CAPTURE_WRITTEN", "message": "overview after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-12Z-after-overview.png`." },
     { "code": "COMPARISON_NOT_REQUESTED", "message": "route before/after comparison was not requested." },
     { "code": "COMPARISON_NOT_REQUESTED", "message": "overview before/after comparison was not requested." }
   ]

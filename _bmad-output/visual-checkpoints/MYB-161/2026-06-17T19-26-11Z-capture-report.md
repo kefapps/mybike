@@ -4,29 +4,29 @@ Ticket:
 - `MYB-161`
 
 Generated at:
-- 2026-06-17T18:58:47.4233350Z
+- 2026-06-17T19:26:11.3026220Z
 
 Output directory:
 - `_bmad-output/visual-checkpoints/MYB-161/`
 
 Metadata:
-- `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-capture-metadata.json`
+- `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-capture-metadata.json`
 
 Mode:
 - capture
 
 State:
-- after
+- before
 
 Execution:
-- Mode: MYB-161-after
+- Mode: MYB-161-before
 - Branch: `MYB-161-art-directed-golden-slice-composition`
-- Commit: `a689aca`
+- Commit: `6f84123`
 
 ## Scene
 
 Scene:
-- `Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity`
+- `Assets/Scenes/MYB160MeshyHeroCandidatePreview.unity`
 
 ## Cameras
 
@@ -39,8 +39,8 @@ Scene:
 
 | State | Type | Path | Scene | Camera | Resolution |
 |---|---|---|---|---|---|
-| after | route | `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png` | `Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity` | RouteCamera | 1600x900 |
-| after | overview | `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png` | `Assets/Scenes/MYB161ArtDirectedGoldenSlicePreview.unity` | OverviewCamera | 1600x900 |
+| before | route | `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-route.png` | `Assets/Scenes/MYB160MeshyHeroCandidatePreview.unity` | RouteCamera | 1600x900 |
+| before | overview | `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-overview.png` | `Assets/Scenes/MYB160MeshyHeroCandidatePreview.unity` | OverviewCamera | 1600x900 |
 
 ## Comparisons
 
@@ -70,8 +70,8 @@ Source:
 
 | Code | Message |
 |---|---|
-| CAPTURE_WRITTEN | route after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-route.png`. |
-| CAPTURE_WRITTEN | overview after capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T18-58-47Z-after-overview.png`. |
+| CAPTURE_WRITTEN | route before capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-route.png`. |
+| CAPTURE_WRITTEN | overview before capture written to `_bmad-output/visual-checkpoints/MYB-161/2026-06-17T19-26-11Z-before-overview.png`. |
 | COMPARISON_NOT_REQUESTED | route before/after comparison was not requested. |
 | COMPARISON_NOT_REQUESTED | overview before/after comparison was not requested. |
 

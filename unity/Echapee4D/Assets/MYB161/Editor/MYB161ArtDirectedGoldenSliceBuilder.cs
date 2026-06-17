@@ -116,8 +116,8 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
             UnityEngine.Object.DestroyImmediate(previousRoot);
         }
 
-        DeactivateBaselineObject("MYB160_MeshyHeroCandidateRoot", "replaced by MYB-161 authored composition placements", result);
-        DeactivateBaselineObject("MYB159_GoldenForestSliceRoot", "replaced by MYB-161 five-plane composition", result);
+        PreserveBaselineObject("MYB160_MeshyHeroCandidateRoot", "human-preferred MYB-160 after enclosure retained", result);
+        PreserveBaselineObject("MYB159_GoldenForestSliceRoot", "human-preferred MYB-159/MYB-160 forest canopy mass retained", result);
 
         var root = new GameObject(GeneratedRootName);
         var planARoot = CreateChild(root.transform, "PlanA_ForegroundFrame_0_8m");
@@ -140,7 +140,6 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         BuildForegroundLeftAncientTrunk(materials, planARoot.transform, routePlanes, result);
         BuildForegroundRightLowRootBank(materials, planBRoot.transform, routePlanes, result);
         BuildNearSideTreeAssemblies(materials, planBRoot.transform, routePlanes, result);
-        BuildMidRightHeroTree(materials, planCRoot.transform, routePlanes, result);
         BuildHeroRootThreshold(materials, planCRoot.transform, routePlanes, result);
         BuildBackWallForest(materials, planDRoot.transform, routePlanes, result);
         BuildBackgroundAtmosphere(materials, planERoot.transform, routePlanes, result);
@@ -161,17 +160,18 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         result.RouteVisibleUnsupportedCanopyCount = result.Canopies.Count(canopy => canopy.RouteVisible && !canopy.Supported);
         result.MeshyAssetUsedCount = result.MeshyAssets.Count(asset => asset.UsedInPreview);
         result.NewMeshyGenerationCount = 0;
-        result.ThumbnailForestRead = result.TreeAssemblyCount >= 3 && result.RouteVisibleTreeAssemblyCount >= 2 && result.BackWallMassCount >= 8
+        result.ThumbnailForestRead = result.TreeAssemblyCount >= 3 && result.RouteVisibleTreeAssemblyCount >= 2 && result.BackWallMassCount >= 4
             ? "pass"
             : "warning";
-        result.HeroBeatRead = result.HeroBeatCount == 1 && result.MeshyAssetUsedCount >= 2 ? "pass" : "warning";
+        result.HeroBeatRead = result.HeroBeatCount == 1 && result.MeshyAssetUsedCount >= 1 ? "pass" : "warning";
         result.BlobCanopyDominanceRisk = "medium";
-        result.EmptySkyOrFlatBackgroundRisk = result.BackWallMassCount >= 10 && result.BackgroundAtmosphereCount >= 5 ? "low" : "medium";
+        result.EmptySkyOrFlatBackgroundRisk = result.BackWallMassCount >= 4 && result.BackgroundAtmosphereCount >= 4 ? "low" : "medium";
         result.RouteReadabilityRegression = false;
 
         result.VisualWarnings.Add("Premium target intentionally not claimed; MYB-161 is an art-directed composition checkpoint pending Julien visual review.");
-        result.VisualWarnings.Add("MYB-161 reduces isolated prop placement by disabling MYB-159/MYB-160 generated art roots in the preview output and rebuilding the slice with five explicit route-camera planes.");
-        result.VisualWarnings.Add("Blob canopy dominance is reduced but still not eliminated; the source project still lacks final bespoke forest canopy assets.");
+        result.VisualWarnings.Add("Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.");
+        result.VisualWarnings.Add("MYB-161 revision keeps the human-preferred MYB-159/MYB-160 canopy enclosure active and uses MYB-161 as a restrained structural overlay.");
+        result.VisualWarnings.Add("Blob canopy dominance remains a known risk because the preferred baseline relies on generous canopy masses; this revision avoids optimizing toward the sparse first after image.");
         result.AssetManifestWarnings.Add("Existing MYB-160 Meshy assets are used as preview candidates only.");
         result.AssetManifestWarnings.Add("Meshy license remains `Provider terms pending project review`; no production promotion is introduced.");
         result.AssetManifestWarnings.Add("New Meshy generation count is 0; MYB-161 does not spend credits.");
@@ -247,13 +247,13 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
                 "Plan A foreground left ancient trunk frame",
                 10.5f,
                 -1f,
-                6.1f,
+                6.7f,
                 8.6f,
-                0.78f,
-                1.72f,
-                2.25f,
+                0.86f,
+                2.18f,
+                2.55f,
                 true,
-                "Foreground left frame. Big asymmetrical trunk, roots and horizontal supported canopy lobes frame the route without closing it."),
+                "Foreground left frame. Big asymmetrical trunk, wider roots and grouped supported canopy lobes preserve the lush near-camera enclosure without closing the route."),
             materials,
             parent,
             routePlanes,
@@ -282,16 +282,16 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         CreateTreeAssembly(
             new TreePlan(
                 "MYB161_TreeAssembly_B",
-                "Plan B near left supporting side mass",
-                18.0f,
+                "Plan B near left canopy reinforcement",
+                16.4f,
                 -1f,
-                8.1f,
-                6.7f,
-                0.42f,
-                1.55f,
-                1.55f,
+                8.4f,
+                6.9f,
+                0.50f,
+                2.05f,
+                1.85f,
                 true,
-                "Near left support mass. Smaller than foreground frame, used to make the left side dense without repeating a straight row."),
+                "Near left support mass. Keeps the baseline green tunnel feeling by adding supported canopy grouping instead of another isolated prop."),
             materials,
             parent,
             routePlanes,
@@ -300,16 +300,16 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         CreateTreeAssembly(
             new TreePlan(
                 "MYB161_TreeAssembly_C",
-                "Plan B/C right mid support mass",
-                23.5f,
-                1f,
-                8.7f,
-                6.4f,
-                0.38f,
-                1.48f,
-                1.45f,
+                "Plan C mid-left forest enclosure mass",
+                24.5f,
+                -1f,
+                9.6f,
+                7.1f,
+                0.46f,
+                2.15f,
+                1.95f,
                 true,
-                "Right side support mass behind the foreground bank. It supports the hero tree area without becoming a second hero beat."),
+                "Mid-left enclosure mass. Restores the feeling of riding through a forest while staying outside the readable route corridor."),
             materials,
             parent,
             routePlanes,
@@ -374,16 +374,12 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
     {
         var plans = new[]
         {
-            new WallPlan(30.5f, -1f, 9.6f, 6.9f, 0.20f),
-            new WallPlan(32.0f, 1f, 10.8f, 7.4f, 0.18f),
-            new WallPlan(34.6f, -1f, 12.2f, 7.7f, 0.16f),
-            new WallPlan(36.2f, 1f, 8.9f, 6.6f, 0.18f),
-            new WallPlan(38.9f, -1f, 10.6f, 8.2f, 0.17f),
-            new WallPlan(40.5f, 1f, 12.8f, 7.2f, 0.16f),
-            new WallPlan(43.4f, -1f, 13.6f, 8.8f, 0.15f),
-            new WallPlan(44.6f, 1f, 9.9f, 7.6f, 0.17f),
-            new WallPlan(47.2f, -1f, 11.8f, 8.4f, 0.15f),
-            new WallPlan(48.8f, 1f, 13.9f, 8.9f, 0.14f)
+            new WallPlan(31.5f, -1f, 10.6f, 7.1f, 0.34f),
+            new WallPlan(34.0f, 1f, 11.8f, 7.4f, 0.31f),
+            new WallPlan(38.5f, -1f, 13.0f, 8.0f, 0.28f),
+            new WallPlan(42.2f, 1f, 12.9f, 7.7f, 0.29f),
+            new WallPlan(46.0f, -1f, 14.2f, 8.2f, 0.26f),
+            new WallPlan(49.0f, 1f, 14.8f, 8.4f, 0.25f)
         };
 
         foreach (var plan in plans)
@@ -398,11 +394,11 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         Plane[] routePlanes,
         BuildResult result)
     {
-        for (var i = 0; i < 8; i++)
+        for (var i = 0; i < 4; i++)
         {
             var side = i % 2 == 0 ? -1f : 1f;
-            var meters = 50f + i * 3.8f;
-            var distance = 13.5f + Mathf.Abs(Jitter(meters, 3.2f));
+            var meters = 54f + i * 5.5f;
+            var distance = 15.5f + Mathf.Abs(Jitter(meters, 3.4f));
             CreateBackgroundSilhouette("MYB161_BackgroundAtmosphericSilhouette_" + i.ToString("00", CultureInfo.InvariantCulture), meters, side, distance, materials, parent, routePlanes, result);
         }
     }
@@ -783,37 +779,47 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         mass.transform.position = sample.Position + sample.Right * offset + Vector3.up * (TerrainHeight(plan.Meters, offset) + 0.18f);
         mass.transform.rotation = Quaternion.LookRotation(sample.Forward, Vector3.up) * Quaternion.Euler(0f, plan.Side * 11f + Jitter(plan.Meters, 16f), 0f);
 
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 3; i++)
         {
             AddMeshChild(
                 mass.transform,
-                "tall_background_trunk_" + i.ToString("00", CultureInfo.InvariantCulture),
-                CreateTaperedTrunkMesh(plan.Height * (0.66f + i * 0.08f), plan.TrunkRadius * (0.72f - i * 0.06f), plan.Meters + i),
+                "grouped_background_trunk_" + i.ToString("00", CultureInfo.InvariantCulture),
+                CreateTaperedTrunkMesh(plan.Height * (0.52f + i * 0.09f), plan.TrunkRadius * (1.18f - i * 0.12f), plan.Meters + i),
                 i % 2 == 0 ? materials["shadowBark"] : materials["rootDark"],
-                new Vector3((i - 1.5f) * 0.48f, 0f, Jitter(plan.Meters + i, 0.55f)),
-                Quaternion.Euler(0f, plan.Side * (8f + i * 6f), plan.Side * (3f - i)),
+                new Vector3((i - 1f) * 0.72f, 0f, Jitter(plan.Meters + i, 0.42f)),
+                Quaternion.Euler(0f, plan.Side * (10f + i * 9f), plan.Side * (4f - i)),
                 Vector3.one);
         }
 
         var high = AddMeshChild(
             mass.transform,
-            "desaturated_supported_canopy_high",
-            CreateCanopyLobeMesh(1.22f, 1.58f, 0.78f, plan.Meters + 20f),
-            materials["backgroundLeaf"],
-            new Vector3(0.38f * plan.Side, plan.Height * 0.50f, 0.15f),
-            Quaternion.Euler(plan.Side * 4f, plan.Side * 18f, 0f),
+            "grouped_supported_canopy_high",
+            CreateCanopyLobeMesh(2.25f, 0.88f, 1.36f, plan.Meters + 20f),
+            materials["leafDistant"],
+            new Vector3(0.40f * plan.Side, plan.Height * 0.58f, 0.15f),
+            Quaternion.Euler(plan.Side * 4f, plan.Side * 18f, plan.Side * 5f),
             Vector3.one);
         RegisterCanopy(high, routePlanes, true, result);
 
         var low = AddMeshChild(
             mass.transform,
-            "desaturated_supported_canopy_low",
-            CreateCanopyLobeMesh(0.92f, 1.12f, 0.62f, plan.Meters + 27f),
-            materials["leafDistant"],
-            new Vector3(-0.48f * plan.Side, plan.Height * 0.38f, 0.64f),
-            Quaternion.Euler(plan.Side * -3f, plan.Side * -14f, 0f),
+            "grouped_supported_canopy_low",
+            CreateCanopyLobeMesh(1.82f, 0.72f, 1.18f, plan.Meters + 27f),
+            materials["backgroundLeaf"],
+            new Vector3(-0.58f * plan.Side, plan.Height * 0.43f, 0.64f),
+            Quaternion.Euler(plan.Side * -3f, plan.Side * -14f, plan.Side * -6f),
             Vector3.one);
         RegisterCanopy(low, routePlanes, true, result);
+
+        var rear = AddMeshChild(
+            mass.transform,
+            "grouped_supported_canopy_rear",
+            CreateCanopyLobeMesh(1.62f, 0.66f, 1.05f, plan.Meters + 31f),
+            materials["mossShadow"],
+            new Vector3(1.18f * plan.Side, plan.Height * 0.46f, -0.58f),
+            Quaternion.Euler(plan.Side * 2f, plan.Side * 28f, plan.Side * 7f),
+            Vector3.one);
+        RegisterCanopy(rear, routePlanes, true, result);
 
         AddMeshChild(mass.transform, "shadow_floor_mass", CreateOvalPatchMesh(1.9f, 2.9f, 0.08f, plan.Meters + 33f), materials["mossShadow"], Vector3.up * 0.02f, Quaternion.Euler(0f, plan.Side * 22f, 0f), Vector3.one);
 
@@ -848,8 +854,9 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         silhouette.transform.SetParent(parent, false);
         silhouette.transform.position = sample.Position + sample.Right * offset + Vector3.up * (TerrainHeight(meters, offset) + 0.2f);
         silhouette.transform.rotation = Quaternion.LookRotation(sample.Forward, Vector3.up) * Quaternion.Euler(0f, side * 10f + Jitter(meters, 18f), 0f);
-        AddMeshChild(silhouette.transform, "soft_far_trunk", CreateTaperedTrunkMesh(7.0f + Mathf.Abs(Jitter(meters, 1.2f)), 0.13f, meters), materials["backgroundTrunk"], Vector3.zero, Quaternion.Euler(0f, side * 8f, side * 3f), Vector3.one);
-        var canopy = AddMeshChild(silhouette.transform, "soft_far_canopy", CreateCanopyLobeMesh(1.72f, 0.38f, 0.86f, meters + 9f), materials["backgroundLeaf"], new Vector3(side * 0.35f, 5.2f, 0.2f), Quaternion.Euler(0f, side * 16f, 0f), Vector3.one);
+        AddMeshChild(silhouette.transform, "soft_far_group_trunk_a", CreateTaperedTrunkMesh(5.8f + Mathf.Abs(Jitter(meters, 0.8f)), 0.25f, meters), materials["backgroundTrunk"], new Vector3(-0.34f * side, 0f, -0.15f), Quaternion.Euler(0f, side * 8f, side * 3f), Vector3.one);
+        AddMeshChild(silhouette.transform, "soft_far_group_trunk_b", CreateTaperedTrunkMesh(5.2f + Mathf.Abs(Jitter(meters + 2f, 0.7f)), 0.19f, meters + 2f), materials["backgroundTrunk"], new Vector3(0.42f * side, 0f, 0.24f), Quaternion.Euler(0f, side * -12f, side * -2f), Vector3.one);
+        var canopy = AddMeshChild(silhouette.transform, "soft_far_canopy_group", CreateCanopyLobeMesh(2.05f, 0.72f, 1.18f, meters + 9f), materials["backgroundLeaf"], new Vector3(side * 0.35f, 4.7f, 0.2f), Quaternion.Euler(0f, side * 16f, side * 4f), Vector3.one);
         RegisterCanopy(canopy, routePlanes, true, result);
         GroundObjectByVisualBottom(silhouette, groundY, routePlanes, "Atmospheric background silhouette", result);
         result.BackgroundAtmosphereCount++;
@@ -1242,7 +1249,7 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
                 State = state,
                 ScenePath = scenePath,
                 BaselineSelectedBy = "MYB-161 builder / ticket",
-                BaselineReason = "MYB-160 after has better assets but weak route-camera composition; MYB-161 tests an explicitly art-directed layout.",
+                BaselineReason = "MYB-160 after is the human-preferred forest mood baseline; this MYB-161 revision preserves its enclosure while testing controlled readability improvements.",
                 BaselineSource = SourceScenePath
             });
     }
@@ -1339,7 +1346,7 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         builder.AppendLine();
         builder.AppendLine("Baseline:");
         builder.AppendLine("- before selected by: MYB-161 builder / ticket");
-        builder.AppendLine("- reason: MYB-160 after has better assets but weak route-camera composition; MYB-161 tests an explicitly art-directed layout.");
+        builder.AppendLine("- reason: MYB-160 after is the human-preferred forest mood baseline; this MYB-161 revision preserves its enclosure while testing controlled readability improvements.");
         builder.AppendLine();
         builder.AppendLine("Scene:");
         builder.AppendLine("- before: `" + SourceScenePath + "`");
@@ -1453,7 +1460,10 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         builder.AppendLine();
         builder.AppendLine("## Summary");
         builder.AppendLine();
-        builder.AppendLine("MYB-161 is an art-directed composition pass, not a new global generation pass. MYB-160 proved Meshy can provide stronger isolated candidates, but the route-camera image stayed weak when the slice remained mostly object placement. MYB-161 rebuilds the preview as a five-plane route-camera composition.");
+        builder.AppendLine("MYB-161 is an art-directed composition pass, not a new global generation pass. MYB-160 proved Meshy can provide stronger isolated candidates. Julien then rejected the first sparse MYB-161 after direction in favor of the previous left/baseline mood. This revision preserves the baseline forest enclosure while keeping controlled route readability improvements.");
+        builder.AppendLine();
+        builder.AppendLine("Human preference note:");
+        builder.AppendLine("Julien prefers the previous left/baseline mood over the first MYB-161 after. This revision preserves the baseline forest enclosure while keeping route readability improvements.");
         builder.AppendLine();
         builder.AppendLine("## Baseline");
         builder.AppendLine();
@@ -1472,19 +1482,20 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         builder.AppendLine();
         builder.AppendLine("## Art Direction Recipe");
         builder.AppendLine();
-        builder.AppendLine("- foreground frame: large left ancient trunk assembly at 0-8/near meters, plus low right root/moss bank.");
-        builder.AppendLine("- near side mass: supporting side tree assemblies and root clusters from 8-18m.");
-        builder.AppendLine("- hero threshold: existing MYB-160 Meshy hero tree plus lateral root arch, treated as one natural gate moment.");
-        builder.AppendLine("- back wall: taller desaturated side masses at 30-45m.");
-        builder.AppendLine("- background atmosphere: low-cost distant silhouettes beyond 45m with fog/desaturation.");
+        builder.AppendLine("- baseline enclosure: MYB-159/MYB-160 generated art roots stay active to preserve lush near-camera canopy mass and softer forest mood.");
+        builder.AppendLine("- foreground frame: left ancient trunk assembly reinforces the preferred canopy enclosure without replacing it.");
+        builder.AppendLine("- near side mass: left-biased supporting tree assemblies and root clusters enrich the ride edge without random scatter.");
+        builder.AppendLine("- hero threshold: one restrained root/wood landmark idea remains, while the extra MYB-161 right-side Meshy tree clutter is removed.");
+        builder.AppendLine("- back wall: fewer grouped forest masses replace thin pole/picket silhouettes.");
+        builder.AppendLine("- background atmosphere: a small number of grouped silhouettes adds depth without a technical preview look.");
         builder.AppendLine();
         builder.AppendLine("## Layout Decisions");
         builder.AppendLine();
-        builder.AppendLine("- foreground left ancient trunk: `MYB161_TreeAssembly_A`, X/offset approximately -6.1m, Z/meters 10.5.");
+        builder.AppendLine("- foreground left ancient trunk: `MYB161_TreeAssembly_A`, X/offset approximately -6.7m, Z/meters 10.5.");
         builder.AppendLine("- foreground right low root bank: `MYB161_ForegroundRight_LowRootMossBank`, offset +4.8m, meters 11.5.");
-        builder.AppendLine("- mid right hero tree: `MYB161_HeroTreeAssembly`, offset +9.55m, meters 23.2, using the cleaned MYB-160 Meshy tree as a restrained candidate mass.");
+        builder.AppendLine("- mid-left enclosure mass: `MYB161_TreeAssembly_C`, offset approximately -9.6m, meters 24.5, reinforcing forest ride enclosure.");
         builder.AppendLine("- hero threshold: `MYB161_HeroThreshold_RootArchNaturalGate`, offset -6.25m, meters 29.5, using the cleaned MYB-160 Meshy root arch diagonally.");
-        builder.AppendLine("- back wall: " + result.BackWallMassCount + " side masses at offsets roughly +/-9m to +/-14m.");
+        builder.AppendLine("- back wall: " + result.BackWallMassCount + " grouped side masses at offsets roughly +/-10m to +/-15m.");
         builder.AppendLine();
         builder.AppendLine("## Tree Assemblies");
         foreach (var assembly in result.Assemblies)
@@ -1501,7 +1512,7 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         builder.AppendLine();
         builder.AppendLine("## Meshy Usage");
         builder.AppendLine();
-        builder.AppendLine("- Used existing MYB-160 Meshy assets: Yes");
+        builder.AppendLine("- Used existing MYB-160 Meshy assets: Yes, via the preserved baseline scene and one restrained root arch candidate overlay.");
         builder.AppendLine("- New Meshy generations: 0");
         builder.AppendLine("- Manifest status: existing MYB-160 entries are `intakeStatus: approved`, `promotionStatus: candidate`, `license: Provider terms pending project review`.");
         builder.AppendLine("- No production promotion.");
@@ -1545,14 +1556,14 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         builder.AppendLine("| Criterion | Estimate | Notes |");
         builder.AppendLine("|---|---:|---|");
         builder.AppendLine("| Route readability | 4 | Route is kept open, with no overlap and minimum clearance " + FormatFloat(result.MinimumRouteClearanceMeters) + "m. |");
-        builder.AppendLine("| Silhouette quality | 3 | Foreground and hero silhouettes are more directed, but still use simple procedural and candidate materials. |");
-        builder.AppendLine("| Lighting mood | 3 | Slightly deeper fog and warmer break light improve depth without hiding the road. |");
+        builder.AppendLine("| Silhouette quality | 3 | Baseline canopy enclosure is preserved and extra pole/picket silhouettes are reduced, but the project still lacks final bespoke forest forms. |");
+        builder.AppendLine("| Lighting mood | 3 | Softer baseline mood is preserved with only light scene-local support. |");
         builder.AppendLine("| Material coherence | 3 | Scene-local palette is coherent enough for preview, not final art. |");
-        builder.AppendLine("| Foreground richness | 4 | Left frame and right root bank make the first 8-14m less empty and less prop-like. |");
-        builder.AppendLine("| Midground density | 4 | Hero tree, threshold and side masses improve corridor body. |");
-        builder.AppendLine("| Background depth | 4 | Back wall and distant silhouettes reduce empty sky/flat background risk. |");
+        builder.AppendLine("| Foreground richness | 4 | Preferred lush near-camera canopy mass is retained, with restrained grounding support. |");
+        builder.AppendLine("| Midground density | 4 | Left enclosure and route edge masses keep the ride feeling like a forest instead of an asset preview. |");
+        builder.AppendLine("| Background depth | 3 | Grouped masses add depth, but remain preview-quality. |");
         builder.AppendLine("| Scale credibility | 4 | Grounding, support and clearance metrics pass. |");
-        builder.AppendLine("| Composition rhythm | 4 | Five-plane layout replaces uniform scatter with foreground, side mass, hero threshold and depth. |");
+        builder.AppendLine("| Composition rhythm | 3 | Revision favors the preferred baseline mood over the sparse first after; composition is safer but still not Premium. |");
         builder.AppendLine();
         builder.AppendLine("## Warning Categories");
         AppendList(builder, "Build / Capture Warnings", result.BuildCaptureWarnings);
@@ -1748,17 +1759,17 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         return null;
     }
 
-    private static void DeactivateBaselineObject(string objectName, string reason, BuildResult result)
+    private static void PreserveBaselineObject(string objectName, string reason, BuildResult result)
     {
         var instance = FindSceneObjectByName(objectName);
         if (instance == null)
         {
-            result.BuildCaptureWarnings.Add("Baseline object `" + objectName + "` not found; MYB-161 continues without disabling it.");
+            result.BuildCaptureWarnings.Add("Baseline object `" + objectName + "` not found; MYB-161 continues without preserving it explicitly.");
             return;
         }
 
-        instance.SetActive(false);
-        result.BaselineObjectsDisabled.Add(objectName + " (" + reason + ")");
+        instance.SetActive(true);
+        result.BaselineObjectsPreserved.Add(objectName + " (" + reason + ")");
     }
 
     private static void DestroyIfExists(string objectName)
@@ -2056,7 +2067,7 @@ public static class MYB161ArtDirectedGoldenSliceBuilder
         public readonly List<PlacementRecord> Placements = new List<PlacementRecord>();
         public readonly List<GroundingRecord> GroundingRecords = new List<GroundingRecord>();
         public readonly List<CanopyRecord> Canopies = new List<CanopyRecord>();
-        public readonly List<string> BaselineObjectsDisabled = new List<string>();
+        public readonly List<string> BaselineObjectsPreserved = new List<string>();
         public readonly List<string> LayoutDecisions = new List<string>();
         public readonly List<string> BuildCaptureWarnings = new List<string>();
         public readonly List<string> VisualWarnings = new List<string>();
