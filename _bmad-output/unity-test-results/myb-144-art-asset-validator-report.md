@@ -3,13 +3,13 @@
 Verdict: PASS
 
 Execution:
-- Mode: MYB-163-BuildCaptureValidate
+- Mode: MYB-164-Stabilization
 - Batch exit code: 0 when run through RunBatch
 
 Summary:
 - Errors: 0
 - Warnings: 0
-- Info: 31
+- Info: 32
 
 Manifest:
 - path: `docs/manifests/art-rescue-asset-manifest.json`
@@ -112,6 +112,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB160` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB161` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB163` | Yes | 13 | Scanned. |
+| `Assets/MYB164` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB42` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB44` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB48` | Yes | 3 | Scanned. |
@@ -189,6 +190,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB159 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB160 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB161 exists but contains no V1 asset candidates. |
+| `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB164 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB42 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB44 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB51 exists but contains no V1 asset candidates. |

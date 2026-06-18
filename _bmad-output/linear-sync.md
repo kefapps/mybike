@@ -8853,6 +8853,57 @@ MYB-164 stabilization follow-up created on 2026-06-18:
   gameplay/HUD/telemetry/route trajectory/route collider changes, and no
   `Premium target reached` claim without explicit human validation.
 
+MYB-164 stabilization evidence generated on 2026-06-18:
+
+- Branch:
+  `MYB-164-post-integration-canonical-forest-stabilization`.
+- Canonical scene checked:
+  `Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Baseline:
+  `MYB-163 after`.
+- Generated root verified:
+  `MYB163_CanonicalForestPassageRoot`.
+- Runner:
+  `unity/Echapee4D/Assets/MYB164/Editor/MYB164PostIntegrationStabilizationRunner.cs`.
+- Reports:
+  - stabilization report:
+    `_bmad-output/implementation-artifacts/MYB-164/myb-164-stabilization-report.md`;
+  - metrics:
+    `_bmad-output/implementation-artifacts/MYB-164/myb-164-stabilization-metrics.json`;
+  - governance review:
+    `_bmad-output/implementation-artifacts/MYB-164/myb-164-governance-review.md`.
+- Visual evidence:
+  - current route capture:
+    `_bmad-output/visual-checkpoints/MYB-164/2026-06-18T05-49-54Z-after-route.png`;
+  - current overview capture:
+    `_bmad-output/visual-checkpoints/MYB-164/2026-06-18T05-49-54Z-after-overview.png`;
+  - route comparison:
+    `_bmad-output/visual-checkpoints/MYB-164/2026-06-18T05-49-55Z-route-before-after.png`;
+  - overview comparison:
+    `_bmad-output/visual-checkpoints/MYB-164/2026-06-18T05-49-55Z-overview-before-after.png`.
+- Metrics:
+  - rendererCount: 183;
+  - meshFilterCount: 183;
+  - approximateTriangles: 13784;
+  - sceneLocalMaterialCount: 13;
+  - routeReadabilityRegression: false;
+  - blockingErrorCount: 0.
+- MYB-144 validation:
+  - mode: `MYB-164-Stabilization`;
+  - verdict: `PASS`;
+  - errors: 0;
+  - warnings: 0;
+  - report:
+    `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`.
+- Governance:
+  no canonical scene mutation, no gameplay change, no route trajectory/collider
+  change, no HUD/telemetry change, no new Meshy/Tripo/Poly Haven/Blender
+  generation, and no production promotion.
+- Verdict:
+  - `Premium target reached`: No;
+  - stabilization gate: `PASS_WITH_WARNINGS`;
+  - recommended Linear status after implementation evidence: `In Review`.
+
 MYB-165 first real playable route ticket created on 2026-06-18:
 
 - Linear issue:
