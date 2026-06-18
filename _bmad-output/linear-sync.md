@@ -8799,3 +8799,56 @@ MYB-161 human validation and closure synced on 2026-06-18:
   `054a3d70-f0f6-4c10-9162-ea186ebf7e04`.
 - Linear status after closure:
   `Done`.
+
+MYB-159..163 forest stack main integration synced on 2026-06-18:
+
+- Gitea PR:
+  `#21` - http://localhost:3000/kefapps/mybike/pulls/21
+- PR title after retarget:
+  `MYB-159..163 forest stack canonical integration`.
+- Retarget:
+  PR #21 was retargeted from `MYB-158-premium-route-camera-forest-corridor-pass`
+  to `main` after the MYB-163 human validation.
+- Merge:
+  PR #21 was merged fast-forward-only into `main`.
+- Merge/head SHA:
+  `fcb14a31efdcbc38b1729976417d842953116ab7`.
+- Cleanup commit:
+  `fcb14a31efdcbc38b1729976417d842953116ab7` includes mechanical trailing
+  whitespace cleanup for Unity-generated stack files so the branch-to-main diff
+  passes `git diff --check`.
+- Superseded PR:
+  PR #20 - http://localhost:3000/kefapps/mybike/pulls/20
+  was closed without merge because PR #21 contains the MYB-158 preview work plus
+  the validated MYB-159, MYB-160, MYB-161, MYB-162, and MYB-163 stack.
+- Main status:
+  `origin/main` now points to `fcb14a31efdcbc38b1729976417d842953116ab7`.
+- Governance:
+  the integration preserves the recorded MYB-163 scope: no gameplay, route
+  trajectory, route collider, HUD, telemetry, or new Meshy generation change.
+
+MYB-164 stabilization follow-up created on 2026-06-18:
+
+- Linear issue:
+  `MYB-164` - Post-integration canonical forest passage stabilization /
+  route-camera regression gate.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-164/post-integration-canonical-forest-passage-stabilization-route-camera
+- Project:
+  `Echappee 3D - Vertical Slice Mock`.
+- Priority:
+  `High`.
+- Labels:
+  `unity`.
+- Initial status:
+  `Backlog`.
+- Related issues:
+  `MYB-163`, `MYB-161`.
+- Scope:
+  validate the canonical forest passage from `main` after the PR #21 merge using
+  Unity status, MYB-144, route/overview captures, regression comparison against
+  MYB-163 evidence, and a stabilization report.
+- Non-goals:
+  no new assets, no Meshy/Tripo/Poly Haven/Blender content generation, no
+  gameplay/HUD/telemetry/route trajectory/route collider changes, and no
+  `Premium target reached` claim without explicit human validation.
