@@ -8489,10 +8489,14 @@ MYB-163 canonical forest passage integration synced on 2026-06-18:
   `MYB-163-canonical-forest-passage-integration`.
 - Gitea PR:
   https://gitea.kefapps.wtf/kefapps/mybike/pulls/25
+- Gitea merge/head SHA:
+  `ab40fe813bc14a8241317fb4f0e40113340a1bc7`.
 - Linear PR comment:
   `00e31d4a-cdbc-4c41-8f89-b78108a8347a`.
 - Linear validation comment:
   `bb9cb414-6d0e-4ad9-84c9-e015a0f2a52a`.
+- Linear closure comment:
+  `6a94c3bc-2dcd-4f56-b13e-c8210ae0ec7f`.
 - Canonical scene:
   `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
 - Builder:
@@ -8559,6 +8563,8 @@ MYB-163 canonical forest passage integration synced on 2026-06-18:
   - recommended Linear status after validation is `Done`.
 - Linear status after implementation sync:
   `In Review`.
+- Linear status after validation closure:
+  `Done`.
 
 MYB-162 productionization planning synced on 2026-06-18:
 
