@@ -8946,3 +8946,36 @@ MYB-165 first real playable route ticket created on 2026-06-18:
   no FTMS/hardware dependency, no new Meshy/Tripo/Poly Haven generation, no
   broad new forest art pass, and no breakage of HUD, mock telemetry, route
   camera, or mock playability.
+
+MYB-165 bike POV scope update synced on 2026-06-18:
+
+- Human product principle:
+  the player embodies the bicycle in first person.
+- Linear issue updated:
+  `MYB-165`.
+- Added canonical principle section:
+  `Principe central: incarner le velo`.
+- Product clarification:
+  MYB-165 must not validate as a free camera, drone, spectator view, walking
+  character, external camera, overview, or flythrough. The primary validation
+  surface is an embodied bicycle point of view.
+- Scope additions:
+  - camera should be placed and animated like a moving bicycle;
+  - route should read from the riding axis, not from an abstract floating
+    camera;
+  - speed, trajectory, light lean, micro-vibration, smoothing, and guidance
+    stability should be perceptible without harming readability;
+  - subtle bicycle cues such as handlebar, stem, front wheel, minimal cockpit,
+    or shadow are allowed if they reinforce embodiment without covering the
+    route;
+  - route-camera stability must be evaluated as bike POV feel across the full
+    route.
+- Validation additions:
+  - final proof must show first-person embodied bicycle feel;
+  - route camera capture/video is primary;
+  - external/overview/flythrough proof is not enough;
+  - final review question: does Julien feel like he is the bicycle?
+- Verdict additions:
+  `Bike POV incarne: Yes/No`.
+- Linear status unchanged:
+  `Backlog`.
