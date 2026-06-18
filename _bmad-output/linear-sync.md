@@ -8852,3 +8852,40 @@ MYB-164 stabilization follow-up created on 2026-06-18:
   no new assets, no Meshy/Tripo/Poly Haven/Blender content generation, no
   gameplay/HUD/telemetry/route trajectory/route collider changes, and no
   `Premium target reached` claim without explicit human validation.
+
+MYB-165 first real playable route ticket created on 2026-06-18:
+
+- Linear issue:
+  `MYB-165` - Premier vrai parcours jouable ~3 minutes.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-165/premier-vrai-parcours-jouable-3-minutes
+- Project:
+  `Echappee 3D - Vertical Slice Mock`.
+- Priority:
+  `High`.
+- Labels:
+  `unity`.
+- Initial status:
+  `Backlog`.
+- Blocked by:
+  `MYB-164`.
+- Related issues:
+  `MYB-86`, `MYB-163`.
+- Goal:
+  create the first complete playable MyBike route, not just a visual corridor or
+  golden slice, with a target ride duration of about 3 minutes at normal mock
+  speed.
+- Target duration:
+  3 minutes, accepted window 2:40 to 3:20 at default/normal mock speed.
+- Route length guidance:
+  derive the actual length from the current mock speed curve; planning estimate
+  is roughly 0.9 km to 1.3 km for 18 to 26 km/h.
+- Scope:
+  complete canonical route, perceptible beginning/middle/end, route profile,
+  segment metadata, stable route camera across the full run, and capture/report
+  evidence under `_bmad-output/implementation-artifacts/MYB-165/`.
+- Non-goals:
+  no multiple routes, no rewrite of the route JSON pipeline if MYB-86 is enough,
+  no FTMS/hardware dependency, no new Meshy/Tripo/Poly Haven generation, no
+  broad new forest art pass, and no breakage of HUD, mock telemetry, route
+  camera, or mock playability.
