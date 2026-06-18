@@ -8859,6 +8859,10 @@ MYB-164 stabilization evidence generated on 2026-06-18:
   `MYB-164-post-integration-canonical-forest-stabilization`.
 - Gitea PR:
   `#28` - http://localhost:3000/kefapps/mybike/pulls/28.
+- Linear implementation comment:
+  `cacf9759-df33-493d-9209-0b1a81f429bb`.
+- Linear status after implementation evidence:
+  `In Review`.
 - Canonical scene checked:
   `Assets/Scenes/MYB89UnityMcpProbe.unity`.
 - Baseline:
