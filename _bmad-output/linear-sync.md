@@ -8953,6 +8953,15 @@ MYB-165 bike POV scope update synced on 2026-06-18:
   the player embodies the bicycle in first person.
 - Linear issue updated:
   `MYB-165`.
+- Linear scope update comment:
+  `c81baeec-3eb7-486c-a3e3-235f9b2dd0f4`.
+- Gitea sync branch:
+  `MYB-165-bike-pov-scope`.
+- Gitea PR creation link:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/new/MYB-165-bike-pov-scope
+- Gitea PR creation status:
+  not created automatically because the Gitea MCP wrapper failed locally with
+  `No module named 'httpcore'`.
 - Added canonical principle section:
   `Principe central: incarner le velo`.
 - Product clarification:
