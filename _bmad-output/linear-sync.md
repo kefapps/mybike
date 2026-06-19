@@ -9794,4 +9794,33 @@ MYB-168 close scenic framing finalization synced on 2026-06-19:
 - Governance:
   no route/collider/HUD/telemetry/gameplay change, no external generation
   service call, no new external asset import, and no global `Premium target`
-  claim. The PR remains unmerged pending human visual review.
+  claim. At this sync point, the PR remained unmerged pending human visual
+  review.
+
+MYB-168 human validation and closure synced on 2026-06-19:
+
+- Human visual validation:
+  Julien validated MYB-168 on 2026-06-19. The accepted visual scope is route
+  readability from the bike camera while preserving close forest framing; this
+  is not a global `Premium target` approval for the whole forest scene.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/32.
+- Merge:
+  PR #32 merged through Gitea with `squash`; remote ticket branch deleted.
+- Main merge commit:
+  `2f474ab` - `MYB-168 clear route-camera warnings (#32)`.
+- Validated branch head before merge:
+  `04abfbf` - `MYB-168 sync final PR evidence`.
+- Primary implementation commit before squash:
+  `76beef1` - `MYB-168 Preserve close forest framing guardrail`.
+- Linear closure comment:
+  `22180abb-6e88-4f64-8dab-a107a7087170`.
+- Linear status:
+  `Done`.
+- Final validation evidence:
+  route capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T16-51-33Z-after-route.png`;
+  overview capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T16-51-33Z-after-overview.png`;
+  MYB-167 `PASS`, 0 blockers, 0 warnings;
+  MYB-144 `PASS`, 0 errors, 0 warnings.
