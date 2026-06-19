@@ -1,0 +1,61 @@
+{
+  "ticket": "MYB-166",
+  "date": "2026-06-18",
+  "scope": "static scan before modifications",
+  "sourceBranch": "MYB-165-premier-vrai-parcours-jouable-3-minutes",
+  "sourceCommit": "cfa4e8a",
+  "canonicalScene": "Assets/Scenes/MYB89UnityMcpProbe.unity",
+  "sceneScan": {
+    "meshRendererReferences": 709,
+    "gameObjectReferences": 815,
+    "castShadowsEnabledReferences": 709,
+    "receiveShadowsEnabledReferences": 709,
+    "staticEditorFlagsZeroReferences": 815,
+    "lodGroupReferences": 0,
+    "meshColliderReferences": 1,
+    "boxColliderReferences": 81,
+    "sphereColliderReferences": 41
+  },
+  "pcUrpAssetSnapshot": {
+    "depthTextureEnabled": true,
+    "opaqueTextureEnabled": true,
+    "renderScale": 1.0,
+    "mainLightShadowsSupported": true,
+    "mainLightShadowmapResolution": 2048,
+    "additionalLightsRenderingMode": "enabled",
+    "additionalLightsPerObjectLimit": 4,
+    "additionalLightShadowsSupported": true,
+    "additionalLightsShadowmapResolution": 2048,
+    "shadowDistance": 50,
+    "shadowCascadeCount": 4,
+    "softShadowsSupported": true,
+    "softShadowQuality": 3,
+    "srpBatcherEnabled": true,
+    "dynamicBatchingSupported": false,
+    "adaptivePerformanceEnabled": true,
+    "gpuResidentDrawerMode": 1,
+    "gpuOcclusionCullingInCamerasEnabled": false
+  },
+  "pcRendererSnapshot": {
+    "ssaoActive": true,
+    "ssaoDownsample": false,
+    "ssaoSource": 1,
+    "renderingMode": 2,
+    "shadowTransparentReceive": true
+  },
+  "materialScan": {
+    "myb165Materials": 12,
+    "myb165InstancingOff": 12,
+    "myb163Materials": 13,
+    "myb163InstancingOff": 13,
+    "projectInstancingOffMaterials": 110
+  },
+  "initialHypotheses": [
+    "Shadow cost is likely high because all 709 renderers cast and receive shadows.",
+    "URP PC profile has several expensive features enabled: SSAO, depth texture, opaque texture, 4 cascades, high soft shadows, additional light shadows.",
+    "Static batching and static occlusion are not currently exploited because static flags are zero in the scene.",
+    "The 2.37 km route has no LODGroups, so far scenery likely renders at full detail.",
+    "Layer culling distances may preserve density while reducing far small-object cost."
+  ],
+  "modificationsMade": false
+}

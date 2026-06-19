@@ -132,10 +132,13 @@ namespace MYB48
             var leftPost = position - right * lateralOffsetMeters + Vector3.up * (entryHeightMeters * 0.5f);
             var rightPost = position + right * lateralOffsetMeters + Vector3.up * (entryHeightMeters * 0.5f);
             var top = position + Vector3.up * entryHeightMeters;
+            var leftRune = position - right * lateralOffsetMeters + Vector3.up * entryHeightMeters;
+            var rightRune = position + right * lateralOffsetMeters + Vector3.up * entryHeightMeters;
 
             CreatePrimitive(prefix + "_Entry_LeftPost", PrimitiveType.Cylinder, leftPost, rotation, new Vector3(0.22f, entryHeightMeters * 0.5f, 0.22f), material, kind);
             CreatePrimitive(prefix + "_Entry_RightPost", PrimitiveType.Cylinder, rightPost, rotation, new Vector3(0.22f, entryHeightMeters * 0.5f, 0.22f), material, kind);
-            CreatePrimitive(prefix + "_Entry_TopRune", PrimitiveType.Cube, top, rotation, new Vector3(lateralOffsetMeters * 2.05f, 0.13f, 0.2f), material, kind);
+            CreatePrimitive(prefix + "_Entry_LeftRune", PrimitiveType.Cube, leftRune, rotation, new Vector3(0.62f, 0.16f, 0.32f), material, kind);
+            CreatePrimitive(prefix + "_Entry_RightRune", PrimitiveType.Cube, rightRune, rotation, new Vector3(0.62f, 0.16f, 0.32f), material, kind);
 
             var lightObject = new GameObject("MYB48_Cue_" + prefix + "_EntryGlow");
             lightObject.transform.SetParent(transform);

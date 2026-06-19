@@ -146,6 +146,30 @@ Relationship:
   floating even when MYB-155 ground-contact metrics do not flag them.
 - The shot rubric uses both policies when judging Scale credibility.
 
+MYB-167 output:
+
+- `docs/validation/route-camera-safety-gate.md`
+  - canonical route-camera safety/readability policy;
+  - defines `RouteCameraSafetyGate`, `routeCorridorIntrusion`,
+    `routeCameraReadabilityBlocker`, severity, fixtures, and metrics.
+- `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`
+  - ticket-local Unity Editor validator implementing the route-visible support
+    gate plus analytical route-camera safety projection checks.
+- `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`
+  - generated human-readable support and route-camera safety report.
+- `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`
+  - generated machine-readable metrics and suspect lists.
+
+Relationship:
+
+- MYB-155 catches ground-contact errors via bottomClearance.
+- MYB-156 catches unsupported elevated route-visible assets.
+- MYB-167 catches objects that intrude into the route corridor or obscure the
+  route/horizon from sampled route-camera geometry, even when the object is
+  grounded or supported.
+- MYB-145 visual captures remain the human validation surface; MYB-167 is the
+  analytical pre-capture gate.
+
 ### Unity Ride Runtime
 
 File: `unity/Echapee4D/CONTEXT.md`

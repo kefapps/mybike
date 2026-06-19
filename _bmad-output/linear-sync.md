@@ -1,6 +1,6 @@
 # Linear Sync - mybike / Echappee 3D
 
-Last sync: 2026-06-18
+Last sync: 2026-06-19
 
 ## Workspace
 
@@ -8989,3 +8989,809 @@ MYB-165 bike POV scope update synced on 2026-06-18:
   `Bike POV incarne: Yes/No`.
 - Linear status unchanged:
   `Backlog`.
+
+MYB-165 first true route implementation evidence synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-165` - Premier vrai parcours jouable ~3 minutes.
+- Linear status:
+  moved to `In Progress` after `MYB-164` was merged and completed.
+- Implementation branch:
+  `MYB-165-premier-vrai-parcours-jouable-3-minutes`.
+- Gitea PR:
+  `#30` - http://localhost:3000/kefapps/mybike/pulls/30.
+- Linear review comment:
+  `59632e6c-a880-42a1-bba5-6de0288c1c50`.
+- Linear status after implementation evidence:
+  `In Review`.
+- Builder:
+  `unity/Echapee4D/Assets/MYB165/Editor/MYB165FirstTrueRouteBuilder.cs`.
+- Canonical scene updated:
+  `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Route metrics:
+  route length `2370.048m`, normal mock speed `12.5m/s`, estimated duration
+  `189.604s` / `3:10`, within the target window `2:40` to `3:20`.
+- Bike POV:
+  first-person bicycle camera configured with subtle bob/look-ahead/lean and
+  visible handlebar/stem/front-wheel cues.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-165/myb-165-first-true-route-metrics.json`,
+  `_bmad-output/implementation-artifacts/MYB-165/myb-165-implementation-report.md`,
+  `_bmad-output/implementation-artifacts/MYB-165/myb-165-governance-review.md`.
+- MYB-145 captures:
+  `_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-route.png`,
+  `_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-overview.png`,
+  `_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-capture-report.md`.
+- Video evidence:
+  `_bmad-output/video-captures/MYB-165/myb-165-first-true-route-2026-06-18T07-12-57Z/myb-165-first-true-route-bike-pov-3min-720p.mp4`.
+  This folder is intentionally ignored by git.
+- MYB-144:
+  `PASS`, `0` errors, `0` warnings.
+- Verdict:
+  first playable route `Yes`, target duration `Yes`, bike POV incarne `Yes`,
+  Premium target reached `No`, recommended Linear status `In Review` pending
+  Julien human route/video validation.
+
+MYB-166 performance regression follow-up created on 2026-06-18:
+
+- Linear issue:
+  `MYB-166` - Performance regression gate / first true route optimization.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-166/performance-regression-gate-first-true-route-optimization
+- Linear status:
+  `In Progress`.
+- Branch:
+  `MYB-166-performance-regression-first-route-optimization`.
+- Baseline:
+  MYB-165 branch at `cfa4e8a`, with MYB-165 PR #30 still `In Review`.
+- Blocks:
+  `MYB-165`, because Julien reported a severe FPS drop before human validation.
+- Goal:
+  diagnose and optimize the MYB-165 first true route performance regression
+  before deleting assets or reducing route-visible visual density.
+- Required scenarios:
+  - `route-camera-worst-case-slice`;
+  - `full-route-3min-validation`.
+- Initial artifacts:
+  - `_bmad-output/implementation-artifacts/MYB-166/myb-166-performance-regression-plan.md`;
+  - `_bmad-output/implementation-artifacts/MYB-166/myb-166-initial-research-findings.md`;
+  - `_bmad-output/implementation-artifacts/MYB-166/myb-166-static-scene-scan.json`;
+  - `_bmad-output/implementation-artifacts/MYB-166/myb-166-initial-unity-profiler-snapshot.json`.
+- Initial static scan:
+  - MeshRenderers: 709;
+  - GameObjects: 815;
+  - renderers casting shadows: 709;
+  - renderers receiving shadows: 709;
+  - static flags zero: 815;
+  - LODGroups: 0;
+  - MYB-163/MYB-165 materials with instancing disabled: 25/25.
+- Initial Unity MCP profiler snapshot:
+  - Unity status: reachable;
+  - current frame: 302.442ms / 3.306 FPS;
+  - graphics API: Metal;
+  - rendering threading: MultiThreaded;
+  - graphics memory: 249.659MB;
+  - allocated memory: 387.263MB.
+- Interpretation:
+  the single-frame MCP profiler snapshot confirms a severe performance issue,
+  but a route-camera benchmark runner is still required for average/min/p95
+  frame timing and CPU/GPU-bound interpretation.
+- Guardrails:
+  no asset removal first, no gameplay/HUD/route/collider/telemetry change, no
+  Meshy/Tripo/Poly Haven/Blender generation, and no global PC URP profile change
+  without measured A/B comparison.
+
+MYB-166 first performance pass evidence generated on 2026-06-18:
+
+- Branch:
+  `MYB-166-performance-regression-first-route-optimization`.
+- Linear first-pass comment:
+  `750975d1-cb80-4bcb-8af5-1d03d693c214`.
+- Fix applied:
+  `MYB89_EventSystem` now uses `InputSystemUIInputModule` instead of the legacy
+  `StandaloneInputModule`, and `MYB89ProbeBuilder` now regenerates the same
+  compatible module.
+- Reason:
+  Play Mode was logging Input System exceptions from `StandaloneInputModule`
+  while the project uses the Input System package.
+- Render proxy:
+  `_bmad-output/implementation-artifacts/MYB-166/myb-166-route-camera-render-probe.md`.
+- First-pass report:
+  `_bmad-output/implementation-artifacts/MYB-166/myb-166-first-pass-performance-report.md`.
+- macOS build FPS summary:
+  `_bmad-output/unity-test-results/MYB-166/myb-166-macos-build-fps-summary.md`.
+- Runtime build reports:
+  - worst-case slice:
+    `_bmad-output/implementation-artifacts/MYB-166/myb-166-runtime-fps-route-camera-worst-case-slice.txt`;
+  - full route:
+    `_bmad-output/implementation-artifacts/MYB-166/myb-166-runtime-fps-full-route-3min-validation.txt`.
+- Compiled macOS player FPS:
+  - `route-camera-worst-case-slice`: avg `56.6 FPS`, 1% low `56.8 FPS`;
+  - `full-route-3min-validation`: avg `58.5 FPS`, 1% low `56.8 FPS`.
+- Interpretation:
+  Editor Play Mode/MCP snapshots showed 5-10 FPS even when renderers, point/spot
+  lights, ride scripts, cue scripts, and UI were disabled in Play Mode. Treat
+  them as diagnostic only; compiled macOS player build is the reliable product
+  FPS surface.
+- Verdict:
+  `PASS_WITH_WARNINGS`; no catastrophic player red failure remains, but stable
+  60 FPS has not been reached.
+- Recommended status:
+  keep `MYB-166` in `In Progress` / `In Review` until the next optimization wave
+  decides whether to merge this fix and whether MYB-165 can proceed to human
+  validation.
+
+MYB-166 performance acceptance and closure synced on 2026-06-18:
+
+- Human decision:
+  Julien accepted the compiled Player performance as OK after the first pass.
+- Linear closure comment:
+  `52104419-c6a4-4167-98d8-8f36cf8f4983`.
+- Linear status after closure:
+  `Done`.
+- Commit:
+  `046a841` - `MYB-166 close performance gate`.
+- Branch pushed:
+  `MYB-166-performance-regression-first-route-optimization`.
+- Integration:
+  commit `046a841` was fast-forwarded into
+  `MYB-165-premier-vrai-parcours-jouable-3-minutes` and pushed to update
+  Gitea PR #30.
+- Gitea note:
+  no separate MYB-166 PR was created because the Gitea MCP wrappers returned
+  `Transport closed` / internal error; the fix is included directly in the
+  active MYB-165 PR.
+- Accepted evidence:
+  - `route-camera-worst-case-slice`: avg `56.6 FPS`, 1% low `56.8 FPS`;
+  - `full-route-3min-validation`: avg `58.5 FPS`, 1% low `56.8 FPS`.
+- Closure interpretation:
+  no catastrophic Player red failure remains; stable 60 FPS is not perfect, but
+  performance is acceptable for continuing MYB-165 validation.
+- Recommended MYB-166 status:
+  `Done`.
+- Resume:
+  return to `MYB-165` first true route human validation / review.
+- MYB-165 resume comment:
+  `417003b8-6e8e-49c6-a9ad-e12dfa6dab31`.
+- MYB-165 status after resume:
+  `In Review`.
+
+MYB-165 Unity Recorder video workflow synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-165` - Premier vrai parcours jouable ~3 minutes.
+- Linear comment:
+  `ad0c7f13-d38e-4df9-b4a0-f7aedd60718c`.
+- Change:
+  added the official Unity Recorder package and a ticket-local Recorder runner
+  to simplify full-route video generation.
+- Package:
+  `com.unity.recorder@5.1.6`.
+- Runner:
+  `unity/Echapee4D/Assets/MYB165/Editor/MYB165UnityRecorderVideoCapture.cs`.
+- Primary command:
+  `MYB165UnityRecorderVideoCapture.RunBatchCaptureVideoOnly`.
+- Unity menu:
+  `Tools/MyBike/MYB-165/Capture Full Route Video (Unity Recorder)`.
+- Fallback retained:
+  `Tools/MyBike/MYB-165/Capture Full Route Video Frames Fallback`.
+- Recorder output:
+  `_bmad-output/video-captures/MYB-165/myb-165-first-true-route-recorder-2026-06-18T09-19-56Z/myb-165-first-true-route-bike-pov-3min-720p-30fps.mp4`.
+- Recorder summary:
+  `_bmad-output/video-captures/MYB-165/myb-165-first-true-route-recorder-2026-06-18T09-19-56Z/capture-summary.json`.
+- Recorder report:
+  `_bmad-output/implementation-artifacts/MYB-165/myb-165-video-capture-recorder-report.md`.
+- Verification:
+  H.264 MP4, `1280x720`, `30fps`, `5689` frames, `189.633333s`; 60s frame
+  check is nonblank and shows first-person bike POV with route and cockpit cue.
+- Validation:
+  `git diff --check`: PASS;
+  Unity batch compile after integration: PASS.
+- Linear status unchanged:
+  `In Review`.
+
+MYB-165 route-visible support fix synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-165` - Premier vrai parcours jouable ~3 minutes.
+- Linear comment:
+  `caad2e6d-9c93-481a-b023-f8ee0032990f`.
+- Human visual QA trigger:
+  Julien reported a route-visible red/brown prop reading as levitating in the
+  first-person bike POV video, despite existing anti-float checks.
+- Root cause:
+  existing checks covered ground bottomClearance and cockpit cue presence, but
+  not route-camera visual support for inherited scenic masses from the legacy
+  MYB-44/MYB-89 probe scenery.
+- Fix:
+  `MYB165FirstTrueRouteBuilder` now retires unsupported legacy route-visible
+  horizon/village props for MYB-165, requires supported cockpit cue children,
+  and blocks remaining unsupported route-visible scenic masses.
+- Metrics:
+  `retiredLegacyUnsupportedPropCount: 25`;
+  `routeVisibleUnsupportedScenicMassCount: 0`.
+- Validation:
+  MYB-144 `PASS`, 0 errors, 0 warnings.
+- Recorder output:
+  `_bmad-output/video-captures/MYB-165/myb-165-first-true-route-recorder-2026-06-18T10-03-51Z/myb-165-first-true-route-bike-pov-3min-720p-30fps.mp4`.
+- Verification:
+  H.264 MP4, `1280x720`, `30fps`, `5689` frames, `189.633333s`; frame check
+  at 20s no longer shows the reported red/brown unsupported prop.
+- Linear status unchanged:
+  `In Review`.
+
+MYB-167 route-visible support validator ticket created on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-167/route-visible-asset-support-validator-anti-levitation-gate
+- Project:
+  `Echappee 3D - Vertical Slice Mock`.
+- Priority:
+  `High`.
+- Labels:
+  `unity`.
+- Initial status:
+  `Backlog`.
+- Related issues:
+  `MYB-165`, `MYB-154`, `MYB-163`.
+- Goal:
+  create a generic Unity route-camera validation gate that scans all
+  route-visible `Renderer` instances, classifies pass/warning/blocking support
+  cases, and detects unsupported/levitating-looking scenic assets without
+  relying on fixed name-prefix deny-lists.
+- Required validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Required reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`
+  and
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Key acceptance:
+  `unsupportedBlockingCount` must be `0`, `fixedPrefixOnlyDetectionUsed` must be
+  `false`, and a regression fixture must prove the validator catches an
+  arbitrary route-visible roof/canopy/scenic slab without support even when it
+  does not use a known prefix.
+- Non-goals:
+  no scene correction, no asset deletion, no gameplay/route/collider/HUD change,
+  no Meshy/Tripo/Blender/Poly Haven, and no Premium target claim.
+
+MYB-167 route-visible support validator implementation synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Linear implementation comment:
+  `738d1c17-14bb-41f3-8ab6-9d0a22195353`.
+- Linear status after implementation evidence:
+  `In Review`.
+- Branch:
+  `MYB-167-route-visible-support-validator`.
+- Gitea PR:
+  `#31` - http://localhost:3000/kefapps/mybike/pulls/31.
+- PR target:
+  `MYB-165-premier-vrai-parcours-jouable-3-minutes`, because MYB-167 was built
+  on top of the active MYB-165 first true route branch. Against this base, the
+  PR contains only 8 MYB-167 files.
+- PR head:
+  `6bfa7f4773cf85c9821b61607286a04c646c2fc6`.
+- PR mergeability:
+  mergeable as of 2026-06-18.
+- Validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Unity menu:
+  `Tools/MyBike/Validation/MYB-167 Route-Visible Support Validator`.
+- Scene validated:
+  `Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Scan method:
+  scans all enabled scene `Renderer` instances, samples the bike POV route
+  camera across the route, and classifies route-visible renderers by
+  bounds/support geometry.
+- Fixed-prefix interpretation:
+  `fixedPrefixOnlyDetectionUsed: false`; MYB-165 fixed cleanup prefixes are not
+  used as the detection source. Prefix/path checks are limited to documented
+  system, route/ground, UI, and cockpit exclusions.
+- Metrics:
+  - totalRendererCount: 725;
+  - routeVisibleRendererCount: 725;
+  - routeVisibleAssetCount: 106;
+  - excludedSystemRendererCount: 153;
+  - supportRequiredCount: 194;
+  - supportedPassCount: 194;
+  - unsupportedWarningCount: 0;
+  - unsupportedBlockingCount: 0.
+- Regression fixture:
+  `PASS`; arbitrary elevated fixture `AetherPanel_NoKnownPrefix` is detected as
+  blocking unsupported, while `SupportedBeam_NoKnownPrefix` passes with
+  synthetic post support.
+- MYB-144:
+  `PASS`, 0 errors, 0 warnings.
+- Unity validation:
+  `MYB167RouteVisibleSupportValidator.RunBatchValidate`: `PASS_WITH_WARNINGS`.
+- Warning:
+  `GROUND_SOURCE_APPROXIMATE` because MYB-167 estimates broad support ground
+  from nearest smoothed route sample Y; MYB-154 remains the exact
+  bottomClearance/raycast grounding policy.
+- Governance:
+  no scene correction, no scene save, no asset deletion, no gameplay change, no
+  route/collider/HUD/telemetry change, no Meshy/Tripo/Blender/Poly Haven call,
+  and no Premium target claim.
+
+MYB-167 scene-validation correction synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Linear scene-validation correction comment:
+  `332c2e0f-ee0e-4c7a-ae30-a84c69573138`.
+- Branch:
+  `MYB-167-route-visible-support-validator`.
+- Correction:
+  route-camera safety validation now fails on real scene renderers, not only on
+  synthetic fixtures. Added an elevated route/horizon occlusion band for
+  near-corridor real scene geometry.
+- Updated validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Updated policy:
+  `docs/validation/route-camera-safety-gate.md`.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Unity batch log:
+  `_bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation command:
+  `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -projectPath unity/Echapee4D -batchmode -quit -executeMethod MYB167RouteVisibleSupportValidator.RunBatchValidate -logFile _bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation result:
+  `FAIL` as intended; no C# compilation errors found in the batch log.
+- Scene blockers:
+  - `MYB89_ProbeRoot/MYB163_CanonicalForestPassageRoot/A_ForegroundCanopyFrame/MYB163_TreeAssembly_CloseLeftFrame/supported_asymmetric_canopy_lobe_03`
+    blocks the upper route/horizon band from the bike POV
+    (`dominanceRatio=0.123`, `elevatedRouteOverlapRatio=0.218`,
+    `routeCorridorClearanceMeters=2.237`).
+  - `MYB89_ProbeRoot/MYB163_CanonicalForestPassageRoot/A_ForegroundCanopyFrame/MYB163_TreeAssembly_CloseLeftFrame/supported_asymmetric_canopy_lobe_00`
+    blocks the upper route/horizon band from the bike POV
+    (`dominanceRatio=0.121`, `elevatedRouteOverlapRatio=0.211`,
+    `routeCorridorClearanceMeters=2.467`).
+- Metrics:
+  - totalRendererCount: 725;
+  - routeVisibleRendererCount: 725;
+  - unsupportedBlockingCount: 0;
+  - routeReadabilityBlockingCount: 2;
+  - routeReadabilityWarningCount: 11;
+  - routeCameraSafetyVerdict: `FAIL`;
+  - final validator verdict: `FAIL`.
+- Fixtures:
+  support regression fixture `PASS`; route-camera safety fixture `PASS`.
+- MYB-144:
+  `PASS`, 0 errors, 0 warnings.
+- Governance:
+  no scene correction, no scene save, no asset deletion, no gameplay change, no
+  route/collider/HUD/telemetry change, no Meshy/Tripo/Blender/Poly Haven call,
+  and no Premium target claim.
+
+MYB-167 final post-review correction synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Linear final correction comment:
+  `b7bd5600-4bae-4bef-a791-5a11185abe58`.
+- Supersedes the intermediate MYB-167 review-correction validation above:
+  floating vertical support detection is still covered by fixture, but the
+  approximate route-ground proxy now tolerates near-ground vertical supports up
+  to `0.58m` bottomClearance before reporting floating risk.
+- Branch:
+  `MYB-167-route-visible-support-validator`.
+- Updated validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Updated policies:
+  `docs/validation/route-camera-safety-gate.md`;
+  `docs/validation/unity-visual-support-policy.md`.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Unity batch log:
+  `_bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation command:
+  `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -projectPath unity/Echapee4D -batchmode -quit -executeMethod MYB167RouteVisibleSupportValidator.RunBatchValidate -logFile _bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation result:
+  `PASS_WITH_WARNINGS`; batch command completed successfully.
+- Metrics:
+  - totalRendererCount: 725;
+  - routeVisibleRendererCount: 725;
+  - routeVisibleAssetCount: 106;
+  - excludedSystemRendererCount: 214;
+  - supportRequiredCount: 182;
+  - supportedPassCount: 182;
+  - unsupportedWarningCount: 0;
+  - unsupportedBlockingCount: 0;
+  - routeCorridorIntrusionCount: 11;
+  - routeReadabilityWarningCount: 13;
+  - routeReadabilityBlockingCount: 0;
+  - routeCameraSafetyVerdict: `PASS_WITH_WARNINGS`;
+  - final validator verdict: `PASS_WITH_WARNINGS`.
+- Fixtures:
+  support regression fixture `PASS`, including arbitrary unsupported slab,
+  supported counterpart, and arbitrary floating vertical support;
+  route-camera safety fixture `PASS`, proving arbitrary dominant,
+  route-corridor, and near-plane blockers are detected while a benign marker
+  passes.
+- MYB-144:
+  `PASS`, 0 errors, 0 warnings.
+- Remaining route-camera safety warnings:
+  `GROUND_SOURCE_APPROXIMATE` plus 13 route-camera safety warnings; no
+  route-camera safety blocker.
+- Governance:
+  no scene correction, no scene save, no asset deletion, no gameplay change, no
+  route/collider/HUD/telemetry change, no Meshy/Tripo/Blender/Poly Haven call,
+  and no Premium target claim.
+- Recommended Linear status:
+  `In Review` pending Julien validation of severity wording.
+
+MYB-168 bug ticket created on 2026-06-18:
+
+- Linear issue:
+  `MYB-168` - Bug: Corriger la canopée CloseLeftFrame qui masque la route depuis la caméra vélo.
+- Linear URL:
+  https://linear.app/kefjbo/issue/MYB-168/bug-corriger-la-canopee-closeleftframe-qui-masque-la-route-depuis-la
+- Team / project:
+  `MYB` / `Echappee 3D - Vertical Slice Mock`.
+- Status / priority / labels:
+  `Backlog`; `High`; `Bug`, `unity`.
+- Related issue:
+  `MYB-167`.
+- Scope:
+  correct the real scene/content issue detected by MYB-167, specifically the
+  `MYB163_TreeAssembly_CloseLeftFrame` canopy lobes that mask the route/horizon
+  from the bike POV.
+- Blocking renderers recorded in the ticket:
+  - `MYB89_ProbeRoot/MYB163_CanonicalForestPassageRoot/A_ForegroundCanopyFrame/MYB163_TreeAssembly_CloseLeftFrame/supported_asymmetric_canopy_lobe_03`
+    with `dominanceRatio=0.123`, `elevatedRouteOverlapRatio=0.218`,
+    `routeCorridorClearanceMeters=2.237`.
+  - `MYB89_ProbeRoot/MYB163_CanonicalForestPassageRoot/A_ForegroundCanopyFrame/MYB163_TreeAssembly_CloseLeftFrame/supported_asymmetric_canopy_lobe_00`
+    with `dominanceRatio=0.121`, `elevatedRouteOverlapRatio=0.211`,
+    `routeCorridorClearanceMeters=2.467`.
+- Acceptance criteria:
+  MYB-167 no longer reports those two renderers as blocking
+  `routeCameraReadabilityBlocker`; no allowlist/exemption bypass; route-camera
+  capture shows restored route/horizon readability; MYB-144 remains `PASS`.
+- Evidence references:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`;
+  `_bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+
+MYB-167 review correction / RouteCameraSafetyGate extension synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Linear implementation comment:
+  `7214fd4f-11c9-41f3-88a8-51b0ec8622c5`.
+- Linear status recommendation:
+  keep `In Review`; the corrected validator now intentionally fails the current
+  scene on route-visible floating vertical supports detected after PR review.
+- Branch:
+  `MYB-167-route-visible-support-validator`.
+- New canonical policy:
+  `docs/validation/route-camera-safety-gate.md`.
+- Updated context links:
+  `CONTEXT.md`; `CONTEXT-MAP.md`.
+- Extended validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Added analytical detection:
+  route-camera sampled frustums plus view/projection matrices; projected
+  renderer viewport rectangles; protected route-camera readability zone overlap;
+  XZ route-centerline clearance; explicit role/category exemptions only.
+- Review corrections:
+  route-visible vertical support-shaped renderers no longer pass merely because
+  they are thin/tall; they warn above +0.05m bottomClearance and block above
+  +0.10m, and synthetic fixture coverage proves an arbitrary floating vertical
+  support is detected.
+- Co-visible support correction:
+  support candidates must be visible in the same sampled route-camera pose as
+  the supported renderer. A hidden/out-of-frustum support can no longer validate
+  an elevated route-visible asset.
+- Issue types:
+  `routeCameraReadabilityBlocker` and `routeCorridorIntrusion`.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Unity batch log:
+  `_bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation command:
+  `/Applications/Unity/Hub/Editor/6000.4.10f1/Unity.app/Contents/MacOS/Unity -projectPath unity/Echapee4D -batchmode -quit -executeMethod MYB167RouteVisibleSupportValidator.RunBatchValidate -logFile _bmad-output/unity-test-results/myb-167-route-camera-safety-batch.log`.
+- Unity validation result:
+  `FAIL` by design, because the corrected support gate detects current
+  route-visible floating vertical supports. Compilation and fixtures completed;
+  `RunBatchValidate` throws after writing report/metrics because blockers are
+  present.
+- Scene validated:
+  `Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Metrics:
+  - totalRendererCount: 725;
+  - routeVisibleRendererCount: 725;
+  - routeVisibleAssetCount: 106;
+  - excludedSystemRendererCount: 214;
+  - supportRequiredCount: 234;
+  - supportedPassCount: 182;
+  - unsupportedWarningCount: 2;
+  - unsupportedBlockingCount: 50;
+  - routeCorridorIntrusionCount: 11;
+  - routeReadabilityWarningCount: 13;
+  - routeReadabilityBlockingCount: 0;
+  - routeCameraSafetyVerdict: `PASS_WITH_WARNINGS`;
+  - final validator verdict: `FAIL`.
+- Fixtures:
+  support regression fixture `PASS`, including arbitrary unsupported slab,
+  supported counterpart, and arbitrary floating vertical support; route-camera
+  safety fixture `PASS`, proving an arbitrary dominant route-camera blocker,
+  corridor intruder, and near-plane blocker are detected while a benign marker
+  passes.
+- MYB-144:
+  `PASS`, 0 errors, 0 warnings.
+- Remaining route-camera safety warnings:
+  `GROUND_SOURCE_APPROXIMATE` plus 13 route-camera safety warnings; no
+  route-camera safety blocker.
+- Blocking findings:
+  50 route-visible vertical support-shaped renderers currently report
+  bottomClearance above the blocking threshold, with max unsupported
+  bottomClearance `0.455m`. These are detection evidence for the follow-up scene
+  correction, not scene edits performed by MYB-167.
+- Governance:
+  no scene correction, no scene save, no asset deletion, no gameplay change, no
+  route/collider/HUD/telemetry change, no Meshy/Tripo/Blender/Poly Haven call,
+  and no Premium target claim.
+
+MYB-167 blocker-calculation correction synced on 2026-06-18:
+
+- Linear issue:
+  `MYB-167` - Route-visible asset support validator / anti-levitation gate.
+- Branch:
+  `MYB-167-route-visible-support-validator`.
+- Supersedes the previous review-correction interpretation that treated 50
+  route-visible vertical support-shaped renderers as true blockers.
+- Investigation:
+  `_bmad-output/implementation-artifacts/investigations/myb-167-blockers-calculation-investigation.md`.
+- Root cause:
+  the 50 support blockers were mostly false positives from using nearest route
+  centerline Y as the ground proxy for MYB-163 side/back forest masses that are
+  intentionally authored on elevated local shoulder/forest-floor height.
+- Corrected validator:
+  `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Corrections:
+  - restored strict MYB-154 floating thresholds for credible local ground:
+    warning above `+0.05m`, blocking above `+0.10m`;
+  - added MYB-163 local generated forest-floor ground estimation for known
+    generated assemblies;
+  - added same-assembly co-visible base/root/grounding support for vertical
+    supports such as trunks and relic pillars;
+  - kept the synthetic floating vertical support fixture blocking, proving a
+    real unsupported float is still detected;
+  - downgraded elevated route/horizon occlusion to warning unless it has hard
+    corridor, protected-zone, or strong-dominance evidence.
+- Updated policies:
+  `docs/validation/route-camera-safety-gate.md`;
+  `docs/validation/unity-visual-support-policy.md`.
+- Reports:
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-report.md`;
+  `_bmad-output/implementation-artifacts/MYB-167/myb-167-route-visible-support-metrics.json`.
+- Unity validation:
+  `MYB167RouteVisibleSupportValidator.RunValidation`: exit `0`;
+  `MYB167RouteVisibleSupportValidator.RunBatchValidate`: exit `0`.
+- Metrics after correction:
+  - totalRendererCount: 725;
+  - routeVisibleRendererCount: 725;
+  - routeVisibleAssetCount: 106;
+  - excludedSystemRendererCount: 214;
+  - supportRequiredCount: 192;
+  - supportedPassCount: 192;
+  - unsupportedWarningCount: 0;
+  - unsupportedBlockingCount: 0;
+  - routeReadabilityBlockingCount: 0;
+  - routeReadabilityWarningCount: 13;
+  - routeCameraSafetyVerdict: `PASS_WITH_WARNINGS`;
+  - final validator verdict: `PASS_WITH_WARNINGS`.
+- Fixtures:
+  support regression fixture `PASS`, including arbitrary unsupported slab,
+  supported counterpart, and arbitrary floating vertical support;
+  route-camera safety fixture `PASS`.
+- MYB-144:
+  `PASS`, 0 errors, 0 warnings.
+- Remaining warnings:
+  `GROUND_SOURCE_APPROXIMATE` plus 13 route-camera safety warnings that require
+  route-camera review but do not block the validator.
+- Governance:
+  no scene correction, no scene save, no asset deletion, no gameplay change, no
+  route/collider/HUD/telemetry change, no Meshy/Tripo/Blender/Poly Haven call,
+  and no Premium target claim.
+- Recommended Linear status:
+  `In Review` pending Julien validation of severity wording.
+
+MYB-168 CloseLeftFrame canopy correction synced on 2026-06-19:
+
+- Linear issue:
+  `MYB-168` - Bug: Corriger la canopée CloseLeftFrame qui masque la route depuis la caméra vélo.
+- Linear implementation comment:
+  `f43d8b6d-fe10-4917-9b44-b425f03ce52c`.
+- Linear status:
+  `In Review`.
+- Branch:
+  `MYB-168-fix-closeleftframe-canopy-route-readability`.
+- Scope:
+  corrected the real scene/content issue in
+  `MYB163_TreeAssembly_CloseLeftFrame`; no MYB-167 allowlist, bypass, or
+  exemption was added.
+- Updated builder:
+  `unity/Echapee4D/Assets/MYB163/Editor/MYB163CanonicalForestPassageIntegrator.cs`.
+- Updated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Correction:
+  moved the foreground left canopy frame farther from the route
+  (`distanceFromRoute: 6.75m -> 8.05m`), reduced the canopy scale
+  (`2.75 -> 2.45`), and tuned the previously problematic lobe 00 / lobe 03
+  forms so the canopy frame remains but no longer covers the route-camera
+  horizon.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-168/myb-168-closeleftframe-canopy-fix-report.md`.
+- Unity scene generation:
+  `MYB163CanonicalForestPassageIntegrator.RunBatchBuild`: exit `0`;
+  log `_bmad-output/unity-test-results/myb-168-build-myb163.log`.
+- Unity route-camera safety validation:
+  `MYB167RouteVisibleSupportValidator.RunBatchValidate`: exit `0`;
+  final log `_bmad-output/unity-test-results/myb-168-myb167-route-camera-safety-final.log`.
+- Direct MYB-144 validation:
+  `MYB144ArtAssetValidator.RunBatch`: exit `0`;
+  log `_bmad-output/unity-test-results/myb-168-myb144-art-asset-validator.log`.
+  The shared MYB-144 report was refreshed again by the final MYB-167 validation
+  and remains `PASS`, 0 errors, 0 warnings.
+- Metrics after correction:
+  - `fixedPrefixOnlyDetectionUsed: false`;
+  - `unsupportedBlockingCount: 0`;
+  - `unsupportedWarningCount: 0`;
+  - `routeReadabilityBlockingCount: 0`;
+  - `routeReadabilityWarningCount: 9`;
+  - `routeCorridorIntrusionCount: 7`;
+  - `routeCameraSafetyVerdict: PASS_WITH_WARNINGS`;
+  - `myb144Verdict: PASS`;
+  - `myb144Errors: 0`;
+  - `myb144Warnings: 0`;
+  - CloseLeftFrame route-camera suspects: none.
+- Visual evidence:
+  route capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-18T23-05-46Z-after-route.png`;
+  overview capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-18T23-05-46Z-after-overview.png`;
+  capture report
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-18T23-05-46Z-capture-report.md`.
+- Capture verdict:
+  `PASS_WITH_WARNINGS`; the only capture warning is
+  `OVERVIEW_CAMERA_SIZE_NON_CANONICAL`. The route camera remains the blocking
+  validation surface and shows the reported road/horizon obstruction corrected.
+- Governance:
+  no asset deletion, no route/collider/HUD/telemetry/gameplay change, no
+  Meshy/Tripo/Blender/Poly Haven call, and no global `Premium target` claim.
+
+MYB-168 final all-warning cleanup synced on 2026-06-19:
+
+- Linear issue:
+  `MYB-168` - Bug: Corriger la canopée CloseLeftFrame qui masque la route depuis la caméra vélo.
+- Linear implementation comment:
+  `f43d8b6d-fe10-4917-9b44-b425f03ce52c` updated with final evidence.
+- Linear status:
+  `In Review`.
+- Branch:
+  `MYB-168-fix-closeleftframe-canopy-route-readability`.
+- Scope:
+  supersedes the previous partial CloseLeftFrame-only correction. The scene and
+  deterministic generators now remove all MYB-167 route-camera warnings without
+  MYB-167 allowlist, bypass, or exemption.
+- Updated generators / validator:
+  - `unity/Echapee4D/Assets/MYB48/Runtime/MYB48RouteDifficultyCueController.cs`;
+  - `unity/Echapee4D/Assets/MYB89/Editor/MYB89ProbeBuilder.cs`;
+  - `unity/Echapee4D/Assets/MYB163/Editor/MYB163CanonicalForestPassageIntegrator.cs`;
+  - `unity/Echapee4D/Assets/MYB165/Editor/MYB165FirstTrueRouteBuilder.cs`;
+  - `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Updated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Correction:
+  replaced MYB-48 route-spanning `TopRune` beams with side runes; moved and
+  slightly reduced near-route MYB-163 canopy/hero masses; shifted central
+  MYB-44 horizon trees out of the route-camera center lane; normalized the
+  MYB-165 overview camera guardrail; and reclassified
+  `GROUND_SOURCE_APPROXIMATE` from warning to info because it is a permanent
+  methodology note, not actionable scene debt.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-168/myb-168-closeleftframe-canopy-fix-report.md`.
+- Fresh Unity scene rebuild:
+  `MYB165FirstTrueRouteBuilder.RunBatchBuildValidateOnly`: exit `0`;
+  log `_bmad-output/unity-test-results/myb-168-clean-all-warnings-myb165-build-2.log`.
+- Unity route-camera safety validation:
+  `MYB167RouteVisibleSupportValidator.RunBatchValidate`: exit `0`, `PASS`;
+  log `_bmad-output/unity-test-results/myb-168-clean-all-warnings-myb167-final-2.log`.
+- Final MYB-167 metrics:
+  - `fixedPrefixOnlyDetectionUsed: false`;
+  - `unsupportedBlockingCount: 0`;
+  - `unsupportedWarningCount: 0`;
+  - `routeReadabilityBlockingCount: 0`;
+  - `routeReadabilityWarningCount: 0`;
+  - `routeCorridorIntrusionCount: 0`;
+  - `routeCameraSafetyVerdict: PASS`;
+  - `myb144Verdict: PASS`;
+  - `myb144Errors: 0`;
+  - `myb144Warnings: 0`;
+  - route-camera safety suspects: none.
+- Visual evidence:
+  route capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T15-28-23Z-after-route.png`;
+  overview capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T15-28-23Z-after-overview.png`;
+  capture report
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T15-28-23Z-capture-report.md`.
+- Capture verdict:
+  `PASS`, no errors, no warnings.
+- Governance:
+  no asset deletion, no route/collider/HUD/telemetry/gameplay change, no
+  Meshy/Tripo/Blender/Poly Haven call, and no global `Premium target` claim.
+
+MYB-168 close scenic framing finalization synced on 2026-06-19:
+
+- Linear issue:
+  `MYB-168` - Bug: Corriger la canopée CloseLeftFrame qui masque la route depuis la caméra vélo.
+- Linear finalization comment:
+  `ef383488-aeb7-4a6d-99a1-c9f11e5fe432`.
+- Gitea PR:
+  https://gitea.kefapps.wtf/kefapps/mybike/pulls/32.
+- Branch:
+  `MYB-168-fix-closeleftframe-canopy-route-readability`.
+- Final implementation commit:
+  `76beef1` - `MYB-168 Preserve close forest framing guardrail`.
+- Scope:
+  replaces the visually rejected all-yellow / too-distant cleanup with a
+  scene-first close-framing guardrail. Trees may remain close to the route when
+  they are grounded/supported, outside hard route-corridor intrusion, and below
+  protected route/horizon overlap limits.
+- Updated generators / validator:
+  - `unity/Echapee4D/Assets/MYB163/Editor/MYB163CanonicalForestPassageIntegrator.cs`;
+  - `unity/Echapee4D/Assets/MYB165/Editor/MYB165FirstTrueRouteBuilder.cs`;
+  - `unity/Echapee4D/Assets/MYB167/Editor/MYB167RouteVisibleSupportValidator.cs`.
+- Updated scene:
+  `unity/Echapee4D/Assets/Scenes/MYB89UnityMcpProbe.unity`.
+- Correction:
+  restored close MYB-163 forest framing; added existing local MYB-112 premium
+  tree anchors; reused local PremiumTreePolyHaven bark/moss textures for
+  MYB-163 bark, root, and moss materials; cooled the MYB-165 road/shoulder
+  palette; and added MYB-167 `closeScenicFramingPass` with a close-scenic
+  safety fixture.
+- Implementation report:
+  `_bmad-output/implementation-artifacts/MYB-168/myb-168-closeleftframe-canopy-fix-report.md`.
+- Investigation note:
+  `_bmad-output/implementation-artifacts/investigations/myb-168-yellow-route-investigation.md`.
+- Fresh Unity scene rebuild:
+  `MYB165FirstTrueRouteBuilder.RunBatchBuildValidateOnly`: exit `0`, `PASS`;
+  log `_bmad-output/unity-test-results/myb-168-finalize-build-validate.log`.
+- Unity route-camera safety validation:
+  `MYB167RouteVisibleSupportValidator.RunBatchValidate`: exit `0`, `PASS`;
+  log `_bmad-output/unity-test-results/MYB-167/unity-batch-myb-168-finalize-route-visible-support.log`.
+- Final MYB-167 metrics:
+  - `unsupportedBlockingCount: 0`;
+  - `unsupportedWarningCount: 0`;
+  - `routeReadabilityBlockingCount: 0`;
+  - `routeReadabilityWarningCount: 0`;
+  - `routeCorridorIntrusionCount: 0`;
+  - `routeCameraSafetyFixtureCloseScenicFramingPassed: true`;
+  - `myb144Verdict: PASS`;
+  - `myb144Errors: 0`;
+  - `myb144Warnings: 0`.
+- Final visual evidence:
+  route capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T16-51-33Z-after-route.png`;
+  overview capture
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T16-51-33Z-after-overview.png`;
+  capture report
+  `_bmad-output/visual-checkpoints/MYB-168/2026-06-19T16-51-33Z-capture-report.md`.
+- Capture verdict:
+  `PASS`, no errors, no warnings; capture rerun without `-nographics` after
+  the offscreen batch path produced blank grey frames.
+- Governance:
+  no route/collider/HUD/telemetry/gameplay change, no external generation
+  service call, no new external asset import, and no global `Premium target`
+  claim. The PR remains unmerged pending human visual review.

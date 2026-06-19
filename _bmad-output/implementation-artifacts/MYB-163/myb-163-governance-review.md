@@ -15,14 +15,13 @@
 | Meshy assets promoted | No |
 | reviewStatus introduced | No |
 | example:true introduced | No |
-| MYB-144 run | Yes |
+| MYB-144 run | No |
 | MYB-144 errors | 0 |
 | MYB-144 warnings | 0 |
 | Route readability regression | No |
 | Route-visible floating assets | 0 |
 | Route-visible unsupported canopies | 0 |
-| Human route-camera validation | Yes, Julien validated on 2026-06-18 |
 | Premium target reached | No |
-| Recommended Linear status | Done |
+| Recommended Linear status | In Review |
 
 Final auto-review: PASS_WITH_WARNINGS

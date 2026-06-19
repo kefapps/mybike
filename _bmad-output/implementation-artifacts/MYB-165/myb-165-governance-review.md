@@ -1,0 +1,21 @@
+# MYB-165 Governance Review
+
+- Dedicated builder exists: Yes
+- Seed 165001 used: Yes
+- Output scene: `Assets/Scenes/MYB89UnityMcpProbe.unity`
+- Generated root exists: `MYB165_FirstTrueRouteRoot`
+- Route duration target reached: Yes
+- Player embodies bicycle POV with supported cockpit cues: Yes
+- Legacy unsupported route-visible props retired: 25
+- Route-visible unsupported scenic masses: 0
+- Mock mode preserved: Yes
+- Canonical forest passage preserved: Yes
+- New Meshy generation: 0
+- Tripo/Poly Haven used: No
+- Gameplay/FTMS modified: No
+- MYB-144 run: Yes
+- MYB-144 errors: 0
+- MYB-144 warnings: 0
+- Premium target reached: No
+- Recommended Linear status: In Review
+- Auto-review verdict: PASS_WITH_WARNINGS

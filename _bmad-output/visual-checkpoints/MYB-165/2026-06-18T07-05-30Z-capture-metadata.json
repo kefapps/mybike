@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "ticketId": "MYB-165",
+  "generatedAt": "2026-06-18T07:05:30.8776980Z",
+  "mode": "capture",
+  "state": "after",
+  "scenePath": "Assets/Scenes/MYB89UnityMcpProbe.unity",
+  "branch": "MYB-165-premier-vrai-parcours-jouable-3-minutes",
+  "commit": "6b6991a",
+  "outputDirectory": "_bmad-output/visual-checkpoints/MYB-165",
+  "verdict": "PASS_WITH_WARNINGS",
+  "cameras": [
+    { "name": "RouteCamera", "role": "blocking validation", "found": true, "position": "(1.503, 1.49, 27.513)", "rotation": "(4.019, 349.28, 0)", "fov": 50, "notes": "perspective" },
+    { "name": "OverviewCamera", "role": "secondary context", "found": true, "position": "(2, 460, 1142.5)", "rotation": "(90, 0, 0)", "fov": 1260, "notes": "orthographic" }
+  ],
+  "captures": [
+    { "state": "after", "type": "route", "path": "_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-route.png", "scene": "Assets/Scenes/MYB89UnityMcpProbe.unity", "camera": "RouteCamera", "position": "(1.503, 1.49, 27.513)", "rotation": "(4.019, 349.28, 0)", "fov": 50, "resolution": "1600x900" },
+    { "state": "after", "type": "overview", "path": "_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-overview.png", "scene": "Assets/Scenes/MYB89UnityMcpProbe.unity", "camera": "OverviewCamera", "position": "(2, 460, 1142.5)", "rotation": "(90, 0, 0)", "fov": 1260, "resolution": "1600x900" }
+  ],
+  "comparisons": [
+  ],
+  "explicitBaseline": {
+    "selectedBy": "",
+    "reason": "",
+    "source": ""
+  },
+  "errors": [
+  ],
+  "warnings": [
+    { "code": "OVERVIEW_CAMERA_SIZE_NON_CANONICAL", "message": "OverviewCamera orthographic size is 1260; V1 default is 42." }
+  ],
+  "info": [
+    { "code": "CAPTURE_WRITTEN", "message": "route after capture written to `_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-route.png`." },
+    { "code": "CAPTURE_WRITTEN", "message": "overview after capture written to `_bmad-output/visual-checkpoints/MYB-165/2026-06-18T07-05-30Z-after-overview.png`." },
+    { "code": "COMPARISON_NOT_REQUESTED", "message": "route before/after comparison was not requested." },
+    { "code": "COMPARISON_NOT_REQUESTED", "message": "overview before/after comparison was not requested." }
+  ]
+}

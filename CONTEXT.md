@@ -38,6 +38,7 @@ Reusable rubric:
 - `docs/validation/forest-corridor-shot-rubric.md`
 - `docs/validation/unity-ground-placement-policy.md`
 - `docs/validation/unity-visual-support-policy.md`
+- `docs/validation/route-camera-safety-gate.md`
 
 The MYB-137 diagnosis is a dated calibration baseline. It is a `Diagnostic
 Surface`, not final production validation.
@@ -49,6 +50,8 @@ thresholds, review templates, and validation surfaces.
 The Unity ground placement policy owns bottomClearance and visual-bottom
 grounding. The Unity visual support policy owns above-ground support coherence
 for route-visible canopies, elevated leaf masses, and overhead scenic elements.
+The Route Camera Safety Gate owns route readability from analytical route-camera
+sampling, projected bounds, and route corridor intrusion checks.
 
 MYB-137 calibrates the rubric. The canonical route camera validates production
 quality.
@@ -107,6 +110,81 @@ Non-examples:
 - A leaf blob several meters above a short trunk with no visible connection.
 - A canopy that is close in top-down overview but disconnected in the route
   screenshot.
+
+### RouteCameraSafetyGate
+
+Definition: The analytical validation gate that samples the canonical bike POV
+route camera and active scene renderer bounds to keep the ride path readable
+without requiring a rendered video.
+
+Relationships:
+
+- `RouteCameraSafetyGate` complements route-camera screenshots and video; it is
+  the machine-readable early warning layer.
+- It owns `routeCorridorIntrusion` and `routeCameraReadabilityBlocker`.
+- It complements `Visual Support`: a supported canopy can still fail if it
+  covers the route/horizon reading zone.
+- `docs/validation/route-camera-safety-gate.md` owns the policy, issue types,
+  metrics, severity, and fixture expectations.
+
+Examples:
+
+- A large overhead mass whose projected bounds cover the central route-camera
+  horizon zone.
+- A side wall or canopy that is not on the ride line but visually dominates the
+  route from the bike POV.
+- A renderer whose XZ bounds intrude into the route safety corridor.
+
+Non-examples:
+
+- The road surface, route edge, HUD, cockpit cue, or explicitly intended route
+  signage when documented as such.
+- A tiny route-visible marker that neither intrudes into the route corridor nor
+  dominates the protected route-camera zone.
+
+### routeCorridorIntrusion
+
+Definition: A non-exempt renderer bounds issue where the object's XZ footprint
+or clearance enters the route safety corridor.
+
+Relationships:
+
+- It is one of the two primary `RouteCameraSafetyGate` issue types.
+- It catches physical/path-space conflicts even when the object does not occupy
+  a large percentage of the screen.
+
+Examples:
+
+- A rock, trunk, wall, or canopy bounds crossing into the rideable route band.
+- A large prop near the road whose bounds extend over the centerline.
+
+Non-examples:
+
+- A route surface intentionally authored as road/shoulder/floor.
+- A distant scenic asset outside the route corridor.
+
+### routeCameraReadabilityBlocker
+
+Definition: A non-exempt renderer bounds issue where the projected viewport
+rectangle dominates or materially overlaps the protected route-camera reading
+zone.
+
+Relationships:
+
+- It is one of the two primary `RouteCameraSafetyGate` issue types.
+- It catches large supported, grounded, or side-offset objects that are still bad
+  from the route camera because they hide the route/horizon.
+
+Examples:
+
+- A supported canopy that blankets the upper-middle route view.
+- A side cliff or wall whose projection covers the route line from the bike POV.
+
+Non-examples:
+
+- A small prop visible at the route edge with low projected dominance.
+- A deliberate route gate or sign that is documented as intended route furniture
+  and still preserves visual clearance.
 
 ### Licence Verifiee
 

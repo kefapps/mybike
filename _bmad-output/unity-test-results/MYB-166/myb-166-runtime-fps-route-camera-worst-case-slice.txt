@@ -1,0 +1,17 @@
+MYB-166 runtime FPS probe
+Generated UTC: 2026-06-18T08:43:07.6674670Z
+Label: route-camera-worst-case-slice
+Status: target
+Resolution: 1280x720
+Quality: PC
+Target FPS: 60
+Warning below FPS: 45
+Red below FPS: 30
+Warmup seconds: 2.00
+Measurement seconds: 47.02
+Frames measured: 2662
+Average FPS: 56.6
+1 percent low FPS: 56.8
+Minimum FPS: 0.5
+Sequence meters: 0.0 -> 320.0
+Video FPS: not measured here; video proof is separate.

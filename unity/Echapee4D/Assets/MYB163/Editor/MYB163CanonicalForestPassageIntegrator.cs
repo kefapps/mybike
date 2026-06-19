@@ -22,6 +22,7 @@ public static class MYB163CanonicalForestPassageIntegrator
     private const string GovernanceReportRelativePath = ImplementationRootRelative + "/myb-163-governance-review.md";
     private const float RoadKeepClearRadius = 2.6f;
     private const float SinkMeters = 0.03f;
+    private const string PremiumTreeRoot = "Assets/Echappee/Art/PremiumTreePolyHaven";
 
     private static readonly Vector3[] RoutePoints =
     {
@@ -223,9 +224,12 @@ public static class MYB163CanonicalForestPassageIntegrator
         Plane[] routePlanes,
         BuildResult result)
     {
-        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_CloseLeftFrame", "Foreground left canopy frame", 9.8f, -1f, 6.75f, 7.2f, 0.48f, 2.75f, 1.18f, "Preserves the preferred near-camera upper-left forest enclosure."), route, materials, parent, routePlanes, result);
-        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_MidLeftEnclosure", "Mid-left enclosure tree", 20.5f, -1f, 7.85f, 7.0f, 0.42f, 2.45f, 1.20f, "Adds grouped canopy mass without making a picket row."), route, materials, parent, routePlanes, result);
-        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_RightAnchor", "Right side ride anchor", 24.0f, 1f, 7.45f, 6.8f, 0.40f, 2.25f, 1.15f, "Keeps the right side authored but secondary."), route, materials, parent, routePlanes, result);
+        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_CloseLeftFrame", "Foreground left canopy frame", 9.8f, -1f, 6.85f, 7.2f, 0.48f, 2.55f, 1.18f, "Preserves the preferred near-camera upper-left forest enclosure while keeping the route-camera horizon readable."), route, materials, parent, routePlanes, result);
+        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_MidLeftEnclosure", "Mid-left enclosure tree", 20.5f, -1f, 7.75f, 7.0f, 0.42f, 2.40f, 1.20f, "Adds grouped canopy mass without making a picket row."), route, materials, parent, routePlanes, result);
+        CreateTreeAssembly(new TreePlan("MYB163_TreeAssembly_RightAnchor", "Right side ride anchor", 24.0f, 1f, 7.35f, 6.8f, 0.40f, 2.18f, 1.15f, "Keeps the right side authored but secondary."), route, materials, parent, routePlanes, result);
+        CreatePremiumTreeAnchor("MYB163_PremiumTreeAnchor_CloseLeft_A", "MYB112_PremiumTree_A.prefab", 14.0f, -1f, 6.25f, 0.74f, route, parent, routePlanes, result);
+        CreatePremiumTreeAnchor("MYB163_PremiumTreeAnchor_Right_B", "MYB112_PremiumTree_B.prefab", 18.5f, 1f, 6.65f, 0.70f, route, parent, routePlanes, result);
+        CreatePremiumTreeAnchor("MYB163_PremiumTreeAnchor_MidLeft_C", "MYB112_PremiumTree_C.prefab", 29.0f, -1f, 6.85f, 0.70f, route, parent, routePlanes, result);
         result.ForegroundFrameCount = 1;
     }
 
@@ -252,8 +256,8 @@ public static class MYB163CanonicalForestPassageIntegrator
         Plane[] routePlanes,
         BuildResult result)
     {
-        CreateHeroRootThreshold("MYB163_RootThresholdHero", 34.0f, -1f, 5.95f, route, materials, parent, routePlanes, result);
-        CreateLeafHalo("MYB163_HeroGroundingHalo", 34.0f, -1f, 5.95f, 2.0f, 4.6f, materials["mossShadow"], route, parent, routePlanes, result);
+        CreateHeroRootThreshold("MYB163_RootThresholdHero", 34.0f, -1f, 6.05f, route, materials, parent, routePlanes, result);
+        CreateLeafHalo("MYB163_HeroGroundingHalo", 34.0f, -1f, 6.05f, 1.9f, 4.35f, materials["mossShadow"], route, parent, routePlanes, result);
         result.HeroBeatCount = 1;
     }
 
@@ -364,6 +368,14 @@ public static class MYB163CanonicalForestPassageIntegrator
             new Vector3(plan.CanopyScale * 0.95f, plan.CanopyScale * 0.40f, plan.CanopyScale * 0.74f)
         };
 
+        if (string.Equals(plan.Name, "MYB163_TreeAssembly_CloseLeftFrame", StringComparison.Ordinal))
+        {
+            canopyCenters[0] = new Vector3(0.62f * towardRoute, plan.Height * 0.73f, 0.06f);
+            canopyCenters[3] = new Vector3(0.74f * towardRoute, plan.Height * 0.66f, -0.78f);
+            canopyScales[0] = new Vector3(plan.CanopyScale * 0.86f, plan.CanopyScale * 0.44f, plan.CanopyScale * 0.74f);
+            canopyScales[3] = new Vector3(plan.CanopyScale * 0.72f, plan.CanopyScale * 0.34f, plan.CanopyScale * 0.62f);
+        }
+
         for (var canopy = 0; canopy < canopyCenters.Length; canopy++)
         {
             var canopyObject = AddMeshChild(
@@ -404,6 +416,88 @@ public static class MYB163CanonicalForestPassageIntegrator
             Meters = plan.Meters,
             Offset = offset,
             Radius = plan.ClearanceRadius,
+            RouteVisible = routeVisible
+        });
+    }
+
+    private static void CreatePremiumTreeAnchor(
+        string name,
+        string prefabName,
+        float meters,
+        float side,
+        float distance,
+        float scale,
+        IReadOnlyList<Vector3> route,
+        Transform parent,
+        Plane[] routePlanes,
+        BuildResult result)
+    {
+        if (!MYB89RideTrajectory.TrySample(route, meters, false, out var sample))
+        {
+            result.BlockingErrors.Add("Could not sample canonical route for " + name + ".");
+            return;
+        }
+
+        var prefabPath = PremiumTreeRoot + "/Prefabs/" + prefabName;
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+        if (prefab == null)
+        {
+            result.AssetManifestWarnings.Add("Missing premium tree prefab for " + name + ": " + prefabPath);
+            return;
+        }
+
+        var offset = side * distance;
+        var groundY = sample.Position.y + TerrainHeight(meters, offset);
+        var anchor = new GameObject(name);
+        anchor.transform.SetParent(parent, false);
+        anchor.transform.position = sample.Position + sample.Right * offset + Vector3.up * (TerrainHeight(meters, offset) + 0.15f);
+        anchor.transform.rotation = Quaternion.LookRotation(sample.Forward, Vector3.up)
+            * Quaternion.Euler(0f, side * (22f + Mathf.Abs(Jitter(meters, 6f))), side * -2.5f);
+
+        var instance = PrefabUtility.InstantiatePrefab(prefab, anchor.transform) as GameObject;
+        if (instance == null)
+        {
+            UnityEngine.Object.DestroyImmediate(anchor);
+            result.AssetManifestWarnings.Add("Could not instantiate premium tree prefab for " + name + ": " + prefabPath);
+            return;
+        }
+
+        instance.name = name + "_PremiumVariant";
+        instance.transform.localPosition = Vector3.zero;
+        instance.transform.localRotation = Quaternion.Euler(0f, side * Jitter(meters + 14f, 11f), 0f);
+        instance.transform.localScale = Vector3.one * scale;
+
+        foreach (var collider in anchor.GetComponentsInChildren<Collider>(true))
+        {
+            UnityEngine.Object.DestroyImmediate(collider);
+        }
+
+        GroundObjectByVisualBottom(anchor, groundY, routePlanes, "Premium foreground tree anchor", result);
+        var bounds = CombinedRendererBounds(anchor) ?? new Bounds(anchor.transform.position, Vector3.one);
+        var routeVisible = routePlanes != null && GeometryUtility.TestPlanesAABB(routePlanes, bounds);
+
+        result.TreeAssemblyCount++;
+        if (routeVisible)
+        {
+            result.RouteVisibleTreeAssemblyCount++;
+        }
+
+        result.Assemblies.Add(new AssemblyRecord
+        {
+            Name = anchor.name,
+            Role = "Premium foreground tree anchor",
+            RouteVisible = routeVisible,
+            CanopySupported = true,
+            Grounding = "premium prefab grounded by combined renderer bounds min.y, sink " + FormatFloat(SinkMeters) + "m",
+            Notes = "Uses existing MYB112 PremiumTreePolyHaven prefab for close route-camera bark/moss material read."
+        });
+        result.Placements.Add(new PlacementRecord
+        {
+            Name = anchor.name,
+            Family = "Premium tree anchor",
+            Meters = meters,
+            Offset = offset,
+            Radius = 1.4f,
             RouteVisible = routeVisible
         });
     }
@@ -1043,20 +1137,100 @@ public static class MYB163CanonicalForestPassageIntegrator
         var shader = Shader.Find("Universal Render Pipeline/Lit") ?? Shader.Find("Standard");
         return new Dictionary<string, Material>
         {
-            ["barkWarm"] = MaterialAt(shader, "MYB163_BarkWarm", new Color(0.31f, 0.20f, 0.12f), 0.22f),
-            ["barkDark"] = MaterialAt(shader, "MYB163_BarkDark", new Color(0.14f, 0.09f, 0.055f), 0.16f),
-            ["rootDark"] = MaterialAt(shader, "MYB163_RootDark", new Color(0.10f, 0.070f, 0.045f), 0.15f),
-            ["shadowBark"] = MaterialAt(shader, "MYB163_ShadowBark", new Color(0.055f, 0.070f, 0.055f), 0.10f),
+            ["barkWarm"] = TexturedBarkMaterialAt(shader, "MYB163_BarkWarm", new Color(0.25f, 0.16f, 0.095f), 0.19f, 0.30f, 0.42f),
+            ["barkDark"] = TexturedBarkMaterialAt(shader, "MYB163_BarkDark", new Color(0.12f, 0.075f, 0.045f), 0.14f, 0.24f, 0.48f),
+            ["rootDark"] = TexturedBarkMaterialAt(shader, "MYB163_RootDark", new Color(0.09f, 0.060f, 0.038f), 0.12f, 0.22f, 0.52f),
+            ["shadowBark"] = TexturedBarkMaterialAt(shader, "MYB163_ShadowBark", new Color(0.052f, 0.062f, 0.050f), 0.08f, 0.18f, 0.55f),
             ["backgroundTrunk"] = MaterialAt(shader, "MYB163_BackgroundTrunk", new Color(0.065f, 0.085f, 0.070f), 0.09f),
             ["leafDeep"] = MaterialAt(shader, "MYB163_LeafDeep", new Color(0.075f, 0.235f, 0.110f), 0.28f),
             ["leafShadow"] = MaterialAt(shader, "MYB163_LeafShadow", new Color(0.045f, 0.120f, 0.070f), 0.20f),
             ["leafDistant"] = MaterialAt(shader, "MYB163_LeafDistantDesaturated", new Color(0.105f, 0.185f, 0.130f), 0.16f),
             ["backgroundLeaf"] = MaterialAt(shader, "MYB163_BackgroundLeafFog", new Color(0.115f, 0.175f, 0.140f), 0.14f),
-            ["mossDeep"] = MaterialAt(shader, "MYB163_MossDeep", new Color(0.070f, 0.195f, 0.095f), 0.24f),
-            ["mossShadow"] = MaterialAt(shader, "MYB163_MossShadow", new Color(0.045f, 0.115f, 0.070f), 0.16f),
+            ["mossDeep"] = TexturedMossMaterialAt(shader, "MYB163_MossDeep", new Color(0.060f, 0.165f, 0.080f), 0.20f, 0.24f, 0.48f),
+            ["mossShadow"] = TexturedMossMaterialAt(shader, "MYB163_MossShadow", new Color(0.040f, 0.098f, 0.060f), 0.14f, 0.18f, 0.55f),
             ["leafDark"] = MaterialAt(shader, "MYB163_LeafLitterDark", new Color(0.17f, 0.11f, 0.065f), 0.18f),
             ["stoneMoss"] = MaterialAt(shader, "MYB163_StoneMoss", new Color(0.36f, 0.39f, 0.27f), 0.16f)
         };
+    }
+
+    private static Material TexturedBarkMaterialAt(Shader shader, string name, Color color, float smoothness, float bumpScale, float occlusionStrength)
+    {
+        return TexturedMaterialAt(
+            shader,
+            name,
+            color,
+            smoothness,
+            PremiumTreeRoot + "/Textures/pine_bark_diff_1k.jpg",
+            PremiumTreeRoot + "/Textures/pine_bark_nor_gl_1k.jpg",
+            PremiumTreeRoot + "/Textures/pine_bark_arm_1k.jpg",
+            bumpScale,
+            occlusionStrength);
+    }
+
+    private static Material TexturedMossMaterialAt(Shader shader, string name, Color color, float smoothness, float bumpScale, float occlusionStrength)
+    {
+        return TexturedMaterialAt(
+            shader,
+            name,
+            color,
+            smoothness,
+            PremiumTreeRoot + "/Textures/moss_wood_diff_1k.jpg",
+            PremiumTreeRoot + "/Textures/moss_wood_nor_gl_1k.jpg",
+            PremiumTreeRoot + "/Textures/moss_wood_arm_1k.jpg",
+            bumpScale,
+            occlusionStrength);
+    }
+
+    private static Material TexturedMaterialAt(
+        Shader shader,
+        string name,
+        Color color,
+        float smoothness,
+        string baseMapPath,
+        string normalMapPath,
+        string occlusionMapPath,
+        float bumpScale,
+        float occlusionStrength)
+    {
+        var material = MaterialAt(shader, name, color, smoothness);
+        var baseMap = AssetDatabase.LoadAssetAtPath<Texture2D>(baseMapPath);
+        var normalMap = AssetDatabase.LoadAssetAtPath<Texture2D>(normalMapPath);
+        var occlusionMap = AssetDatabase.LoadAssetAtPath<Texture2D>(occlusionMapPath);
+
+        if (baseMap != null)
+        {
+            SetTextureIfPresent(material, "_BaseMap", baseMap);
+            SetTextureIfPresent(material, "_MainTex", baseMap);
+        }
+        if (normalMap != null)
+        {
+            SetTextureIfPresent(material, "_BumpMap", normalMap);
+            material.EnableKeyword("_NORMALMAP");
+        }
+        if (occlusionMap != null)
+        {
+            SetTextureIfPresent(material, "_OcclusionMap", occlusionMap);
+            material.EnableKeyword("_OCCLUSIONMAP");
+        }
+        if (material.HasProperty("_BumpScale"))
+        {
+            material.SetFloat("_BumpScale", bumpScale);
+        }
+        if (material.HasProperty("_OcclusionStrength"))
+        {
+            material.SetFloat("_OcclusionStrength", occlusionStrength);
+        }
+
+        EditorUtility.SetDirty(material);
+        return material;
+    }
+
+    private static void SetTextureIfPresent(Material material, string propertyName, Texture2D texture)
+    {
+        if (material.HasProperty(propertyName))
+        {
+            material.SetTexture(propertyName, texture);
+        }
     }
 
     private static Material MaterialAt(Shader shader, string name, Color color, float smoothness)

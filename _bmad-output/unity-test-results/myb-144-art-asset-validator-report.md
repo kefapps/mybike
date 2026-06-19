@@ -3,13 +3,13 @@
 Verdict: PASS
 
 Execution:
-- Mode: MYB-164-Stabilization
+- Mode: MYB-167-RouteVisibleSupportValidator
 - Batch exit code: 0 when run through RunBatch
 
 Summary:
 - Errors: 0
 - Warnings: 0
-- Info: 32
+- Info: 34
 
 Manifest:
 - path: `docs/manifests/art-rescue-asset-manifest.json`
@@ -113,6 +113,9 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB161` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB163` | Yes | 13 | Scanned. |
 | `Assets/MYB164` | Yes | 0 | No V1 asset candidates found. |
+| `Assets/MYB165` | Yes | 13 | Scanned. |
+| `Assets/MYB166` | Yes | 0 | No V1 asset candidates found. |
+| `Assets/MYB167` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB42` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB44` | Yes | 0 | No V1 asset candidates found. |
 | `Assets/MYB48` | Yes | 3 | Scanned. |
@@ -150,6 +153,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/Echappee/Art/MYB95MeshyRelicFountain` | 15 |
 | `Assets/Echappee/Art/MYB95MeshyLantern` | 13 |
 | `Assets/MYB163` | 13 |
+| `Assets/MYB165` | 13 |
 | `Assets/Echappee/Art/MYB95MeshyCharacter` | 12 |
 | `Assets/Echappee/Art/MYB107PolyHavenStylized` | 9 |
 | `Assets/MYB106` | 6 |
@@ -157,7 +161,7 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `Assets/MYB107` | 4 |
 | `Assets/MYB48` | 3 |
 | `Assets/Echappee/Art/MYB42Validation` | 2 |
-| **Total legacy/prototype inventory** | **192** |
+| **Total legacy/prototype inventory** | **205** |
 
 ## ERROR
 
@@ -191,6 +195,8 @@ Promoted assets and manifest schema issues remain strict ERROR regardless of thi
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB160 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB161 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB164 exists but contains no V1 asset candidates. |
+| `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB166 exists but contains no V1 asset candidates. |
+| `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB167 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB42 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB44 exists but contains no V1 asset candidates. |
 | `UNITY_SCAN_ROOT_EMPTY` | Assets/MYB51 exists but contains no V1 asset candidates. |

@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -684,6 +685,11 @@ namespace MYB89.Editor
             for (var i = 0; i < 14; i++)
             {
                 var x = -66f + i * 10.5f;
+                if (Mathf.Abs(x) < 18f)
+                {
+                    x = x < 0f ? -22f : 22f;
+                }
+
                 var z = 218f + (i % 5) * 13f;
                 CreateTree($"MYB44_HorizonTree_{i:00}", parent, new Vector3(x, 0f, z), materials["treeTrunk"], materials["treeLeaf"]);
             }
@@ -1140,7 +1146,7 @@ namespace MYB89.Editor
             var eventSystemObject = new GameObject("MYB89_EventSystem");
             eventSystemObject.transform.SetParent(parent);
             eventSystemObject.AddComponent<EventSystem>();
-            eventSystemObject.AddComponent<StandaloneInputModule>();
+            eventSystemObject.AddComponent<InputSystemUIInputModule>();
         }
 
         private static GameObject CreateHud(

@@ -46,43 +46,34 @@ MYB-163 applies the MYB-162 productionization plan to the canonical MYB89 forest
 ## Metrics
 
 - metrics JSON: `_bmad-output/implementation-artifacts/MYB-163/myb-163-canonical-forest-passage-metrics.json`
-- treeAssemblyCount: `3`
-- routeVisibleTreeAssemblyCount: `3`
+- treeAssemblyCount: `6`
+- routeVisibleTreeAssemblyCount: `0`
 - heroBeatCount: `1`
 - backWallMassCount: `8`
-- routeVisibleCanopyCount: `40`
-- approximateTriangles: `13784`
-- rendererCount: `183`
+- routeVisibleCanopyCount: `0`
+- approximateTriangles: `61646`
+- rendererCount: `213`
 
 ## Visual Evidence
 
-- before route: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-23Z-before-route.png`
-- after route: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-after-route.png`
-- route comparison: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-route-before-after.png`
-- before overview: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-23Z-before-overview.png`
-- after overview: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-after-overview.png`
-- overview comparison: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-overview-before-after.png`
-- capture report: `_bmad-output/visual-checkpoints/MYB-163/2026-06-17T22-44-25Z-before-after-report.md`
-
-## Human Validation
-
-Julien validated the MYB-163 canonical route-camera checkpoint on 2026-06-18.
-This validation accepts MYB-163 for closure as constrained canonical integration
-evidence. It does not change the visual verdict: Premium target reached remains
-No, and the checkpoint remains recorded as insuffisant rather than final premium
-production art.
+- before route: ``
+- after route: ``
+- route comparison: ``
+- before overview: ``
+- after overview: ``
+- overview comparison: ``
+- capture report: ``
 
 ## MYB-144 Validation
 
-- verdict: `PASS`
+- verdict: `Not run`
 - errors: `0`
 - warnings: `0`
 - report: `_bmad-output/unity-test-results/myb-144-art-asset-validator-report.md`
 
 ## Visual Rubric Estimate
 
-Scores are implementation estimates. Julien validated the checkpoint for closure
-on 2026-06-18, but the scores remain non-final production estimates.
+Scores are implementation estimates pending Julien human visual review.
 
 - Route readability: pass estimate, clean center preserved
 - Silhouette quality: improved estimate, grouped assemblies replace thin-only read
@@ -99,10 +90,11 @@ on 2026-06-18, but the scores remain non-final production estimates.
 
 ### Build / Capture Warnings
 
-- None recorded.
+- RouteCamera not found while building MYB-163. Route-visible metrics are conservative fallback values.
 
 ### MYB-163 Visual Warnings
 
+- MYB104_ProductionPassages not found. MYB-163 expected to layer onto the existing canonical forest passage.
 - Premium target intentionally not claimed; MYB-163 needs Julien route-camera review before any Done closure.
 - MYB-163 layers grouped canopy and forest masses over the canonical forest passage instead of copying the MYB-161 preview scene.
 - Existing MYB104 forest objects remain active; MYB-163 reduces the perceived thin/picket look by adding grouped masses rather than destructively removing prior authored content.
@@ -132,5 +124,5 @@ on 2026-06-18, but the scores remain non-final production estimates.
 ## Verdict
 
 - Premium target reached: No
-- Checkpoint insuffisant accepted by Julien as canonical integration checkpoint evidence
-- Recommended Linear status: Done after human validation
+- Checkpoint insuffisant pending Julien route-camera validation
+- Recommended Linear status: In Review

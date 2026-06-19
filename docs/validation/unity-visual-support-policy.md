@@ -47,8 +47,20 @@ support signal:
 - vertical overlap or small documented vertical gap between support top and
   elevated asset bottom;
 - route-camera evidence showing the support reads visually from the cyclist
-  view;
+  view, ideally in the same sampled route-camera pose as the supported asset;
+- support geometry that is itself visually grounded, with floating supports
+  reported separately instead of being treated as clean evidence;
 - documented exception accepted by Julien.
+
+When a validator uses an approximate route-ground proxy instead of physics
+raycasts, a small support-bottom tolerance is allowed so real trunks/posts are
+not rejected by terrain slope or sampling error. MYB-167 V1 uses `0.58m` as the
+support-candidate association tolerance only. Floating vertical supports still
+follow the MYB-154 bottomClearance policy when measured against a credible local
+ground source: warning above `+0.05m`, blocking above `+0.10m`. If only an
+approximate route-Y proxy is available, the validator should improve the local
+ground source or downgrade the case to ambiguous review instead of weakening the
+global anti-float thresholds.
 
 If the support is only visible in overview but not from the route camera, it is
 not enough for production visual validation.

@@ -27,6 +27,7 @@ blob-report/
 _bmad/config.user.toml
 _bmad/**/*.user.toml
 _bmad-output/video-captures/
+_bmad-output/unity-macos-builds/
 _bmad-output/unity-webgl-builds/
 _bmad-output/scripts/__pycache__/
 

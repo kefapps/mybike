@@ -1,0 +1,55 @@
+{
+  "ticket": "MYB-166",
+  "date": "2026-06-18",
+  "scope": "initial Unity MCP profiler snapshots",
+  "unityStatus": {
+    "project": "unity/Echapee4D",
+    "editorRunning": true,
+    "editorPid": 97690,
+    "mcpReachable": true
+  },
+  "renderingStats": {
+    "frameTimeMs": 302.442139,
+    "fps": 3.3064177,
+    "vSyncCount": 0,
+    "targetFrameRate": -1,
+    "renderingThreadingMode": "MultiThreaded",
+    "graphicsDeviceType": "Metal"
+  },
+  "frameCapture": {
+    "frameTimeMs": 302.442139,
+    "fps": 3.3064177,
+    "totalFrameCount": 5,
+    "realtimeSinceStartup": 1859.86414,
+    "renderedFrameCount": 5
+  },
+  "memoryStats": {
+    "totalReservedMemoryMB": 734.34967,
+    "totalAllocatedMemoryMB": 387.263031,
+    "totalUnusedReservedMemoryMB": 347.08667,
+    "monoHeapSizeMB": 1175.51563,
+    "monoUsedSizeMB": 1132.27344,
+    "tempAllocatorSizeMB": 25.015625,
+    "graphicsMemoryMB": 249.658569,
+    "maxUsedMemoryMB": 512,
+    "usedHeapSizeMB": 387.263031
+  },
+  "scriptStats": {
+    "frameTimeMs": 302.442139,
+    "fixedDeltaTimeMs": 19.9999924,
+    "timeScale": 1,
+    "totalFrameCount": 5,
+    "realtimeSinceStartup": 1867.94946,
+    "monoMemoryUsageMB": 1138.16406,
+    "gcMemoryUsageMB": 1138.16406
+  },
+  "interpretation": {
+    "snapshotOnly": true,
+    "routeCameraBenchmarkStillRequired": true,
+    "notes": [
+      "The Unity MCP profiler tools expose a single current-frame snapshot, not a complete route-camera benchmark.",
+      "The captured frame reports about 302 ms / 3.3 FPS in the current Editor state, which confirms a severe performance problem but does not yet isolate CPU vs GPU or the worst-case route section.",
+      "A MYB-166 route-camera benchmark runner should collect average, min, and p95 frame times over worst-case and full-route scenarios."
+    ]
+  }
+}

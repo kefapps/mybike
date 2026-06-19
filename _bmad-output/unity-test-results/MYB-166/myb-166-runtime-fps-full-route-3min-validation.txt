@@ -1,0 +1,17 @@
+MYB-166 runtime FPS probe
+Generated UTC: 2026-06-18T08:43:25.4447950Z
+Label: full-route-3min-validation
+Status: target
+Resolution: 1280x720
+Quality: PC
+Target FPS: 60
+Warning below FPS: 45
+Red below FPS: 30
+Warmup seconds: 2.00
+Measurement seconds: 191.62
+Frames measured: 11215
+Average FPS: 58.5
+1 percent low FPS: 56.8
+Minimum FPS: 0.3
+Sequence meters: 0.0 -> 2370.0
+Video FPS: not measured here; video proof is separate.
